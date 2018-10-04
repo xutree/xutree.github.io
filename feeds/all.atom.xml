@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-04T17:45:00+08:00</updated><entry><title>My super title</title><link href="https://xutree.github.io/my-super-title.html" rel="alternate"></link><published>2018-10-04T17:45:00+08:00</published><updated>2018-10-04T17:45:00+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-04:/my-super-title.html</id><summary type="html">Short version for index and feeds</summary><content type="html">
+    This is the content of my super blog post.
+</content><category term="thats"></category><category term="awesome"></category></entry></feed>
