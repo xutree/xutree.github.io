@@ -6,8 +6,8 @@
         <meta name="author" content="Shu" />
         <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="Pelican, GitHub, 教程, " />
-        <title>利用GitHub和Pelican搭建免费个人网站  · You Know Nothing
+<meta name="keywords" content="Pelican, 教程, " />
+        <title>在Mac上安装Pelican  · You Know Nothing
 </title>
         <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
@@ -51,7 +51,7 @@
 <article>
 <div class="row-fluid">
     <header class="page_header span10 offset2">
-    <h1><a href="/li-yong-githubhe-pelicanda-jian-mian-fei-ge-ren-wang-zhan.html"> 利用GitHub和Pelican搭建免费个人网站  </a></h1>
+    <h1><a href="/zai-macshang-an-zhuang-pelican.html"> 在Mac上安装Pelican  </a></h1>
     </header>
 </div>
 
@@ -60,44 +60,26 @@
 
             
     <p>
-        <a href="https://blog.getpelican.com/" target="_blank">Pelican</a>是一个静态站点生成器，用Python编写，不需要数据库或服务器端逻辑。它具有许多优势：
-        <ul>
-            <li>
-                你可以用<a href="http://docutils.sourceforge.net/rst.html" target="_blank">reStructuredText</a>，<a href="https://daringfireball.net/projects/markdown/" target="_blank">Markdown</a>或<a href="http://www.methods.co.nz/asciidoc/" target="_blank">AsciiDoc</a>格式书写你的文章
-            </li>
-            <li>
-                Pelican创建的是静态网站，可以托管在任何地方
-            </li>
-            <li>
-                可以通过<a href="http://jinja.pocoo.org/" target="_blank">Jinja</a>模板自定义<a href="https://github.com/getpelican/pelican-themes" target="_blank">主题</a>
-            </li>
-            <li>
-                支持多语言
-            </li>
-            <li>
-                支持Atom/RSS
-            </li>
-            <li>
-                可以从WordPress，Dotclear，RSS订阅源等导入
-            </li>
-            <li>
-                模块化插件系统和相应的插件库
-            </li>
-            <li>
-                ... ...
-            </li>
-        </ul>
+        Pelican目前支持Python 2.7和 3.3+，早期版本的Python已经不支持了。有许多不同的方法可以安装Pelican，最简单的方法是使用pip，在终端输入：
+        <code>
+            pip install pelican
+        </code>
     </p>
     <p>
-        <a href="https://github.com/" target="_blank">GitHub</a>是世界上最著名的开源代码托管平台，<a href="https://pages.github.com/" target="_blank">GitHub Page</a>允许用户将网页内容及其代码一起存储在git仓库中，结合Pelican和GitHub Page可以很快搭建好自己的个人网站。
-    </p>
+        上面是最简单的方法，官方更为推荐的方法是利用<a href="http://www.virtualenv.org/" target="_blank">virtualenv</a>为Pelican建立一个虚拟环境。假设你已经安装好了virtualenv，下面打开终端，开始为Pelican新建一个虚拟环境：
+        <code>
+            virtualenv ~/virtualenv/pelican<br />
+            cd ~/virtualenv/pelican<br />
+            source bin/activate<br />
+        </code>
+    </p>
 
             <aside>
             <hr/>
             <nav>
             <ul class="articles_timeline">
  
-                <li class="next_article"><a href="/zai-macshang-an-zhuang-pelican.html" title="Next: 在Mac上安装Pelican">在Mac上安装Pelican</a> »</li>
+                <li class="previous_article">« <a href="/li-yong-githubhe-pelicanda-jian-mian-fei-ge-ren-wang-zhan.html" title="Previous: 利用GitHub和Pelican搭建免费个人网站">利用GitHub和Pelican搭建免费个人网站</a></li>
             </ul>
             </nav>
             </aside>
@@ -106,17 +88,14 @@
         <div class="span2" style="float:right;font-size:0.9em;">
  
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2018-10-04T20:45:00+08:00">10 4, 2018</time>
+            <time pubdate="pubdate" datetime="2018-10-04T21:21:00+08:00">10 4, 2018</time>
  
             <h4>Last Updated</h4>
-            <div class="last_updated">2018-10-04 20:45:00+08:00</div>
+            <div class="last_updated">2018-10-04 21:21:00+08:00</div>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#教程-ref">教程</a> 
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article"> 
-                <li><a href="/tags.html#GitHub-ref">GitHub
-                    <span>1</span>
-</a></li>
                 <li><a href="/tags.html#Pelican-ref">Pelican
                     <span>2</span>
 </a></li>

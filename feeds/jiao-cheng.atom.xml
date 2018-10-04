@@ -1,35 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 教程</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/jiao-cheng.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-04T20:45:00+08:00</updated><entry><title>利用GitHub和Pelican搭建免费个人网站</title><link href="https://xutree.github.io/li-yong-githubhe-pelicanda-jian-mian-fei-ge-ren-wang-zhan.html" rel="alternate"></link><published>2018-10-04T20:45:00+08:00</published><updated>2018-10-04T20:45:00+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-04:/li-yong-githubhe-pelicanda-jian-mian-fei-ge-ren-wang-zhan.html</id><summary type="html">利用GitHub和Pelican搭建个人网站</summary><content type="html">
-    &lt;p&gt;
-        &lt;a href="https://blog.getpelican.com/" target="_blank"&gt;Pelican&lt;/a&gt;是一个静态站点生成器，用Python编写，不需要数据库或服务器端逻辑。它具有许多优势：
-        &lt;ul&gt;
-            &lt;li&gt;
-                你可以用&lt;a href="http://docutils.sourceforge.net/rst.html" target="_blank"&gt;reStructuredText&lt;/a&gt;，&lt;a href="https://daringfireball.net/projects/markdown/" target="_blank"&gt;Markdown&lt;/a&gt;或&lt;a href="http://www.methods.co.nz/asciidoc/" target="_blank"&gt;AsciiDoc&lt;/a&gt;格式书写你的文章
-            &lt;/li&gt;
-            &lt;li&gt;
-                Pelican创建的是静态网站，可以托管在任何地方
-            &lt;/li&gt;
-            &lt;li&gt;
-                可以通过&lt;a href="http://jinja.pocoo.org/" target="_blank"&gt;Jinja&lt;/a&gt;模板自定义&lt;a href="https://github.com/getpelican/pelican-themes" target="_blank"&gt;主题&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-                支持多语言
-            &lt;/li&gt;
-            &lt;li&gt;
-                支持Atom/RSS
-            &lt;/li&gt;
-            &lt;li&gt;
-                可以从WordPress，Dotclear，RSS订阅源等导入
-            &lt;/li&gt;
-            &lt;li&gt;
-                模块化插件系统和相应的插件库
-            &lt;/li&gt;
-            &lt;li&gt;
-                ... ...
-            &lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/p&gt;
-    &lt;p&gt;
-        &lt;a href="https://github.com/" target="_blank"&gt;GitHub&lt;/a&gt;是世界上最著名的开源代码托管平台，&lt;a href="https://pages.github.com/" target="_blank"&gt;GitHub Page&lt;/a&gt;允许用户将网页内容及其代码一起存储在git仓库中，结合Pelican和GitHub Page可以很快搭建好自己的个人网站。
-    &lt;/p&gt;
-</content><category term="Pelican"></category><category term="GitHub"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 教程</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/jiao-cheng.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-04T22:03:00+08:00</updated><entry><title>安装Pelican</title><link href="https://xutree.github.io/an-zhuang-pelican.html" rel="alternate"></link><published>2018-10-04T22:03:00+08:00</published><updated>2018-10-04T22:03:00+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-04:/an-zhuang-pelican.html</id><summary type="html">&lt;p&gt;安装Pelican&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;目前支持Python 2.7和 3.3+，早期版本的Python已经不支持了。有许多不同的方法可以安装Pelican，最简单的方法是使用pip，在终端输入：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install pelican
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面是最简单的方法，官方更为推荐的方法是利用virtualenv为Pelican建立一个虚拟环境。假设你已经安装好了virtualenv，下面打开终端，开始为Pelican新建一个虚拟环境：     &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;virtualenv ~/virtualenv/pelican
+cd ~/virtualenv/pelican
+source bin/activate
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Pelican"></category></entry></feed>
