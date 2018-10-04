@@ -16,7 +16,7 @@
 &lt;p&gt;当Pelican安装好以后，你可以在终端输入&lt;code&gt;pelican --help&lt;/code&gt;查看使用选项。&lt;/p&gt;
 &lt;h2&gt;可选的Packages&lt;/h2&gt;
 &lt;p&gt;如果你计划用&lt;a href="http://pypi.python.org/pypi/Markdown"&gt;Markdown&lt;/a&gt;来书写你的网页的话，你需要安装Markdown：&lt;code&gt;pip install Markdown&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;通过设置Pelican的pelicanconf.py文件，你可以对生成的HTML文件启用增强语法。但是首先你需要安装Typogrify：&lt;code&gt;pip install typorify&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;通过设置Pelican的pelicanconf.py文件，你可以对生成的HTML文件启用增强语法。但是首先你需要安装&lt;a href="https://pypi.org/project/typogrify/"&gt;Typogrify&lt;/a&gt;：&lt;code&gt;pip install typorify&lt;/code&gt;&lt;/p&gt;
 &lt;h2&gt;更新&lt;/h2&gt;
 &lt;p&gt;更新到最新的稳定版本，使用：
 &lt;code&gt;pip install --upgrade pelican&lt;/code&gt;&lt;/p&gt;</content><category term="Pelican"></category></entry></feed>
