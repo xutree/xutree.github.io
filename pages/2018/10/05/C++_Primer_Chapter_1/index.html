@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="Pelican, 教程, " />
-    <title>安装 Pelican  · You Know Nothing
+<meta name="keywords" content="C++, 读书笔记, " />
+    <title>【读书笔记】C++ Primer 第一章  · You Know Nothing
 </title>
     <link href="https://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
@@ -60,40 +60,48 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/04/在mac上安装Pelican/"> 安装 Pelican  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/"> 【读书笔记】C++ Primer 第一章  </a></h1>
         </header>
     </div>
 
     <div class="row-fluid">
             <div class="span8 offset2 article-content">
 
-                <h2>安装Pelican</h2>
-<p><a href="https://blog.getpelican.com/">Pelican</a>目前支持最好的是Python 2.7和 3.3+，早期版本的Python已经不支持了。有许多不同的方法可以安装Pelican，最简单的方法是使用pip，在终端输入：</p>
-<div class="highlight"><pre><span></span>    pip install pelican
-</pre></div>
-
-
-<p>上面是最简单的方法，官方更为推荐的方法是利用<a href="http://www.virtualenv.org/">virtualenv</a>为Pelican建立一个虚拟环境。假设你已经安装好了virtualenv，下面打开终端，开始为Pelican新建一个虚拟环境：</p>
-<div class="highlight"><pre><span></span>    virtualenv ~/virtualenv/pelican
-    cd ~/virtualenv/pelican
-    source bin/activate
-</pre></div>
-
-
-<p>当虚拟环境被创建并激活以后，然后利用<code>pip install pelican</code>安装Pelican。</p>
-<p>当Pelican安装好以后，你可以在终端输入<code>pelican --help</code>查看使用选项。</p>
-<h2>可选的Packages</h2>
-<p>如果你计划用<a href="http://pypi.python.org/pypi/Markdown">Markdown</a>来书写你的网页的话，你需要安装Markdown：<code>pip install Markdown</code></p>
-<p>通过设置Pelican的pelicanconf.py文件，你可以对生成的HTML文件启用增强语法。但是首先你需要安装<a href="https://pypi.org/project/typogrify/">Typogrify</a>：<code>pip install typorify</code></p>
-<h2>更新</h2>
-<p>更新到最新的稳定版本，使用：
-<code>pip install --upgrade pelican</code></p>
+                <ul>
+<li>main函数的返回类型必须为int，返回值0表示成功，非0的含义由系统定义，通常用来指出错误类型</li>
+<li>g++ -std=c++14  -Wall -o test test.cpp</li>
+<li>iostream cin cout cerr clog</li>
+<li>&lt;&lt;运算符返回其左侧的运算对象</li>
+<li>写入endl的效果是结束当前行，并将与设备关联的缓冲区中的内容刷到设备中。缓冲刷新操作可以保证到目前为止程序所产生的所有输出都真正写入到输出流中，而不是仅停留在内存中等待写入流</li>
+<li>小心程序崩溃，输出可能还留在缓冲区的情况，利用endl</li>
+<li>标准库定义的所有名字都在命名空间std中</li>
+<li>当我们使用一个istream对象作为条件时，其效果是检测流的状态。流有效，即流未遇到错误，那么检测成功。当遇到文件结束符（end of file），或遇到一个无效输入时，istream对象的状态会变为无效。无效的istream对象会使条件为假</li>
+<li>文件结束符：Windows 先Ctrl + Z，后Enter 或 Return；UNIX：Ctrl +D</li>
+<li>标准库文件通常不带后缀。编译器一般不关心头文件名的形式，但有的IDE对此有特定要求</li>
+<li>头文件包含：标准库头文件 &lt;&gt;     非标准库头文件 ""</li>
+<li>文件重定向：从文件读入\&lt;infile，输出到文件>outfile</li>
+<li>
+<p>C++里关于cerr,clog,cout三者的区别:</p>
+<ul>
+<li>cerr(无缓冲标准错误) 没有缓冲，发送给它的内容立即被输出</li>
+<li>clog(缓冲标准错误)  有缓冲，缓冲区满时输出</li>
+<li>cout  标准输出</li>
+<li>cout是在终端显示器输出,cout流在内存中对应开辟了一个缓冲区,用来存放流中的数据,当向cout流插入一个endl,不论缓冲区是否满了,都立即输出流中所有数据,然后插入一个换行符</li>
+<li>cerr流对象是标准错误流,指定为和显示器关联,和cout作用差不多,有点不同就是cout通常是传到显示器输出,但可以被重定向输出到文件,而cerr流中的信息只能在显示器输出</li>
+<li>clog流也是标准错误流,作用和cerr一样,区别在于cerr不经过缓冲区,直接向显示器输出信息,而clog中的信息存放在缓冲区,缓冲区满或者遇到endl时才输出</li>
+</ul>
+</li>
+<li>
+<p>对于为什么有cerr和clog？比如，你的程序遇到调用栈用完了的威胁（无限，没有出口的递归。你说，你到什么地方借内存，存放你的错误信息？所以有了cerr。其目的，就是在你最需要它的紧急情况下，还能得到输出功能的支持。</p>
+</li>
+<li>缓冲区的目的，就是减少刷屏的次数——比如，你的程序输出圣经中的一篇文章。不带缓冲的话，就会每写一个字母，就输出一个字母，然后刷屏。有了缓冲，你将看到若干句子“同时”就出现在了屏幕上（由内存翻新到显存，然后刷新屏幕）。</li>
+</ul>
 <section>
 <div class="accordion" id="accordion2">
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="https://xutree.github.io/pages/2018/10/04/在mac上安装Pelican/#disqus_thread">
+                href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/#disqus_thread">
                 Comments
             </a>
         </div>
@@ -103,8 +111,8 @@
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'xutree';
-        var disqus_identifier = 'https://xutree.github.io/pages/2018/10/04/在mac上安装Pelican/';
-    var disqus_url = 'https://xutree.github.io/pages/2018/10/04/在mac上安装Pelican/';
+        var disqus_identifier = 'https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/';
+    var disqus_url = 'https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -123,27 +131,17 @@
                     <hr />
                     <!-- <nav>
                         <ul class="articles_timeline">
-                            <li class="next_article"><a href="https://xutree.github.io/pages/2018/10/04/X3DOM第一课/">X3DOM 第一课</a> »</li>
+                            <li class="previous_article">« <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">HTML 入门</a></li>
                         </ul>
                     </nav> -->
-                    <nav class="newer">
+                    <nav class="older">
                         <h1>
-                            <font color="#771515">NEWER</font>
+                            <font color="#771515">OLDER</font>
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/04/X3DOM第一课/">
-                                    X3DOM 第一课
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/10/04/X3DOM-hello/">
-                                    Hello，X3DOM！
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/">
-                                    X3DOM，HTML，CSS 和 JavaScript
+                                <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">
+                                    HTML 入门
                                 </a>
                             </li>
                             <li>
@@ -152,35 +150,35 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">
-                                    HTML 入门
+                                <a href="https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/">
+                                    X3DOM，HTML，CSS 和 JavaScript
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/04/X3DOM-hello/">
+                                    Hello，X3DOM！
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/04/X3DOM第一课/">
+                                    X3DOM 第一课
                                 </a>
                             </li>
                         </ul>
-                    </nav>
-                    <nav>
-                        <div id="disqus_thread"></div>
-                        <script>
-                            (function() { // DON'T EDIT BELOW THIS LINE
-                            var d = document, s = d.createElement('script');
-                            s.src = 'https://xutree.disqus.com/embed.js';
-                            s.setAttribute('data-timestamp', +new Date());
-                            (d.head || d.body).appendChild(s);
-                            })();
-                        </script>
-                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                     </nav>
                 </aside>
             </div>
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-10-04T10:20:00+08:00">2018年10月04日</time>
+                    <time pubdate="pubdate" datetime="2018-10-05T23:11:35+08:00">2018年10月05日</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018年10月05日</div>
                     <h4>分类</h4>
-                    <a class="category-link" href="/categories.html#教程-ref">教程</a>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
-                        <li><a href="/tags.html#Pelican-ref">Pelican
+                        <li><a href="/tags.html#C++-ref">C++
                                 <span>1</span>
 </a></li>
                     </ul>
