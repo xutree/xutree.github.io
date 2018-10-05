@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="Pelican, 教程, " />
-    <title>安装Pelican  · You Know Nothing
+<meta name="keywords" content="X3DOM, 教程, " />
+    <title>X3DOM图像和视频纹理  · You Know Nothing
 </title>
     <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
@@ -57,40 +57,49 @@
 <article>
 <div class="row-fluid">
     <header class="page_header span10 offset2">
-    <h1><a href="https://xutree.github.io/在mac上安装Pelican.html"> 安装Pelican  </a></h1>
+    <h1><a href="https://xutree.github.io/X3DOM图像和视频纹理.html"> X3DOM图像和视频纹理  </a></h1>
     </header>
 </div>
 
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
 
-            <h2>安装Pelican</h2>
-<p><a href="https://blog.getpelican.com/">Pelican</a>目前支持最好的是Python 2.7和&nbsp;3.3+，早期版本的Python已经不支持了。有许多不同的方法可以安装Pelican，最简单的方法是使用pip，在终端输入：</p>
-<div class="highlight"><pre><span></span>    pip install pelican
+            <p>本章你将知道哪些图像类型和视频格式可以用作X3DOM的纹理，已经纹理的特性和限制。</p>
+<p>你可以使用 <a href="http://en.wikipedia.org/wiki/Portable_Network_Graphics"><em><span class="caps">PNG</span></em></a>，<a href="http://en.wikipedia.org/wiki/Jpeg"><em><span class="caps">LPEG</span></em></a> 或者 <a href="https://en.wikipedia.org/wiki/Gif"><em><span class="caps">GIF</span></em></a> 来编码你的静态纹理数据。<em><span class="caps">JPG</span></em> 图像需要的内存少但是存在压缩损失而且没有 <em>alpha</em> 通道。<em><span class="caps">PNG</span></em> 图像属于无损压缩并且有 <em>alpha</em> 通道，<em><span class="caps">GIF</span></em> 也是无损压缩并且有 <em>alpha</em> 通道。一般来讲：如果你不需要 <em>alpha</em> 通道并且图像中不包含硬边界(例如：文本)，使用 <em><span class="caps">JPG</span></em>，否则使用 <em><span class="caps">PNG</span></em>。你应该避免使用 <em><span class="caps">GIF</span></em>。</p>
+<h2>图像</h2>
+<p>利用 <em>ImageTexture</em>&nbsp;节点把图像作为纹理：</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;x3d</span> <span class="na">width=</span><span class="s">&#39;500px&#39;</span> <span class="na">height=</span><span class="s">&#39;400px&#39;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;scene&gt;</span>
+    <span class="nt">&lt;shape&gt;</span>
+    <span class="nt">&lt;appearance&gt;</span>
+    <span class="nt">&lt;ImageTexture</span> <span class="na">url=</span><span class="s">&quot;myTexture.png&quot;</span><span class="nt">&gt;&lt;ImageTexture/&gt;</span>
+    <span class="nt">&lt;/appearance&gt;</span>
+    <span class="nt">&lt;box&gt;</span> <span class="nt">&lt;/box&gt;</span>
+    <span class="nt">&lt;/shape&gt;</span>
+<span class="nt">&lt;/scene&gt;</span>
+<span class="nt">&lt;/x3d&gt;</span>
 </pre></div>
 
 
-<p>上面是最简单的方法，官方更为推荐的方法是利用<a href="http://www.virtualenv.org/">virtualenv</a>为Pelican建立一个虚拟环境。假设你已经安装好了virtualenv，下面打开终端，开始为Pelican新建一个虚拟环境：</p>
-<div class="highlight"><pre><span></span>    virtualenv ~/virtualenv/pelican
-    cd ~/virtualenv/pelican
-    source bin/activate
+<h2>视频</h2>
+<p>利用 <em>MovieTexture</em> 节点可以把视频作为纹理。但是目前还没有哪一种视频格式支持所有的用户。可以使用X3DOM格式<a href="https://x3dom.org/x3dom/example/x3dom_video.xhtml">示例</a>来确定你的浏览器支持的格式。目前最好的解决方法是将你的视频编码成 <em><span class="caps">MP4</span></em> 和 <em><span class="caps">OGV</span></em> 格式并在 <em>MovieTexture</em>&nbsp;节点中提供这两个选项：</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;x3d</span> <span class="na">width=</span><span class="s">&#39;500px&#39;</span> <span class="na">height=</span><span class="s">&#39;400px&#39;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;scene&gt;</span>
+    <span class="nt">&lt;shape&gt;</span>
+    <span class="nt">&lt;appearance&gt;</span>
+    <span class="nt">&lt;MovieTexture</span> <span class="na">url=</span><span class="s">&#39;”foo.mp4″,”foo.ogv”&#39;</span><span class="nt">&gt;&lt;MovieTexture/&gt;</span>
+    <span class="nt">&lt;/appearance&gt;</span>
+    <span class="nt">&lt;box&gt;</span> <span class="nt">&lt;/box&gt;</span>
+    <span class="nt">&lt;/shape&gt;</span>
+<span class="nt">&lt;/scene&gt;</span>
+<span class="nt">&lt;/x3d&gt;</span>
 </pre></div>
-
-
-<p>当虚拟环境被创建并激活以后，然后利用<code>pip install pelican</code>安装Pelican。</p>
-<p>当Pelican安装好以后，你可以在终端输入<code>pelican --help</code>查看使用选项。</p>
-<h2>可选的Packages</h2>
-<p>如果你计划用<a href="http://pypi.python.org/pypi/Markdown">Markdown</a>来书写你的网页的话，你需要安装Markdown：<code>pip install Markdown</code></p>
-<p>通过设置Pelican的pelicanconf.py文件，你可以对生成的HTML文件启用增强语法。但是首先你需要安装<a href="https://pypi.org/project/typogrify/">Typogrify</a>：<code>pip install typorify</code></p>
-<h2>更新</h2>
-<p>更新到最新的稳定版本，使用：
-<code>pip install --upgrade pelican</code></p>
             <aside>
             <hr/>
             <nav>
             <ul class="articles_timeline">
  
-                <li class="next_article"><a href="https://xutree.github.io/X3DOM第一课.html" title="Next: X3DOM第一课">X3DOM第一课</a> »</li>
+                <li class="previous_article">« <a href="https://xutree.github.io/X3DOMHTMLCSS和JavaScript.html" title="Previous: <span class="caps">X3DOM</span>, <span class="caps">HTML</span>, <span class="caps">CSS</span> 和&nbsp;JavaScript"><span class="caps">X3DOM</span>, <span class="caps">HTML</span>, <span class="caps">CSS</span> 和&nbsp;JavaScript</a></li>
             </ul>
             </nav>
             </aside>
@@ -99,13 +108,13 @@
         <div class="span2" style="float:right;font-size:0.9em;">
  
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2018-10-05T12:07:24.297964+08:00">10 5, 2018</time>
+            <time pubdate="pubdate" datetime="2018-10-05T12:34:35.977271+08:00">10 5, 2018</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#教程-ref">教程</a> 
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article"> 
-                <li><a href="/tags.html#Pelican-ref">Pelican
-                    <span>1</span>
+                <li><a href="/tags.html#X3DOM-ref">X3DOM
+                    <span>4</span>
 </a></li>
             </ul>
 
