@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="X3DOM, 教程, " />
-    <title><span class="caps">X3DOM</span>&nbsp;图像和视频纹理  · You Know Nothing
+    <title>X3DOM 图像和视频纹理  · You Know Nothing
 </title>
     <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="/X3DOM图像和视频纹理.html"> <span class="caps">X3DOM</span>&nbsp;图像和视频纹理  </a></h1>
+            <h1><a href="/X3DOM图像和视频纹理.html"> X3DOM 图像和视频纹理  </a></h1>
         </header>
     </div>
 
@@ -63,9 +63,9 @@
             <div class="span8 offset2 article-content">
 
                 <p>本章你将知道哪些图像类型和视频格式可以用作X3DOM的纹理，已经纹理的特性和限制。</p>
-<p>你可以使用 <a href="http://en.wikipedia.org/wiki/Portable_Network_Graphics"><em><span class="caps">PNG</span></em></a>，<a href="http://en.wikipedia.org/wiki/Jpeg"><em><span class="caps">LPEG</span></em></a> 或者 <a href="https://en.wikipedia.org/wiki/Gif"><em><span class="caps">GIF</span></em></a> 来编码你的静态纹理数据。<em><span class="caps">JPG</span></em> 图像需要的内存少但是存在压缩损失而且没有 <em>alpha</em> 通道。<em><span class="caps">PNG</span></em> 图像属于无损压缩并且有 <em>alpha</em> 通道，<em><span class="caps">GIF</span></em> 也是无损压缩并且有 <em>alpha</em> 通道。一般来讲：如果你不需要 <em>alpha</em> 通道并且图像中不包含硬边界(例如：文本)，使用 <em><span class="caps">JPG</span></em>，否则使用 <em><span class="caps">PNG</span></em>。你应该避免使用 <em><span class="caps">GIF</span></em>。</p>
+<p>你可以使用 <a href="http://en.wikipedia.org/wiki/Portable_Network_Graphics"><em>PNG</em></a>，<a href="http://en.wikipedia.org/wiki/Jpeg"><em>LPEG</em></a> 或者 <a href="https://en.wikipedia.org/wiki/Gif"><em>GIF</em></a> 来编码你的静态纹理数据。<em>JPG</em> 图像需要的内存少但是存在压缩损失而且没有 <em>alpha</em> 通道。<em>PNG</em> 图像属于无损压缩并且有 <em>alpha</em> 通道，<em>GIF</em> 也是无损压缩并且有 <em>alpha</em> 通道。一般来讲：如果你不需要 <em>alpha</em> 通道并且图像中不包含硬边界(例如：文本)，使用 <em>JPG</em>，否则使用 <em>PNG</em>。你应该避免使用 <em>GIF</em>。</p>
 <h2>图像</h2>
-<p>利用 <em>ImageTexture</em>&nbsp;节点把图像作为纹理：</p>
+<p>利用 <em>ImageTexture</em> 节点把图像作为纹理：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;x3d</span> <span class="na">width=</span><span class="s">&#39;500px&#39;</span> <span class="na">height=</span><span class="s">&#39;400px&#39;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;scene&gt;</span>
     <span class="nt">&lt;shape&gt;</span>
@@ -80,7 +80,7 @@
 
 
 <h2>视频</h2>
-<p>利用 <em>MovieTexture</em> 节点可以把视频作为纹理。但是目前还没有哪一种视频格式支持所有的用户。可以使用X3DOM格式<a href="https://x3dom.org/x3dom/example/x3dom_video.xhtml">示例</a>来确定你的浏览器支持的格式。目前最好的解决方法是将你的视频编码成 <em><span class="caps">MP4</span></em> 和 <em><span class="caps">OGV</span></em> 格式并在 <em>MovieTexture</em>&nbsp;节点中提供这两个选项：</p>
+<p>利用 <em>MovieTexture</em> 节点可以把视频作为纹理。但是目前还没有哪一种视频格式支持所有的用户。可以使用X3DOM格式<a href="https://x3dom.org/x3dom/example/x3dom_video.xhtml">示例</a>来确定你的浏览器支持的格式。目前最好的解决方法是将你的视频编码成 <em>MP4</em> 和 <em>OGV</em> 格式并在 <em>MovieTexture</em> 节点中提供这两个选项：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;x3d</span> <span class="na">width=</span><span class="s">&#39;500px&#39;</span> <span class="na">height=</span><span class="s">&#39;400px&#39;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;scene&gt;</span>
     <span class="nt">&lt;shape&gt;</span>
@@ -96,7 +96,8 @@
                     <hr />
                     <nav>
                         <ul class="articles_timeline">
-                            <li class="previous_article">« <a href="/X3DOM-hello.html">Hello，<span class="caps">X3DOM</span>！</a></li>
+                            <li class="previous_article">« <a href="/X3DOM-hello.html">Hello，X3DOM！</a></li>
+                            <li class="next_article"><a href="/X3DOMHTMLCSS和JavaScript.html">X3DOM，HTML，CSS 和 JavaScript</a> »</li>
                         </ul>
                     </nav>
                 </aside>
