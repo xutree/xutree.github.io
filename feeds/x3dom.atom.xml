@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-05T17:14:00+08:00</updated><entry><title>X3DOM 图像和视频纹理</title><link href="https://xutree.github.io/pages/2018/10/05/X3DOM%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E7%BA%B9%E7%90%86/" rel="alternate"></link><published>2018-10-05T17:14:00+08:00</published><updated>2018-10-05T17:14:00+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-05:/pages/2018/10/05/X3DOM图像和视频纹理/</id><summary type="html">&lt;p&gt;本章你将知道哪些图像类型和视频格式可以用作X3DOM的纹理，以及纹理的特性和限制。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - X3DOM</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/x3dom.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-05T17:14:00+08:00</updated><entry><title>X3DOM 图像和视频纹理</title><link href="https://xutree.github.io/pages/2018/10/05/X3DOM%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E7%BA%B9%E7%90%86/" rel="alternate"></link><published>2018-10-05T17:14:00+08:00</published><updated>2018-10-05T17:14:00+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-05:/pages/2018/10/05/X3DOM图像和视频纹理/</id><summary type="html">&lt;p&gt;本章你将知道哪些图像类型和视频格式可以用作X3DOM的纹理，以及纹理的特性和限制。&lt;/p&gt;
 &lt;p&gt;你可以使用 &lt;a href="http://en.wikipedia.org/wiki/Portable_Network_Graphics"&gt;&lt;em&gt;PNG&lt;/em&gt;&lt;/a&gt;，&lt;a href="http://en.wikipedia.org/wiki/Jpeg"&gt;&lt;em&gt;LPEG&lt;/em&gt;&lt;/a&gt; 或者 &lt;a href="https://en.wikipedia.org/wiki/Gif"&gt;&lt;em&gt;GIF&lt;/em&gt;&lt;/a&gt; 来编码你的静态纹理数据。&lt;em&gt;JPG&lt;/em&gt; 图像需要的内存少但是存在压缩损失而且没有 &lt;em&gt;alpha&lt;/em&gt; 通道。&lt;em&gt;PNG&lt;/em&gt; 图像属于无损压缩并且有 &lt;em&gt;alpha&lt;/em&gt; 通道，&lt;em&gt;GIF&lt;/em&gt; 也是无损压缩并且有 &lt;em&gt;alpha&lt;/em&gt; 通道。一般来讲：如果你不需要 &lt;em&gt;alpha&lt;/em&gt; 通道并且图像中不包含硬边界(例如：文本)，使用 &lt;em&gt;JPG&lt;/em&gt;，否则使用 &lt;em&gt;PNG&lt;/em&gt;。你应该避免使用 &lt;em&gt;GIF&lt;/em&gt;。&lt;/p&gt;
 &lt;h2&gt;图像&lt;/h2&gt;
 &lt;p&gt;利用 &lt;em&gt;ImageTexture&lt;/em&gt; 节点把图像作为纹理：&lt;/p&gt;
@@ -338,41 +338,4 @@ Style Sheet)&lt;/li&gt;
 &lt;p&gt;通常，你会在Web服务器上运行你的X3DOM应用，本节针对一些普通的Web服务器，如Apache和IIS，给出具体的方法。&lt;/p&gt;
 &lt;p&gt;Apache是使用最多的Web服务器。它是开源的可以在&lt;a href="http://httpd.apache.org/"&gt;这里&lt;/a&gt;下载。最新版本是2.4，但是版本2.2仍然被支持。&lt;/p&gt;
 &lt;p&gt;如果你的应用需要一整套Web服务器组件，我们推荐&lt;a href="https://www.apachefriends.org/index.html"&gt;XAMPP&lt;/a&gt;，它包含Apache、MySQL、PHP和Perl的最新发行版。&lt;/p&gt;
-&lt;p&gt;互联网信息服务（IIS）被集成在微软的任何的最新版本的Windows当中。但是，对于非服务器操作系统，同时连接数会受到限制。&lt;/p&gt;</content><category term="X3DOM"></category></entry><entry><title>安装 Pelican</title><link href="https://xutree.github.io/pages/2018/10/04/%E5%9C%A8mac%E4%B8%8A%E5%AE%89%E8%A3%85Pelican/" rel="alternate"></link><published>2018-10-04T10:20:00+08:00</published><updated>2018-10-04T10:20:00+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-04:/pages/2018/10/04/在mac上安装Pelican/</id><summary type="html">&lt;h2&gt;安装Pelican&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;目前支持最好的是Python 2.7和 3.3+，早期版本的Python已经不支持了。有许多不同的方法可以安装Pelican，最简单的方法是使用pip，在终端输入：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    pip install pelican
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;上面是最简单的方法，官方更为推荐的方法是利用&lt;a href="http://www.virtualenv.org/"&gt;virtualenv&lt;/a&gt;为Pelican建立一个虚拟环境。假设你已经安装好了virtualenv，下面打开终端，开始为Pelican新建一个虚拟环境：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv ~/virtualenv/pelican
-    cd ~/virtualenv/pelican
-    source bin/activate
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;当虚拟环境被创建并激活以后，然后利用&lt;code&gt;pip install pelican&lt;/code&gt;安装Pelican。&lt;/p&gt;
-&lt;p&gt;当Pelican安装好以后，你可以在终端输入&lt;code&gt;pelican --help&lt;/code&gt;查看使用选项。&lt;/p&gt;
-&lt;h2&gt;可选的Packages&lt;/h2&gt;
-&lt;p&gt;如果你计划用&lt;a href="http://pypi.python.org/pypi/Markdown"&gt;Markdown&lt;/a&gt;来书写你的网页的话，你需要安装Markdown：&lt;code&gt;pip install Markdown&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;通过设置Pelican的pelicanconf …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;安装Pelican&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;目前支持最好的是Python 2.7和 3.3+，早期版本的Python已经不支持了。有许多不同的方法可以安装Pelican，最简单的方法是使用pip，在终端输入：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    pip install pelican
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;上面是最简单的方法，官方更为推荐的方法是利用&lt;a href="http://www.virtualenv.org/"&gt;virtualenv&lt;/a&gt;为Pelican建立一个虚拟环境。假设你已经安装好了virtualenv，下面打开终端，开始为Pelican新建一个虚拟环境：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv ~/virtualenv/pelican
-    cd ~/virtualenv/pelican
-    source bin/activate
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;当虚拟环境被创建并激活以后，然后利用&lt;code&gt;pip install pelican&lt;/code&gt;安装Pelican。&lt;/p&gt;
-&lt;p&gt;当Pelican安装好以后，你可以在终端输入&lt;code&gt;pelican --help&lt;/code&gt;查看使用选项。&lt;/p&gt;
-&lt;h2&gt;可选的Packages&lt;/h2&gt;
-&lt;p&gt;如果你计划用&lt;a href="http://pypi.python.org/pypi/Markdown"&gt;Markdown&lt;/a&gt;来书写你的网页的话，你需要安装Markdown：&lt;code&gt;pip install Markdown&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;通过设置Pelican的pelicanconf.py文件，你可以对生成的HTML文件启用增强语法。但是首先你需要安装&lt;a href="https://pypi.org/project/typogrify/"&gt;Typogrify&lt;/a&gt;：&lt;code&gt;pip install typorify&lt;/code&gt;&lt;/p&gt;
-&lt;h2&gt;更新&lt;/h2&gt;
-&lt;p&gt;更新到最新的稳定版本，使用：
-&lt;code&gt;pip install --upgrade pelican&lt;/code&gt;&lt;/p&gt;</content><category term="Pelican"></category></entry></feed>
+&lt;p&gt;互联网信息服务（IIS）被集成在微软的任何的最新版本的Windows当中。但是，对于非服务器操作系统，同时连接数会受到限制。&lt;/p&gt;</content><category term="X3DOM"></category></entry></feed>
