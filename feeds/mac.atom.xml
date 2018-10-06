@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - Mac</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/mac.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-06T21:17:26+08:00</updated><entry><title>利用 Mac stat 命令自动添加文件创建时间、最后修改时间</title><link href="https://xutree.github.io/pages/2018/10/06/mac-stat/" rel="alternate"></link><published>2018-10-06T19:07:36+08:00</published><updated>2018-10-06T21:17:26+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-06:/pages/2018/10/06/mac-stat/</id><summary type="html">&lt;p&gt;Pelican 根据 &lt;strong&gt;.md&lt;/strong&gt; 文件生成网页的时候需要 metadata，所以写个命令行自动添加文件创建时间、最后修改时间，这样写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 &lt;code&gt;stat&lt;/code&gt;命令。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - Mac</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/mac.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-06T21:34:20+08:00</updated><entry><title>利用 Mac stat 添加文件创建时间、最后修改时间</title><link href="https://xutree.github.io/pages/2018/10/06/mac-stat/" rel="alternate"></link><published>2018-10-06T19:07:36+08:00</published><updated>2018-10-06T21:34:20+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-06:/pages/2018/10/06/mac-stat/</id><summary type="html">&lt;p&gt;Pelican 根据 &lt;strong&gt;.md&lt;/strong&gt; 文件生成网页的时候需要 metadata，所以写个命令行自动添加文件创建时间、最后修改时间，这样写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 &lt;code&gt;stat&lt;/code&gt;命令。&lt;/p&gt;
 &lt;h2&gt;自动添加文件创建时间、最后修改时间&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;stat&lt;/code&gt;命令的 &lt;em&gt;a, m, c, B&lt;/em&gt; 参数分别代表上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（ UNIX 时间戳），所以我们可以通过提取这些信息实现想要的功能。唯一需要注意的是，结果是UNIX时间戳，我们需要将其转换为普通时间。&lt;/p&gt;
 &lt;p&gt;UNIX 时间，或称 POSIX 时间是 UNIX 或类 UNIX 系统使用的时间表示方式：从协调世界时1970年1月1日0时0分0秒起至现在的总秒数，不考虑闰秒。在多数 UNIX 系统上 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Pelican 根据 &lt;strong&gt;.md&lt;/strong&gt; 文件生成网页的时候需要 metadata，所以写个命令行自动添加文件创建时间、最后修改时间，这样写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 &lt;code&gt;stat&lt;/code&gt;命令。&lt;/p&gt;
@@ -12,8 +12,8 @@
 &lt;img alt="根据stat获得文件的创建时间" src="https://xutree.github.io/images/fig8.png"&gt;&lt;/p&gt;
 &lt;p&gt;然后转化为普通时间：
 &lt;img alt="转化为普通时间" src="https://xutree.github.io/images/fig9.png"&gt;&lt;/p&gt;
-&lt;p&gt;以下为脚本：
-&lt;img alt="脚本" src="https://xutree.github.io/images/fig10.png"&gt;&lt;/p&gt;
+&lt;p&gt;以下为脚本：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="脚本" src="https://xutree.github.io/images/fig10.png"&gt;&lt;/p&gt;
 &lt;h2&gt;附：stat 命令详情&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;stat&lt;/code&gt;显示有关文件的信息。 不需要读取，写入或执行指定文件的权限，但必须可搜索通向该文件的路径名中列出的所有目录。 如果没有给出参数，&lt;code&gt;stat&lt;/code&gt;将显示有关标准输入的文件描述符（stdin）的信息。&lt;/p&gt;
 &lt;p&gt;当作为&lt;code&gt;readlink&lt;/code&gt;调用时，仅打印符号链接的目标。 如果给定的参数不是符号链接，则&lt;code&gt;readlink&lt;/code&gt;将不打印任何内容并退出并显示错误。&lt;/p&gt;
