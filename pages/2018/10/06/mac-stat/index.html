@@ -68,7 +68,7 @@
     <div class="row-fluid">
             <div class="span8 offset2 article-content">
 
-                <p>Pelican 根据 <strong>.md</strong> 文件生成网页的时候需要 metadata，所以我就想着写个命令行自动添加文件创建时间、最后修改时间，这样我写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 <code>stat</code>命令。</p>
+                <p>Pelican 根据 <strong>.md</strong> 文件生成网页的时候需要 metadata，所以写个命令行自动添加文件创建时间、最后修改时间，这样写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 <code>stat</code>命令。</p>
 <h2>自动添加文件创建时间、最后修改时间</h2>
 <p><code>stat</code>命令的 <em>a, m, c, B</em> 参数分别代表上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（ UNIX 时间戳），所以我们可以通过提取这些信息实现想要的功能。唯一需要注意的是，结果是UNIX时间戳，我们需要将其转换为普通时间。</p>
 <p>UNIX 时间，或称 POSIX 时间是 UNIX 或类 UNIX 系统使用的时间表示方式：从协调世界时1970年1月1日0时0分0秒起至现在的总秒数，不考虑闰秒。在多数 UNIX 系统上 UNIX 时间可以通过<code>date +%s</code>指令来检查。</p>
@@ -147,7 +147,7 @@ rename <span class="s1">&#39;s/ /-/g&#39;</span> *
     <span class="k">else</span>
     <span class="c1"># 否则，替换Modified标签到最新时间</span>
     sed -i <span class="s1">&#39;&#39;</span> <span class="si">${</span><span class="nv">num2</span><span class="si">}</span>d <span class="nv">$fn</span>
-    sed -i <span class="s1">&#39;&#39;</span> -e <span class="s2">&quot;</span><span class="si">${</span><span class="nv">num2</span><span class="si">}</span><span class="s2">s/^//p; </span><span class="si">${</span><span class="nv">num2</span><span class="si">}</span><span class="s2">s/^.*/Modified: </span><span class="nv">$modify_time</span><span class="s2">/&quot;</span> <span class="nv">$fn</span>
+    sed -i <span class="s1">&#39;&#39;</span> -e <span class="s2">&quot;3s/^//p; 3s/^.*/Modified: </span><span class="nv">$modify_time</span><span class="s2">/&quot;</span> <span class="nv">$fn</span>
     <span class="k">fi</span>
 <span class="k">done</span>
 </pre></div>
@@ -286,7 +286,7 @@ rename <span class="s1">&#39;s/ /-/g&#39;</span> *
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-10-06T08:25:52+08:00">2018年10月06日</time>
+                    <time pubdate="pubdate" datetime="2018-10-06T19:07:36+08:00">2018年10月06日</time>
                     <h4>最后更新</h4>
                     <div class="last_updated">2018年10月06日</div>
                     <h4>分类</h4>
