@@ -62,7 +62,7 @@
             <div class="span8 offset2 article-content">
 
                 <p><strong>HTML</strong>，即超文本标记语言（<strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage）。与脚本或编程语言不同，标记语言使用标记（<strong>tag</strong>）来标识内容。</p>
-<p>下面是一个HTML tag的例子：</p>
+<p>下面是一个 HTML tag 的例子：</p>
 <p><code>&lt;p&gt; 这是一个段落。&lt;/p&gt;</code></p>
 <p><code>&lt;p&gt;</code>称为开始标签，<code>&lt;/p&gt;</code>称为结束标签。</p>
 <h2>网页的结构</h2>
@@ -100,7 +100,7 @@
 </tr>
 </tbody>
 </table>
-<p>下面是HTML版本的“Hello, World！”程序：</p>
+<p>下面是 HTML 版本的“Hello, World！”程序：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;html&gt;</span>
    <span class="nt">&lt;head&gt;</span>
    <span class="nt">&lt;/head&gt;</span>
@@ -263,37 +263,37 @@
 </tbody>
 </table>
 <h2>HTML 元素类型</h2>
-<p>在HTML中，大多数元素被定义为块级或内联元素。</p>
+<p>在 HTML 中，大多数元素被定义为块级或内联元素。</p>
 <ul>
 <li>块级元素从新行开始，如<code>&lt;h1&gt;, &lt;form&gt;, &lt;li&gt;, &lt;ol&gt;, &lt;ul&gt;, &lt;p&gt;, &lt;pre&gt;, &lt;table&gt;, &lt;div&gt;</code>等</li>
 <li>内联元素通常显示没有换行符，如<code>&lt;b&gt;, &lt;a&gt;, &lt;strong&gt;, &lt;img&gt;, &lt;input&gt;, &lt;em&gt;, &lt;span&gt;</code>等</li>
 </ul>
-<p><code>&lt;div&gt;</code>元素是一个块级元素，通常用作其他HTML元素的容器。与一些CSS样式一起使用时，<code>&lt;div&gt;</code>元素可用于设置内容块的样式。</p>
-<p>同样，<code>&lt;span&gt;</code>元素是一个内联元素，通常用作某些文本的容器。与CSS一起使用时，<code>&lt;span&gt;</code>元素可用于设置文本的部分样式。</p>
+<p><code>&lt;div&gt;</code>元素是一个块级元素，通常用作其他 HTML 元素的容器。与一些 CSS 样式一起使用时，<code>&lt;div&gt;</code>元素可用于设置内容块的样式。</p>
+<p>同样，<code>&lt;span&gt;</code>元素是一个内联元素，通常用作某些文本的容器。与 CSS 一起使用时，<code>&lt;span&gt;</code>元素可用于设置文本的部分样式。</p>
 <p>其他元素可以用作块级元素或内联元素。 这包括以下这些：</p>
 <ul>
-<li>APPLET - 嵌入式Java小程序</li>
+<li>APPLET - 嵌入式 Java 小程序</li>
 <li>IFRAME - 内联框架</li>
 <li>INS - 插入文本</li>
 <li>MAP - 图像映射</li>
 <li>OBJECT - 嵌入对象</li>
-<li>SCRIPT - HTML文档中的脚本</li>
+<li>SCRIPT - HTML 文档中的脚本</li>
 </ul>
 <p>你可以在块元素内插入内联元素。 例如，可以在<code>&lt;div&gt;</code>元素中包含多个<code>&lt;span&gt;</code>元素。反之不行。</p>
 <h2>表单标签</h2>
-<p>HTML表单用于从用户收集信息。使用<code>&lt;form&gt;</code>元素及其开始和结束标记定义表单，使用action属性指向将在用户提交表单后加载的网页：</p>
+<p>HTML 表单用于从用户收集信息。使用<code>&lt;form&gt;</code>元素及其开始和结束标记定义表单，使用 action 属性指向将在用户提交表单后加载的网页：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;body&gt;</span>
    <span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;&quot;</span> <span class="na">method=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>…<span class="nt">&lt;/form&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
 </pre></div>
 
 
-<p>method属性指定在提交表单时使用的HTTP方法（GET或POST）：</p>
+<p>method 属性指定在提交表单时使用的 HTTP 方法（GET 或 POST）：</p>
 <ul>
-<li>使用GET时，表单数据将显示在页面地址中</li>
-<li>如果表单正在更新数据，请使用POST，或者包含敏感信息（密码）。POST提供了更好的安全性，因为提交的数据在页面地址中不可见</li>
+<li>使用 GET 时，表单数据将显示在页面地址中</li>
+<li>如果表单正在更新数据，请使用 POST，或者包含敏感信息（密码）。POST 提供了更好的安全性，因为提交的数据在页面地址中不可见</li>
 </ul>
-<p>要接受用户输入，需要相应的表单元素，例如文本字段。 <code>&lt;input&gt;</code>元素有许多变体，具体取决于type属性。 它可以是文本，密码，广播，URL，提交等。</p>
+<p>要接受用户输入，需要相应的表单元素，例如文本字段。 <code>&lt;input&gt;</code>元素有许多变体，具体取决于 type 属性。 它可以是文本，密码，广播，URL，提交等。</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;form&gt;</span>
    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;username&quot;</span> <span class="nt">/&gt;&lt;br</span> <span class="nt">/&gt;</span>
    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;password&quot;</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span> <span class="nt">/&gt;</span>
@@ -316,13 +316,13 @@
 
 <p>使用<code>&lt;noresize&gt;</code>属性指定用户无法调整<code>&lt;frame&gt;</code>元素的大小：</p>
 <p><code>&lt;frame noresize="noresize"&gt;</code></p>
-<p>HTML5中不支持<code>&lt;frame&gt;</code>标签。</p>
+<p>HTML5 中不支持<code>&lt;frame&gt;</code>标签。</p>
 <h2>颜色</h2>
 <h3>颜色值</h3>
-<p>HTML颜色表示为十六进制值，0~F。零表示最低值，F表示最高值。</p>
+<p>HTML 颜色表示为十六进制值，0~F。零表示最低值，F表示最高值。</p>
 <h3>颜色模式</h3>
 <p>颜色以红色，绿色和蓝色光（RGB）的组合显示。</p>
-<p>十六进制值使用＃标签符号，后跟六个十六进制字符。所有浏览器都支持RGB颜色值。</p>
+<p>十六进制值使用＃标签符号，后跟六个十六进制字符。所有浏览器都支持 RGB 颜色值。</p>
 <section>
 <div class="accordion" id="accordion2">
     <div class="accordion-group">
@@ -429,6 +429,8 @@
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-05T17:23:00+08:00">2018年10月05日</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018年10月06日</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#HTML-ref">HTML</a>
                     <h4>标签</h4>

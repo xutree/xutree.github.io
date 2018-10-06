@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - HTML</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/html.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-05T17:23:00+08:00</updated><entry><title>HTML 入门</title><link href="https://xutree.github.io/pages/2018/10/05/html-overview/" rel="alternate"></link><published>2018-10-05T17:23:00+08:00</published><updated>2018-10-05T17:23:00+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-05:/pages/2018/10/05/html-overview/</id><summary type="html">&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt;，即超文本标记语言（&lt;strong&gt;H&lt;/strong&gt;yper&lt;strong&gt;T&lt;/strong&gt;ext &lt;strong&gt;M&lt;/strong&gt;arkup &lt;strong&gt;L&lt;/strong&gt;anguage）。与脚本或编程语言不同，标记语言使用标记（&lt;strong&gt;tag&lt;/strong&gt;）来标识内容。&lt;/p&gt;
-&lt;p&gt;下面是一个HTML tag的例子：&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - HTML</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/html.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-06T21:20:21+08:00</updated><entry><title>HTML 入门</title><link href="https://xutree.github.io/pages/2018/10/05/html-overview/" rel="alternate"></link><published>2018-10-05T17:23:00+08:00</published><updated>2018-10-06T21:20:21+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-05:/pages/2018/10/05/html-overview/</id><summary type="html">&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt;，即超文本标记语言（&lt;strong&gt;H&lt;/strong&gt;yper&lt;strong&gt;T&lt;/strong&gt;ext &lt;strong&gt;M&lt;/strong&gt;arkup &lt;strong&gt;L&lt;/strong&gt;anguage）。与脚本或编程语言不同，标记语言使用标记（&lt;strong&gt;tag&lt;/strong&gt;）来标识内容。&lt;/p&gt;
+&lt;p&gt;下面是一个 HTML tag 的例子：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;p&amp;gt; 这是一个段落。&amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;称为开始标签，&lt;code&gt;&amp;lt;/p&amp;gt;&lt;/code&gt;称为结束标签。&lt;/p&gt;
 &lt;h2&gt;网页的结构&lt;/h2&gt;
@@ -29,12 +29,8 @@
 &lt;td&gt;HTML文件的头部包含有助于使页面工作的所有非可视元素&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;code&gt;&amp;lt;body&amp;gt;&amp;lt;/body&amp;gt;&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;所有可视化元素都包含在body标签中&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;&amp;lt;title …&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt;，即超文本标记语言（&lt;strong&gt;H&lt;/strong&gt;yper&lt;strong&gt;T&lt;/strong&gt;ext &lt;strong&gt;M&lt;/strong&gt;arkup &lt;strong&gt;L&lt;/strong&gt;anguage）。与脚本或编程语言不同，标记语言使用标记（&lt;strong&gt;tag&lt;/strong&gt;）来标识内容。&lt;/p&gt;
-&lt;p&gt;下面是一个HTML tag的例子：&lt;/p&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;body&amp;gt;&amp;lt;/body …&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt;，即超文本标记语言（&lt;strong&gt;H&lt;/strong&gt;yper&lt;strong&gt;T&lt;/strong&gt;ext &lt;strong&gt;M&lt;/strong&gt;arkup &lt;strong&gt;L&lt;/strong&gt;anguage）。与脚本或编程语言不同，标记语言使用标记（&lt;strong&gt;tag&lt;/strong&gt;）来标识内容。&lt;/p&gt;
+&lt;p&gt;下面是一个 HTML tag 的例子：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;p&amp;gt; 这是一个段落。&amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;称为开始标签，&lt;code&gt;&amp;lt;/p&amp;gt;&lt;/code&gt;称为结束标签。&lt;/p&gt;
 &lt;h2&gt;网页的结构&lt;/h2&gt;
@@ -72,7 +68,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;下面是HTML版本的“Hello, World！”程序：&lt;/p&gt;
+&lt;p&gt;下面是 HTML 版本的“Hello, World！”程序：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
    &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
    &lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
@@ -235,37 +231,37 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2&gt;HTML 元素类型&lt;/h2&gt;
-&lt;p&gt;在HTML中，大多数元素被定义为块级或内联元素。&lt;/p&gt;
+&lt;p&gt;在 HTML 中，大多数元素被定义为块级或内联元素。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;块级元素从新行开始，如&lt;code&gt;&amp;lt;h1&amp;gt;, &amp;lt;form&amp;gt;, &amp;lt;li&amp;gt;, &amp;lt;ol&amp;gt;, &amp;lt;ul&amp;gt;, &amp;lt;p&amp;gt;, &amp;lt;pre&amp;gt;, &amp;lt;table&amp;gt;, &amp;lt;div&amp;gt;&lt;/code&gt;等&lt;/li&gt;
 &lt;li&gt;内联元素通常显示没有换行符，如&lt;code&gt;&amp;lt;b&amp;gt;, &amp;lt;a&amp;gt;, &amp;lt;strong&amp;gt;, &amp;lt;img&amp;gt;, &amp;lt;input&amp;gt;, &amp;lt;em&amp;gt;, &amp;lt;span&amp;gt;&lt;/code&gt;等&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;元素是一个块级元素，通常用作其他HTML元素的容器。与一些CSS样式一起使用时，&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;元素可用于设置内容块的样式。&lt;/p&gt;
-&lt;p&gt;同样，&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;元素是一个内联元素，通常用作某些文本的容器。与CSS一起使用时，&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;元素可用于设置文本的部分样式。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;元素是一个块级元素，通常用作其他 HTML 元素的容器。与一些 CSS 样式一起使用时，&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;元素可用于设置内容块的样式。&lt;/p&gt;
+&lt;p&gt;同样，&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;元素是一个内联元素，通常用作某些文本的容器。与 CSS 一起使用时，&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;元素可用于设置文本的部分样式。&lt;/p&gt;
 &lt;p&gt;其他元素可以用作块级元素或内联元素。 这包括以下这些：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;APPLET - 嵌入式Java小程序&lt;/li&gt;
+&lt;li&gt;APPLET - 嵌入式 Java 小程序&lt;/li&gt;
 &lt;li&gt;IFRAME - 内联框架&lt;/li&gt;
 &lt;li&gt;INS - 插入文本&lt;/li&gt;
 &lt;li&gt;MAP - 图像映射&lt;/li&gt;
 &lt;li&gt;OBJECT - 嵌入对象&lt;/li&gt;
-&lt;li&gt;SCRIPT - HTML文档中的脚本&lt;/li&gt;
+&lt;li&gt;SCRIPT - HTML 文档中的脚本&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;你可以在块元素内插入内联元素。 例如，可以在&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;元素中包含多个&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;元素。反之不行。&lt;/p&gt;
 &lt;h2&gt;表单标签&lt;/h2&gt;
-&lt;p&gt;HTML表单用于从用户收集信息。使用&lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt;元素及其开始和结束标记定义表单，使用action属性指向将在用户提交表单后加载的网页：&lt;/p&gt;
+&lt;p&gt;HTML 表单用于从用户收集信息。使用&lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt;元素及其开始和结束标记定义表单，使用 action 属性指向将在用户提交表单后加载的网页：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
    &lt;span class="nt"&gt;&amp;lt;form&lt;/span&gt; &lt;span class="na"&gt;action=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;method=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;…&lt;span class="nt"&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;method属性指定在提交表单时使用的HTTP方法（GET或POST）：&lt;/p&gt;
+&lt;p&gt;method 属性指定在提交表单时使用的 HTTP 方法（GET 或 POST）：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;使用GET时，表单数据将显示在页面地址中&lt;/li&gt;
-&lt;li&gt;如果表单正在更新数据，请使用POST，或者包含敏感信息（密码）。POST提供了更好的安全性，因为提交的数据在页面地址中不可见&lt;/li&gt;
+&lt;li&gt;使用 GET 时，表单数据将显示在页面地址中&lt;/li&gt;
+&lt;li&gt;如果表单正在更新数据，请使用 POST，或者包含敏感信息（密码）。POST 提供了更好的安全性，因为提交的数据在页面地址中不可见&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;要接受用户输入，需要相应的表单元素，例如文本字段。 &lt;code&gt;&amp;lt;input&amp;gt;&lt;/code&gt;元素有许多变体，具体取决于type属性。 它可以是文本，密码，广播，URL，提交等。&lt;/p&gt;
+&lt;p&gt;要接受用户输入，需要相应的表单元素，例如文本字段。 &lt;code&gt;&amp;lt;input&amp;gt;&lt;/code&gt;元素有许多变体，具体取决于 type 属性。 它可以是文本，密码，广播，URL，提交等。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;form&amp;gt;&lt;/span&gt;
    &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;username&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&amp;lt;br&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
    &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;password&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;password&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
@@ -288,10 +284,10 @@
 
 &lt;p&gt;使用&lt;code&gt;&amp;lt;noresize&amp;gt;&lt;/code&gt;属性指定用户无法调整&lt;code&gt;&amp;lt;frame&amp;gt;&lt;/code&gt;元素的大小：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;frame noresize="noresize"&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;HTML5中不支持&lt;code&gt;&amp;lt;frame&amp;gt;&lt;/code&gt;标签。&lt;/p&gt;
+&lt;p&gt;HTML5 中不支持&lt;code&gt;&amp;lt;frame&amp;gt;&lt;/code&gt;标签。&lt;/p&gt;
 &lt;h2&gt;颜色&lt;/h2&gt;
 &lt;h3&gt;颜色值&lt;/h3&gt;
-&lt;p&gt;HTML颜色表示为十六进制值，0~F。零表示最低值，F表示最高值。&lt;/p&gt;
+&lt;p&gt;HTML 颜色表示为十六进制值，0~F。零表示最低值，F表示最高值。&lt;/p&gt;
 &lt;h3&gt;颜色模式&lt;/h3&gt;
 &lt;p&gt;颜色以红色，绿色和蓝色光（RGB）的组合显示。&lt;/p&gt;
-&lt;p&gt;十六进制值使用＃标签符号，后跟六个十六进制字符。所有浏览器都支持RGB颜色值。&lt;/p&gt;</content><category term="HTML"></category></entry></feed>
+&lt;p&gt;十六进制值使用＃标签符号，后跟六个十六进制字符。所有浏览器都支持 RGB 颜色值。&lt;/p&gt;</content><category term="HTML"></category></entry></feed>
