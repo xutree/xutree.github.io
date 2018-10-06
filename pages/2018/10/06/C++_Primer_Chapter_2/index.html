@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="C++, 读书笔记, " />
+    <title>【读书笔记】C++ Primer 第二章  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
+        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/HTML.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - HTML Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/Mac.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Mac Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/X3DOM.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - X3DOM Category Atom Feed" />
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/"> 【读书笔记】C++ Primer 第二章  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+            <div class="span8 offset2 article-content">
+
+                <ul>
+<li>下表列出了 C++ 标准规定的数据类型尺寸的最小值，同时允许编译器赋予这些类型更大的尺寸<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+<th>最小尺寸</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bool</td>
+<td>布尔类型</td>
+<td>未定义</td>
+</tr>
+<tr>
+<td>char</td>
+<td>字符</td>
+<td>8位</td>
+</tr>
+<tr>
+<td>wchar_t</td>
+<td>宽字符</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>char16_t</td>
+<td>Unicode 字符</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td>Unicode 字符</td>
+<td>32位</td>
+</tr>
+<tr>
+<td>short</td>
+<td>短整型</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>int</td>
+<td>整型</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>long</td>
+<td>长整型</td>
+<td>32位</td>
+</tr>
+<tr>
+<td>long long</td>
+<td>长整型</td>
+<td>64位</td>
+</tr>
+<tr>
+<td>float</td>
+<td>单精度浮点数</td>
+<td>6位有效数字</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点数</td>
+<td>10位有效数字</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>扩展精度浮点数</td>
+<td>10位有效数字</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>一个<code>char</code>的空间应确保可以存放机器基本字符集中任意字符对应的数字值。也就是说，一个<code>char</code>的大小和一个机器字节一样</li>
+<li><code>wchar_t</code>类型用于确保可以存放机器最大扩展字符集中的任意一个字符</li>
+<li>C++ 语言规定，一个<code>int</code>至少和一个<code>short</code>一样大，一个<code>long</code>至少和一个<code>int</code>一样大，一个<code>long long</code>至少和一个<code>long</code>一样大</li>
+<li>可寻址的最小内存块成称为“字节（byte）”，存储的基本单元称为“字（word）”，它通常有几个字节组成</li>
+<li>在 C++ 语言中，一个字节至少能容纳机器基本字符串中的字符</li>
+<li>大多数机器的字节由8比特构成，字则由32或64比特构成，也就是4字节或8字节</li>
+<li>C++ 标准指定了一个浮点数有效位数的最小值，然而大多数编译器都实现了更高的精度。通常，<code>float</code>以1个字（32比特）来表示，<code>double</code>以2个字（64位）来表示，<code>long double</code>以3或4个字（96或128比特）来表示</li>
+<li>一般来说，<code>float</code>和<code>double</code>分别有7和16个有效位；类型<code>long double</code>则常常被用于有特殊浮点要求的硬件，它的具体实现不同，精度也各不相同</li>
+<li>类型<code>int</code>、<code>short</code>、<code>long</code>和<code>long long</code>都是带符号的，通过在这些类型名前添加<code>unsigned</code>就可以得到无符号类型</li>
+<li><code>char</code>、<code>signed char</code>和<code>unsigned char</code>，<code>char</code>是否等于<code>signed char</code>由编译器决定</li>
+<li>C++ 标准并没有规定带符号类型应如何表示，但是约定了在表示范围内正值和负值的量应该平衡。因此，8比特的<code>signed char</code>理论上可以表示-127至127区间内的值，大多数现代计算机将实际的表示范围定为-128至127</li>
+<li>如何选择类型<ul>
+<li>明知数值不可能为负数，选用无符号类型</li>
+<li>如果数值超过了<code>int</code>的表示范围，选用<code>long long</code>，因为<code>long</code>一般和<code>int</code>有一样的尺寸</li>
+<li>算术表达式中不要使用<code>bool</code>或<code>char</code></li>
+<li>执行浮点数运算选用<code>double</code>。因为<code>float</code>通常精度不够而且计算代价相差无几。<code>long double</code>提供的精度一般情况下是没有必要的而且计算代价大</li>
+</ul>
+</li>
+<li>类型转换<ul>
+<li>非布尔 -&gt; 布尔：0 -&gt; <code>false</code>，其他 -&gt; <code>ture</code></li>
+<li>布尔 -&gt; 非布尔：<code>false</code>-&gt; 0，<code>ture</code> -&gt; 1</li>
+<li>浮点 -&gt; 整型：仅保留小数点前</li>
+<li>整型 -&gt; 浮点：小数部分记为0，如果该整数所占的空间超过浮点类型的容量，精度可能损失</li>
+<li>当我们赋给无符号类型一个超过它表示范围的值时，结果是初始值对无符号类型表示数值总数取模后的余数</li>
+<li>当我们赋给带符号类型一个超出它表示范围的值时，结果是未定义的。此时，程序可能继续工作、可能崩溃，也可能生成垃圾数据</li>
+</ul>
+</li>
+<li>当一个算术表达式中既有无符号数又有<code>int</code>值时，那个<code>int</code>会转换成无符号数。把<code>int</code>转换成无符号数的过程和把<code>int</code>赋值给无符号变量一样</li>
+<li>当从一个无符号数中减去一个值时，我们必须确保结果不是负值，否则实际结果会是取模后的值</li>
+<li>字面值常量<ul>
+<li>整型和浮点型字面值</li>
+<li>字符和字符串字面值<ul>
+<li>‘a’ 和“a”，字符串字面值最后补’\0’</li>
+<li>如果两个字符串字面值位置紧邻且仅由空格、缩进和换行分隔，则它们是一个整体</li>
+</ul>
+</li>
+<li>布尔字面值：<code>true</code>、<code>false</code></li>
+<li>指针字面值：<code>nullptr</code></li>
+<li>指定字面值的类型<ul>
+<li>字符和字符串字面值<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u</td>
+<td>char16_t</td>
+</tr>
+<tr>
+<td>U</td>
+<td>char32_t</td>
+</tr>
+<tr>
+<td>L</td>
+<td>wchar_t</td>
+</tr>
+<tr>
+<td>u8</td>
+<td>char</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>整型字面值<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>后缀</th>
+<th>最小匹配类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u或U</td>
+<td>unsigned</td>
+</tr>
+<tr>
+<td>l或L</td>
+<td>long</td>
+</tr>
+<tr>
+<td>ll或LL</td>
+<td>long long</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>浮点型字面值<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>后缀</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>f或F</td>
+<td>float</td>
+</tr>
+<tr>
+<td>l或L</td>
+<td>long double</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>列表初始化： <code>int units_sold{0}</code></li>
+<li>列表初始化的重要特点：如果我们使用列表初始化且初始值存在丢失信息的风险，则编译器将报错</li>
+<li>默认初始化<ul>
+<li>内置类型变量<ul>
+<li>定义于任何函数之外，初始化为0</li>
+<li>定义于函数体内的局部静态变量，初始化为0</li>
+<li>定义于函数体内的非局部静态变量，不被初始化，试图拷贝或以其他方式访问此类值将引发错误</li>
+</ul>
+</li>
+<li>每个类各自决定其初始化对象的方式</li>
+</ul>
+</li>
+<li>分离式编译：将程序分割为若干个文件，每个文件可被独立编译</li>
+<li>声明：<code>extern int i;</code></li>
+<li>extern语句如果包含初始值就不再是声明，而变成定义了：<code>extern int i = 0;</code></li>
+<li>在函数体内部，试图初始化一个由<code>extern</code>关键字标记的变量将引发错误</li>
+<li>静态类型语言：在编译阶段执行类型检查</li>
+<li>C++ 标识符：字母、数字、下划线，必须以字母或下划线开头，长度无限制，大小写敏感</li>
+<li>C++ 为标准库保留了一些名字<ul>
+<li>自定义标识符中不能连续出现两个下划线</li>
+<li>不能以下划线紧接大写字母开头</li>
+<li>定义在函数体外的函数不能以下划线开头</li>
+</ul>
+</li>
+<li>作用域操作符 ::，若左侧为空，则指代全局作用域</li>
+<li>复合类型：<ul>
+<li>引用<ul>
+<li><code>int &amp;b = a;</code>b指向a</li>
+<li>引用必须初始化</li>
+<li>引用本身不是一个对象，不能定义引用的引用</li>
+<li>引用必须绑定到对象上，不能绑定到字面值或者某个表达式的计算结果上</li>
+<li>除了两种例外，所有引用的类型都要和它所绑定的对象严格匹配<ul>
+<li>初始化常量引用时允许用任意表达式作为初始值，只要该表达式的结果能转换成引用的类型即可</li>
+<li>允许将基类的引用绑定到派生类上</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>指针<ul>
+<li><code>int *b = &amp;a;</code></li>
+<li>指针是一个对象</li>
+<li>在块作用域内定义的指针如果未初始化，将拥有一个不确定的值</li>
+<li>除了两种例外，所有指针的类型都要和它所指向的对象严格匹配<ul>
+<li>允许一个指向常量的指针指向一个非常量对象</li>
+<li>允许将基类的指针绑定到派生类上</li>
+</ul>
+</li>
+<li>试图拷贝或以其他方式访问无效指针的值将引起错误，编译器不负责检查此类错误</li>
+<li>任何非零的指针对应的条件值都是true</li>
+<li>合法指针可以比较大小：== 或 !=</li>
+<li><code>void *</code>是一个特殊的指针类型，可用于存放任意对象的地址<ul>
+<li>拿它和别的指针比较</li>
+<li>作为函数的输入或输出</li>
+<li>赋给另外一个<code>void *</code>指针</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>理解复合类型的声明<ul>
+<li>变量的定义包括一个基本数据类型和一组声明符</li>
+<li>一条定义语句可能定义出不同类型的变量：<code>int i = 1024, *p = &amp;i, &amp;r =i;</code></li>
+<li>面对一条比较复杂的指针或者引用的声明语句时，从右往左阅读有助于弄清楚它的真实含义，例如：<code>int \*&amp;r;</code>首先 r 是一个引用，其次 r 是一个指针的引用，再次 r 是一个指向整型指针的引用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>const</code>限定符<ul>
+<li>因为<code>const</code>对象一旦创建就无法改变其值，所以必须初始化</li>
+<li>当用一个对象去初始化另外一个对象，它们是不是<code>const</code>都无关紧要，常量的特性仅仅在执行改变其值的操作时才会发挥作用</li>
+<li>默认情况下，<code>const</code>对象仅在文件内有效</li>
+<li>如果想在多个文件之间共享<code>const</code>对象，必须在变量的定义之前添加<code>extern</code>关键字</li>
+<li><code>const</code>的引用（常量引用）</li>
+<li>常量引用的初始化：初始化常量引用时允许用任意表达式作为初始值，只要该表达式的结果能转换成引用的类型即可。尤其，允许为一个常量引用绑定非常量的对象、字面值甚至是一个表达式。实际上是通过绑定到一个临时量对象上实现的</li>
+<li>对<code>const</code>的引用可能引用一个并非<code>const</code>的对象，常量引用仅对引用可参与的操作做了限制，对于引用的对象本身是不是常量未做限制</li>
+<li>指针和<code>const</code><ul>
+<li>指向常量的指针<ul>
+<li>允许一个指向常量的指针指向一个非常量对象</li>
+<li>仅对指向常量的指针可参与的操作做了限制，对于指向的对象本身是不是常量未做限制</li>
+</ul>
+</li>
+<li><code>const</code>指针<ul>
+<li>指针是对象，可以把指针本身定为常量</li>
+<li>常量指针必须初始化，一经初始化就不能再改变</li>
+<li>把*放在<code>const</code>关键字之前说明指针是一个常量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>顶层和底层<code>const</code><ul>
+<li>顶层<code>const</code>：指针本身是个常量</li>
+<li>底层<code>const</code>：指针所值的对象是一个常量</li>
+<li>更一般的，顶层<code>const</code>可以表示任意的对象是常量，这一点对任意数据类型都适用。底层<code>const</code>则与指针和引用等复合类型的基本类型部分有关</li>
+<li>执行对象的拷贝操作时<ul>
+<li>顶层<code>const</code>不受影响</li>
+<li>拷入和拷出的对象必须具有相同的底层<code>const</code>资格，或者两个对象的数据类型必须能够转换。一般来说，非常量可以转换成常量，反之不行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>constexpr</code>和常量表达式<ul>
+<li>常量表达式：值不会改变并且在编译过程就能得到计算结果的表达式</li>
+<li><code>constexpr</code>变量：由编译器来验证变量的值是否是一个常量表达式，声明为<code>constexpr</code>的变量一定是一个常量，并且必须用常量表达式初始化</li>
+<li>字面值类型：算术类型、引用、指针、字面值常量类、枚举</li>
+<li>声明<code>constexpr</code>用到的类型为字面值类型</li>
+<li>一个<code>constexpr</code>指针的初始值必须是<code>nullptr</code>或者0，或者是存储于某个固定地址中的对象<ul>
+<li>函数体内定义的变量一般并非存放在固定地址中，<code>constexpr</code>指针不能指向这样的变量（局部静态对象除外）</li>
+<li>定义于所有函数体之外的对象地址固定不变，能用来初始化<code>constexpr</code>指针</li>
+</ul>
+</li>
+<li>在<code>constexpr</code>声明中如果定义了一个指针，限定符<code>constexpr</code>仅对指针有效，与指针所指的对象无关</li>
+<li><code>constexpr</code>把它所定义的对象置为顶层<code>const</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>处理类型<ul>
+<li>类型别名<ul>
+<li><code>typedef double wages;</code></li>
+<li><code>using SI = Sales_item;</code></li>
+<li>下面两条声明语句的基本数据类型都是<code>const pstring</code>，<code>const</code>是对给定类型的修饰，<code>pstring</code>实际上是指向<code>char</code>的指针，所以<code>const pstring</code>是指向<code>char</code>的常量指针</li>
+</ul>
+</li>
+<li><code>auto</code>类型说明符<ul>
+<li>让编译器自己去分析表达式所属的类型</li>
+<li><code>auto</code>也能在一条语句中声明多个变量。因为一条声明语句只能有一个基本数据类型，所以该语句中所有变量的基本数据类型都必须一样</li>
+<li>当引用被用作初始化<code>auto</code>变量时，编译器以引用所引用对象的类型作为<code>auto</code>的类型</li>
+<li><code>auto</code>一般会忽略顶层<code>const</code>，同时底层<code>const</code>会保留下来</li>
+<li>如果希望推断出的<code>auto</code>类型是一个顶层<code>const</code>，需要明确指出</li>
+<li><code>auto</code>引用<code>auto &amp;b = a;</code>初始值 a 的顶层<code>const</code>会保留</li>
+</ul>
+</li>
+<li><code>decltype</code>类型指示符<ul>
+<li>选择并返回操作数的数据类型，编译器分析表达式得到它的类型，却不实际计算表达式的值，编译器并不实际调用f</li>
+<li>如果<code>decltype</code>使用的表达式是一个变量，则<code>decltype</code>返回该变量的类型（包括顶层<code>const</code>和引用在内），需要指出的是，引用从来都作为其所指对象的同义词出现，只有在<code>decltype</code>处是一个例外</li>
+<li>如果<code>decltype</code>使用的表达式不是一个变量，则<code>decltype</code>返回该表达式的结果对应的类型<ul>
+<li>因为 r 是一个引用，<code>decltype(r)</code>的结果是引用类型，如果想让结果类型是 r 所指的类型，可以把 r 作为表达式的一部分，显然这个表达式的结果是一个具体的值而非一个引用</li>
+<li>如果表达式的内容是解引用操作，则<code>decltype</code>将得到引用类型</li>
+</ul>
+</li>
+<li>如果<code>decltype</code>使用的表达式是一个变量<ul>
+<li>不加括号，得到该变量的类型</li>
+<li>加括号，得到引用类型</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>自定义数据结构<ul>
+<li>结构体</li>
+<li>类</li>
+<li>记得定义末尾的分号；</li>
+<li>可以类内初始化</li>
+</ul>
+</li>
+<li>头文件保护符<ul>
+<li>头文件保护符依赖于预处理变量</li>
+<li>预处理变量由两个状态：已定义和未定义</li>
+<li><code>#define</code>指令把一个名字设定为预处理变量</li>
+<li><code>#ifdef</code>当且仅当变量已定义时为真</li>
+<li><code>#ifndef</code>当且仅当变量未定义时为真</li>
+<li>一旦检查结果为真，则执行后续操作直到遇到<code>#endif</code>指令为止</li>
+</ul>
+</li>
+</ul>
+<section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'xutree';
+        var disqus_identifier = 'https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/';
+    var disqus_url = 'https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+                <aside>
+                    <hr />
+                    <!-- <nav>
+                        <ul class="articles_timeline">
+                            <li class="previous_article">« <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">利用 Mac stat 添加文件创建时间、最后修改时间</a></li>
+                        </ul>
+                    </nav> -->
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515">OLDER</font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
+                                    利用 Mac stat 添加文件创建时间、最后修改时间
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/">
+                                    【读书笔记】C++ Primer 第一章
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">
+                                    HTML 入门
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/">
+                                    X3DOM 图像和视频纹理
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/">
+                                    X3DOM，HTML，CSS 和 JavaScript
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-10-06T22:02:54+08:00">2018年10月06日</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018年10月06日</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#C++-ref">C++
+                                <span>2</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'xutree';
+
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+<script language="javascript" type="text/javascript">
+    function uncollapse() {
+        var hash_str = window.location.hash;
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            var hash_str = '#disqus_thread';
+        }
+        $(hash_str).collapse({
+            toggle: true
+        })
+    }
+</script>
+
+<script type="text/javascript" language="JavaScript">
+    uncollapse();
+</script>
+</body>
+
+</html>

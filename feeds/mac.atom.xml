@@ -13,7 +13,60 @@
 &lt;p&gt;然后转化为普通时间：
 &lt;img alt="转化为普通时间" src="https://xutree.github.io/images/fig9.png"&gt;&lt;/p&gt;
 &lt;p&gt;以下为脚本：&lt;/p&gt;
-&lt;p&gt;&lt;img alt="脚本" src="https://xutree.github.io/images/fig10.png"&gt;&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#! /bin/bash&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 输入：需要修改的文件&lt;/span&gt;
+&lt;span class="nv"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 提取创建时间&lt;/span&gt;
+&lt;span class="nv"&gt;create_time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date  -r&lt;span class="k"&gt;$(&lt;/span&gt;stat -f &lt;span class="s2"&gt;&amp;quot;%B&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# 提取修改时间&lt;/span&gt;
+&lt;span class="nv"&gt;modify_time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date  -r&lt;span class="k"&gt;$(&lt;/span&gt;stat -f &lt;span class="s2"&gt;&amp;quot;%m&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# 查找Date标签的行号&lt;/span&gt;
+&lt;span class="nv"&gt;num1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;head -5 &lt;span class="nv"&gt;$filename&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep -n &lt;span class="s1"&gt;&amp;#39;Date&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; cut -d &lt;span class="s2"&gt;&amp;quot;:&amp;quot;&lt;/span&gt; -f &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# 查找Modified标签的行号&lt;/span&gt;
+&lt;span class="nv"&gt;num2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;head -5 &lt;span class="nv"&gt;$filename&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep -n &lt;span class="s1"&gt;&amp;#39;Modified&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt; cut -d &lt;span class="s2"&gt;&amp;quot;:&amp;quot;&lt;/span&gt; -f &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 如果Date标签行号为空，说明不存在Date标签，则插入Date&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$num1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;2s/^//p; 2s/^.*/Date: &lt;/span&gt;&lt;span class="nv"&gt;$create_time&lt;/span&gt;&lt;span class="s2"&gt;/&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;   
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="c1"&gt;# 如果Modified标签行号为空，插入Modified&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$num2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;3s/^//p; 3s/^.*/Modified: &lt;/span&gt;&lt;span class="nv"&gt;$modify_time&lt;/span&gt;&lt;span class="s2"&gt;/&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="c1"&gt;# 否则，替换Modified标签到最新时间&lt;/span&gt;
+    sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;num2&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;d &lt;span class="nv"&gt;$filename&lt;/span&gt;
+    sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;3s/^//p; 3s/^.*/Modified: &lt;/span&gt;&lt;span class="nv"&gt;$modify_time&lt;/span&gt;&lt;span class="s2"&gt;/&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
 &lt;h2&gt;附：stat 命令详情&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;stat&lt;/code&gt;显示有关文件的信息。 不需要读取，写入或执行指定文件的权限，但必须可搜索通向该文件的路径名中列出的所有目录。 如果没有给出参数，&lt;code&gt;stat&lt;/code&gt;将显示有关标准输入的文件描述符（stdin）的信息。&lt;/p&gt;
 &lt;p&gt;当作为&lt;code&gt;readlink&lt;/code&gt;调用时，仅打印符号链接的目标。 如果给定的参数不是符号链接，则&lt;code&gt;readlink&lt;/code&gt;将不打印任何内容并退出并显示错误。&lt;/p&gt;
