@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="CSS, CSS, " />
+    <title>CSS 入门  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
+        <link href="https://xutree.github.io/feeds/CSS.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - CSS Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/HTML.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - HTML Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/Mac.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Mac Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/X3DOM.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - X3DOM Category Atom Feed" />
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/10/07/css_overview/"> CSS 入门  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <span>
+            <p style="text-align:right; color:#aaaaaa; ">&nbsp 预计阅读时间: 6 分钟</p>
+        </span>
+            <div class="span8 offset2 article-content">
+
+                <h2>什么是 CSS</h2>
+<p>CSS（<strong>C</strong> ascading <strong>S</strong> tyle <strong>S</strong> heets），即层叠样式表。</p>
+<p>层叠是指 CSS 将一种样式应用于另一种样式的方式。样式表控制 Web 文档的外观。</p>
+<h2>为什么使用 CSS</h2>
+<ul>
+<li>CSS 允许你将特定样式应用于特定 HTML 元素</li>
+<li>CSS 的主要好处是它允许您将样式与内容分开</li>
+<li>仅使用 HTML，所有样式和格式都在同一个地方，随着页面的增长，这变得相当难以维护</li>
+</ul>
+<h2>CSS 三种形式</h2>
+<h3>内联 CSS：inline CSS</h3>
+<p>使用内联样式是插入样式表的方法之一。 使用内联样式，将独特的样式应用于单个元素。</p>
+<p>要使用内联样式，请将style属性添加到相关标记。</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;p</span> <span class="na">style=</span><span class="s">&quot;color:white; background-color:gray;&quot;</span><span class="nt">&gt;</span>
+    This is an example of inline styling.
+<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+
+<h3>嵌入式/内部 CSS：Embedded/Internal CSS</h3>
+<p>内部样式在 HTML 页面的<code>head</code>部分内的<code>&lt;style&gt;</code>元素中定义。</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;html&gt;</span>
+   <span class="nt">&lt;head&gt;</span>
+      <span class="nt">&lt;style&gt;</span>
+      p {
+         color:white;
+         background-color:gray;
+      }
+      <span class="nt">&lt;/style&gt;</span>
+   <span class="nt">&lt;/head&gt;</span>
+   <span class="nt">&lt;body&gt;</span>
+      <span class="nt">&lt;p&gt;</span>This is my first paragraph. <span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;p&gt;</span>This is my second paragraph. <span class="nt">&lt;/p&gt;</span>
+   <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+
+<h3>外部 CSS：External CSS</h3>
+<p>使用此方法，所有样式规则都包含在单个文本文件中，该文件以 .css 扩展名保存。</p>
+<p>然后使用<code>&lt;link&gt;</code>标记在 HTML 中引用此 CSS 文件。<code>&lt;link&gt;</code>元素位于<code>head</code>部分内部。</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;head&gt;</span>
+   <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;example.css&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+   <span class="nt">&lt;p&gt;</span>This is my first paragraph.<span class="nt">&lt;/p&gt;</span>
+   <span class="nt">&lt;p&gt;</span>This is my second paragraph. <span class="nt">&lt;/p&gt;</span>
+   <span class="nt">&lt;p&gt;</span>This is my third paragraph. <span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+
+
+<h2>CSS 语法</h2>
+<p>CSS 由浏览器解释的样式规则组成，然后应用于文档中的相应元素。样式规则有三个部分：<code>selector</code>，<code>property</code>和<code>value</code>。</p>
+<p>例如，标题颜色可以定义为：<code>h1 { color: orange; }</code></p>
+<p>选择器指向要设置样式的HTML元素。声明块包含一个或多个声明，以分号分隔。每个声明都包含一个属性名称和一个以冒号分隔的值。CSS 声明始终以分号结尾，声明组由大括号括起。</p>
+<h3>类型选择器</h3>
+<p>最常见且易于理解的选择器是类型选择器。 此选择器针对页面上的元素类型。</p>
+<p>例如，要定位页面上的所有段落：</p>
+<div class="highlight"><pre><span></span><span class="nt">p</span> <span class="p">{</span>
+   <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+   <span class="k">font-size</span><span class="p">:</span><span class="mi">130</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>id 和 clss 选择器</h3>
+<p>id 选择器允许您设置具有 id 属性的 HTML 元素的样式，而不管它们在文档树中的位置如何。 以下是 id 选择器的示例：</p>
+<p>HTML 文件：</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;intro&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;p&gt;</span> This paragraph is in the intro section.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;p&gt;</span> This paragraph is not in the intro section.<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+
+<p>CSS 文件:</p>
+<div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">intro</span> <span class="p">{</span>
+   <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+   <span class="k">background-color</span><span class="p">:</span> <span class="kc">gray</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>要选择具有特定 id 的元素，请使用井号 <strong>#</strong> 字符，然后使用元素的 id 跟随它。</p>
+<p>类选择器以类似的方式工作。 主要区别在于 id 每页只能应用一次，而类可以根据需要在页面上多次使用。</p>
+<p>在下面的示例中，具有“first”类的两个段落都将受到 CSS 的影响：</p>
+<p>HTML 文件：</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;div&gt;</span>
+   <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;first&quot;</span><span class="nt">&gt;</span>This is a paragraph<span class="nt">&lt;/p&gt;</span>
+   <span class="nt">&lt;p&gt;</span> This is the second paragraph. <span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;first&quot;</span><span class="nt">&gt;</span> This is not in the intro section<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span> The second paragraph is not in the intro section. <span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+
+<p>CSS 文件：</p>
+<div class="highlight"><pre><span></span><span class="na">.first</span> <span class="err">{</span><span class="no">font-size</span><span class="p">:</span> <span class="mi">200</span><span class="err">%</span><span class="c">;}</span>
+</pre></div>
+
+
+<p>要选择具有特定类的元素，请使用句点 <strong>.</strong> 字符，后跟类的名称。不要用数字开始一个类或 id 名称。</p>
+<h3>后代选择器</h3>
+<p>这些选择器用于选择作为另一个元素的后代的元素。 选择级别时，您可以根据需要选择多个级别。</p>
+<p>例如，要仅定位“intro”部分第一段中的 &lt;em> 元素：</p>
+<p>HTML 文件：</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;intro&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;first&quot;</span><span class="nt">&gt;</span>This is a <span class="nt">&lt;em&gt;</span> paragraph.<span class="nt">&lt;/em&gt;&lt;/p&gt;</span>
+   <span class="nt">&lt;p&gt;</span> This is the second paragraph. <span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;first&quot;</span><span class="nt">&gt;</span> This is not in the intro section.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span> The second paragraph is not in the intro section. <span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+
+<p>CSS 文件：</p>
+<div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">intro</span> <span class="p">.</span><span class="nc">first</span> <span class="nt">em</span> <span class="p">{</span>
+   <span class="k">color</span><span class="p">:</span> <span class="kc">pink</span><span class="p">;</span>
+   <span class="k">background-color</span><span class="p">:</span><span class="kc">gray</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>后代选择器匹配作为指定元素后代的所有元素。</p>
+<h2>注释</h2>
+<p>注释用于解释你的代码，浏览器会忽略。<code>/* Comment goes here */</code></p>
+<h2>层叠</h2>
+<p>网页的最终外观是不同样式规则的结果。形成层叠的三种主要风格来源是：</p>
+<ul>
+<li>页面作者创建的样式表</li>
+<li>浏览器的默认样式</li>
+<li>用户指定的样式</li>
+</ul>
+<p>继承是指属性在页面中流动的方式。 除非另有定义，否则子元素通常会采用父元素的特征。</p>
+<section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="https://xutree.github.io/pages/2018/10/07/css_overview/#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'xutree';
+        var disqus_identifier = 'https://xutree.github.io/pages/2018/10/07/css_overview/';
+    var disqus_url = 'https://xutree.github.io/pages/2018/10/07/css_overview/';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/">
+                                    C++ Primer 第四章 表达式
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/">
+                                    C++ Primer 第三章 字符串、向量和数组
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/">
+                                    C++ Primer 第二章 变量和基本类型
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
+                                    利用 Mac stat 添加文件创建时间、最后修改时间
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/">
+                                    C++ Primer 第一章 开始
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-10-07T11:24:03+08:00">2018-10-07 11:24:03</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-10-07 12:29:23</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#CSS-ref">CSS</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#CSS-ref">CSS
+                                <span>1</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'xutree';
+
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+<script language="javascript" type="text/javascript">
+    function uncollapse() {
+        var hash_str = window.location.hash;
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            var hash_str = '#disqus_thread';
+        }
+        $(hash_str).collapse({
+            toggle: true
+        })
+    }
+</script>
+
+<script type="text/javascript" language="JavaScript">
+    uncollapse();
+</script>
+</body>
+
+</html>
