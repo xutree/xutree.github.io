@@ -304,7 +304,7 @@ char *pc = reinterpret_cast&lt;char*&gt;(ip);
                             repo: 'xutree.github.io',
                             owner: 'xutree',
                             admin: ['xutree'],
-                            id: 'window.location.pathname'
+                            id: md5('window.location.pathname'),
 
                         });
                         gitalk.render('gitalk-container');

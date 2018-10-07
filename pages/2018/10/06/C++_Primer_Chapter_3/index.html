@@ -544,7 +544,7 @@ vector&lt;int&gt; ivec(begin(int_arr),end(int_arr));
                             repo: 'xutree.github.io',
                             owner: 'xutree',
                             admin: ['xutree'],
-                            id: 'window.location.pathname'
+                            id: md5('window.location.pathname'),
 
                         });
                         gitalk.render('gitalk-container');
