@@ -10,17 +10,10 @@
 <meta name="keywords" content="C++, 读书笔记, " />
     <title>C++ Primer 第一章 开始  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
-        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
-        <link href="https://xutree.github.io/feeds/CSS.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - CSS Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/HTML.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - HTML Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/Mac.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Mac Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/X3DOM.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - X3DOM Category Atom Feed" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
 </head>
 
 <body>
@@ -33,15 +26,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
-                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
-                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
-                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li ><a href="/index.html">主页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -55,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/"> C++ Primer 第一章 开始  </a></h1>
+            <h1><a href="/pages/2018/10/05/C++_Primer_Chapter_1/"> C++ Primer 第一章 开始  </a></h1>
         </header>
     </div>
 
@@ -86,37 +79,6 @@
 <li>对于为什么有<code>cerr</code>和<code>clog</code>？比如，你的程序遇到调用栈用完了的威胁（无限，没有出口的递归。你说，你到什么地方借内存，存放你的错误信息？所以有了<code>cerr</code>。其目的，就是在你最需要它的紧急情况下，还能得到输出功能的支持</li>
 <li>缓冲区的目的，就是减少刷屏的次数——比如，你的程序输出圣经中的一篇文章。不带缓冲的话，就会每写一个字母，就输出一个字母，然后刷屏。有了缓冲，你将看到若干句子“同时”就出现在了屏幕上（由内存翻新到显存，然后刷新屏幕）</li>
 </ul>
-<section>
-<div class="accordion" id="accordion2">
-    <div class="accordion-group">
-        <div class="accordion-heading">
-            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/#disqus_thread">
-                Comments
-            </a>
-        </div>
-        <div id="disqus_thread" class="accordion-body collapse">
-            <div class="accordion-inner">
-                <div class="comments">
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'xutree';
-        var disqus_identifier = 'https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/';
-    var disqus_url = 'https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/';
-
-    (function() {
-         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-     })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -125,27 +87,27 @@
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">
+                                <a href="/pages/2018/10/05/html-overview/">
                                     HTML 入门
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/">
+                                <a href="/pages/2018/10/05/X3DOM图像和视频纹理/">
                                     X3DOM 图像和视频纹理
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/">
+                                <a href="/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/">
                                     X3DOM，HTML，CSS 和 JavaScript
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/04/X3DOM-hello/">
+                                <a href="/pages/2018/10/04/X3DOM-hello/">
                                     Hello，X3DOM！
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/04/X3DOM第一课/">
+                                <a href="/pages/2018/10/04/X3DOM第一课/">
                                     X3DOM 第一课
                                 </a>
                             </li>
@@ -157,27 +119,27 @@
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
+                                <a href="/pages/2018/10/06/mac-stat/">
                                     利用 Mac stat 添加文件创建时间、最后修改时间
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/">
+                                <a href="/pages/2018/10/06/C++_Primer_Chapter_2/">
                                     C++ Primer 第二章 变量和基本类型
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/">
+                                <a href="/pages/2018/10/06/C++_Primer_Chapter_3/">
                                     C++ Primer 第三章 字符串、向量和数组
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/">
+                                <a href="/pages/2018/10/07/C++_Primer_Chapter_4/">
                                     C++ Primer 第四章 表达式
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/07/css_overview/">
+                                <a href="/pages/2018/10/07/css_overview/">
                                     CSS 入门
                                 </a>
                             </li>
@@ -235,31 +197,6 @@
         }
     </script>
 
-<script type="text/javascript">
-    var disqus_shortname = 'xutree';
-
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-    </script>
-<script language="javascript" type="text/javascript">
-    function uncollapse() {
-        var hash_str = window.location.hash;
-        if (window.location.hash.match(/^#comment-\d+$/)) {
-            var hash_str = '#disqus_thread';
-        }
-        $(hash_str).collapse({
-            toggle: true
-        })
-    }
-</script>
-
-<script type="text/javascript" language="JavaScript">
-    uncollapse();
-</script>
 </body>
 
 </html>
