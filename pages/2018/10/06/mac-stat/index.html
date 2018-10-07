@@ -10,10 +10,17 @@
 <meta name="keywords" content="Mac, 教程, Mac, " />
     <title>利用 Mac stat 添加文件创建时间、最后修改时间  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
+        <link href="https://xutree.github.io/feeds/CSS.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - CSS Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/HTML.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - HTML Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/Mac.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Mac Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/X3DOM.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - X3DOM Category Atom Feed" />
 </head>
 
 <body>
@@ -26,15 +33,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="/index.html">主页</a></li>
-                            <li ><a href="/categories.html">分类</a></li>
-                            <li ><a href="/tags.html">标签</a></li>
-                            <li ><a href="/archives.html">归档</a></li>
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -48,7 +55,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="/pages/2018/10/06/mac-stat/"> 利用 Mac stat 添加文件创建时间、最后修改时间  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/06/mac-stat/"> 利用 Mac stat 添加文件创建时间、最后修改时间  </a></h1>
         </header>
     </div>
 
@@ -63,11 +70,11 @@
 <p><code>stat</code>命令的 <em>a, m, c, B</em> 参数分别代表上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（ UNIX 时间戳），所以我们可以通过提取这些信息实现想要的功能。唯一需要注意的是，结果是UNIX时间戳，我们需要将其转换为普通时间。</p>
 <p>UNIX 时间，或称 POSIX 时间是 UNIX 或类 UNIX 系统使用的时间表示方式：从协调世界时1970年1月1日0时0分0秒起至现在的总秒数，不考虑闰秒。在多数 UNIX 系统上 UNIX 时间可以通过<code>date +%s</code>指令来检查。</p>
 <p>在 Mac 系统是由 UNIX 时间戳转化为普通时间的指令为：
-<img alt="UNIX 时间戳转化为普通时间" src="/images/fig7.png"></p>
+<img alt="UNIX 时间戳转化为普通时间" src="https://xutree.github.io/images/fig7.png"></p>
 <p>所以我们先根据<code>stat</code>获得文件的创建时间：
-<img alt="根据stat获得文件的创建时间" src="/images/fig8.png"></p>
+<img alt="根据stat获得文件的创建时间" src="https://xutree.github.io/images/fig8.png"></p>
 <p>然后转化为普通时间：
-<img alt="转化为普通时间" src="/images/fig9.png"></p>
+<img alt="转化为普通时间" src="https://xutree.github.io/images/fig9.png"></p>
 <p>以下为脚本：</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -189,27 +196,27 @@
                         </h1>
                         <ul>
                             <li>
-                                <a href="/pages/2018/10/05/C++_Primer_Chapter_1/">
+                                <a href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/">
                                     C++ Primer 第一章 开始
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/05/html-overview/">
+                                <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">
                                     HTML 入门
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/05/X3DOM图像和视频纹理/">
+                                <a href="https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/">
                                     X3DOM 图像和视频纹理
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/">
+                                <a href="https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/">
                                     X3DOM，HTML，CSS 和 JavaScript
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/04/X3DOM-hello/">
+                                <a href="https://xutree.github.io/pages/2018/10/04/X3DOM-hello/">
                                     Hello，X3DOM！
                                 </a>
                             </li>
@@ -221,22 +228,22 @@
                         </h1>
                         <ul>
                             <li>
-                                <a href="/pages/2018/10/06/C++_Primer_Chapter_2/">
+                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/">
                                     C++ Primer 第二章 变量和基本类型
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/06/C++_Primer_Chapter_3/">
+                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/">
                                     C++ Primer 第三章 字符串、向量和数组
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/07/C++_Primer_Chapter_4/">
+                                <a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/">
                                     C++ Primer 第四章 表达式
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/07/css_overview/">
+                                <a href="https://xutree.github.io/pages/2018/10/07/css_overview/">
                                     CSS 入门
                                 </a>
                             </li>
@@ -256,7 +263,8 @@
                             clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
                             repo: 'xutree.github.io',
                             owner: 'xutree',
-                            admin: ['xutree']
+                            admin: ['xutree'],
+                            id: 'window.location.pathname'
 
                         });
                         gitalk.render('gitalk-container');
