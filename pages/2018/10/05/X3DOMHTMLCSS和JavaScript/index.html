@@ -239,6 +239,8 @@ Style Sheet)</li>
                     <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
                     <div id="gitalk-container"></div>
                     <script type="text/javascript">
+                        var dateTime = Date.now();
+                        var timestamp = Math.floor(dateTime / 1000);
                         var gitalk = new Gitalk({
 
                             // gitalk的主要参数
@@ -247,7 +249,7 @@ Style Sheet)</li>
                             repo: 'xutree.github.io',
                             owner: 'xutree',
                             admin: ['xutree'],
-                            id: 'window.location.pathname'
+                            id: String(timestamp)
 
                         });
                         gitalk.render('gitalk-container');
