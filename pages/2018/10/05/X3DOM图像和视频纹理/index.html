@@ -95,37 +95,6 @@
 <span class="nt">&lt;/scene&gt;</span>
 <span class="nt">&lt;/x3d&gt;</span>
 </pre></div>
-<section>
-<div class="accordion" id="accordion2">
-    <div class="accordion-group">
-        <div class="accordion-heading">
-            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/#disqus_thread">
-                Comments
-            </a>
-        </div>
-        <div id="disqus_thread" class="accordion-body collapse">
-            <div class="accordion-inner">
-                <div class="comments">
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'xutree';
-        var disqus_identifier = 'https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/';
-    var disqus_url = 'https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/';
-
-    (function() {
-         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-     })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -187,18 +156,29 @@
                             </li>
                         </ul>
                     </nav>
-                    <nav>
-                        <div id="disqus_thread"></div>
-                        <script>
-                            (function() { // DON'T EDIT BELOW THIS LINE
-                            var d = document, s = d.createElement('script');
-                            s.src = 'https://xutree.disqus.com/embed.js';
-                            s.setAttribute('data-timestamp', +new Date());
-                            (d.head || d.body).appendChild(s);
-                            })();
-                        </script>
-                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                    </nav>
+                    <!-- Gitalk 评论 start  -->
+
+                    <!-- Link Gitalk 的支持文件  -->
+                    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                    <div id="gitalk-container"></div>
+                    <script type="text/javascript">
+                        var dateTime = Date.now();
+                        var timestamp = Math.floor(dateTime / 1000);
+                        var gitalk = new Gitalk({
+
+                            // gitalk的主要参数
+                            clientID: '93f43349e9fd3154bfad',
+                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
+                            repo: 'xutree.github.io',
+                            owner: 'xutree',
+                            admin: ['xutree'],
+                            id: String(timestamp)
+
+                        });
+                        gitalk.render('gitalk-container');
+                    </script>
+                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
@@ -238,32 +218,6 @@
             return (query.length > 0);
         }
     </script>
-
-<script type="text/javascript">
-    var disqus_shortname = 'xutree';
-
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-    </script>
-<script language="javascript" type="text/javascript">
-    function uncollapse() {
-        var hash_str = window.location.hash;
-        if (window.location.hash.match(/^#comment-\d+$/)) {
-            var hash_str = '#disqus_thread';
-        }
-        $(hash_str).collapse({
-            toggle: true
-        })
-    }
-</script>
-
-<script type="text/javascript" language="JavaScript">
-    uncollapse();
-</script>
 </body>
 
 </html>
