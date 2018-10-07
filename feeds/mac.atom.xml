@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - Mac</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/mac.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-07T10:38:50+08:00</updated><entry><title>利用 Mac stat 添加文件创建时间、最后修改时间</title><link href="https://xutree.github.io/pages/2018/10/06/mac-stat/" rel="alternate"></link><published>2018-10-06T19:07:36+08:00</published><updated>2018-10-07T10:38:50+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-06:/pages/2018/10/06/mac-stat/</id><summary type="html">&lt;p&gt;Pelican 根据 &lt;strong&gt;.md&lt;/strong&gt; 文件生成网页的时候需要 metadata，所以写个命令行自动添加文件创建时间、最后修改时间，这样写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 &lt;code&gt;stat&lt;/code&gt; 命令。&lt;/p&gt;
-&lt;h2&gt; 自动添加文件创建时间、最后修改时间 &lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;stat&lt;/code&gt; 命令的 &lt;em&gt;a, m, c, B&lt;/em&gt; 参数分别代表上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（ UNIX 时间戳），所以我们可以通过提取这些信息实现想要的功能。唯一需要注意的是，结果是 UNIX 时间戳，我们需要将其转换为普通时间。&lt;/p&gt;
-&lt;p&gt;UNIX 时间，或称 POSIX 时间是 UNIX 或类 UNIX 系统使用的时间表示方式：从协调世界时 1970 年 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Pelican 根据 &lt;strong&gt;.md&lt;/strong&gt; 文件生成网页的时候需要 metadata，所以写个命令行自动添加文件创建时间、最后修改时间，这样写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 &lt;code&gt;stat&lt;/code&gt; 命令。&lt;/p&gt;
-&lt;h2&gt; 自动添加文件创建时间、最后修改时间 &lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;stat&lt;/code&gt; 命令的 &lt;em&gt;a, m, c, B&lt;/em&gt; 参数分别代表上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（ UNIX 时间戳），所以我们可以通过提取这些信息实现想要的功能。唯一需要注意的是，结果是 UNIX 时间戳，我们需要将其转换为普通时间。&lt;/p&gt;
-&lt;p&gt;UNIX 时间，或称 POSIX 时间是 UNIX 或类 UNIX 系统使用的时间表示方式：从协调世界时 1970 年 1 月 1 日 0 时 0 分 0 秒起至现在的总秒数，不考虑闰秒。在多数 UNIX 系统上 UNIX 时间可以通过 &lt;code&gt;date +%s&lt;/code&gt; 指令来检查。&lt;/p&gt;
-&lt;p&gt; 在 Mac 系统是由 UNIX 时间戳转化为普通时间的指令为：
-&lt;img alt="UNIX 时间戳转化为普通时间 " src="https://xutree.github.io/images/fig7.png"&gt;&lt;/p&gt;
-&lt;p&gt; 所以我们先根据 &lt;code&gt;stat&lt;/code&gt; 获得文件的创建时间：
-&lt;img alt=" 根据 stat 获得文件的创建时间 " src="https://xutree.github.io/images/fig8.png"&gt;&lt;/p&gt;
-&lt;p&gt; 然后转化为普通时间：
-&lt;img alt=" 转化为普通时间 " src="https://xutree.github.io/images/fig9.png"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - Mac</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/mac.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-07T10:38:50+08:00</updated><entry><title>利用 Mac stat 添加文件创建时间、最后修改时间</title><link href="https://xutree.github.io/pages/2018/10/06/mac-stat/" rel="alternate"></link><published>2018-10-06T19:07:36+08:00</published><updated>2018-10-07T10:38:50+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-06:/pages/2018/10/06/mac-stat/</id><summary type="html">&lt;p&gt;Pelican 根据 &lt;strong&gt;.md&lt;/strong&gt; 文件生成网页的时候需要 metadata，所以写个命令行自动添加文件创建时间、最后修改时间，这样写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 &lt;code&gt;stat&lt;/code&gt;命令。&lt;/p&gt;
+&lt;h2&gt;自动添加文件创建时间、最后修改时间&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;stat&lt;/code&gt;命令的 &lt;em&gt;a, m, c, B&lt;/em&gt; 参数分别代表上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（ UNIX 时间戳），所以我们可以通过提取这些信息实现想要的功能。唯一需要注意的是，结果是UNIX时间戳，我们需要将其转换为普通时间。&lt;/p&gt;
+&lt;p&gt;UNIX 时间，或称 POSIX 时间是 UNIX 或类 UNIX 系统使用的时间表示方式：从协调世界时1970年1月1日0时0分0秒起至现在的总秒数，不考虑闰秒。在多数 UNIX 系统上 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Pelican 根据 &lt;strong&gt;.md&lt;/strong&gt; 文件生成网页的时候需要 metadata，所以写个命令行自动添加文件创建时间、最后修改时间，这样写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 &lt;code&gt;stat&lt;/code&gt;命令。&lt;/p&gt;
+&lt;h2&gt;自动添加文件创建时间、最后修改时间&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;stat&lt;/code&gt;命令的 &lt;em&gt;a, m, c, B&lt;/em&gt; 参数分别代表上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（ UNIX 时间戳），所以我们可以通过提取这些信息实现想要的功能。唯一需要注意的是，结果是UNIX时间戳，我们需要将其转换为普通时间。&lt;/p&gt;
+&lt;p&gt;UNIX 时间，或称 POSIX 时间是 UNIX 或类 UNIX 系统使用的时间表示方式：从协调世界时1970年1月1日0时0分0秒起至现在的总秒数，不考虑闰秒。在多数 UNIX 系统上 UNIX 时间可以通过&lt;code&gt;date +%s&lt;/code&gt;指令来检查。&lt;/p&gt;
+&lt;p&gt;在 Mac 系统是由 UNIX 时间戳转化为普通时间的指令为：
+&lt;img alt="UNIX 时间戳转化为普通时间" src="https://xutree.github.io/images/fig7.png"&gt;&lt;/p&gt;
+&lt;p&gt;所以我们先根据&lt;code&gt;stat&lt;/code&gt;获得文件的创建时间：
+&lt;img alt="根据stat获得文件的创建时间" src="https://xutree.github.io/images/fig8.png"&gt;&lt;/p&gt;
+&lt;p&gt;然后转化为普通时间：
+&lt;img alt="转化为普通时间" src="https://xutree.github.io/images/fig9.png"&gt;&lt;/p&gt;
 &lt;p&gt;以下为脚本：&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
@@ -40,88 +40,88 @@
 25
 26&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#! /bin/bash&lt;/span&gt;
 
-&lt;span class="c1"&gt;# 输入：需要修改的文件 &lt;/span&gt;
+&lt;span class="c1"&gt;# 输入：需要修改的文件&lt;/span&gt;
 &lt;span class="nv"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;
 
-&lt;span class="c1"&gt;# 提取创建时间 &lt;/span&gt;
+&lt;span class="c1"&gt;# 提取创建时间&lt;/span&gt;
 &lt;span class="nv"&gt;create_time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date  -r&lt;span class="k"&gt;$(&lt;/span&gt;stat -f &lt;span class="s2"&gt;&amp;quot;%B&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
-&lt;span class="c1"&gt;# 提取修改时间 &lt;/span&gt;
+&lt;span class="c1"&gt;# 提取修改时间&lt;/span&gt;
 &lt;span class="nv"&gt;modify_time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date  -r&lt;span class="k"&gt;$(&lt;/span&gt;stat -f &lt;span class="s2"&gt;&amp;quot;%m&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
-&lt;span class="c1"&gt;# 查找 Date 标签的行号 &lt;/span&gt;
+&lt;span class="c1"&gt;# 查找Date标签的行号&lt;/span&gt;
 &lt;span class="nv"&gt;num1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;head -5 &lt;span class="nv"&gt;$filename&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep -n &lt;span class="s1"&gt;&amp;#39;Date&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; cut -d &lt;span class="s2"&gt;&amp;quot;:&amp;quot;&lt;/span&gt; -f &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
-&lt;span class="c1"&gt;# 查找 Modified 标签的行号 &lt;/span&gt;
+&lt;span class="c1"&gt;# 查找Modified标签的行号&lt;/span&gt;
 &lt;span class="nv"&gt;num2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;head -5 &lt;span class="nv"&gt;$filename&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep -n &lt;span class="s1"&gt;&amp;#39;Modified&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt; cut -d &lt;span class="s2"&gt;&amp;quot;:&amp;quot;&lt;/span&gt; -f &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
 
-&lt;span class="c1"&gt;# 如果 Date 标签行号为空，说明不存在 Date 标签，则插入 Date&lt;/span&gt;
+&lt;span class="c1"&gt;# 如果Date标签行号为空，说明不存在Date标签，则插入Date&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$num1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
     sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;2s/^//p; 2s/^.*/Date: &lt;/span&gt;&lt;span class="nv"&gt;$create_time&lt;/span&gt;&lt;span class="s2"&gt;/&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;   
 &lt;span class="k"&gt;fi&lt;/span&gt;
-&lt;span class="c1"&gt;# 如果 Modified 标签行号为空，插入 Modified&lt;/span&gt;
+&lt;span class="c1"&gt;# 如果Modified标签行号为空，插入Modified&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$num2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
     sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;3s/^//p; 3s/^.*/Modified: &lt;/span&gt;&lt;span class="nv"&gt;$modify_time&lt;/span&gt;&lt;span class="s2"&gt;/&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;
 &lt;span class="k"&gt;else&lt;/span&gt;
-    &lt;span class="c1"&gt;# 否则，替换 Modified 标签到最新时间 &lt;/span&gt;
+    &lt;span class="c1"&gt;# 否则，替换Modified标签到最新时间&lt;/span&gt;
     sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;num2&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;d &lt;span class="nv"&gt;$filename&lt;/span&gt;
     sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;3s/^//p; 3s/^.*/Modified: &lt;/span&gt;&lt;span class="nv"&gt;$modify_time&lt;/span&gt;&lt;span class="s2"&gt;/&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;
 &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;h2&gt; 附：stat 命令详情 &lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;stat&lt;/code&gt; 显示有关文件的信息。 不需要读取，写入或执行指定文件的权限，但必须可搜索通向该文件的路径名中列出的所有目录。 如果没有给出参数，&lt;code&gt;stat&lt;/code&gt; 将显示有关标准输入的文件描述符（stdin）的信息。&lt;/p&gt;
-&lt;p&gt; 当作为 &lt;code&gt;readlink&lt;/code&gt; 调用时，仅打印符号链接的目标。 如果给定的参数不是符号链接，则 &lt;code&gt;readlink&lt;/code&gt; 将不打印任何内容并退出并显示错误。&lt;/p&gt;
-&lt;p&gt; 显示的信息是通过使用给定参数调用 &lt;code&gt;lstat&lt;/code&gt; 系统调用并解释返回的结构来获得的。&lt;/p&gt;
-&lt;h3&gt; 参数 &lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;-F&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 与 &lt;code&gt;ls&lt;/code&gt; 命令的 &lt;strong&gt;-F&lt;/strong&gt; 参数一样，在作为目录的每个路径名之后显示斜杠（'/'），在每个可执行的路径名后面显示星号（'*'），在每个符号链接后显示 at 符号（'@'）， 在每个 without 文件后面显示百分号（'％'），每个套接字后显示等号（'='），以及在每个 FIFO 文件后面显示一个垂直条（'|'）。 &lt;strong&gt;-F&lt;/strong&gt; 的使用意味着 &lt;strong&gt;-l&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;-f&lt;/strong&gt; &lt;em&gt;format&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 使用指定的格式显示信息 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;-L&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 使用 &lt;code&gt;stat&lt;/code&gt; 而不是 &lt;code&gt;lstat&lt;/code&gt;。 如果文件是符号链接，则 stat 给出的信息是链接文件目标文件的信息，而不是链接文件本身 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;-l&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 将输出以 &lt;code&gt;ls -lT&lt;/code&gt; 格式显示，即显示文件的完整时间信息，包括月，日，小时，分钟，秒和年 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;-n&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 输出不强制换行 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;-q&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 如果对 &lt;code&gt;stat&lt;/code&gt; 或 &lt;code&gt;lstat&lt;/code&gt; 的调用失败，则不显示失败消息。以 &lt;code&gt;readlink&lt;/code&gt; 方式运行时，会自动禁止错误消息 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;-r&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 显示原始信息。即，对于 stat 结构（UNIX/Linux 系统中定义的结构体）中的所有字段，显示原始数值（例如，自纪元以来的秒数等）&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;-s&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 在 “shell 输出 ” 中显示信息，适用于初始化变量 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;-t&lt;/strong&gt; &lt;em&gt;timefmt&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 使用指定的格式显示时间戳。 此格式直接传递给 &lt;code&gt;strftime&lt;/code&gt; 命令 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;-x&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 从某些 Linux 发行版中以更详细的方式显示信息 &lt;/p&gt;
-&lt;h3&gt; 格式 &lt;/h3&gt;
-&lt;p&gt; 格式字符串类似于 &lt;code&gt;printf&lt;/code&gt; 格式，因为它们以 ％ 开头，然后是一系列格式化字符，最后是一个字符，用于选择要格式化的 struct stat 字段。 如果 ％ 后面紧跟 n，t，％ 或 @ 之一，则会打印换行符，制表符，百分号或当前文件号，否则将检查字符串是否包含以下内容：&lt;/p&gt;
-&lt;p&gt; 以下是任何可选标志：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;#&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 为八进制和十六进制输出选择备用输出形式。 非零八进制输出将具有前导零，并且非零十六进制输出将具有前缀 “0x”&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;+&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 断言应始终打印指示数字是正数还是负数的符号。 非负数通常不打印带符号 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;-&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 将字符串输出对齐到字段的左侧，而不是右侧 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;0&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 将左边距的填充字符设置为 “0” 字符，而不是空格 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;space&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 在非负有符号输出字段的前面保留一个空格。 如果同时使用 &lt;strong&gt;‘+’&lt;/strong&gt; ，则 &lt;strong&gt;‘+’&lt;/strong&gt; 将覆盖空格 &lt;/p&gt;
-&lt;p&gt; 以下是任何可选字段：&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;size&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 可选的十进制数字字符串，指定最小字段宽度 &lt;/p&gt;
-&lt;p&gt;&lt;em&gt;prec&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 由小数点 '.' 和十进制数字字符串组成的可选精度，指示最大字符串长度，浮点输出中小数点后出现的位数，或数字输出中显示的最小位数 &lt;/p&gt;
-&lt;p&gt;&lt;em&gt;fmt&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 可选的输出格式说明符，它是 D，O，U，X，F 或 S 之一。它们分别表示带符号的十进制输出，八进制输出，无符号十进制输出，十六进制输出，浮点输出和字符串输出。 某些输出格式不适用于所有字段。 浮点输出仅适用于 timespec 字段（a，m 和 c 字段）。&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 特殊输出说明符 S 可用于指示输出（如果适用）应为字符串格式。 可与以下标志结合使用：&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;amc&lt;/em&gt; 以 &lt;code&gt;strftime&lt;/code&gt; 格式显示日期 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;dr&lt;/em&gt; 显示实际设备名称 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;gu&lt;/em&gt; 显示组或用户名 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;p&lt;/em&gt; 以 &lt;code&gt;ls -lTd&lt;/code&gt; 显示文件模式 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;N&lt;/em&gt; 显示文件名 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;T&lt;/em&gt; 显示文件类型 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Y&lt;/em&gt; 在输出中插入 “ -&amp;gt; ”。 请注意，&lt;em&gt;Y&lt;/em&gt; 的默认输出格式是字符串，但如果明确指定，则会预先添加这四个字符 &lt;/p&gt;
-&lt;p&gt;&lt;em&gt;sub&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 可选的子字段说明符（高，中，低）。仅适用于 p，d，r 和 T 输出格式。 它可以是以下之一：&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;H&lt;/em&gt; “ 高 ”，指定来自 r 或 d 的设备的主要编号，来自 p 的字符串形式的权限的 “ 用户 ” 位，来自 p 的数字形式的文件 “type” 位，以及 T 的长输出形式 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;L&lt;/em&gt; “ 低 ”，指定来自 r 或 d 的设备的次要编号，来自 p 的字符串形式的权限的 “ 其他 ” 位，来自 p 的数字形式的 “ 用户 ”，“ 组 ” 和 “ 其他 ” 位， 当与 T 一起使用时，文件类型的 &lt;code&gt;ls -F&lt;/code&gt; 样式输出字符（对此使用 L 是可选的）&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;M&lt;/em&gt; “ 中 ”，指定 p 的字符串输出形式的权限的 “ 组 ” 位，或 p 的数字形式的 “suid”，“sgid” 和 “sticky” 位 &lt;/p&gt;
-&lt;p&gt;&lt;em&gt;datum&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 必填字段说明符，是以下之一：&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;d&lt;/em&gt; 文件所在的设备 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;i&lt;/em&gt; 文件的 inode 编号 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;p&lt;/em&gt; 文件类型和权限 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;l&lt;/em&gt; 文件的硬链接数 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;u, g&lt;/em&gt; 文件所有者的用户 ID 和组 ID&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;r&lt;/em&gt; 字符和块设备专用文件的设备编号 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;a, m, c, B&lt;/em&gt; 上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（UNIX 时间戳）&lt;/p&gt;
+&lt;h2&gt;附：stat 命令详情&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;stat&lt;/code&gt;显示有关文件的信息。 不需要读取，写入或执行指定文件的权限，但必须可搜索通向该文件的路径名中列出的所有目录。 如果没有给出参数，&lt;code&gt;stat&lt;/code&gt;将显示有关标准输入的文件描述符（stdin）的信息。&lt;/p&gt;
+&lt;p&gt;当作为&lt;code&gt;readlink&lt;/code&gt;调用时，仅打印符号链接的目标。 如果给定的参数不是符号链接，则&lt;code&gt;readlink&lt;/code&gt;将不打印任何内容并退出并显示错误。&lt;/p&gt;
+&lt;p&gt;显示的信息是通过使用给定参数调用&lt;code&gt;lstat&lt;/code&gt;系统调用并解释返回的结构来获得的。&lt;/p&gt;
+&lt;h3&gt;参数&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;-F&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;与&lt;code&gt;ls&lt;/code&gt;命令的 &lt;strong&gt;-F&lt;/strong&gt; 参数一样，在作为目录的每个路径名之后显示斜杠（'/'），在每个可执行的路径名后面显示星号（'*'），在每个符号链接后显示at符号（'@'）， 在每个without文件后面显示百分号（'％'），每个套接字后显示等号（'='），以及在每个FIFO文件后面显示一个垂直条（'|'）。 &lt;strong&gt;-F&lt;/strong&gt; 的使用意味着 &lt;strong&gt;-l&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-f&lt;/strong&gt; &lt;em&gt;format&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用指定的格式显示信息&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-L&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用&lt;code&gt;stat&lt;/code&gt;而不是&lt;code&gt;lstat&lt;/code&gt;。 如果文件是符号链接，则stat给出的信息是链接文件目标文件的信息，而不是链接文件本身&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-l&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;将输出以&lt;code&gt;ls -lT&lt;/code&gt;格式显示，即显示文件的完整时间信息，包括月，日，小时，分钟，秒和年&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-n&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;输出不强制换行&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-q&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;如果对&lt;code&gt;stat&lt;/code&gt;或&lt;code&gt;lstat&lt;/code&gt;的调用失败，则不显示失败消息。以&lt;code&gt;readlink&lt;/code&gt;方式运行时，会自动禁止错误消息&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-r&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;显示原始信息。即，对于stat结构（UNIX/Linux系统中定义的结构体）中的所有字段，显示原始数值（例如，自纪元以来的秒数等）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-s&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在“shell输出”中显示信息，适用于初始化变量&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-t&lt;/strong&gt; &lt;em&gt;timefmt&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用指定的格式显示时间戳。 此格式直接传递给&lt;code&gt;strftime&lt;/code&gt;命令&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-x&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;从某些Linux发行版中以更详细的方式显示信息&lt;/p&gt;
+&lt;h3&gt;格式&lt;/h3&gt;
+&lt;p&gt;格式字符串类似于&lt;code&gt;printf&lt;/code&gt;格式，因为它们以 ％ 开头，然后是一系列格式化字符，最后是一个字符，用于选择要格式化的 struct stat 字段。 如果 ％ 后面紧跟 n，t，％ 或 @ 之一，则会打印换行符，制表符，百分号或当前文件号，否则将检查字符串是否包含以下内容：&lt;/p&gt;
+&lt;p&gt;以下是任何可选标志：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;#&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;为八进制和十六进制输出选择备用输出形式。 非零八进制输出将具有前导零，并且非零十六进制输出将具有前缀“0x”&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;+&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;断言应始终打印指示数字是正数还是负数的符号。 非负数通常不打印带符号&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;将字符串输出对齐到字段的左侧，而不是右侧&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;0&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;将左边距的填充字符设置为“0”字符，而不是空格&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;space&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在非负有符号输出字段的前面保留一个空格。 如果同时使用&lt;strong&gt;‘+’&lt;/strong&gt; ，则&lt;strong&gt;‘+’&lt;/strong&gt; 将覆盖空格&lt;/p&gt;
+&lt;p&gt;以下是任何可选字段：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;size&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;可选的十进制数字字符串，指定最小字段宽度&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;prec&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;由小数点'.'和十进制数字字符串组成的可选精度，指示最大字符串长度，浮点输出中小数点后出现的位数，或数字输出中显示的最小位数&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;fmt&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;可选的输出格式说明符，它是D，O，U，X，F 或 S 之一。它们分别表示带符号的十进制输出，八进制输出，无符号十进制输出，十六进制输出，浮点输出和字符串输出。 某些输出格式不适用于所有字段。 浮点输出仅适用于 timespec 字段（a，m 和 c 字段）。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;特殊输出说明符S可用于指示输出（如果适用）应为字符串格式。 可与以下标志结合使用：&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;amc&lt;/em&gt; 以&lt;code&gt;strftime&lt;/code&gt;格式显示日期&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;dr&lt;/em&gt; 显示实际设备名称&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;gu&lt;/em&gt; 显示组或用户名&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;p&lt;/em&gt; 以&lt;code&gt;ls -lTd&lt;/code&gt;显示文件模式&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;N&lt;/em&gt; 显示文件名&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;T&lt;/em&gt; 显示文件类型&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Y&lt;/em&gt; 在输出中插入“ -&amp;gt; ”。 请注意，&lt;em&gt;Y&lt;/em&gt; 的默认输出格式是字符串，但如果明确指定，则会预先添加这四个字符&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;sub&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;可选的子字段说明符（高，中，低）。仅适用于 p，d，r 和 T 输出格式。 它可以是以下之一：&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;H&lt;/em&gt; “高”，指定来自 r 或 d 的设备的主要编号，来自 p 的字符串形式的权限的“用户”位，来自 p 的数字形式的文件“type”位，以及 T 的长输出形式&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;L&lt;/em&gt; “低”，指定来自 r 或 d 的设备的次要编号，来自 p 的字符串形式的权限的“其他”位，来自 p 的数字形式的“用户”，“组”和“其他”位， 当与 T 一起使用时，文件类型的&lt;code&gt;ls -F&lt;/code&gt;样式输出字符（对此使用 L 是可选的）&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;M&lt;/em&gt; “中”，指定 p 的字符串输出形式的权限的“组”位，或 p 的数字形式的 “suid”，“sgid” 和 “sticky” 位&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;datum&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;必填字段说明符，是以下之一：&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;d&lt;/em&gt; 文件所在的设备&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;i&lt;/em&gt; 文件的inode编号&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;p&lt;/em&gt; 文件类型和权限&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;l&lt;/em&gt; 文件的硬链接数&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;u, g&lt;/em&gt; 文件所有者的用户ID和组ID&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;r&lt;/em&gt; 字符和块设备专用文件的设备编号&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;a, m, c, B&lt;/em&gt; 上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（UNIX时间戳）&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;z&lt;/em&gt; 文件大小（以字节为单位）&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;b&lt;/em&gt; 分配给文件的块数 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;k&lt;/em&gt; 最佳文件系统 I / O 操作块大小 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;f&lt;/em&gt; 用户定义的文件标志 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;v&lt;/em&gt; Inode 生成号 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 以下四个字段说明符不是直接从 struct stat 中的数据中提取的，而是：&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;N&lt;/em&gt; 文件的名称 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;T&lt;/em&gt; 文件类型，类似 &lt;code&gt;ls -F&lt;/code&gt;，如果给出子字段说明符 H，则采用更具描述性的形式。&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Y&lt;/em&gt; 符号链接的目标 &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Z&lt;/em&gt; 从字符或块特殊设备的 rdev 字段扩展为 “major，minor”，并为所有其他设备提供大小输出 &lt;/p&gt;
-&lt;p&gt; 只有 ％ 和字段说明符是必需的。大多数字段说明符默认为 U 作为输出形式；p 默认输出形式是 O；a、m、c 默认输出形式是 D，Y、T、N 默认输出形式是 S。&lt;/p&gt;</content><category term="Mac"></category><category term="教程"></category></entry></feed>
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;b&lt;/em&gt; 分配给文件的块数&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;k&lt;/em&gt; 最佳文件系统I / O操作块大小&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;f&lt;/em&gt; 用户定义的文件标志&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;v&lt;/em&gt; Inode 生成号&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;以下四个字段说明符不是直接从struct stat中的数据中提取的，而是：&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;N&lt;/em&gt; 文件的名称&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;T&lt;/em&gt; 文件类型，类似&lt;code&gt;ls -F&lt;/code&gt;，如果给出子字段说明符H，则采用更具描述性的形式。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Y&lt;/em&gt; 符号链接的目标&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Z&lt;/em&gt; 从字符或块特殊设备的rdev字段扩展为“major，minor”，并为所有其他设备提供大小输出&lt;/p&gt;
+&lt;p&gt;只有 ％ 和字段说明符是必需的。大多数字段说明符默认为 U 作为输出形式；p 默认输出形式是 O；a、m、c 默认输出形式是 D，Y、T、N 默认输出形式是 S。&lt;/p&gt;</content><category term="Mac"></category><category term="教程"></category></entry></feed>
