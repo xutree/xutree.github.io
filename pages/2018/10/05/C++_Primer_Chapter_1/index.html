@@ -62,7 +62,6 @@
             <div class="span8 offset2 article-content">
 
                 <ul>
-<li><code>main</code>函数的返回类型必须为<code>int</code>，返回值0表示成功，非0的含义由系统定义，通常用来指出错误类型</li>
 <li><code>g++ -std=c++14  -Wall -o test test.cpp</code></li>
 <li><code>iostream</code> <code>cin</code> <code>cout</code> <code>cerr</code> <code>clog</code></li>
 <li><code>&lt;&lt;</code>运算符返回其左侧的运算对象</li>
@@ -74,20 +73,13 @@
 <li>标准库文件通常不带后缀。编译器一般不关心头文件名的形式，但有的IDE对此有特定要求</li>
 <li>头文件包含：标准库头文件 &lt;&gt;     非标准库头文件 ""</li>
 <li>文件重定向：从文件读入\&lt;infile，输出到文件>outfile</li>
-<li>
-<p>C++里关于<code>cerr</code>, <code>clog</code>, <code>cout</code>三者的区别:</p>
-<ul>
 <li><code>cerr</code>(无缓冲标准错误) 没有缓冲，发送给它的内容立即被输出</li>
 <li><code>clog</code>(缓冲标准错误)  有缓冲，缓冲区满时输出</li>
 <li><code>cout</code>标准输出</li>
 <li><code>cout</code>是在终端显示器输出，<code>cout</code>流在内存中对应开辟了一个缓冲区，用来存放流中的数据，当向<code>cout</code>流插入一个<code>endl</code>，不论缓冲区是否满了，都立即输出流中所有数据，然后插入一个换行符</li>
 <li><code>cerr</code>流对象是标准错误流，指定为和显示器关联，和<code>cout</code>作用差不多，有点不同就是<code>cout</code>通常是传到显示器输出，但可以被重定向输出到文件，而<code>cerr</code>流中的信息只能在显示器输出</li>
 <li><code>clog</code>流也是标准错误流，作用和<code>cerr</code>一样，区别在于<code>cerr</code>不经过缓冲区，直接向显示器输出信息，而<code>clog</code>中的信息存放在缓冲区，缓冲区满或者遇到<code>endl</code>时才输出</li>
-</ul>
-</li>
-<li>
-<p>对于为什么有<code>cerr</code>和<code>clog</code>？比如，你的程序遇到调用栈用完了的威胁（无限，没有出口的递归。你说，你到什么地方借内存，存放你的错误信息？所以有了<code>cerr</code>。其目的，就是在你最需要它的紧急情况下，还能得到输出功能的支持</p>
-</li>
+<li>对于为什么有<code>cerr</code>和<code>clog</code>？比如，你的程序遇到调用栈用完了的威胁（无限，没有出口的递归。你说，你到什么地方借内存，存放你的错误信息？所以有了<code>cerr</code>。其目的，就是在你最需要它的紧急情况下，还能得到输出功能的支持</li>
 <li>缓冲区的目的，就是减少刷屏的次数——比如，你的程序输出圣经中的一篇文章。不带缓冲的话，就会每写一个字母，就输出一个字母，然后刷屏。有了缓冲，你将看到若干句子“同时”就出现在了屏幕上（由内存翻新到显存，然后刷新屏幕）</li>
 </ul>
 <section>
@@ -202,7 +194,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-05T23:11:35+08:00">2018年10月05日</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018年10月06日</div>
+                    <div class="last_updated">2018年10月07日</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
