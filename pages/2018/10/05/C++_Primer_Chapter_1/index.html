@@ -183,7 +183,7 @@
                             </li>
                         </ul>
                     </nav>
-                    <nav>
+                    <!-- <nav>
                         <div id="disqus_thread"></div>
                         <script>
                             (function() { // DON'T EDIT BELOW THIS LINE
@@ -194,7 +194,29 @@
                             })();
                         </script>
                         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                    </nav>
+                    </nav> -->
+                    <!-- Gitalk 评论 start  -->
+
+                    <!-- Link Gitalk 的支持文件  -->
+                    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                    <div id="gitalk-container"></div>
+                    <script type="text/javascript">
+                        var gitalk = new Gitalk({
+
+                            // gitalk的主要参数
+                            clientID: '93f43349e9fd3154bfad',
+                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
+                            repo: 'xutree.github.io',
+                            owner: 'xushu91@mail.ustc.edu.cn',
+                            admin: ['xushu91@mail.ustc.edu.cn'],
+                            id: 'window.location.pathname',
+                            distractionFreeMode: true,
+
+                        });
+                        gitalk.render('gitalk-container');
+                    </script>
+                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
