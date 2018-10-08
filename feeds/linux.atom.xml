@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - Linux</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/linux.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-08T21:15:41+08:00</updated><entry><title>Linux 中的扩展和引用</title><link href="https://xutree.github.io/pages/2018/10/08/linux%E4%B8%AD%E7%9A%84%E6%89%A9%E5%B1%95%E5%92%8C%E5%BC%95%E7%94%A8/" rel="alternate"></link><published>2018-10-08T16:25:59+08:00</published><updated>2018-10-08T21:15:41+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/linux中的扩展和引用/</id><summary type="html">&lt;h2&gt;扩展&lt;/h2&gt;
+&lt;p&gt;当我们每次在命令行按下&lt;code&gt;Enter&lt;/code&gt;键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。&lt;/p&gt;
+&lt;p&gt;一个 🌰 :&lt;code&gt;echo *&lt;/code&gt;会将当前目录下所有的非隐藏文件名打印出来。&lt;/p&gt;
+&lt;h3&gt;路径名扩展&lt;/h3&gt;
+&lt;p&gt;通过使用通配符来实现扩展的机制称为路径名扩展（pathname expansion）。&lt;/p&gt;
+&lt;h3&gt;波浪线扩展（~）&lt;/h3&gt;
+&lt;p&gt;如果把它用在一个单词的开头，那么它将被扩展为指定用户的主目录名；如果没有指定用户名，则扩展为当前用户的主目录：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ ech ~
+/home/me
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ ech ~foo
+/home/foo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;算术扩展&lt;/h3&gt;
+&lt;p&gt;shell 支持通过扩展来运行算术表达式。这允许我们把 shell 提示符当做计算器来使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo $((2+2))
+4
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;算术扩展使用形式：&lt;strong&gt;$((expression))&lt;/strong&gt;，其中 expression 是包含数值和算术操作符的算术表达式 …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;扩展&lt;/h2&gt;
+&lt;p&gt;当我们每次在命令行按下&lt;code&gt;Enter&lt;/code&gt;键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。&lt;/p&gt;
+&lt;p&gt;一个 🌰 :&lt;code&gt;echo *&lt;/code&gt;会将当前目录下所有的非隐藏文件名打印出来。&lt;/p&gt;
+&lt;h3&gt;路径名扩展&lt;/h3&gt;
+&lt;p&gt;通过使用通配符来实现扩展的机制称为路径名扩展（pathname expansion）。&lt;/p&gt;
+&lt;h3&gt;波浪线扩展（~）&lt;/h3&gt;
+&lt;p&gt;如果把它用在一个单词的开头，那么它将被扩展为指定用户的主目录名；如果没有指定用户名，则扩展为当前用户的主目录：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ ech ~
+/home/me
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ ech ~foo
+/home/foo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;算术扩展&lt;/h3&gt;
+&lt;p&gt;shell 支持通过扩展来运行算术表达式。这允许我们把 shell 提示符当做计算器来使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo $((2+2))
+4
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;算术扩展使用形式：&lt;strong&gt;$((expression))&lt;/strong&gt;，其中 expression 是包含数值和算术操作符的算术表达式。算术扩展&lt;strong&gt;只支持整数&lt;/strong&gt;。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;运算符&lt;/th&gt;
+&lt;th align="left"&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;+&lt;/td&gt;
+&lt;td align="left"&gt;加&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-&lt;/td&gt;
+&lt;td align="left"&gt;减&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;*&lt;/td&gt;
+&lt;td align="left"&gt;乘&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;/&lt;/td&gt;
+&lt;td align="left"&gt;除（结果为整数）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;%&lt;/td&gt;
+&lt;td align="left"&gt;取余&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;**&lt;/td&gt;
+&lt;td align="left"&gt;取幂&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;空格在算术表达式中无意义，表达式可以嵌套：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo $(($((5**2)) * 3))
+75
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;还可以使用一对括号来组合多个子表达式：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo $(((5**2) * 3))
+75
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;花括号扩展&lt;/h3&gt;
+&lt;p&gt;花括号扩展可以用于创建多种文本字符串，例如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo Front-{A,B,C}-Back
+Front-A-Back Front-B-Back Front-C-Back
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;用于花括号扩展的模式信息可以包含一个称为&lt;strong&gt;前导字符&lt;/strong&gt;的开头部分和一个称为&lt;strong&gt;附言&lt;/strong&gt;的结尾部分。花括号表达式本身可以包含一些列逗号分隔的字符串，也可以包含一系列整数或者单个字符。&lt;/p&gt;
+&lt;p&gt;模式信息不能包含内嵌的空白。&lt;/p&gt;
+&lt;p&gt;花括号扩展最普遍的应用是创建一系列的文件或者目录：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ mkdir {2009..2011}-0{1..9} {2009..2010}-{10..12}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;参数扩展&lt;/h3&gt;
+&lt;p&gt;shell 提供了多种参数扩展的形式。&lt;/p&gt;
+&lt;h4&gt;基本参数&lt;/h4&gt;
+&lt;p&gt;参数扩展的最简单形式体现在平时对变量的使用中。举例来说，&lt;code&gt;$a&lt;/code&gt;扩展后成为变量 a 所包含的内容，无论 a 包含什么。&lt;/p&gt;
+&lt;p&gt;简单参数可以被括号包围，如&lt;code&gt;${a}&lt;/code&gt;，当变量相邻与其他文本时，必须使用括号，否则可能让 shell 混淆。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ a=&amp;quot;foo&amp;quot;
+[me@linuxbox ~]$ echo &amp;quot;&lt;span class="nv"&gt;$a_file&lt;/span&gt;&amp;quot;
+
+[me@linuxbox ~]$ echo &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;_file&amp;quot;
+foo_file
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;因为不存在 a_file 变量，所以 shell 输出空。&lt;/p&gt;
+&lt;p&gt;同样，对于大于9的位置参数可以通过给相应数字加上括号来访问，例如访问第11个位置参数：&lt;code&gt;${11}&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;空变量扩展的管理&lt;/h4&gt;
+&lt;p&gt;有的参数扩展用于处理不存在的变量和空变量。这些参数扩展在处理缺失的位置参数和给参数赋默认值时很有用。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;${parameter:-word}&lt;/code&gt;：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值。如果 parameter 非空，则扩展为 parameter 的值。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nn"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;-&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;substitute value if unset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;substitute&lt;/span&gt; &lt;span class="s s-Atom"&gt;value&lt;/span&gt; &lt;span class="s s-Atom"&gt;if&lt;/span&gt; &lt;span class="s s-Atom"&gt;unset&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="s s-Atom"&gt;foo&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nn"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;-&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;substitute value if unset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="s s-Atom"&gt;foo&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;${parameter:=word}&lt;/code&gt;：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值；此外，word 的值也将赋给 parameter。如果 parameter 非空，则扩展为 parameter 的值。注意：位置参数和其他特殊参数不能以这种方式赋值。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nn"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deafult value if unset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;deafult&lt;/span&gt; &lt;span class="s s-Atom"&gt;value&lt;/span&gt; &lt;span class="s s-Atom"&gt;if&lt;/span&gt; &lt;span class="s s-Atom"&gt;unset&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="s s-Atom"&gt;foo&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;deafult&lt;/span&gt; &lt;span class="s s-Atom"&gt;value&lt;/span&gt; &lt;span class="s s-Atom"&gt;if&lt;/span&gt; &lt;span class="s s-Atom"&gt;unset&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nn"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;-&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deafult value if unset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="s s-Atom"&gt;foo&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;${parameter:？word}&lt;/code&gt;：如果 parameter 未被设定或者是空参数，这样扩展会致使脚本出错而退出，并且 word 的内容输出到标准错误。如果 parameter 非空，则扩展为 parameter 的值。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="err"&gt;?&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;parameter is empty&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+bash: foo: parameter is empty
+[me@linuxbox ~]$ echo $?
+1
+[me@linuxbox ~]$ foo=bar
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="err"&gt;?&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;parameter is empty&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+bar
+[me@linuxbox ~]$ echo $?
+0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;${parameter:+word}&lt;/code&gt;：如果 parameter 未被设定或者是空参数，则不产生任何扩展。若 parameter 非空，word 的值将取代 parameter 的值产生扩展；然而，parameter 的值并不发生变化。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;substitute value if unset&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+[me@linuxbox ~]$ foo=bar
+
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;substitute value if unset&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+substitute value if unset
+[me@linuxbox ~]$ echo &lt;span class="nv"&gt;$foo&lt;/span&gt;
+bar
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;返回变量名的扩展&lt;/h4&gt;
+&lt;p&gt;shell 具有返回变量名的扩展。这种功能在相当特殊的情况下才会使用。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;该扩展返回当前以 prefix 开通的变量名。根据 bash 文档，这两种形式的扩展形式执行的效果一模一样。&lt;/p&gt;
+&lt;h4&gt;字符串操作&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;${#parameter}&lt;/code&gt;：扩展为 parameter 内包含的字符串的长度。如果 parameter 是 “@” 或 “*”，那么扩展的结果就是位置参数的个数。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=&amp;quot;This string is long.&amp;quot;
+[me@linuxbox ~]$ echo &amp;quot;&amp;#39;&lt;span class="nv"&gt;$foo&lt;/span&gt;&amp;#39; is &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="c1"&gt;#foo&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt; characters long.&amp;quot;
+&amp;#39;This string is long.&amp;#39; is 20 characters long.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;{parameter:offset}&lt;/code&gt;和&lt;code&gt;{parameter:offset:length}&lt;/code&gt;：这个扩展提取一部分字符串。扩展以 offset 字符开始，直到字符串末尾，除非 length 特别指定它。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=&amp;quot;This string is long.&amp;quot;
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+string is long.
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+string
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果 offset 为负，默认表示从字符串末尾开始。&lt;strong&gt;注意，负值前必须有一个空格&lt;/strong&gt;，以防和&lt;code&gt;${parameter:-word}&lt;/code&gt;扩展混淆。length 不能小于0。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=&amp;quot;This string is long.&amp;quot;
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+long.
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+lo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果参数是 “@”，扩展的结果则是从 offset 开始，length 为位置参数。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;${parameter#pattern}&lt;/code&gt;和&lt;code&gt;${parameter##pattern}&lt;/code&gt;：pattern 是一个通配符模式，“#” 去除最短匹配，”##” 去除最长匹配。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=file.txt.zip
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="c1"&gt;#*.&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+txt.zip
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="c1"&gt;##*.&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+zip
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;${parameter%pattern}&lt;/code&gt;和&lt;code&gt;${parameter%%pattern}&lt;/code&gt;：从尾部去除。pattern 是一个通配符模式，“%” 去除最短匹配，”%%” 去除最长匹配。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=file.txt.zip
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;%*.&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+file.txt
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;%%*.&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+file
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;${parameter/pattern/string}&lt;/code&gt;：查找替换，只替换第一个出现的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;${parameter//pattern/string}&lt;/code&gt;：替换所有的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;${parameter/#pattern/string}&lt;/code&gt;：要求匹配出现在字符串开头&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;${parameter/%pattern/string}&lt;/code&gt;：要求匹配出现在字符串末尾&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/string&lt;/code&gt;可以省略，此时匹配到的字符被删除&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=JPG.JPG
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;JPG&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+jpg.JPG
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;JPG&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+jpg.jpg
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="c1"&gt;#JPG/jpg&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+jpg.JPG
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;/%&lt;/span&gt;&lt;span class="n"&gt;JPG&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+JPG.jpg
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="教程"></category></entry></feed>

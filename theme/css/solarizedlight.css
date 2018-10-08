@@ -9,7 +9,8 @@
 .x { color: #657b83 } /* Other */
 .p { color: #657b83 } /* Punctuation */
 .cm { color: #93a1a1; font-style: italic } /* Comment.Multiline */
-.cp { color: #93a1a1; font-style: italic } /* Comment.Preproc */
+.cp { color: #93a1a1; font-style: italic } /*
+ Comment.Preproc */
 .c1 { color: #93a1a1; font-style: italic } /* Comment.Single */
 .cs { color: #93a1a1; font-style: italic } /* Comment.Special */
 .gd { color: #657b83 } /* Generic.Deleted */

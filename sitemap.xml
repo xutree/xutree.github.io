@@ -5,44 +5,51 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/</loc>
-<lastmod>2018-10-08T16:21:38-00:00</lastmod>
+<lastmod>2018-10-08T21:41:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/archives.html</loc>
-<lastmod>2018-10-08T16:21:38-00:00</lastmod>
+<lastmod>2018-10-08T21:41:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/tags.html</loc>
-<lastmod>2018-10-08T16:21:38-00:00</lastmod>
+<lastmod>2018-10-08T21:41:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/categories.html</loc>
-<lastmod>2018-10-08T16:21:38-00:00</lastmod>
+<lastmod>2018-10-08T21:41:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/search.html</loc>
-<lastmod>2018-10-08T16:21:38-00:00</lastmod>
+<lastmod>2018-10-08T21:41:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/404.html</loc>
-<lastmod>2018-10-08T16:21:38-00:00</lastmod>
+<lastmod>2018-10-08T21:41:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/</loc>
+<lastmod>2018-10-08T21:15:41+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -158,6 +165,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://xutree.github.io/category/linux.html</loc>
+<lastmod>2018-10-08T21:15:41+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://xutree.github.io/category/mac.html</loc>
 <lastmod>2018-10-07T10:38:50+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -167,6 +181,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://xutree.github.io/category/x3dom.html</loc>
 <lastmod>2018-10-06T21:13:34+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://xutree.github.io/tag/linux.html</loc>
+<lastmod>2018-10-08T21:15:41+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://xutree.github.io/tag/jiao-cheng.html</loc>
+<lastmod>2018-10-08T21:15:41+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -187,13 +215,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/tag/mac.html</loc>
-<lastmod>2018-10-07T10:38:50+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://xutree.github.io/tag/jiao-cheng.html</loc>
 <lastmod>2018-10-07T10:38:50+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -222,7 +243,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/author/shu.html</loc>
-<lastmod>2018-10-07T12:29:23+08:06</lastmod>
+<lastmod>2018-10-08T21:15:41+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

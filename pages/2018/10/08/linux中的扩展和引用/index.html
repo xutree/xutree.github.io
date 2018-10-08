@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="Linux, 教程, Linux, " />
+    <title>Linux 中的扩展和引用  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
+        <link href="https://xutree.github.io/feeds/CSS.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - CSS Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/HTML.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - HTML Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/Linux.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Linux Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/Mac.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Mac Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/X3DOM.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - X3DOM Category Atom Feed" />
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/"> Linux 中的扩展和引用  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <h2>扩展</h2>
+<p>当我们每次在命令行按下<code>Enter</code>键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。</p>
+<p>一个 🌰 :<code>echo *</code>会将当前目录下所有的非隐藏文件名打印出来。</p>
+<h3>路径名扩展</h3>
+<p>通过使用通配符来实现扩展的机制称为路径名扩展（pathname expansion）。</p>
+<h3>波浪线扩展（~）</h3>
+<p>如果把它用在一个单词的开头，那么它将被扩展为指定用户的主目录名；如果没有指定用户名，则扩展为当前用户的主目录：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ ech ~
+/home/me
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ ech ~foo
+/home/foo
+</pre></div>
+
+
+<h3>算术扩展</h3>
+<p>shell 支持通过扩展来运行算术表达式。这允许我们把 shell 提示符当做计算器来使用：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $((2+2))
+4
+</pre></div>
+
+
+<p>算术扩展使用形式：<strong>$((expression))</strong>，其中 expression 是包含数值和算术操作符的算术表达式。算术扩展<strong>只支持整数</strong>。</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">+</td>
+<td align="left">加</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="left">减</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">乘</td>
+</tr>
+<tr>
+<td align="left">/</td>
+<td align="left">除（结果为整数）</td>
+</tr>
+<tr>
+<td align="left">%</td>
+<td align="left">取余</td>
+</tr>
+<tr>
+<td align="left">**</td>
+<td align="left">取幂</td>
+</tr>
+</tbody>
+</table>
+<p>空格在算术表达式中无意义，表达式可以嵌套：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $(($((5**2)) * 3))
+75
+</pre></div>
+
+
+<p>还可以使用一对括号来组合多个子表达式：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $(((5**2) * 3))
+75
+</pre></div>
+
+
+<h3>花括号扩展</h3>
+<p>花括号扩展可以用于创建多种文本字符串，例如</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo Front-{A,B,C}-Back
+Front-A-Back Front-B-Back Front-C-Back
+</pre></div>
+
+
+<p>用于花括号扩展的模式信息可以包含一个称为<strong>前导字符</strong>的开头部分和一个称为<strong>附言</strong>的结尾部分。花括号表达式本身可以包含一些列逗号分隔的字符串，也可以包含一系列整数或者单个字符。</p>
+<p>模式信息不能包含内嵌的空白。</p>
+<p>花括号扩展最普遍的应用是创建一系列的文件或者目录：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ mkdir {2009..2011}-0{1..9} {2009..2010}-{10..12}
+</pre></div>
+
+
+<h3>参数扩展</h3>
+<p>shell 提供了多种参数扩展的形式。</p>
+<h4>基本参数</h4>
+<p>参数扩展的最简单形式体现在平时对变量的使用中。举例来说，<code>$a</code>扩展后成为变量 a 所包含的内容，无论 a 包含什么。</p>
+<p>简单参数可以被括号包围，如<code>${a}</code>，当变量相邻与其他文本时，必须使用括号，否则可能让 shell 混淆。</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ a=&quot;foo&quot;
+[me@linuxbox ~]$ echo &quot;<span class="nv">$a_file</span>&quot;
+
+[me@linuxbox ~]$ echo &quot;<span class="cp">${</span><span class="n">a</span><span class="cp">}</span>_file&quot;
+foo_file
+</pre></div>
+
+
+<p>因为不存在 a_file 变量，所以 shell 输出空。</p>
+<p>同样，对于大于9的位置参数可以通过给相应数字加上括号来访问，例如访问第11个位置参数：<code>${11}</code></p>
+<h4>空变量扩展的管理</h4>
+<p>有的参数扩展用于处理不存在的变量和空变量。这些参数扩展在处理缺失的位置参数和给参数赋默认值时很有用。</p>
+<p><code>${parameter:-word}</code>：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值。如果 parameter 非空，则扩展为 parameter 的值。</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">foo</span><span class="o">=</span>
+<span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="p">{</span><span class="nn">foo</span><span class="p">:</span><span class="s s-Atom">-</span><span class="s2">&quot;substitute value if unset&quot;</span><span class="p">}</span>
+<span class="s s-Atom">substitute</span> <span class="s s-Atom">value</span> <span class="s s-Atom">if</span> <span class="s s-Atom">unset</span>
+<span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="s s-Atom">foo</span>
+<span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">foo</span><span class="o">=</span><span class="s s-Atom">bar</span>
+<span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="p">{</span><span class="nn">foo</span><span class="p">:</span><span class="s s-Atom">-</span><span class="s2">&quot;substitute value if unset&quot;</span><span class="p">}</span>
+<span class="s s-Atom">bar</span>
+<span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="s s-Atom">foo</span>
+<span class="s s-Atom">bar</span>
+</pre></div>
+
+
+<p><code>${parameter:=word}</code>：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值；此外，word 的值也将赋给 parameter。如果 parameter 非空，则扩展为 parameter 的值。注意：位置参数和其他特殊参数不能以这种方式赋值。</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">foo</span><span class="o">=</span>
+<span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="p">{</span><span class="nn">foo</span><span class="p">:</span><span class="s s-Atom">=</span><span class="s2">&quot;deafult value if unset&quot;</span><span class="p">}</span>
+<span class="s s-Atom">deafult</span> <span class="s s-Atom">value</span> <span class="s s-Atom">if</span> <span class="s s-Atom">unset</span>
+<span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="s s-Atom">foo</span>
+<span class="s s-Atom">deafult</span> <span class="s s-Atom">value</span> <span class="s s-Atom">if</span> <span class="s s-Atom">unset</span>
+<span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">foo</span><span class="o">=</span><span class="s s-Atom">bar</span>
+<span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="p">{</span><span class="nn">foo</span><span class="p">:</span><span class="s s-Atom">-</span><span class="s2">&quot;deafult value if unset&quot;</span><span class="p">}</span>
+<span class="s s-Atom">bar</span>
+<span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="s s-Atom">foo</span>
+<span class="s s-Atom">bar</span>
+</pre></div>
+
+
+<p><code>${parameter:？word}</code>：如果 parameter 未被设定或者是空参数，这样扩展会致使脚本出错而退出，并且 word 的内容输出到标准错误。如果 parameter 非空，则扩展为 parameter 的值。</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="err">?</span><span class="s2">&quot;parameter is empty&quot;</span><span class="cp">}</span>
+bash: foo: parameter is empty
+[me@linuxbox ~]$ echo $?
+1
+[me@linuxbox ~]$ foo=bar
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="err">?</span><span class="s2">&quot;parameter is empty&quot;</span><span class="cp">}</span>
+bar
+[me@linuxbox ~]$ echo $?
+0
+</pre></div>
+
+
+<p><code>${parameter:+word}</code>：如果 parameter 未被设定或者是空参数，则不产生任何扩展。若 parameter 非空，word 的值将取代 parameter 的值产生扩展；然而，parameter 的值并不发生变化。</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="o">+</span><span class="s2">&quot;substitute value if unset&quot;</span><span class="cp">}</span>
+[me@linuxbox ~]$ foo=bar
+
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="o">+</span><span class="s2">&quot;substitute value if unset&quot;</span><span class="cp">}</span>
+substitute value if unset
+[me@linuxbox ~]$ echo <span class="nv">$foo</span>
+bar
+</pre></div>
+
+
+<h4>返回变量名的扩展</h4>
+<p>shell 具有返回变量名的扩展。这种功能在相当特殊的情况下才会使用。</p>
+<div class="highlight"><pre><span></span><span class="cp">${</span><span class="err">!</span><span class="n">prefix</span><span class="o">*</span><span class="cp">}</span>
+<span class="cp">${</span><span class="err">!</span><span class="n">prefix</span><span class="err">@</span><span class="cp">}</span>
+</pre></div>
+
+
+<p>该扩展返回当前以 prefix 开通的变量名。根据 bash 文档，这两种形式的扩展形式执行的效果一模一样。</p>
+<h4>字符串操作</h4>
+<p><code>${#parameter}</code>：扩展为 parameter 内包含的字符串的长度。如果 parameter 是 “@” 或 “*”，那么扩展的结果就是位置参数的个数。</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
+[me@linuxbox ~]$ echo &quot;&#39;<span class="nv">$foo</span>&#39; is <span class="cp">${</span><span class="c1">#foo</span><span class="cp">}</span> characters long.&quot;
+&#39;This string is long.&#39; is 20 characters long.
+</pre></div>
+
+
+<p><code>{parameter:offset}</code>和<code>{parameter:offset:length}</code>：这个扩展提取一部分字符串。扩展以 offset 字符开始，直到字符串末尾，除非 length 特别指定它。</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="mi">5</span><span class="cp">}</span>
+string is long.
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">6</span><span class="cp">}</span>
+string
+</pre></div>
+
+
+<p>如果 offset 为负，默认表示从字符串末尾开始。<strong>注意，负值前必须有一个空格</strong>，以防和<code>${parameter:-word}</code>扩展混淆。length 不能小于0。</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="cp">}</span>
+long.
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="cp">}</span>
+lo
+</pre></div>
+
+
+<p>如果参数是 “@”，扩展的结果则是从 offset 开始，length 为位置参数。</p>
+<p><code>${parameter#pattern}</code>和<code>${parameter##pattern}</code>：pattern 是一个通配符模式，“#” 去除最短匹配，”##” 去除最长匹配。</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=file.txt.zip
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="c1">#*.</span><span class="cp">}</span>
+txt.zip
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="c1">##*.</span><span class="cp">}</span>
+zip
+</pre></div>
+
+
+<p><code>${parameter%pattern}</code>和<code>${parameter%%pattern}</code>：从尾部去除。pattern 是一个通配符模式，“%” 去除最短匹配，”%%” 去除最长匹配。</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=file.txt.zip
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">%*.</span><span class="cp">}</span>
+file.txt
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">%%*.</span><span class="cp">}</span>
+file
+</pre></div>
+
+
+<p><code>${parameter/pattern/string}</code>：查找替换，只替换第一个出现的</p>
+<p><code>${parameter//pattern/string}</code>：替换所有的</p>
+<p><code>${parameter/#pattern/string}</code>：要求匹配出现在字符串开头</p>
+<p><code>${parameter/%pattern/string}</code>：要求匹配出现在字符串末尾</p>
+<p><code>/string</code>可以省略，此时匹配到的字符被删除</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=JPG.JPG
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">/</span><span class="n">JPG</span><span class="o">/</span><span class="n">jpg</span><span class="cp">}</span>
+jpg.JPG
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">//</span><span class="n">JPG</span><span class="o">/</span><span class="n">jpg</span><span class="cp">}</span>
+jpg.jpg
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">/</span><span class="c1">#JPG/jpg</span><span class="cp">}</span>
+jpg.JPG
+[me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">/%</span><span class="n">JPG</span><span class="o">/</span><span class="n">jpg</span><span class="cp">}</span>
+JPG.jpg
+</pre></div>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/07/css_overview/">
+                                    CSS 入门
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/">
+                                    C++ Primer 第四章 表达式
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/">
+                                    C++ Primer 第三章 字符串、向量和数组
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/">
+                                    C++ Primer 第二章 变量和基本类型
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
+                                    利用 Mac stat 添加文件创建时间、最后修改时间
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-10-08T16:25:59+08:00">2018-10-08 16:25:59</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-10-08 21:15:41</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#Linux-ref">Linux</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#教程-ref">教程
+                                <span>2</span>
+</a></li>
+                        <li><a href="/tags.html#Linux-ref">Linux
+                                <span>1</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
