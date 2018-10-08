@@ -333,7 +333,7 @@ jpg.jpg
 jpg.JPG
 [me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;/%&lt;/span&gt;&lt;span class="n"&gt;JPG&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
 JPG.jpg
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="教程"></category></entry><entry><title>CSS 入门</title><link href="https://xutree.github.io/pages/2018/10/07/css_overview/" rel="alternate"></link><published>2018-10-07T11:24:03+08:00</published><updated>2018-10-07T12:29:23+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-07:/pages/2018/10/07/css_overview/</id><summary type="html">&lt;h2&gt;什么是 CSS&lt;/h2&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry><entry><title>CSS 入门</title><link href="https://xutree.github.io/pages/2018/10/07/css_overview/" rel="alternate"></link><published>2018-10-07T11:24:03+08:00</published><updated>2018-10-07T12:29:23+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-07:/pages/2018/10/07/css_overview/</id><summary type="html">&lt;h2&gt;什么是 CSS&lt;/h2&gt;
 &lt;p&gt;CSS（&lt;strong&gt;C&lt;/strong&gt; ascading &lt;strong&gt;S&lt;/strong&gt; tyle &lt;strong&gt;S&lt;/strong&gt; heets），即层叠样式表。&lt;/p&gt;
 &lt;p&gt;层叠是指 CSS 将一种样式应用于另一种样式的方式。样式表控制 Web 文档的外观。&lt;/p&gt;
 &lt;h2&gt;为什么使用 CSS&lt;/h2&gt;
@@ -1598,7 +1598,7 @@ vector&amp;lt;int&amp;gt; ivec(begin(int_arr),end(int_arr));
 &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;T&lt;/em&gt; 文件类型，类似&lt;code&gt;ls -F&lt;/code&gt;，如果给出子字段说明符H，则采用更具描述性的形式。&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Y&lt;/em&gt; 符号链接的目标&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Z&lt;/em&gt; 从字符或块特殊设备的rdev字段扩展为“major，minor”，并为所有其他设备提供大小输出&lt;/p&gt;
-&lt;p&gt;只有 ％ 和字段说明符是必需的。大多数字段说明符默认为 U 作为输出形式；p 默认输出形式是 O；a、m、c 默认输出形式是 D，Y、T、N 默认输出形式是 S。&lt;/p&gt;</content><category term="Mac"></category><category term="教程"></category></entry><entry><title>C++ Primer 第一章 开始</title><link href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/" rel="alternate"></link><published>2018-10-05T23:11:35+08:00</published><updated>2018-10-07T10:48:26+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-05:/pages/2018/10/05/C++_Primer_Chapter_1/</id><summary type="html">&lt;ul&gt;
+&lt;p&gt;只有 ％ 和字段说明符是必需的。大多数字段说明符默认为 U 作为输出形式；p 默认输出形式是 O；a、m、c 默认输出形式是 D，Y、T、N 默认输出形式是 S。&lt;/p&gt;</content><category term="Mac"></category></entry><entry><title>C++ Primer 第一章 开始</title><link href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/" rel="alternate"></link><published>2018-10-05T23:11:35+08:00</published><updated>2018-10-07T10:48:26+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-05:/pages/2018/10/05/C++_Primer_Chapter_1/</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;g++ -std=c++14  -Wall -o test test.cpp&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;iostream&lt;/code&gt; &lt;code&gt;cin&lt;/code&gt; &lt;code&gt;cout&lt;/code&gt; &lt;code&gt;cerr&lt;/code&gt; &lt;code&gt;clog&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;运算符返回其左侧的运算对象&lt;/li&gt;
