@@ -89,6 +89,7 @@
 
 
 <p>算术扩展使用形式：<strong>$((expression))</strong>，其中 expression 是包含数值和算术操作符的算术表达式。算术扩展<strong>只支持整数</strong>。</p>
+<h4>运算符</h4>
 <table>
 <thead>
 <tr>
@@ -132,6 +133,41 @@
 <p>还可以使用一对括号来组合多个子表达式：</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $(((5**2) * 3))
 75
+</pre></div>
+
+
+<h4>数字进制</h4>
+<table>
+<thead>
+<tr>
+<th align="left">符号</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">number</td>
+<td align="left">默认情况下，number 没有任何符号，将作为十进制数字</td>
+</tr>
+<tr>
+<td align="left">0number</td>
+<td align="left">在数字表达式中，以0开始的数字被视为八进制数字</td>
+</tr>
+<tr>
+<td align="left">0xnumber</td>
+<td align="left">十六进制数</td>
+</tr>
+<tr>
+<td align="left">base#number</td>
+<td align="left">base 进制的 number</td>
+</tr>
+</tbody>
+</table>
+<p>🌰 ：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $((0xff))
+255
+[me@linuxbox ~]$ echo $((3#11))
+4
 </pre></div>
 
 
@@ -328,7 +364,7 @@ JPG.jpg
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-08T16:25:59+08:00">2018-10-08 16:25:59</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-08 21:15:41</div>
+                    <div class="last_updated">2018-10-08 22:36:33</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#Linux-ref">Linux</a>
                     <h4>标签</h4>
