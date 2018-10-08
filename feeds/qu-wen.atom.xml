@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 趣闻</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/qu-wen.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-08T23:52:04+08:00</updated><entry><title>几个奇葩的 Linux 命令</title><link href="https://xutree.github.io/pages/2018/10/08/%E5%87%A0%E4%B8%AA%E5%A5%87%E8%91%A9%E7%9A%84Linux%E5%91%BD%E4%BB%A4/" rel="alternate"></link><published>2018-10-08T22:58:12+08:00</published><updated>2018-10-08T23:52:04+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/几个奇葩的Linux命令/</id><summary type="html">&lt;p&gt;Linux 内存在一些很奇葩的命令，可能你的发行版默认没有安装，你可以自己安装：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ apt-get install 命令          (Debian)
+[me@linuxbox ~]$ yum install 命令              (Red）
+[me@linuxbox ~]$ brew install 命令            （Mac）
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;1️⃣  rev&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;rev&lt;/code&gt;命令反转输入的内容（来自文件或者标准输入或者管道）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo Hello, World! | rev
+!dlroW ,olleH
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;2️⃣  tac&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;cat&lt;/code&gt;命令的反写，执行效果也和&lt;code&gt;cat&lt;/code&gt;相反，即，将文件列表中的每一个文件输出到标准输出，行号大的优先。&lt;/p&gt;
+&lt;h2&gt;3️⃣  sl&lt;/h2&gt;
+&lt;p&gt;你可能知道命令&lt;code&gt;ls&lt;/code&gt;,并经常使用它来查看文件夹的内容 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Linux 内存在一些很奇葩的命令，可能你的发行版默认没有安装，你可以自己安装：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ apt-get install 命令          (Debian)
+[me@linuxbox ~]$ yum install 命令              (Red）
+[me@linuxbox ~]$ brew install 命令            （Mac）
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;1️⃣  rev&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;rev&lt;/code&gt;命令反转输入的内容（来自文件或者标准输入或者管道）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo Hello, World! | rev
+!dlroW ,olleH
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;2️⃣  tac&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;cat&lt;/code&gt;命令的反写，执行效果也和&lt;code&gt;cat&lt;/code&gt;相反，即，将文件列表中的每一个文件输出到标准输出，行号大的优先。&lt;/p&gt;
+&lt;h2&gt;3️⃣  sl&lt;/h2&gt;
+&lt;p&gt;你可能知道命令&lt;code&gt;ls&lt;/code&gt;,并经常使用它来查看文件夹的内容。但是由于错误输入有时会导致&lt;code&gt;sl&lt;/code&gt;，如何在终端获得一点乐趣而不是“command not found”？&lt;code&gt;sl&lt;/code&gt;命令！&lt;/p&gt;
+&lt;p&gt;当你把&lt;code&gt;ls&lt;/code&gt;错误打成&lt;code&gt;sl&lt;/code&gt;时，一辆蒸汽机车（&lt;strong&gt;s&lt;/strong&gt;team &lt;strong&gt;l&lt;/strong&gt;ocomotive）会在屏幕上驶过...&lt;/p&gt;
+&lt;h2&gt;4️⃣  yes&lt;/h2&gt;
+&lt;p&gt;yes命令将进入一个循环，一遍又一遍地重复相同的字符串。默认重复“y”，你可以指定其他字符串。&lt;/p&gt;
+&lt;h2&gt;5️⃣  cowsay&lt;/h2&gt;
+&lt;p&gt;屏幕上会出现一只 ASCII 码拼成的奶牛。。。你可以指定奶牛要说的话。这个命令还有其他版本，如&lt;code&gt;xcowsay&lt;/code&gt;，&lt;code&gt;cowthink&lt;/code&gt;。&lt;/p&gt;
+&lt;h2&gt;6️⃣  figlet&lt;/h2&gt;
+&lt;p&gt;这个算不上奇葩，他它利用 ASCII 码拼成你输出字符串的横幅，而且有许多参数可以定制。还有个&lt;code&gt;toilet&lt;/code&gt;命令和&lt;code&gt;figlet&lt;/code&gt;很类似。&lt;/p&gt;
+&lt;h2&gt;7️⃣  fortune&lt;/h2&gt;
+&lt;p&gt;会显示你的未来（ 😆 )。可以试试：&lt;code&gt;[me@linuxbox ~]$ fortune | cowsay&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;8️⃣  cmatrix&lt;/h2&gt;
+&lt;p&gt;会像《黑客帝国》里那样显示。&lt;/p&gt;
+&lt;h2&gt;9️⃣  Fork 炸弹&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ :(){ :|:&amp;amp; }:
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;不要尝试不要尝试不要尝试...&lt;/p&gt;
+&lt;h2&gt;🔟  待续&lt;/h2&gt;</content><category term="Linux"></category></entry></feed>

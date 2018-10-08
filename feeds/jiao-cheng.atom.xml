@@ -1,5 +1,1179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 教程</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/jiao-cheng.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-06T21:15:21+08:00</updated><entry><title>安装 Pelican</title><link href="https://xutree.github.io/pages/2018/10/04/%E5%9C%A8mac%E4%B8%8A%E5%AE%89%E8%A3%85Pelican/" rel="alternate"></link><published>2018-10-04T10:20:00+08:00</published><updated>2018-10-06T21:15:21+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-04:/pages/2018/10/04/在mac上安装Pelican/</id><summary type="html">&lt;h2&gt;安装 Pelican&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 教程</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/jiao-cheng.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-08T22:37:03+08:00</updated><entry><title>Linux 中的扩展和引用</title><link href="https://xutree.github.io/pages/2018/10/08/linux%E4%B8%AD%E7%9A%84%E6%89%A9%E5%B1%95%E5%92%8C%E5%BC%95%E7%94%A8/" rel="alternate"></link><published>2018-10-08T16:25:59+08:00</published><updated>2018-10-08T22:37:03+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/linux中的扩展和引用/</id><summary type="html">&lt;h2&gt;扩展&lt;/h2&gt;
+&lt;p&gt;当我们每次在命令行按下&lt;code&gt;Enter&lt;/code&gt;键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。&lt;/p&gt;
+&lt;p&gt;一个 🌰 :&lt;code&gt;echo *&lt;/code&gt;会将当前目录下所有的非隐藏文件名打印出来。&lt;/p&gt;
+&lt;h3&gt;路径名扩展&lt;/h3&gt;
+&lt;p&gt;通过使用通配符来实现扩展的机制称为路径名扩展（pathname expansion）。&lt;/p&gt;
+&lt;h3&gt;波浪线扩展（~）&lt;/h3&gt;
+&lt;p&gt;如果把它用在一个单词的开头，那么它将被扩展为指定用户的主目录名；如果没有指定用户名，则扩展为当前用户的主目录：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ ech ~
+/home/me
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ ech ~foo
+/home/foo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;算术扩展&lt;/h3&gt;
+&lt;p&gt;shell 支持通过扩展来运行算术表达式。这允许我们把 shell 提示符当做计算器来使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo $((2+2))
+4
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;算术扩展使用形式：&lt;strong&gt;$((expression))&lt;/strong&gt;，其中 expression 是包含数值和算术操作符的算术表达式 …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;扩展&lt;/h2&gt;
+&lt;p&gt;当我们每次在命令行按下&lt;code&gt;Enter&lt;/code&gt;键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。&lt;/p&gt;
+&lt;p&gt;一个 🌰 :&lt;code&gt;echo *&lt;/code&gt;会将当前目录下所有的非隐藏文件名打印出来。&lt;/p&gt;
+&lt;h3&gt;路径名扩展&lt;/h3&gt;
+&lt;p&gt;通过使用通配符来实现扩展的机制称为路径名扩展（pathname expansion）。&lt;/p&gt;
+&lt;h3&gt;波浪线扩展（~）&lt;/h3&gt;
+&lt;p&gt;如果把它用在一个单词的开头，那么它将被扩展为指定用户的主目录名；如果没有指定用户名，则扩展为当前用户的主目录：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ ech ~
+/home/me
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ ech ~foo
+/home/foo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;算术扩展&lt;/h3&gt;
+&lt;p&gt;shell 支持通过扩展来运行算术表达式。这允许我们把 shell 提示符当做计算器来使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo $((2+2))
+4
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;算术扩展使用形式：&lt;strong&gt;$((expression))&lt;/strong&gt;，其中 expression 是包含数值和算术操作符的算术表达式。算术扩展&lt;strong&gt;只支持整数&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4&gt;运算符&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;运算符&lt;/th&gt;
+&lt;th align="left"&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;+&lt;/td&gt;
+&lt;td align="left"&gt;加&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-&lt;/td&gt;
+&lt;td align="left"&gt;减&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;*&lt;/td&gt;
+&lt;td align="left"&gt;乘&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;/&lt;/td&gt;
+&lt;td align="left"&gt;除（结果为整数）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;%&lt;/td&gt;
+&lt;td align="left"&gt;取余&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;**&lt;/td&gt;
+&lt;td align="left"&gt;取幂&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;空格在算术表达式中无意义，表达式可以嵌套：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo $(($((5**2)) * 3))
+75
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;还可以使用一对括号来组合多个子表达式：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo $(((5**2) * 3))
+75
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;数字进制&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;符号&lt;/th&gt;
+&lt;th align="left"&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;number&lt;/td&gt;
+&lt;td align="left"&gt;默认情况下，number 没有任何符号，将作为十进制数字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;0number&lt;/td&gt;
+&lt;td align="left"&gt;在数字表达式中，以0开始的数字被视为八进制数字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;0xnumber&lt;/td&gt;
+&lt;td align="left"&gt;十六进制数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;base#number&lt;/td&gt;
+&lt;td align="left"&gt;base 进制的 number&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;🌰 ：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo $((0xff))
+255
+[me@linuxbox ~]$ echo $((3#11))
+4
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;花括号扩展&lt;/h3&gt;
+&lt;p&gt;花括号扩展可以用于创建多种文本字符串，例如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo Front-{A,B,C}-Back
+Front-A-Back Front-B-Back Front-C-Back
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;用于花括号扩展的模式信息可以包含一个称为&lt;strong&gt;前导字符&lt;/strong&gt;的开头部分和一个称为&lt;strong&gt;附言&lt;/strong&gt;的结尾部分。花括号表达式本身可以包含一些列逗号分隔的字符串，也可以包含一系列整数或者单个字符。&lt;/p&gt;
+&lt;p&gt;模式信息不能包含内嵌的空白。&lt;/p&gt;
+&lt;p&gt;花括号扩展最普遍的应用是创建一系列的文件或者目录：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ mkdir {2009..2011}-0{1..9} {2009..2010}-{10..12}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;参数扩展&lt;/h3&gt;
+&lt;p&gt;shell 提供了多种参数扩展的形式。&lt;/p&gt;
+&lt;h4&gt;基本参数&lt;/h4&gt;
+&lt;p&gt;参数扩展的最简单形式体现在平时对变量的使用中。举例来说，&lt;code&gt;$a&lt;/code&gt;扩展后成为变量 a 所包含的内容，无论 a 包含什么。&lt;/p&gt;
+&lt;p&gt;简单参数可以被括号包围，如&lt;code&gt;${a}&lt;/code&gt;，当变量相邻与其他文本时，必须使用括号，否则可能让 shell 混淆。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ a=&amp;quot;foo&amp;quot;
+[me@linuxbox ~]$ echo &amp;quot;&lt;span class="nv"&gt;$a_file&lt;/span&gt;&amp;quot;
+
+[me@linuxbox ~]$ echo &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;_file&amp;quot;
+foo_file
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;因为不存在 a_file 变量，所以 shell 输出空。&lt;/p&gt;
+&lt;p&gt;同样，对于大于9的位置参数可以通过给相应数字加上括号来访问，例如访问第11个位置参数：&lt;code&gt;${11}&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;空变量扩展的管理&lt;/h4&gt;
+&lt;p&gt;有的参数扩展用于处理不存在的变量和空变量。这些参数扩展在处理缺失的位置参数和给参数赋默认值时很有用。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;${parameter:-word}&lt;/code&gt;：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值。如果 parameter 非空，则扩展为 parameter 的值。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nn"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;-&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;substitute value if unset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;substitute&lt;/span&gt; &lt;span class="s s-Atom"&gt;value&lt;/span&gt; &lt;span class="s s-Atom"&gt;if&lt;/span&gt; &lt;span class="s s-Atom"&gt;unset&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="s s-Atom"&gt;foo&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nn"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;-&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;substitute value if unset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="s s-Atom"&gt;foo&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;${parameter:=word}&lt;/code&gt;：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值；此外，word 的值也将赋给 parameter。如果 parameter 非空，则扩展为 parameter 的值。注意：位置参数和其他特殊参数不能以这种方式赋值。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nn"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deafult value if unset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;deafult&lt;/span&gt; &lt;span class="s s-Atom"&gt;value&lt;/span&gt; &lt;span class="s s-Atom"&gt;if&lt;/span&gt; &lt;span class="s s-Atom"&gt;unset&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="s s-Atom"&gt;foo&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;deafult&lt;/span&gt; &lt;span class="s s-Atom"&gt;value&lt;/span&gt; &lt;span class="s s-Atom"&gt;if&lt;/span&gt; &lt;span class="s s-Atom"&gt;unset&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nn"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;-&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;deafult value if unset&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;me@linuxbox&lt;/span&gt; &lt;span class="s s-Atom"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="s s-Atom"&gt;foo&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;bar&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;${parameter:？word}&lt;/code&gt;：如果 parameter 未被设定或者是空参数，这样扩展会致使脚本出错而退出，并且 word 的内容输出到标准错误。如果 parameter 非空，则扩展为 parameter 的值。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="err"&gt;?&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;parameter is empty&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+bash: foo: parameter is empty
+[me@linuxbox ~]$ echo $?
+1
+[me@linuxbox ~]$ foo=bar
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="err"&gt;?&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;parameter is empty&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+bar
+[me@linuxbox ~]$ echo $?
+0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;${parameter:+word}&lt;/code&gt;：如果 parameter 未被设定或者是空参数，则不产生任何扩展。若 parameter 非空，word 的值将取代 parameter 的值产生扩展；然而，parameter 的值并不发生变化。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;substitute value if unset&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+[me@linuxbox ~]$ foo=bar
+
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;substitute value if unset&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+substitute value if unset
+[me@linuxbox ~]$ echo &lt;span class="nv"&gt;$foo&lt;/span&gt;
+bar
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;返回变量名的扩展&lt;/h4&gt;
+&lt;p&gt;shell 具有返回变量名的扩展。这种功能在相当特殊的情况下才会使用。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;该扩展返回当前以 prefix 开通的变量名。根据 bash 文档，这两种形式的扩展形式执行的效果一模一样。&lt;/p&gt;
+&lt;h4&gt;字符串操作&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;${#parameter}&lt;/code&gt;：扩展为 parameter 内包含的字符串的长度。如果 parameter 是 “@” 或 “*”，那么扩展的结果就是位置参数的个数。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=&amp;quot;This string is long.&amp;quot;
+[me@linuxbox ~]$ echo &amp;quot;&amp;#39;&lt;span class="nv"&gt;$foo&lt;/span&gt;&amp;#39; is &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="c1"&gt;#foo&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt; characters long.&amp;quot;
+&amp;#39;This string is long.&amp;#39; is 20 characters long.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;{parameter:offset}&lt;/code&gt;和&lt;code&gt;{parameter:offset:length}&lt;/code&gt;：这个扩展提取一部分字符串。扩展以 offset 字符开始，直到字符串末尾，除非 length 特别指定它。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=&amp;quot;This string is long.&amp;quot;
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+string is long.
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+string
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果 offset 为负，默认表示从字符串末尾开始。&lt;strong&gt;注意，负值前必须有一个空格&lt;/strong&gt;，以防和&lt;code&gt;${parameter:-word}&lt;/code&gt;扩展混淆。length 不能小于0。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=&amp;quot;This string is long.&amp;quot;
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+long.
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+lo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果参数是 “@”，扩展的结果则是从 offset 开始，length 为位置参数。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;${parameter#pattern}&lt;/code&gt;和&lt;code&gt;${parameter##pattern}&lt;/code&gt;：pattern 是一个通配符模式，“#” 去除最短匹配，”##” 去除最长匹配。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=file.txt.zip
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="c1"&gt;#*.&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+txt.zip
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="c1"&gt;##*.&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+zip
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;${parameter%pattern}&lt;/code&gt;和&lt;code&gt;${parameter%%pattern}&lt;/code&gt;：从尾部去除。pattern 是一个通配符模式，“%” 去除最短匹配，”%%” 去除最长匹配。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=file.txt.zip
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;%*.&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+file.txt
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;%%*.&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+file
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;${parameter/pattern/string}&lt;/code&gt;：查找替换，只替换第一个出现的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;${parameter//pattern/string}&lt;/code&gt;：替换所有的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;${parameter/#pattern/string}&lt;/code&gt;：要求匹配出现在字符串开头&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;${parameter/%pattern/string}&lt;/code&gt;：要求匹配出现在字符串末尾&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/string&lt;/code&gt;可以省略，此时匹配到的字符被删除&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ foo=JPG.JPG
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;JPG&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+jpg.JPG
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;JPG&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+jpg.jpg
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="c1"&gt;#JPG/jpg&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+jpg.JPG
+[me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;/%&lt;/span&gt;&lt;span class="n"&gt;JPG&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
+JPG.jpg
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category><category term="教程"></category></entry><entry><title>CSS 入门</title><link href="https://xutree.github.io/pages/2018/10/07/css_overview/" rel="alternate"></link><published>2018-10-07T11:24:03+08:00</published><updated>2018-10-07T12:29:23+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-07:/pages/2018/10/07/css_overview/</id><summary type="html">&lt;h2&gt;什么是 CSS&lt;/h2&gt;
+&lt;p&gt;CSS（&lt;strong&gt;C&lt;/strong&gt; ascading &lt;strong&gt;S&lt;/strong&gt; tyle &lt;strong&gt;S&lt;/strong&gt; heets），即层叠样式表。&lt;/p&gt;
+&lt;p&gt;层叠是指 CSS 将一种样式应用于另一种样式的方式。样式表控制 Web 文档的外观。&lt;/p&gt;
+&lt;h2&gt;为什么使用 CSS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;CSS 允许你将特定样式应用于特定 HTML 元素&lt;/li&gt;
+&lt;li&gt;CSS 的主要好处是它允许您将样式与内容分开&lt;/li&gt;
+&lt;li&gt;仅使用 HTML，所有样式和格式都在同一个地方，随着页面的增长，这变得相当难以维护&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;CSS 三种形式&lt;/h2&gt;
+&lt;h3&gt;内联 CSS：inline CSS&lt;/h3&gt;
+&lt;p&gt;使用内联样式是插入样式表的方法之一。 使用内联样式，将独特的样式应用于单个元素。&lt;/p&gt;
+&lt;p&gt;要使用内联样式，请将style属性添加到相关标记。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;color:white; background-color:gray;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    This is an example …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;什么是 CSS&lt;/h2&gt;
+&lt;p&gt;CSS（&lt;strong&gt;C&lt;/strong&gt; ascading &lt;strong&gt;S&lt;/strong&gt; tyle &lt;strong&gt;S&lt;/strong&gt; heets），即层叠样式表。&lt;/p&gt;
+&lt;p&gt;层叠是指 CSS 将一种样式应用于另一种样式的方式。样式表控制 Web 文档的外观。&lt;/p&gt;
+&lt;h2&gt;为什么使用 CSS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;CSS 允许你将特定样式应用于特定 HTML 元素&lt;/li&gt;
+&lt;li&gt;CSS 的主要好处是它允许您将样式与内容分开&lt;/li&gt;
+&lt;li&gt;仅使用 HTML，所有样式和格式都在同一个地方，随着页面的增长，这变得相当难以维护&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;CSS 三种形式&lt;/h2&gt;
+&lt;h3&gt;内联 CSS：inline CSS&lt;/h3&gt;
+&lt;p&gt;使用内联样式是插入样式表的方法之一。 使用内联样式，将独特的样式应用于单个元素。&lt;/p&gt;
+&lt;p&gt;要使用内联样式，请将style属性添加到相关标记。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;color:white; background-color:gray;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    This is an example of inline styling.
+&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;嵌入式/内部 CSS：Embedded/Internal CSS&lt;/h3&gt;
+&lt;p&gt;内部样式在 HTML 页面的&lt;code&gt;head&lt;/code&gt;部分内的&lt;code&gt;&amp;lt;style&amp;gt;&lt;/code&gt;元素中定义。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;style&amp;gt;&lt;/span&gt;
+      p {
+         color:white;
+         background-color:gray;
+      }
+      &lt;span class="nt"&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This is my first paragraph. &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This is my second paragraph. &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;外部 CSS：External CSS&lt;/h3&gt;
+&lt;p&gt;使用此方法，所有样式规则都包含在单个文本文件中，该文件以 .css 扩展名保存。&lt;/p&gt;
+&lt;p&gt;然后使用&lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt;标记在 HTML 中引用此 CSS 文件。&lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt;元素位于&lt;code&gt;head&lt;/code&gt;部分内部。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;example.css&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This is my first paragraph.&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This is my second paragraph. &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This is my third paragraph. &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;CSS 语法&lt;/h2&gt;
+&lt;p&gt;CSS 由浏览器解释的样式规则组成，然后应用于文档中的相应元素。样式规则有三个部分：&lt;code&gt;selector&lt;/code&gt;，&lt;code&gt;property&lt;/code&gt;和&lt;code&gt;value&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;例如，标题颜色可以定义为：&lt;code&gt;h1 { color: orange; }&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;选择器指向要设置样式的HTML元素。声明块包含一个或多个声明，以分号分隔。每个声明都包含一个属性名称和一个以冒号分隔的值。CSS 声明始终以分号结尾，声明组由大括号括起。&lt;/p&gt;
+&lt;h3&gt;类型选择器&lt;/h3&gt;
+&lt;p&gt;最常见且易于理解的选择器是类型选择器。 此选择器针对页面上的元素类型。&lt;/p&gt;
+&lt;p&gt;例如，要定位页面上的所有段落：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+   &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;red&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;font-size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;130&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;id 和 clss 选择器&lt;/h3&gt;
+&lt;p&gt;id 选择器允许您设置具有 id 属性的 HTML 元素的样式，而不管它们在文档树中的位置如何。 以下是 id 选择器的示例：&lt;/p&gt;
+&lt;p&gt;HTML 文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;intro&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt; This paragraph is in the intro section.&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt; This paragraph is not in the intro section.&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;CSS 文件:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;#&lt;/span&gt;&lt;span class="nn"&gt;intro&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+   &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;white&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;gray&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;要选择具有特定 id 的元素，请使用井号 &lt;strong&gt;#&lt;/strong&gt; 字符，然后使用元素的 id 跟随它。&lt;/p&gt;
+&lt;p&gt;类选择器以类似的方式工作。 主要区别在于 id 每页只能应用一次，而类可以根据需要在页面上多次使用。&lt;/p&gt;
+&lt;p&gt;在下面的示例中，具有“first”类的两个段落都将受到 CSS 的影响：&lt;/p&gt;
+&lt;p&gt;HTML 文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;This is a paragraph&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt; This is the second paragraph. &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; This is not in the intro section&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt; The second paragraph is not in the intro section. &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;CSS 文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="na"&gt;.first&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="no"&gt;font-size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="err"&gt;%&lt;/span&gt;&lt;span class="c"&gt;;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;要选择具有特定类的元素，请使用句点 &lt;strong&gt;.&lt;/strong&gt; 字符，后跟类的名称。不要用数字开始一个类或 id 名称。&lt;/p&gt;
+&lt;h3&gt;后代选择器&lt;/h3&gt;
+&lt;p&gt;这些选择器用于选择作为另一个元素的后代的元素。 选择级别时，您可以根据需要选择多个级别。&lt;/p&gt;
+&lt;p&gt;例如，要仅定位“intro”部分第一段中的 &amp;lt;em&gt; 元素：&lt;/p&gt;
+&lt;p&gt;HTML 文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;intro&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;This is a &lt;span class="nt"&gt;&amp;lt;em&amp;gt;&lt;/span&gt; paragraph.&lt;span class="nt"&gt;&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt; This is the second paragraph. &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; This is not in the intro section.&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt; The second paragraph is not in the intro section. &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;CSS 文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;#&lt;/span&gt;&lt;span class="nn"&gt;intro&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;first&lt;/span&gt; &lt;span class="nt"&gt;em&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+   &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;pink&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+   &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;gray&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;后代选择器匹配作为指定元素后代的所有元素。&lt;/p&gt;
+&lt;h2&gt;注释&lt;/h2&gt;
+&lt;p&gt;注释用于解释你的代码，浏览器会忽略。&lt;code&gt;/* Comment goes here */&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;层叠&lt;/h2&gt;
+&lt;p&gt;网页的最终外观是不同样式规则的结果。形成层叠的三种主要风格来源是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;页面作者创建的样式表&lt;/li&gt;
+&lt;li&gt;浏览器的默认样式&lt;/li&gt;
+&lt;li&gt;用户指定的样式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;继承是指属性在页面中流动的方式。 除非另有定义，否则子元素通常会采用父元素的特征。&lt;/p&gt;</content><category term="CSS"></category></entry><entry><title>利用 Mac stat 添加文件创建时间、最后修改时间</title><link href="https://xutree.github.io/pages/2018/10/06/mac-stat/" rel="alternate"></link><published>2018-10-06T19:07:36+08:00</published><updated>2018-10-07T10:38:50+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-06:/pages/2018/10/06/mac-stat/</id><summary type="html">&lt;p&gt;Pelican 根据 &lt;strong&gt;.md&lt;/strong&gt; 文件生成网页的时候需要 metadata，所以写个命令行自动添加文件创建时间、最后修改时间，这样写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 &lt;code&gt;stat&lt;/code&gt;命令。&lt;/p&gt;
+&lt;h2&gt;自动添加文件创建时间、最后修改时间&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;stat&lt;/code&gt;命令的 &lt;em&gt;a, m, c, B&lt;/em&gt; 参数分别代表上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（ UNIX 时间戳），所以我们可以通过提取这些信息实现想要的功能。唯一需要注意的是，结果是UNIX时间戳，我们需要将其转换为普通时间。&lt;/p&gt;
+&lt;p&gt;UNIX 时间，或称 POSIX 时间是 UNIX 或类 UNIX 系统使用的时间表示方式：从协调世界时1970年1月1日0时0分0秒起至现在的总秒数，不考虑闰秒。在多数 UNIX 系统上 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Pelican 根据 &lt;strong&gt;.md&lt;/strong&gt; 文件生成网页的时候需要 metadata，所以写个命令行自动添加文件创建时间、最后修改时间，这样写博客的时候只需要把 title、category 和 tags 标签填上就行了，其中用了 &lt;code&gt;stat&lt;/code&gt;命令。&lt;/p&gt;
+&lt;h2&gt;自动添加文件创建时间、最后修改时间&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;stat&lt;/code&gt;命令的 &lt;em&gt;a, m, c, B&lt;/em&gt; 参数分别代表上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（ UNIX 时间戳），所以我们可以通过提取这些信息实现想要的功能。唯一需要注意的是，结果是UNIX时间戳，我们需要将其转换为普通时间。&lt;/p&gt;
+&lt;p&gt;UNIX 时间，或称 POSIX 时间是 UNIX 或类 UNIX 系统使用的时间表示方式：从协调世界时1970年1月1日0时0分0秒起至现在的总秒数，不考虑闰秒。在多数 UNIX 系统上 UNIX 时间可以通过&lt;code&gt;date +%s&lt;/code&gt;指令来检查。&lt;/p&gt;
+&lt;p&gt;在 Mac 系统是由 UNIX 时间戳转化为普通时间的指令为：
+&lt;img alt="UNIX 时间戳转化为普通时间" src="https://xutree.github.io/images/fig7.png"&gt;&lt;/p&gt;
+&lt;p&gt;所以我们先根据&lt;code&gt;stat&lt;/code&gt;获得文件的创建时间：
+&lt;img alt="根据stat获得文件的创建时间" src="https://xutree.github.io/images/fig8.png"&gt;&lt;/p&gt;
+&lt;p&gt;然后转化为普通时间：
+&lt;img alt="转化为普通时间" src="https://xutree.github.io/images/fig9.png"&gt;&lt;/p&gt;
+&lt;p&gt;以下为脚本：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#! /bin/bash&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 输入：需要修改的文件&lt;/span&gt;
+&lt;span class="nv"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 提取创建时间&lt;/span&gt;
+&lt;span class="nv"&gt;create_time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date  -r&lt;span class="k"&gt;$(&lt;/span&gt;stat -f &lt;span class="s2"&gt;&amp;quot;%B&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# 提取修改时间&lt;/span&gt;
+&lt;span class="nv"&gt;modify_time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date  -r&lt;span class="k"&gt;$(&lt;/span&gt;stat -f &lt;span class="s2"&gt;&amp;quot;%m&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+%Y-%m-%d %H:%M:%S&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# 查找Date标签的行号&lt;/span&gt;
+&lt;span class="nv"&gt;num1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;head -5 &lt;span class="nv"&gt;$filename&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep -n &lt;span class="s1"&gt;&amp;#39;Date&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; cut -d &lt;span class="s2"&gt;&amp;quot;:&amp;quot;&lt;/span&gt; -f &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# 查找Modified标签的行号&lt;/span&gt;
+&lt;span class="nv"&gt;num2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;head -5 &lt;span class="nv"&gt;$filename&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep -n &lt;span class="s1"&gt;&amp;#39;Modified&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt; cut -d &lt;span class="s2"&gt;&amp;quot;:&amp;quot;&lt;/span&gt; -f &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 如果Date标签行号为空，说明不存在Date标签，则插入Date&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$num1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;2s/^//p; 2s/^.*/Date: &lt;/span&gt;&lt;span class="nv"&gt;$create_time&lt;/span&gt;&lt;span class="s2"&gt;/&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;   
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="c1"&gt;# 如果Modified标签行号为空，插入Modified&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -z &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$num2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;3s/^//p; 3s/^.*/Modified: &lt;/span&gt;&lt;span class="nv"&gt;$modify_time&lt;/span&gt;&lt;span class="s2"&gt;/&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="c1"&gt;# 否则，替换Modified标签到最新时间&lt;/span&gt;
+    sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;num2&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;d &lt;span class="nv"&gt;$filename&lt;/span&gt;
+    sed -i &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;3s/^//p; 3s/^.*/Modified: &lt;/span&gt;&lt;span class="nv"&gt;$modify_time&lt;/span&gt;&lt;span class="s2"&gt;/&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$filename&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;h2&gt;附：stat 命令详情&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;stat&lt;/code&gt;显示有关文件的信息。 不需要读取，写入或执行指定文件的权限，但必须可搜索通向该文件的路径名中列出的所有目录。 如果没有给出参数，&lt;code&gt;stat&lt;/code&gt;将显示有关标准输入的文件描述符（stdin）的信息。&lt;/p&gt;
+&lt;p&gt;当作为&lt;code&gt;readlink&lt;/code&gt;调用时，仅打印符号链接的目标。 如果给定的参数不是符号链接，则&lt;code&gt;readlink&lt;/code&gt;将不打印任何内容并退出并显示错误。&lt;/p&gt;
+&lt;p&gt;显示的信息是通过使用给定参数调用&lt;code&gt;lstat&lt;/code&gt;系统调用并解释返回的结构来获得的。&lt;/p&gt;
+&lt;h3&gt;参数&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;-F&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;与&lt;code&gt;ls&lt;/code&gt;命令的 &lt;strong&gt;-F&lt;/strong&gt; 参数一样，在作为目录的每个路径名之后显示斜杠（'/'），在每个可执行的路径名后面显示星号（'*'），在每个符号链接后显示at符号（'@'）， 在每个without文件后面显示百分号（'％'），每个套接字后显示等号（'='），以及在每个FIFO文件后面显示一个垂直条（'|'）。 &lt;strong&gt;-F&lt;/strong&gt; 的使用意味着 &lt;strong&gt;-l&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-f&lt;/strong&gt; &lt;em&gt;format&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用指定的格式显示信息&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-L&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用&lt;code&gt;stat&lt;/code&gt;而不是&lt;code&gt;lstat&lt;/code&gt;。 如果文件是符号链接，则stat给出的信息是链接文件目标文件的信息，而不是链接文件本身&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-l&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;将输出以&lt;code&gt;ls -lT&lt;/code&gt;格式显示，即显示文件的完整时间信息，包括月，日，小时，分钟，秒和年&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-n&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;输出不强制换行&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-q&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;如果对&lt;code&gt;stat&lt;/code&gt;或&lt;code&gt;lstat&lt;/code&gt;的调用失败，则不显示失败消息。以&lt;code&gt;readlink&lt;/code&gt;方式运行时，会自动禁止错误消息&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-r&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;显示原始信息。即，对于stat结构（UNIX/Linux系统中定义的结构体）中的所有字段，显示原始数值（例如，自纪元以来的秒数等）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-s&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在“shell输出”中显示信息，适用于初始化变量&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-t&lt;/strong&gt; &lt;em&gt;timefmt&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用指定的格式显示时间戳。 此格式直接传递给&lt;code&gt;strftime&lt;/code&gt;命令&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-x&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;从某些Linux发行版中以更详细的方式显示信息&lt;/p&gt;
+&lt;h3&gt;格式&lt;/h3&gt;
+&lt;p&gt;格式字符串类似于&lt;code&gt;printf&lt;/code&gt;格式，因为它们以 ％ 开头，然后是一系列格式化字符，最后是一个字符，用于选择要格式化的 struct stat 字段。 如果 ％ 后面紧跟 n，t，％ 或 @ 之一，则会打印换行符，制表符，百分号或当前文件号，否则将检查字符串是否包含以下内容：&lt;/p&gt;
+&lt;p&gt;以下是任何可选标志：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;#&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;为八进制和十六进制输出选择备用输出形式。 非零八进制输出将具有前导零，并且非零十六进制输出将具有前缀“0x”&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;+&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;断言应始终打印指示数字是正数还是负数的符号。 非负数通常不打印带符号&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;将字符串输出对齐到字段的左侧，而不是右侧&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;0&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;将左边距的填充字符设置为“0”字符，而不是空格&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;space&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在非负有符号输出字段的前面保留一个空格。 如果同时使用&lt;strong&gt;‘+’&lt;/strong&gt; ，则&lt;strong&gt;‘+’&lt;/strong&gt; 将覆盖空格&lt;/p&gt;
+&lt;p&gt;以下是任何可选字段：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;size&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;可选的十进制数字字符串，指定最小字段宽度&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;prec&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;由小数点'.'和十进制数字字符串组成的可选精度，指示最大字符串长度，浮点输出中小数点后出现的位数，或数字输出中显示的最小位数&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;fmt&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;可选的输出格式说明符，它是D，O，U，X，F 或 S 之一。它们分别表示带符号的十进制输出，八进制输出，无符号十进制输出，十六进制输出，浮点输出和字符串输出。 某些输出格式不适用于所有字段。 浮点输出仅适用于 timespec 字段（a，m 和 c 字段）。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;特殊输出说明符S可用于指示输出（如果适用）应为字符串格式。 可与以下标志结合使用：&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;amc&lt;/em&gt; 以&lt;code&gt;strftime&lt;/code&gt;格式显示日期&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;dr&lt;/em&gt; 显示实际设备名称&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;gu&lt;/em&gt; 显示组或用户名&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;p&lt;/em&gt; 以&lt;code&gt;ls -lTd&lt;/code&gt;显示文件模式&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;N&lt;/em&gt; 显示文件名&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;T&lt;/em&gt; 显示文件类型&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Y&lt;/em&gt; 在输出中插入“ -&amp;gt; ”。 请注意，&lt;em&gt;Y&lt;/em&gt; 的默认输出格式是字符串，但如果明确指定，则会预先添加这四个字符&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;sub&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;可选的子字段说明符（高，中，低）。仅适用于 p，d，r 和 T 输出格式。 它可以是以下之一：&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;H&lt;/em&gt; “高”，指定来自 r 或 d 的设备的主要编号，来自 p 的字符串形式的权限的“用户”位，来自 p 的数字形式的文件“type”位，以及 T 的长输出形式&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;L&lt;/em&gt; “低”，指定来自 r 或 d 的设备的次要编号，来自 p 的字符串形式的权限的“其他”位，来自 p 的数字形式的“用户”，“组”和“其他”位， 当与 T 一起使用时，文件类型的&lt;code&gt;ls -F&lt;/code&gt;样式输出字符（对此使用 L 是可选的）&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;M&lt;/em&gt; “中”，指定 p 的字符串输出形式的权限的“组”位，或 p 的数字形式的 “suid”，“sgid” 和 “sticky” 位&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;datum&lt;/em&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;必填字段说明符，是以下之一：&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;d&lt;/em&gt; 文件所在的设备&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;i&lt;/em&gt; 文件的inode编号&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;p&lt;/em&gt; 文件类型和权限&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;l&lt;/em&gt; 文件的硬链接数&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;u, g&lt;/em&gt; 文件所有者的用户ID和组ID&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;r&lt;/em&gt; 字符和块设备专用文件的设备编号&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;a, m, c, B&lt;/em&gt; 上次访问或修改时间文件，上次更改 inode 的时间或 inode 的生成时间（UNIX时间戳）&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;z&lt;/em&gt; 文件大小（以字节为单位）&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;b&lt;/em&gt; 分配给文件的块数&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;k&lt;/em&gt; 最佳文件系统I / O操作块大小&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;f&lt;/em&gt; 用户定义的文件标志&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;v&lt;/em&gt; Inode 生成号&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;以下四个字段说明符不是直接从struct stat中的数据中提取的，而是：&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;N&lt;/em&gt; 文件的名称&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;T&lt;/em&gt; 文件类型，类似&lt;code&gt;ls -F&lt;/code&gt;，如果给出子字段说明符H，则采用更具描述性的形式。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Y&lt;/em&gt; 符号链接的目标&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;em&gt;Z&lt;/em&gt; 从字符或块特殊设备的rdev字段扩展为“major，minor”，并为所有其他设备提供大小输出&lt;/p&gt;
+&lt;p&gt;只有 ％ 和字段说明符是必需的。大多数字段说明符默认为 U 作为输出形式；p 默认输出形式是 O；a、m、c 默认输出形式是 D，Y、T、N 默认输出形式是 S。&lt;/p&gt;</content><category term="Mac"></category><category term="教程"></category></entry><entry><title>HTML 入门</title><link href="https://xutree.github.io/pages/2018/10/05/html-overview/" rel="alternate"></link><published>2018-10-05T17:23:00+08:00</published><updated>2018-10-06T21:20:21+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-05:/pages/2018/10/05/html-overview/</id><summary type="html">&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt;，即超文本标记语言（&lt;strong&gt;H&lt;/strong&gt;yper&lt;strong&gt;T&lt;/strong&gt;ext &lt;strong&gt;M&lt;/strong&gt;arkup &lt;strong&gt;L&lt;/strong&gt;anguage）。与脚本或编程语言不同，标记语言使用标记（&lt;strong&gt;tag&lt;/strong&gt;）来标识内容。&lt;/p&gt;
+&lt;p&gt;下面是一个 HTML tag 的例子：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;p&amp;gt; 这是一个段落。&amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;称为开始标签，&lt;code&gt;&amp;lt;/p&amp;gt;&lt;/code&gt;称为结束标签。&lt;/p&gt;
+&lt;h2&gt;网页的结构&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;HTML：结构&lt;/li&gt;
+&lt;li&gt;CSS：样式&lt;/li&gt;
+&lt;li&gt;JavaScript：行为&lt;/li&gt;
+&lt;li&gt;PHP 或类似语言：后端&lt;/li&gt;
+&lt;li&gt;CMS：内容管理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;基本 HTML 文件结构&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;标签&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;HTML文件的所有内容都包含在其中&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;HTML文件的头部包含有助于使页面工作的所有非可视元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;body&amp;gt;&amp;lt;/body …&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt;，即超文本标记语言（&lt;strong&gt;H&lt;/strong&gt;yper&lt;strong&gt;T&lt;/strong&gt;ext &lt;strong&gt;M&lt;/strong&gt;arkup &lt;strong&gt;L&lt;/strong&gt;anguage）。与脚本或编程语言不同，标记语言使用标记（&lt;strong&gt;tag&lt;/strong&gt;）来标识内容。&lt;/p&gt;
+&lt;p&gt;下面是一个 HTML tag 的例子：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;p&amp;gt; 这是一个段落。&amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;称为开始标签，&lt;code&gt;&amp;lt;/p&amp;gt;&lt;/code&gt;称为结束标签。&lt;/p&gt;
+&lt;h2&gt;网页的结构&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;HTML：结构&lt;/li&gt;
+&lt;li&gt;CSS：样式&lt;/li&gt;
+&lt;li&gt;JavaScript：行为&lt;/li&gt;
+&lt;li&gt;PHP 或类似语言：后端&lt;/li&gt;
+&lt;li&gt;CMS：内容管理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;基本 HTML 文件结构&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;标签&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;HTML文件的所有内容都包含在其中&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;HTML文件的头部包含有助于使页面工作的所有非可视元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;body&amp;gt;&amp;lt;/body&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;所有可视化元素都包含在body标签中&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;包含网页选项卡上现实的标题内容&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;下面是 HTML 版本的“Hello, World！”程序：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+      Hello World!
+   &lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;字体标签&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;标签&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;段落标签（浏览器会在段落前后自动添加空行）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;br /&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;换行而不开启新段落（它没有结束标记）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;b&amp;gt;&amp;lt;/b&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;粗体&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;big&amp;gt;&amp;lt;/big&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;大号文本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;i&amp;gt;&amp;lt;/i&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;斜体&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;small&amp;gt;&amp;lt;/small&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;小号文本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;strong&amp;gt;&amp;lt;/strong&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;强调（一种phrase tag）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;sub&amp;gt;&amp;lt;/sub&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;下标&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;sup&amp;gt;&amp;lt;/sup&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;上标&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;ins&amp;gt;&amp;lt;/ins&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;插入线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;del&amp;gt;&amp;lt;/del&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;删除线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;浏览器将&lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;显示为&lt;code&gt;&amp;lt;b&amp;gt;&lt;/code&gt;，将&lt;code&gt;&amp;lt;em&amp;gt;&lt;/code&gt;显示为&lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt;。但是，这些标记的含义不同：&lt;code&gt;&amp;lt;b&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt;分别定义粗体和斜体文本，而&lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;em&amp;gt;&lt;/code&gt;表示文本“重要”。&lt;/p&gt;
+&lt;h2&gt;标题标签&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;h1&amp;gt;&amp;lt;/h1&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;h2&amp;gt;&amp;lt;/h2&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;h3&amp;gt;&amp;lt;/h3&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;h4&amp;gt;&amp;lt;/h4&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;h5&amp;gt;&amp;lt;/h5&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;h6&amp;gt;&amp;lt;/h6&amp;gt;&lt;/code&gt;六种标题，&lt;code&gt;&amp;lt;h1&amp;gt;&amp;lt;/h1&amp;gt;&lt;/code&gt;字号最大。&lt;/p&gt;
+&lt;h2&gt;标签属性&lt;/h2&gt;
+&lt;p&gt;属性提供有关元素或标记的附加信息，同时还可以修改它们。例如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;align=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;center&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+   This text is aligned to center
+&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;会将段落居中显示（&lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;标签的align属性在HTML5中不再支持）。&lt;/p&gt;
+&lt;p&gt;属性的数值可以通过像素或百分比指定，如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;hr width=&amp;quot;50px&amp;quot; /&amp;gt;
+&amp;lt;hr width=&amp;quot;50%&amp;quot; /&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;图像标签&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;img src="" height="" width="" border="" alt=""/&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;src：图像名称&lt;/p&gt;
+&lt;p&gt;height：图像高&lt;/p&gt;
+&lt;p&gt;width：图像宽&lt;/p&gt;
+&lt;p&gt;border：边界宽度&lt;/p&gt;
+&lt;p&gt;alt：如果无法显示图像，则alt属性指定以单词形式描述图像的替代文本&lt;/p&gt;
+&lt;h2&gt;链接标签&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;a href="" target=""&amp;gt;&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;href：目标网址&lt;/p&gt;
+&lt;p&gt;target：指定打开链接文档的位置，_blank值将在新窗口或新标签中打开链接&lt;/p&gt;
+&lt;h2&gt;列表标签&lt;/h2&gt;
+&lt;h3&gt;有序列表&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;first page&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;ol&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;li&amp;gt;&lt;/span&gt;Red&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;li&amp;gt;&lt;/span&gt;Blue&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;li&amp;gt;&lt;/span&gt;Green&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;/ol&amp;gt;&lt;/span&gt;  
+   &lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;无序列表&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;first page&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;        
+   &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;li&amp;gt;&lt;/span&gt;Red&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;li&amp;gt;&lt;/span&gt;Blue&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;li&amp;gt;&lt;/span&gt;Green&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;  
+   &lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;表格标签&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;table&lt;/span&gt;  &lt;span class="na"&gt;border=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;align=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;tr&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;td&lt;/span&gt; &lt;span class="na"&gt;bgcolor=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;red&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Red&lt;span class="nt"&gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;td&amp;gt;&lt;/span&gt;Blue&lt;span class="nt"&gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;td&amp;gt;&lt;/span&gt;Green&lt;span class="nt"&gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;/tr&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;tr&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;td&amp;gt;&lt;/span&gt;Yellow&lt;span class="nt"&gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;td&lt;/span&gt; &lt;span class="na"&gt;colspan=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Orange&lt;span class="nt"&gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;/tr&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/table&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;其他&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;标签&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;hr /&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;水平线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&amp;lt;!--...--&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;注释&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;HTML 元素类型&lt;/h2&gt;
+&lt;p&gt;在 HTML 中，大多数元素被定义为块级或内联元素。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;块级元素从新行开始，如&lt;code&gt;&amp;lt;h1&amp;gt;, &amp;lt;form&amp;gt;, &amp;lt;li&amp;gt;, &amp;lt;ol&amp;gt;, &amp;lt;ul&amp;gt;, &amp;lt;p&amp;gt;, &amp;lt;pre&amp;gt;, &amp;lt;table&amp;gt;, &amp;lt;div&amp;gt;&lt;/code&gt;等&lt;/li&gt;
+&lt;li&gt;内联元素通常显示没有换行符，如&lt;code&gt;&amp;lt;b&amp;gt;, &amp;lt;a&amp;gt;, &amp;lt;strong&amp;gt;, &amp;lt;img&amp;gt;, &amp;lt;input&amp;gt;, &amp;lt;em&amp;gt;, &amp;lt;span&amp;gt;&lt;/code&gt;等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;元素是一个块级元素，通常用作其他 HTML 元素的容器。与一些 CSS 样式一起使用时，&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;元素可用于设置内容块的样式。&lt;/p&gt;
+&lt;p&gt;同样，&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;元素是一个内联元素，通常用作某些文本的容器。与 CSS 一起使用时，&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;元素可用于设置文本的部分样式。&lt;/p&gt;
+&lt;p&gt;其他元素可以用作块级元素或内联元素。 这包括以下这些：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;APPLET - 嵌入式 Java 小程序&lt;/li&gt;
+&lt;li&gt;IFRAME - 内联框架&lt;/li&gt;
+&lt;li&gt;INS - 插入文本&lt;/li&gt;
+&lt;li&gt;MAP - 图像映射&lt;/li&gt;
+&lt;li&gt;OBJECT - 嵌入对象&lt;/li&gt;
+&lt;li&gt;SCRIPT - HTML 文档中的脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;你可以在块元素内插入内联元素。 例如，可以在&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;元素中包含多个&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;元素。反之不行。&lt;/p&gt;
+&lt;h2&gt;表单标签&lt;/h2&gt;
+&lt;p&gt;HTML 表单用于从用户收集信息。使用&lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt;元素及其开始和结束标记定义表单，使用 action 属性指向将在用户提交表单后加载的网页：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;form&lt;/span&gt; &lt;span class="na"&gt;action=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;method=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;…&lt;span class="nt"&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;method 属性指定在提交表单时使用的 HTTP 方法（GET 或 POST）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 GET 时，表单数据将显示在页面地址中&lt;/li&gt;
+&lt;li&gt;如果表单正在更新数据，请使用 POST，或者包含敏感信息（密码）。POST 提供了更好的安全性，因为提交的数据在页面地址中不可见&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;要接受用户输入，需要相应的表单元素，例如文本字段。 &lt;code&gt;&amp;lt;input&amp;gt;&lt;/code&gt;元素有许多变体，具体取决于 type 属性。 它可以是文本，密码，广播，URL，提交等。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;form&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;username&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&amp;lt;br&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;password&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;password&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;&lt;code&gt;&amp;lt;frame&amp;gt;&lt;/code&gt;标签&lt;/h1&gt;
+&lt;p&gt;可以使用特殊帧文档将页面划分为帧。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;frame&amp;gt;&lt;/code&gt;标签定义&lt;code&gt;&amp;lt;frameset&amp;gt;&lt;/code&gt;中的一个特定窗口（框架）。&lt;code&gt;&amp;lt;frameset&amp;gt;&lt;/code&gt;中的每个&lt;code&gt;&amp;lt;frame&amp;gt;&lt;/code&gt;可以具有不同的属性，例如边框，滚动，调整大小的能力等。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;frameset&amp;gt;&lt;/code&gt;元素指定框架集中的列数或行数，以及每个框架占空间像素的百分比或数量。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;frameset&lt;/span&gt; &lt;span class="na"&gt;cols=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;25%,50%,25%&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;frame&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a.htm&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;frame&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;b.htm&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;frame&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;c.htm&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;noframes&amp;gt;&lt;/span&gt;Frames not supported!&lt;span class="nt"&gt;&amp;lt;/noframes&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/frameset&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用&lt;code&gt;&amp;lt;noresize&amp;gt;&lt;/code&gt;属性指定用户无法调整&lt;code&gt;&amp;lt;frame&amp;gt;&lt;/code&gt;元素的大小：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;frame noresize="noresize"&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;HTML5 中不支持&lt;code&gt;&amp;lt;frame&amp;gt;&lt;/code&gt;标签。&lt;/p&gt;
+&lt;h2&gt;颜色&lt;/h2&gt;
+&lt;h3&gt;颜色值&lt;/h3&gt;
+&lt;p&gt;HTML 颜色表示为十六进制值，0~F。零表示最低值，F表示最高值。&lt;/p&gt;
+&lt;h3&gt;颜色模式&lt;/h3&gt;
+&lt;p&gt;颜色以红色，绿色和蓝色光（RGB）的组合显示。&lt;/p&gt;
+&lt;p&gt;十六进制值使用＃标签符号，后跟六个十六进制字符。所有浏览器都支持 RGB 颜色值。&lt;/p&gt;</content><category term="HTML"></category></entry><entry><title>X3DOM 图像和视频纹理</title><link href="https://xutree.github.io/pages/2018/10/05/X3DOM%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E7%BA%B9%E7%90%86/" rel="alternate"></link><published>2018-10-05T17:14:00+08:00</published><updated>2018-10-06T21:02:53+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-05:/pages/2018/10/05/X3DOM图像和视频纹理/</id><summary type="html">&lt;p&gt;本章你将知道哪些图像类型和视频格式可以用作 X3DOM 的纹理，以及纹理的特性和限制。&lt;/p&gt;
+&lt;p&gt;你可以使用 &lt;a href="http://en.wikipedia.org/wiki/Portable_Network_Graphics"&gt;&lt;em&gt;PNG&lt;/em&gt;&lt;/a&gt;，&lt;a href="http://en.wikipedia.org/wiki/Jpeg"&gt;&lt;em&gt;LPEG&lt;/em&gt;&lt;/a&gt; 或者 &lt;a href="https://en.wikipedia.org/wiki/Gif"&gt;&lt;em&gt;GIF&lt;/em&gt;&lt;/a&gt; 来编码你的静态纹理数据。&lt;em&gt;JPG&lt;/em&gt; 图像需要的内存少但是存在压缩损失而且没有 &lt;em&gt;alpha&lt;/em&gt; 通道。&lt;em&gt;PNG&lt;/em&gt; 图像属于无损压缩并且有 &lt;em&gt;alpha&lt;/em&gt; 通道，&lt;em&gt;GIF&lt;/em&gt; 也是无损压缩并且有 &lt;em&gt;alpha&lt;/em&gt; 通道。一般来讲：如果你不需要 &lt;em&gt;alpha&lt;/em&gt; 通道并且图像中不包含硬边界(例如：文本)，使用 &lt;em&gt;JPG&lt;/em&gt;，否则使用 &lt;em&gt;PNG&lt;/em&gt;。你应该避免使用 &lt;em&gt;GIF&lt;/em&gt;。&lt;/p&gt;
+&lt;h2&gt;图像&lt;/h2&gt;
+&lt;p&gt;利用 &lt;em&gt;ImageTexture&lt;/em&gt; 节点把图像作为纹理：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;x3d&lt;/span&gt; &lt;span class="na"&gt;width=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;500px&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;height=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;400px&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;scene&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;shape&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;ImageTexture&lt;/span&gt; &lt;span class="na"&gt;url=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;myTexture.png …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;本章你将知道哪些图像类型和视频格式可以用作 X3DOM 的纹理，以及纹理的特性和限制。&lt;/p&gt;
+&lt;p&gt;你可以使用 &lt;a href="http://en.wikipedia.org/wiki/Portable_Network_Graphics"&gt;&lt;em&gt;PNG&lt;/em&gt;&lt;/a&gt;，&lt;a href="http://en.wikipedia.org/wiki/Jpeg"&gt;&lt;em&gt;LPEG&lt;/em&gt;&lt;/a&gt; 或者 &lt;a href="https://en.wikipedia.org/wiki/Gif"&gt;&lt;em&gt;GIF&lt;/em&gt;&lt;/a&gt; 来编码你的静态纹理数据。&lt;em&gt;JPG&lt;/em&gt; 图像需要的内存少但是存在压缩损失而且没有 &lt;em&gt;alpha&lt;/em&gt; 通道。&lt;em&gt;PNG&lt;/em&gt; 图像属于无损压缩并且有 &lt;em&gt;alpha&lt;/em&gt; 通道，&lt;em&gt;GIF&lt;/em&gt; 也是无损压缩并且有 &lt;em&gt;alpha&lt;/em&gt; 通道。一般来讲：如果你不需要 &lt;em&gt;alpha&lt;/em&gt; 通道并且图像中不包含硬边界(例如：文本)，使用 &lt;em&gt;JPG&lt;/em&gt;，否则使用 &lt;em&gt;PNG&lt;/em&gt;。你应该避免使用 &lt;em&gt;GIF&lt;/em&gt;。&lt;/p&gt;
+&lt;h2&gt;图像&lt;/h2&gt;
+&lt;p&gt;利用 &lt;em&gt;ImageTexture&lt;/em&gt; 节点把图像作为纹理：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;x3d&lt;/span&gt; &lt;span class="na"&gt;width=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;500px&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;height=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;400px&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;scene&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;shape&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;ImageTexture&lt;/span&gt; &lt;span class="na"&gt;url=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;myTexture.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;ImageTexture/&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;box&amp;gt;&lt;/span&gt; &lt;span class="nt"&gt;&amp;lt;/box&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/shape&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/scene&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/x3d&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;视频&lt;/h2&gt;
+&lt;p&gt;利用 &lt;em&gt;MovieTexture&lt;/em&gt; 节点可以把视频作为纹理。但是目前还没有哪一种视频格式支持所有的用户。可以使用 X3DOM 格式&lt;a href="https://x3dom.org/x3dom/example/x3dom_video.xhtml"&gt;示例&lt;/a&gt;来确定你的浏览器支持的格式。目前最好的解决方法是将你的视频编码成 &lt;em&gt;MP4&lt;/em&gt; 和 &lt;em&gt;OGV&lt;/em&gt; 格式并在 &lt;em&gt;MovieTexture&lt;/em&gt; 节点中提供这两个选项：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;x3d&lt;/span&gt; &lt;span class="na"&gt;width=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;500px&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;height=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;400px&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;scene&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;shape&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;MovieTexture&lt;/span&gt; &lt;span class="na"&gt;url=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;”foo.mp4″,”foo.ogv”&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;MovieTexture/&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;box&amp;gt;&lt;/span&gt; &lt;span class="nt"&gt;&amp;lt;/box&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/shape&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/scene&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/x3d&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="X3DOM"></category></entry><entry><title>X3DOM，HTML，CSS 和 JavaScript</title><link href="https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS%E5%92%8CJavaScript/" rel="alternate"></link><published>2018-10-05T11:22:00+08:00</published><updated>2018-10-06T21:02:31+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-05:/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/</id><summary type="html">&lt;p&gt;本节，你将学习关于 X3DOM, HTML 和 CSS的更多知识，以及怎么利用 HTML 和 CSS 技术构建出强大的 3D 应用。在本节最后，你讲学习怎么在你的应用中使用 JavaScript。我们将继续使用前一节的例子。拷贝 HelloX3DOM.html 文件并重命名为 HTMLEventsCSS.html。&lt;/p&gt;
+&lt;h2&gt;X3DOM 和 CSS&lt;/h2&gt;
+&lt;p&gt;我们首先来看下怎么通过 CSS 操控 X3DOM 元素。你可能已经注意到，在 HelloX3DOM.html 中，3D 内容位于一个被黑色边界包围的白色区域中。X3DOM 有一个单独的 css 文件，自从版本1.3以后，名字一直为 x3dom.css，在这个文件中可以找到关于 X3DOM 元素的所有 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;本节，你将学习关于 X3DOM, HTML 和 CSS的更多知识，以及怎么利用 HTML 和 CSS 技术构建出强大的 3D 应用。在本节最后，你讲学习怎么在你的应用中使用 JavaScript。我们将继续使用前一节的例子。拷贝 HelloX3DOM.html 文件并重命名为 HTMLEventsCSS.html。&lt;/p&gt;
+&lt;h2&gt;X3DOM 和 CSS&lt;/h2&gt;
+&lt;p&gt;我们首先来看下怎么通过 CSS 操控 X3DOM 元素。你可能已经注意到，在 HelloX3DOM.html 中，3D 内容位于一个被黑色边界包围的白色区域中。X3DOM 有一个单独的 css 文件，自从版本1.3以后，名字一直为 x3dom.css，在这个文件中可以找到关于 X3DOM 元素的所有 css 定义以及 debug 信息。假设你的页面使用灰色和橙色作为主要颜色。你可以通过许多方式改变 X3DOM 默认的 CSS 属性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在 x3dom.css 后包含你自己的 CSS 文件(External Style Sheet)&lt;/li&gt;
+&lt;li&gt;在 x3dom.css 之后，利用 &lt;em&gt;style&lt;/em&gt; 标签定制 css(Internal
+Style Sheet)&lt;/li&gt;
+&lt;li&gt;直接操纵相关元素的 &lt;em&gt;style&lt;/em&gt; 属性(Inline Styles)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关于 CSS 有很多网上教程，例如&lt;a href="http://www.w3schools.com/css/css_howto.asp"&gt;这里&lt;/a&gt;。我们现在利用第二种方法改变 css，通常不推荐第三种方法。为了定制 x3d 代表的 X3DOM 边界，在你的 HTML 文件头部 x3dom.css 之后插入 &lt;em&gt;style&lt;/em&gt; 标签：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;My first X3DOM page&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://www.x3dom.org/download/x3dom.js&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;stylesheet&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/css&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://www.x3dom.org/download/x3dom.css&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/link&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;style&amp;gt;&lt;/span&gt;
+        x3d
+        {
+            border:2px solid darkorange;
+        }
+    &lt;span class="nt"&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Hello, X3DOM!&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;
+    This is my first html page with some 3d objects.
+    &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;x3d&lt;/span&gt; &lt;span class="na"&gt;width=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;600px&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;height=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;400px&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    ...
+    &lt;span class="nt"&gt;&amp;lt;/x3d&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;现在，X3DOM 的边界颜色已经改变了。假设你的网页已经有了橙色和灰色风格，使用 &lt;em&gt;pattern.png&lt;/em&gt; 作为背景(背景图片在&lt;a href="https://doc.x3dom.org/tutorials/basics/htmlCSS/pattern.png"&gt;这里&lt;/a&gt;)。那么完整的 &lt;em&gt;style sheet&lt;/em&gt; 如下所示：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;x3d&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="kc"&gt;solid&lt;/span&gt; &lt;span class="kc"&gt;darkorange&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nt"&gt;body&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;font-size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;110&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;font-family&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;verdana&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;sans-serif&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;background-image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pattern.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;margin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;lightgray&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nt"&gt;h1&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;darkorange&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;现在你的网页看起来如下所示：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="图1  默认情况下，X3DOM使用与网页相同的背景" src="https://xutree.github.io/images/fig5.png"&gt;&lt;/p&gt;
+&lt;p&gt;从图中可以看出，X3DOM 使用与网页相同的背景。这是一个很重要的行为：你的 X3DOM &lt;em&gt;scene&lt;/em&gt; 是在 HTML 之上进行渲染的。让我们设置 &lt;em&gt;x3d&lt;/em&gt; 元素为半透明背景：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;x3d&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="kc"&gt;solid&lt;/span&gt; &lt;span class="kc"&gt;darkorange&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;rgba&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;现在结果看起来如下所示：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="图2  具有半透明背景的X3DOM" src="https://xutree.github.io/images/fig6.png"&gt;&lt;/p&gt;
+&lt;h2&gt;X3DOM, HTML 事件和 JavaScript&lt;/h2&gt;
+&lt;p&gt;使用 HTML 和 JavaScript，你可以使用大量有用的回调函数来操纵大多数 DOM 元素。X3DOM 为 &lt;em&gt;node&lt;/em&gt; 提供了相似的函数。例如，当我们点击红色立方体的时候，可以弹出一个文本信息，在 &lt;em&gt;shape&lt;/em&gt; 里插入一个 &lt;em&gt;onclick&lt;/em&gt; 函数就可以实现这个功能：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;shape&lt;/span&gt; &lt;span class="na"&gt;onclick=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;alert(&amp;#39;Hello, click!&amp;#39;);&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;material&lt;/span&gt; &lt;span class="na"&gt;diffuseColor=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;1 0 0&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/material&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;box&amp;gt;&amp;lt;/box&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/shape&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;目前，你可以对 X3DOM 使用 &lt;em&gt;onmousemove&lt;/em&gt;，&lt;em&gt;onmousedown&lt;/em&gt;， &lt;em&gt;onmouseup&lt;/em&gt;，&lt;em&gt;onmouseover&lt;/em&gt; 和 &lt;em&gt;onmouseout&lt;/em&gt; 事件。你不仅可以在 &lt;em&gt;shape&lt;/em&gt; 节点插入事件，也可以在组节点，例如 &lt;em&gt;transform&lt;/em&gt; 插入事件。这样你就可以使用一个回调函数捕捉多个节点的事件。&lt;/p&gt;
+&lt;p&gt;你可以在每个 DOM 元素上使用 JavaScript，所以你可以随心所欲的操纵 &lt;em&gt;node&lt;/em&gt;。你已经知道怎么使用 &lt;em&gt;onclick&lt;/em&gt; 事件，让我们尝试当点击时，改变立方体的颜色。如果你从没使用过 JavaScript，这个&lt;a href="http://www.w3schools.com/js/default.asp"&gt;网站&lt;/a&gt;或许可以帮助你。&lt;/p&gt;
+&lt;p&gt;首先，给你想操纵的节点一个 &lt;em&gt;id&lt;/em&gt;：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;shape&lt;/span&gt; &lt;span class="na"&gt;onclick=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;alert(&amp;#39;Hello, click!&amp;#39;);&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;material&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;color&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;diffuseColor=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;1 0 0&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/material&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;box&amp;gt;&amp;lt;/box&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/shape&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后，你就可以通过下面这个函数改变颜色：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+    function changeColor()
+    {
+        if(document.getElementById(&amp;quot;color&amp;quot;).getAttribute(&amp;#39;diffuseColor&amp;#39;)==&amp;quot;1 0 0&amp;quot;)
+            document.getElementById(&amp;quot;color&amp;quot;).setAttribute(&amp;#39;diffuseColor&amp;#39;, &amp;#39;0 0 1&amp;#39;);
+        else
+            document.getElementById(&amp;quot;color&amp;quot;).setAttribute(&amp;#39;diffuseColor&amp;#39;, &amp;#39;1 0 0&amp;#39;);
+    }
+&lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;shape onclick=&amp;quot;changeColor();&amp;quot;&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;下一步：自动创建 (X)HTML&lt;/h2&gt;
+&lt;p&gt;如果你有大量的模型数据，你想把这些数据分配到不同的页面上。那么自动生成实际的页面而不是手动编写代码将更加有趣。你可以使用自动化工具，例如 XSLT，允许你直接将 X3DOM 文件转化为 XHTML 网页。&lt;a href="http://www.web3d.org/x3d/stylesheets/X3dToXhtmlStylesheetExamples.zip"&gt;这里&lt;/a&gt;是一个例子。&lt;/p&gt;</content><category term="X3DOM"></category></entry><entry><title>Hello，X3DOM！</title><link href="https://xutree.github.io/pages/2018/10/04/X3DOM-hello/" rel="alternate"></link><published>2018-10-04T18:29:00+08:00</published><updated>2018-10-06T20:59:55+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-04:/pages/2018/10/04/X3DOM-hello/</id><summary type="html">&lt;p&gt;本教程将教会你怎么配置和运行你的第一个 X3DOM 应用。你只需要一个相容于 WebGL 的浏览器和一个文本编辑器。整个 X3DOM 应用是常规网页的一部分，并且编写方式也与HTML很相似，所以如果你的编辑器支持HTML或者XML的语法高亮那将更好，像&lt;a href="http://www.jetbrains.com/webstorm/"&gt;WebStorm&lt;/a&gt;这种 Web 编程 IDE 也是可以的。如果你手头有一个网页浏览器和一个文本编辑器，并且你知道怎么在浏览器中打开网页(参考&lt;a href="https://doc.x3dom.org/gettingStarted/index.html"&gt;这里&lt;/a&gt;)，那么你可以开始你的第一个 X3DOM 应用了。&lt;/p&gt;
+&lt;p&gt;首先，创建一个新文件 &lt;em&gt;HelloX3DOM.html&lt;/em&gt;。然后将下面的内容复制粘贴进这个空文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;My first X3DOM page&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://www.x3dom.org/download/x3dom.js …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;本教程将教会你怎么配置和运行你的第一个 X3DOM 应用。你只需要一个相容于 WebGL 的浏览器和一个文本编辑器。整个 X3DOM 应用是常规网页的一部分，并且编写方式也与HTML很相似，所以如果你的编辑器支持HTML或者XML的语法高亮那将更好，像&lt;a href="http://www.jetbrains.com/webstorm/"&gt;WebStorm&lt;/a&gt;这种 Web 编程 IDE 也是可以的。如果你手头有一个网页浏览器和一个文本编辑器，并且你知道怎么在浏览器中打开网页(参考&lt;a href="https://doc.x3dom.org/gettingStarted/index.html"&gt;这里&lt;/a&gt;)，那么你可以开始你的第一个 X3DOM 应用了。&lt;/p&gt;
+&lt;p&gt;首先，创建一个新文件 &lt;em&gt;HelloX3DOM.html&lt;/em&gt;。然后将下面的内容复制粘贴进这个空文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;My first X3DOM page&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://www.x3dom.org/download/x3dom.js&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;stylesheet&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/css&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://www.x3dom.org/download/x3dom.css&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/link&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Hello, X3DOM!&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;
+        This is my first html page with some 3d objects.
+    &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果你在浏览器中打开这个文件，你会看到一个包含一个文本信息的常规HTML页面。你可能已经注意到，我们已经在我们的网页中添加了一些 X3DOM 元素，因为我们已经包含 X3DOM 作为一个 JaveScript 库，还包含了 X3DOM CSS 文件，用于规则的显示 X3DOM 元素。在上面的 HTML 代码中，我们通过 &lt;em&gt;script&lt;/em&gt; 和 &lt;em&gt;link&lt;/em&gt; 标签是用了 &lt;em&gt;development&lt;/em&gt; 版本的 X3DOM。&lt;/p&gt;
+&lt;p&gt;让我们继续添加一些 3D 内容。首先，我们需要一个 &lt;em&gt;x3d&lt;/em&gt; 元素，用来描述 X3DOM 内容在哪个 &lt;em&gt;scene&lt;/em&gt; 显示。和 HTML 元素 &lt;em&gt;p&lt;/em&gt;、&lt;em&gt;div&lt;/em&gt; 类似，&lt;em&gt;x3d&lt;/em&gt; 在 HTML 里定义了一个矩形范围。整个 X3DOM 的 3D 内容用 &lt;em&gt;scene&lt;/em&gt; 描述，所以我们在 &lt;em&gt;x3d&lt;/em&gt; 标签里添加一个 &lt;em&gt;scene&lt;/em&gt; 标签。这种结构是来自于X3D标准。一个 &lt;em&gt;scene&lt;/em&gt; 可以包含很多不同的 &lt;em&gt;node&lt;/em&gt;，例如，&lt;em&gt;lights&lt;/em&gt;、&lt;em&gt;groups&lt;/em&gt;、&lt;em&gt;viewpoint&lt;/em&gt; 和 &lt;em&gt;objects&lt;/em&gt;。在第一个例子里，我们通过 &lt;em&gt;shape&lt;/em&gt; 简单地定义一个3D物体。我们用 &lt;em&gt;box&lt;/em&gt; 定义这个物体的几何形状。现在，你可以将下面的代码添加在你的 HTML 文件闭合 &lt;em&gt;p&lt;/em&gt; 标签之后：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;x3d&lt;/span&gt; &lt;span class="na"&gt;width=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;600px&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;height=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;400px&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;scene&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;shape&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;box&amp;gt;&amp;lt;/box&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/shape&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/scene&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/x3d&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果你现在在浏览器中打开这个文件，会像下面这样：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="图1    注意box标签没有颜色，所以无法在图中看到" src="https://xutree.github.io/images/fig1.png"&gt;&lt;/p&gt;
+&lt;p&gt;由于 &lt;em&gt;box&lt;/em&gt; 目前没有颜色，所以无法看到它，为了看到它我们需要声明 &lt;em&gt;material&lt;/em&gt;，X3DOM 基于 X3D 标准选择了一个白色的 &lt;em&gt;material&lt;/em&gt;，由于网页的背景也是白色的，所以我们看不到它。为了改变 &lt;em&gt;material&lt;/em&gt; 的颜色，我们首先需要在 &lt;em&gt;shape&lt;/em&gt; 中插入 &lt;em&gt;appearance&lt;/em&gt;。在 &lt;em&gt;appearance&lt;/em&gt; 里面，我们就可以插入 &lt;em&gt;material&lt;/em&gt;，利用 &lt;em&gt;material&lt;/em&gt; 的 &lt;em&gt;diffuseColor&lt;/em&gt; 我们可以定义 &lt;em&gt;material&lt;/em&gt; 的颜色，我们现在将它定义为 RGB 颜色的红色：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;shape&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;material&lt;/span&gt; &lt;span class="na"&gt;diffuseColor=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;1 0 0&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/material&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;box&amp;gt;&amp;lt;/box&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/shape&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;现在，在你的浏览器中，网页将变成：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="图2    现在 *box* 具有红色的 *material*" src="https://xutree.github.io/images/fig2.png"&gt;&lt;/p&gt;
+&lt;p&gt;现在，你可以利用鼠标进行交互了。按住鼠标左键并移动鼠标，你可以旋转视角，按住鼠标右键并移动鼠标，你可以放大和缩小。&lt;/p&gt;
+&lt;p&gt;我们继续在这个 &lt;em&gt;scene&lt;/em&gt; 中添加两个物体：一个蓝色的球体和一个绿色的圆锥。这和我们添加 &lt;em&gt;box&lt;/em&gt; 类似，但是，在 &lt;em&gt;sphere&lt;/em&gt; 和 &lt;em&gt;cone&lt;/em&gt; 节点处，我们需要移动球和圆锥以避免他们相互重叠，因为所有的 3D 物体都默认不进行任何的坐标转换，也就是说它们会重叠在一起。像X3D和其他的图像相关标准(例如，OpenGL)一样，X3DOM 的坐标系统 Y 轴指向上，X 轴指向右，Z 轴指向外：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="图3  X3DOM的坐标系统" src="https://xutree.github.io/images/fig3.png"&gt;&lt;/p&gt;
+&lt;p&gt;在添加绿色圆锥之前，我们将坐标往左移动3个单位；在添加蓝色球之前，我们将坐标往右移动3个单位。如下所示：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;shape&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;material&lt;/span&gt; &lt;span class="na"&gt;diffuseColor=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;1 0 0&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/material&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;box&amp;gt;&amp;lt;/box&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/shape&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;transform&lt;/span&gt; &lt;span class="na"&gt;translation=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;-3 0 0&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;shape&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;material&lt;/span&gt; &lt;span class="na"&gt;diffuseColor=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;0 1 0&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/material&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;cone&amp;gt;&amp;lt;/cone&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/shape&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/transform&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;transform&lt;/span&gt; &lt;span class="na"&gt;translation=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;3 0 0&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;shape&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;material&lt;/span&gt; &lt;span class="na"&gt;diffuseColor=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;0 0 1&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/material&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/appearance&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;sphere&amp;gt;&amp;lt;/sphere&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/shape&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/transform&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;现在，在你的浏览器中，你将看到如下内容：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="图4 三个物体" src="https://xutree.github.io/images/fig4.png"&gt;&lt;/p&gt;
+&lt;p&gt;如果你在浏览器中看到了上图的结果，恭喜你！你刚刚使用了一系列的 X3D &lt;em&gt;node&lt;/em&gt; 创建了你的第一个 X3DOM &lt;em&gt;scene&lt;/em&gt;。&lt;/p&gt;</content><category term="X3DOM"></category></entry><entry><title>X3DOM 第一课</title><link href="https://xutree.github.io/pages/2018/10/04/X3DOM%E7%AC%AC%E4%B8%80%E8%AF%BE/" rel="alternate"></link><published>2018-10-04T11:31:00+08:00</published><updated>2018-10-06T21:13:34+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-04:/pages/2018/10/04/X3DOM第一课/</id><summary type="html">&lt;p&gt;下面的指南可以作为 X3DOM 使用者和开发者的入门资料。本指南包括许多重要的内容，例如怎么配置你的环境去运行 X3DOM 的示例。如果你没有足够的时间阅读这篇入门文章，又或许你已经熟悉一点关于 X3D 的知识，你可以迅速的浏览下第3部分和第4部分的一些内容去设置你的环境，然后根据&lt;a href="https://doc.x3dom.org/tutorials/index.html"&gt;tutorials&lt;/a&gt;的指导去完成你的第一个 X3DOM 应用。&lt;/p&gt;
+&lt;h2&gt;背景：什么是X3DOM，它可以用来做什么？&lt;/h2&gt;
+&lt;h3&gt;无需插件即可在浏览器中显示的3D场景&lt;/h3&gt;
+&lt;p&gt;X3DOM（发音：“X-Freedom”）是一个开源的 JaveScript 框架，用于在网页中创建 declarative 3D 场景。由于它基于标准的浏览器技术，你的浏览器不需要其他任何插件就可以显示 X3DOM 场景。概括地说，declarative 3D 意味着你可以使用结构化的文本表示去创建和显示 3D 场景，而不需要去编写代码。在 X3DOM 中，这种文本表示是表示网页的 HTML 文件的一部分。也就是说，3D …&lt;/p&gt;</summary><content type="html">&lt;p&gt;下面的指南可以作为 X3DOM 使用者和开发者的入门资料。本指南包括许多重要的内容，例如怎么配置你的环境去运行 X3DOM 的示例。如果你没有足够的时间阅读这篇入门文章，又或许你已经熟悉一点关于 X3D 的知识，你可以迅速的浏览下第3部分和第4部分的一些内容去设置你的环境，然后根据&lt;a href="https://doc.x3dom.org/tutorials/index.html"&gt;tutorials&lt;/a&gt;的指导去完成你的第一个 X3DOM 应用。&lt;/p&gt;
+&lt;h2&gt;背景：什么是X3DOM，它可以用来做什么？&lt;/h2&gt;
+&lt;h3&gt;无需插件即可在浏览器中显示的3D场景&lt;/h3&gt;
+&lt;p&gt;X3DOM（发音：“X-Freedom”）是一个开源的 JaveScript 框架，用于在网页中创建 declarative 3D 场景。由于它基于标准的浏览器技术，你的浏览器不需要其他任何插件就可以显示 X3DOM 场景。概括地说，declarative 3D 意味着你可以使用结构化的文本表示去创建和显示 3D 场景，而不需要去编写代码。在 X3DOM 中，这种文本表示是表示网页的 HTML 文件的一部分。也就是说，3D 内容成为了网页元素的一部分，就像网页中的文本、链接、图片和视频一样。&lt;/p&gt;
+&lt;h3&gt;X3DOM = X3D + DOM&lt;/h3&gt;
+&lt;p&gt;X3DOM 这个名字是由两个缩写组合而成。第一个缩写是&lt;a href="http://www.web3d.org/x3d/what-x3d"&gt;X3D&lt;/a&gt;（“Extensible 3D Graphics”），指代一个 3D 图形的免版税 ISO 标准。第二个缩写是&lt;a href="https://www.w3.org/DOM/"&gt;DOM&lt;/a&gt;（“Document Object Model”），描述与HTML文档的内容相关联的交互概念和分层表示。X3DOM 使用 X3D 的一个专门的子集（所谓的&lt;a href="https://www.x3dom.org/nodes-2/"&gt;HTML Profile&lt;/a&gt;）来作为网页内 3D 内容的描述语言。X3D（OM)元素可以通过 DOM 操作，就像其他的 HTML 元素一样。例如，你可以动态地改变一个 3D 物体的颜色通过 JavaScript 调用相应 DOM 元素的 &lt;em&gt;setAttribute(...)&lt;/em&gt; 函数，这就像你可以动态改变一个普通网页里一个标签的内容一样。&lt;/p&gt;
+&lt;h3&gt;使用 X3DOM 的原因&lt;/h3&gt;
+&lt;p&gt;使用 X3DOM 而不是其他的基于浏览器的库或者 X3D 播放器是因为 X3DOM 具有以下几个优势：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;显示 X3DOM 场景不需要额外插件，因为 X3DOM 是完全基于标准浏览器技术，例如&lt;a href="http://www.w3schools.com/html/html5_intro.asp"&gt;HTML5&lt;/a&gt;和&lt;a href="http://get.webgl.org/"&gt;WebGL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;基于 ISO 标准 X3D 的一种新的 HTML 配置，X3DOM 绝大部分都是标准一致的。这大大方便了 X3DOM 的学习&lt;/li&gt;
+&lt;li&gt;从2009年至今，X3DOM 已经具有了很大的使用者和开发者群体&lt;/li&gt;
+&lt;li&gt;如果你知道怎么创建简单的网页，你就可以利用你现有的关于 HTML 和 DOM 的知识，而不需要学习新的 API&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;怎么做？&lt;/h3&gt;
+&lt;p&gt;如果你想开发你的第一个 X3DOM 应用，你只需要一个浏览器和一个文本编辑器。当然，你也可以选择功能更多的 HTML 和 JavaScript 开发环境，比如&lt;a href="http://www.jetbrains.com/webstorm/"&gt;WebStorm&lt;/a&gt;。&lt;/p&gt;
+&lt;h2&gt;一些基本 X3D 概念：Nodes、Components 和 Profiles&lt;/h2&gt;
+&lt;h3&gt;X3D Nodes&lt;/h3&gt;
+&lt;p&gt;X3D 定义每一个 3D 场景都是由一组 node 组成。每一个 node 代表 3D 场景中一个确定的部分：光线、物体、物体表面的材质等等。场景里的所用 node 排列成树结构或者图结构，整体结构被叫做 &lt;em&gt;scene-graph&lt;/em&gt;。每一个 node 的行为，比如材质的颜色，可以通过node的 &lt;em&gt;fields&lt;/em&gt; 设置。例如，一个用来设置某物体表面颜色为红色（RGB编码 1 0 0）的node的 XML 描述为：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;Material&lt;/span&gt; &lt;span class="na"&gt;diffuseColor=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;1 0 0&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/Material&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;你可能已经意识到，描述 X3D node 的 XML 很像常规的 HTML 代码，属性值 &lt;em&gt;diffuseColor&lt;/em&gt; 的设置也像 HTML 属性的设置一样。事实上，如果你熟悉 HTML，那么就很容易理解 X3DOM 中的 node 了。你可以在&lt;a href="https://doc.x3dom.org/tutorials/index.html"&gt;tutorials&lt;/a&gt;中学习怎样使用 node。如果你想了解更多 X3D 中 node 的概念，可以参考&lt;a href="https://doc.x3dom.org/index.html#X3DExternalDoc"&gt;external X3D documentation resources&lt;/a&gt;。&lt;/p&gt;
+&lt;h3&gt;X3D Components&lt;/h3&gt;
+&lt;p&gt;一组具有相同功能的 node 称为 components。例如定义光线的 node，&lt;em&gt;PointLight&lt;/em&gt; 和 &lt;em&gt;SpotLight&lt;/em&gt;，在 &lt;em&gt;Lighting&lt;/em&gt; component 里。关于 Components 的全部信息可以在&lt;a href="https://doc.x3dom.org/node/Components.html"&gt;这里&lt;/a&gt;找到。&lt;/p&gt;
+&lt;h3&gt;X3D Profiles 和 X3DOM HTML Profile&lt;/h3&gt;
+&lt;p&gt;X3D 标准定义了大量的 node，一些特殊用途的 node 对大多说用户来说并不重要。因此，X3D 引入了 profile 的概念，把许多组 node 放在一起成为一个包，每一个包代表一类特殊的应用。例如，&lt;em&gt;CAD&lt;/em&gt; 包，&lt;em&gt;Immersive&lt;/em&gt; 包是用于交互环境的。profile 是在 component 之上的一个概念。&lt;/p&gt;
+&lt;p&gt;X3DOM 使用的 X3D component 经过十分仔细的选择，以提供一个最合适的 X3D 子集来满足现代 HTML 应用的需要。X3DOM 通过定义一个特殊的 profile，即 HTML profile，来解决这一问题。这个 HTML profile 也包括一些处于试验阶段的 X3D 没有的 node 和 filed，这些 node 和 filed 是专门为 X3DOM 设计的。具体来说，有些 X3D node 在 X3DOM 里没有，而有些 node X3DOM 里有但是 X3D 里没有。你可以在&lt;a href="https://doc.x3dom.org/author/index.html"&gt;这里&lt;/a&gt;找到每个 node 的起源。如果你想学习更多关于 HTML profile 的知识以及它与现有的 X3D component、profile 的关系，可以查看&lt;a href="http://www.x3dom.org/?page_id=158"&gt;这里&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;最后，X3DOM 也提供一些不在原始HTML profile 中的 X3D node。这些 node 不在 X3DOM 的标准发行版本中，只在 &lt;em&gt;X3DOM-Full&lt;/em&gt; 版本中。&lt;/p&gt;
+&lt;h2&gt;选择一个 X3DOM 版本&lt;/h2&gt;
+&lt;h3&gt;版本和 Components&lt;/h3&gt;
+&lt;p&gt;有许多可供选择的 X3DOM 版本，你可能想知道对特殊的目的哪一个才是最好的。一般来讲，我们推荐最新的 release 版本。但是，如果你需要采用的新特性在 release 版中没有，那么 dev 版本可能更适合你。当你完成了网页应用的主要开发工作进而部署时，你可能需要用来开发的 X3DOM 的版本信息。你也可能，出于某种原因需要老版本的 X3DOM，比如你的网页应用包含了一些试验特性只在老版本出现，而在新版本中被移除了。&lt;/p&gt;
+&lt;p&gt;所有的 X3DOM release 版本，包括 dev 版本，都被打包好了，里面包括一个 JavaScript 文件（如 x3dom.js），一个 css文件（如 x3dom.css）和一个可选的 shockwave 文件（如 x3dom.swf，对于那些支持 flash 的版本），可在&lt;a href="http://x3dom.org/download/"&gt;这里&lt;/a&gt;下载：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;版本1.0到1.2的文件以 x3dom-v 标记，后面跟着版本号（如&lt;a href="http://x3dom.org/download/x3dom-v1.1.js"&gt; http://x3dom.org/download/x3dom-v1.1.js&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;从版本1.3开始，x3dom.js, x3dom.css, x3dom.swf 和一个 .zip 存档文件b被放置在一个以版本号为名字的子文件夹里（如&lt;a href="http://x3dom.org/download/1.3/x3dom.js"&gt; http://x3dom.org/download/1.3/x3dom.js&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;从版本1.3开始，一些 HTML profile 之外的 component 出现了。这些 component 在文件 x3dom-full.js 中。如果你只需要使用其中一个 component，你也可以考虑仍使用 x3dom.js 然后包含所需的 component 的文件（如&lt;a href="http://x3dom.org/download/1.3/components/"&gt; http://x3dom.org/download/1.3/components/&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;最新的稳定 release 版总是位于：&lt;a href="http://x3dom.org/release/x3dom.js"&gt;http://x3dom.org/release/x3dom.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;目前的 development 版本总是位于 dec 子文件夹：&lt;a href="http://x3dom.org/download/dev/x3dom.js"&gt;http://x3dom.org/download/dev/x3dom.js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为使用最新版本 release X3DOM，你可以在你的HTML页面中包含下面的标签：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.x3dom.org/release/x3dom.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.x3dom.org/release/x3dom.css&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;为使用最新的 development 版本，使用下面的标签：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.x3dom.org/download/dev/x3dom.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.x3dom.org/download/dev/x3dom.css&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;为使用版本1.5的 X3DOM-Full 版本，使用下面的标签：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.x3dom.org/download/1.5/x3dom-full.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.x3dom.org/download/1.5/x3dom.css&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;最后，为使用1.3版本的 release X3DOM 和额外的 Geospatial component 和另外的 flash 支持，使用下面的标签：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.x3dom.org/download/1.3/x3dom.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.x3dom.org/download/1.3/components/Geospatial.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.x3dom.org/download/1.3/x3dom.swf&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.x3dom.org/download/1.3/x3dom.css&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Debugging&lt;/h3&gt;
+&lt;p&gt;如果在 debug 你的应用的时候你想看到 X3DOM 的源码，只需将 x3dom.js 替换成 x3dom.debug.js 或者将 x3dom-full.js 替换成 x3dom-full.debug.js。其注意，此特性只适用于版本1.4以后的 X3DOM。相比于常规版本，debug 版本包含缩进和注释，所以比较大。所以，当你最终发布你的 Web 应用时，请不要使用 debug 版本的 js。&lt;/p&gt;
+&lt;h2&gt;运行 X3DOM 应用&lt;/h2&gt;
+&lt;h3&gt;通过简单的 Python 服务器&lt;/h3&gt;
+&lt;p&gt;一个简便的方法在服务器上来测试你的 Web 应用是使用 Python 的 HTTP 服务器模块。你只需要安装一个 Python 解释器。你可以在&lt;a href="http://python.org/"&gt;这里&lt;/a&gt;下载。你可以用 Python 做许多有趣的事情。首先，打开命令行窗口，定位到 X3DOM 文件夹。如果你的 Python 是2.X版本，你可以使用 &lt;em&gt;SimpleHTTP&lt;/em&gt; 服务器模块如下所示：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python -m SimpleHTTPServer
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果你的 Python 是3.x版本，如下所示：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python3 -m http.server
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;默认情况下，服务器使用8000端口。如果你想改变端口，直接在命令后面加上端口号即可，例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python -m SimpleHTTPServer 8023
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后，通过浏览器输入如下地址就可以到达你的服务器：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;http://localhost:8023
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果你在启动 Python 服务器的文件夹里放置了 index.html 文件，那么这个文件的内容就会显示在浏览器窗口里。否则，你会看到服务器所在文件夹内的文件列表。&lt;/p&gt;
+&lt;h3&gt;在 Web 服务器上运行 X3DOM&lt;/h3&gt;
+&lt;p&gt;通常，你会在Web服务器上运行你的 X3DOM 应用，本节针对一些普通的 Web 服务器，如 Apache 和 IIS，给出具体的方法。&lt;/p&gt;
+&lt;p&gt;Apache 是使用最多的 Web 服务器。它是开源的可以在&lt;a href="http://httpd.apache.org/"&gt;这里&lt;/a&gt;下载。最新版本是2.4，但是版本2.2仍然被支持。&lt;/p&gt;
+&lt;p&gt;如果你的应用需要一整套 Web 服务器组件，我们推荐&lt;a href="https://www.apachefriends.org/index.html"&gt;XAMPP&lt;/a&gt;，它包含 Apache、MySQL、PHP 和 Perl 的最新发行版。&lt;/p&gt;
+&lt;p&gt;互联网信息服务（IIS）被集成在微软的任何的最新版本的 Windows 当中。但是，对于非服务器操作系统，同时连接数会受到限制。&lt;/p&gt;</content><category term="X3DOM"></category></entry><entry><title>安装 Pelican</title><link href="https://xutree.github.io/pages/2018/10/04/%E5%9C%A8mac%E4%B8%8A%E5%AE%89%E8%A3%85Pelican/" rel="alternate"></link><published>2018-10-04T10:20:00+08:00</published><updated>2018-10-06T21:15:21+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-04:/pages/2018/10/04/在mac上安装Pelican/</id><summary type="html">&lt;h2&gt;安装 Pelican&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;目前支持最好的是 Python 2.7 和 3.3+，早期版本的 Python 已经不支持了。有许多不同的方法可以安装 Pelican，最简单的方法是使用 pip，在终端输入：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    pip install pelican
 &lt;/pre&gt;&lt;/div&gt;
