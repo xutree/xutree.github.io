@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-09T20:38:15+08:00</updated><entry><title>C++ Primer 第七章 类</title><link href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/" rel="alternate"></link><published>2018-10-09T20:38:15+08:00</published><updated>2018-10-09T20:38:15+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-09:/pages/2018/10/09/C++_Primer_Chapter_7/</id><summary type="html">&lt;p&gt;类的基本思想是数据抽象和封装。&lt;/p&gt;
-&lt;p&gt;数据抽象是一种依赖于接口和实现分离的编程（以及设计）技术。累的接口包括用户可以执行的操作，类的实现包括类的数据成员，负责接口实现的函数体以及定义类所需的各种私有函数。&lt;/p&gt;
+&lt;p&gt;数据抽象是一种依赖于接口和实现分离的编程（以及设计）技术。类的接口包括用户可以执行的操作，类的实现包括类的数据成员，负责接口实现的函数体以及定义类所需的各种私有函数。&lt;/p&gt;
 &lt;p&gt;封装实现了类的接口和实现的分离。封装后的类隐藏了它的实现细节，类的用户只能使用接口而无法访问实现部分。&lt;/p&gt;
 &lt;h2&gt;类的定义&lt;/h2&gt;
 &lt;p&gt;定义在类内部的函数时隐式&lt;code&gt;inline&lt;/code&gt;的。&lt;/p&gt;
@@ -13,7 +13,7 @@
 &lt;p&gt;编译器分两步处理类：首先编译成员的声明，然后才轮到成员函数体（如果有的话）。因此，成员函数体可以随意使用类中的其他成员而无须在意这些成员出现的顺序。&lt;/p&gt;
 &lt;p&gt;编译器处理完类中的全部声明后才会处理成员函数的定义。&lt;/p&gt;
 &lt;p&gt;这种两阶段的处理方式只适用于成员函数中使用的名字。声明中使用的名字，包括返回类型或者参数列表中使用的名字，都必须在使用前确保可见。如果某个成员的声明使用了类中尚未出现的名字，则编译器将会在定义该类的作用域中继续查找 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;类的基本思想是数据抽象和封装。&lt;/p&gt;
-&lt;p&gt;数据抽象是一种依赖于接口和实现分离的编程（以及设计）技术。累的接口包括用户可以执行的操作，类的实现包括类的数据成员，负责接口实现的函数体以及定义类所需的各种私有函数。&lt;/p&gt;
+&lt;p&gt;数据抽象是一种依赖于接口和实现分离的编程（以及设计）技术。类的接口包括用户可以执行的操作，类的实现包括类的数据成员，负责接口实现的函数体以及定义类所需的各种私有函数。&lt;/p&gt;
 &lt;p&gt;封装实现了类的接口和实现的分离。封装后的类隐藏了它的实现细节，类的用户只能使用接口而无法访问实现部分。&lt;/p&gt;
 &lt;h2&gt;类的定义&lt;/h2&gt;
 &lt;p&gt;定义在类内部的函数时隐式&lt;code&gt;inline&lt;/code&gt;的。&lt;/p&gt;
