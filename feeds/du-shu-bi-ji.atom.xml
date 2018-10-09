@@ -1,5 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-09T12:06:33+08:00</updated><entry><title>C++ Primer 第五章 语句</title><link href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/" rel="alternate"></link><published>2018-10-09T12:06:33+08:00</published><updated>2018-10-09T12:06:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-09:/pages/2018/10/09/C++_Primer_Chapter_5/</id><summary type="html">&lt;h2&gt;空语句&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-09T15:55:08+08:00</updated><entry><title>C++ Primer 第六章 函数</title><link href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/" rel="alternate"></link><published>2018-10-09T15:55:08+08:00</published><updated>2018-10-09T15:55:08+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-09:/pages/2018/10/09/C++_Primer_Chapter_6/</id><summary type="html">&lt;p&gt;函数是一个命名了的代码块。&lt;/p&gt;
+&lt;h2&gt;函数基础&lt;/h2&gt;
+&lt;p&gt;为了与 C 语言兼容，可以使用关键字&lt;code&gt;void&lt;/code&gt;表示函数没有形参。&lt;/p&gt;
+&lt;p&gt;函数的返回值不能是数组或者函数类型，但可以返回指向数组和函数的指针。&lt;/p&gt;
+&lt;p&gt;自动对象：只存在于块执行期间的对象。当块的执行结束后，块中创建的自动对象的值就变成未定义的了。&lt;/p&gt;
+&lt;p&gt;局部静态对象：在程序执行路径第一次经过对象定义语句时初始化，并且直到程序终止才销毁。如果没有显示初始化，则执行值初始化，内置类型的局部静态变量初始化为0。&lt;/p&gt;
+&lt;h2&gt;参数传递&lt;/h2&gt;
+&lt;p&gt;值传递和引用传递。&lt;/p&gt;
+&lt;p&gt;当某种类型不支持拷贝操作时，函数只能通过引用形参访问该类型的对象。如 IO 类型。&lt;/p&gt;
+&lt;h3&gt;const 形参和实参&lt;/h3&gt;
+&lt;p&gt;如果函数无须改变引用形参的值，最好将其声明为常量引用。&lt;/p&gt;
+&lt;p&gt;此外，使用引用而非常量引用也会极大地限制函数所能接受的实参类型。例如，我们不能把&lt;code&gt;const&lt;/code&gt;对象、字面值或者需要类型转换的对象传递给普通的引用形参，这种绝不像看起来那么简单，它可能造成出人意料的后果。考虑如下函数：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;string&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;size_type&lt;/span&gt; &lt;span class="nt"&gt;find_char&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nt"&gt;s&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;char&lt;/span&gt; &lt;span class="nt"&gt;c&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;string&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;size_type …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;函数是一个命名了的代码块。&lt;/p&gt;
+&lt;h2&gt;函数基础&lt;/h2&gt;
+&lt;p&gt;为了与 C 语言兼容，可以使用关键字&lt;code&gt;void&lt;/code&gt;表示函数没有形参。&lt;/p&gt;
+&lt;p&gt;函数的返回值不能是数组或者函数类型，但可以返回指向数组和函数的指针。&lt;/p&gt;
+&lt;p&gt;自动对象：只存在于块执行期间的对象。当块的执行结束后，块中创建的自动对象的值就变成未定义的了。&lt;/p&gt;
+&lt;p&gt;局部静态对象：在程序执行路径第一次经过对象定义语句时初始化，并且直到程序终止才销毁。如果没有显示初始化，则执行值初始化，内置类型的局部静态变量初始化为0。&lt;/p&gt;
+&lt;h2&gt;参数传递&lt;/h2&gt;
+&lt;p&gt;值传递和引用传递。&lt;/p&gt;
+&lt;p&gt;当某种类型不支持拷贝操作时，函数只能通过引用形参访问该类型的对象。如 IO 类型。&lt;/p&gt;
+&lt;h3&gt;const 形参和实参&lt;/h3&gt;
+&lt;p&gt;如果函数无须改变引用形参的值，最好将其声明为常量引用。&lt;/p&gt;
+&lt;p&gt;此外，使用引用而非常量引用也会极大地限制函数所能接受的实参类型。例如，我们不能把&lt;code&gt;const&lt;/code&gt;对象、字面值或者需要类型转换的对象传递给普通的引用形参，这种绝不像看起来那么简单，它可能造成出人意料的后果。考虑如下函数：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;string&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;size_type&lt;/span&gt; &lt;span class="nt"&gt;find_char&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nt"&gt;s&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;char&lt;/span&gt; &lt;span class="nt"&gt;c&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;string&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;size_type&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nt"&gt;occurs&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;则只能将 find_char 函数用于&lt;code&gt;string&lt;/code&gt;对象。类似下面的调用将在编译时发生错误：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;find_char(&amp;quot;Hello World&amp;quot;, &amp;#39;o&amp;#39;, ctr);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;还有一个更难察觉的问题。假如其它函数（正确的）将它们的形参定义成常量引用，那么上述的 find_char 函数无法在此类函数中正常使用。例如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;bool&lt;/span&gt; &lt;span class="nt"&gt;is_sentence&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;const&lt;/span&gt; &lt;span class="nt"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nt"&gt;s&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;size_type&lt;/span&gt; &lt;span class="n"&gt;ctr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="err"&gt;return&lt;/span&gt; &lt;span class="err"&gt;find_char(s,&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;.&amp;#39;,&lt;/span&gt; &lt;span class="err"&gt;ctr)&lt;/span&gt; &lt;span class="err"&gt;==&lt;/span&gt; &lt;span class="err"&gt;s.size()&lt;/span&gt; &lt;span class="err"&gt;-&lt;/span&gt; &lt;span class="err"&gt;1&lt;/span&gt; &lt;span class="err"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="err"&gt;ctr&lt;/span&gt; &lt;span class="err"&gt;==&lt;/span&gt; &lt;span class="err"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;正确的修改思路是改正 find_char 函数的形参。如果实在不能修改 find_char，就在 is_sentence 内部定义一个&lt;code&gt;string&lt;/code&gt;类型的变量，令其为 s 的副本，然后把这个对象传递给 find_char。&lt;/p&gt;
+&lt;p&gt;用实参初始化形参时，会忽略顶层&lt;code&gt;const&lt;/code&gt;。也就是说，当形参是顶层&lt;code&gt;const&lt;/code&gt;时，传给它常量对象或者非常量对象都是可以的。&lt;/p&gt;
+&lt;p&gt;可以使用一个非常量初始化一个底层&lt;code&gt;const&lt;/code&gt;对象，但反过来不行。&lt;/p&gt;
+&lt;h3&gt;数组形参&lt;/h3&gt;
+&lt;p&gt;数组的两个性质：不允许拷贝数组；使用数组时会将其转换成指针。&lt;/p&gt;
+&lt;p&gt;当我们为函数传递一个数组时，实际上传递的是指向数组首元素的指针。&lt;/p&gt;
+&lt;p&gt;尽管不能以值传递的方式传递数组，但是我们可以把形参写成类似数组的形式：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;void print(const int*);
+void print(const int[]);
+void print(const int[10]);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;尽管表现形式不同，但是上面的三个函数是等价的：每个函数的唯一形参都是&lt;code&gt;const int*&lt;/code&gt;类型的。如果我们传给 print 函数的是一个数组，则实参自动的转换成指向数组首元素的指针，数组的大小对函数的调用没有影响。&lt;/p&gt;
+&lt;p&gt;因为数组是以指针的形式传递给函数的，所以一开始函数并不知道数组的确切尺寸，调用者应该为此提供一些额外的信息：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用标记指定数组长度：让数组本身包含一个结束标记，例如 C 风格字符串&lt;/li&gt;
+&lt;li&gt;使用标准库规范，&lt;code&gt;begin()&lt;/code&gt;和&lt;code&gt;end()&lt;/code&gt;函数&lt;/li&gt;
+&lt;li&gt;显示传递一个表示数组大小的形参&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当函数不需要对数组元素执行写操作的时候，数组形参应该是指向&lt;code&gt;const&lt;/code&gt;的指针，注意下面的函数只能作用于大小为10的数组&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;void print(int (&amp;amp;arr)[10])
+{
+        for (auto elem : arr)
+                cout &amp;lt;&amp;lt; elem &amp;lt;&amp;lt; endl;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;main：处理命令行选项&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;int main(int argc, char *argv[]) { ... }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;第二个形参 argv 是一个数组，它的元素是指向 C 风格字符串的指针；第一个形参 argc 表示数组中字符串的数量。因为第二个形参是数组，所以 main 函数也可以定义成：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;int main(int argc, char **argv) { ... }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;当实参传给 main 函数之后，argv 的第一个元素指向程序的名字或者一个空字符串，接下来的元素依次传递命令行提供的实参，最后一个指针之后的元素值保证为0。&lt;/p&gt;
+&lt;h3&gt;含有可变形参的函数&lt;/h3&gt;
+&lt;p&gt;为了编写能够处理不同数量实参的函数，C++11 新标准提供了两种主要的方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果所有实参类型相同，可以传递一个名为&lt;code&gt;initializer_list&lt;/code&gt;的标准库类型&lt;/li&gt;
+&lt;li&gt;如果实参的类型不同，可以编写可变参数模板&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;C++ 还有一种特殊的形参类型（即省略号），可以用它传递可变数量的实参，不过需要注意的是，这种功能一般只用于与 C 函数交互的接口程序&lt;/p&gt;
+&lt;h4&gt;initializer_list 形参&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;initializer_list&lt;/code&gt;类型定义在同名的头文件中。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;initializer_list&lt;/code&gt;是一种类型模板，提供的操作如下：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;initializer_list &amp;lt;T&amp;gt; lst;&lt;/code&gt;默认初始化；T 类型元素的空列表。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;initializer_list &amp;lt;T&amp;gt; lst{a,b,c...};&lt;/code&gt;lst 的元素数量和初始值一样多；lst 的元素是对应初始值的副本；列表中的元素是 const。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;lst2(lst);&lt;/code&gt;拷贝或赋值一个&lt;code&gt;initializer_list&lt;/code&gt;对象不会拷贝列表中的元素；拷贝后，原始列表和副本共享元素。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;lst2 = lst;&lt;/code&gt;等价于&lt;code&gt;lst2(lst)&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;lst.size();&lt;/code&gt;列表中的元素数量。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;lst.begin();&lt;/code&gt;返回指向 lst 中首元素的指针。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;lst.end();&lt;/code&gt;返回指向 lst 中尾元素下一位置的指针。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;initializer_list&lt;/code&gt;和&lt;code&gt;vector&lt;/code&gt;一样，也是类型模板，定义&lt;code&gt;initializer_list&lt;/code&gt;对象时，必须说明列表中所含对象的类型。和&lt;code&gt;vector&lt;/code&gt;不一样的是，&lt;code&gt;initializer_list&lt;/code&gt;对象中的元素永远是常量值。&lt;/p&gt;
+&lt;p&gt;如果想向&lt;code&gt;initializer_list&lt;/code&gt;形参中传递一个值的序列，则必须把序列放在一对花括号内：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//expected和actual是string对象
+if (expected != actual)
+        error_msg({&amp;quot;functionX&amp;quot;, expected, actual});
+else
+        error_msg({&amp;quot;functionX&amp;quot;, &amp;quot;okay&amp;quot;});
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;省略符形参&lt;/h4&gt;
+&lt;p&gt;省略符形参是为了便于 C++ 程序访问某些特殊的 C 代码而设置的，这些代码使用了名为 varargs 的 C 标准库功能。通常，省略符形参不应用于其他目的。你的 C 编译器文档会描述如何使用 varargs。&lt;/p&gt;
+&lt;p&gt;省略符形参只能出现在形参列表的最后一个位置，无外乎两种形式，在第一种形式中，形参声明后面的逗号是可选的：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;void foo(parm_list,...);
+void foo(...);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;返回类型和 return 语句&lt;/h2&gt;
+&lt;p&gt;返回&lt;code&gt;void&lt;/code&gt;的函数不要求非得有&lt;code&gt;return&lt;/code&gt;语句，以为这类函数的最后一句会隐式的执行&lt;code&gt;return&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;返回的值用于初始化调用点的一个临时量，该临时量就是函数调用的结果。&lt;/p&gt;
+&lt;p&gt;不要返回局部对象的引用或指针。&lt;/p&gt;
+&lt;p&gt;调用一个返回引用的函数得到左值，其他返回类型得到右值。&lt;/p&gt;
+&lt;p&gt;C++ 11新标准规定，函数可以返回花括号包围的值的列表，类似于其他返回结果，此处的列表也用来对表示函数返回的临时量进行初始化。如果列表为空，临时量执行值初始化。如果函数返回的是内置类型，则花括号包围的列表最多包含一个值，且该值所占空间不应该大于目标类型的空间。如果返回的是类类型，由类本身定义初始值如何使用。&lt;/p&gt;
+&lt;p&gt;如果控制语句到达了 main 函数的结尾处而且没有&lt;code&gt;return&lt;/code&gt;语句，编译器会隐式的插入一条返回0的&lt;code&gt;return&lt;/code&gt;语句。&lt;/p&gt;
+&lt;p&gt;cstdlib 头文件定义了两个预处理变量表示成功与失败：&lt;code&gt;EXIT_SUCCESS&lt;/code&gt;，&lt;code&gt;EXIT_FAILURE&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;int (*func(int i))[10];&lt;/code&gt;func 是一个函数指针，指向：接受一个&lt;code&gt;int&lt;/code&gt;参数，返回值是包含10个&lt;code&gt;int&lt;/code&gt;数组的地址的函数。也可以利用尾置返回类型（C++ 11）写为：&lt;code&gt;auto func(int i) -&amp;gt; int(*)[10];&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;还有一种情况，如果我们知道函数返回的指针将指向哪个数组，就可以使用&lt;code&gt;decltype&lt;/code&gt;关键字声明返回类型。例如，下面的函数返回一个指针，该指针根据参数i的不同指向两个已知数组中的某一个：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;int odd[] = {1, 3, 5, 7, 9};
+int even[] = {0, 2, 4, 6, 8};
+//返回一个指针，该指针指向含有5个整数的数组
+decltype(odd) *arrPtr(int i)
+{
+        return (i % 2) ? &amp;amp;odd : &amp;amp;even;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;arrPtr 使用关键字&lt;code&gt;decltype&lt;/code&gt;表示它的返回类型是个指针，并且该指针所指的对象与 odd 的类型一致。因为 odd 是数组，所以 arrPtr 返回一个指向含有5个整数的数组的指针。有一个地方需要注意，&lt;code&gt;decltype&lt;/code&gt;并不负责把数组类型转换成对应的指针，所以&lt;code&gt;decltype&lt;/code&gt;的结果是个数组，要想表示 arrPtr 返回指针还必须在函数声明时加一个 * 符号。&lt;/p&gt;
+&lt;h2&gt;函数重载&lt;/h2&gt;
+&lt;h3&gt;顶层 const&lt;/h3&gt;
+&lt;p&gt;顶层&lt;code&gt;const&lt;/code&gt;不影响传入函数的对象。一个用于顶层&lt;code&gt;const&lt;/code&gt;的形参无法和一个没有顶层&lt;code&gt;const&lt;/code&gt;的形参区分开，无法重载：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Record lookup(Phone);
+Record lookup(const Phone);
+//
+Record lookup(Phone*);
+Record lookup(Phone* const);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;底层 const&lt;/h3&gt;
+&lt;p&gt;底层&lt;code&gt;const&lt;/code&gt;可以实现重载。当我们传递一个非常量对象或者指向非常量对象的指针时，编译器会优先选用非常量的版本：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Record lookup(Account&amp;amp;);
+Record lookup(const Account&amp;amp;);
+//
+Record lookup(Account*);
+Record lookup(const Account*);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;const_cast和重载&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//函数1
+const string &amp;amp;shorterString(const string &amp;amp;s1, const strinf &amp;amp;s2)
+{
+        return s1.size() &amp;lt;= s2.size() ? s1 : s2;
+}
+//函数2
+string &amp;amp;shorterString(string &amp;amp;s1, string &amp;amp;s2)
+{
+        auto &amp;amp;r = shorterString(const_cast&amp;lt;const string &amp;amp;&amp;gt;(s1),
+                                const_cast&amp;lt;const string&amp;amp;&amp;gt;(s2));
+        return const_cast&amp;lt;string&amp;amp;&amp;gt;(r);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;函数1的参数和返回类型都是&lt;code&gt;const string&lt;/code&gt;的引用。我们当然可以对两个非常量的&lt;code&gt;string&lt;/code&gt;实参调用这个函数，但返回的结果仍然是&lt;code&gt;const string&lt;/code&gt;的引用。&lt;/p&gt;
+&lt;h3&gt;作用域与重载&lt;/h3&gt;
+&lt;p&gt;编译器首先在当前作用域寻找函数，一旦找到，就会忽略掉外层作用域中的同名实体，剩下的工作就是检查函数调用是否有效了。&lt;/p&gt;
+&lt;p&gt;在C++语言中，名字查找发生在类型检查之前。&lt;/p&gt;
+&lt;h2&gt;特殊用于语言特性&lt;/h2&gt;
+&lt;h3&gt;默认实参&lt;/h3&gt;
+&lt;p&gt;一旦一个形参被赋予了默认值，它后面的所有形参都必须有默认值。&lt;/p&gt;
+&lt;p&gt;在给定的作用域中，一个形参只能被赋予一次默认实参。&lt;/p&gt;
+&lt;p&gt;局部变量不能作为默认实参。&lt;/p&gt;
+&lt;p&gt;用作函数实参的名字在函数声明所在的作用域内解析，而这些名字的求值过程发生在函数调用时：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sz wd = 80;
+char def = &amp;#39;&amp;#39;;
+sz ht();
+string screen(sz = ht(), sz = wd, char = def);
+
+void f()
+{
+    def = &amp;#39;*&amp;#39;;  //改变默认实参的值
+    sz wd = 100;    //隐藏了外层定义的wd，但是没有改变默认值
+    window = screen();  //调用 screen(ht(), 80, &amp;#39;*&amp;#39;)
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;内联函数&lt;/h3&gt;
+&lt;p&gt;以空间换时间。在函数返回类型前面加上关键字&lt;code&gt;inline&lt;/code&gt;。内联说明只是向编译器发出一个请求，编译器可以选择忽略这个请求。&lt;/p&gt;
+&lt;h3&gt;constexpr 函数&lt;/h3&gt;
+&lt;p&gt;能用于常量表达式的函数。函数的返回类型及所有的形参类型都得是字面值类型。函数体中必须有且只有一条&lt;code&gt;return&lt;/code&gt;语句。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;constexpr int new_sz() { return 42; }
+constexpr int foo = new_sz();
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;编译器在程序编译时验证 new_sz 函数的返回类型。执行初始化任务时，编译器把对&lt;code&gt;constexpr&lt;/code&gt;函数的调用替换成其结果值。为了能在编译过程中随时展开，&lt;code&gt;constexpr&lt;/code&gt;函数被隐式指定为内联函数。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;constexpr&lt;/code&gt;函数体内也可以包含其他语句，只要这些语句在运行时不执行任何操作就行，例如，空语句、类型别名及&lt;code&gt;using&lt;/code&gt;声明。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;constexpr&lt;/code&gt;函数不一定返回常量表达式，当把这类函数用在需要常量表达式的上下文中时，会出错。&lt;/p&gt;
+&lt;p&gt;把内联函数和&lt;code&gt;constexpr&lt;/code&gt;函数放在头文件内。&lt;/p&gt;
+&lt;p&gt;和其它函数不一样，内联函数和&lt;code&gt;constexpr&lt;/code&gt;函数可以在程序中多次定义，但是多个定义必须完全一致。&lt;/p&gt;
+&lt;h3&gt;调试帮助&lt;/h3&gt;
+&lt;h4&gt;assert 预处理宏&lt;/h4&gt;
+&lt;p&gt;所谓预处理宏其实是一个预处理变量，它的行为有点类似于内联函数。&lt;code&gt;assert&lt;/code&gt;宏使用一个表达式作为它的条件：&lt;code&gt;assert(expr);&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;首先对 expr 求值，如果表达式为假，&lt;code&gt;assert&lt;/code&gt;输出信息并终止程序的执行。如果表达式为真，&lt;code&gt;assert&lt;/code&gt;什么也不做。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;assert&lt;/code&gt;定义在cassert头文件中，&lt;code&gt;assert&lt;/code&gt;宏常用于检查“不能发生”的条件。&lt;/p&gt;
+&lt;h4&gt;NDEBUG 预处理变量&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;assert&lt;/code&gt;的行为依赖于&lt;code&gt;NDEBUG&lt;/code&gt;预处理变量的状态。如果定义了&lt;code&gt;NDEBUG&lt;/code&gt;，&lt;code&gt;assert&lt;/code&gt;什么都不做，默认情况下没有定义&lt;code&gt;NDEBUG&lt;/code&gt;，&lt;code&gt;assert&lt;/code&gt;将执行运行时检查。我们可以使用一个&lt;code&gt;#define&lt;/code&gt;语句定义&lt;code&gt;NDEBUG&lt;/code&gt;，从而关闭调试状态。同时，很多编译器都提供了一个命令行选项使我们可以定义预处理变量：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ CC -D NDEBUG main.C &lt;span class="c1"&gt;#use /D with the Mocrosoft compiler.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;除了使用&lt;code&gt;assert&lt;/code&gt;外，也可以使用&lt;code&gt;NDEBUG&lt;/code&gt;编写自己的条件调试代码。如果&lt;code&gt;NDEBUG&lt;/code&gt;未定义，将执行&lt;code&gt;#ifndef&lt;/code&gt;和&lt;code&gt;#endif&lt;/code&gt;之间的代码；如果定义了&lt;code&gt;NDEBUG&lt;/code&gt;，这些代码将被忽略掉。&lt;/p&gt;
+&lt;p&gt;编译器为每个函数都定义了&lt;code&gt;__func__&lt;/code&gt;，它是一个&lt;code&gt;const char&lt;/code&gt;局部静态数组，用于存放函数的名字，除了 C++ 编译器定义的&lt;code&gt;__func__&lt;/code&gt;之外，预处理器还定义了另外4个对于程序调试很有用的名字：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;__FILE__&lt;/code&gt; 存放文件名的字符串字面值&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__LINE__&lt;/code&gt; 存放当前行号的整型字面值&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__TIME__&lt;/code&gt; 存放文件编译时间的字符串字面值&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__DATE__&lt;/code&gt; 存放文件编译日期的字符串字面值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;函数匹配&lt;/h2&gt;
+&lt;p&gt;候选函数：函数匹配的第一步是选定本次调用对应的重载函数集。&lt;/p&gt;
+&lt;p&gt;可行函数：形参数量与本次提供的实参数量相等（默认形参可以少于）；每个实参的类型与对应的形参相同，或者可以转换成形参的类型。&lt;/p&gt;
+&lt;p&gt;寻找最佳匹配（如果有的话）：该函数每个实参的匹配都不劣于其他可行函数需要的匹配；至少有一个实参的匹配优于其他可行函数提供的匹配。&lt;/p&gt;
+&lt;p&gt;如果没找到可行函数：编译器报告无匹配函数的错误；如果最佳匹配不唯一，编译器报告二义性错误。&lt;/p&gt;
+&lt;h2&gt;函数指针&lt;/h2&gt;
+&lt;p&gt;要声明一个函数指针，只需要用指针替换函数名：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bool (*pf)(const string &amp;amp;, const string &amp;amp;); //未初始化，pf 两端括号必不可少
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;当把函数名作为一个值使用时，该函数自动转换为指针，也就是说取地址符是可选的。同样，我们可以直接用函数指针调用函数，解引用符也是可选的。&lt;/p&gt;
+&lt;p&gt;不同类型的函数指针之前不存在转换规则。&lt;/p&gt;
+&lt;p&gt;函数指针没有指向任何一个函数：将函数指针赋为0或者 &lt;code&gt;nullptr&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;和数组类似，虽然不能定义函数类型的形参，但是可以定义指向函数的指针。此时，形参看起来是函数，实际上被当成指针使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//形参是函数类型，会自动转化为指向函数的指针
+void test(bool pf(const string &amp;amp;, const string &amp;amp;));
+//等价的定义
+void test(bool (*pf)(const string &amp;amp;, const string &amp;amp;));
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果函数返回指向函数的指针，那么必须显示的将返回类型指定为指针。&lt;/p&gt;</content><category term="C++"></category></entry><entry><title>C++ Primer 第五章 语句</title><link href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/" rel="alternate"></link><published>2018-10-09T12:06:33+08:00</published><updated>2018-10-09T12:06:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-09:/pages/2018/10/09/C++_Primer_Chapter_5/</id><summary type="html">&lt;h2&gt;空语句&lt;/h2&gt;
 &lt;p&gt;使用空语句时应该加上注释，从而令读这段代码的知道该语句是有意省略的。&lt;/p&gt;
 &lt;h2&gt;悬垂 else&lt;/h2&gt;
 &lt;p&gt;C++ 规定&lt;code&gt;else&lt;/code&gt;与离它最近的尚未匹配的&lt;code&gt;if&lt;/code&gt;匹配。&lt;/p&gt;
