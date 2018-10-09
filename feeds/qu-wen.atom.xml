@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 趣闻</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/qu-wen.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-09T11:39:49+08:00</updated><entry><title>几个奇葩的 Linux 命令</title><link href="https://xutree.github.io/pages/2018/10/08/%E5%87%A0%E4%B8%AA%E5%A5%87%E8%91%A9%E7%9A%84Linux%E5%91%BD%E4%BB%A4/" rel="alternate"></link><published>2018-10-08T22:58:12+08:00</published><updated>2018-10-09T11:39:49+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/几个奇葩的Linux命令/</id><summary type="html">&lt;p&gt;Linux 中有一些很奇葩的命令，可能你的发行版默认没有安装，你可以自己安装：&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 趣闻</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/qu-wen.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-09T13:42:30+08:00</updated><entry><title>回车与换行的区别</title><link href="https://xutree.github.io/pages/2018/10/09/%E5%9B%9E%E8%BD%A6%E4%B8%8E%E6%8D%A2%E8%A1%8C%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="alternate"></link><published>2018-10-09T13:42:30+08:00</published><updated>2018-10-09T13:42:30+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-09:/pages/2018/10/09/回车与换行的区别/</id><summary type="html">&lt;p&gt;转载自：&lt;a href="https://www.pythontab.com/html/2017/linuxkaiyuan_0115/1116.html"&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;关于换行和回车其实平时我们不太在意，所以关于两者的区别也不太清楚，在平时开发时可能会遇到一些文件处理的问题，放到不同的操作系统上出现各种坑。那么回车和换行到底有哪些区别呢？今天咱们就来总结一下。&lt;/p&gt;
+&lt;h2&gt;由来&lt;/h2&gt;
+&lt;p&gt;在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的机械打字机，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。&lt;/p&gt;
+&lt;p&gt;于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界，不卷动滚筒；另一个叫做“换行”，告诉打字机把滚筒卷一格，不改变水平位置。&lt;/p&gt;
+&lt;p&gt;这就是“换行”和“回车”的由来。&lt;/p&gt;
+&lt;h2&gt;使用&lt;/h2&gt;
+&lt;p&gt;后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;转载自：&lt;a href="https://www.pythontab.com/html/2017/linuxkaiyuan_0115/1116.html"&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;关于换行和回车其实平时我们不太在意，所以关于两者的区别也不太清楚，在平时开发时可能会遇到一些文件处理的问题，放到不同的操作系统上出现各种坑。那么回车和换行到底有哪些区别呢？今天咱们就来总结一下。&lt;/p&gt;
+&lt;h2&gt;由来&lt;/h2&gt;
+&lt;p&gt;在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的机械打字机，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。&lt;/p&gt;
+&lt;p&gt;于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界，不卷动滚筒；另一个叫做“换行”，告诉打字机把滚筒卷一格，不改变水平位置。&lt;/p&gt;
+&lt;p&gt;这就是“换行”和“回车”的由来。&lt;/p&gt;
+&lt;h2&gt;使用&lt;/h2&gt;
+&lt;p&gt;后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。&lt;/p&gt;
+&lt;p&gt;回车&lt;code&gt;\r&lt;/code&gt;本义是光标重新回到本行开头，r 的英文 return，控制字符可以写成&lt;code&gt;CR&lt;/code&gt;，即 Carriage Return。&lt;/p&gt;
+&lt;p&gt;换行&lt;code&gt;\n&lt;/code&gt;本义是光标往下一行（不一定到下一行行首），n 的英文 newline，控制字符可以写成&lt;code&gt;LF&lt;/code&gt;，即 Line Feed。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;符号&lt;/th&gt;
+&lt;th align="left"&gt;ASCII 码&lt;/th&gt;
+&lt;th align="left"&gt;意义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\n&lt;/td&gt;
+&lt;td align="left"&gt;10&lt;/td&gt;
+&lt;td align="left"&gt;换行 LF&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\r&lt;/td&gt;
+&lt;td align="left"&gt;13&lt;/td&gt;
+&lt;td align="left"&gt;回车 CR&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;在不同的操作系统这几个字符表现不同，比如在 WIN 系统下，这两个字符就是表现的本义，在 UNIX 类系统，换行&lt;code&gt;\n&lt;/code&gt;就表现为光标下一行并回到行首，在 MAC 上，&lt;code&gt;\r&lt;/code&gt;就表现为回到本行开头并往下一行，至于&lt;code&gt;ENTER&lt;/code&gt;键的定义是与操作系统有关的。通常用的&lt;code&gt;Enter&lt;/code&gt;是两个加起来。&lt;/p&gt;
+&lt;p&gt;不同操作系统下的含义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;\n&lt;/code&gt;：UNIX 系统行末结束符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\n\r&lt;/code&gt;：window 系统行末结束符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\r&lt;/code&gt;：MAC OS 系统行末结束符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们经常遇到的一个问题就是，Unix/Mac 系统下的文件在 Windows 里打开的话，所有文字会变成一行；而 Windows 里的文件在 Unix/Mac 下打开的话，在每行的结尾可能会多出一个&lt;code&gt;^M&lt;/code&gt;符号。&lt;/p&gt;
+&lt;h2&gt;软回车和硬回车&lt;/h2&gt;
+&lt;p&gt;硬回车就是普通我们按回车产生的，它在换行的同时也起着段落分隔的作用。&lt;/p&gt;
+&lt;p&gt;软回车是用&lt;code&gt;Shift + Enter&lt;/code&gt;产生的，它换行，但是并不换段，即前后两段文字在 Word 中属于同一“段”。在应用格式时你会体会到这一点。&lt;/p&gt;
+&lt;p&gt;软回车能使前后两行的行间距大幅度缩小，因为它不是段落标记，要和法定的段落标记——硬回车区别出来。硬回车的 html 代码是&lt;code&gt;&amp;lt;p&amp;gt;..&amp;lt;/p&amp;gt;&lt;/code&gt;，段落的内容就夹在里面，而软回车的代码很精悍：&lt;code&gt;&amp;lt;br&amp;gt;&lt;/code&gt;。网页的文字如果复制到 word 中，则硬回车变为弯曲的箭头，软回车变为向下的箭头。&lt;/p&gt;</content></entry><entry><title>几个奇葩的 Linux 命令</title><link href="https://xutree.github.io/pages/2018/10/08/%E5%87%A0%E4%B8%AA%E5%A5%87%E8%91%A9%E7%9A%84Linux%E5%91%BD%E4%BB%A4/" rel="alternate"></link><published>2018-10-08T22:58:12+08:00</published><updated>2018-10-09T11:39:49+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/几个奇葩的Linux命令/</id><summary type="html">&lt;p&gt;Linux 中有一些很奇葩的命令，可能你的发行版默认没有安装，你可以自己安装：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ apt-get install 命令          (Debian)
 [me@linuxbox ~]$ yum install 命令              (Red Hat）
 [me@linuxbox ~]$ brew install 命令            （Mac）
