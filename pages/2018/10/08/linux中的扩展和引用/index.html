@@ -63,6 +63,13 @@
                 <h2>扩展</h2>
 <p>当我们每次在命令行按下<code>Enter</code>键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。</p>
 <p>一个 🌰 :<code>echo *</code>会将当前目录下所有的非隐藏文件名打印出来。</p>
+<h3>单词分隔</h3>
+<p>单词分隔会先查找是否存在空格、制表符以及换行，然后把它们作为单词的界定符（delimiter）。所以下面的命令后面跟着4个不同的参数：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo this is a test
+this is a test
+</pre></div>
+
+
 <h3>路径名扩展</h3>
 <p>通过使用通配符来实现扩展的机制称为路径名扩展（pathname expansion）。</p>
 <h3>波浪线扩展（~）</h3>
@@ -319,6 +326,72 @@ jpg.JPG
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">/%</span><span class="n">JPG</span><span class="o">/</span><span class="n">jpg</span><span class="cp">}</span>
 JPG.jpg
 </pre></div>
+
+
+<h3>命令替换</h3>
+<p>命令替换可以把一个命令的输出作为一个扩展模式使用：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ ls -l $(which cp)
+-rwxr-xr-x  1 root  wheel  29008 10 26  2017 /bin/cp
+</pre></div>
+
+
+<p>在早期的 shell 程序中，存在命令替换的另一种语法，bash 也支持这种格式。它用反引号代替美元符号和括号：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ ls -l `which cp`
+-rwxr-xr-x  1 root  wheel  29008 10 26  2017 /bin/cp
+</pre></div>
+
+
+<h2>引用</h2>
+<p>引用主要用于控制扩展。</p>
+<h3>双引号</h3>
+<p>如果把文本放在双引号中，那么 shell 使用的所有特殊字符都被看成普通字符，除了 “$（美元符号）”，“\（反斜杠）”，“`（反引号）” 除外。</p>
+<p>单词分隔、路径名扩展、波浪线扩展、花括号扩展都失效。</p>
+<p>参数扩展、算术扩展、命令替换仍然有效。</p>
+<p>使用双引号可以阻止单词分隔，这可以用来处理包含空白的文件名。</p>
+<h3>单引号</h3>
+<p>抑制所有扩展。</p>
+<h3>转义字符</h3>
+<p>转义字符通常用在双引号中用来有选择性的阻止扩展。</p>
+<h2>关于反斜杠转义字符（backslash escape sequence）</h2>
+<p>反斜杠除了作为转义字符外，也是一种表示法的一部分。ASCII 码表的前32个字符用来向电传打字类设备传送命令。</p>
+<table>
+<thead>
+<tr>
+<th align="left">转义字符</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">\a</td>
+<td align="left">响铃（警告声——计算机发出哔哔声）</td>
+</tr>
+<tr>
+<td align="left">\b</td>
+<td align="left">退格</td>
+</tr>
+<tr>
+<td align="left">\n</td>
+<td align="left">新的一行（在类 UNIX 系统中，产生的是换行效果</td>
+</tr>
+<tr>
+<td align="left">\r</td>
+<td align="left">回车</td>
+</tr>
+<tr>
+<td align="left">\t</td>
+<td align="left">制表</td>
+</tr>
+</tbody>
+</table>
+<p>在<code>echo</code>命令中带上 -e 选项，就能够解释转义字符序列，也可以将其放在 “$''”中。下面的例子，实现一个简单的倒计时计时器：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ sleep 10; echo -e &quot;Time&#39;s up\a&quot;
+</pre></div>
+
+
+<p>也可以这样做：</p>
+<div class="highlight"><pre><span></span>[me@linuxbox ~]$ sleep 10; echo -e &quot;Time&#39;s up&quot; $&#39;\a&#39;
+</pre></div>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -400,7 +473,7 @@ JPG.jpg
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-08T16:25:59+08:00">2018-10-08 16:25:59</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-08 22:37:03</div>
+                    <div class="last_updated">2018-10-09 13:22:26</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#教程-ref">教程</a>
                     <h4>标签</h4>

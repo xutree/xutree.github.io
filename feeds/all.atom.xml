@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-09T12:06:33+08:00</updated><entry><title>C++ Primer 第五章 语句</title><link href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/" rel="alternate"></link><published>2018-10-09T12:06:33+08:00</published><updated>2018-10-09T12:06:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-09:/pages/2018/10/09/C++_Primer_Chapter_5/</id><summary type="html">&lt;h2&gt;空语句&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-09T13:22:26+08:00</updated><entry><title>C++ Primer 第五章 语句</title><link href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/" rel="alternate"></link><published>2018-10-09T12:06:33+08:00</published><updated>2018-10-09T12:06:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-09:/pages/2018/10/09/C++_Primer_Chapter_5/</id><summary type="html">&lt;h2&gt;空语句&lt;/h2&gt;
 &lt;p&gt;使用空语句时应该加上注释，从而令读这段代码的知道该语句是有意省略的。&lt;/p&gt;
 &lt;h2&gt;悬垂 else&lt;/h2&gt;
 &lt;p&gt;C++ 规定&lt;code&gt;else&lt;/code&gt;与离它最近的尚未匹配的&lt;code&gt;if&lt;/code&gt;匹配。&lt;/p&gt;
@@ -200,9 +200,16 @@
 后，在终端执行&lt;code&gt;gem install lolcat&lt;/code&gt;安装。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;[me@linuxbox ~]$ git log -1 | cowsay -f dragon-and-cow | lolcat&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="图7 lolcat" src="https://xutree.github.io/images/linux_7.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;lolcat&lt;/code&gt;接受管道输入，所以你可以试试：&lt;code&gt;[me@linuxbox ~]$ sl | lolcat&lt;/code&gt;&lt;/p&gt;</content><category term="Linux"></category></entry><entry><title>Linux 中的扩展和引用</title><link href="https://xutree.github.io/pages/2018/10/08/linux%E4%B8%AD%E7%9A%84%E6%89%A9%E5%B1%95%E5%92%8C%E5%BC%95%E7%94%A8/" rel="alternate"></link><published>2018-10-08T16:25:59+08:00</published><updated>2018-10-08T22:37:03+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/linux中的扩展和引用/</id><summary type="html">&lt;h2&gt;扩展&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;lolcat&lt;/code&gt;接受管道输入，所以你可以试试：&lt;code&gt;[me@linuxbox ~]$ sl | lolcat&lt;/code&gt;&lt;/p&gt;</content><category term="Linux"></category></entry><entry><title>Linux 中的扩展和引用</title><link href="https://xutree.github.io/pages/2018/10/08/linux%E4%B8%AD%E7%9A%84%E6%89%A9%E5%B1%95%E5%92%8C%E5%BC%95%E7%94%A8/" rel="alternate"></link><published>2018-10-08T16:25:59+08:00</published><updated>2018-10-09T13:22:26+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/linux中的扩展和引用/</id><summary type="html">&lt;h2&gt;扩展&lt;/h2&gt;
 &lt;p&gt;当我们每次在命令行按下&lt;code&gt;Enter&lt;/code&gt;键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。&lt;/p&gt;
 &lt;p&gt;一个 🌰 :&lt;code&gt;echo *&lt;/code&gt;会将当前目录下所有的非隐藏文件名打印出来。&lt;/p&gt;
+&lt;h3&gt;单词分隔&lt;/h3&gt;
+&lt;p&gt;单词分隔会先查找是否存在空格、制表符以及换行，然后把它们作为单词的界定符（delimiter）。所以下面的命令后面跟着4个不同的参数：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo this is a test
+this is a test
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h3&gt;路径名扩展&lt;/h3&gt;
 &lt;p&gt;通过使用通配符来实现扩展的机制称为路径名扩展（pathname expansion）。&lt;/p&gt;
 &lt;h3&gt;波浪线扩展（~）&lt;/h3&gt;
@@ -217,16 +224,16 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h3&gt;算术扩展&lt;/h3&gt;
-&lt;p&gt;shell 支持通过扩展来运行算术表达式。这允许我们把 shell 提示符当做计算器来使用：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo $((2+2))
-4
+&lt;h3&gt;算术扩展 …&lt;/h3&gt;</summary><content type="html">&lt;h2&gt;扩展&lt;/h2&gt;
+&lt;p&gt;当我们每次在命令行按下&lt;code&gt;Enter&lt;/code&gt;键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。&lt;/p&gt;
+&lt;p&gt;一个 🌰 :&lt;code&gt;echo *&lt;/code&gt;会将当前目录下所有的非隐藏文件名打印出来。&lt;/p&gt;
+&lt;h3&gt;单词分隔&lt;/h3&gt;
+&lt;p&gt;单词分隔会先查找是否存在空格、制表符以及换行，然后把它们作为单词的界定符（delimiter）。所以下面的命令后面跟着4个不同的参数：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ echo this is a test
+this is a test
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;算术扩展使用形式：&lt;strong&gt;$((expression))&lt;/strong&gt;，其中 expression 是包含数值和算术操作符的算术表达式 …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;扩展&lt;/h2&gt;
-&lt;p&gt;当我们每次在命令行按下&lt;code&gt;Enter&lt;/code&gt;键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。&lt;/p&gt;
-&lt;p&gt;一个 🌰 :&lt;code&gt;echo *&lt;/code&gt;会将当前目录下所有的非隐藏文件名打印出来。&lt;/p&gt;
 &lt;h3&gt;路径名扩展&lt;/h3&gt;
 &lt;p&gt;通过使用通配符来实现扩展的机制称为路径名扩展（pathname expansion）。&lt;/p&gt;
 &lt;h3&gt;波浪线扩展（~）&lt;/h3&gt;
@@ -482,6 +489,72 @@ jpg.jpg
 jpg.JPG
 [me@linuxbox ~]$ echo &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;/%&lt;/span&gt;&lt;span class="n"&gt;JPG&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;
 JPG.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;命令替换&lt;/h3&gt;
+&lt;p&gt;命令替换可以把一个命令的输出作为一个扩展模式使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ ls -l $(which cp)
+-rwxr-xr-x  1 root  wheel  29008 10 26  2017 /bin/cp
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在早期的 shell 程序中，存在命令替换的另一种语法，bash 也支持这种格式。它用反引号代替美元符号和括号：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ ls -l `which cp`
+-rwxr-xr-x  1 root  wheel  29008 10 26  2017 /bin/cp
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;引用&lt;/h2&gt;
+&lt;p&gt;引用主要用于控制扩展。&lt;/p&gt;
+&lt;h3&gt;双引号&lt;/h3&gt;
+&lt;p&gt;如果把文本放在双引号中，那么 shell 使用的所有特殊字符都被看成普通字符，除了 “$（美元符号）”，“\（反斜杠）”，“`（反引号）” 除外。&lt;/p&gt;
+&lt;p&gt;单词分隔、路径名扩展、波浪线扩展、花括号扩展都失效。&lt;/p&gt;
+&lt;p&gt;参数扩展、算术扩展、命令替换仍然有效。&lt;/p&gt;
+&lt;p&gt;使用双引号可以阻止单词分隔，这可以用来处理包含空白的文件名。&lt;/p&gt;
+&lt;h3&gt;单引号&lt;/h3&gt;
+&lt;p&gt;抑制所有扩展。&lt;/p&gt;
+&lt;h3&gt;转义字符&lt;/h3&gt;
+&lt;p&gt;转义字符通常用在双引号中用来有选择性的阻止扩展。&lt;/p&gt;
+&lt;h2&gt;关于反斜杠转义字符（backslash escape sequence）&lt;/h2&gt;
+&lt;p&gt;反斜杠除了作为转义字符外，也是一种表示法的一部分。ASCII 码表的前32个字符用来向电传打字类设备传送命令。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;转义字符&lt;/th&gt;
+&lt;th align="left"&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\a&lt;/td&gt;
+&lt;td align="left"&gt;响铃（警告声——计算机发出哔哔声）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\b&lt;/td&gt;
+&lt;td align="left"&gt;退格&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\n&lt;/td&gt;
+&lt;td align="left"&gt;新的一行（在类 UNIX 系统中，产生的是换行效果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\r&lt;/td&gt;
+&lt;td align="left"&gt;回车&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\t&lt;/td&gt;
+&lt;td align="left"&gt;制表&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;在&lt;code&gt;echo&lt;/code&gt;命令中带上 -e 选项，就能够解释转义字符序列，也可以将其放在 “$''”中。下面的例子，实现一个简单的倒计时计时器：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ sleep 10; echo -e &amp;quot;Time&amp;#39;s up\a&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;也可以这样做：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ sleep 10; echo -e &amp;quot;Time&amp;#39;s up&amp;quot; $&amp;#39;\a&amp;#39;
 &lt;/pre&gt;&lt;/div&gt;</content><category term="Linux"></category></entry><entry><title>CSS 入门</title><link href="https://xutree.github.io/pages/2018/10/07/css_overview/" rel="alternate"></link><published>2018-10-07T11:24:03+08:00</published><updated>2018-10-07T12:29:23+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-07:/pages/2018/10/07/css_overview/</id><summary type="html">&lt;h2&gt;什么是 CSS&lt;/h2&gt;
 &lt;p&gt;CSS（&lt;strong&gt;C&lt;/strong&gt; ascading &lt;strong&gt;S&lt;/strong&gt; tyle &lt;strong&gt;S&lt;/strong&gt; heets），即层叠样式表。&lt;/p&gt;
 &lt;p&gt;层叠是指 CSS 将一种样式应用于另一种样式的方式。样式表控制 Web 文档的外观。&lt;/p&gt;
