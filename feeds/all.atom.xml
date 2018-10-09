@@ -1,5 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-09T11:39:49+08:00</updated><entry><title>几个奇葩的 Linux 命令</title><link href="https://xutree.github.io/pages/2018/10/08/%E5%87%A0%E4%B8%AA%E5%A5%87%E8%91%A9%E7%9A%84Linux%E5%91%BD%E4%BB%A4/" rel="alternate"></link><published>2018-10-08T22:58:12+08:00</published><updated>2018-10-09T11:39:49+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/几个奇葩的Linux命令/</id><summary type="html">&lt;p&gt;Linux 中有一些很奇葩的命令，可能你的发行版默认没有安装，你可以自己安装：&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-09T12:06:33+08:00</updated><entry><title>C++ Primer 第五章 语句</title><link href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/" rel="alternate"></link><published>2018-10-09T12:06:33+08:00</published><updated>2018-10-09T12:06:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-09:/pages/2018/10/09/C++_Primer_Chapter_5/</id><summary type="html">&lt;h2&gt;空语句&lt;/h2&gt;
+&lt;p&gt;使用空语句时应该加上注释，从而令读这段代码的知道该语句是有意省略的。&lt;/p&gt;
+&lt;h2&gt;悬垂 else&lt;/h2&gt;
+&lt;p&gt;C++ 规定&lt;code&gt;else&lt;/code&gt;与离它最近的尚未匹配的&lt;code&gt;if&lt;/code&gt;匹配。&lt;/p&gt;
+&lt;h2&gt;switch 语句&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;switch&lt;/code&gt;语句中的&lt;code&gt;case&lt;/code&gt;标签必须是&lt;strong&gt;整型常量表达式&lt;/strong&gt;或者&lt;strong&gt;可以转换成整型常量表达式的类型&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;如果某个&lt;code&gt;case&lt;/code&gt;标签匹配成功，将从该标签处开始往后顺序执行所有&lt;code&gt;case&lt;/code&gt;分支，除非程序显示的中断了这一过程，否则直到&lt;code&gt;switch&lt;/code&gt;结尾处才停下来。在大多说情况下，在下一个&lt;code&gt;case&lt;/code&gt;标签之前应该有一条&lt;code&gt;break&lt;/code&gt;语句用于中断。&lt;/p&gt;
+&lt;p&gt;标签不应该孤零零的出现，它后面必须跟上一条语句或者另一个&lt;code&gt;case&lt;/code&gt;标签。如果&lt;code&gt;switch&lt;/code&gt;结构以一个空的&lt;code&gt;default&lt;/code&gt;标签作为结束，则该&lt;code&gt;default&lt;/code&gt;标签后面必须跟上一条空语句或一个空块。&lt;/p&gt;
+&lt;p&gt;不允许跨过变量的初始化语句直接跳转到该变量作用域内的另一个位置。&lt;/p&gt;
+&lt;h2&gt;范围 …&lt;/h2&gt;</summary><content type="html">&lt;h2&gt;空语句&lt;/h2&gt;
+&lt;p&gt;使用空语句时应该加上注释，从而令读这段代码的知道该语句是有意省略的。&lt;/p&gt;
+&lt;h2&gt;悬垂 else&lt;/h2&gt;
+&lt;p&gt;C++ 规定&lt;code&gt;else&lt;/code&gt;与离它最近的尚未匹配的&lt;code&gt;if&lt;/code&gt;匹配。&lt;/p&gt;
+&lt;h2&gt;switch 语句&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;switch&lt;/code&gt;语句中的&lt;code&gt;case&lt;/code&gt;标签必须是&lt;strong&gt;整型常量表达式&lt;/strong&gt;或者&lt;strong&gt;可以转换成整型常量表达式的类型&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;如果某个&lt;code&gt;case&lt;/code&gt;标签匹配成功，将从该标签处开始往后顺序执行所有&lt;code&gt;case&lt;/code&gt;分支，除非程序显示的中断了这一过程，否则直到&lt;code&gt;switch&lt;/code&gt;结尾处才停下来。在大多说情况下，在下一个&lt;code&gt;case&lt;/code&gt;标签之前应该有一条&lt;code&gt;break&lt;/code&gt;语句用于中断。&lt;/p&gt;
+&lt;p&gt;标签不应该孤零零的出现，它后面必须跟上一条语句或者另一个&lt;code&gt;case&lt;/code&gt;标签。如果&lt;code&gt;switch&lt;/code&gt;结构以一个空的&lt;code&gt;default&lt;/code&gt;标签作为结束，则该&lt;code&gt;default&lt;/code&gt;标签后面必须跟上一条空语句或一个空块。&lt;/p&gt;
+&lt;p&gt;不允许跨过变量的初始化语句直接跳转到该变量作用域内的另一个位置。&lt;/p&gt;
+&lt;h2&gt;范围 for&lt;/h2&gt;
+&lt;p&gt;在范围&lt;code&gt;for&lt;/code&gt;语句中，预存了&lt;code&gt;end()&lt;/code&gt;的值，一旦程序中添加（删除）元素，&lt;code&gt;end&lt;/code&gt;函数的值就可能变得无效，所以不能通过范围&lt;code&gt;for&lt;/code&gt;语句增加或删除容器的元素。&lt;/p&gt;
+&lt;h2&gt;do while 语句&lt;/h2&gt;
+&lt;p&gt;应该在括号包围起来的条件后面用一个分号表示语句结束。&lt;/p&gt;
+&lt;h2&gt;跳转语句&lt;/h2&gt;
+&lt;h3&gt;break 语句&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;break&lt;/code&gt;语句负责终止离它最近的&lt;code&gt;while&lt;/code&gt;、&lt;code&gt;do while&lt;/code&gt;、&lt;code&gt;for&lt;/code&gt;或&lt;code&gt;switch&lt;/code&gt;语句，并从这些语句之后的第一条语句开始继续执行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;break&lt;/code&gt;语句只能出现在迭代语句或者&lt;code&gt;switch&lt;/code&gt;语句内部（包括嵌套在此类循环里的语句或块的内部）。&lt;code&gt;break&lt;/code&gt;语句的作用范围仅限于最近的循环或者&lt;code&gt;switch&lt;/code&gt;。&lt;/p&gt;
+&lt;h3&gt;continue 语句&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;continu&lt;/code&gt;e语句终止最近的循环中的当前迭代并立即开始下一次迭代。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;continue&lt;/code&gt;语句只能出现在&lt;code&gt;for&lt;/code&gt;、&lt;code&gt;while&lt;/code&gt;和&lt;code&gt;do while&lt;/code&gt;的循环的内部，或者嵌套在此类循环里的语句或块的内部。&lt;/p&gt;
+&lt;p&gt;和&lt;code&gt;break&lt;/code&gt;语句类似的是，出现在嵌套循环中的&lt;code&gt;continue&lt;/code&gt;语句也仅作用于离它最近的循环。&lt;/p&gt;
+&lt;p&gt;和&lt;code&gt;break&lt;/code&gt;语句不同的是，只有当&lt;code&gt;switch&lt;/code&gt;语句嵌套在迭代语句内部时，才能在&lt;code&gt;switch&lt;/code&gt;里使用&lt;code&gt;continue&lt;/code&gt;。&lt;/p&gt;
+&lt;h3&gt;goto 语句&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;goto&lt;/code&gt;语句的作用是从&lt;code&gt;goto&lt;/code&gt;语句无条件跳转到同一函数内的另一条语句。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;goto&lt;/code&gt;语句和控制权转向的那条带标签的语句必须位于同一函数之内。&lt;/p&gt;
+&lt;h2&gt;异常处理&lt;/h2&gt;
+&lt;h3&gt;throw 表达式&lt;/h3&gt;
+&lt;p&gt;异常检测部分使用&lt;code&gt;throw&lt;/code&gt;表达式来表示它遇到了无法处理的问题。我们说&lt;code&gt;throw&lt;/code&gt;引发了异常，例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;throw runtime_error(&amp;quot;Data must refer to same ISBN&amp;quot;);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;try 语句块&lt;/h3&gt;
+&lt;p&gt;异常处理部分使用&lt;code&gt;try&lt;/code&gt;语句处理异常。&lt;code&gt;try&lt;/code&gt;语句块以关键字&lt;code&gt;try&lt;/code&gt;开始，并以一个或多个&lt;code&gt;catch&lt;/code&gt;字句结束。&lt;code&gt;try&lt;/code&gt;语句块中代码抛出的异常通常会被某个catch字句处理，这些字句称为异常处理代码。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;try{
+    program-statements
+} catch (exception-declaration) {
+    handler-statements
+} catch (exception-declaration) {
+    handler-statements
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;跟在&lt;code&gt;try&lt;/code&gt;块之后的是一个或多个&lt;code&gt;catch&lt;/code&gt;子句。&lt;code&gt;catch&lt;/code&gt;子句包括三个部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关键字&lt;code&gt;catch&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;括号内一个（可能未命名的）对象的声明（称作异常声明）&lt;/li&gt;
+&lt;li&gt;一个块&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;try&lt;/code&gt;语句块中 program-statements 组成程序的正常逻辑，像其他任何块一样，可以有包含声明在内的任意 C++ 语句。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;try&lt;/code&gt;语句块内声明的变量在块外部无法访问，特别是在&lt;code&gt;catch子&lt;/code&gt;句内也无法访问。&lt;/p&gt;
+&lt;p&gt;函数在寻找代码处理的过程中退出，如果最终没能找到任何匹配的&lt;code&gt;catch&lt;/code&gt;子句，程序转到名为&lt;code&gt;terminate&lt;/code&gt;的标准库函数。该函数的行为与系统有关，一般情况下，执行该函数将导致程序非正常退出。&lt;/p&gt;
+&lt;h3&gt;标准异常&lt;/h3&gt;
+&lt;p&gt;C++ 标准库定义了一组类，用于报告标准库函数遇到的问题，这些异常类也可以在用户别写的程序中使用，它们分别定义在4个头文件中：&lt;/p&gt;
+&lt;h4&gt;exception 头文件&lt;/h4&gt;
+&lt;p&gt;定义了最通用的异常类&lt;code&gt;exception&lt;/code&gt;。它只报告异常的发生，不提供任何异常信息&lt;/p&gt;
+&lt;h4&gt;stdexcept 头文件定义了几种常见的异常类&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;异常类&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;exception&lt;/td&gt;
+&lt;td&gt;最常见的问题&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;runtime_error&lt;/td&gt;
+&lt;td&gt;只有在运行时才能检测出的问题&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;range_error&lt;/td&gt;
+&lt;td&gt;运行时错误：生成的结果超出了有意义的值域范围&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;overflow_error&lt;/td&gt;
+&lt;td&gt;运行时错误：计算上溢&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;underflow_error&lt;/td&gt;
+&lt;td&gt;运行时错误：计算下溢&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;logic_error&lt;/td&gt;
+&lt;td&gt;程序逻辑错误&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;domain_error&lt;/td&gt;
+&lt;td&gt;逻辑错误：参数对应的结果值不存在&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;invalid_argument&lt;/td&gt;
+&lt;td&gt;逻辑错误：无效参数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;length_error&lt;/td&gt;
+&lt;td&gt;逻辑错误：试图创建一个超出该类型最大长度的对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;out_of_range&lt;/td&gt;
+&lt;td&gt;逻辑错误：使用一个超出有效范围的值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;new 头文件&lt;/h4&gt;
+&lt;p&gt;定义了&lt;code&gt;bad_alloc&lt;/code&gt;异常类型&lt;/p&gt;
+&lt;h4&gt;type_info 头文件&lt;/h4&gt;
+&lt;p&gt;定义了&lt;code&gt;bad_cast&lt;/code&gt;异常类型&lt;/p&gt;
+&lt;p&gt;标准异常库只定义了几种运算，包括创建和拷贝异常类型的对象，以及为异常类型的对象赋值。我们只能以默认初始化的方式初始化&lt;code&gt;exception&lt;/code&gt;、&lt;code&gt;bad_alloc&lt;/code&gt;和&lt;code&gt;bad_cas&lt;/code&gt;t对象，不允许为这些对象提供初始值。&lt;/p&gt;
+&lt;p&gt;其他异常类型的行为则刚好相反。应该使用&lt;code&gt;string&lt;/code&gt;对象或者 C 风格字符串初始化这些类型的对象，但是不允许使用默认初始化的方式。当创建此类对象时，必须提供初始值，该初始值含有错误相关的信息。&lt;/p&gt;
+&lt;p&gt;异常类型只定义了一个名为&lt;code&gt;what&lt;/code&gt;的成员函数，该函数没有任何参数，返回值是一个指向 C 风格字符串的&lt;code&gt;const char *&lt;/code&gt;。该字符串的目的是提供关于异常的一些文本信息。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;what&lt;/code&gt;函数返回的 C 风格字符串的内容与异常对象的类型有关。如果异常类型只有一个字符串初始值，则&lt;code&gt;what&lt;/code&gt;返回该字符串。对于其他无初始值的异常类型来说，&lt;code&gt;what&lt;/code&gt;返回的内容由编译器决定。&lt;/p&gt;</content><category term="C++"></category></entry><entry><title>几个奇葩的 Linux 命令</title><link href="https://xutree.github.io/pages/2018/10/08/%E5%87%A0%E4%B8%AA%E5%A5%87%E8%91%A9%E7%9A%84Linux%E5%91%BD%E4%BB%A4/" rel="alternate"></link><published>2018-10-08T22:58:12+08:00</published><updated>2018-10-09T11:39:49+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/几个奇葩的Linux命令/</id><summary type="html">&lt;p&gt;Linux 中有一些很奇葩的命令，可能你的发行版默认没有安装，你可以自己安装：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[me@linuxbox ~]$ apt-get install 命令          (Debian)
 [me@linuxbox ~]$ yum install 命令              (Red Hat）
 [me@linuxbox ~]$ brew install 命令            （Mac）

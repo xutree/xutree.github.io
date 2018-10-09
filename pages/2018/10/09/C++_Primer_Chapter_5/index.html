@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="C++, 读书笔记, " />
+    <title>C++ Primer 第五章 语句  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
+        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/"> C++ Primer 第五章 语句  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <h2>空语句</h2>
+<p>使用空语句时应该加上注释，从而令读这段代码的知道该语句是有意省略的。</p>
+<h2>悬垂 else</h2>
+<p>C++ 规定<code>else</code>与离它最近的尚未匹配的<code>if</code>匹配。</p>
+<h2>switch 语句</h2>
+<p><code>switch</code>语句中的<code>case</code>标签必须是<strong>整型常量表达式</strong>或者<strong>可以转换成整型常量表达式的类型</strong>。</p>
+<p>如果某个<code>case</code>标签匹配成功，将从该标签处开始往后顺序执行所有<code>case</code>分支，除非程序显示的中断了这一过程，否则直到<code>switch</code>结尾处才停下来。在大多说情况下，在下一个<code>case</code>标签之前应该有一条<code>break</code>语句用于中断。</p>
+<p>标签不应该孤零零的出现，它后面必须跟上一条语句或者另一个<code>case</code>标签。如果<code>switch</code>结构以一个空的<code>default</code>标签作为结束，则该<code>default</code>标签后面必须跟上一条空语句或一个空块。</p>
+<p>不允许跨过变量的初始化语句直接跳转到该变量作用域内的另一个位置。</p>
+<h2>范围 for</h2>
+<p>在范围<code>for</code>语句中，预存了<code>end()</code>的值，一旦程序中添加（删除）元素，<code>end</code>函数的值就可能变得无效，所以不能通过范围<code>for</code>语句增加或删除容器的元素。</p>
+<h2>do while 语句</h2>
+<p>应该在括号包围起来的条件后面用一个分号表示语句结束。</p>
+<h2>跳转语句</h2>
+<h3>break 语句</h3>
+<p><code>break</code>语句负责终止离它最近的<code>while</code>、<code>do while</code>、<code>for</code>或<code>switch</code>语句，并从这些语句之后的第一条语句开始继续执行。</p>
+<p><code>break</code>语句只能出现在迭代语句或者<code>switch</code>语句内部（包括嵌套在此类循环里的语句或块的内部）。<code>break</code>语句的作用范围仅限于最近的循环或者<code>switch</code>。</p>
+<h3>continue 语句</h3>
+<p><code>continu</code>e语句终止最近的循环中的当前迭代并立即开始下一次迭代。</p>
+<p><code>continue</code>语句只能出现在<code>for</code>、<code>while</code>和<code>do while</code>的循环的内部，或者嵌套在此类循环里的语句或块的内部。</p>
+<p>和<code>break</code>语句类似的是，出现在嵌套循环中的<code>continue</code>语句也仅作用于离它最近的循环。</p>
+<p>和<code>break</code>语句不同的是，只有当<code>switch</code>语句嵌套在迭代语句内部时，才能在<code>switch</code>里使用<code>continue</code>。</p>
+<h3>goto 语句</h3>
+<p><code>goto</code>语句的作用是从<code>goto</code>语句无条件跳转到同一函数内的另一条语句。</p>
+<p><code>goto</code>语句和控制权转向的那条带标签的语句必须位于同一函数之内。</p>
+<h2>异常处理</h2>
+<h3>throw 表达式</h3>
+<p>异常检测部分使用<code>throw</code>表达式来表示它遇到了无法处理的问题。我们说<code>throw</code>引发了异常，例如：</p>
+<div class="highlight"><pre><span></span>throw runtime_error(&quot;Data must refer to same ISBN&quot;);
+</pre></div>
+
+
+<h3>try 语句块</h3>
+<p>异常处理部分使用<code>try</code>语句处理异常。<code>try</code>语句块以关键字<code>try</code>开始，并以一个或多个<code>catch</code>字句结束。<code>try</code>语句块中代码抛出的异常通常会被某个catch字句处理，这些字句称为异常处理代码。</p>
+<div class="highlight"><pre><span></span>try{
+    program-statements
+} catch (exception-declaration) {
+    handler-statements
+} catch (exception-declaration) {
+    handler-statements
+}
+</pre></div>
+
+
+<p>跟在<code>try</code>块之后的是一个或多个<code>catch</code>子句。<code>catch</code>子句包括三个部分：</p>
+<ul>
+<li>关键字<code>catch</code></li>
+<li>括号内一个（可能未命名的）对象的声明（称作异常声明）</li>
+<li>一个块</li>
+</ul>
+<p><code>try</code>语句块中 program-statements 组成程序的正常逻辑，像其他任何块一样，可以有包含声明在内的任意 C++ 语句。</p>
+<p><code>try</code>语句块内声明的变量在块外部无法访问，特别是在<code>catch子</code>句内也无法访问。</p>
+<p>函数在寻找代码处理的过程中退出，如果最终没能找到任何匹配的<code>catch</code>子句，程序转到名为<code>terminate</code>的标准库函数。该函数的行为与系统有关，一般情况下，执行该函数将导致程序非正常退出。</p>
+<h3>标准异常</h3>
+<p>C++ 标准库定义了一组类，用于报告标准库函数遇到的问题，这些异常类也可以在用户别写的程序中使用，它们分别定义在4个头文件中：</p>
+<h4>exception 头文件</h4>
+<p>定义了最通用的异常类<code>exception</code>。它只报告异常的发生，不提供任何异常信息</p>
+<h4>stdexcept 头文件定义了几种常见的异常类</h4>
+<table>
+<thead>
+<tr>
+<th>异常类</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exception</td>
+<td>最常见的问题</td>
+</tr>
+<tr>
+<td>runtime_error</td>
+<td>只有在运行时才能检测出的问题</td>
+</tr>
+<tr>
+<td>range_error</td>
+<td>运行时错误：生成的结果超出了有意义的值域范围</td>
+</tr>
+<tr>
+<td>overflow_error</td>
+<td>运行时错误：计算上溢</td>
+</tr>
+<tr>
+<td>underflow_error</td>
+<td>运行时错误：计算下溢</td>
+</tr>
+<tr>
+<td>logic_error</td>
+<td>程序逻辑错误</td>
+</tr>
+<tr>
+<td>domain_error</td>
+<td>逻辑错误：参数对应的结果值不存在</td>
+</tr>
+<tr>
+<td>invalid_argument</td>
+<td>逻辑错误：无效参数</td>
+</tr>
+<tr>
+<td>length_error</td>
+<td>逻辑错误：试图创建一个超出该类型最大长度的对象</td>
+</tr>
+<tr>
+<td>out_of_range</td>
+<td>逻辑错误：使用一个超出有效范围的值</td>
+</tr>
+</tbody>
+</table>
+<h4>new 头文件</h4>
+<p>定义了<code>bad_alloc</code>异常类型</p>
+<h4>type_info 头文件</h4>
+<p>定义了<code>bad_cast</code>异常类型</p>
+<p>标准异常库只定义了几种运算，包括创建和拷贝异常类型的对象，以及为异常类型的对象赋值。我们只能以默认初始化的方式初始化<code>exception</code>、<code>bad_alloc</code>和<code>bad_cas</code>t对象，不允许为这些对象提供初始值。</p>
+<p>其他异常类型的行为则刚好相反。应该使用<code>string</code>对象或者 C 风格字符串初始化这些类型的对象，但是不允许使用默认初始化的方式。当创建此类对象时，必须提供初始值，该初始值含有错误相关的信息。</p>
+<p>异常类型只定义了一个名为<code>what</code>的成员函数，该函数没有任何参数，返回值是一个指向 C 风格字符串的<code>const char *</code>。该字符串的目的是提供关于异常的一些文本信息。</p>
+<p><code>what</code>函数返回的 C 风格字符串的内容与异常对象的类型有关。如果异常类型只有一个字符串初始值，则<code>what</code>返回该字符串。对于其他无初始值的异常类型来说，<code>what</code>返回的内容由编译器决定。</p>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/">
+                                    几个奇葩的 Linux 命令
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/">
+                                    Linux 中的扩展和引用
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/07/css_overview/">
+                                    CSS 入门
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/">
+                                    C++ Primer 第四章 表达式
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/">
+                                    C++ Primer 第三章 字符串、向量和数组
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-10-09T12:06:33+08:00">2018-10-09 12:06:33</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-10-09 12:06:33</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#C++-ref">C++
+                                <span>5</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
