@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="数据结构, 读书笔记, " />
+    <title>数据结构——向量  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
+        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/10/10/数据结构向量/"> 数据结构——向量  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <p>数据结构大致可分为：线性结构、半线性结构和非线性结构。线性结构中最基本的称为序列（sequence），根据其中数据项的逻辑次序与其物理存储地址的对应关系不同，又可分为向量（vector）和列表（list）。</p>
+<h2>从数组到向量</h2>
+<p>数组：集合 S 由 n 个元素组成，且各元素之间具有一个线性次序，则可以将它们存放于起始地址 A，物理位置连续的一段存储空间。记为：</p>
+<p><code>A[0,n) = { A[0], A[1], ..., A[n-1] }</code></p>
+<p>将它们存放于起始地址 A，若每个元素占用 s 个单位的空间，则元素 A[i] 的物理地址为：<code>A + i * s</code>，所以被称作线性数组。</p>
+<p>向量：<code>V[0,n) = { v[0], v[1], ..., v[n-1] }</code>是线性数组的一种抽象和泛化，由具有线性次序的一组元素构成的集合，其中的元素由秩区分。各元素秩互异，且均为 [0, n) 内的整数。采用“寻秩访问”。经过抽象，不限定同一向量中元素都属于同一数据类型，故而不保证它们之间可以相互比较大小。</p>
+<h2>接口</h2>
+<p>作为一种抽象数据类型，向量对象应支持如下操作接口：</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作接口</th>
+<th align="left">功能</th>
+<th align="left">适用对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">size()</td>
+<td align="left">元素总数</td>
+<td align="left">向量</td>
+</tr>
+<tr>
+<td align="left">get(r)</td>
+<td align="left">获取秩为 r 的元素</td>
+<td align="left">向量</td>
+</tr>
+<tr>
+<td align="left">put(r, e)</td>
+<td align="left">用 e 代替秩为 r 的元素</td>
+<td align="left">向量</td>
+</tr>
+<tr>
+<td align="left">insert(r, e)</td>
+<td align="left">e 作为秩为 r 的元素插入，原后继元素依次后移</td>
+<td align="left">向量</td>
+</tr>
+<tr>
+<td align="left">remove(r)</td>
+<td align="left">删除秩为 r 的元素，返回该元素中原存放的对象</td>
+<td align="left">向量</td>
+</tr>
+<tr>
+<td align="left">disordered()</td>
+<td align="left">判断所有元素是否已按非降序排列</td>
+<td align="left">向量</td>
+</tr>
+<tr>
+<td align="left">sort()</td>
+<td align="left">非降序排序</td>
+<td align="left">向量</td>
+</tr>
+<tr>
+<td align="left">find(e)</td>
+<td align="left">查找等于 e 且秩最大的元素</td>
+<td align="left">向量</td>
+</tr>
+<tr>
+<td align="left">search(e)</td>
+<td align="left">查找目标元素 e，返回不大于 e 且秩最大的元素</td>
+<td align="left">有序向量</td>
+</tr>
+<tr>
+<td align="left">deduplicate()</td>
+<td align="left">剔除重复元素</td>
+<td align="left">向量</td>
+</tr>
+<tr>
+<td align="left">uniquify()</td>
+<td align="left">剔除重复元素</td>
+<td align="left">有序向量</td>
+</tr>
+<tr>
+<td align="left">traverse()</td>
+<td align="left">遍历向量并统一处理所有元素，处理方法由函数对象指定</td>
+<td align="left">向量</td>
+</tr>
+</tbody>
+</table>
+<h2>Vector 模板类</h2>
+<div class="highlight"><pre><span></span>typedef int Rank;   //秩
+#define DEFAULT_CAPACITY 3  //默认的初始容量（实际应用中可设置为更大）
+
+template &lt;typename T&gt; class Vector {    //向量模板类
+protected:
+    Rank _size; int _capacity; T* _elem;    //规模、容量、数据区
+    void copyFrom(T const* A, Rank lo, Rank hi);    //复制数组区间A[lo,hi)
+    void expand();  //空间不足时扩容
+    void shrink();  //装填因子过小时压缩
+    bool bubble(Rank lo, Rank hi);  //扫描交换
+    void bubbleSort()Rank lo, Rank hi); //气泡排序算法
+    Rank max(Rank lo, Rank hi); //选取最大元素
+    void selectionSort(Rank lo, Rank hi);   //选择排序算法
+    void merge(Rank lo, Rank mi, Rank hi);   //归并算法
+    void mergeSort(Rank lo, Rank hi);   //归并排序算法
+    Rank partition(Rank lo, Rank hi);   //轴点构造算法
+    void quickSort(Rank lo, Rank hi);   //快速排序算法
+    void heapSort(Rank lo, Rank hi);    //堆排序
+public:
+//构造函数
+    Vector(int c = DEFAULT_CAPACITY, int s = 0, T v = 0) //容量为 c，规模为 s，所有元素初始化为 v
+    { _elem = new T[_capacity = c]; for(_size = 0; _size &lt; s; _elem[_size++] = v);  }   //s&lt;=c
+    Vector(T const* A, Rank n) { copyFrom(A, 0, n); }   //数组整体复制
+    Vector(T const* A, Rank lo, Rank hi) { copyFrom(A, lo, hi); }   //区间
+    Vector(Vector&lt;T&gt; const&amp; V) { copyFrom(V._elem, 0, V._size); }   //向量整体复制
+    Vector(Vector&lt;T&gt; const&amp; V, Rank lo, Rank hi) { copyFrom(V._elem, lo, hi); } //区间
+//析构函数
+~Vector() { delete [] _elem; }  //释放内部空间
+//只读访问接口
+    Rank size() const { return _size; } //规模
+    bool empty() const { return !_size; }   //判空
+    int disordered() const; //判断向量是否已排序
+    Rank find(T const&amp; e) const { return find(e, 0, _size); }   //无序向量整体查找
+    Rank find(T const&amp; e, Rank lo, Rank hi) const;  //无序向量区间查找
+    Rank search(T const&amp; e) const   //有序向量整体查找
+    { return (0 &gt;= _size) ? -1 : search(e, 0, _size); }
+    Rank search(T const&amp; e, Rank lo, Rank hi) const   //有序向量区间查找
+//可写访问接口
+    T&amp; operator[](Rank r) const;    //重载下标运算符，可以类似于数组形式引用各元素
+    Vector&lt;T&gt; &amp; operator=(Vector&lt;T&gt; const&amp;);    //重载赋值运算符，以便直接克隆向量
+    T remove(Rank r);   //删除秩为 r 的元素
+    int remove(Rank lo, Rank hi);   //删除秩在区间 [lo,hi) 之内的元素
+    Rank insert(Rank r, T const&amp; e);    //插入元素
+    Rank insert(T const&amp; e) { return insert(_size, e); }    //默认作为尾元素插入
+    void sort(Rank lo, Rank hi);    //对 [lo,hi) 排序
+    void sort() { sort(0, _size); } //整体排序
+    void unsort(Rank lo, Rank hi);    //对 [lo,hi) 置乱
+    void unsort() { unsort(0, _size); } //整体置乱
+    int deduplicate();  //无序去重
+    int uniquify(); //有序去重
+//遍历
+    void traverse(void (*)(T&amp;));    //遍历（使用函数指针，只读或局部性修改）
+    template &lt;typename VST&gt; void traverse(VST&amp;);    //遍历（使用函数对象，可全局性修改）
+};//Vector
+</pre></div>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
+                                    C++ Primer 第八章 IO 库
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
+                                    C++ Primer 第七章 类
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/">
+                                    C++ Primer 第六章 函数
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/回车与换行的区别/">
+                                    回车与换行的区别
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
+                                    C++ Primer 第五章 语句
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-10-10T19:50:46.263510+08:00">2018-10-10 19:50:46</time>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#数据结构-ref">数据结构
+                                <span>1</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
