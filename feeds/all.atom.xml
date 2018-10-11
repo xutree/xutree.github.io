@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-10T21:40:02+08:00</updated><entry><title>数据结构——向量</title><link href="https://xutree.github.io/pages/2018/10/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%90%91%E9%87%8F/" rel="alternate"></link><published>2018-10-10T19:50:46+08:00</published><updated>2018-10-10T21:40:02+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-10:/pages/2018/10/10/数据结构向量/</id><summary type="html">&lt;p&gt;数据结构大致可分为：线性结构、半线性结构和非线性结构。线性结构中最基本的称为序列（sequence），根据其中数据项的逻辑次序与其物理存储地址的对应关系不同，又可分为向量（vector）和列表（list）。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-11T18:40:35+08:00</updated><entry><title>数据结构——向量</title><link href="https://xutree.github.io/pages/2018/10/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%90%91%E9%87%8F/" rel="alternate"></link><published>2018-10-10T19:50:46+08:00</published><updated>2018-10-11T18:40:35+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-10:/pages/2018/10/10/数据结构向量/</id><summary type="html">&lt;p&gt;数据结构大致可分为：线性结构、半线性结构和非线性结构。线性结构中最基本的称为序列（sequence），根据其中数据项的逻辑次序与其物理存储地址的对应关系不同，又可分为向量（vector）和列表（list）。&lt;/p&gt;
 &lt;h2&gt;从数组到向量&lt;/h2&gt;
 &lt;p&gt;数组：集合 S 由 n 个元素组成，且各元素之间具有一个线性次序，则可以将它们存放于起始地址 A，物理位置连续的一段存储空间。记为：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;A[0,n) = { A[0], A[1], ..., A[n-1] }&lt;/code&gt;&lt;/p&gt;
@@ -257,7 +257,30 @@ template &amp;lt;typename T&amp;gt; Rank Vector&amp;lt;T&amp;gt;::insert(Rank r,
 
 
 &lt;p&gt;注意从后往前搬移数据，以防覆盖。复杂度：若插入位置等概论分布，则平均运行时间为&lt;em&gt;O&lt;/em&gt;(_size)=&lt;em&gt;O&lt;/em&gt;(n)。&lt;/p&gt;
-&lt;h2&gt;待续...&lt;/h2&gt;</content><category term="数据结构"></category></entry><entry><title>C++ Primer 第八章 IO 库</title><link href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/" rel="alternate"></link><published>2018-10-09T22:19:51+08:00</published><updated>2018-10-09T22:19:51+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-09:/pages/2018/10/09/C++_Primer_Chapter_8/</id><summary type="html">&lt;h2&gt;IO 类&lt;/h2&gt;
+&lt;h3&gt;删除&lt;/h3&gt;
+&lt;p&gt;应将单元素删除视为区间删除的特例，并基于后者来实现前者。&lt;/p&gt;
+&lt;h4&gt;区间删除&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//删除区间[lo, hi)
+template &amp;lt;typename T&amp;gt; int Vector&amp;lt;T&amp;gt;::remove(Rank lo, Rank hi) {
+    if(lo === hi) return 0;
+    while(hi &amp;lt; _size)   _elem[lo++] = _elem[hi++];
+    _size = lo;
+    shrink();
+    return hi - lo; //返回被删除元素个数
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;单元素删除&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;template &amp;lt;typename T&amp;gt; T Vector&amp;lt;T&amp;gt;::remove(Rank r) {
+    T e = _elem[r];
+    remove(r, r + 1);
+    return e;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;被删除元素在向量中的位置越靠后（前）所需时间越短（长），最好为&lt;em&gt;O&lt;/em&gt;(1)，最坏为&lt;em&gt;O&lt;/em&gt;(n)。&lt;/p&gt;</content><category term="数据结构"></category></entry><entry><title>C++ Primer 第八章 IO 库</title><link href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/" rel="alternate"></link><published>2018-10-09T22:19:51+08:00</published><updated>2018-10-09T22:19:51+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-09:/pages/2018/10/09/C++_Primer_Chapter_8/</id><summary type="html">&lt;h2&gt;IO 类&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;iostream&lt;/code&gt;头文件：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;istream&lt;/code&gt;,&lt;code&gt;wistream&lt;/code&gt;,&lt;code&gt;ostream&lt;/code&gt;,&lt;code&gt;wostream&lt;/code&gt;,&lt;code&gt;iostream&lt;/code&gt;,&lt;code&gt;wiostream&lt;/code&gt;类型。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;fstream&lt;/code&gt;头文件：&lt;/p&gt;

@@ -313,7 +313,30 @@ template &lt;typename T&gt; Rank Vector&lt;T&gt;::insert(Rank r, T const&amp; e)
 
 
 <p>注意从后往前搬移数据，以防覆盖。复杂度：若插入位置等概论分布，则平均运行时间为<em>O</em>(_size)=<em>O</em>(n)。</p>
-<h2>待续...</h2>
+<h3>删除</h3>
+<p>应将单元素删除视为区间删除的特例，并基于后者来实现前者。</p>
+<h4>区间删除</h4>
+<div class="highlight"><pre><span></span>//删除区间[lo, hi)
+template &lt;typename T&gt; int Vector&lt;T&gt;::remove(Rank lo, Rank hi) {
+    if(lo === hi) return 0;
+    while(hi &lt; _size)   _elem[lo++] = _elem[hi++];
+    _size = lo;
+    shrink();
+    return hi - lo; //返回被删除元素个数
+}
+</pre></div>
+
+
+<h4>单元素删除</h4>
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; T Vector&lt;T&gt;::remove(Rank r) {
+    T e = _elem[r];
+    remove(r, r + 1);
+    return e;
+}
+</pre></div>
+
+
+<p>被删除元素在向量中的位置越靠后（前）所需时间越短（长），最好为<em>O</em>(1)，最坏为<em>O</em>(n)。</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -355,7 +378,7 @@ template &lt;typename T&gt; Rank Vector&lt;T&gt;::insert(Rank r, T const&amp; e)
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-10T19:50:46+08:00">2018-10-10 19:50:46</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-10 21:40:02</div>
+                    <div class="last_updated">2018-10-11 18:40:35</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
