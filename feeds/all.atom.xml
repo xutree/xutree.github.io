@@ -1,5 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-15T21:17:20+08:00</updated><entry><title>数据结构——向量</title><link href="https://xutree.github.io/pages/2018/10/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%90%91%E9%87%8F/" rel="alternate"></link><published>2018-10-10T19:50:46+08:00</published><updated>2018-10-12T23:39:31+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-10:/pages/2018/10/10/数据结构向量/</id><summary type="html">&lt;p&gt;数据结构大致可分为：线性结构、半线性结构和非线性结构。线性结构中最基本的称为序列（sequence），根据其中数据项的逻辑次序与其物理存储地址的对应关系不同，又可分为向量（vector）和列表（list）。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-15T22:36:10+08:00</updated><entry><title>Perl 入门</title><link href="https://xutree.github.io/pages/2018/10/15/perl%E5%85%A5%E9%97%A8/" rel="alternate"></link><published>2018-10-15T22:36:10+08:00</published><updated>2018-10-15T22:36:10+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-15:/pages/2018/10/15/perl入门/</id><summary type="html">&lt;p&gt;Perl 是 Practical Extraction and Report Language 的缩写，可翻译为 "实用报表提取语言"。&lt;/p&gt;
+&lt;p&gt;Perl 是高级、通用、直译式、动态的程序语言。&lt;/p&gt;
+&lt;p&gt;Perl 最初的设计者为拉里·沃尔（Larry Wall），于1987年12月18日发表。&lt;/p&gt;
+&lt;p&gt;Perl 借用了 C、sed、awk、shell 脚本以及很多其他编程语言的特性。&lt;/p&gt;
+&lt;p&gt;Perl 最重要的特性是 Perl 内部集成了正则表达式的功能，以及巨大的第三方代码库CPAN。&lt;/p&gt;
+&lt;p&gt;以下代码为使用 Perl 输出 "Hello World！"：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/perl&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello, World!\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Perl 语言的应用范围很广，除 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Perl 是 Practical Extraction and Report Language 的缩写，可翻译为 "实用报表提取语言"。&lt;/p&gt;
+&lt;p&gt;Perl 是高级、通用、直译式、动态的程序语言。&lt;/p&gt;
+&lt;p&gt;Perl 最初的设计者为拉里·沃尔（Larry Wall），于1987年12月18日发表。&lt;/p&gt;
+&lt;p&gt;Perl 借用了 C、sed、awk、shell 脚本以及很多其他编程语言的特性。&lt;/p&gt;
+&lt;p&gt;Perl 最重要的特性是 Perl 内部集成了正则表达式的功能，以及巨大的第三方代码库CPAN。&lt;/p&gt;
+&lt;p&gt;以下代码为使用 Perl 输出 "Hello World！"：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/perl&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello, World!\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Perl 语言的应用范围很广，除 CGI 以外，Perl 被用于图形编程、系统管理、网络编程、金融、生物以及其他领域。由于其灵活性，Perl 被称为脚本语言中的瑞士军刀。&lt;/p&gt;
+&lt;p&gt;Perl 与脚本语言一样，Perl 不需要编译器和链接器来运行代码，你要做的只是写出程序并告诉 Perl 来运行而已。这意味着 Perl 对于小的编程问题的快速解决方案和为大型事件创建原型来测试潜在的解决方案是十分理想的。&lt;/p&gt;
+&lt;h2&gt;运行 Perl&lt;/h2&gt;
+&lt;h3&gt;交互式&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$perl  -e &amp;lt;perl code&amp;gt;           # Unix/Linux
+C:&amp;gt;perl -e &amp;lt;perl code&amp;gt;          # Windows/DOS
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;选项&lt;/th&gt;
+&lt;th align="left"&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-d[:debugger]&lt;/td&gt;
+&lt;td align="left"&gt;在调试模式下运行程序&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-Idirectory&lt;/td&gt;
+&lt;td align="left"&gt;指定 @INC/#include 目录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-T&lt;/td&gt;
+&lt;td align="left"&gt;允许污染检测&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-t&lt;/td&gt;
+&lt;td align="left"&gt;允许污染警告&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-U&lt;/td&gt;
+&lt;td align="left"&gt;允许不安全操作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-w&lt;/td&gt;
+&lt;td align="left"&gt;许很多有用的警告&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-W&lt;/td&gt;
+&lt;td align="left"&gt;允许所有警告&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-X&lt;/td&gt;
+&lt;td align="left"&gt;禁用使用警告&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;-e program&lt;/td&gt;
+&lt;td align="left"&gt;执行 perl 代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;file&lt;/td&gt;
+&lt;td align="left"&gt;执行 perl 脚本文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;脚本执行&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$perl  script.pl          # Unix/Linux
+C:&amp;gt;perl script.pl         # Windows/DOS
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Perl 基础语法&lt;/h2&gt;
+&lt;h3&gt;语句&lt;/h3&gt;
+&lt;p&gt;Perl 程序有声明与语句组成，程序自上而下执行，包含了循环，条件控制，每个语句以分号 (&lt;strong&gt;;&lt;/strong&gt;) 结束。Perl 语言没有严格的格式规范，你可以根据自己喜欢的风格来缩进。&lt;/p&gt;
+&lt;h3&gt;注释&lt;/h3&gt;
+&lt;p&gt;perl 注释的方法为在语句的开头用字符 #。&lt;/p&gt;
+&lt;p&gt;perl 也支持多行注释，最常用的方法是使用 POD(Plain Old Documentations) 来进行多行注释。方法如下:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/perl&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 这是一个单行注释&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello, world\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="cm"&gt;=pod 注释&lt;/span&gt;
+&lt;span class="cm"&gt;这是一个多行注释&lt;/span&gt;
+&lt;span class="cm"&gt;这是一个多行注释&lt;/span&gt;
+&lt;span class="cm"&gt;这是一个多行注释&lt;/span&gt;
+&lt;span class="cm"&gt;这是一个多行注释&lt;/span&gt;
+&lt;span class="cm"&gt;=cut&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;ul&gt;
+&lt;li&gt;=pod、 =cut只能在行首&lt;/li&gt;
+&lt;li&gt;以=开头，以=cut结尾&lt;/li&gt;
+&lt;li&gt;=后面要紧接一个字符，=cut后面可以不用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;空白&lt;/h3&gt;
+&lt;p&gt;Perl 解释器不会关心有多少个空白。但是如果空格和分行出现在字符串内，他会原样输出。&lt;/p&gt;
+&lt;h3&gt;引号&lt;/h3&gt;
+&lt;p&gt;Perl 双引号和单引号的区别: 双引号可以正常解析一些转义字符与变量，而单引号无法解析会原样输出。&lt;/p&gt;
+&lt;h3&gt;Here 文档&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;必须后接分号，否则编译通不过&lt;/li&gt;
+&lt;li&gt;END 可以用任意其它字符代替，只需保证结束标识与开始标识一致&lt;/li&gt;
+&lt;li&gt;结束标识必须顶格独自占一行(即必须从行首开始，前后不能衔接任何空白和字符)&lt;/li&gt;
+&lt;li&gt;开始标识可以不带引号号或带单双引号，不带引号与带双引号效果一致，解释内嵌的变量和转义符号，带单引号则不解释内嵌的变量和转义符号&lt;/li&gt;
+&lt;li&gt;当内容需要内嵌引号（单引号或双引号）时，不需要加转义符，本身对单双引号转义&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/perl&lt;/span&gt;
+
+&lt;span class="nv"&gt;$a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;lt;&amp;lt;&amp;quot;&lt;/span&gt;&lt;span class="dl"&gt;EOF&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;;&lt;/span&gt;
+&lt;span class="s"&gt;这是一个 Here 文档实例，使用双引号。&lt;/span&gt;
+&lt;span class="s"&gt;可以在这输如字符串和变量。&lt;/span&gt;
+&lt;span class="s"&gt;例如：a = $a&lt;/span&gt;
+&lt;span class="dl"&gt;EOF&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$var\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="nv"&gt;$var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;lt;&amp;lt;&amp;#39;&lt;/span&gt;&lt;span class="dl"&gt;EOF&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;;&lt;/span&gt;
+&lt;span class="s"&gt;这是一个 Here 文档实例，使用单引号。&lt;/span&gt;
+&lt;span class="s"&gt;例如：a = $a&lt;/span&gt;
+&lt;span class="dl"&gt;EOF&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$var\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;执行以上程序输出结果为：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;这是一个 Here 文档实例，使用双引号。
+可以在这输如字符串和变量。
+例如：a = 10
+
+这是一个 Here 文档实例，使用单引号。
+例如：a = $a
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Perl 数据类型&lt;/h2&gt;
+&lt;p&gt;Perl 是一种弱类型语言，所以变量不需要指定类型，Perl 解释器会根据上下文自动选择匹配类型。&lt;/p&gt;
+&lt;p&gt;Perl 有三个基本的数据类型：标量、数组、哈希。&lt;/p&gt;
+&lt;h3&gt;标量&lt;/h3&gt;
+&lt;p&gt;标量是 Perl 语言中最简单的一种数据类型。这种数据类型的变量可以是数字，字符串，浮点数，不作严格的区分。在使用时在变量的名字前面加上一个"$",表示是标量。&lt;/p&gt;
+&lt;h3&gt;数组&lt;/h3&gt;
+&lt;p&gt;数组变量以字符"@"开头，索引从0开始。&lt;/p&gt;
+&lt;h3&gt;哈希&lt;/h3&gt;
+&lt;p&gt;哈希是一个无序的 key/value 对集合。可以使用键作为下标获取值。哈希变量以字符"%"开头。&lt;/p&gt;
+&lt;h2&gt;数字字面量&lt;/h2&gt;
+&lt;h3&gt;整型&lt;/h3&gt;
+&lt;p&gt;Perl 实际上把整数存在你的计算机中的浮点寄存器中，所以实际上被当作浮点数看待。&lt;/p&gt;
+&lt;p&gt;在多数计算机中，浮点寄存器可以存贮约16位数字，长于此的被丢弃。整数实为浮点数的特例。&lt;/p&gt;
+&lt;p&gt;8进制和16进制数：8进制以0开始，16进制以0x开始。&lt;/p&gt;
+&lt;h3&gt;浮点数&lt;/h3&gt;
+&lt;p&gt;浮点数数据如：11.4 、 -0.3 、.3 、 3. 、 54.1e+02 、 5.41e03&lt;/p&gt;
+&lt;p&gt;浮点寄存器通常不能精确地存贮浮点数，从而产生误差，在运算和比较中要特别注意。指数的范围通常为-309到+308。&lt;/p&gt;
+&lt;h3&gt;字符串&lt;/h3&gt;
+&lt;p&gt;Perl 中的字符串使用一个标量来表示，定义方式和 c 很像，但是在 Perl 里面字符串不是用0来表示结束的。&lt;/p&gt;
+&lt;p&gt;Perl 双引号和单引号的区别: 双引号可以正常解析一些转义字符与变量，而单引号无法解析会原样输出。但是用单引号定义可以使用多行文本。&lt;/p&gt;
+&lt;h2&gt;转义字符&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;转义字符&lt;/th&gt;
+&lt;th align="left"&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\\&lt;/td&gt;
+&lt;td align="left"&gt;反斜线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\'&lt;/td&gt;
+&lt;td align="left"&gt;单引号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\"&lt;/td&gt;
+&lt;td align="left"&gt;双引号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\a&lt;/td&gt;
+&lt;td align="left"&gt;系统响铃&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\b&lt;/td&gt;
+&lt;td align="left"&gt;退格&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\f&lt;/td&gt;
+&lt;td align="left"&gt;换页符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\n&lt;/td&gt;
+&lt;td align="left"&gt;换行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\r&lt;/td&gt;
+&lt;td align="left"&gt;回车&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\t&lt;/td&gt;
+&lt;td align="left"&gt;水平制表符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\v&lt;/td&gt;
+&lt;td align="left"&gt;垂直制表符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\0nn&lt;/td&gt;
+&lt;td align="left"&gt;创建八进制格式的数字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\xnn&lt;/td&gt;
+&lt;td align="left"&gt;创建十六进制格式的数字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\cX&lt;/td&gt;
+&lt;td align="left"&gt;控制字符，x可以是任何字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\u&lt;/td&gt;
+&lt;td align="left"&gt;强制下一个字符为大写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\l&lt;/td&gt;
+&lt;td align="left"&gt;强制下一个字符为小写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\U&lt;/td&gt;
+&lt;td align="left"&gt;强制将所有字符转换为大写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\L&lt;/td&gt;
+&lt;td align="left"&gt;强制将所有的字符转换为小写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\Q&lt;/td&gt;
+&lt;td align="left"&gt;将到\E为止的非单词（non-word）字符加上反斜线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;\E&lt;/td&gt;
+&lt;td align="left"&gt;结束\L、\U、\Q&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</content><category term="Perl"></category></entry><entry><title>数据结构——向量</title><link href="https://xutree.github.io/pages/2018/10/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%90%91%E9%87%8F/" rel="alternate"></link><published>2018-10-10T19:50:46+08:00</published><updated>2018-10-12T23:39:31+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-10:/pages/2018/10/10/数据结构向量/</id><summary type="html">&lt;p&gt;数据结构大致可分为：线性结构、半线性结构和非线性结构。线性结构中最基本的称为序列（sequence），根据其中数据项的逻辑次序与其物理存储地址的对应关系不同，又可分为向量（vector）和列表（list）。&lt;/p&gt;
 &lt;h2&gt;从数组到向量&lt;/h2&gt;
 &lt;p&gt;数组：集合 S 由 n 个元素组成，且各元素之间具有一个线性次序，则可以将它们存放于起始地址 A，物理位置连续的一段存储空间。记为：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;A[0,n) = { A[0], A[1], ..., A[n-1] }&lt;/code&gt;&lt;/p&gt;
@@ -2910,7 +3194,6 @@ vector&amp;lt;int&amp;gt; ivec(begin(int_arr),end(int_arr));
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;下面是 HTML 版本的“Hello, World！”程序：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
 &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -2990,7 +3273,6 @@ vector&amp;lt;int&amp;gt; ivec(begin(int_arr),end(int_arr));
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;浏览器将&lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;显示为&lt;code&gt;&amp;lt;b&amp;gt;&lt;/code&gt;，将&lt;code&gt;&amp;lt;em&amp;gt;&lt;/code&gt;显示为&lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt;。但是，这些标记的含义不同：&lt;code&gt;&amp;lt;b&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt;分别定义粗体和斜体文本，而&lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;和&lt;code&gt;&amp;lt;em&amp;gt;&lt;/code&gt;表示文本“重要”。&lt;/p&gt;
 &lt;h2&gt;标题标签&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;h1&amp;gt;&amp;lt;/h1&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;h2&amp;gt;&amp;lt;/h2&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;h3&amp;gt;&amp;lt;/h3&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;h4&amp;gt;&amp;lt;/h4&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;h5&amp;gt;&amp;lt;/h5&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;h6&amp;gt;&amp;lt;/h6&amp;gt;&lt;/code&gt;六种标题，&lt;code&gt;&amp;lt;h1&amp;gt;&amp;lt;/h1&amp;gt;&lt;/code&gt;字号最大。&lt;/p&gt;
 &lt;h2&gt;标签属性&lt;/h2&gt;
