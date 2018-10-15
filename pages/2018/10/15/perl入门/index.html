@@ -304,7 +304,7 @@ C:&gt;perl script.pl         # Windows/DOS
 <td align="left">创建十六进制格式的数字</td>
 </tr>
 <tr>
-<td align="left">\cX</td>
+<td align="left">\cx</td>
 <td align="left">控制字符，x可以是任何字符</td>
 </tr>
 <tr>
@@ -333,6 +333,76 @@ C:&gt;perl script.pl         # Windows/DOS
 </tr>
 </tbody>
 </table>
+<h2>Perl 变量</h2>
+<p>标量 $ 开始， 如$a $b 是两个标量。</p>
+<p>数组 @ 开始 ， 如 \@a \@b 是两个数组。</p>
+<p>哈希 % 开始 ， %a %b 是两个哈希。</p>
+<p>Perl 为每个变量类型设置了独立的命令空间，所以不同类型的变量可以使用相同的名称，你不用担心会发生冲突。例如 $foo 和 \@foo 是两个不同的变量。</p>
+<p>变量不需要显式声明类型，在变量赋值后，解释器会自动分配匹配的类型空间。</p>
+<h3>Perl 标量</h3>
+<p>标量是一个简单的数据单元。</p>
+<p>标量可以是一个整数，浮点数，字符，字符串，段落或者一个完整的网页。</p>
+<h4>特殊字符</h4>
+<p>以下我们将演示 Perl 中特殊字符的应用，如 __FILE__, __LINE__, 和 __PACKAGE__ 分别表示当前执行脚本的文件名，行号，包名。</p>
+<p>注意： <strong> 是两条下划线，__FILE</strong> 前后各两条下划线。</p>
+<p>这些特殊字符是单独的标记，不能写在字符串中，例如：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/perl</span>
+
+<span class="k">print</span> <span class="s">&quot;文件名 &quot;</span><span class="o">.</span> <span class="n">__FILE__</span> <span class="o">.</span> <span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<span class="k">print</span> <span class="s">&quot;行号 &quot;</span> <span class="o">.</span> <span class="n">__LINE__</span> <span class="o">.</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+<span class="k">print</span> <span class="s">&quot;包名 &quot;</span> <span class="o">.</span> <span class="n">__PACKAGE__</span> <span class="o">.</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+
+<span class="c1"># 无法解析</span>
+<span class="k">print</span> <span class="s">&quot;__FILE__ __LINE__ __PACKAGE__\n&quot;</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<div class="highlight"><pre><span></span>文件名 test.pl
+行号 4
+包名 main
+__FILE__ __LINE__ __PACKAGE__
+</pre></div>
+
+
+<h4>v 字符串</h4>
+<p>用于十六进制：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/perl</span>
+
+<span class="nv">$smile</span>  <span class="o">=</span> <span class="n">v9786</span><span class="p">;</span>
+<span class="nv">$foo</span>    <span class="o">=</span> <span class="n">v102</span><span class="mf">.111.111</span><span class="p">;</span>
+<span class="nv">$martin</span> <span class="o">=</span> <span class="n">v77</span><span class="mf">.97.114.116.105.110</span><span class="p">;</span>
+
+<span class="k">print</span> <span class="s">&quot;smile = $smile\n&quot;</span><span class="p">;</span>
+<span class="k">print</span> <span class="s">&quot;foo = $foo\n&quot;</span><span class="p">;</span>
+<span class="k">print</span> <span class="s">&quot;martin = $martin\n&quot;</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<div class="highlight"><pre><span></span>Wide character in print at test.pl line 7.
+smile = &amp;#x263a;
+foo = foo
+martin = Martin
+</pre></div>
+
+
+<h3>数组</h3>
+<p>Perl 数组一个是存储标量值的列表变量，变量可以是不同类型。</p>
+<p>数组变量以 \@ 开头。访问数组元素使用 $ + 变量名称 + [索引值] 格式来读取。</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -374,7 +444,7 @@ C:&gt;perl script.pl         # Windows/DOS
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-15T22:36:10+08:00">2018-10-15 22:36:10</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-15 22:36:10</div>
+                    <div class="last_updated">2018-10-15 23:12:03</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#教程-ref">教程</a>
                     <h4>标签</h4>

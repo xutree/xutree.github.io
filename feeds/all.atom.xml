@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-15T22:36:10+08:00</updated><entry><title>Perl 入门</title><link href="https://xutree.github.io/pages/2018/10/15/perl%E5%85%A5%E9%97%A8/" rel="alternate"></link><published>2018-10-15T22:36:10+08:00</published><updated>2018-10-15T22:36:10+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-15:/pages/2018/10/15/perl入门/</id><summary type="html">&lt;p&gt;Perl 是 Practical Extraction and Report Language 的缩写，可翻译为 "实用报表提取语言"。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-15T23:12:03+08:00</updated><entry><title>Perl 入门</title><link href="https://xutree.github.io/pages/2018/10/15/perl%E5%85%A5%E9%97%A8/" rel="alternate"></link><published>2018-10-15T22:36:10+08:00</published><updated>2018-10-15T23:12:03+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-15:/pages/2018/10/15/perl入门/</id><summary type="html">&lt;p&gt;Perl 是 Practical Extraction and Report Language 的缩写，可翻译为 "实用报表提取语言"。&lt;/p&gt;
 &lt;p&gt;Perl 是高级、通用、直译式、动态的程序语言。&lt;/p&gt;
 &lt;p&gt;Perl 最初的设计者为拉里·沃尔（Larry Wall），于1987年12月18日发表。&lt;/p&gt;
 &lt;p&gt;Perl 借用了 C、sed、awk、shell 脚本以及很多其他编程语言的特性。&lt;/p&gt;
@@ -255,7 +255,7 @@ C:&amp;gt;perl script.pl         # Windows/DOS
 &lt;td align="left"&gt;创建十六进制格式的数字&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align="left"&gt;\cX&lt;/td&gt;
+&lt;td align="left"&gt;\cx&lt;/td&gt;
 &lt;td align="left"&gt;控制字符，x可以是任何字符&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -283,7 +283,77 @@ C:&amp;gt;perl script.pl         # Windows/DOS
 &lt;td align="left"&gt;结束\L、\U、\Q&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</content><category term="Perl"></category></entry><entry><title>数据结构——向量</title><link href="https://xutree.github.io/pages/2018/10/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%90%91%E9%87%8F/" rel="alternate"></link><published>2018-10-10T19:50:46+08:00</published><updated>2018-10-12T23:39:31+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-10:/pages/2018/10/10/数据结构向量/</id><summary type="html">&lt;p&gt;数据结构大致可分为：线性结构、半线性结构和非线性结构。线性结构中最基本的称为序列（sequence），根据其中数据项的逻辑次序与其物理存储地址的对应关系不同，又可分为向量（vector）和列表（list）。&lt;/p&gt;
+&lt;/table&gt;
+&lt;h2&gt;Perl 变量&lt;/h2&gt;
+&lt;p&gt;标量 $ 开始， 如$a $b 是两个标量。&lt;/p&gt;
+&lt;p&gt;数组 @ 开始 ， 如 \@a \@b 是两个数组。&lt;/p&gt;
+&lt;p&gt;哈希 % 开始 ， %a %b 是两个哈希。&lt;/p&gt;
+&lt;p&gt;Perl 为每个变量类型设置了独立的命令空间，所以不同类型的变量可以使用相同的名称，你不用担心会发生冲突。例如 $foo 和 \@foo 是两个不同的变量。&lt;/p&gt;
+&lt;p&gt;变量不需要显式声明类型，在变量赋值后，解释器会自动分配匹配的类型空间。&lt;/p&gt;
+&lt;h3&gt;Perl 标量&lt;/h3&gt;
+&lt;p&gt;标量是一个简单的数据单元。&lt;/p&gt;
+&lt;p&gt;标量可以是一个整数，浮点数，字符，字符串，段落或者一个完整的网页。&lt;/p&gt;
+&lt;h4&gt;特殊字符&lt;/h4&gt;
+&lt;p&gt;以下我们将演示 Perl 中特殊字符的应用，如 __FILE__, __LINE__, 和 __PACKAGE__ 分别表示当前执行脚本的文件名，行号，包名。&lt;/p&gt;
+&lt;p&gt;注意： &lt;strong&gt; 是两条下划线，__FILE&lt;/strong&gt; 前后各两条下划线。&lt;/p&gt;
+&lt;p&gt;这些特殊字符是单独的标记，不能写在字符串中，例如：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/perl&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;文件名 &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;__FILE__&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;行号 &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;__LINE__&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;包名 &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;__PACKAGE__&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 无法解析&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;__FILE__ __LINE__ __PACKAGE__\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;文件名 test.pl
+行号 4
+包名 main
+__FILE__ __LINE__ __PACKAGE__
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;v 字符串&lt;/h4&gt;
+&lt;p&gt;用于十六进制：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/perl&lt;/span&gt;
+
+&lt;span class="nv"&gt;$smile&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v9786&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$foo&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v102&lt;/span&gt;&lt;span class="mf"&gt;.111.111&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$martin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v77&lt;/span&gt;&lt;span class="mf"&gt;.97.114.116.105.110&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;smile = $smile\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;foo = $foo\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;martin = $martin\n&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Wide character in print at test.pl line 7.
+smile = &amp;amp;#x263a;
+foo = foo
+martin = Martin
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;数组&lt;/h3&gt;
+&lt;p&gt;Perl 数组一个是存储标量值的列表变量，变量可以是不同类型。&lt;/p&gt;
+&lt;p&gt;数组变量以 \@ 开头。访问数组元素使用 $ + 变量名称 + [索引值] 格式来读取。&lt;/p&gt;</content><category term="Perl"></category></entry><entry><title>数据结构——向量</title><link href="https://xutree.github.io/pages/2018/10/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%90%91%E9%87%8F/" rel="alternate"></link><published>2018-10-10T19:50:46+08:00</published><updated>2018-10-12T23:39:31+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-10:/pages/2018/10/10/数据结构向量/</id><summary type="html">&lt;p&gt;数据结构大致可分为：线性结构、半线性结构和非线性结构。线性结构中最基本的称为序列（sequence），根据其中数据项的逻辑次序与其物理存储地址的对应关系不同，又可分为向量（vector）和列表（list）。&lt;/p&gt;
 &lt;h2&gt;从数组到向量&lt;/h2&gt;
 &lt;p&gt;数组：集合 S 由 n 个元素组成，且各元素之间具有一个线性次序，则可以将它们存放于起始地址 A，物理位置连续的一段存储空间。记为：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;A[0,n) = { A[0], A[1], ..., A[n-1] }&lt;/code&gt;&lt;/p&gt;
