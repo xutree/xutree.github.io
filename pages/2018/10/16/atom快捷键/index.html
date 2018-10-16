@@ -7,7 +7,7 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="Atom, 教程, " />
+<meta name="keywords" content="Atom, Mac, 教程, " />
     <title>Atom 快捷键  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
@@ -60,7 +60,34 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>转载自：<a href="https://www.jianshu.com/p/e33f864981bb">https://www.jianshu.com/p/e33f864981bb</a></p>
+                <p>参考：<a href="https://www.jianshu.com/p/e33f864981bb">https://www.jianshu.com/p/e33f864981bb</a>、<a href="https://github.com/nwinkler/atom-keyboard-shortcuts">https://github.com/nwinkler/atom-keyboard-shortcuts</a></p>
+<h2>基本快捷键</h2>
+<table>
+<thead>
+<tr>
+<th align="left">快捷键</th>
+<th align="left">快捷键的功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>cmd-,</code></td>
+<td align="left">打开设置面板</td>
+</tr>
+<tr>
+<td align="left"><code>shift-cmd-p</code></td>
+<td align="left">打开和关闭命令面板</td>
+</tr>
+<tr>
+<td align="left"><code>ctrl-alt-cmd-l</code></td>
+<td align="left">重启</td>
+</tr>
+<tr>
+<td align="left"><code>alt-cmd-i</code></td>
+<td align="left">打开开发者工具</td>
+</tr>
+</tbody>
+</table>
 <h2>文件切换</h2>
 <table>
 <thead>
@@ -84,7 +111,7 @@
 </tr>
 <tr>
 <td align="left"><code>cmd-t 或 cmd-p</code></td>
-<td align="left">查找文件</td>
+<td align="left">查找文件（模糊查找）</td>
 </tr>
 <tr>
 <td align="left"><code>cmd-b</code></td>
@@ -93,6 +120,14 @@
 <tr>
 <td align="left"><code>cmd-shift-b</code></td>
 <td align="left">只搜索从上次 git commit 后修改或者新增的文件</td>
+</tr>
+<tr>
+<td align="left"><code>alt-cmd-left</code></td>
+<td align="left">在打开的标签页往左切换</td>
+</tr>
+<tr>
+<td align="left"><code>alt-cmd-right</code></td>
+<td align="left">在打开的标签页往右切换</td>
 </tr>
 </tbody>
 </table>
@@ -146,12 +181,67 @@
 <td align="left">移动到文件结束</td>
 </tr>
 <tr>
-<td align="left"><code>ctrl-g</code></td>
-<td align="left">移动到指定行 row:column 处</td>
-</tr>
-<tr>
 <td align="left"><code>cmd-r</code></td>
 <td align="left">在方法之间跳转</td>
+</tr>
+</tbody>
+</table>
+<h2>窗口管理</h2>
+<table>
+<thead>
+<tr>
+<th align="left">快捷键</th>
+<th align="left">快捷键的功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>cmd-n</code></td>
+<td align="left">新建文件</td>
+</tr>
+<tr>
+<td align="left"><code>shift-cmd-n</code></td>
+<td align="left">新建窗口</td>
+</tr>
+<tr>
+<td align="left"><code>cmd-o</code></td>
+<td align="left">打开文件</td>
+</tr>
+<tr>
+<td align="left"><code>cmd-shift-o</code></td>
+<td align="left">打开文件夹</td>
+</tr>
+<tr>
+<td align="left"><code>cmd-s</code></td>
+<td align="left">保存</td>
+</tr>
+<tr>
+<td align="left"><code>shift-cmd-s</code></td>
+<td align="left">另存为</td>
+</tr>
+<tr>
+<td align="left"><code>alt-cmd-s</code></td>
+<td align="left">保存所有</td>
+</tr>
+<tr>
+<td align="left"><code>cmd-w</code></td>
+<td align="left">关闭标签</td>
+</tr>
+<tr>
+<td align="left"><code>shift-cmd-w</code></td>
+<td align="left">关闭窗口</td>
+</tr>
+<tr>
+<td align="left"><code>cmd-k up/down/left/right</code></td>
+<td align="left">分隔窗口</td>
+</tr>
+<tr>
+<td align="left"><code>cmd-k cmd-up/down/left/right</code></td>
+<td align="left">聚焦窗口</td>
+</tr>
+<tr>
+<td align="left"><code>ctrl-cmd-f</code></td>
+<td align="left">全屏</td>
 </tr>
 </tbody>
 </table>
@@ -207,33 +297,6 @@
 </tbody>
 </table>
 <p><code>cmd-k h</code>为先按下<code>cmd-k</code>，松开后按<code>h</code>。</p>
-<h2>分屏操作</h2>
-<table>
-<thead>
-<tr>
-<th align="left">快捷键</th>
-<th align="left">快捷键的功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>cmd-k left</code></td>
-<td align="left">在左半视图中打开文件</td>
-</tr>
-<tr>
-<td align="left"><code>cmd-k down</code></td>
-<td align="left">在下半视图中打开文件</td>
-</tr>
-<tr>
-<td align="left"><code>cmd-k up</code></td>
-<td align="left">在上半视图中打开文件</td>
-</tr>
-<tr>
-<td align="left"><code>cmd-k right</code></td>
-<td align="left">在右半视图中打开文件</td>
-</tr>
-</tbody>
-</table>
 <h2>书签</h2>
 <table>
 <thead>
@@ -287,15 +350,15 @@
 <td align="left">选取至字符开始</td>
 </tr>
 <tr>
-<td align="left"><code>alt-shift-F, alt-shift-right</code></td>
+<td align="left"><code>alt-shift-f, alt-shift-right</code></td>
 <td align="left">选取至字符结束</td>
 </tr>
 <tr>
-<td align="left"><code>ctrl-shift-E, cmd-shift-right</code></td>
+<td align="left"><code>ctrl-shift-e, cmd-shift-right</code></td>
 <td align="left">选取至本行结束</td>
 </tr>
 <tr>
-<td align="left"><code>ctrl-shift-A, cmd-shift-left</code></td>
+<td align="left"><code>ctrl-shift-a, cmd-shift-left</code></td>
 <td align="left">选取至本行开始</td>
 </tr>
 <tr>
@@ -307,15 +370,15 @@
 <td align="left">选取至文件结尾</td>
 </tr>
 <tr>
-<td align="left"><code>cmd-A</code></td>
+<td align="left"><code>cmd-a</code></td>
 <td align="left">全选</td>
 </tr>
 <tr>
-<td align="left"><code>cmd-L</code></td>
+<td align="left"><code>cmd-l</code></td>
 <td align="left">选取一行，继续按会继续选取下一行</td>
 </tr>
 <tr>
-<td align="left"><code>ctrl-shift-W</code></td>
+<td align="left"><code>ctrl-shift-w</code></td>
 <td align="left">选取当前单词</td>
 </tr>
 </tbody>
@@ -344,6 +407,10 @@
 <tr>
 <td align="left"><code>cmd-shift-d</code></td>
 <td align="left">复制当前行到下一行</td>
+</tr>
+<tr>
+<td align="left"><code>cmd-/</code></td>
+<td align="left">将选择的文件加入注释</td>
 </tr>
 </tbody>
 </table>
@@ -420,12 +487,16 @@
 <td align="left">选取文档中和当前单词相同的下一处</td>
 </tr>
 <tr>
+<td align="left"><code>cmd-u</code></td>
+<td align="left">取消选择</td>
+</tr>
+<tr>
 <td align="left"><code>ctrl-cmd-g</code></td>
 <td align="left">选取文档中所有和当前光标单词相同的位置</td>
 </tr>
 </tbody>
 </table>
-<h2>括号跳转</h2>
+<h2>跳转</h2>
 <table>
 <thead>
 <tr>
@@ -439,12 +510,20 @@
 <td align="left">相应括号之间，html tag之间等跳转</td>
 </tr>
 <tr>
+<td align="left"><code>ctrl-g</code></td>
+<td align="left">移动到指定行 row:column 处</td>
+</tr>
+<tr>
 <td align="left"><code>ctrl-cmd-m</code></td>
 <td align="left">括号(tag)之间文本选取</td>
 </tr>
 <tr>
 <td align="left"><code>alt-cmd-.|关闭当前XML/HTML tag</code></td>
 <td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>ctrl-shift-o</code></td>
+<td align="left">打开链接</td>
 </tr>
 </tbody>
 </table>
@@ -483,6 +562,14 @@
 <tr>
 <td align="left"><code>cmd-f</code></td>
 <td align="left">在buffer中查找</td>
+</tr>
+<tr>
+<td align="left"><code>cmd-g</code></td>
+<td align="left">查找下一个</td>
+</tr>
+<tr>
+<td align="left"><code>shift-cmd-g</code></td>
+<td align="left">查找上一个</td>
 </tr>
 <tr>
 <td align="left"><code>cmd-shift-f</code></td>
@@ -617,13 +704,16 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-16T14:47:35+08:00">2018-10-16 14:47:35</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-16 14:56:47</div>
+                    <div class="last_updated">2018-10-16 15:49:44</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#教程-ref">教程</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
                         <li><a href="/tags.html#Atom-ref">Atom
                                 <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#Mac-ref">Mac
+                                <span>2</span>
 </a></li>
                     </ul>
 
