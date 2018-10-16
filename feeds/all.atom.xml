@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-16T14:47:35+08:00</updated><entry><title>Atom 快捷键</title><link href="https://xutree.github.io/pages/2018/10/16/atom%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="alternate"></link><published>2018-10-16T14:47:35+08:00</published><updated>2018-10-16T14:47:35+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-16:/pages/2018/10/16/atom快捷键/</id><summary type="html">&lt;h2&gt;文件切换&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-16T14:47:35+08:00</updated><entry><title>Atom 快捷键</title><link href="https://xutree.github.io/pages/2018/10/16/atom%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="alternate"></link><published>2018-10-16T14:47:35+08:00</published><updated>2018-10-16T14:47:35+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-16:/pages/2018/10/16/atom快捷键/</id><summary type="html">&lt;p&gt;转载自：&lt;a href="https://www.jianshu.com/p/e33f864981bb"&gt;https://www.jianshu.com/p/e33f864981bb&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;文件切换&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -61,18 +62,8 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;alt-b, alt-left&lt;/td&gt;
-&lt;td align="left"&gt;移动到单词开始&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align="left"&gt;alt-f, alt-right&lt;/td&gt;
-&lt;td align="left"&gt;移动到单词末尾&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align="left"&gt;cmd-right, ctrl-e&lt;/td&gt;
-&lt;td align="left"&gt;移动到一行结束&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align="left"&gt;cmd-left …&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">&lt;h2&gt;文件切换&lt;/h2&gt;
+&lt;td align="left"&gt;移动到单词开始 …&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">&lt;p&gt;转载自：&lt;a href="https://www.jianshu.com/p/e33f864981bb"&gt;https://www.jianshu.com/p/e33f864981bb&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;文件切换&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
