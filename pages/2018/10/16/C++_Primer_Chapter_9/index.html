@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="C++, 读书笔记, " />
+    <title>C++ Primer 第九章 顺序容器  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
+        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/"> C++ Primer 第九章 顺序容器  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <p>一个容器就是一些特定类型对象的集合。顺序容器（sequential container）为程序员提供了控制元素存储和访问顺序的能力。这种顺序不依赖于元素的值，而是与元素加入容器时的位置相对应。</p>
+<h2>顺序容器概述</h2>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>vector</code></td>
+<td align="left">可变大小数组。支持快速随机访问。在尾部之外的位置插入或删除元素可能很慢</td>
+</tr>
+<tr>
+<td align="left"><code>deque</code></td>
+<td align="left">双端队列。支持快速随机访问。在头尾位置插入或删除速度很快</td>
+</tr>
+<tr>
+<td align="left"><code>list</code></td>
+<td align="left">双向链表。只支持双向顺序访问。在任何位置进行插入或删除都很快</td>
+</tr>
+<tr>
+<td align="left"><code>forward_list</code></td>
+<td align="left">单向链表。只支持单向顺序访问。在任何位置进行插入或删除都很快</td>
+</tr>
+<tr>
+<td align="left"><code>array</code></td>
+<td align="left">固定大小数组。支持快速随机访问。不能添加或删除元素</td>
+</tr>
+<tr>
+<td align="left"><code>string</code></td>
+<td align="left">与<code>vector</code>相似的容器，专门用于保存字符。随机访问快。在尾部插入或删除快</td>
+</tr>
+</tbody>
+</table>
+<p><code>string</code>和<code>vector</code>保存在连续的内存空间中，因此由下标计算地址非常快速。</p>
+<p><code>forward_list</code>的设计目标是达到与最好的手写的单向链表数据结构相当的性能，因此不提供<code>size</code>操作，因为保存和计算大小会增加开销。</p>
+<p>通常，<code>vector</code>是最好的选择。</p>
+<p>每个容器都定义在同名的头文件中，容器均是模板类。</p>
+<h2>容器库概览</h2>
+<h3>类型别名</h3>
+<table>
+<thead>
+<tr>
+<th align="left">类型别名</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>iterator</code></td>
+<td align="left">此容器类型的迭代器类型</td>
+</tr>
+<tr>
+<td align="left"><code>const_iterator</code></td>
+<td align="left">常量迭代器类型</td>
+</tr>
+<tr>
+<td align="left"><code>size_type</code></td>
+<td align="left">无符号整数，足够保存此种容器的最大大小</td>
+</tr>
+<tr>
+<td align="left"><code>difference_type</code></td>
+<td align="left">带符号整数，足够保存两个迭代器之间的距离</td>
+</tr>
+<tr>
+<td align="left"><code>value_type</code></td>
+<td align="left">元素类型</td>
+</tr>
+<tr>
+<td align="left"><code>reference</code></td>
+<td align="left">元素的左值类型，与<code>value_type&amp;</code>含义相同</td>
+</tr>
+<tr>
+<td align="left"><code>const_reference</code></td>
+<td align="left">常量左值类型</td>
+</tr>
+</tbody>
+</table>
+<h3>构造函数</h3>
+<table>
+<thead>
+<tr>
+<th align="left">构造函数</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">C c;</td>
+<td align="left">默认构造函数，构造空容器。如果 c 是一个<code>array</code>，则元素按默认方式初始化</td>
+</tr>
+<tr>
+<td align="left">C c1(c2);</td>
+<td align="left">构造 c2 的拷贝 c1，必须为相同类型，且保存元素也相同</td>
+</tr>
+<tr>
+<td align="left">C c1 = c2;</td>
+<td align="left">同上</td>
+</tr>
+<tr>
+<td align="left">C c(b, e);</td>
+<td align="left">构造 c，将迭代器指定的范围内的元素拷贝到 c，类型要相容（<code>array</code>不支持）</td>
+</tr>
+<tr>
+<td a_="a," align="left" b_="b," c...>C c</td>
+<td align="left">列表初始化，类型要相容，遗漏元素值初始化</td>
+</tr>
+<tr>
+<td a_="a," align="left" b_="b," c...>C c = </td>
+<td align="left">同上</td>
+</tr>
+<tr>
+<td align="left">C seq(n);</td>
+<td align="left">包含 n 个元素并进行值初始化，是<code>explicit</code>构造函数（<code>string</code>不要求explicit）</td>
+</tr>
+<tr>
+<td align="left">C seq(n, t);</td>
+<td align="left">包含 n 个初始值为 t 的元素</td>
+</tr>
+</tbody>
+</table>
+<p>只有顺序容器（不包括<code>array</code>的构造函数才能接受大小参数）。如果元素类型没有默认构造函数，除了大小参数外，还需要显式指定元素初始值。<code>array</code>支持拷贝和赋值（内置数组不行）。</p>
+<h3>赋值与 swap</h3>
+<table>
+<thead>
+<tr>
+<th align="left">赋值与 swap</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">c1 = c2;</td>
+<td align="left">将 c1 中的元素替换成 c2 中的元素，类型要相同</td>
+</tr>
+<tr>
+<td a_="a," align="left" b_="b," c...>c1 = </td>
+<td align="left">将 c1 中的元素替换成列表中的元素（<code>array</code>不支持）</td>
+</tr>
+<tr>
+<td align="left">a.swap(b);</td>
+<td align="left">交换 a 和 b 的元素，类型要相同，此操作通常比拷贝元素快得多</td>
+</tr>
+<tr>
+<td align="left">swap(a, b);</td>
+<td align="left">与上面等价</td>
+</tr>
+<tr>
+<td align="left">seq.assign(b, e)</td>
+<td align="left">将 seq 中的元素替换为迭代器范围中的元素，迭代器不能指向 seq 的元素</td>
+</tr>
+<tr>
+<td align="left">seq.assign(il)</td>
+<td align="left">用初始化列表替换</td>
+</tr>
+<tr>
+<td align="left">seq.assign(n, t)</td>
+<td align="left">用 n 个 t 替换</td>
+</tr>
+</tbody>
+</table>
+<p>由于右边运算对象的大小可能与左边不同，因此<code>array</code>不支持<code>assign</code>，也不运行用花括号包围的值列表赋值。<code>assign</code>不适用于关联容器。<code>assign</code>仅要求类型相容。</p>
+<p>赋值相关操作会导致指向左边容器内部的迭代器、引用和指针失效，而<code>swap</code>操作不会导致失效（<code>array</code>和<code>string</code>除外），它们仍指向交换之前的那些元素。</p>
+<p>除<code>array</code>外，<code>swap</code>不对任何元素进行拷贝、删除和插入操作，因此可以保证在常数时间完成，它只是交换了两个容器的内部数据结构。</p>
+<p><code>swap</code>两个<code>array</code>会真正交换它们的元素。在操作之后，指针、引用和迭代器所绑定的元素保持不变，但元素值已经和另一个<code>array</code>中对应元素的值进行了交换。</p>
+<p>统一使用非成员版本的<code>swap</code>是一个好习惯。</p>
+<h3>容器大小操作</h3>
+<table>
+<thead>
+<tr>
+<th align="left">大小</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">c.size();</td>
+<td align="left">c 中元素的数目，<code>forward_list</code>不支持</td>
+</tr>
+<tr>
+<td align="left">c.max_size();</td>
+<td align="left">c 可保存的最大元素数目</td>
+</tr>
+<tr>
+<td align="left">c.empty();</td>
+<td align="left">判空</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="left">关系运算符</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">==、!=</td>
+<td align="left">所有容器都支持</td>
+</tr>
+<tr>
+<td align="left">&lt;、&lt;=、&gt;、&gt;=</td>
+<td align="left">无序关联容器不支持，类型相同，保存元素也要相同</td>
+</tr>
+</tbody>
+</table>
+<h3>添加元素</h3>
+<table>
+<thead>
+<tr>
+<th align="left">添加元素</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">c.push_back(t)</td>
+<td align="left">在尾部创建值为 t 的元素，返回<code>void</code></td>
+</tr>
+<tr>
+<td align="left">c.emplace_back(args)</td>
+<td align="left">在尾部用参数构造元素，返回<code>void</code></td>
+</tr>
+<tr>
+<td align="left">c.push_front(t)</td>
+<td align="left">在头部创建值为 t 的元素，返回<code>void</code></td>
+</tr>
+<tr>
+<td align="left">c.emplace_front(t)</td>
+<td align="left">在头部用参数构造元素，返回<code>void</code></td>
+</tr>
+<tr>
+<td align="left">c.insert(p, t)</td>
+<td align="left">在迭代器 p 指向的元素之前创建值为 t 的元素，返回指向新添加元素迭代器</td>
+</tr>
+<tr>
+<td align="left">c.emplace(p, args)</td>
+<td align="left">在迭代器 p 指向的元素之前构造值为 t 的元素，返回指向新添加元素迭代器</td>
+</tr>
+<tr>
+<td align="left">c.insert(p, b, e)</td>
+<td align="left">在迭代器 p 指向的元素之前插入迭代器范围指定的元素，返回指向新添加的第一个元素的迭代器，若范围为空，返回 p</td>
+</tr>
+<tr>
+<td align="left">c.insert(p, n, t)</td>
+<td align="left">n 个 t</td>
+</tr>
+<tr>
+<td align="left">c.insert(p, il)</td>
+<td align="left">列表</td>
+</tr>
+</tbody>
+</table>
+<p>这些操作会改变容器大小，<code>array</code>不支持。</p>
+<p><code>forward_list</code>有自己版本的 insert 和 emplace。<code>forward_list</code>不支持 push_back 和 emplace_back。</p>
+<p><code>vector</code>和<code>string</code>不支持push_front 和 emplace_front。</p>
+<p><code>emplace</code>函数会在容器管理的内存空间中直接创建对象，而<code>push</code>函数会创建一个局部临时变量，并将其压入容器中。传递给<code>emplace</code>的参数必须与元素类型的构造函数相匹配。</p>
+<h3>访问元素</h3>
+<table>
+<thead>
+<tr>
+<th align="left">访问元素</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">c.back()</td>
+<td align="left">返回尾元素引用。若 c 为空，行为未定义</td>
+</tr>
+<tr>
+<td align="left">c.front()</td>
+<td align="left">返回首元素引用。若 c 为空，行为未定义</td>
+</tr>
+<tr>
+<td align="left">c[n]</td>
+<td align="left">返回下标为 n 元素的引用，n 是一个无符号整数。若 n &gt;= c.size()，行为未定义</td>
+</tr>
+<tr>
+<td align="left">c.at(n)</td>
+<td align="left">返回下标为 n 元素的引用，若 n 越界，抛出 out_of_range 异常</td>
+</tr>
+</tbody>
+</table>
+<p><code>at</code>和下标操作只适用于<code>string</code>、<code>vector</code>、<code>deque</code>和<code>array</code>。<code>back</code>不适用于<code>forward_list</code>。</p>
+<h3>删除元素</h3>
+<table>
+<thead>
+<tr>
+<th align="left">删除元素</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">c.pop_back()</td>
+<td align="left">删除尾元素。若 c 为空，行为未定义。返回<code>void</code></td>
+</tr>
+<tr>
+<td align="left">c.pop_front()</td>
+<td align="left">删除首元素。若 c 为空，行为未定义。返回<code>void</code></td>
+</tr>
+<tr>
+<td align="left">c.erase(p);</td>
+<td align="left">删除迭代器所指元素，返回被删除元素之后元素的迭代器，若 p 为尾后迭代器，行为未定义</td>
+</tr>
+<tr>
+<td align="left">c.erase(b, e);</td>
+<td align="left">删除迭代器所指元素，返回最后一个被删除元素之后元素的迭代器，若 e 为尾后迭代器，函数返回尾后迭代器</td>
+</tr>
+<tr>
+<td align="left">c.clear();</td>
+<td align="left">清空，返回<code>void</code></td>
+</tr>
+</tbody>
+</table>
+<p>这些操作会改变容器大小，<code>array</code>不支持。</p>
+<p><code>forward_list</code>有自己版本的 erase。<code>forward_list</code>不支持 pop_back。</p>
+<p><code>vector</code>和<code>string</code>不支持pop_front。</p>
+<p>删除元素的成员函数并不检查其参数。在删除元素前，程序员必须确保它们是存在的。</p>
+<h3>迭代器</h3>
+<table>
+<thead>
+<tr>
+<th align="left">迭代器</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">c.begin(), c.end()</td>
+<td align="left">首尾迭代器</td>
+</tr>
+<tr>
+<td align="left">c.cbegin(), c.cend()</td>
+<td align="left">首尾常量迭代器</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="left">反向容器额外成员</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">reverse_iterator</td>
+<td align="left">按逆序寻址元素的迭代器</td>
+</tr>
+<tr>
+<td align="left">const_reverse_iterator</td>
+<td align="left">按逆序寻址元素的常量迭代器</td>
+</tr>
+<tr>
+<td align="left">c.rbegin(), c.rend()</td>
+<td align="left">尾首迭代器</td>
+</tr>
+<tr>
+<td align="left">c.crbegin(), c.crend()</td>
+<td align="left">尾首常量迭代器</td>
+</tr>
+</tbody>
+</table>
+<p>注：<code>forward_list</code>不支持</p>
+<h3>特殊的 forward_list 操作</h3>
+<p>为了理解<code>forward_list</code>为什么有特殊版本的添加和删除操作，考虑当我们从一个单向链表中删除一个元素时会发生什么。当添加或删除一个元素时，删除或添加的元素之前的那个元素的后继会发生变化。为了添加或删除一个元素，我们需要访问其前驱，以便改变前驱改变前驱的链接。但是，<code>forward_list</code>是单向链表。在一个单向链表中，没有简单的方法来获取一个元素的前驱，出于这个原因，在一个<code>forward_list</code>中添加或删除元素的操作是通过改变给定元素之后的元素来完成的。这样，我们总是可以访问到被添加或删除元素所影响的元素。</p>
+<p>由于这些操作与其他容器上的操作有实现方式不同，<code>forward_list</code>并未定义<code>insert</code>、<code>emplace</code>和<code>erase</code>，而是定义了名为<code>insert_after</code>、<code>emplace_after</code>和<code>erase_after</code>的操作。为了支持这些操作，<code>forward_list</code>也定义了<code>before_begin</code>,它返回一个首前迭代器。这个迭代器允许我们在链表首元素之前并不存在的元素“之后”添加或删除元素（亦即在链表首元素之前添加删除元素）。</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">lst.before_begin()</td>
+<td align="left">返回指向链表首元素之前并不存在的元素的迭代器，此迭代器不能解引用</td>
+</tr>
+<tr>
+<td align="left">lst.cbefore_begin()</td>
+<td align="left">cbefore_begin() 返回一个 const_iterator</td>
+</tr>
+<tr>
+<td align="left">lst.insert_after(p, t)</td>
+<td align="left">在迭代器 p 之后的位置插入元素 t，若 p 为尾后迭代器，则函数的行为未定义。若范围为空，返回 p</td>
+</tr>
+<tr>
+<td align="left">lst.insert_after(p, n, t)</td>
+<td align="left">在迭代器 p 之后的位置插入 n 个 t</td>
+</tr>
+<tr>
+<td align="left">lst.insert_after(p, b, e)</td>
+<td align="left">在迭代器 p 之后的位置插入迭代器范围表示的元素</td>
+</tr>
+<tr>
+<td align="left">lst.insert_after(p,il)</td>
+<td align="left">在迭代器 p 之后的位置插入花括号列表</td>
+</tr>
+<tr>
+<td align="left">emplace_after(p,args)</td>
+<td align="left">使用 args 在 p 指定的位置之后构造一个元素，返回一个指向这个新元素的迭代器。若 p 为尾后迭代器，则函数的行为未定义</td>
+</tr>
+<tr>
+<td align="left">lst.erase_after(p)</td>
+<td align="left">删除 p 指向的位置之后的元素，返回一个指向被删除元素之后元素的迭代器，若不存在这样的元素，则返回尾后迭代器，如果 p 指向 lst 的尾元素或者是一个尾后迭代器，则函数的行为未定义</td>
+</tr>
+<tr>
+<td align="left">lst.erase_after(b, e)</td>
+<td align="left">删除从 b 之后直到（但不包含）e 之间的元素</td>
+</tr>
+</tbody>
+</table>
+<h3>改变容器大小</h3>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">c.resize(n)</td>
+<td align="left">调整 c 的大小为 n 个元素。若 n &lt; c.size()，多出的元素被丢弃。若必须添加新元素，则新元素采取值初始化</td>
+</tr>
+<tr>
+<td align="left">c.resize(n, t)</td>
+<td align="left">调整 c 的大小为 n 个元素。，多出的元素被丢弃。若必须添加新元素，则新元素初始化为 t</td>
+</tr>
+<tr>
+<td align="left">c.shrink_to_fit()</td>
+<td align="left">请求将<code>capacity()</code>减小为与<code>size()</code>相同，具体的实现可能忽略此请求</td>
+</tr>
+<tr>
+<td align="left">c.capacity()</td>
+<td align="left">不重新分配内存的话，c 可以保存多少元素</td>
+</tr>
+<tr>
+<td align="left">c.reserve(n)</td>
+<td align="left">分配至少能容纳 n 个元素的内存空间</td>
+</tr>
+</tbody>
+</table>
+<p><code>shrink_to_fit()</code>只适用于<code>vector</code>、<code>string</code>和<code>deque</code>。</p>
+<p><code>capacity()</code>和<code>reserve(n)</code>只适用于<code>vector</code>和<code>string</code>。</p>
+<h2>迭代器失效</h2>
+<h3>添加元素</h3>
+<p><code>vector</code>或<code>string</code>：</p>
+<ul>
+<li>存储空间重新分配：迭代器、指针、引用均失效</li>
+<li>未重新分配：插入位置之前的有效，之后的失效</li>
+</ul>
+<p><code>deque</code>：</p>
+<ul>
+<li>插入首尾之外：均失效</li>
+<li>插入首尾：迭代器失效，指针、引用不失效</li>
+</ul>
+<p><code>list</code>或<code>forward_list</code>：都有效（包括尾后和首前）</p>
+<h3>删除元素</h3>
+<p><code>list</code>或<code>forward_list</code>：都有效（包括尾后和首前）</p>
+<p><code>deque</code>：</p>
+<ul>
+<li>删除首尾之外：均失效</li>
+<li>删除首：首前失效，其他有效</li>
+<li>删除尾：尾后失效，其他有效</li>
+</ul>
+<p><code>vector</code>或<code>string</code>：被删除元素之前的都有效</p>
+<p>当我们删除元素时，尾后迭代器总是会失效（除了删除<code>deque</code>首元素外），所以不要保存<code>end</code>返回的迭代器。</p>
+<h2>额外的 string 操作</h2>
+<h3>构造 string 的其他方法</h3>
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">string s(cp, n)</td>
+<td align="left">s 是 cp 指向的数组中前 n 个字符的拷贝。此数组至少应该包含 n 个字符</td>
+</tr>
+<tr>
+<td align="left">string s(s2, pos2)</td>
+<td align="left">s 是 string s2 从下标 pos2 开始的字符的拷贝。若 pos2 &gt; s2.size()，行为未定义</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">string s(s2, pos2, len2)</td>
+</tr>
+</tbody>
+</table>
+<p>这些构造函数接受一个<code>string</code>或<code>const char*</code>参数。从<code>const char*</code>拷贝时，指针指向的数组必须以空字符结尾，如果还传递了一个计数值，数组就不必以空字符结尾。</p>
+<h3>substr 操作</h3>
+<p><code>s.substr(pos, n)</code>返回一个<code>string</code>，包含 s 中从 pos 开始的 n 个字符的拷贝。pos 的默认值是0，n 的默认值是 s.size()-pos，即拷贝从 pos 开始的所有字符。如果开始位置超出<code>string</code>的大小，抛出 out_of_range 异常，不管 n 值为多少，最多拷贝到<code>string</code>的末尾。</p>
+<h3>其他修改 string 的操作</h3>
+<p><a href="https://xutree.github.io/images/c++9-1.jpg">修改 string 的操作</a></p>
+<p><a href="https://xutree.github.io/images/c++9-2.jpg">repalce 和 insert参数类型</a></p>
+<h3>string 搜索操作</h3>
+<p><code>string</code>类提供了6个不同的搜索函数，每个函数有4个重载版本。每个搜索操作都返回<code>string::size_type</code>值，表示匹配发生的下标。如果搜索失败，则返回<code>string::npos</code>的<code>static</code>成员。标准库将<code>string::npos</code>定义成一个<code>const string::size_type</code>，并初始化为-1。由于 npos 是一个无符号数，此初始值意味着 npos 等于任何<code>string</code>最大的可能大小。</p>
+<p><a href="https://xutree.github.io/images/c++9-3.jpg">string 搜索操作</a></p>
+<p><a href="https://xutree.github.io/images/c++9-4.jpg">string 搜索操作参数</a></p>
+<h3>compare 函数</h3>
+<p><a href="https://xutree.github.io/images/c++9-5.jpg">compare 函数</a></p>
+<h3>数值转换</h3>
+<p><a href="https://xutree.github.io/images/c++9-6.jpg">string 数值转换</a></p>
+<div class="highlight"><pre><span></span>string s2 = &quot;pi = 3.14&quot;;
+d = stod(s2.substr(s2.find_first_of(&quot;+-.0123456789&quot;)));
+</pre></div>
+
+
+<h2>容器适配器</h2>
+<p>适配器（adaptors）是标准库中的一个通用概念，容器、迭代器和函数都有适配器。本质上，一个适配器是一种机制，能使某种事物的行为看起来像另外一种事物一样。一个容器适配器（Container adaptors）接受一种已有的容器类型，使其行为看起来像一种不同的类型。标准库定义了三个序列容器适配器：<code>stack</code>、<code>queue</code>和<code>priority_queue</code>。</p>
+<h3>所以适配器都支持的的操作和类型</h3>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">size_type</td>
+<td align="left">一种类型，足以保存当前类型的最大对象的大小</td>
+</tr>
+<tr>
+<td align="left">value_type</td>
+<td align="left">元素类型</td>
+</tr>
+<tr>
+<td align="left">container_type</td>
+<td align="left">实现适配器的底层容器类型</td>
+</tr>
+<tr>
+<td align="left">A a;</td>
+<td align="left">创建一个名为 a 的空适配器</td>
+</tr>
+<tr>
+<td align="left">A a(c);</td>
+<td align="left">创建一个名为 a 的适配器，带有容器 c 的一个拷贝</td>
+</tr>
+<tr>
+<td align="left">关系运算符</td>
+<td align="left">每个适配器都支持所有关系运算符。这些关系运算符返回底层容器的比较结果</td>
+</tr>
+<tr>
+<td align="left">a.empty()</td>
+<td align="left">判空</td>
+</tr>
+<tr>
+<td align="left">a.size()</td>
+<td align="left">元素数目</td>
+</tr>
+<tr>
+<td align="left">swap(a, b)</td>
+<td align="left">交换，类型要相同，包括底层容器类型也必须相同</td>
+</tr>
+<tr>
+<td align="left">a.swap(b)</td>
+<td align="left">同上</td>
+</tr>
+</tbody>
+</table>
+<h3>定义适配器</h3>
+<ul>
+<li>
+<p><code>stack</code>默认基于<code>deque</code>实现，要求<code>push_back</code>、<code>pop_back</code>和<code>back</code>操作，可使用除<code>array</code>和<code>forward_list</code>之外的任何容器构造</p>
+</li>
+<li>
+<p><code>queue</code>默认基于<code>deque</code>实现，要求<code>back</code>、<code>push_back</code>、<code>front</code>、<code>push_front</code>操作，可使用<code>list</code>和<code>deque</code>构造</p>
+</li>
+<li>
+<p><code>priority_queue</code>默认基于<code>vector</code>实现，要求<code>front</code>、<code>push_back</code>和<code>pop_back</code>操作，还需要随机访问能力，可使用<code>vector</code>和<code>deque</code>构造</p>
+</li>
+</ul>
+<p>两种构造方法：默认构造函数创建一个空对象；接受一个容器的构造函数拷贝该容器来初始化适配器。</p>
+<div class="highlight"><pre><span></span>//假设 deq 是一个 deque&lt;int&gt;
+stack&lt;int&gt; stk(deq);    //从 deq 拷贝元素到 stk
+</pre></div>
+
+
+<p>我们可以在创建一个适配器时将一个命名的顺序容器作为第二个类型参数，来重载默认容器类型：</p>
+<div class="highlight"><pre><span></span>//在 vector 上实现的空栈
+stack&lt;string, vector&lt;string&gt;&gt; str_stk;
+//在 vector 上实现的空栈，初始化时保存 svec 的拷贝
+stack&lt;string, vector&lt;string&gt;&gt; str_stk2（svec);
+</pre></div>
+
+
+<h3>栈适配器</h3>
+<p><code>stack</code>类型定义在同名头文件中。下面展示了如何使用：</p>
+<div class="highlight"><pre><span></span>stack&lt;int&gt; intStack;  //空栈
+//填满栈
+for (size_t ix = 0; ix != 10; ++ix)
+    intStack.push(ix);  //栈保存0-9十个数
+while (!intStack.empty()) { //栈中有值就继续循环
+    int value = intStack.top();
+    //使用栈顶值的代码
+    intStack.pop(); //弹出栈顶元素，继续循环
+}
+</pre></div>
+
+
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">s.pop()</td>
+<td align="left">删除栈顶元素，但不返回该元素值</td>
+</tr>
+<tr>
+<td align="left">s.push(item)</td>
+<td align="left">创建一个新元素压入栈顶，该元素通过拷贝或移动 item 而来</td>
+</tr>
+<tr>
+<td align="left">s.emplace(args)</td>
+<td align="left">构造一个新元素压入栈顶，该元素通过 args 构造</td>
+</tr>
+<tr>
+<td align="left">s.top()</td>
+<td align="left">返回栈顶元素，但不将元素弹出栈</td>
+</tr>
+</tbody>
+</table>
+<p>每个容器适配器都基于底层容器类型的操作定义了自己的特殊操作，我们只能使用适配器操作，而不能使用底层容器类型的操作。</p>
+<h3>队列适配器</h3>
+<p><code>queue</code>和<code>priority_queue</code>定义在头文件 queue 中。操作方法如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">q.pop()</td>
+<td align="left">删除 queue 的首元素或 priority_queue 的最高优先级的元素，但不返回该元素</td>
+</tr>
+<tr>
+<td align="left">q.front()</td>
+<td align="left">返回首元素，但不删除此元素，只适用于 queue</td>
+</tr>
+<tr>
+<td align="left">q.back()</td>
+<td align="left">返回尾元素，但不删除此元素，只适用于 queue</td>
+</tr>
+<tr>
+<td align="left">q.top()</td>
+<td align="left">返回优先级最高的元素，但不删除该元素，只适用于 priority_queue</td>
+</tr>
+<tr>
+<td align="left">q.push(item)</td>
+<td align="left">在 queue 末尾或 priority_queue 中恰当的位置创建一个元素，其值为 item</td>
+</tr>
+<tr>
+<td align="left">q.emplace(args)</td>
+<td align="left">在 queue 末尾或 priority_queue 中恰当的位置由 args 参数构造一个元素</td>
+</tr>
+</tbody>
+</table>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
+                                    Atom 快捷键
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
+                                    Perl 入门
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/10/数据结构向量/">
+                                    数据结构——向量
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
+                                    C++ Primer 第八章 IO 库
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
+                                    C++ Primer 第七章 类
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-10-16T22:43:16+08:00">2018-10-16 22:43:16</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-10-16 22:43:16</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#C++-ref">C++
+                                <span>9</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
