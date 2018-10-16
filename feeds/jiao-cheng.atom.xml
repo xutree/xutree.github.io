@@ -602,7 +602,7 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;&lt;code&gt;cmd-k cmd-n&lt;/code&gt;&lt;/td&gt;
-&lt;td align="left"&gt;指定折叠层级 N为层级数&lt;/td&gt;
+&lt;td align="left"&gt;指定折叠层级，n为层级数&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
