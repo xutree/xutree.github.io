@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-16T22:43:16+08:00</updated><entry><title>C++ Primer 第九章 顺序容器</title><link href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/" rel="alternate"></link><published>2018-10-16T22:43:16+08:00</published><updated>2018-10-16T22:43:16+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-16:/pages/2018/10/16/C++_Primer_Chapter_9/</id><summary type="html">&lt;p&gt;一个容器就是一些特定类型对象的集合。顺序容器（sequential container）为程序员提供了控制元素存储和访问顺序的能力。这种顺序不依赖于元素的值，而是与元素加入容器时的位置相对应。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-17T11:12:28+08:00</updated><entry><title>C++ Primer 第九章 顺序容器</title><link href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/" rel="alternate"></link><published>2018-10-16T22:43:16+08:00</published><updated>2018-10-17T11:12:28+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-16:/pages/2018/10/16/C++_Primer_Chapter_9/</id><summary type="html">&lt;p&gt;一个容器就是一些特定类型对象的集合。顺序容器（sequential container）为程序员提供了控制元素存储和访问顺序的能力。这种顺序不依赖于元素的值，而是与元素加入容器时的位置相对应。&lt;/p&gt;
 &lt;h2&gt;顺序容器概述&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -539,16 +539,16 @@
 &lt;h3&gt;substr 操作&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;s.substr(pos, n)&lt;/code&gt;返回一个&lt;code&gt;string&lt;/code&gt;，包含 s 中从 pos 开始的 n 个字符的拷贝。pos 的默认值是0，n 的默认值是 s.size()-pos，即拷贝从 pos 开始的所有字符。如果开始位置超出&lt;code&gt;string&lt;/code&gt;的大小，抛出 out_of_range 异常，不管 n 值为多少，最多拷贝到&lt;code&gt;string&lt;/code&gt;的末尾。&lt;/p&gt;
 &lt;h3&gt;其他修改 string 的操作&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://xutree.github.io/images/c++9-1.jpg"&gt;修改 string 的操作&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://xutree.github.io/images/c++9-2.jpg"&gt;repalce 和 insert参数类型&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="修改 string 的操作" src="https://xutree.github.io/images/c++9-1.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="repalce 和 insert参数类型" src="https://xutree.github.io/images/c++9-2.jpg"&gt;&lt;/p&gt;
 &lt;h3&gt;string 搜索操作&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;string&lt;/code&gt;类提供了6个不同的搜索函数，每个函数有4个重载版本。每个搜索操作都返回&lt;code&gt;string::size_type&lt;/code&gt;值，表示匹配发生的下标。如果搜索失败，则返回&lt;code&gt;string::npos&lt;/code&gt;的&lt;code&gt;static&lt;/code&gt;成员。标准库将&lt;code&gt;string::npos&lt;/code&gt;定义成一个&lt;code&gt;const string::size_type&lt;/code&gt;，并初始化为-1。由于 npos 是一个无符号数，此初始值意味着 npos 等于任何&lt;code&gt;string&lt;/code&gt;最大的可能大小。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://xutree.github.io/images/c++9-3.jpg"&gt;string 搜索操作&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://xutree.github.io/images/c++9-4.jpg"&gt;string 搜索操作参数&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="string 搜索操作" src="https://xutree.github.io/images/c++9-3.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="string 搜索操作参数" src="https://xutree.github.io/images/c++9-4.jpg"&gt;&lt;/p&gt;
 &lt;h3&gt;compare 函数&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://xutree.github.io/images/c++9-5.jpg"&gt;compare 函数&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="compare 函数" src="https://xutree.github.io/images/c++9-5.jpg"&gt;&lt;/p&gt;
 &lt;h3&gt;数值转换&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://xutree.github.io/images/c++9-6.jpg"&gt;string 数值转换&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="string 数值转换" src="https://xutree.github.io/images/c++9-6.jpg"&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;string s2 = &amp;quot;pi = 3.14&amp;quot;;
 d = stod(s2.substr(s2.find_first_of(&amp;quot;+-.0123456789&amp;quot;)));
 &lt;/pre&gt;&lt;/div&gt;
