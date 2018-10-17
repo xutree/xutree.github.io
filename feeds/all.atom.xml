@@ -532,7 +532,7 @@ cout &amp;lt;&amp;lt; accumulatre(in, eof, 0) &amp;lt;&amp;lt; endl;
 &lt;td align="left"&gt;用 &amp;lt;&amp;lt; 运算符将 val 写入到 out 所绑定的 ostream 中。val 的类型必须与 out 可写的类型兼容&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align="left"&gt;*out,++out,out++&lt;/td&gt;
+&lt;td align="left"&gt;*out, ++out, out++&lt;/td&gt;
 &lt;td align="left"&gt;这些运算符是存在的，但不对 out 做任何事情。每个运算符都返回 out&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
