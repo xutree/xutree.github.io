@@ -1,5 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-17T21:12:37+08:00</updated><entry><title>C++ Primer 第十一章 关联容器</title><link href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/" rel="alternate"></link><published>2018-10-17T21:12:37+08:00</published><updated>2018-10-17T21:12:37+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-17:/pages/2018/10/17/C++_Primer_Chapter_11/</id><summary type="html">&lt;p&gt;关联容器和顺序容器有着根本的不同：关联容器中的元素是按关键字来保存和访问的。与之相对，顺序容器中的元素是按它们在容器中的位置来顺序保存和访问的。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-17T22:25:02+08:00</updated><entry><title>C++ Primer 第十二章 动态内存</title><link href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/" rel="alternate"></link><published>2018-10-17T22:25:02+08:00</published><updated>2018-10-17T22:25:02+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-17:/pages/2018/10/17/C++_Primer_Chapter_12/</id><summary type="html">&lt;p&gt;一个由 C/C++ 编译的程序占用的内存分为以下几个部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;栈区（stack）：由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈&lt;/li&gt;
+&lt;li&gt;堆区（heap）：一般由程序员分配释放，若程序员不释放，程序结束时可能由 OS 回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表&lt;/li&gt;
+&lt;li&gt;全局区（静态区）（static）：全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域，未初始化的全局变量、未初始化的静态变量在相邻的另一块区域。程序结束后由系统释放&lt;/li&gt;
+&lt;li&gt;文字常量区：常量字符串就是放在这里的。程序结束后由系统释放&lt;/li&gt;
+&lt;li&gt;程序代码区：存放函数体的二进制代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;动态内存与智能指针&lt;/h2&gt;
+&lt;p&gt;在 C++ 中，动态内存的管理是通过一对运算符来完成的：&lt;code&gt;new&lt;/code&gt;，在动态内存中为对象分配空间并返回一个指向该对象的指针，我们可以选择对对象进行初始化；&lt;code&gt;delete&lt;/code&gt;，接受一个动态指针，销毁该对象，并释放与之关联的内存。&lt;/p&gt;
+&lt;p&gt;为了更容易地使用动态内存，新的标准提供了两种智能指针(smart pointer)类型来管理动态对象。&lt;code&gt;shared_ptr …&lt;/code&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;一个由 C/C++ 编译的程序占用的内存分为以下几个部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;栈区（stack）：由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈&lt;/li&gt;
+&lt;li&gt;堆区（heap）：一般由程序员分配释放，若程序员不释放，程序结束时可能由 OS 回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表&lt;/li&gt;
+&lt;li&gt;全局区（静态区）（static）：全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域，未初始化的全局变量、未初始化的静态变量在相邻的另一块区域。程序结束后由系统释放&lt;/li&gt;
+&lt;li&gt;文字常量区：常量字符串就是放在这里的。程序结束后由系统释放&lt;/li&gt;
+&lt;li&gt;程序代码区：存放函数体的二进制代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;动态内存与智能指针&lt;/h2&gt;
+&lt;p&gt;在 C++ 中，动态内存的管理是通过一对运算符来完成的：&lt;code&gt;new&lt;/code&gt;，在动态内存中为对象分配空间并返回一个指向该对象的指针，我们可以选择对对象进行初始化；&lt;code&gt;delete&lt;/code&gt;，接受一个动态指针，销毁该对象，并释放与之关联的内存。&lt;/p&gt;
+&lt;p&gt;为了更容易地使用动态内存，新的标准提供了两种智能指针(smart pointer)类型来管理动态对象。&lt;code&gt;shared_ptr&lt;/code&gt;允许多个指针指向同一个对象；&lt;code&gt;unique_ptr&lt;/code&gt;则“独占”所指向的对象。标准库还定义了一个名为&lt;code&gt;weak_ptr&lt;/code&gt;的伴随类，指向&lt;code&gt;shared_ptr&lt;/code&gt;所管理的对象。这三种类型都定义在&lt;code&gt;memory&lt;/code&gt;头文件中。&lt;/p&gt;
+&lt;h3&gt;shared_ptr 类&lt;/h3&gt;
+&lt;p&gt;类似&lt;code&gt;vector&lt;/code&gt;智能指针也是模板：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;shared_ptr&amp;lt;string&amp;gt; p1;  //shared_ptr，可以指向 string
+shared_ptr&amp;lt;list&amp;lt;int&amp;gt;&amp;gt; p2;   //shared_ptr,可以指向 int 的 list
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;智能指针操作：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="智能指针操作" src="https://xutree.github.io/images/c++12-1.jpg"&gt;&lt;/p&gt;
+&lt;h4&gt;make_shared 函数&lt;/h4&gt;
+&lt;p&gt;最安全的分配和使用动态内存的方法是调用一个名为&lt;code&gt;make_shared&lt;/code&gt;的标准库函数。此函数在动态内存中分配一个对象并初始化它，返回指向此对象的&lt;code&gt;shared_ptr&lt;/code&gt;。与智能指针一样，&lt;code&gt;make_shared&lt;/code&gt;也定义在&lt;code&gt;memory&lt;/code&gt;头文件中。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//指向一个值为42的 int 的 shared_ptr
+shared_ptr&amp;lt;int&amp;gt; p3 = make_shared&amp;lt;int&amp;gt;(42);
+//p4 指向一个值为”999999999”的 string
+shared_ptr&amp;lt;string&amp;gt; p4 = make_shared&amp;lt;string&amp;gt;(10,&amp;#39;9&amp;#39;);
+//p5 指向一个值初始化的 int，即，值为0
+shared_ptr&amp;lt;int&amp;gt; p5 = make_shared&amp;lt;int&amp;gt;();
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;类似顺序容器的&lt;code&gt;emplace&lt;/code&gt;成员，&lt;code&gt;make_shared&lt;/code&gt;用其参数来构造给定类型的对象。例如，调用&lt;code&gt;make_shared&amp;lt;string&amp;gt;&lt;/code&gt;时传递的参数必须与&lt;code&gt;string&lt;/code&gt;的某个构造函数相匹配。&lt;/p&gt;
+&lt;p&gt;当然，我们通常用&lt;code&gt;aut&lt;/code&gt;o定义一个对象来保存&lt;code&gt;make_shared&lt;/code&gt;的结果，这种方式简单：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//p6 指向一个动态分配的空 vector&amp;lt;string&amp;gt;
+auto p6 = make_shared&amp;lt;vector&amp;lt;string&amp;gt;&amp;gt;();
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;shared_ptr 的拷贝和赋值&lt;/h4&gt;
+&lt;p&gt;当进行拷贝或赋值操作时，每个&lt;code&gt;shared_ptr&lt;/code&gt;都会记录有多少个其他&lt;code&gt;shared_ptr&lt;/code&gt;指向相同的对象。&lt;/p&gt;
+&lt;p&gt;我们可以认为每个&lt;code&gt;shared_ptr&lt;/code&gt;都有一个关联的计数器，通常称其为引用计数(reference count)。无论何时我们拷贝一个&lt;code&gt;shared_ptr&lt;/code&gt;，计数器都会递增；当我们给&lt;code&gt;shared_ptr&lt;/code&gt;赋予一个新值或是&lt;code&gt;shared_ptr&lt;/code&gt;被销毁时，计算器就会递减。
+一旦一个&lt;code&gt;shared_ptr&lt;/code&gt;的计数器变为0，它就会自动释放自己所管理的对象。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;auto r = make_shared&amp;lt;int&amp;gt;(42);  //r 指向的 int 只有一个引用者
+r = q;  //给 r 赋值，令它指向另一个地址
+    //递增 q 指向的对象的引用计数
+    //递减 r 原来指向对象的引用计数
+    //r 原来指向的对象已没有引用者，会自动释放
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;shared_ptr&lt;/code&gt;自动销毁所管理的对象，还会自动释放相关联的内存。&lt;/p&gt;
+&lt;p&gt;如果你将&lt;code&gt;shared_ptr&lt;/code&gt;存放于一个容器中，而后不再需要全部元素，要记得使用&lt;code&gt;erase&lt;/code&gt;删除不需要的那些元素，否则&lt;code&gt;shared_ptr&lt;/code&gt;在无用之后会仍然保留。&lt;/p&gt;</content><category term="C++"></category></entry><entry><title>C++ Primer 第十一章 关联容器</title><link href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/" rel="alternate"></link><published>2018-10-17T21:12:37+08:00</published><updated>2018-10-17T21:12:37+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-17:/pages/2018/10/17/C++_Primer_Chapter_11/</id><summary type="html">&lt;p&gt;关联容器和顺序容器有着根本的不同：关联容器中的元素是按关键字来保存和访问的。与之相对，顺序容器中的元素是按它们在容器中的位置来顺序保存和访问的。&lt;/p&gt;
 &lt;p&gt;关联容器支持高效的关键字查找和访问。两个主要的关联容器（associative-container）类型是 &lt;strong&gt;map&lt;/strong&gt; 和 &lt;strong&gt;set&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;map&lt;/code&gt;中的元素是一些关键字-值（key-value）对：关键字起到索引的作用，值则表示与索引相关联的数据。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;set&lt;/code&gt;中每个元素只包含一个关键字，&lt;code&gt;set&lt;/code&gt;支持高效的关键字查询操作。&lt;/p&gt;
