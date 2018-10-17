@@ -5,49 +5,49 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/</loc>
-<lastmod>2018-10-17T22:25:21-00:00</lastmod>
+<lastmod>2018-10-17T23:09:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/archives.html</loc>
-<lastmod>2018-10-17T22:25:21-00:00</lastmod>
+<lastmod>2018-10-17T23:09:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/tags.html</loc>
-<lastmod>2018-10-17T22:25:21-00:00</lastmod>
+<lastmod>2018-10-17T23:09:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/categories.html</loc>
-<lastmod>2018-10-17T22:25:21-00:00</lastmod>
+<lastmod>2018-10-17T23:09:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/search.html</loc>
-<lastmod>2018-10-17T22:25:21-00:00</lastmod>
+<lastmod>2018-10-17T23:09:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/404.html</loc>
-<lastmod>2018-10-17T22:25:21-00:00</lastmod>
+<lastmod>2018-10-17T23:09:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/</loc>
-<lastmod>2018-10-17T22:25:02+08:00</lastmod>
+<lastmod>2018-10-17T23:08:36+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
@@ -229,7 +229,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/category/du-shu-bi-ji.html</loc>
-<lastmod>2018-10-17T22:25:02+08:06</lastmod>
+<lastmod>2018-10-17T23:08:36+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -250,7 +250,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/tag/c.html</loc>
-<lastmod>2018-10-17T22:25:02+08:06</lastmod>
+<lastmod>2018-10-17T23:08:36+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -320,7 +320,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/author/shu.html</loc>
-<lastmod>2018-10-17T22:25:02+08:06</lastmod>
+<lastmod>2018-10-17T23:08:36+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
