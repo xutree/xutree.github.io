@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-20T16:41:10+08:00</updated><entry><title>C++ Primer 第十三章 拷贝控制</title><link href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/" rel="alternate"></link><published>2018-10-20T16:41:10+08:00</published><updated>2018-10-20T16:41:10+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-20:/pages/2018/10/20/C++_Primer_Chapter_13/</id><summary type="html">&lt;p&gt;当定义一个类时，我们显示地或隐式地指定在此类型的对象拷贝、移动、赋值和销毁时做什么。一个类通过定义五种特殊的成员函数来控制这些操作，包括：拷贝构造函数（copy constructor）、拷贝赋值运算符（copy-assignment operator）、移动构造函数（move constructor）、移动赋值运算符（move-assignment operator）和析构函数（destructor）。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-20T17:35:11+08:00</updated><entry><title>C++ Primer 第十三章 拷贝控制</title><link href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/" rel="alternate"></link><published>2018-10-20T16:41:10+08:00</published><updated>2018-10-20T17:35:11+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-20:/pages/2018/10/20/C++_Primer_Chapter_13/</id><summary type="html">&lt;p&gt;当定义一个类时，我们显示地或隐式地指定在此类型的对象拷贝、移动、赋值和销毁时做什么。一个类通过定义五种特殊的成员函数来控制这些操作，包括：拷贝构造函数（copy constructor）、拷贝赋值运算符（copy-assignment operator）、移动构造函数（move constructor）、移动赋值运算符（move-assignment operator）和析构函数（destructor）。&lt;/p&gt;
 &lt;p&gt;拷贝和移动构造函数定义了当用同类型的另一个对象初始化本对象时做什么。&lt;/p&gt;
 &lt;p&gt;拷贝和移动赋值运算符定义了将一个对象赋予同类型的另一个对象时做什么。&lt;/p&gt;
 &lt;p&gt;析构函数定义了当此类型对象销毁时做什么。&lt;/p&gt;
@@ -307,7 +307,113 @@ HasPtr&amp;amp; HasPtr::operator=(const HasPtr &amp;amp;rhs)
 
 &lt;p&gt;如果 rhs 和本对象是同一个对象，&lt;code&gt;delete ps&lt;/code&gt;会释放&lt;code&gt;*this&lt;/code&gt;和 rhs 指向的&lt;code&gt;string&lt;/code&gt;。接下来，当我们在&lt;code&gt;new&lt;/code&gt;表达式中试图拷贝&lt;code&gt;*(rhs.ps)&lt;/code&gt;时，就会访问一个指向无效内存的指针，其行为和结果是未定义的。&lt;/p&gt;
 &lt;h3&gt;定义行为像指针的类&lt;/h3&gt;
-&lt;p&gt;待续 ...&lt;/p&gt;</content><category term="C++"></category></entry><entry><title>C++ Primer 第十二章 动态内存</title><link href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/" rel="alternate"></link><published>2018-10-17T22:25:02+08:00</published><updated>2018-10-20T14:50:55+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-17:/pages/2018/10/17/C++_Primer_Chapter_12/</id><summary type="html">&lt;p&gt;一个由 C/C++ 编译的程序占用的内存分为以下几个部分：&lt;/p&gt;
+&lt;p&gt;对于行为类似指针的类，我们需要为其定义拷贝构造函数和拷贝赋值运算符，来拷贝指针成员本身而不是它指向的&lt;code&gt;string&lt;/code&gt;。我们的类仍然需要自己的析构函数来释放接受&lt;code&gt;string&lt;/code&gt;参数的构造函数分配的内存。但是，析构函数不能单方面地释放关联的&lt;code&gt;string&lt;/code&gt;，只有当最后一个指向&lt;code&gt;string&lt;/code&gt;的对象销毁时，才可以释放&lt;code&gt;string&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;令一个类展现类似指针的行为最好的方法是使用&lt;code&gt;shared_ptr&lt;/code&gt;来管理类中的资源。如果我们希望直接管理资源，可以使用引用计数（reference count）。下面我们不使用&lt;code&gt;shared_ptr&lt;/code&gt;而是使用引用计数来实现行为像指针的类。&lt;/p&gt;
+&lt;h4&gt;引用计数&lt;/h4&gt;
+&lt;p&gt;引用计数的工作方式如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;除了初始化对象之外，每个构造函数(拷贝构造函数除外)都要创建一个引用计数，用来记录有多少对象共享正在创建的对象共享状态，当创建一个对象时，引用计数为1，因为此时只有一个对象共享&lt;/li&gt;
+&lt;li&gt;拷贝构造函数不分配新得引用计数器，拷贝给定对象的数据成员，包括引用计数器，拷贝构造函数递增共享的计数器，表示给定对象更的状态又被一个新用户所共享&lt;/li&gt;
+&lt;li&gt;拷贝赋值运算符递减左侧运算对象的引用计数器，递增右侧对象的引用计数器，如果左侧对象的引用计数器为0，则销毁左侧对象&lt;/li&gt;
+&lt;li&gt;析构函数判断引用计数是否为0，如果为0，则销毁左侧对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;引用计数的实现：我们假设有下面的情况：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;HasPtr h1;
+HasPtr h2(h1);
+HasPtr h3(h1);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;HasPtr 是一个行为像指针的类，新创建的 h1的引用计数为1，创建 h2，用 h1 初始化 h2，会递增 h1 的引用计数值，此时 h2 保存了 h1 中的引用计数，在创建 h3 的时候，递增了 h1 的引用计数值，而且我们必须做的是要更新 h2 中的引用计数值，此时无法更新 h2 中的引用计数值。因此，我们需要将引用计数保存在动态内存中，这样原对象和其他副本对象都会指向相同的计数器，这样就可以自动更新引用计数在每个共享对象中的状态。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;HasPtr&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="kr"&gt;public&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="c1"&gt;//构造函数分配新的 string 和新的计数器，将计数器置为1&lt;/span&gt;
+    &lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kt"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kt"&gt;string&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kt"&gt;string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nx"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;size_t&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="c1"&gt;//拷贝构造函数拷贝所以三个数据成员，并递增计数器&lt;/span&gt;
+    &lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;HasPtr&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="nx"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nx"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;use&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;++*&lt;/span&gt;&lt;span class="nx"&gt;use&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;operator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="kr"&gt;private&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kt"&gt;string&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;size_t&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;use&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 引用计数&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;operator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;has&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="o"&gt;++*&lt;/span&gt;&lt;span class="nx"&gt;has&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;use&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;//递增右侧运算对象的引用计数&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;--*&lt;/span&gt;&lt;span class="nx"&gt;use&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;//然后递减本对象的引用计数&lt;/span&gt;
+        &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="nx"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="nx"&gt;use&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="nx"&gt;ps&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;has&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nx"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;has&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nx"&gt;use&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;has&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;use&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="o"&gt;::~&lt;/span&gt;&lt;span class="nx"&gt;HasPtr() {&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;--*&lt;/span&gt;&lt;span class="nx"&gt;use&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="nx"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="nx"&gt;use&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;交换操作&lt;/h2&gt;
+&lt;p&gt;通常，管理资源的类除了定义拷贝控制成员之外，还会定义交换操作的函数&lt;code&gt;swap&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;如果一个类定义了自己的&lt;code&gt;swap&lt;/code&gt;，那么算法将使用类自定义版本，否则，将使用标准库定义的&lt;code&gt;swap&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;理论上来说，我们的&lt;code&gt;swap&lt;/code&gt;函数应该是这样的：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//交换两个类值 HasPtr 对象的代码可能像下面这样：
+HasPtr temp = v1;   //创建 v1 的值的一个临时副本
+v1 = v2;    //将 v2 的值赋予 v1
+v2 = temp;  //将保存的 v1 的值赋予 v2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这样的代码将 v1 中&lt;code&gt;string&lt;/code&gt;拷贝了两次，但是这样做是没有必要的，我们希望&lt;code&gt;swap&lt;/code&gt;交换指针，而不是分配&lt;code&gt;string&lt;/code&gt;的副本：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;string *temp = v1.ps;   //为 v1.ps 中的指针创建一个副本
+v1.ps = v2.ps;  //将 v2.ps 中的指针赋予 v1.ps1
+v2.ps = temp;   //将保存的 v1.ps 中原来的指针赋予 v2.ps
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;编写我们自己的 swap 函数&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;HasPtr&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;friend&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;swap&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;HasPtr&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;//其他成员定义&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nx"&gt;inline&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;swap&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;HasPtr&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;HasPtr&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;rhs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;using&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nx"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;rhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;   &lt;span class="c1"&gt;//交换指针，而不是string数据&lt;/span&gt;
+    &lt;span class="nx"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;rhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//交换 int 成员&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我们首先将&lt;code&gt;swap&lt;/code&gt;定义为&lt;code&gt;friend&lt;/code&gt;以便能访问 HasPtr 的（private的）数据成员。由于&lt;code&gt;swap&lt;/code&gt;的存在就是为了优化代码，我们将其声明为&lt;code&gt;inline&lt;/code&gt;函数。&lt;/p&gt;
+&lt;p&gt;与拷贝控制成员不同，&lt;code&gt;swap&lt;/code&gt;并不是必要的。但是，对于分配了资源的类，定义&lt;code&gt;swap&lt;/code&gt;可能是一种很重要的优化手段。&lt;/p&gt;
+&lt;h3&gt;swap 函数应该调用 swap，而不是 std::swap&lt;/h3&gt;
+&lt;p&gt;在&lt;code&gt;swap&lt;/code&gt;函数中，使用了&lt;code&gt;using std::swap&lt;/code&gt;，如果这个类有自己的&lt;code&gt;swap&lt;/code&gt;函数，匹配程度会高于标准库&lt;code&gt;swap&lt;/code&gt;，会优先使用类自己的&lt;code&gt;swap&lt;/code&gt;，如果没有，则使用标准库的&lt;code&gt;swap&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;swap&lt;/code&gt;里交换类的指针和&lt;code&gt;int&lt;/code&gt;成员，并不会发生递归循环，HasPtr 的数据成员是内置类型的，这时候会调用标准库版本的&lt;code&gt;swap&lt;/code&gt;。&lt;/p&gt;
+&lt;h3&gt;在赋值运算符中使用 swap&lt;/h3&gt;
+&lt;p&gt;定义&lt;code&gt;swap&lt;/code&gt;的类通常用&lt;code&gt;swap&lt;/code&gt;来定义它们的赋值运算符。这些运算符使用了一种名为拷贝并交换（copy and swap）的技术。这种技术将左侧运算对象与右侧运算对象的一个副本进行交换：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//注意 rhs 是按值传递的，意味着 HasPtr 的拷贝构造函数将
+//右侧运算对象中的 string 拷贝到 rhs
+HasPtr&amp;amp; HasPtr::operator=(HasPtr rhs)
+{
+    //交换左侧运算对象和局部变量 rhs 的内容
+    swap(*this, rhs);   //rhs 现在指向本对象曾经使用的内存
+    return *this;   //rhs 被销毁，从而 delete 了 rhs 中的指针
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在进行 HasPtr 类的赋值运算中，先将右侧对象拷贝到拷贝赋值运算符函数里，然后交换左侧对象的指针和右侧对象的指针，交换后，右侧对象赋值给了左侧对象，左侧对象相应的&lt;code&gt;string&lt;/code&gt;指针也指向了右侧对象副本的对应成员，而右侧对象的&lt;code&gt;string&lt;/code&gt;指针则指向了左侧对象的相应成员。在这个函数结束后，右侧对象的副本被销毁，于是原来左侧对象的资源被释放，而左侧对象现在保存的是右侧对象的成员。&lt;/p&gt;
+&lt;p&gt;拷贝并交换的操作，和之前的拷贝赋值运算符的实现原理是相同的， 在改变左侧对象之前拷贝右侧对象。保证了这样的操作异常的安全。&lt;/p&gt;
+&lt;h2&gt;对象移动&lt;/h2&gt;
+&lt;p&gt;待续...&lt;/p&gt;</content><category term="C++"></category></entry><entry><title>C++ Primer 第十二章 动态内存</title><link href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/" rel="alternate"></link><published>2018-10-17T22:25:02+08:00</published><updated>2018-10-20T14:50:55+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-17:/pages/2018/10/17/C++_Primer_Chapter_12/</id><summary type="html">&lt;p&gt;一个由 C/C++ 编译的程序占用的内存分为以下几个部分：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;栈区（stack）：由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈&lt;/li&gt;
 &lt;li&gt;堆区（heap）：一般由程序员分配释放，若程序员不释放，程序结束时可能由 OS 回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表&lt;/li&gt;

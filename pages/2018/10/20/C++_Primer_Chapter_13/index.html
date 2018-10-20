@@ -351,7 +351,113 @@ HasPtr&amp; HasPtr::operator=(const HasPtr &amp;rhs)
 
 <p>如果 rhs 和本对象是同一个对象，<code>delete ps</code>会释放<code>*this</code>和 rhs 指向的<code>string</code>。接下来，当我们在<code>new</code>表达式中试图拷贝<code>*(rhs.ps)</code>时，就会访问一个指向无效内存的指针，其行为和结果是未定义的。</p>
 <h3>定义行为像指针的类</h3>
-<p>待续 ...</p>
+<p>对于行为类似指针的类，我们需要为其定义拷贝构造函数和拷贝赋值运算符，来拷贝指针成员本身而不是它指向的<code>string</code>。我们的类仍然需要自己的析构函数来释放接受<code>string</code>参数的构造函数分配的内存。但是，析构函数不能单方面地释放关联的<code>string</code>，只有当最后一个指向<code>string</code>的对象销毁时，才可以释放<code>string</code>。</p>
+<p>令一个类展现类似指针的行为最好的方法是使用<code>shared_ptr</code>来管理类中的资源。如果我们希望直接管理资源，可以使用引用计数（reference count）。下面我们不使用<code>shared_ptr</code>而是使用引用计数来实现行为像指针的类。</p>
+<h4>引用计数</h4>
+<p>引用计数的工作方式如下：</p>
+<ul>
+<li>除了初始化对象之外，每个构造函数(拷贝构造函数除外)都要创建一个引用计数，用来记录有多少对象共享正在创建的对象共享状态，当创建一个对象时，引用计数为1，因为此时只有一个对象共享</li>
+<li>拷贝构造函数不分配新得引用计数器，拷贝给定对象的数据成员，包括引用计数器，拷贝构造函数递增共享的计数器，表示给定对象更的状态又被一个新用户所共享</li>
+<li>拷贝赋值运算符递减左侧运算对象的引用计数器，递增右侧对象的引用计数器，如果左侧对象的引用计数器为0，则销毁左侧对象</li>
+<li>析构函数判断引用计数是否为0，如果为0，则销毁左侧对象</li>
+</ul>
+<p>引用计数的实现：我们假设有下面的情况：</p>
+<div class="highlight"><pre><span></span>HasPtr h1;
+HasPtr h2(h1);
+HasPtr h3(h1);
+</pre></div>
+
+
+<p>HasPtr 是一个行为像指针的类，新创建的 h1的引用计数为1，创建 h2，用 h1 初始化 h2，会递增 h1 的引用计数值，此时 h2 保存了 h1 中的引用计数，在创建 h3 的时候，递增了 h1 的引用计数值，而且我们必须做的是要更新 h2 中的引用计数值，此时无法更新 h2 中的引用计数值。因此，我们需要将引用计数保存在动态内存中，这样原对象和其他副本对象都会指向相同的计数器，这样就可以自动更新引用计数在每个共享对象中的状态。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">HasPtr</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="c1">//构造函数分配新的 string 和新的计数器，将计数器置为1</span>
+    <span class="nx">HasPtr</span><span class="p">(</span><span class="kr">const</span> <span class="nx">std</span><span class="o">::</span><span class="kt">string</span><span class="o">&amp;</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">std</span><span class="o">::</span><span class="kt">string</span><span class="p">())</span> <span class="o">:</span> <span class="nx">ps</span><span class="p">(</span><span class="k">new</span> <span class="nx">std</span><span class="o">::</span><span class="kt">string</span><span class="p">(</span><span class="nx">s</span><span class="p">)),</span> <span class="nx">i</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">size_t</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="p">{}</span>
+    <span class="c1">//拷贝构造函数拷贝所以三个数据成员，并递增计数器</span>
+    <span class="nx">HasPtr</span><span class="p">(</span><span class="kr">const</span> <span class="nx">HasPtr</span> <span class="o">&amp;</span><span class="nx">p</span><span class="p">)</span> <span class="o">:</span>  <span class="nx">ps</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">ps</span><span class="p">),</span> <span class="nx">i</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">i</span><span class="p">),</span> <span class="nx">use</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">use</span><span class="p">)</span> <span class="p">{</span> <span class="o">++*</span><span class="nx">use</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nx">HasPtr</span><span class="o">&amp;</span> <span class="nx">operator</span> <span class="o">=</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">HasPtr</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="o">~</span><span class="nx">HasPtr</span><span class="p">();</span>
+<span class="kr">private</span><span class="o">:</span>
+    <span class="nx">std</span><span class="o">::</span><span class="kt">string</span> <span class="o">*</span><span class="nx">ps</span><span class="p">;</span>
+    <span class="kr">int</span> <span class="nx">i</span><span class="p">;</span>
+    <span class="nx">std</span><span class="o">::</span><span class="nx">size_t</span> <span class="o">*</span><span class="nx">use</span><span class="p">;</span> <span class="c1">// 引用计数</span>
+<span class="p">};</span>
+
+<span class="nx">HasPtr</span><span class="o">::</span><span class="nx">HasPtr</span><span class="o">&amp;</span> <span class="nx">operator</span> <span class="o">=</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">HasPtr</span><span class="o">&amp;</span> <span class="nx">has</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">++*</span><span class="nx">has</span><span class="p">.</span><span class="nx">use</span><span class="p">;</span> <span class="c1">//递增右侧运算对象的引用计数</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="o">--*</span><span class="nx">use</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//然后递减本对象的引用计数</span>
+        <span class="k">delete</span> <span class="nx">ps</span><span class="p">;</span>
+        <span class="k">delete</span> <span class="nx">use</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">ps</span> <span class="o">=</span> <span class="nx">has</span><span class="p">.</span><span class="nx">ps</span><span class="p">;</span>
+    <span class="nx">i</span> <span class="o">=</span> <span class="nx">has</span><span class="p">.</span><span class="nx">i</span><span class="p">;</span>
+    <span class="nx">use</span> <span class="o">=</span> <span class="nx">has</span><span class="p">.</span><span class="nx">use</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">HasPtr</span><span class="o">::~</span><span class="nx">HasPtr() {</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">--*</span><span class="nx">use</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">delete</span> <span class="nx">ps</span><span class="p">;</span>
+        <span class="k">delete</span> <span class="nx">use</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>交换操作</h2>
+<p>通常，管理资源的类除了定义拷贝控制成员之外，还会定义交换操作的函数<code>swap</code>。</p>
+<p>如果一个类定义了自己的<code>swap</code>，那么算法将使用类自定义版本，否则，将使用标准库定义的<code>swap</code>。</p>
+<p>理论上来说，我们的<code>swap</code>函数应该是这样的：</p>
+<div class="highlight"><pre><span></span>//交换两个类值 HasPtr 对象的代码可能像下面这样：
+HasPtr temp = v1;   //创建 v1 的值的一个临时副本
+v1 = v2;    //将 v2 的值赋予 v1
+v2 = temp;  //将保存的 v1 的值赋予 v2
+</pre></div>
+
+
+<p>这样的代码将 v1 中<code>string</code>拷贝了两次，但是这样做是没有必要的，我们希望<code>swap</code>交换指针，而不是分配<code>string</code>的副本：</p>
+<div class="highlight"><pre><span></span>string *temp = v1.ps;   //为 v1.ps 中的指针创建一个副本
+v1.ps = v2.ps;  //将 v2.ps 中的指针赋予 v1.ps1
+v2.ps = temp;   //将保存的 v1.ps 中原来的指针赋予 v2.ps
+</pre></div>
+
+
+<h3>编写我们自己的 swap 函数</h3>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">HasPtr</span> <span class="p">{</span>
+    <span class="nx">friend</span> <span class="k">void</span> <span class="nx">swap</span> <span class="p">(</span><span class="nx">HasPtr</span><span class="o">&amp;</span><span class="p">,</span> <span class="nx">HasPtr</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="c1">//其他成员定义</span>
+<span class="p">};</span>
+<span class="nx">inline</span> <span class="k">void</span> <span class="nx">swap</span> <span class="p">(</span><span class="nx">HasPtr</span> <span class="o">&amp;</span><span class="nx">lhs</span><span class="p">,</span> <span class="nx">HasPtr</span> <span class="o">&amp;</span><span class="nx">rhs</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nx">using</span> <span class="nx">std</span><span class="o">::</span><span class="nx">swap</span><span class="p">;</span>
+    <span class="nx">swap</span><span class="p">(</span><span class="nx">lhs</span><span class="p">.</span><span class="nx">ps</span><span class="p">,</span> <span class="nx">rhs</span><span class="p">.</span><span class="nx">ps</span><span class="p">);</span>   <span class="c1">//交换指针，而不是string数据</span>
+    <span class="nx">swap</span><span class="p">(</span><span class="nx">lhs</span><span class="p">.</span><span class="nx">i</span><span class="p">,</span> <span class="nx">rhs</span><span class="p">.</span><span class="nx">i</span><span class="p">);</span> <span class="c1">//交换 int 成员</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>我们首先将<code>swap</code>定义为<code>friend</code>以便能访问 HasPtr 的（private的）数据成员。由于<code>swap</code>的存在就是为了优化代码，我们将其声明为<code>inline</code>函数。</p>
+<p>与拷贝控制成员不同，<code>swap</code>并不是必要的。但是，对于分配了资源的类，定义<code>swap</code>可能是一种很重要的优化手段。</p>
+<h3>swap 函数应该调用 swap，而不是 std::swap</h3>
+<p>在<code>swap</code>函数中，使用了<code>using std::swap</code>，如果这个类有自己的<code>swap</code>函数，匹配程度会高于标准库<code>swap</code>，会优先使用类自己的<code>swap</code>，如果没有，则使用标准库的<code>swap</code>。</p>
+<p><code>swap</code>里交换类的指针和<code>int</code>成员，并不会发生递归循环，HasPtr 的数据成员是内置类型的，这时候会调用标准库版本的<code>swap</code>。</p>
+<h3>在赋值运算符中使用 swap</h3>
+<p>定义<code>swap</code>的类通常用<code>swap</code>来定义它们的赋值运算符。这些运算符使用了一种名为拷贝并交换（copy and swap）的技术。这种技术将左侧运算对象与右侧运算对象的一个副本进行交换：</p>
+<div class="highlight"><pre><span></span>//注意 rhs 是按值传递的，意味着 HasPtr 的拷贝构造函数将
+//右侧运算对象中的 string 拷贝到 rhs
+HasPtr&amp; HasPtr::operator=(HasPtr rhs)
+{
+    //交换左侧运算对象和局部变量 rhs 的内容
+    swap(*this, rhs);   //rhs 现在指向本对象曾经使用的内存
+    return *this;   //rhs 被销毁，从而 delete 了 rhs 中的指针
+}
+</pre></div>
+
+
+<p>在进行 HasPtr 类的赋值运算中，先将右侧对象拷贝到拷贝赋值运算符函数里，然后交换左侧对象的指针和右侧对象的指针，交换后，右侧对象赋值给了左侧对象，左侧对象相应的<code>string</code>指针也指向了右侧对象副本的对应成员，而右侧对象的<code>string</code>指针则指向了左侧对象的相应成员。在这个函数结束后，右侧对象的副本被销毁，于是原来左侧对象的资源被释放，而左侧对象现在保存的是右侧对象的成员。</p>
+<p>拷贝并交换的操作，和之前的拷贝赋值运算符的实现原理是相同的， 在改变左侧对象之前拷贝右侧对象。保证了这样的操作异常的安全。</p>
+<h2>对象移动</h2>
+<p>待续...</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -393,7 +499,7 @@ HasPtr&amp; HasPtr::operator=(const HasPtr &amp;rhs)
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-20T16:41:10+08:00">2018-10-20 16:41:10</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-20 16:41:10</div>
+                    <div class="last_updated">2018-10-20 17:35:11</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
