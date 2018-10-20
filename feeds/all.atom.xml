@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-17T23:08:36+08:00</updated><entry><title>C++ Primer 第十二章 动态内存</title><link href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/" rel="alternate"></link><published>2018-10-17T22:25:02+08:00</published><updated>2018-10-17T23:08:36+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-17:/pages/2018/10/17/C++_Primer_Chapter_12/</id><summary type="html">&lt;p&gt;一个由 C/C++ 编译的程序占用的内存分为以下几个部分：&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-20T14:50:55+08:00</updated><entry><title>C++ Primer 第十二章 动态内存</title><link href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/" rel="alternate"></link><published>2018-10-17T22:25:02+08:00</published><updated>2018-10-20T14:50:55+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-17:/pages/2018/10/17/C++_Primer_Chapter_12/</id><summary type="html">&lt;p&gt;一个由 C/C++ 编译的程序占用的内存分为以下几个部分：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;栈区（stack）：由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈&lt;/li&gt;
 &lt;li&gt;堆区（heap）：一般由程序员分配释放，若程序员不释放，程序结束时可能由 OS 回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表&lt;/li&gt;
@@ -42,7 +42,7 @@ shared_ptr&amp;lt;int&amp;gt; p5 = make_shared&amp;lt;int&amp;gt;();
 
 
 &lt;p&gt;类似顺序容器的&lt;code&gt;emplace&lt;/code&gt;成员，&lt;code&gt;make_shared&lt;/code&gt;用其参数来构造给定类型的对象。例如，调用&lt;code&gt;make_shared&amp;lt;string&amp;gt;&lt;/code&gt;时传递的参数必须与&lt;code&gt;string&lt;/code&gt;的某个构造函数相匹配。&lt;/p&gt;
-&lt;p&gt;当然，我们通常用&lt;code&gt;aut&lt;/code&gt;o定义一个对象来保存&lt;code&gt;make_shared&lt;/code&gt;的结果，这种方式简单：&lt;/p&gt;
+&lt;p&gt;当然，我们通常用&lt;code&gt;auto&lt;/code&gt;定义一个对象来保存&lt;code&gt;make_shared&lt;/code&gt;的结果，这种方式简单：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//p6 指向一个动态分配的空 vector&amp;lt;string&amp;gt;
 auto p6 = make_shared&amp;lt;vector&amp;lt;string&amp;gt;&amp;gt;();
 &lt;/pre&gt;&lt;/div&gt;
@@ -90,6 +90,7 @@ int *pi2 = new int();       //值初始化为0；*pi2 为0
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;如果我们提供了一个括号包围的初始化器，就可以用&lt;code&gt;auto&lt;/code&gt;从此初始化器推断我们想要分配的对象的类型。但是由于编译器要用初始化器类型来推断分配的类型，只有当括号中仅有单一初始化器时才可以使用&lt;code&gt;auto&lt;/code&gt;（这也意味着不能用&lt;code&gt;auto&lt;/code&gt;动态分配数组）。&lt;/p&gt;
 &lt;h4&gt;动态分配的 const 对象&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//分配并初始化一个 const int
 const int *pci = new const int(1024);
@@ -223,7 +224,183 @@ weak_ptr&amp;lt;int&amp;gt; wp(p);    //wp 弱共享 p；p 的引用计数未改
 
 &lt;p&gt;由于对象可能不存在，我们不能使用&lt;code&gt;weak_ptr&lt;/code&gt;直接访问对象，而必须调用&lt;code&gt;lock&lt;/code&gt;。此函数检查&lt;code&gt;weak_ptr&lt;/code&gt;指向的对象是否存在。&lt;/p&gt;
 &lt;h2&gt;动态数组&lt;/h2&gt;
-&lt;p&gt;待续...&lt;/p&gt;</content><category term="C++"></category></entry><entry><title>C++ Primer 第十一章 关联容器</title><link href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/" rel="alternate"></link><published>2018-10-17T21:12:37+08:00</published><updated>2018-10-17T21:12:37+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-17:/pages/2018/10/17/C++_Primer_Chapter_11/</id><summary type="html">&lt;p&gt;关联容器和顺序容器有着根本的不同：关联容器中的元素是按关键字来保存和访问的。与之相对，顺序容器中的元素是按它们在容器中的位置来顺序保存和访问的。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;new&lt;/code&gt;和&lt;code&gt;delete&lt;/code&gt;运算符一次分配/释放一个对象，但某些应用需要一次为很多对象分配内存的功能。为了支持这种需求，C++ 语言和标准库提供了两种一次分配一个对象数组的方法。C++ 语言定义了一种&lt;code&gt;new&lt;/code&gt;表达式，可以分配并初始化一个对象数组。
+标准库中包含一个名为&lt;code&gt;allocator&lt;/code&gt;的类，允许我们将分配和初始化分离。使用&lt;code&gt;allocator&lt;/code&gt;通常会提供更好的性能和更灵活的内存管理能力。&lt;/p&gt;
+&lt;p&gt;大多数应用应该使用标准库容器而不是动态分配的数组。使用容器更为简单、更不容易出现内存管理错误并且可能有更好的性能。&lt;/p&gt;
+&lt;h3&gt;new 和数组&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//调用 get_size 确定分配多少个 int
+int *pia = new int[get_size];   //pia 指向第一个 int
+//方括号中的大小必须是整型，但不必是常量
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;typedef int arrT[42];   //arrT 表示42个 int 的数组类型
+int *p = new arrT;  //
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;分配一个数组会得到一个元素类型的指针&lt;/h4&gt;
+&lt;p&gt;虽然我们通常称&lt;code&gt;new T[]&lt;/code&gt;分配的内存为“动态数组”，但这种叫法某种程度上有些误导。当用&lt;code&gt;new&lt;/code&gt;分配一个数组时，我们并未得到一个数组类型的对象，而是得到一个数组元素类型的指针。&lt;/p&gt;
+&lt;p&gt;由于分配的内存并不是一个数组类型，因此不能对动态数组调用&lt;code&gt;begin&lt;/code&gt;和&lt;code&gt;end&lt;/code&gt;。这些函数使用数组维度来返回指向首元素和尾元素的指针。处于相同的原因，也不能用范围&lt;code&gt;for&lt;/code&gt;语句来处理（所谓的）动态数组中的元素。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;要记住我们所说的动态数组并不是数组类型，这是很重要的。&lt;/strong&gt;&lt;/p&gt;
+&lt;h4&gt;初始化动态分配对象的数组&lt;/h4&gt;
+&lt;p&gt;默认情况下，&lt;code&gt;new&lt;/code&gt;分配的对象，不管是单个分配的还是数组中的，都是默认初始化的。可以对数组中的元素进行值初始化，方法是在大小之后跟一对空括号。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;int *pia = new int[10]; //10个未初始化的 int
+int *pia2 = new int[10]();  //10个值初始化为0的 int
+string *psa = new string[10];   //10个空 string
+string *psa2 = new string[10]();    //10个空 string
+//在新标准中，我们还提供一个元素初始化器的花括号列表：
+//10个 int 分别用列表中对应的初始化器初始化
+int *pia3 = new int[10] {0,1,2,3,4,5,6,7,8,9};
+//10个 string，前4个用给定的初始化器初始化，剩余的进行值初始化
+string *psa3 = new string[10]{&amp;quot;a&amp;quot;, &amp;quot;an&amp;quot;, &amp;quot;the&amp;quot;, string(3,&amp;#39;x&amp;#39;)};
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果初始化器数目大于元素数目，则&lt;code&gt;new&lt;/code&gt;表达式失败，不会分配任何内存，并抛出&lt;code&gt;bad_array_new_length&lt;/code&gt;的异常，类似于&lt;code&gt;bad_alloc&lt;/code&gt;，此类型定义在头文件&lt;code&gt;new&lt;/code&gt;中。&lt;/p&gt;
+&lt;h4&gt;动态分配一个空数组是合法的&lt;/h4&gt;
+&lt;p&gt;我们在使用&lt;code&gt;new&lt;/code&gt;分配一个动态数组时，可以指定分配数组的大小为0，这样做是合法的：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;char *pc = new char(0);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;此时&lt;code&gt;new&lt;/code&gt;返回一个与其他&lt;code&gt;new&lt;/code&gt;表达式返回类型都不同的指针类型， 该指针不能解引用，就像一个数组的尾后迭代器一样。&lt;/p&gt;
+&lt;h4&gt;释放动态数组&lt;/h4&gt;
+&lt;p&gt;为了释放动态数组，我们使用一种特殊形式的&lt;code&gt;delete&lt;/code&gt;——在指针前加上一个空括号对：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;delete p;    //p 必须指向一个动态分配的对象或为空
+delete [] pa;  //pa 必须指向一个动态分配的数组或为空
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;第二条语句销毁 pa 指向的数组中的元素，并释放对应的内存。数组中的元素按逆序销毁，即，最后一个元素首先被销毁，然后是倒数第二个，以此类推。&lt;/p&gt;
+&lt;p&gt;当我们释放一个动态数组时，空方括号是必须的，它指示编译器此指针指向一个对象数组的第一个元素。 &lt;code&gt;delete&lt;/code&gt;一个动态数组时未添加空方括号或&lt;code&gt;delete&lt;/code&gt;一个普通指针时添加了空方括号，其行为都是未定义的。&lt;/p&gt;
+&lt;p&gt;前面我们讲到， 可以使用&lt;code&gt;typedef&lt;/code&gt;来给动态数组起一个别名，这样在&lt;code&gt;new&lt;/code&gt;一个动态数组时就不必添加方括号&lt;code&gt;[]&lt;/code&gt;，即使这样，我们在释放一个动态数组时，仍然需要添加方括号&lt;code&gt;[]&lt;/code&gt;，因为它本质上还是一个动态数组。&lt;/p&gt;
+&lt;h4&gt;智能指针和动态数组&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;unique_ptr&lt;/code&gt;智能指针有个可以管理&lt;code&gt;new&lt;/code&gt;分配的动态数组的版本，为了使用一个&lt;code&gt;unique_ptr&lt;/code&gt;来管理动态数组，需要在对象类型后加一个空方括号&lt;code&gt;[]&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;unique_ptr&amp;lt;int[]&amp;gt; up(new int[10]());
+up.release(); // 自动调用 delete [] 销毁其指针
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;当一个&lt;code&gt;unique_ptr&lt;/code&gt;指向一个数组时，我们不能使用点和箭头成员运算符，毕竟，&lt;code&gt;unique_ptr&lt;/code&gt;指向的是一个数组而不是单个对象。不过，我们可以使用下表运算符来访问数组中的元素：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;for (size_t i = 0; i &amp;lt; 10; ++i)
+    up[i] = i;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;shared_ptr&lt;/code&gt;不支持动态数组，如果希望使用&lt;code&gt;shared_ptr&lt;/code&gt;管理一个动态数组，我们需要提供自己的删除器：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;shared_ptr&amp;lt;int&amp;gt; sp(new int[10], [](int* p){ delete [] p; });
+sp.reset();
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我们在这个例子中使用&lt;code&gt;lambda&lt;/code&gt;做为&lt;code&gt;shared_ptr&lt;/code&gt;的删除器，如果我们不提供删除器，这样的行为是未定义的，因为默认情况下&lt;code&gt;shared_ptr&lt;/code&gt;使用&lt;code&gt;delete&lt;/code&gt;来释放内存，使用&lt;code&gt;delete&lt;/code&gt;来释放一个动态数组的定位是未定义的。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shared_ptr&lt;/code&gt;不支持动态数组这一特性会影响我们访问数组中的元素：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;for (size_t i = 0; i != 10; ++i)
+    *(sp.get() + i) = i;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;shared_ptr&lt;/code&gt;没有定义下标运算符，而且智能指针不支持指针算术运算。因此，为了访问数组中的元素，我们必须用&lt;code&gt;get&lt;/code&gt;成员函数获取一个内置指针，然后使用该内置指针来访问数租元素。&lt;/p&gt;
+&lt;h3&gt;allocator 类&lt;/h3&gt;
+&lt;p&gt;标准库&lt;code&gt;allocator&lt;/code&gt;类定义在头文件&lt;code&gt;memory&lt;/code&gt;中。它帮助我们将内存分配和构造分离开来，它分配的内存是原始的、未构造的。&lt;/p&gt;
+&lt;p&gt;类似&lt;code&gt;vector&lt;/code&gt;，&lt;code&gt;allocator&lt;/code&gt;也是一个模板类，我们在定义一个&lt;code&gt;allocator&lt;/code&gt;类类型的时候需要制定它要分配内存的类型，它会根据给定的对象类型来确定恰当的内存大小和对齐位置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;allocator&amp;lt;string&amp;gt; alloc;
+auto const p = alloc.allocate(n); // 分配 n 个未初始化的 string
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;allocator&lt;/code&gt;类及其算法：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;操作&lt;/th&gt;
+&lt;th align="left"&gt;意义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;allocator&lt;T&gt; a&lt;/td&gt;
+&lt;td align="left"&gt;定义了一个名为 a 的 allocator 对象，可以为类型为 T 的对象分配内存&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;a.allocate(n)&lt;/td&gt;
+&lt;td align="left"&gt;分配一段原始的、未构造的内存，保存 n 个类型为 T 的对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;a.deallocate(p, n)&lt;/td&gt;
+&lt;td align="left"&gt;释放从 T* 指针 p 中地址开始的内存，这块内存保存了 n 个类型为 T 的对象；p 必须是一个先前由 allocate 成员函数返回的指针，且 n 必须是创建时候的大小，在调用 deallocate 之前，用户必须对每个在在这块内存中创建的对象调用 destroy 函数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;a.construct(p, args)&lt;/td&gt;
+&lt;td align="left"&gt;p 必须是一个类型为 T* 的指针，指向一块原始内存，args 被传递给类型为 T 的构造函数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;a.destroy(p)&lt;/td&gt;
+&lt;td align="left"&gt;p 为 T* 类型的指针，此算法对 p 执行析构函数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;allocator 分配未构造的内存&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;auto q = p; //q 指向最后构造的元素之后的位置
+alloc.construct(q++);   //*q 为空字符串
+alloc.construct(q++, 10, &amp;#39;c&amp;#39;);  //*q 为cccccccccc
+alloc.construct(q++, &amp;quot;hi&amp;quot;); //*q 为hi
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;为了使用&lt;code&gt;allocate&lt;/code&gt;返回的内存，我们必须用&lt;code&gt;construct&lt;/code&gt;构造对象。使用未构造的内存，其行为是未定义的。&lt;/p&gt;
+&lt;p&gt;当我们用完对象后，必须对每个构造的元素调用&lt;code&gt;destroy&lt;/code&gt;来销毁它们。函数&lt;code&gt;destroy&lt;/code&gt;接受一个指针，对指向的对象执行析构函数：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;while(q != p)
+    alloc.destroy(--q); //释放我们真正构造的 string
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;一旦元素被销毁后，就可以重新使用这部分内存来保存其他&lt;code&gt;string&lt;/code&gt;，也可以将其归还给系统。释放内存通过调用&lt;code&gt;deallocate&lt;/code&gt;来完成：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alloc.deallocate(p, n);
+//传递给 deallocate 的指针不能为空，它必须指向由 allocate 分配的内存
+//传递给 deallcoate 的大小参数必须与调用 allocate 分配内存时提供的大小参数具有一样的值
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我们只能对真正构造了的元素进行&lt;code&gt;destroy&lt;/code&gt;操作。&lt;/p&gt;
+&lt;h4&gt;拷贝和填充为初始化内存的算法&lt;/h4&gt;
+&lt;p&gt;标准库为&lt;code&gt;allocator&lt;/code&gt;类定义了两个伴随算法，可以在未初始化内存中创建对象：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;操作&lt;/th&gt;
+&lt;th align="left"&gt;意义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;uninitialized_copy(b, e, b2)&lt;/td&gt;
+&lt;td align="left"&gt;从迭代器 b 和 e 指出的输入范围中拷贝元素到迭代器 b2 指定的未构造的原始内存中，b2 指向的内存必须足够大，能容下输入序列中的元素的拷贝&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;uninitialized_copy_n(b, n, b2)&lt;/td&gt;
+&lt;td align="left"&gt;从迭代器 b 指向的元素开始，拷贝 n 个元素到 b2 开始的原始内存中&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;uninitialized_fill(b, e, t)&lt;/td&gt;
+&lt;td align="left"&gt;在迭代器 b 和 e 指定的原始内存范围中创建对象，值均为 t 的拷贝&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;uninitialized_fill_n(b, n, t)&lt;/td&gt;
+&lt;td align="left"&gt;从迭代器 b 指向的原始内存地址开始创建 n 个对象，b 必须指向足够大的未构造的原始内存，能容纳给定数量的对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;这些函数在给定目的位置创建元素，而不是由系统分配内存给他们。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vector&amp;lt;int&amp;gt; vec{0, 1, 2, 3, 4, 5};
+auto p = alloc.allocate(vec.size() * 2);
+auto q = uninitialized_copy(vec.begin(), vec.end(), p);
+uninitialize_fill_n(q, vec.size(), 42);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;uninitialized_copy&lt;/code&gt;在给定位置构造元素，函数返回递增后的目的位置迭代器。因此，一个&lt;code&gt;uninitialized_copy&lt;/code&gt;调用会返回一个指针，指向 最后一个构造的元素之后的位置。&lt;/p&gt;</content><category term="C++"></category></entry><entry><title>C++ Primer 第十一章 关联容器</title><link href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/" rel="alternate"></link><published>2018-10-17T21:12:37+08:00</published><updated>2018-10-17T21:12:37+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-17:/pages/2018/10/17/C++_Primer_Chapter_11/</id><summary type="html">&lt;p&gt;关联容器和顺序容器有着根本的不同：关联容器中的元素是按关键字来保存和访问的。与之相对，顺序容器中的元素是按它们在容器中的位置来顺序保存和访问的。&lt;/p&gt;
 &lt;p&gt;关联容器支持高效的关键字查找和访问。两个主要的关联容器（associative-container）类型是 &lt;strong&gt;map&lt;/strong&gt; 和 &lt;strong&gt;set&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;map&lt;/code&gt;中的元素是一些关键字-值（key-value）对：关键字起到索引的作用，值则表示与索引相关联的数据。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;set&lt;/code&gt;中每个元素只包含一个关键字，&lt;code&gt;set&lt;/code&gt;支持高效的关键字查询操作。&lt;/p&gt;

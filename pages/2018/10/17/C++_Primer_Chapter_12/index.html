@@ -93,7 +93,7 @@ shared_ptr&lt;int&gt; p5 = make_shared&lt;int&gt;();
 
 
 <p>类似顺序容器的<code>emplace</code>成员，<code>make_shared</code>用其参数来构造给定类型的对象。例如，调用<code>make_shared&lt;string&gt;</code>时传递的参数必须与<code>string</code>的某个构造函数相匹配。</p>
-<p>当然，我们通常用<code>aut</code>o定义一个对象来保存<code>make_shared</code>的结果，这种方式简单：</p>
+<p>当然，我们通常用<code>auto</code>定义一个对象来保存<code>make_shared</code>的结果，这种方式简单：</p>
 <div class="highlight"><pre><span></span>//p6 指向一个动态分配的空 vector&lt;string&gt;
 auto p6 = make_shared&lt;vector&lt;string&gt;&gt;();
 </pre></div>
@@ -141,6 +141,7 @@ int *pi2 = new int();       //值初始化为0；*pi2 为0
 </pre></div>
 
 
+<p>如果我们提供了一个括号包围的初始化器，就可以用<code>auto</code>从此初始化器推断我们想要分配的对象的类型。但是由于编译器要用初始化器类型来推断分配的类型，只有当括号中仅有单一初始化器时才可以使用<code>auto</code>（这也意味着不能用<code>auto</code>动态分配数组）。</p>
 <h4>动态分配的 const 对象</h4>
 <div class="highlight"><pre><span></span>//分配并初始化一个 const int
 const int *pci = new const int(1024);
@@ -274,7 +275,183 @@ weak_ptr&lt;int&gt; wp(p);    //wp 弱共享 p；p 的引用计数未改变
 
 <p>由于对象可能不存在，我们不能使用<code>weak_ptr</code>直接访问对象，而必须调用<code>lock</code>。此函数检查<code>weak_ptr</code>指向的对象是否存在。</p>
 <h2>动态数组</h2>
-<p>待续...</p>
+<p><code>new</code>和<code>delete</code>运算符一次分配/释放一个对象，但某些应用需要一次为很多对象分配内存的功能。为了支持这种需求，C++ 语言和标准库提供了两种一次分配一个对象数组的方法。C++ 语言定义了一种<code>new</code>表达式，可以分配并初始化一个对象数组。
+标准库中包含一个名为<code>allocator</code>的类，允许我们将分配和初始化分离。使用<code>allocator</code>通常会提供更好的性能和更灵活的内存管理能力。</p>
+<p>大多数应用应该使用标准库容器而不是动态分配的数组。使用容器更为简单、更不容易出现内存管理错误并且可能有更好的性能。</p>
+<h3>new 和数组</h3>
+<div class="highlight"><pre><span></span>//调用 get_size 确定分配多少个 int
+int *pia = new int[get_size];   //pia 指向第一个 int
+//方括号中的大小必须是整型，但不必是常量
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>typedef int arrT[42];   //arrT 表示42个 int 的数组类型
+int *p = new arrT;  //
+</pre></div>
+
+
+<h4>分配一个数组会得到一个元素类型的指针</h4>
+<p>虽然我们通常称<code>new T[]</code>分配的内存为“动态数组”，但这种叫法某种程度上有些误导。当用<code>new</code>分配一个数组时，我们并未得到一个数组类型的对象，而是得到一个数组元素类型的指针。</p>
+<p>由于分配的内存并不是一个数组类型，因此不能对动态数组调用<code>begin</code>和<code>end</code>。这些函数使用数组维度来返回指向首元素和尾元素的指针。处于相同的原因，也不能用范围<code>for</code>语句来处理（所谓的）动态数组中的元素。</p>
+<p><strong>要记住我们所说的动态数组并不是数组类型，这是很重要的。</strong></p>
+<h4>初始化动态分配对象的数组</h4>
+<p>默认情况下，<code>new</code>分配的对象，不管是单个分配的还是数组中的，都是默认初始化的。可以对数组中的元素进行值初始化，方法是在大小之后跟一对空括号。</p>
+<div class="highlight"><pre><span></span>int *pia = new int[10]; //10个未初始化的 int
+int *pia2 = new int[10]();  //10个值初始化为0的 int
+string *psa = new string[10];   //10个空 string
+string *psa2 = new string[10]();    //10个空 string
+//在新标准中，我们还提供一个元素初始化器的花括号列表：
+//10个 int 分别用列表中对应的初始化器初始化
+int *pia3 = new int[10] {0,1,2,3,4,5,6,7,8,9};
+//10个 string，前4个用给定的初始化器初始化，剩余的进行值初始化
+string *psa3 = new string[10]{&quot;a&quot;, &quot;an&quot;, &quot;the&quot;, string(3,&#39;x&#39;)};
+</pre></div>
+
+
+<p>如果初始化器数目大于元素数目，则<code>new</code>表达式失败，不会分配任何内存，并抛出<code>bad_array_new_length</code>的异常，类似于<code>bad_alloc</code>，此类型定义在头文件<code>new</code>中。</p>
+<h4>动态分配一个空数组是合法的</h4>
+<p>我们在使用<code>new</code>分配一个动态数组时，可以指定分配数组的大小为0，这样做是合法的：</p>
+<div class="highlight"><pre><span></span>char *pc = new char(0);
+</pre></div>
+
+
+<p>此时<code>new</code>返回一个与其他<code>new</code>表达式返回类型都不同的指针类型， 该指针不能解引用，就像一个数组的尾后迭代器一样。</p>
+<h4>释放动态数组</h4>
+<p>为了释放动态数组，我们使用一种特殊形式的<code>delete</code>——在指针前加上一个空括号对：</p>
+<div class="highlight"><pre><span></span>delete p;    //p 必须指向一个动态分配的对象或为空
+delete [] pa;  //pa 必须指向一个动态分配的数组或为空
+</pre></div>
+
+
+<p>第二条语句销毁 pa 指向的数组中的元素，并释放对应的内存。数组中的元素按逆序销毁，即，最后一个元素首先被销毁，然后是倒数第二个，以此类推。</p>
+<p>当我们释放一个动态数组时，空方括号是必须的，它指示编译器此指针指向一个对象数组的第一个元素。 <code>delete</code>一个动态数组时未添加空方括号或<code>delete</code>一个普通指针时添加了空方括号，其行为都是未定义的。</p>
+<p>前面我们讲到， 可以使用<code>typedef</code>来给动态数组起一个别名，这样在<code>new</code>一个动态数组时就不必添加方括号<code>[]</code>，即使这样，我们在释放一个动态数组时，仍然需要添加方括号<code>[]</code>，因为它本质上还是一个动态数组。</p>
+<h4>智能指针和动态数组</h4>
+<p><code>unique_ptr</code>智能指针有个可以管理<code>new</code>分配的动态数组的版本，为了使用一个<code>unique_ptr</code>来管理动态数组，需要在对象类型后加一个空方括号<code>[]</code>:</p>
+<div class="highlight"><pre><span></span>unique_ptr&lt;int[]&gt; up(new int[10]());
+up.release(); // 自动调用 delete [] 销毁其指针
+</pre></div>
+
+
+<p>当一个<code>unique_ptr</code>指向一个数组时，我们不能使用点和箭头成员运算符，毕竟，<code>unique_ptr</code>指向的是一个数组而不是单个对象。不过，我们可以使用下表运算符来访问数组中的元素：</p>
+<div class="highlight"><pre><span></span>for (size_t i = 0; i &lt; 10; ++i)
+    up[i] = i;
+</pre></div>
+
+
+<p><code>shared_ptr</code>不支持动态数组，如果希望使用<code>shared_ptr</code>管理一个动态数组，我们需要提供自己的删除器：</p>
+<div class="highlight"><pre><span></span>shared_ptr&lt;int&gt; sp(new int[10], [](int* p){ delete [] p; });
+sp.reset();
+</pre></div>
+
+
+<p>我们在这个例子中使用<code>lambda</code>做为<code>shared_ptr</code>的删除器，如果我们不提供删除器，这样的行为是未定义的，因为默认情况下<code>shared_ptr</code>使用<code>delete</code>来释放内存，使用<code>delete</code>来释放一个动态数组的定位是未定义的。</p>
+<p><code>shared_ptr</code>不支持动态数组这一特性会影响我们访问数组中的元素：</p>
+<div class="highlight"><pre><span></span>for (size_t i = 0; i != 10; ++i)
+    *(sp.get() + i) = i;
+</pre></div>
+
+
+<p><code>shared_ptr</code>没有定义下标运算符，而且智能指针不支持指针算术运算。因此，为了访问数组中的元素，我们必须用<code>get</code>成员函数获取一个内置指针，然后使用该内置指针来访问数租元素。</p>
+<h3>allocator 类</h3>
+<p>标准库<code>allocator</code>类定义在头文件<code>memory</code>中。它帮助我们将内存分配和构造分离开来，它分配的内存是原始的、未构造的。</p>
+<p>类似<code>vector</code>，<code>allocator</code>也是一个模板类，我们在定义一个<code>allocator</code>类类型的时候需要制定它要分配内存的类型，它会根据给定的对象类型来确定恰当的内存大小和对齐位置：</p>
+<div class="highlight"><pre><span></span>allocator&lt;string&gt; alloc;
+auto const p = alloc.allocate(n); // 分配 n 个未初始化的 string
+</pre></div>
+
+
+<p><code>allocator</code>类及其算法：</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">allocator<T> a</td>
+<td align="left">定义了一个名为 a 的 allocator 对象，可以为类型为 T 的对象分配内存</td>
+</tr>
+<tr>
+<td align="left">a.allocate(n)</td>
+<td align="left">分配一段原始的、未构造的内存，保存 n 个类型为 T 的对象</td>
+</tr>
+<tr>
+<td align="left">a.deallocate(p, n)</td>
+<td align="left">释放从 T* 指针 p 中地址开始的内存，这块内存保存了 n 个类型为 T 的对象；p 必须是一个先前由 allocate 成员函数返回的指针，且 n 必须是创建时候的大小，在调用 deallocate 之前，用户必须对每个在在这块内存中创建的对象调用 destroy 函数</td>
+</tr>
+<tr>
+<td align="left">a.construct(p, args)</td>
+<td align="left">p 必须是一个类型为 T* 的指针，指向一块原始内存，args 被传递给类型为 T 的构造函数</td>
+</tr>
+<tr>
+<td align="left">a.destroy(p)</td>
+<td align="left">p 为 T* 类型的指针，此算法对 p 执行析构函数</td>
+</tr>
+</tbody>
+</table>
+<h4>allocator 分配未构造的内存</h4>
+<div class="highlight"><pre><span></span>auto q = p; //q 指向最后构造的元素之后的位置
+alloc.construct(q++);   //*q 为空字符串
+alloc.construct(q++, 10, &#39;c&#39;);  //*q 为cccccccccc
+alloc.construct(q++, &quot;hi&quot;); //*q 为hi
+</pre></div>
+
+
+<p>为了使用<code>allocate</code>返回的内存，我们必须用<code>construct</code>构造对象。使用未构造的内存，其行为是未定义的。</p>
+<p>当我们用完对象后，必须对每个构造的元素调用<code>destroy</code>来销毁它们。函数<code>destroy</code>接受一个指针，对指向的对象执行析构函数：</p>
+<div class="highlight"><pre><span></span>while(q != p)
+    alloc.destroy(--q); //释放我们真正构造的 string
+</pre></div>
+
+
+<p>一旦元素被销毁后，就可以重新使用这部分内存来保存其他<code>string</code>，也可以将其归还给系统。释放内存通过调用<code>deallocate</code>来完成：</p>
+<div class="highlight"><pre><span></span>alloc.deallocate(p, n);
+//传递给 deallocate 的指针不能为空，它必须指向由 allocate 分配的内存
+//传递给 deallcoate 的大小参数必须与调用 allocate 分配内存时提供的大小参数具有一样的值
+</pre></div>
+
+
+<p>我们只能对真正构造了的元素进行<code>destroy</code>操作。</p>
+<h4>拷贝和填充为初始化内存的算法</h4>
+<p>标准库为<code>allocator</code>类定义了两个伴随算法，可以在未初始化内存中创建对象：</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">uninitialized_copy(b, e, b2)</td>
+<td align="left">从迭代器 b 和 e 指出的输入范围中拷贝元素到迭代器 b2 指定的未构造的原始内存中，b2 指向的内存必须足够大，能容下输入序列中的元素的拷贝</td>
+</tr>
+<tr>
+<td align="left">uninitialized_copy_n(b, n, b2)</td>
+<td align="left">从迭代器 b 指向的元素开始，拷贝 n 个元素到 b2 开始的原始内存中</td>
+</tr>
+<tr>
+<td align="left">uninitialized_fill(b, e, t)</td>
+<td align="left">在迭代器 b 和 e 指定的原始内存范围中创建对象，值均为 t 的拷贝</td>
+</tr>
+<tr>
+<td align="left">uninitialized_fill_n(b, n, t)</td>
+<td align="left">从迭代器 b 指向的原始内存地址开始创建 n 个对象，b 必须指向足够大的未构造的原始内存，能容纳给定数量的对象</td>
+</tr>
+</tbody>
+</table>
+<p>这些函数在给定目的位置创建元素，而不是由系统分配内存给他们。</p>
+<div class="highlight"><pre><span></span>vector&lt;int&gt; vec{0, 1, 2, 3, 4, 5};
+auto p = alloc.allocate(vec.size() * 2);
+auto q = uninitialized_copy(vec.begin(), vec.end(), p);
+uninitialize_fill_n(q, vec.size(), 42);
+</pre></div>
+
+
+<p><code>uninitialized_copy</code>在给定位置构造元素，函数返回递增后的目的位置迭代器。因此，一个<code>uninitialized_copy</code>调用会返回一个指针，指向 最后一个构造的元素之后的位置。</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -316,7 +493,7 @@ weak_ptr&lt;int&gt; wp(p);    //wp 弱共享 p；p 的引用计数未改变
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-17T22:25:02+08:00">2018-10-17 22:25:02</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-17 23:08:36</div>
+                    <div class="last_updated">2018-10-20 14:50:55</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
