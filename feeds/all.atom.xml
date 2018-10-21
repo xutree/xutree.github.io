@@ -1,5 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-21T13:39:16+08:00</updated><entry><title>C++ Primer 第十六章 模板与泛型编程</title><link href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/" rel="alternate"></link><published>2018-10-21T10:23:30+08:00</published><updated>2018-10-21T13:39:16+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-21:/pages/2018/10/21/C++_Primer_Chapter_16/</id><summary type="html">&lt;p&gt;面向对象编程（OOP）和泛型编程都能处理在编写程序时不知道类型的情况。不同之处是：OOP能处理类型在程序运行之前都未知的情况；而在泛型编程中，在编译时就能获知类型了。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-21T17:04:34+08:00</updated><entry><title>C++ Primer 第十七章 标准库特殊设施</title><link href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/" rel="alternate"></link><published>2018-10-21T17:04:34+08:00</published><updated>2018-10-21T17:04:34+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-21:/pages/2018/10/21/C++_Primer_Chapter_17/</id><summary type="html">&lt;h2&gt;tuple 类型&lt;/h2&gt;
+&lt;p&gt;当我们希望将一些数据组合成单一对象，但又不想麻烦地定义一个新数据结构来表示这些数据时，可以使用&lt;code&gt;tuple&lt;/code&gt;类型。与&lt;code&gt;pair&lt;/code&gt;类似，但&lt;code&gt;tuple&lt;/code&gt;可以有任意数量的成员。它的一个常见用途就是从一个函数返回多个值。&lt;code&gt;tuple&lt;/code&gt;定义在同名的头文件中。&lt;/p&gt;
+&lt;p&gt;支持的操作：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="tuple支持的操作" src="https://xutree.github.io/images/c++17-1.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;要访问一个&lt;code&gt;tuple&lt;/code&gt;的成员，使用&lt;code&gt;get&lt;/code&gt;标准库模板。为了使用&lt;code&gt;get&lt;/code&gt;，我们必须指定一个显式模板参数，它指明我们想要访问第几个成员。这个显式模板参数必须是一个整型常量表达式，从0开始计数，返回指定成员的引用。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;auto book = get&amp;lt;0&amp;gt;(item);  // 返回 item 的第一个成员
+get&amp;lt;0&amp;gt;(item) *= 0.8;       // 修改书的单价
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;借助辅助类模板&lt;code&gt;tuple_size&lt;/code&gt;和&lt;code&gt;tuple_element&lt;/code&gt;，可以查询&lt;code&gt;tuple …&lt;/code&gt;&lt;/p&gt;</summary><content type="html">&lt;h2&gt;tuple 类型&lt;/h2&gt;
+&lt;p&gt;当我们希望将一些数据组合成单一对象，但又不想麻烦地定义一个新数据结构来表示这些数据时，可以使用&lt;code&gt;tuple&lt;/code&gt;类型。与&lt;code&gt;pair&lt;/code&gt;类似，但&lt;code&gt;tuple&lt;/code&gt;可以有任意数量的成员。它的一个常见用途就是从一个函数返回多个值。&lt;code&gt;tuple&lt;/code&gt;定义在同名的头文件中。&lt;/p&gt;
+&lt;p&gt;支持的操作：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="tuple支持的操作" src="https://xutree.github.io/images/c++17-1.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;要访问一个&lt;code&gt;tuple&lt;/code&gt;的成员，使用&lt;code&gt;get&lt;/code&gt;标准库模板。为了使用&lt;code&gt;get&lt;/code&gt;，我们必须指定一个显式模板参数，它指明我们想要访问第几个成员。这个显式模板参数必须是一个整型常量表达式，从0开始计数，返回指定成员的引用。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;auto book = get&amp;lt;0&amp;gt;(item);  // 返回 item 的第一个成员
+get&amp;lt;0&amp;gt;(item) *= 0.8;       // 修改书的单价
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;借助辅助类模板&lt;code&gt;tuple_size&lt;/code&gt;和&lt;code&gt;tuple_element&lt;/code&gt;，可以查询&lt;code&gt;tuple&lt;/code&gt;成员的数量和类型。不过使用这两个类，必须知道 &lt;code&gt;tuple&lt;/code&gt;对象的类型，这可以通过&lt;code&gt;decltype&lt;/code&gt;很简单地得到：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;typedef decltype(item) trans;
+// 返回 trans 类型对象中成员的数量
+size_t sz = tuple_size&amp;lt;trans&amp;gt;::value;  // 返回 3
+// cnt 的类型与 item 中第二个成员相同，是一个 int
+tuple_element&amp;lt;1, trans&amp;gt;::type cnt = get&amp;lt;1&amp;gt;(item);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;只有两个&lt;code&gt;tuple&lt;/code&gt;具有相同数量的成员，且每对成员使用&lt;code&gt;==&lt;/code&gt;或&lt;code&gt;&amp;lt;&lt;/code&gt;是合法时，才能比较两个&lt;code&gt;tuple&lt;/code&gt;。另外，由于&lt;code&gt;tuple&lt;/code&gt;定义了&lt;code&gt;&amp;lt;&lt;/code&gt;和&lt;code&gt;==&lt;/code&gt;运算符，可以将&lt;code&gt;tuple&lt;/code&gt;序列传递给算法，并且可以在无序容器中将&lt;code&gt;tuple&lt;/code&gt;作为关键字类型。&lt;/p&gt;
+&lt;h2&gt;bitset 类型&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;bitset&lt;/code&gt;类，可以方便地将整型运算对象当作二进制位集合处理，并且能够处理超过最长整型类型大小的位集合。&lt;code&gt;bitset&lt;/code&gt;定义在同名的头文件中。&lt;/p&gt;
+&lt;p&gt;支持的操作：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-2.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用字符串初始化&lt;code&gt;bitset&lt;/code&gt;时，下标最小的字符对应&lt;code&gt;bitset&lt;/code&gt;中的高位。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bitset&amp;lt;32&amp;gt; bitvec4(&amp;quot;1100&amp;quot;);   // 2、3两位为1，剩余位为0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-3.jpg"&gt;&lt;/p&gt;
+&lt;h2&gt;正则表达式&lt;/h2&gt;
+&lt;p&gt;RE 库定义在头文件&lt;code&gt;regex&lt;/code&gt;中。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;组件&lt;/th&gt;
+&lt;th align="left"&gt;意义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;regex&lt;/td&gt;
+&lt;td align="left"&gt;表示有一个正则表达式的类&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;regex_match&lt;/td&gt;
+&lt;td align="left"&gt;将一个字符序列与一个正则表达式匹配，整串匹配返回&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;regex_search&lt;/td&gt;
+&lt;td align="left"&gt;寻找第一个与正则表达式匹配的子序列，有子串匹配，返回&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;regex_replace&lt;/td&gt;
+&lt;td align="left"&gt;使用给定格式替换一个正则表达式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;regex_iterator&lt;/td&gt;
+&lt;td align="left"&gt;迭代器适配器，调用&lt;code&gt;regex_search&lt;/code&gt;来遍历一个&lt;code&gt;string&lt;/code&gt;中所有匹配的子串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;smatch&lt;/td&gt;
+&lt;td align="left"&gt;容器类，保存&lt;code&gt;string&lt;/code&gt;中搜索的结果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;ssub_match&lt;/td&gt;
+&lt;td align="left"&gt;&lt;code&gt;string&lt;/code&gt;中匹配的子表达式的结果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;code&gt;regex_search&lt;/code&gt;和&lt;code&gt;regex_search&lt;/code&gt;的参数如下，这些操作都返回&lt;code&gt;bool&lt;/code&gt;，指出是否找到匹配：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;(seq, m, r, mft)&lt;/code&gt;或&lt;code&gt;(seq, r, mft)&lt;/code&gt;：在字符序列 seq 中查找 regex 对象 r 中的正则表达式。seq 可以是一个&lt;code&gt;string&lt;/code&gt;、表示范围的一对迭代器以及一个指向空字符结尾的字符数组的指针。m 是一个&lt;code&gt;match&lt;/code&gt;对象，用来保存匹配结果的相关细节。m 和 seq 必须具有兼容的类型。mft 是一个可选的&lt;code&gt;regex_constants::match_flag_type&lt;/code&gt;值，它们会影响匹配过程。&lt;/p&gt;
+&lt;p&gt;待续...&lt;/p&gt;</content><category term="C++"></category></entry><entry><title>C++ Primer 第十六章 模板与泛型编程</title><link href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/" rel="alternate"></link><published>2018-10-21T10:23:30+08:00</published><updated>2018-10-21T13:39:16+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-21:/pages/2018/10/21/C++_Primer_Chapter_16/</id><summary type="html">&lt;p&gt;面向对象编程（OOP）和泛型编程都能处理在编写程序时不知道类型的情况。不同之处是：OOP能处理类型在程序运行之前都未知的情况；而在泛型编程中，在编译时就能获知类型了。&lt;/p&gt;
 &lt;p&gt;容器、迭代器和算法都是泛型编程的例子。模板是 C++ 中泛型编程的基础。一个模板就是一个创建类或函数的蓝图或者说公式。&lt;/p&gt;
 &lt;h2&gt;定义模板&lt;/h2&gt;
 &lt;h3&gt;函数模板&lt;/h3&gt;
