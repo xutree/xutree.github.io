@@ -16,7 +16,7 @@
 &lt;tr&gt;
 &lt;td align="center"&gt;标量&lt;/td&gt;
 &lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial y}{\partial x}\)&lt;/span&gt;&lt;/td&gt;
-&lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial \mathbf{y}}{\partial x}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial {\boldsymbol y}}{\partial x}\)&lt;/span&gt;&lt;/td&gt;
 &lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial {\bf Y}}{\partial x}\)&lt;/span&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -92,13 +92,13 @@
 &lt;tr&gt;
 &lt;td align="center"&gt;标量&lt;/td&gt;
 &lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial y}{\partial x}\)&lt;/span&gt;&lt;/td&gt;
-&lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial \mathbf{y}}{\partial x}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial {\boldsymbol y}}{\partial x}\)&lt;/span&gt;&lt;/td&gt;
 &lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial {\bf Y}}{\partial x}\)&lt;/span&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="center"&gt;向量&lt;/td&gt;
-&lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial y}{\partial \mathbf{x}}\)&lt;/span&gt;&lt;/td&gt;
-&lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial \mathbf{y}}{\partial \mathbf{x}}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial y}{\partial {\boldsymbol x}}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac{\partial {\boldsymbol y}}{\partial {\boldsymbol x}}\)&lt;/span&gt;&lt;/td&gt;
 &lt;td align="center"&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -114,53 +114,52 @@
 &lt;p&gt;以下说明采用“分子布局”。&lt;/p&gt;
 &lt;h2&gt;2. 分子布局下的求导&lt;/h2&gt;
 &lt;h3&gt;2.1 向量对标量求导&lt;/h3&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(\mathbf{y}=
+&lt;p&gt;&lt;span class="math"&gt;\({\boldsymbol y}=
     {&lt;div class="math"&gt;\begin{bmatrix}
         y_{1}\\
         y_{2}\\
         \vdots
         \\y_{m}\\
     \end{bmatrix}&lt;/div&gt;
-}\Longrightarrow
-\frac{\partial \mathbf{y}}{\partial x} =
+}\Longrightarrow\frac{\partial {\boldsymbol y}}{\partial x} =
 &lt;div class="math"&gt;\begin{bmatrix}
 \frac{\partial y_1}{\partial x}\\
 \frac{\partial y_2}{\partial x}\\
 \vdots\\
 \frac{\partial y_m}{\partial x}\\
 \end{bmatrix}&lt;/div&gt;\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;在向量微积分中，向量 &lt;span class="math"&gt;\(\mathbf{y}\)&lt;/span&gt; 相对于标量 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的导数被称为向量 &lt;span class="math"&gt;\(\mathbf{y}\)&lt;/span&gt; 的切向量。&lt;/p&gt;
+&lt;p&gt;在向量微积分中，向量 &lt;span class="math"&gt;\({\boldsymbol y}\)&lt;/span&gt; 相对于标量 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的导数被称为向量 &lt;span class="math"&gt;\({\boldsymbol y}\)&lt;/span&gt; 的切向量。&lt;/p&gt;
 &lt;h3&gt;2.2 标量对向量求导&lt;/h3&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(\mathbf{x} =
+&lt;p&gt;&lt;span class="math"&gt;\({\boldsymbol x} =
 &lt;div class="math"&gt;\begin{bmatrix}
 x_1 \\
 x_2 \\
 \vdots \\
 x_n \\
 \end{bmatrix}&lt;/div&gt;\Longrightarrow
-\frac{\partial y}{\partial \mathbf{x}^{\text{T}}} =
+\frac{\partial y}{\partial {\boldsymbol x}^{\text{T}}} =
 \left[
 \frac{\partial y}{\partial x_1}
 \frac{\partial y}{\partial x_2}
 \cdots
 \frac{\partial y}{\partial x_n}
 \right]\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;这是标量函数 &lt;span class="math"&gt;\(f(\mathbf{x})\)&lt;/span&gt; 梯度的转置。&lt;/p&gt;
+&lt;p&gt;这是标量函数 &lt;span class="math"&gt;\(f({\boldsymbol x})\)&lt;/span&gt; 梯度的转置。&lt;/p&gt;
 &lt;h3&gt;2.3 向量对向量的求导&lt;/h3&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(\mathbf{y} =
+&lt;p&gt;&lt;span class="math"&gt;\({\boldsymbol y} =
 &lt;div class="math"&gt;\begin{bmatrix}
 y_1 \\
 y_2 \\
 \vdots \\
 y_m \\
-\end{bmatrix}&lt;/div&gt;,\mathbf{x} =
+\end{bmatrix}&lt;/div&gt;,{\boldsymbol x} =
 &lt;div class="math"&gt;\begin{bmatrix}
 x_1 \\
 x_2 \\
 \vdots \\
 x_n \\
 \end{bmatrix}&lt;/div&gt;\Longrightarrow
-\frac{\partial \mathbf{y}}{\partial \mathbf{x}} =
+\frac{\partial {\boldsymbol y}}{\partial {\boldsymbol x}} =
 &lt;div class="math"&gt;\begin{bmatrix}
 \frac{\partial y_1}{\partial x_1} &amp;amp; \frac{\partial y_1}{\partial x_2} &amp;amp; \cdots &amp;amp; \frac{\partial y_1}{\partial x_n}\\
 \frac{\partial y_2}{\partial x_1} &amp;amp; \frac{\partial y_2}{\partial x_2} &amp;amp; \cdots &amp;amp; \frac{\partial y_2}{\partial x_n}\\
@@ -169,7 +168,7 @@ x_n \\
 \end{bmatrix}&lt;/div&gt;\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;此即雅可比矩阵。&lt;/p&gt;
 &lt;h3&gt;2.5 矩阵对标量求导&lt;/h3&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(\frac{\partial \mathbf{Y}}{\partial x} =
+&lt;p&gt;&lt;span class="math"&gt;\(\frac{\partial {\boldsymbol Y}}{\partial x} =
 &lt;div class="math"&gt;\begin{bmatrix}
 \frac{\partial y_{11}}{\partial x} &amp;amp; \frac{\partial y_{12}}{\partial x} &amp;amp; \cdots &amp;amp; \frac{\partial y_{1n}}{\partial x}\\
 \frac{\partial y_{21}}{\partial x} &amp;amp; \frac{\partial y_{22}}{\partial x} &amp;amp; \cdots &amp;amp; \frac{\partial y_{2n}}{\partial x}\\
@@ -178,14 +177,14 @@ x_n \\
 \end{bmatrix}&lt;/div&gt;\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;称为切矩阵。&lt;/p&gt;
 &lt;h3&gt;2.6 标量对矩阵求导&lt;/h3&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(\frac{\partial y}{\partial \mathbf{X}} =
+&lt;p&gt;&lt;span class="math"&gt;\(\frac{\partial y}{\partial {\boldsymbol X}} =
 &lt;div class="math"&gt;\begin{bmatrix}
 \frac{\partial y}{\partial x_{11}} &amp;amp; \frac{\partial y}{\partial x_{21}} &amp;amp; \cdots &amp;amp; \frac{\partial y}{\partial x_{p1}}\\
 \frac{\partial y}{\partial x_{12}} &amp;amp; \frac{\partial y}{\partial x_{22}} &amp;amp; \cdots &amp;amp; \frac{\partial y}{\partial x_{p2}}\\
 \vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots\\
 \frac{\partial y}{\partial x_{1q}} &amp;amp; \frac{\partial y}{\partial x_{2q}} &amp;amp; \cdots &amp;amp; \frac{\partial y}{\partial x_{pq}}\\
 \end{bmatrix}&lt;/div&gt;\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;矩阵标量 &lt;span class="math"&gt;\(f(\mathbf{X})\)&lt;/span&gt; 在矩阵 &lt;span class="math"&gt;\(\mathbf{Y}\)&lt;/span&gt; 方向上的方向导数为：&lt;span class="math"&gt;\(\nabla_\mathbf{Y} f = \operatorname{tr} \left(\frac{\partial f}{\partial \mathbf{X}} \mathbf{Y}\right)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;矩阵标量 &lt;span class="math"&gt;\(f({\boldsymbol X})\)&lt;/span&gt; 在矩阵 &lt;span class="math"&gt;\({\boldsymbol Y}\)&lt;/span&gt; 方向上的方向导数为：&lt;span class="math"&gt;\(\nabla_{\boldsymbol Y} f = \operatorname{tr} \left(\frac{\partial f}{\partial {\boldsymbol X}} {\boldsymbol Y}\right)\)&lt;/span&gt;&lt;/p&gt;
 &lt;h3&gt;2.7 其他矩阵求导&lt;/h3&gt;
 &lt;p&gt;对于向量对矩阵求导，矩阵对向量求导，矩阵对矩阵求导。它们没有统一的符号，也没有统一的应用。&lt;/p&gt;
 &lt;p&gt;与向量相关的两种矩阵导数，可以被看作是一个只有一列的矩阵和另一个矩阵导数的特例。下面只考虑如何写出一个矩阵对另一个矩阵求导的导数结果。&lt;/p&gt;
@@ -228,11 +227,11 @@ x_n \\
 =\text{tr}((\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^{\text{T}}dX \boldsymbol{b}) \\
 = \text{tr}(\boldsymbol{b}(\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^Td{\bf X})\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;对照全微分公式得到：&lt;span class="math"&gt;\(\frac{\partial f}{\partial {\bf X}} = (\boldsymbol{b}(\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^{\text{T}})^{\text{T}}= (\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))\boldsymbol{b}^{\text{T}}\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;例题3&lt;/strong&gt;：线性回归问题。&lt;span class="math"&gt;\(l = \|\mathbf{X}\boldsymbol{w}- \boldsymbol{y}\|^2\)&lt;/span&gt;。求 &lt;span class="math"&gt;\(\boldsymbol{w}\)&lt;/span&gt; 的最小二乘估计，即求 &lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}\)&lt;/span&gt; 的零点。其中 &lt;span class="math"&gt;\(\boldsymbol{y}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\(\mathbf{X}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times n\)&lt;/span&gt; 矩阵，&lt;span class="math"&gt;\(\boldsymbol{w}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(n\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 是标量。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例题3&lt;/strong&gt;：线性回归问题。&lt;span class="math"&gt;\(l = \|{\boldsymbol X}\boldsymbol{w}- \boldsymbol{y}\|^2\)&lt;/span&gt;。求 &lt;span class="math"&gt;\(\boldsymbol{w}\)&lt;/span&gt; 的最小二乘估计，即求 &lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}\)&lt;/span&gt; 的零点。其中 &lt;span class="math"&gt;\(\boldsymbol{y}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\({\boldsymbol X}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times n\)&lt;/span&gt; 矩阵，&lt;span class="math"&gt;\(\boldsymbol{w}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(n\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 是标量。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;解答&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;改写模平方表达式：&lt;span class="math"&gt;\(l = (\mathbf{X}\boldsymbol{w}- \boldsymbol{y})^{\text{T}}(\mathbf{X}\boldsymbol{w}- \boldsymbol{y})\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;全微分：&lt;span class="math"&gt;\(dl = (\mathbf{X}d\boldsymbol{w})^\text{T}(\mathbf{X}\boldsymbol{w}-\boldsymbol{y})+(\mathbf{X}\boldsymbol{w}-\boldsymbol{y})^\text{T}(\mathbf{X}d\boldsymbol{w}) = 2(\mathbf{X}\boldsymbol{w}-\boldsymbol{y})^\text{T}\mathbf{X}d\boldsymbol{w}\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;对照全微分公式得到：&lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}= (2(\mathbf{X}\boldsymbol{w}-\boldsymbol{y})^\text{T}\mathbf{X})^\text{T} = 2\mathbf{X}^\text{T}(\mathbf{X}\boldsymbol{w}-\boldsymbol{y})\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;改写模平方表达式：&lt;span class="math"&gt;\(l = ({\boldsymbol X}\boldsymbol{w}- \boldsymbol{y})^{\text{T}}({\boldsymbol X}\boldsymbol{w}- \boldsymbol{y})\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;全微分：&lt;span class="math"&gt;\(dl = ({\boldsymbol X}d\boldsymbol{w})^\text{T}({\boldsymbol X}\boldsymbol{w}-\boldsymbol{y})+({\boldsymbol X}\boldsymbol{w}-\boldsymbol{y})^\text{T}({\boldsymbol X}d\boldsymbol{w}) = 2({\boldsymbol X}\boldsymbol{w}-\boldsymbol{y})^\text{T}{\boldsymbol X}d\boldsymbol{w}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;对照全微分公式得到：&lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}= (2({\boldsymbol X}\boldsymbol{w}-\boldsymbol{y})^\text{T}{\boldsymbol X})^\text{T} = 2{\boldsymbol X}^\text{T}({\boldsymbol X}\boldsymbol{w}-\boldsymbol{y})\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}\)&lt;/span&gt; 的零点即 &lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}\)&lt;/span&gt; 的最小二乘估计 &lt;span class="math"&gt;\(\boldsymbol{w} = (X^TX)^{-1}X^T\boldsymbol{y}\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;例题4&lt;/strong&gt;：方差的最大似然估计。样本 &lt;span class="math"&gt;\(\boldsymbol{x}_1,\dots, \boldsymbol{x}_n\sim N(\boldsymbol{\mu}, \Sigma)\)&lt;/span&gt;，求方差 &lt;span class="math"&gt;\(\Sigma\)&lt;/span&gt; 的最大似然估计。写成数学式是：&lt;span class="math"&gt;\(l =\log|\Sigma|+\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})\)&lt;/span&gt;，求 &lt;span class="math"&gt;\(\frac{\partial l }{\partial \Sigma}\)&lt;/span&gt; 的零点。其中 &lt;span class="math"&gt;\(\boldsymbol{x}_i\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\(\overline{\boldsymbol{x}}=\frac{1}{n}\sum_{i=1}^n \boldsymbol{x}_i\)&lt;/span&gt; 是样本均值，&lt;span class="math"&gt;\(\Sigma\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times m\)&lt;/span&gt; 对称正定矩阵，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 是标量。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;解答&lt;/strong&gt;：&lt;/p&gt;
