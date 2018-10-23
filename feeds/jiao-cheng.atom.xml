@@ -946,7 +946,7 @@ C:&amp;gt;perl script.pl         # Windows/DOS
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2&gt;Perl 变量&lt;/h2&gt;
-&lt;p&gt;标量 $ 开始， 如$a $b 是两个标量。&lt;/p&gt;
+&lt;p&gt;标量 &lt;span class="math"&gt;\( 开始， 如\)&lt;/span&gt;a $b 是两个标量。&lt;/p&gt;
 &lt;p&gt;数组 @ 开始 ， 如 \@a \@b 是两个数组。&lt;/p&gt;
 &lt;p&gt;哈希 % 开始 ， %a %b 是两个哈希。&lt;/p&gt;
 &lt;p&gt;Perl 为每个变量类型设置了独立的命令空间，所以不同类型的变量可以使用相同的名称，你不用担心会发生冲突。例如 $foo 和 \@foo 是两个不同的变量。&lt;/p&gt;
@@ -1014,7 +1014,62 @@ martin = Martin
 
 &lt;h3&gt;数组&lt;/h3&gt;
 &lt;p&gt;Perl 数组一个是存储标量值的列表变量，变量可以是不同类型。&lt;/p&gt;
-&lt;p&gt;数组变量以 \@ 开头。访问数组元素使用 $ + 变量名称 + [索引值] 格式来读取。&lt;/p&gt;</content><category term="Perl"></category></entry><entry><title>Linux 中的扩展和引用</title><link href="https://xutree.github.io/pages/2018/10/08/linux%E4%B8%AD%E7%9A%84%E6%89%A9%E5%B1%95%E5%92%8C%E5%BC%95%E7%94%A8/" rel="alternate"></link><published>2018-10-08T16:25:59+08:00</published><updated>2018-10-09T13:22:26+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/linux中的扩展和引用/</id><summary type="html">&lt;h2&gt;扩展&lt;/h2&gt;
+&lt;p&gt;数组变量以 \@ 开头。访问数组元素使用 $ + 变量名称 + [索引值] 格式来读取。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Perl"></category></entry><entry><title>Linux 中的扩展和引用</title><link href="https://xutree.github.io/pages/2018/10/08/linux%E4%B8%AD%E7%9A%84%E6%89%A9%E5%B1%95%E5%92%8C%E5%BC%95%E7%94%A8/" rel="alternate"></link><published>2018-10-08T16:25:59+08:00</published><updated>2018-10-09T13:22:26+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-08:/pages/2018/10/08/linux中的扩展和引用/</id><summary type="html">&lt;h2&gt;扩展&lt;/h2&gt;
 &lt;p&gt;当我们每次在命令行按下&lt;code&gt;Enter&lt;/code&gt;键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。&lt;/p&gt;
 &lt;p&gt;一个 🌰 :&lt;code&gt;echo *&lt;/code&gt;会将当前目录下所有的非隐藏文件名打印出来。&lt;/p&gt;
 &lt;h3&gt;单词分隔&lt;/h3&gt;
