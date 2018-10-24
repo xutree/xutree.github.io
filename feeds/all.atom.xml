@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-24T10:12:45+08:00</updated><entry><title>矩阵微积分</title><link href="https://xutree.github.io/pages/2018/10/23/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC/" rel="alternate"></link><published>2018-10-23T20:42:45+08:00</published><updated>2018-10-24T10:12:45+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-23:/pages/2018/10/23/矩阵求导/</id><summary type="html">&lt;p&gt;矩阵求导，本质是多元函数求导，仅仅是把函数的⾃变量以及求导的结果排列成了矩阵的形式，⽅便表达与计算。类似地，复合函数的求导法则本质上也是多元函数求导的链式法则，只是将结果整理成了矩阵的形式。从原理上讲，可以对矩阵的每个分量逐元素地求导，得到最终结果；但是这样做太繁琐，极其容易出错，因此推导并记住⼀些常⽤的结论在实践中是⾮常必要的。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-24T11:57:17+08:00</updated><entry><title>矩阵微积分</title><link href="https://xutree.github.io/pages/2018/10/23/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC/" rel="alternate"></link><published>2018-10-23T20:42:45+08:00</published><updated>2018-10-24T11:57:17+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-23:/pages/2018/10/23/矩阵求导/</id><summary type="html">&lt;p&gt;矩阵求导，本质是多元函数求导，仅仅是把函数的⾃变量以及求导的结果排列成了矩阵的形式，⽅便表达与计算。类似地，复合函数的求导法则本质上也是多元函数求导的链式法则，只是将结果整理成了矩阵的形式。从原理上讲，可以对矩阵的每个分量逐元素地求导，得到最终结果；但是这样做太繁琐，极其容易出错，因此推导并记住⼀些常⽤的结论在实践中是⾮常必要的。&lt;/p&gt;
 &lt;p&gt;不同的矩阵求导方法采取不同的导数排列方法，以便于所求导数可以方便后续计算。主要存在两种符号约定。&lt;/p&gt;
 &lt;h2&gt;1. 概述&lt;/h2&gt;
 &lt;p&gt;矩阵微积分的自变量可以是标量，向量，或者是一个矩阵，因变量也可以是上述的三者之一。每一种不同的自变量和因变量的组合都有不同的一套运算规则。&lt;/p&gt;
@@ -230,7 +230,7 @@ x_n \\
 &lt;p&gt;两边取迹：&lt;/p&gt;
 &lt;div class="math"&gt;$$df = \text{tr}( \boldsymbol{a}^{\text{T}}(\exp({\bf X}\boldsymbol{b})\odot (d{\bf X}\boldsymbol{b}))) \\
 =\text{tr}((\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^{\text{T}}dX \boldsymbol{b}) \\
-= \text{tr}(\boldsymbol{b}(\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^Td{\bf X})$$&lt;/div&gt;
+= \text{tr}(\boldsymbol{b}(\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^\text{T}d{\bf X})$$&lt;/div&gt;
 &lt;p&gt;对照全微分公式得到：&lt;/p&gt;
 &lt;div class="math"&gt;$$\frac{\partial f}{\partial {\bf X}} = (\boldsymbol{b}(\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^{\text{T}})^{\text{T}}= (\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))\boldsymbol{b}^{\text{T}}$$&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;例题3&lt;/strong&gt;：线性回归问题。&lt;span class="math"&gt;\(l = \|{\bf X}\boldsymbol{w}- \boldsymbol{y}\|^2\)&lt;/span&gt;。求 &lt;span class="math"&gt;\(\boldsymbol{w}\)&lt;/span&gt; 的最小二乘估计，即求 &lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}\)&lt;/span&gt; 的零点。其中 &lt;span class="math"&gt;\(\boldsymbol{y}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\({\bf X}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times n\)&lt;/span&gt; 矩阵，&lt;span class="math"&gt;\(\boldsymbol{w}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(n\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 是标量。&lt;/p&gt;
@@ -241,25 +241,67 @@ x_n \\
 &lt;div class="math"&gt;$$dl = ({\bf X}d\boldsymbol{w})^\text{T}({\bf X}\boldsymbol{w}-\boldsymbol{y})+({\bf X}\boldsymbol{w}-\boldsymbol{y})^\text{T}({\bf X}d\boldsymbol{w}) = 2({\bf X}\boldsymbol{w}-\boldsymbol{y})^\text{T}{\bf X}d\boldsymbol{w}$$&lt;/div&gt;
 &lt;p&gt;对照全微分公式得到：&lt;/p&gt;
 &lt;div class="math"&gt;$$\frac{\partial l}{\partial \boldsymbol{w}}= (2({\bf X}\boldsymbol{w}-\boldsymbol{y})^\text{T}{\bf X})^\text{T} = 2{\boldsymbol X}^\text{T}({\bf X}\boldsymbol{w}-\boldsymbol{y})$$&lt;/div&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}\)&lt;/span&gt; 的零点即 &lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}\)&lt;/span&gt; 的最小二乘估计 &lt;span class="math"&gt;\(\boldsymbol{w} = ({\bf X^TX})^{-1}{\bf X}^\text{T}\boldsymbol{y}\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;例题4&lt;/strong&gt;：方差的最大似然估计。样本 &lt;span class="math"&gt;\(\boldsymbol{x}_1,\dots, \boldsymbol{x}_n\sim N(\boldsymbol{\mu}, \Sigma)\)&lt;/span&gt;，求方差 &lt;span class="math"&gt;\(\Sigma\)&lt;/span&gt; 的最大似然估计。写成数学式是：&lt;span class="math"&gt;\(l =\log|\Sigma|+\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})\)&lt;/span&gt;，求 &lt;span class="math"&gt;\(\frac{\partial l }{\partial \Sigma}\)&lt;/span&gt; 的零点。其中 &lt;span class="math"&gt;\(\boldsymbol{x}_i\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\(\overline{\boldsymbol{x}}=\frac{1}{n}\sum_{i=1}^n \boldsymbol{x}_i\)&lt;/span&gt; 是样本均值，&lt;span class="math"&gt;\(\Sigma\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times m\)&lt;/span&gt; 对称正定矩阵，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 是标量。&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}\)&lt;/span&gt; 的零点即 &lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{w}}\)&lt;/span&gt; 的最小二乘估计 &lt;span class="math"&gt;\(\boldsymbol{w} = ({\bf X^\text{T}X})^{-1}{\bf X}^\text{T}\boldsymbol{y}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例题4&lt;/strong&gt;：方差的最大似然估计。样本 &lt;span class="math"&gt;\(\boldsymbol{x}_1,\dots, \boldsymbol{x}_n\sim N(\boldsymbol{\mu}, \Sigma)\)&lt;/span&gt;，求方差 &lt;span class="math"&gt;\(\Sigma\)&lt;/span&gt; 的最大似然估计。写成数学式是：&lt;span class="math"&gt;\(l =\log|\Sigma|+\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^\text{T}\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})\)&lt;/span&gt;，求 &lt;span class="math"&gt;\(\frac{\partial l }{\partial \Sigma}\)&lt;/span&gt; 的零点。其中 &lt;span class="math"&gt;\(\boldsymbol{x}_i\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\(\overline{\boldsymbol{x}}=\frac{1}{n}\sum_{i=1}^n \boldsymbol{x}_i\)&lt;/span&gt; 是样本均值，&lt;span class="math"&gt;\(\Sigma\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times m\)&lt;/span&gt; 对称正定矩阵，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 是标量。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;解答&lt;/strong&gt;：&lt;/p&gt;
 &lt;p&gt;第一项：&lt;/p&gt;
 &lt;div class="math"&gt;$$d\log|\Sigma| = |\Sigma|^{-1}d|\Sigma| = \text{tr}(\Sigma^{-1}d\Sigma)$$&lt;/div&gt;
 &lt;p&gt;第二项：&lt;/p&gt;
-&lt;div class="math"&gt;$$\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^Td\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}}) = -\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}d\Sigma\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^\text{T}d\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}}) = -\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^\text{T}\Sigma^{-1}d\Sigma\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})$$&lt;/div&gt;
 &lt;p&gt;第二项求迹：&lt;/p&gt;
-&lt;div class="math"&gt;$$\text{tr}\left(\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}d\Sigma\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})\right)\\
-=\frac{1}{n} \sum_{i=1}^n \text{tr}((\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1} d\Sigma \Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}}))\\
-= \frac{1}{n}\sum_{i=1}^n\text{tr}\left(\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}d\Sigma\right)=\text{tr}(\Sigma^{-1}S\Sigma^{-1}d\Sigma)$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\text{tr}\left(\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^\text{T}\Sigma^{-1}d\Sigma\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})\right)\\
+=\frac{1}{n} \sum_{i=1}^n \text{tr}((\boldsymbol{x}_i-\boldsymbol{\bar{x}})^\text{T}\Sigma^{-1} d\Sigma \Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}}))\\
+= \frac{1}{n}\sum_{i=1}^n\text{tr}\left(\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^\text{T}\Sigma^{-1}d\Sigma\right)=\text{tr}(\Sigma^{-1}S\Sigma^{-1}d\Sigma)$$&lt;/div&gt;
 &lt;p&gt;定义：&lt;/p&gt;
-&lt;div class="math"&gt;$$S = \frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T$$&lt;/div&gt;
+&lt;div class="math"&gt;$$S = \frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^\text{T}$$&lt;/div&gt;
 &lt;p&gt; 为样本方差矩阵&lt;/p&gt;
 &lt;p&gt;得到：&lt;/p&gt;
 &lt;div class="math"&gt;$$dl = \text{tr}\left(\left(\Sigma^{-1}-\Sigma^{-1}S\Sigma^{-1}\right)d\Sigma\right)$$&lt;/div&gt;
 &lt;p&gt;对照全微分公式得到：&lt;/p&gt;
-&lt;div class="math"&gt;$$\frac{\partial l }{\partial \Sigma}=(\Sigma^{-1}-\Sigma^{-1}S\Sigma^{-1})^T$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\frac{\partial l }{\partial \Sigma}=(\Sigma^{-1}-\Sigma^{-1}S\Sigma^{-1})^\text{T}$$&lt;/div&gt;
 &lt;p&gt;其零点即 &lt;span class="math"&gt;\(\Sigma\)&lt;/span&gt; 的最大似然估计为 &lt;span class="math"&gt;\(\Sigma = S\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例题5&lt;/strong&gt;：多元 logistic 回归。&lt;span class="math"&gt;\(l = -\boldsymbol{y}^\text{T}\ln\text{softmax}({\bf W}\boldsymbol{x})\)&lt;/span&gt;，求 &lt;span class="math"&gt;\(\frac{\partial l}{\partial W}\)&lt;/span&gt;。其中 &lt;span class="math"&gt;\(\boldsymbol{y}\)&lt;/span&gt; 是除一个元素为1外其它元素为0的 &lt;span class="math"&gt;\(m\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\({\bf W}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times n\)&lt;/span&gt; 矩阵，&lt;span class="math"&gt;\(\boldsymbol{x}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(n\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 是标量；&lt;span class="math"&gt;\(\text{softmax}(\boldsymbol{a}) = \frac{\exp(\boldsymbol{a})}{\boldsymbol{1}^\text{T}\exp(\boldsymbol{a})}\)&lt;/span&gt;，其中 &lt;span class="math"&gt;\(\exp(\boldsymbol{a})\)&lt;/span&gt; 表示逐元素求指数，&lt;span class="math"&gt;\(\boldsymbol{1}\)&lt;/span&gt; 代表全1向量。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解答&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;首先将 softmax 函数代入并写成：&lt;/p&gt;
+&lt;div class="math"&gt;$$l = -\boldsymbol{y}^\text{T} \left(\ln (\exp({\bf W}\boldsymbol{x}))-\boldsymbol{1}\ln(\boldsymbol{1}^\text{T}\exp({\bf W}\boldsymbol{x}))\right) \\
+= -\boldsymbol{y}^\text{T}{\bf W}\boldsymbol{x} + \ln(\boldsymbol{1}^\text{T}\exp({\bf W}\boldsymbol{x}))\\$$&lt;/div&gt;
+&lt;p&gt;这里注意：注意逐元素 log 满足等式：&lt;/p&gt;
+&lt;div class="math"&gt;$$\ln(\boldsymbol{u}/c) = \ln(\boldsymbol{u}) - \boldsymbol{1}\ln(c)$$&lt;/div&gt;
+&lt;p&gt;以及：&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol{y}^\text{T} \boldsymbol{1} = 1$$&lt;/div&gt;
+&lt;p&gt;求微分：&lt;/p&gt;
+&lt;div class="math"&gt;$$dl =-\boldsymbol{y}^\text{T}d{\bf W}\boldsymbol{x}+\frac{\boldsymbol{1}^\text{T}\left(\exp({\bf {\bf W}}\boldsymbol{x})\odot(d{\bf W}\boldsymbol{x})\right)}{\boldsymbol{1}^\text{T}\exp({\bf W}\boldsymbol{x})}$$&lt;/div&gt;
+&lt;p&gt;根据：&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol{1}^\text{T} (\boldsymbol{u}\odot \boldsymbol{v}) = \boldsymbol{u}^\text{T} \boldsymbol{v}$$&lt;/div&gt;
+&lt;p&gt;得：&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol{1}^\text{T}\left(\exp({\bf W}\boldsymbol{x})\odot(d{\bf W}\boldsymbol{x})\right) = \exp({\bf W}\boldsymbol{x})^\text{T}d{\bf W}\boldsymbol{x}$$&lt;/div&gt;
+&lt;p&gt;求迹化简为：&lt;/p&gt;
+&lt;div class="math"&gt;$$dl = \text{tr}\left(-\boldsymbol{y}^\text{T}d{\bf W}\boldsymbol{x}+\frac{\exp({\bf W}\boldsymbol{x})^\text{T}d{\bf W}\boldsymbol{x}}{\boldsymbol{1}^\text{T}\exp({\bf W}\boldsymbol{x})}\right) =\text{tr}(\boldsymbol{x}(\text{softmax}({\bf W}\boldsymbol{x})-\boldsymbol{y})^\text{T}d{\bf W})$$&lt;/div&gt;
+&lt;p&gt;得到：&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial l}{\partial {\bf W}}= (\text{softmax}({\bf W}\boldsymbol{x})-\boldsymbol{y})\boldsymbol{x}^\text{T}$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;例题5&lt;/strong&gt;：二层神经网络。&lt;span class="math"&gt;\(l = -\boldsymbol{y}^\text{T}\log\text{softmax}({\bf W_2}\sigma({\bf W_1}\boldsymbol{x}))\)&lt;/span&gt;，求 &lt;span class="math"&gt;\(\frac{\partial l}{\partial {\bf W_1}}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\frac{\partial l}{\partial \bf{W_2}}\)&lt;/span&gt;。其中 &lt;span class="math"&gt;\(\boldsymbol{y}\)&lt;/span&gt; 是除一个元素为1外其它元素为0的的 &lt;span class="math"&gt;\(m\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\({\bf W_2}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times p\)&lt;/span&gt; 矩阵，&lt;span class="math"&gt;\({\bf W_1}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(p\times n\)&lt;/span&gt; 矩阵，&lt;span class="math"&gt;\(\boldsymbol{x}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(n\times 1\)&lt;/span&gt; 列向量，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 是标量；&lt;span class="math"&gt;\(\text{softmax}(\boldsymbol{a}) = \frac{\exp(\boldsymbol{a})}{\boldsymbol{1}^\text{T}\exp(\boldsymbol{a})}\)&lt;/span&gt; 同例5，&lt;span class="math"&gt;\(\sigma(\cdot)\)&lt;/span&gt; 是逐元素 sigmoid 函数 &lt;span class="math"&gt;\(\sigma(a) = \frac{1}{1+\exp(-a)}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解答&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol{a}_1={\bf W_1}\boldsymbol{x}，\boldsymbol{h}_1 = \sigma(\boldsymbol{a}_1)，\boldsymbol{a}_2 = {\bf W_2} \boldsymbol{h}_1$$&lt;/div&gt;
+&lt;p&gt;则：&lt;/p&gt;
+&lt;div class="math"&gt;$$l =-\boldsymbol{y}^\text{T}\log\text{softmax}(\boldsymbol{a}_2)$$&lt;/div&gt;
+&lt;p&gt;在例5中已求出：&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial l}{\partial \boldsymbol{a}_2} = \text{softmax}(\boldsymbol{a}_2)-\boldsymbol{y}$$&lt;/div&gt;
+&lt;p&gt;使用复合法则，注意此处 &lt;span class="math"&gt;\(\boldsymbol{h}_1, {\bf W_2}\)&lt;/span&gt; 都是变量：&lt;/p&gt;
+&lt;div class="math"&gt;$$dl = \text{tr}\left(\frac{\partial l}{\partial \boldsymbol{a}_2}^\text{T}d\boldsymbol{a}_2\right) = \text{tr}\left(\frac{\partial l}{\partial \boldsymbol{a}_2}^\text{T}dW_2 \boldsymbol{h}_1\right) + \text{tr}\left(\frac{\partial l}{\partial \boldsymbol{a}_2}^\text{T}W_2 d\boldsymbol{h}_1\right)$$&lt;/div&gt;
+&lt;p&gt;使用矩阵乘法交换的迹技巧从第一项得到：&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial l}{\partial W_2}= \frac{\partial l}{\partial\boldsymbol{a}_2}\boldsymbol{h}_1^\text{T}$$&lt;/div&gt;
+&lt;p&gt;从第二项得到：&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial l}{\partial \boldsymbol{h}_1}= W_2^\text{T}\frac{\partial l}{\partial\boldsymbol{a}_2}$$&lt;/div&gt;
+&lt;p&gt;接下来求 &lt;span class="math"&gt;\(\frac{\partial l}{\partial \boldsymbol{a}_1}\)&lt;/span&gt;，继续使用复合法则，并利用矩阵乘法和逐元素乘法交换的迹技巧：&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{tr}\left(\frac{\partial l}{\partial\boldsymbol{h}_1}^\text{T}d\boldsymbol{h}_1\right) = \text{tr}\left(\frac{\partial l}{\partial\boldsymbol{h}_1}^\text{T}(\sigma'(\boldsymbol{a}_1)\odot d\boldsymbol{a}_1)\right) = \text{tr}\left(\left(\frac{\partial l}{\partial\boldsymbol{h}_1}\odot \sigma'(\boldsymbol{a}_1)\right)^\text{T}d\boldsymbol{a}_1\right)$$&lt;/div&gt;
+&lt;p&gt;得到：&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial l}{\partial \boldsymbol{a}_1}= \frac{\partial l}{\partial\boldsymbol{h}_1}\odot\sigma'(\boldsymbol{a}_1)$$&lt;/div&gt;
+&lt;p&gt;为求 &lt;span class="math"&gt;\(\frac{\partial l}{\partial {\bf W_1}}\)&lt;/span&gt;，再用一次复合法则
+：&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{tr}\left(\frac{\partial l}{\partial\boldsymbol{a}_1}^\text{T}d\boldsymbol{a}_1\right) = \text{tr}\left(\frac{\partial l}{\partial\boldsymbol{a}_1}^\text{T}d{\bf W_1}\boldsymbol{x}\right) = \text{tr}\left(\boldsymbol{x}\frac{\partial l}{\partial\boldsymbol{a}_1}^\text{T}d{\bf W_1}\right)$$&lt;/div&gt;
+&lt;p&gt;得到：&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial l}{\partial {\bf W_1}}= \frac{\partial l}{\partial\boldsymbol{a}_1}\boldsymbol{x}^\text{T}$$&lt;/div&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
