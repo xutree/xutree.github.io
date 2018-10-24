@@ -100,77 +100,76 @@
 <p>以下说明采用“分子布局”。</p>
 <h2>2. 分子布局下的求导</h2>
 <h3>2.1 向量对标量求导</h3>
-<p><span class="math">\({\boldsymbol y}=
-    {<div class="math">\begin{bmatrix}
-        y_{1}\\
-        y_{2}\\
-        \vdots
-        \\y_{m}\\
-    \end{bmatrix}</div>
-}\Longrightarrow\frac{\partial {\boldsymbol y}}{\partial x} =
-<div class="math">\begin{bmatrix}
+<div class="math">$${\boldsymbol y}=\begin{bmatrix}
+y_{1}\\
+y_{2}\\
+\vdots\\
+y_{m}
+\end{bmatrix}
+\Longrightarrow\frac{\partial {\boldsymbol y}}{\partial x}=\begin{bmatrix}
 \frac{\partial y_1}{\partial x}\\
 \frac{\partial y_2}{\partial x}\\
 \vdots\\
 \frac{\partial y_m}{\partial x}\\
-\end{bmatrix}</div>\)</span></p>
+\end{bmatrix}$$</div>
 <p>在向量微积分中，向量 <span class="math">\({\boldsymbol y}\)</span> 相对于标量 <span class="math">\(x\)</span> 的导数被称为向量 <span class="math">\({\boldsymbol y}\)</span> 的切向量。</p>
 <h3>2.2 标量对向量求导</h3>
-<p><span class="math">\({\boldsymbol x} =
-<div class="math">\begin{bmatrix}
+<div class="math">$${\boldsymbol x} =
+\begin{bmatrix}
 x_1 \\
 x_2 \\
 \vdots \\
 x_n \\
-\end{bmatrix}</div>\Longrightarrow
+\end{bmatrix}\Longrightarrow
 \frac{\partial y}{\partial {\boldsymbol x}^{\text{T}}} =
 \left[
 \frac{\partial y}{\partial x_1}
 \frac{\partial y}{\partial x_2}
 \cdots
 \frac{\partial y}{\partial x_n}
-\right]\)</span></p>
+\right]$$</div>
 <p>这是标量函数 <span class="math">\(f({\boldsymbol x})\)</span> 梯度的转置。</p>
 <h3>2.3 向量对向量的求导</h3>
-<p><span class="math">\({\boldsymbol y} =
-<div class="math">\begin{bmatrix}
+<div class="math">$${\boldsymbol y} =
+\begin{bmatrix}
 y_1 \\
 y_2 \\
 \vdots \\
 y_m \\
-\end{bmatrix}</div>,{\boldsymbol x} =
-<div class="math">\begin{bmatrix}
+\end{bmatrix},{\boldsymbol x} =
+\begin{bmatrix}
 x_1 \\
 x_2 \\
 \vdots \\
 x_n \\
-\end{bmatrix}</div>\Longrightarrow
+\end{bmatrix}\Longrightarrow
 \frac{\partial {\boldsymbol y}}{\partial {\boldsymbol x}} =
-<div class="math">\begin{bmatrix}
+\begin{bmatrix}
 \frac{\partial y_1}{\partial x_1} &amp; \frac{\partial y_1}{\partial x_2} &amp; \cdots &amp; \frac{\partial y_1}{\partial x_n}\\
 \frac{\partial y_2}{\partial x_1} &amp; \frac{\partial y_2}{\partial x_2} &amp; \cdots &amp; \frac{\partial y_2}{\partial x_n}\\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
 \frac{\partial y_m}{\partial x_1} &amp; \frac{\partial y_m}{\partial x_2} &amp; \cdots &amp; \frac{\partial y_m}{\partial x_n}\\
-\end{bmatrix}</div>\)</span></p>
+\end{bmatrix}$$</div>
 <p>此即雅可比矩阵。</p>
 <h3>2.5 矩阵对标量求导</h3>
-<p><span class="math">\(\frac{\partial {\boldsymbol Y}}{\partial x} =
-<div class="math">\begin{bmatrix}
+<div class="math">$$\frac{\partial {\bf Y}}{\partial x} =
+\begin{bmatrix}
 \frac{\partial y_{11}}{\partial x} &amp; \frac{\partial y_{12}}{\partial x} &amp; \cdots &amp; \frac{\partial y_{1n}}{\partial x}\\
 \frac{\partial y_{21}}{\partial x} &amp; \frac{\partial y_{22}}{\partial x} &amp; \cdots &amp; \frac{\partial y_{2n}}{\partial x}\\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
 \frac{\partial y_{m1}}{\partial x} &amp; \frac{\partial y_{m2}}{\partial x} &amp; \cdots &amp; \frac{\partial y_{mn}}{\partial x}\\
-\end{bmatrix}</div>\)</span></p>
+\end{bmatrix}$$</div>
 <p>称为切矩阵。</p>
 <h3>2.6 标量对矩阵求导</h3>
-<p><span class="math">\(\frac{\partial y}{\partial {\boldsymbol X}} =
-<div class="math">\begin{bmatrix}
+<div class="math">$$\frac{\partial y}{\partial {\bf X}} =
+\begin{bmatrix}
 \frac{\partial y}{\partial x_{11}} &amp; \frac{\partial y}{\partial x_{21}} &amp; \cdots &amp; \frac{\partial y}{\partial x_{p1}}\\
 \frac{\partial y}{\partial x_{12}} &amp; \frac{\partial y}{\partial x_{22}} &amp; \cdots &amp; \frac{\partial y}{\partial x_{p2}}\\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
 \frac{\partial y}{\partial x_{1q}} &amp; \frac{\partial y}{\partial x_{2q}} &amp; \cdots &amp; \frac{\partial y}{\partial x_{pq}}\\
-\end{bmatrix}</div>\)</span></p>
-<p>矩阵标量 <span class="math">\(f({\boldsymbol X})\)</span> 在矩阵 <span class="math">\({\boldsymbol Y}\)</span> 方向上的方向导数为：<span class="math">\(\nabla_{\boldsymbol Y} f = \operatorname{tr} \left(\frac{\partial f}{\partial {\boldsymbol X}} {\boldsymbol Y}\right)\)</span></p>
+\end{bmatrix}$$</div>
+<p>矩阵标量 <span class="math">\(f({\bf X})\)</span> 在矩阵 <span class="math">\({\bf Y}\)</span> 方向上的方向导数为：</p>
+<div class="math">$$\nabla_{\bf Y} f = \operatorname{tr} \left(\frac{\partial f}{\partial {\bf X}} {\bf Y}\right)$$</div>
 <h3>2.7 其他矩阵求导</h3>
 <p>对于向量对矩阵求导，矩阵对向量求导，矩阵对矩阵求导。它们没有统一的符号，也没有统一的应用。</p>
 <p>与向量相关的两种矩阵导数，可以被看作是一个只有一列的矩阵和另一个矩阵导数的特例。下面只考虑如何写出一个矩阵对另一个矩阵求导的导数结果。</p>
@@ -178,7 +177,7 @@ x_n \\
 <h3>3.1 全微分公式</h3>
 <p>
 对于实值函数对矩阵求导，我们可以写出：</p>
-<p><span class="math">\(df=\sum_{i=1}^m\sum_{j=1}^n\frac{\partial f}{\partial x_{ij}}dx_{ij}=\text{tr}\left(\left(\frac{\partial f}{\partial x}\right)^\text{T}dx\right)\)</span></p>
+<div class="math">$$df=\sum_{i=1}^m\sum_{j=1}^n\frac{\partial f}{\partial x_{ij}}dx_{ij}=\text{tr}\left(\left(\frac{\partial f}{\partial x}\right)^\text{T}dx\right)$$</div>
 <h3>3.2 微分法则</h3>
 <ul>
 <li>加减：<span class="math">\(d({\bf X}\pm{\bf Y})=d{\bf X}\pm d{\bf Y}\)</span></li>
@@ -202,33 +201,50 @@ x_n \\
 <p>若标量函数 <span class="math">\(f\)</span> 是矩阵<span class="math">\({\bf X}\)</span> 经加减乘法、行列式、逆、逐元素函数等运算构成，则使用相应的运算法则对 <span class="math">\(f\)</span> 求微分，再使用迹变换给 <span class="math">\(df\)</span> 套上迹并将其它项交换至 <span class="math">\(d{\bf X}\)</span> 左侧，即能得到导数。</p>
 <p><strong>例题1</strong>：<span class="math">\(f={\boldsymbol a}^{\text{T}}{\bf X}{\boldsymbol b}\)</span>，求：<span class="math">\(\frac{\partial f}{\partial {\bf X}}\)</span>。其中 <span class="math">\({\boldsymbol a}\)</span> 是 <span class="math">\(m\times 1\)</span> 列向量，<span class="math">\({\bf X}\)</span> 是 <span class="math">\(m\times n\)</span> 矩阵，<span class="math">\({\boldsymbol b}\)</span> 是 <span class="math">\(n\times 1\)</span> 列向量，<span class="math">\(f\)</span> 是标量。</p>
 <p><strong>解答</strong>：</p>
-<p>全微分：<span class="math">\(df={\boldsymbol a}^{\text{T}}d{\bf X}{\boldsymbol b}\)</span></p>
-<p>两边取迹：<span class="math">\(df=\text{tr}({\boldsymbol a}^{\text{T}}d{\bf X}{\boldsymbol b})=\text{tr}({\boldsymbol b}{\boldsymbol a}^{\text{T}}d{\bf X})\)</span></p>
-<p>对照全微分公式：<span class="math">\((\frac{\partial f}{\partial {\bf X}})^{\text{T}}={\boldsymbol b}{\boldsymbol a}^{\text{T}}\)</span></p>
-<p>得到：<span class="math">\(\frac{\partial f}{\partial {\bf X}}=({\boldsymbol b}{\boldsymbol a}^{\text{T}})^{\text{T}}={\boldsymbol a}{\boldsymbol b}^{\text{T}}\)</span></p>
+<p>全微分：</p>
+<div class="math">$$df={\boldsymbol a}^{\text{T}}d{\bf X}{\boldsymbol b}$$</div>
+<p>两边取迹：</p>
+<div class="math">$$df=\text{tr}({\boldsymbol a}^{\text{T}}d{\bf X}{\boldsymbol b})=\text{tr}({\boldsymbol b}{\boldsymbol a}^{\text{T}}d{\bf X})$$</div>
+<p>对照全微分公式：</p>
+<div class="math">$$(\frac{\partial f}{\partial {\bf X}})^{\text{T}}={\boldsymbol b}{\boldsymbol a}^{\text{T}}$$</div>
+<p>得到：</p>
+<div class="math">$$\frac{\partial f}{\partial {\bf X}}=({\boldsymbol b}{\boldsymbol a}^{\text{T}})^{\text{T}}={\boldsymbol a}{\boldsymbol b}^{\text{T}}$$</div>
 <p><strong>例题2</strong>：<span class="math">\(f={\boldsymbol a}^{\text{T}}\text{exp}({\bf X}{\boldsymbol b})\)</span>，求：<span class="math">\(\frac{\partial f}{\partial {\bf X}}\)</span>。其中 <span class="math">\(\boldsymbol{a}\)</span> 是 <span class="math">\(m\times 1\)</span> 列向量，<span class="math">\({\bf X}\)</span> 是 <span class="math">\(m\times n\)</span> 矩阵，<span class="math">\(\boldsymbol{b}\)</span> 是 <span class="math">\(n\times 1\)</span> 列向量，<span class="math">\(\text{exp}\)</span> 表示逐元素求指数，<span class="math">\(f\)</span> 是标量。</p>
 <p><strong>解答</strong>：</p>
-<p>全微分：<span class="math">\(df=\boldsymbol{a}^{\text{T}}\left(\text{exp}({\bf X}{\boldsymbol b})\odot(d{\bf X}{\boldsymbol b})\right)\)</span></p>
-<p>两边取迹：<span class="math">\(df = \text{tr}( \boldsymbol{a}^{\text{T}}(\exp({\bf X}\boldsymbol{b})\odot (d{\bf X}\boldsymbol{b}))) \\
+<p>全微分：</p>
+<div class="math">$$df=\boldsymbol{a}^{\text{T}}\left(\text{exp}({\bf X}{\boldsymbol b})\odot(d{\bf X}{\boldsymbol b})\right)$$</div>
+<p>两边取迹：</p>
+<div class="math">$$df = \text{tr}( \boldsymbol{a}^{\text{T}}(\exp({\bf X}\boldsymbol{b})\odot (d{\bf X}\boldsymbol{b}))) \\
 =\text{tr}((\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^{\text{T}}dX \boldsymbol{b}) \\
-= \text{tr}(\boldsymbol{b}(\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^Td{\bf X})\)</span></p>
-<p>对照全微分公式得到：<span class="math">\(\frac{\partial f}{\partial {\bf X}} = (\boldsymbol{b}(\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^{\text{T}})^{\text{T}}= (\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))\boldsymbol{b}^{\text{T}}\)</span></p>
-<p><strong>例题3</strong>：线性回归问题。<span class="math">\(l = \|{\boldsymbol X}\boldsymbol{w}- \boldsymbol{y}\|^2\)</span>。求 <span class="math">\(\boldsymbol{w}\)</span> 的最小二乘估计，即求 <span class="math">\(\frac{\partial l}{\partial \boldsymbol{w}}\)</span> 的零点。其中 <span class="math">\(\boldsymbol{y}\)</span> 是 <span class="math">\(m\times 1\)</span> 列向量，<span class="math">\({\boldsymbol X}\)</span> 是 <span class="math">\(m\times n\)</span> 矩阵，<span class="math">\(\boldsymbol{w}\)</span> 是 <span class="math">\(n\times 1\)</span> 列向量，<span class="math">\(l\)</span> 是标量。</p>
+= \text{tr}(\boldsymbol{b}(\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^Td{\bf X})$$</div>
+<p>对照全微分公式得到：</p>
+<div class="math">$$\frac{\partial f}{\partial {\bf X}} = (\boldsymbol{b}(\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))^{\text{T}})^{\text{T}}= (\boldsymbol{a}\odot \exp({\bf X}\boldsymbol{b}))\boldsymbol{b}^{\text{T}}$$</div>
+<p><strong>例题3</strong>：线性回归问题。<span class="math">\(l = \|{\bf X}\boldsymbol{w}- \boldsymbol{y}\|^2\)</span>。求 <span class="math">\(\boldsymbol{w}\)</span> 的最小二乘估计，即求 <span class="math">\(\frac{\partial l}{\partial \boldsymbol{w}}\)</span> 的零点。其中 <span class="math">\(\boldsymbol{y}\)</span> 是 <span class="math">\(m\times 1\)</span> 列向量，<span class="math">\({\bf X}\)</span> 是 <span class="math">\(m\times n\)</span> 矩阵，<span class="math">\(\boldsymbol{w}\)</span> 是 <span class="math">\(n\times 1\)</span> 列向量，<span class="math">\(l\)</span> 是标量。</p>
 <p><strong>解答</strong>：</p>
-<p>改写模平方表达式：<span class="math">\(l = ({\boldsymbol X}\boldsymbol{w}- \boldsymbol{y})^{\text{T}}({\boldsymbol X}\boldsymbol{w}- \boldsymbol{y})\)</span></p>
-<p>全微分：<span class="math">\(dl = ({\boldsymbol X}d\boldsymbol{w})^\text{T}({\boldsymbol X}\boldsymbol{w}-\boldsymbol{y})+({\boldsymbol X}\boldsymbol{w}-\boldsymbol{y})^\text{T}({\boldsymbol X}d\boldsymbol{w}) = 2({\boldsymbol X}\boldsymbol{w}-\boldsymbol{y})^\text{T}{\boldsymbol X}d\boldsymbol{w}\)</span></p>
-<p>对照全微分公式得到：<span class="math">\(\frac{\partial l}{\partial \boldsymbol{w}}= (2({\boldsymbol X}\boldsymbol{w}-\boldsymbol{y})^\text{T}{\boldsymbol X})^\text{T} = 2{\boldsymbol X}^\text{T}({\boldsymbol X}\boldsymbol{w}-\boldsymbol{y})\)</span></p>
-<p><span class="math">\(\frac{\partial l}{\partial \boldsymbol{w}}\)</span> 的零点即 <span class="math">\(\frac{\partial l}{\partial \boldsymbol{w}}\)</span> 的最小二乘估计 <span class="math">\(\boldsymbol{w} = (X^TX)^{-1}X^T\boldsymbol{y}\)</span></p>
+<p>改写模平方表达式：</p>
+<div class="math">$$l = ({\bf X}\boldsymbol{w}- \boldsymbol{y})^{\text{T}}({\bf X}\boldsymbol{w}- \boldsymbol{y})$$</div>
+<p>全微分：</p>
+<div class="math">$$dl = ({\bf X}d\boldsymbol{w})^\text{T}({\bf X}\boldsymbol{w}-\boldsymbol{y})+({\bf X}\boldsymbol{w}-\boldsymbol{y})^\text{T}({\bf X}d\boldsymbol{w}) = 2({\bf X}\boldsymbol{w}-\boldsymbol{y})^\text{T}{\bf X}d\boldsymbol{w}$$</div>
+<p>对照全微分公式得到：</p>
+<div class="math">$$\frac{\partial l}{\partial \boldsymbol{w}}= (2({\bf X}\boldsymbol{w}-\boldsymbol{y})^\text{T}{\bf X})^\text{T} = 2{\boldsymbol X}^\text{T}({\bf X}\boldsymbol{w}-\boldsymbol{y})$$</div>
+<p><span class="math">\(\frac{\partial l}{\partial \boldsymbol{w}}\)</span> 的零点即 <span class="math">\(\frac{\partial l}{\partial \boldsymbol{w}}\)</span> 的最小二乘估计 <span class="math">\(\boldsymbol{w} = ({\bf X^TX})^{-1}{\bf X}^\text{T}\boldsymbol{y}\)</span></p>
 <p><strong>例题4</strong>：方差的最大似然估计。样本 <span class="math">\(\boldsymbol{x}_1,\dots, \boldsymbol{x}_n\sim N(\boldsymbol{\mu}, \Sigma)\)</span>，求方差 <span class="math">\(\Sigma\)</span> 的最大似然估计。写成数学式是：<span class="math">\(l =\log|\Sigma|+\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})\)</span>，求 <span class="math">\(\frac{\partial l }{\partial \Sigma}\)</span> 的零点。其中 <span class="math">\(\boldsymbol{x}_i\)</span> 是 <span class="math">\(m\times 1\)</span> 列向量，<span class="math">\(\overline{\boldsymbol{x}}=\frac{1}{n}\sum_{i=1}^n \boldsymbol{x}_i\)</span> 是样本均值，<span class="math">\(\Sigma\)</span> 是 <span class="math">\(m\times m\)</span> 对称正定矩阵，<span class="math">\(l\)</span> 是标量。</p>
 <p><strong>解答</strong>：</p>
-<p>第一项：<span class="math">\(d\log|\Sigma| = |\Sigma|^{-1}d|\Sigma| = \text{tr}(\Sigma^{-1}d\Sigma)\)</span></p>
-<p>第二项：<span class="math">\(\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^Td\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}}) = -\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}d\Sigma\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})\)</span></p>
-<p>第二项求迹：<span class="math">\(\text{tr}\left(\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}d\Sigma\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})\right)\\
+<p>第一项：</p>
+<div class="math">$$d\log|\Sigma| = |\Sigma|^{-1}d|\Sigma| = \text{tr}(\Sigma^{-1}d\Sigma)$$</div>
+<p>第二项：</p>
+<div class="math">$$\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^Td\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}}) = -\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}d\Sigma\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})$$</div>
+<p>第二项求迹：</p>
+<div class="math">$$\text{tr}\left(\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}d\Sigma\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})\right)\\
 =\frac{1}{n} \sum_{i=1}^n \text{tr}((\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1} d\Sigma \Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}}))\\
-== \frac{1}{n}\sum_{i=1}^n\text{tr}\left(\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}d\Sigma\right)=\text{tr}(\Sigma^{-1}S\Sigma^{-1}d\Sigma)\)</span></p>
-<p>定义：<span class="math">\(S = \frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\)</span> 为样本方差矩阵</p>
-<p>得到：<span class="math">\(dl = \text{tr}\left(\left(\Sigma^{-1}-\Sigma^{-1}S\Sigma^{-1}\right)d\Sigma\right)\)</span></p>
-<p>对照全微分公式得到：<span class="math">\(\frac{\partial l }{\partial \Sigma}=(\Sigma^{-1}-\Sigma^{-1}S\Sigma^{-1})^T\)</span></p>
+= \frac{1}{n}\sum_{i=1}^n\text{tr}\left(\Sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\Sigma^{-1}d\Sigma\right)=\text{tr}(\Sigma^{-1}S\Sigma^{-1}d\Sigma)$$</div>
+<p>定义：</p>
+<div class="math">$$S = \frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T$$</div>
+<p> 为样本方差矩阵</p>
+<p>得到：</p>
+<div class="math">$$dl = \text{tr}\left(\left(\Sigma^{-1}-\Sigma^{-1}S\Sigma^{-1}\right)d\Sigma\right)$$</div>
+<p>对照全微分公式得到：</p>
+<div class="math">$$\frac{\partial l }{\partial \Sigma}=(\Sigma^{-1}-\Sigma^{-1}S\Sigma^{-1})^T$$</div>
 <p>其零点即 <span class="math">\(\Sigma\)</span> 的最大似然估计为 <span class="math">\(\Sigma = S\)</span></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -326,7 +342,7 @@ x_n \\
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-23T20:42:45+08:00">2018-10-23 20:42:45</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-23 23:09:33</div>
+                    <div class="last_updated">2018-10-24 10:12:45</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#基础知识-ref">基础知识</a>
                     <h4>标签</h4>
