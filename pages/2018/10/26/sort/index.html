@@ -69,51 +69,28 @@
 <li>时间复杂度 <span class="math">\(O(n^2)\)</span></li>
 <li>原地排序</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iterator&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-
-<span class="n">template</span> <span class="o">&lt;</span><span class="n">typename</span> <span class="n">Iterator</span><span class="p">,</span>
-          <span class="n">typename</span> <span class="n">CompareType</span> <span class="o">=</span>
-              <span class="n">std</span><span class="o">::</span><span class="n">less</span><span class="o">&lt;</span><span class="n">typename</span> <span class="n">std</span><span class="o">::</span><span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">Iterator</span><span class="o">&gt;::</span><span class="n">value_type</span><span class="o">&gt;&gt;</span>
-<span class="kr">void</span> <span class="n">insert_sort</span><span class="p">(</span><span class="n">Iterator</span> <span class="nf">begin</span><span class="p">,</span> <span class="n">Iterator</span> <span class="nf">end</span><span class="p">,</span>
-                 <span class="n">CompareType</span> <span class="n">compare</span> <span class="o">=</span> <span class="n">CompareType</span><span class="p">())</span> <span class="p">{</span>
-  <span class="kr">auto</span> <span class="nf">size</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="nf">begin</span><span class="p">,</span> <span class="nf">end</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nf">size</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="n">Iterator</span> <span class="n">current</span> <span class="o">=</span> <span class="nf">begin</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="o">++</span><span class="n">current</span> <span class="o">!=</span> <span class="nf">end</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">auto</span> <span class="n">small_next</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">small_next</span> <span class="o">!=</span> <span class="nf">begin</span> <span class="o">&amp;&amp;</span> <span class="n">compare</span><span class="p">(</span><span class="o">*</span><span class="n">current</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">small_next</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span> <span class="p">{</span>
-      <span class="n">small_next</span><span class="o">--</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nt">template</span> <span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">Iterator</span><span class="o">,</span> <span class="nt">typename</span> <span class="nt">CompareType</span> <span class="o">=</span> <span class="nt">std</span><span class="p">::</span><span class="nd">less</span><span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">std</span><span class="p">::</span><span class="nd">iterator_traits</span><span class="o">&lt;</span><span class="nt">Iterator</span><span class="o">&gt;</span><span class="p">::</span><span class="nd">value_type</span><span class="o">&gt;&gt;</span>
+<span class="nt">void</span> <span class="nt">insert_sort</span><span class="o">(</span><span class="nt">Iterator</span> <span class="nt">begin</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">end</span><span class="o">,</span> <span class="nt">CompareType</span> <span class="nt">compare</span> <span class="o">=</span> <span class="nt">CompareType</span><span class="o">())</span>
+<span class="p">{</span>
+  <span class="err">auto</span> <span class="err">size</span> <span class="err">=</span> <span class="n">std</span><span class="p">:</span><span class="o">:</span><span class="nf">distance</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="kc">end</span><span class="p">);</span>
+  <span class="err">if</span> <span class="err">(size</span> <span class="err">&lt;=</span> <span class="err">1)</span>
+    <span class="err">return</span><span class="p">;</span>
+  <span class="err">Iterator</span> <span class="err">current</span> <span class="err">=</span> <span class="err">begin</span><span class="p">;</span>
+  <span class="err">while</span> <span class="err">(++current</span> <span class="err">!=</span> <span class="err">end)</span> <span class="err">{</span>
+    <span class="err">auto</span> <span class="err">small_next</span> <span class="err">=</span> <span class="err">current</span><span class="p">;</span>
+    <span class="err">while</span> <span class="err">(small_next</span> <span class="err">!=</span> <span class="err">begin</span> <span class="err">&amp;&amp;</span> <span class="err">compare(*current,</span> <span class="err">*(small_next</span> <span class="err">-</span> <span class="err">1)))</span> <span class="err">{</span>
+      <span class="err">small_next--</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kr">auto</span> <span class="n">key</span> <span class="o">=</span> <span class="o">*</span><span class="n">current</span><span class="p">;</span>
-    <span class="kr">auto</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">iter</span> <span class="o">!=</span> <span class="n">small_next</span><span class="p">)</span> <span class="p">{</span>
-      <span class="o">*</span><span class="n">iter</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">iter</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-      <span class="n">iter</span><span class="o">--</span><span class="p">;</span>
+    <span class="nt">auto</span> <span class="nt">key</span> <span class="o">=</span> <span class="o">*</span><span class="nt">current</span><span class="o">;</span>
+    <span class="nt">auto</span> <span class="nt">iter</span> <span class="o">=</span> <span class="nt">current</span><span class="o">;</span>
+    <span class="nt">while</span> <span class="o">(</span><span class="nt">iter</span> <span class="o">!=</span> <span class="nt">small_next</span><span class="o">)</span> <span class="p">{</span>
+      <span class="err">*iter</span> <span class="err">=</span> <span class="err">*(iter</span> <span class="err">-</span> <span class="err">1)</span><span class="p">;</span>
+      <span class="err">iter--</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="o">*</span><span class="n">iter</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">template</span> <span class="o">&lt;</span><span class="n">typename</span> <span class="n">Iterator</span><span class="o">&gt;</span> <span class="kr">void</span> <span class="nf">print</span><span class="p">(</span><span class="n">Iterator</span> <span class="nf">begin</span><span class="p">,</span> <span class="n">Iterator</span> <span class="nf">end</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">while</span> <span class="p">(</span><span class="nf">begin</span> <span class="o">!=</span> <span class="nf">end</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="nf">begin</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\t&#39;</span><span class="p">;</span>
-    <span class="nf">begin</span><span class="o">++</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kr">int</span> <span class="n">main</span><span class="p">(</span><span class="kr">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kr">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">istream_iterator</span><span class="o">&lt;</span><span class="kr">double</span><span class="o">&gt;</span> <span class="n">inc</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">),</span> <span class="n">eof</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kr">double</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="n">eof</span><span class="p">);</span>
-  <span class="n">insert_sort</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="nf">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="nf">end</span><span class="p">());</span>
-  <span class="nf">print</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="nf">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="nf">end</span><span class="p">());</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+    <span class="o">*</span><span class="nt">iter</span> <span class="o">=</span> <span class="nt">key</span><span class="o">;</span>
+  <span class="err">}</span>
+<span class="err">}</span>
 </pre></div>
 
 
@@ -125,11 +102,8 @@
 <li>时间复杂度 <span class="math">\(O(n)\)</span></li>
 <li>归并时需要额外的空间 <span class="math">\(O(n)\)</span></li>
 </ul>
-<div class="highlight"><pre><span></span><span class="nt">template</span> <span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">Iterator</span><span class="o">,</span>
-          <span class="nt">typename</span> <span class="nt">CompareType</span> <span class="o">=</span>
-              <span class="nt">std</span><span class="p">::</span><span class="nd">less</span><span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">std</span><span class="p">::</span><span class="nd">iterator_traits</span><span class="o">&lt;</span><span class="nt">Iterator</span><span class="o">&gt;</span><span class="p">::</span><span class="nd">value_type</span><span class="o">&gt;&gt;</span>
-<span class="nt">void</span> <span class="nt">merge</span><span class="o">(</span><span class="nt">Iterator</span> <span class="nt">begin</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">middle</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">end</span><span class="o">,</span>
-           <span class="nt">CompareType</span> <span class="nt">compare</span> <span class="o">=</span> <span class="nt">CompareType</span><span class="o">())</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nt">template</span> <span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">Iterator</span><span class="o">,</span> <span class="nt">typename</span> <span class="nt">CompareType</span> <span class="o">=</span> <span class="nt">std</span><span class="p">::</span><span class="nd">less</span><span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">std</span><span class="p">::</span><span class="nd">iterator_traits</span><span class="o">&lt;</span><span class="nt">Iterator</span><span class="o">&gt;</span><span class="p">::</span><span class="nd">value_type</span><span class="o">&gt;&gt;</span> <span class="nt">void</span> <span class="nt">merge</span><span class="o">(</span><span class="nt">Iterator</span> <span class="nt">begin</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">middle</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">end</span><span class="o">,</span> <span class="nt">CompareType</span> <span class="nt">compare</span> <span class="o">=</span> <span class="nt">CompareType</span><span class="o">())</span>
+<span class="p">{</span>
   <span class="err">typedef</span> <span class="err">typename</span> <span class="n">std</span><span class="p">:</span><span class="o">:</span><span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">Iterator</span><span class="o">&gt;::</span><span class="n">value_type</span> <span class="n">T</span><span class="p">;</span>
   <span class="err">if</span> <span class="err">(</span><span class="n">std</span><span class="p">:</span><span class="o">:</span><span class="nf">distance</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="kc">middle</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">std</span><span class="o">::</span><span class="nf">distance</span><span class="p">(</span><span class="kc">middle</span><span class="p">,</span> <span class="kc">end</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">return</span><span class="p">;</span>
@@ -161,11 +135,8 @@
 <li>时间复杂度 <span class="math">\(O(nlgn)\)</span></li>
 <li>非原地排序，归并时需要额外的空间 <span class="math">\(O(n)\)</span></li>
 </ul>
-<div class="highlight"><pre><span></span><span class="nt">template</span> <span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">Iterator</span><span class="o">,</span>
-          <span class="nt">typename</span> <span class="nt">CompareType</span> <span class="o">=</span>
-              <span class="nt">std</span><span class="p">::</span><span class="nd">less</span><span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">std</span><span class="p">::</span><span class="nd">iterator_traits</span><span class="o">&lt;</span><span class="nt">Iterator</span><span class="o">&gt;</span><span class="p">::</span><span class="nd">value_type</span><span class="o">&gt;&gt;</span>
-<span class="nt">void</span> <span class="nt">merge_sort</span><span class="o">(</span><span class="nt">Iterator</span> <span class="nt">begin</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">end</span><span class="o">,</span>
-                <span class="nt">CompareType</span> <span class="nt">compare</span> <span class="o">=</span> <span class="nt">CompareType</span><span class="o">())</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nt">template</span> <span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">Iterator</span><span class="o">,</span> <span class="nt">typename</span> <span class="nt">CompareType</span> <span class="o">=</span> <span class="nt">std</span><span class="p">::</span><span class="nd">less</span><span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">std</span><span class="p">::</span><span class="nd">iterator_traits</span><span class="o">&lt;</span><span class="nt">Iterator</span><span class="o">&gt;</span><span class="p">::</span><span class="nd">value_type</span><span class="o">&gt;&gt;</span> <span class="nt">void</span> <span class="nt">merge_sort</span><span class="o">(</span><span class="nt">Iterator</span> <span class="nt">begin</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">end</span><span class="o">,</span> <span class="nt">CompareType</span> <span class="nt">compare</span> <span class="o">=</span> <span class="nt">CompareType</span><span class="o">())</span>
+<span class="p">{</span>
   <span class="err">auto</span> <span class="err">size</span> <span class="err">=</span> <span class="n">std</span><span class="p">:</span><span class="o">:</span><span class="nf">distance</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="kc">end</span><span class="p">);</span>
   <span class="err">if</span> <span class="err">(size</span> <span class="err">&gt;</span> <span class="err">1)</span> <span class="err">{</span>
     <span class="err">Iterator</span> <span class="err">middle</span> <span class="err">=</span> <span class="err">begin</span> <span class="err">+</span> <span class="err">size</span> <span class="err">/</span> <span class="err">2</span><span class="p">;</span>
