@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-26T23:08:38+08:00</updated><entry><title>排序算法</title><link href="https://xutree.github.io/pages/2018/10/26/sort/" rel="alternate"></link><published>2018-10-26T23:08:38+08:00</published><updated>2018-10-26T23:08:38+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-26:/pages/2018/10/26/sort/</id><summary type="html">&lt;h2&gt;插入排序&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-10-27T14:11:21+08:00</updated><entry><title>排序算法</title><link href="https://xutree.github.io/pages/2018/10/26/sort/" rel="alternate"></link><published>2018-10-26T23:08:38+08:00</published><updated>2018-10-27T14:11:21+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-26:/pages/2018/10/26/sort/</id><summary type="html">&lt;h2&gt;插入排序&lt;/h2&gt;
+&lt;p&gt;插入排序思想：&lt;/p&gt;
+&lt;p&gt;假设对数组 A[p...r] 排序：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;维持不变式：设当前排序的元素是 A[q]，则保持 A[p...q-1] 为排好的，A[q] 在 A[p...q-1] 中找到它的位置坐下&lt;/li&gt;
+&lt;li&gt;时间复杂度 &lt;span class="math"&gt;\(O(n^2)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;原地排序&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;functional&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iterator&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
@@ -8,15 +15,68 @@
 
 &lt;span class="n"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;Iterator&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
           &lt;span class="n"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;CompareType&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;
-              &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;less&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;iterator_traits&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;::&lt;/span&gt;&lt;span class="n"&gt;value_type&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class="kr"&gt;void&lt;/span&gt; &lt;span class="n"&gt;insert_sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Iterator&lt;/span&gt; &lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Iterator&lt;/span&gt; &lt;span class="nf"&gt;end&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                 &lt;span class="n"&gt;CompareType&lt;/span&gt; &lt;span class="n"&gt;compare&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CompareType&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="kr"&gt;auto&lt;/span&gt; &lt;span class="nf"&gt;size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nf"&gt;end&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;size&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;Iterator&lt;/span&gt; &lt;span class="n"&gt;current&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;current&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nf"&gt;end&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kr"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;small_next …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;插入排序&lt;/h2&gt;
+              &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;less&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;iterator_traits&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;::&lt;/span&gt;&lt;span class="n"&gt;value_type …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;h2&gt;插入排序&lt;/h2&gt;
+&lt;p&gt;插入排序思想：&lt;/p&gt;
+&lt;p&gt;假设对数组 A[p...r] 排序：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;维持不变式：设当前排序的元素是 A[q]，则保持 A[p...q-1] 为排好的，A[q] 在 A[p...q-1] 中找到它的位置坐下&lt;/li&gt;
+&lt;li&gt;时间复杂度 &lt;span class="math"&gt;\(O(n^2)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;原地排序&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;functional&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iterator&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
@@ -62,7 +122,124 @@
   &lt;span class="nf"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;vec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;end&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content><category term="算法"></category></entry><entry><title>矩阵微积分</title><link href="https://xutree.github.io/pages/2018/10/23/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC/" rel="alternate"></link><published>2018-10-23T20:42:45+08:00</published><updated>2018-10-24T11:57:17+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-23:/pages/2018/10/23/矩阵求导/</id><summary type="html">&lt;p&gt;矩阵求导，本质是多元函数求导，仅仅是把函数的⾃变量以及求导的结果排列成了矩阵的形式，⽅便表达与计算。类似地，复合函数的求导法则本质上也是多元函数求导的链式法则，只是将结果整理成了矩阵的形式。从原理上讲，可以对矩阵的每个分量逐元素地求导，得到最终结果；但是这样做太繁琐，极其容易出错，因此推导并记住⼀些常⽤的结论在实践中是⾮常必要的。&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;分治排序&lt;/h2&gt;
+&lt;p&gt;归并思想，假设对数组 A[p...q...r] 归并：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;拷贝：将数组 A[p...q] 拷贝到数组 L，将数组 A[q...r] 拷贝到数组 R&lt;/li&gt;
+&lt;li&gt;归并：从左到右依次取 L、R 中的较小的元素，存放到 A 中&lt;/li&gt;
+&lt;li&gt;时间复杂度 &lt;span class="math"&gt;\(O(n)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;归并时需要额外的空间 &lt;span class="math"&gt;\(O(n)\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;typename&lt;/span&gt; &lt;span class="nt"&gt;Iterator&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+          &lt;span class="nt"&gt;typename&lt;/span&gt; &lt;span class="nt"&gt;CompareType&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;
+              &lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;less&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;typename&lt;/span&gt; &lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;iterator_traits&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;Iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;value_type&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;void&lt;/span&gt; &lt;span class="nt"&gt;merge&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;Iterator&lt;/span&gt; &lt;span class="nt"&gt;begin&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;Iterator&lt;/span&gt; &lt;span class="nt"&gt;middle&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;Iterator&lt;/span&gt; &lt;span class="nt"&gt;end&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+           &lt;span class="nt"&gt;CompareType&lt;/span&gt; &lt;span class="nt"&gt;compare&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;CompareType&lt;/span&gt;&lt;span class="o"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="err"&gt;typedef&lt;/span&gt; &lt;span class="err"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;iterator_traits&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;::&lt;/span&gt;&lt;span class="n"&gt;value_type&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="err"&gt;if&lt;/span&gt; &lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;middle&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nf"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;middle&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;end&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nf"&gt;result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;end&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="err"&gt;auto&lt;/span&gt; &lt;span class="err"&gt;current&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;result.begin()&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="err"&gt;auto&lt;/span&gt; &lt;span class="err"&gt;left_current&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="err"&gt;auto&lt;/span&gt; &lt;span class="err"&gt;right_current&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;middle&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="err"&gt;while&lt;/span&gt; &lt;span class="err"&gt;(left_current&lt;/span&gt; &lt;span class="err"&gt;!=&lt;/span&gt; &lt;span class="err"&gt;middle&lt;/span&gt; &lt;span class="err"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="err"&gt;right_current&lt;/span&gt; &lt;span class="err"&gt;!=&lt;/span&gt; &lt;span class="err"&gt;end)&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+    &lt;span class="err"&gt;if&lt;/span&gt; &lt;span class="err"&gt;(compare(*left_current,&lt;/span&gt; &lt;span class="err"&gt;*right_current))&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+      &lt;span class="err"&gt;*current++&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;*left_current++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="nt"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="err"&gt;*current++&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;*right_current++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="err"&gt;}&lt;/span&gt;
+  &lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;left_current&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nt"&gt;middle&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nt"&gt;right_current&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nt"&gt;end&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;copy&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;right_current&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;end&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;current&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+  &lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;left_current&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nt"&gt;middle&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nt"&gt;right_current&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nt"&gt;end&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;copy&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;left_current&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;middle&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;current&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+  &lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;copy&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;result&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;begin&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="nt"&gt;result&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;end&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="nt"&gt;begin&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;归并排序思想，假设对数组 A[p...r] 排序：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分解：将数组 A[p...r] 平均划分为2子数组 A[p...q-1] 和 A[q...r]，一直划分直到每个子数组只有1个元素&lt;/li&gt;
+&lt;li&gt;归并： 对 A[p...q-1] 和 A[q...r] 这两个已排序好的数组进行合并&lt;/li&gt;
+&lt;li&gt;时间复杂度 &lt;span class="math"&gt;\(O(nlgn)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;非原地排序，归并时需要额外的空间 &lt;span class="math"&gt;\(O(n)\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;typename&lt;/span&gt; &lt;span class="nt"&gt;Iterator&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+          &lt;span class="nt"&gt;typename&lt;/span&gt; &lt;span class="nt"&gt;CompareType&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;
+              &lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;less&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;typename&lt;/span&gt; &lt;span class="nt"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;iterator_traits&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;Iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;value_type&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;void&lt;/span&gt; &lt;span class="nt"&gt;merge_sort&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;Iterator&lt;/span&gt; &lt;span class="nt"&gt;begin&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;Iterator&lt;/span&gt; &lt;span class="nt"&gt;end&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+                &lt;span class="nt"&gt;CompareType&lt;/span&gt; &lt;span class="nt"&gt;compare&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;CompareType&lt;/span&gt;&lt;span class="o"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="err"&gt;auto&lt;/span&gt; &lt;span class="err"&gt;size&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;end&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="err"&gt;if&lt;/span&gt; &lt;span class="err"&gt;(size&lt;/span&gt; &lt;span class="err"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;1)&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+    &lt;span class="err"&gt;Iterator&lt;/span&gt; &lt;span class="err"&gt;middle&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;begin&lt;/span&gt; &lt;span class="err"&gt;+&lt;/span&gt; &lt;span class="err"&gt;size&lt;/span&gt; &lt;span class="err"&gt;/&lt;/span&gt; &lt;span class="err"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="err"&gt;merge_sort(begin,&lt;/span&gt; &lt;span class="err"&gt;middle,&lt;/span&gt; &lt;span class="err"&gt;compare)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="err"&gt;merge_sort(middle,&lt;/span&gt; &lt;span class="err"&gt;end,&lt;/span&gt; &lt;span class="err"&gt;compare)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="err"&gt;merge(begin,&lt;/span&gt; &lt;span class="err"&gt;middle,&lt;/span&gt; &lt;span class="err"&gt;end,&lt;/span&gt; &lt;span class="err"&gt;compare)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="算法"></category></entry><entry><title>矩阵微积分</title><link href="https://xutree.github.io/pages/2018/10/23/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC/" rel="alternate"></link><published>2018-10-23T20:42:45+08:00</published><updated>2018-10-24T11:57:17+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-23:/pages/2018/10/23/矩阵求导/</id><summary type="html">&lt;p&gt;矩阵求导，本质是多元函数求导，仅仅是把函数的⾃变量以及求导的结果排列成了矩阵的形式，⽅便表达与计算。类似地，复合函数的求导法则本质上也是多元函数求导的链式法则，只是将结果整理成了矩阵的形式。从原理上讲，可以对矩阵的每个分量逐元素地求导，得到最终结果；但是这样做太繁琐，极其容易出错，因此推导并记住⼀些常⽤的结论在实践中是⾮常必要的。&lt;/p&gt;
 &lt;p&gt;不同的矩阵求导方法采取不同的导数排列方法，以便于所求导数可以方便后续计算。主要存在两种符号约定。&lt;/p&gt;
 &lt;h2&gt;1. 概述&lt;/h2&gt;
 &lt;p&gt;矩阵微积分的自变量可以是标量，向量，或者是一个矩阵，因变量也可以是上述的三者之一。每一种不同的自变量和因变量的组合都有不同的一套运算规则。&lt;/p&gt;
