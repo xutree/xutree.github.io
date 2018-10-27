@@ -368,7 +368,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;比较操作的次数介于 &lt;span class="math"&gt;\(\frac{n\log n}{2}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(n\log n-n+1\)&lt;/span&gt; 之间。 赋值操作的次数是 &lt;span class="math"&gt;\(2n\log n\)&lt;/span&gt;。归并算法的空间复杂度为：&lt;span class="math"&gt;\(\Theta (n)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;比较操作的次数介于 &lt;span class="math"&gt;\(\frac{1}{2}n\log n\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(n\log n-n+1\)&lt;/span&gt; 之间。 赋值操作的次数是 &lt;span class="math"&gt;\(2n\log n\)&lt;/span&gt;。归并算法的空间复杂度为：&lt;span class="math"&gt;\(\Theta (n)\)&lt;/span&gt;。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
