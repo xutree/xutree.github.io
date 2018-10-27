@@ -64,7 +64,7 @@
                 <h2>基本概念</h2>
 <p>重载的运算符是具有特殊名字的函数：它们的名字由关键字<code>operator</code>和其后要定义的运算符号共同组成。和其他函数一样，重载的运算符也包含返回类型、参数列表以及函数体。</p>
 <p>对一个运算符函数来说，它或者是类的成员，或者至少含有一个类类型的参数，这一约定意味着当运算符作用于内置类型的运算对象时，我们无法改变该运算符的含义：</p>
-<div class="highlight"><pre><span></span>//错误：不能为 int 重定义内置的运算符
+<div class="codehilite"><pre><span></span>//错误：不能为 int 重定义内置的运算符
 int operator+(int, int);
 </pre></div>
 
@@ -72,7 +72,7 @@ int operator+(int, int);
 <p>我们只能重载已存在的运算符，而无权发明新的运算符。重载运算符无法改变优先级和结合律。</p>
 <p><img alt="运算符重载表" src="https://xutree.github.io/images/c++14-1.jpg"></p>
 <h3>直接调用一个重载的运算符函数</h3>
-<div class="highlight"><pre><span></span>//一个非成员运算符函数的等价调用
+<div class="codehilite"><pre><span></span>//一个非成员运算符函数的等价调用
 data1 + data2;  //普通的表达式
 operator+(data1, data2);    //等价的函数调用
 
@@ -96,7 +96,7 @@ data1.operator+(data2); //等成员运算符函数的等价调用
 <p>第二个形参一般来说是一个常量的引用，该常量是我们想要打印的类类型。第二个形参是引用的原因是我们希望避免复制实参；而之所以该形参可以是常量是因为(通常情况下)打印对象不会改变对象的内容。</p>
 <p>为了与其他输出运算符保持一致，<code>operator&lt;&lt;</code>一般要返回它的<code>ostream</code>形参。</p>
 <p>Sales_data的输出运算符：</p>
-<div class="highlight"><pre><span></span>ostream &amp;operat&lt;&lt; (ostream &amp;os, const Sales_data &amp;item)
+<div class="codehilite"><pre><span></span>ostream &amp;operat&lt;&lt; (ostream &amp;os, const Sales_data &amp;item)
 {
     os &lt;&lt; item.isbn() &lt;&lt; &quot; &quot; &lt;&lt; item.units_sold &lt;&lt; &quot; &quot;
         &lt;&lt; item.revenue &lt;&lt; &quot; &quot; &lt;&lt; item.avg_price();
@@ -107,7 +107,7 @@ data1.operator+(data2); //等成员运算符函数的等价调用
 
 <p>输出运算符尽量减少格式化操作通常，输出运算符应该主要负责打印对象的内容而非控制格式，输出运算符不应该打印换行符。</p>
 <p>输入输出运算符必须是非成员函数：与<code>iostream</code>标准库兼容的输入输出运算符必须是普通的非成员函数，而不能是类的成员函数。否则，它们的左侧运算对象将是我们的类的一个对象：</p>
-<div class="highlight"><pre><span></span>Sales_data data;
+<div class="codehilite"><pre><span></span>Sales_data data;
 data &lt;&lt; cout;    //如果 operator&lt;&lt; 是 Sales_data 的成员
 </pre></div>
 
@@ -116,7 +116,7 @@ data &lt;&lt; cout;    //如果 operator&lt;&lt; 是 Sales_data 的成员
 <h3>重载输入运算符 &gt;&gt;</h3>
 <p>通常，输入运算符的第一个形参是运算符将要读取的流的引用，第二个形参是将要读入到的(非常量)对象的引用。该运算符通常会返回某个给定流的引用。第二个形参之所以是个非常量是因为输入运算符的目的就是将数据读入到这个对象中。</p>
 <p>Sales_data的输入运算符：</p>
-<div class="highlight"><pre><span></span>istream &amp;operator&gt;&gt;(istream &amp;is, Sales_data &amp;item)
+<div class="codehilite"><pre><span></span>istream &amp;operator&gt;&gt;(istream &amp;is, Sales_data &amp;item)
 {
     double price;   //不需要初始化，因为我们将先读入数据到 price，之后才使用它
     is &gt;&gt; item.bookNo &gt;&gt; item.units_sold &gt;&gt; price;
@@ -132,7 +132,7 @@ data &lt;&lt; cout;    //如果 operator&lt;&lt; 是 Sales_data 的成员
 <p>输入运算符必须处理输入可能失败的情况，而输出运算符不需要。当读取操作发生错误时，输入运算符应该负责从错误中恢复。</p>
 <h2>算术和关系运算符</h2>
 <p>通常情况下，我们将算术和关系运算符定义成非成员函数以允许对左侧或右侧的运算对象进行转换。因为这些运算符一般不需要改变运算对象的状态，所以形参都是常量的引用。</p>
-<div class="highlight"><pre><span></span>Sales_data operator+(const Sales_data &amp;lhs, const Sales_data &amp;rhs)
+<div class="codehilite"><pre><span></span>Sales_data operator+(const Sales_data &amp;lhs, const Sales_data &amp;rhs)
 {
     Sales_data sum = lhs;   //把lhs的数据成员拷贝给sum
     sum += rhs; //将rhs加到sum中
@@ -143,7 +143,7 @@ data &lt;&lt; cout;    //如果 operator&lt;&lt; 是 Sales_data 的成员
 
 <p>如果类同时定义了算术运算符和相关的复合赋值运算符，则通常情况下应该使用复合赋值来实现算术运算符。</p>
 <h3>相等运算符</h3>
-<div class="highlight"><pre><span></span>bool operator==(const Sales_data &amp;lhs,const Sales_data &amp;rhs)
+<div class="codehilite"><pre><span></span>bool operator==(const Sales_data &amp;lhs,const Sales_data &amp;rhs)
 {
     return lhs.isbn() == rhs.isbn() &amp;&amp;
             lhs.units_sold == rhs.units_sold &amp;&amp;
@@ -163,7 +163,7 @@ bool operator!=(const Sales_data &amp;lhs, const Sales_data &amp;rhs)
 <p>我们可以重载赋值运算符。不论形参 的类型是什么，赋值运算符都必须定义为成员函数。</p>
 <h3>复合赋值运算符</h3>
 <p>复合赋值运算符不非得是类的成员，不过我们还是倾向于把包括复合赋值在内的所有赋值运算都定义在类的内部。</p>
-<div class="highlight"><pre><span></span>//作为成员的二元运算符：左侧运算对象绑定到隐式地 this 指针
+<div class="codehilite"><pre><span></span>//作为成员的二元运算符：左侧运算对象绑定到隐式地 this 指针
 //假定两个对象表示的是同一本书
 Sales_data&amp; Sales_data::operator+=(const Sales_data &amp;rhs)
 {
@@ -183,7 +183,7 @@ Sales_data&amp; Sales_data::operator+=(const Sales_data &amp;rhs)
 <p>C++ 语言并不要求递增和递减运算符必须的类的成员，但是因为它们改变的正好是所操作对象的状态，所以建议将其设定为成员函数。</p>
 <p>定义递增和递减运算符的应该同时定义前置后后置版本。这些运算符通常应该被定义成类的成员。</p>
 <h3>定义前置递增/递减运算符</h3>
-<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">StrBlobPtr</span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">StrBlobPtr</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//递增和递减运算符</span>
     <span class="nx">StrBlobPtr</span><span class="o">&amp;</span> <span class="nx">operator</span><span class="o">++</span><span class="p">();</span>   <span class="c1">//前置运算符</span>
@@ -211,7 +211,7 @@ Sales_data&amp; Sales_data::operator+=(const Sales_data &amp;rhs)
 
 <h3>区分前置和后置运算符</h3>
 <p>后置版本接受一个额外的(不使用)<code>int</code>类型的形参。这个形参的唯一作用就是区分前置版本和后置版本的函数，而不是真的要在实现后置版本时参与运算。</p>
-<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">StrBlobPtr</span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">StrBlobPtr</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//递增和递减运算符</span>
     <span class="nx">StrBlobPtr</span> <span class="nx">operator</span><span class="o">++</span><span class="p">(</span><span class="kr">int</span><span class="p">);</span> <span class="c1">//后置运算符</span>
@@ -239,14 +239,14 @@ Sales_data&amp; Sales_data::operator+=(const Sales_data &amp;rhs)
 
 <h3>显示地调用后置运算符</h3>
 <p>如果我们想通过函数调用的方式调用后置版本，则必须为它的整型参数传递一个值：</p>
-<div class="highlight"><pre><span></span>StrBlobPtr p(a1);   //p 指向 a1 中的 vector
+<div class="codehilite"><pre><span></span>StrBlobPtr p(a1);   //p 指向 a1 中的 vector
 p.operator++(0);    //调用后置版本的 operator++
 p.operator++();     //调用前置版本的 operator++
 </pre></div>
 
 
 <h2>成员访问运算符</h2>
-<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">StrBlobPtr</span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">StrBlobPtr</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="nx">std</span><span class="o">::</span><span class="kt">string</span><span class="o">&amp;</span> <span class="nx">operator</span><span class="o">*</span><span class="p">()</span> <span class="kr">const</span>
     <span class="p">{</span>
@@ -269,7 +269,7 @@ p.operator++();     //调用前置版本的 operator++
 <h2>函数调用运算符</h2>
 <p>如果类重载了函数调用运算符，则我们可以像使用函数一样使用该类的对象。</p>
 <p>举个🌰 ，下面这个名为 absInt 的<code>struct</code>含有一个调用运算符，该运算符负责返回其参数的绝对值：</p>
-<div class="highlight"><pre><span></span><span class="s s-Atom">struct</span> <span class="s s-Atom">absInt</span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="s s-Atom">struct</span> <span class="s s-Atom">absInt</span><span class="p">{</span>
     <span class="s s-Atom">int</span> <span class="nf">operator</span><span class="p">()(</span><span class="s s-Atom">int</span> <span class="s s-Atom">val</span><span class="p">)</span> <span class="s s-Atom">const</span><span class="p">{</span>
         <span class="s s-Atom">return</span> <span class="s s-Atom">val</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="s s-Atom">?</span> <span class="nn">val</span><span class="p">:</span><span class="o">-</span><span class="s s-Atom">val</span><span class="p">;</span>
     <span class="p">}</span>
@@ -278,7 +278,7 @@ p.operator++();     //调用前置版本的 operator++
 
 
 <p>我们使用调用运算符的方式是令一个 absInt 对象作用于一个实参列表，这一过程看起来非常像调用函数的过程：</p>
-<div class="highlight"><pre><span></span>int i = -42;
+<div class="codehilite"><pre><span></span>int i = -42;
 absInt absObj;  //含有函数调用运算符的对象
 int ui = absObj(i); //将 i 传递给 absObj.operator()
 </pre></div>
@@ -288,7 +288,7 @@ int ui = absObj(i); //将 i 传递给 absObj.operator()
 如果定义了调用运算符，则该类的对象称为函数对象（function object）。</p>
 <h3>含有状态的函数对象类</h3>
 <p>和其他类一样，函数对象除了<code>operator()</code>之外也可以包含其他成员。函数对象类通常含有一些数据成员，这些成员被用于定制调用运算符中的操作。</p>
-<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">PrintString</span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">PrintString</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="nx">PrintString</span> <span class="p">(</span><span class="nx">ostream</span> <span class="o">&amp;</span><span class="nx">o</span> <span class="o">=</span> <span class="nx">cout</span><span class="p">,</span> <span class="kr">char</span> <span class="nx">c</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">:</span><span class="nx">os</span><span class="p">(</span><span class="nx">o</span><span class="p">),</span> <span class="nx">sep</span><span class="p">(</span><span class="nx">c</span><span class="p">){}</span>
 <span class="k">void</span> <span class="nx">operator</span><span class="p">()(</span><span class="kr">const</span> <span class="kt">string</span> <span class="o">&amp;</span><span class="nx">s</span><span class="p">)</span> <span class="kr">const</span> <span class="p">{</span><span class="nx">os</span> <span class="o">&lt;&lt;</span> <span class="nx">s</span> <span class="o">&lt;&lt;</span> <span class="nx">sep</span><span class="p">;}</span>
@@ -300,7 +300,7 @@ int ui = absObj(i); //将 i 传递给 absObj.operator()
 
 
 <p>当定义 PrintString 的对象时，对于分隔符及输出流即可以使用默认值也可以提供自己的值：</p>
-<div class="highlight"><pre><span></span>PrintString printer;    //使用默认值，打印到 cout
+<div class="codehilite"><pre><span></span>PrintString printer;    //使用默认值，打印到 cout
 printer(s); //在 cout 中打印 s，后面跟一个空格
 PrintString errors(cerr, &#39;\n&#39;);
 errors(s);  //在 cerr 中打印 s，后面跟一个换行符
@@ -308,14 +308,14 @@ errors(s);  //在 cerr 中打印 s，后面跟一个换行符
 
 
 <p>函数对象常常作为泛型算法的实参：</p>
-<div class="highlight"><pre><span></span>//例如可以使用标准库 for_each 算法和我自己的 PrintString 类来打印容器内容
+<div class="codehilite"><pre><span></span>//例如可以使用标准库 for_each 算法和我自己的 PrintString 类来打印容器内容
 for_each(vs.begin(), vs.end(), PrintString(cerr, &#39;\n&#39;));
 </pre></div>
 
 
 <h3>lambda 是函数对象</h3>
 <p>当我们编写了一个<code>lambda</code>后，编译器将该表达式翻译成一个未命名类的未命名对象。在<code>lambda</code>表达式产生的类中含有一个重载的函数调用运算符。</p>
-<div class="highlight"><pre><span></span><span class="nx">stable_sort</span><span class="p">(</span><span class="nx">words</span><span class="p">.</span><span class="nx">begin</span><span class="p">(),</span> <span class="nx">words</span><span class="p">.</span><span class="nx">end</span><span class="p">(),</span>
+<div class="codehilite"><pre><span></span><span class="nx">stable_sort</span><span class="p">(</span><span class="nx">words</span><span class="p">.</span><span class="nx">begin</span><span class="p">(),</span> <span class="nx">words</span><span class="p">.</span><span class="nx">end</span><span class="p">(),</span>
             <span class="p">[](</span><span class="kr">const</span> <span class="kt">string</span> <span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="kr">const</span> <span class="o">&amp;</span><span class="nx">b</span><span class="p">)</span>
             <span class="p">{</span><span class="k">return</span> <span class="nx">a</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">size</span><span class="p">();});</span>
 <span class="c1">//其行为类似于下面这个类的一个未命名对象</span>
@@ -338,7 +338,7 @@ for_each(vs.begin(), vs.end(), PrintString(cerr, &#39;\n&#39;));
 <p><img alt="标准库定义的函数对象" src="https://xutree.github.io/images/c++14-2.jpg"></p>
 <h4>在算法中使用标准库函数对象</h4>
 <p>在默认情况下排序算法使用<code>operator&lt;</code>将序列按照升序排列。如果要执行降序排列的话，我们可以传入一个<code>greater</code>类型的对象。例如：</p>
-<div class="highlight"><pre><span></span>//svec 是一个 vector&lt;string&gt;
+<div class="codehilite"><pre><span></span>//svec 是一个 vector&lt;string&gt;
 //传入一个临时的函数对象用于执行两个 string 对象的 &gt; 比较运算
 sort(svec.begin(), svec.end(), greater&lt;string&gt;());
 </pre></div>
@@ -346,7 +346,7 @@ sort(svec.begin(), svec.end(), greater&lt;string&gt;());
 
 <p>则上面的语句将按照降序对 svec 进行排序。第三个实参是<code>greater&lt;string&gt;</code>类型的一个未命名的对象。</p>
 <p>需要特别注意的是，标准库规定其函数对象对于指针同样适用。我们之前曾介绍过比较两个无关指针将产生未定义的行为，然而我们可能会希望通过比较指针的内存地址来<code>sort</code>指针的<code>vector</code>。直接这么做会产生未定义的行为，但是我们可以用标准库函数对象来实现：</p>
-<div class="highlight"><pre><span></span>vector&lt;string *&gt; nameTable;
+<div class="codehilite"><pre><span></span>vector&lt;string *&gt; nameTable;
 sort(nameTable.begin(), nameTable.end(), [] (string *a, sting *b { return a &lt; b; }));   //错误
 sort(nameTable.begin(), nameTable.end(), less&lt;string *&gt;()); //正确
 </pre></div>
@@ -364,7 +364,7 @@ sort(nameTable.begin(), nameTable.end(), less&lt;string *&gt;()); //正确
 <p>与其他对象一样，可调用的对象也有类型。例如，每个<code>lambda</code>有它自己唯一的（未命名）的类型；函数及函数指针的类型则由其返回值类型和实参类型决定。</p>
 <p>调用形式：指明了调用返回的类型以及传递给调用的实参类型。</p>
 <h3>不同类型可能具有相同的调用形式</h3>
-<div class="highlight"><pre><span></span>//普通函数
+<div class="codehilite"><pre><span></span>//普通函数
 int add(int i, int j) { return i + j; }
 //lambda，其产生一个未命名的函数对象类
 auto mod = [] (int i, int j) { return i % j; }
@@ -379,7 +379,7 @@ struct divide{
 
 <p>上面的类型共享同一个调用形式：<code>int(int, int)</code>。</p>
 <p>若我们想把它们存入同一个函数表：</p>
-<div class="highlight"><pre><span></span>map&lt;string, int(*)(int, int)&gt; binops;
+<div class="codehilite"><pre><span></span>map&lt;string, int(*)(int, int)&gt; binops;
 binops.insert({&quot;+&quot;, add});  //正确，add 是一个指向正确类型函数的指针
 binops.insert({&quot;%&quot;,mod});   //错误，mod 不是一个函数指针
 </pre></div>
@@ -388,7 +388,7 @@ binops.insert({&quot;%&quot;,mod});   //错误，mod 不是一个函数指针
 <h3>标准库 function 类型</h3>
 <p>我们可以使用一个名为<code>function</code>的新标准库类型解决上述问题，它定义在<code>functional</code>头文件中，支持的操作如下：</p>
 <p><img alt="标准库function类型" src="https://xutree.github.io/images/c++14-3.jpg"></p>
-<div class="highlight"><pre><span></span>map&lt;string, function&lt;int(int, int)&gt;&gt; binops = {
+<div class="codehilite"><pre><span></span>map&lt;string, function&lt;int(int, int)&gt;&gt; binops = {
     {&quot;+&quot;, add}, //函数指针
     {&quot;-&quot;, std::minus&lt;int&gt;()},   //标准库函数对象
     {&quot;/&quot;, divide()},    //未命名的 lambda
@@ -399,7 +399,7 @@ binops.insert({&quot;%&quot;,mod});   //错误，mod 不是一个函数指针
 
 <h4>重载的函数与 function</h4>
 <p>我们不能（直接）将重载函数的名字存入<code>function</code>类型的对象中：</p>
-<div class="highlight"><pre><span></span>int add(int i, int j) { return i + j; }
+<div class="codehilite"><pre><span></span>int add(int i, int j) { return i + j; }
 Sales_data add(const Sales_data&amp;, const Sales_data&amp;);
 map&lt;string, function&lt;int(int, int)&gt;&gt; binops;
 binops.insert({&quot;+&quot;, add});  //错误，哪个 add？
@@ -407,20 +407,20 @@ binops.insert({&quot;+&quot;, add});  //错误，哪个 add？
 
 
 <p>解决上述二义性问题的一条途径是存储函数指针而非函数名字：</p>
-<div class="highlight"><pre><span></span>int (*fp)(int, int) = add;
+<div class="codehilite"><pre><span></span>int (*fp)(int, int) = add;
 binops.insert({&quot;+&quot;,fp});
 </pre></div>
 
 
 <p>同样，也可以使用<code>lambda</code>来消除二义性：</p>
-<div class="highlight"><pre><span></span>binops.insert({&quot;+&quot;, [] (int i, int j) { return add(i, j); }});
+<div class="codehilite"><pre><span></span>binops.insert({&quot;+&quot;, [] (int i, int j) { return add(i, j); }});
 </pre></div>
 
 
 <h2>重载、类型转换与运算符</h2>
 <h3>类型转换运算符</h3>
 <p>类型转换运算符（conversion operator）是类的一种特殊成员函数，它负责将一个类类型的值转换成其他类型。一般形式：</p>
-<div class="highlight"><pre><span></span>operator type() const;
+<div class="codehilite"><pre><span></span>operator type() const;
 </pre></div>
 
 
@@ -428,7 +428,7 @@ binops.insert({&quot;+&quot;,fp});
 <p>我们不允许转换成数组或函数类型，但允许转换成指针(包括数组指针及函数指针)或引用类型。</p>
 <p>类型转换运算符既没有显示的返回类型，也没有形参，而且必须定义成类的成员函数。类型转换运算符通常不应该改变待转换对象的内容，因此，类型转换运算符一般被定义成<code>const</code>成员。</p>
 <h4>定义含有类型转换符的类</h4>
-<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">SmallInt</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">SmallInt</span> <span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="nx">SmallInt</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="nx">val</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
     <span class="p">{</span>
@@ -443,14 +443,14 @@ binops.insert({&quot;+&quot;,fp});
 
 
 <p>SmallInt 类既定义了向类类型的转换，也定义了从类类型向其他类型的转换。其中构造函数将算符类型的值转换成 SmallInt 对象，而类型转换运算符将 SmallInt 对象转换成<code>int</code>:</p>
-<div class="highlight"><pre><span></span>SmallInt si;
+<div class="codehilite"><pre><span></span>SmallInt si;
 si = 4;    //首先将4隐式地转换成 SmallInt，然后调用 SmallInt::operator=
 si + 3;    //首先将 si 隐式地转换成 int，然后执行整数的加法
 </pre></div>
 
 
 <p>尽管编译器一次只能执行一个用户定义的类型转换，但是隐式的用户定义类型转换可以置于一个标准（内置）类型转换之前或之后：</p>
-<div class="highlight"><pre><span></span>//内置类型转换将 double 实参转换为 int
+<div class="codehilite"><pre><span></span>//内置类型转换将 double 实参转换为 int
 SmallInt si = 3.14; //调用 SmallInt(int) 构造函数
 //SmallInt 的类型转换运算符将 si 转换为 int
 si + 3.14;  //内置类型转换将所得的 int 继续转换成 double
@@ -460,7 +460,7 @@ si + 3.14;  //内置类型转换将所得的 int 继续转换成 double
 <h4>类型转换运算符可能产生意外结果</h4>
 <p>在实践中，类很少提供类型转换运算符。在大多数情况下，如果类型转换自动发生，用户可能会感到比较意外，而不是感到受到了帮助。然而这条经验法则存在一种例外情况：对于类来说，定义向<code>bool</code>的类型转换还是比较普遍的现象。</p>
 <p>在 C++ 标准的早期版本中，如果类想定义一个向<code>bool</code>的类型转换，则它常常遇到一个问题：因为<code>bool</code>是一种算术类型，所以类类型的对象转换成<code>bool</code>后就能被用在任何需要算术类型的上下文中。这样的类型转换可能引发意想不到的结果，特别是当<code>istream</code>含有向<code>bool</code>的类型转换时，下面的代码仍能编译通过：</p>
-<div class="highlight"><pre><span></span>int i = 42;
+<div class="codehilite"><pre><span></span>int i = 42;
 cin &lt;&lt; i;
 </pre></div>
 
@@ -468,7 +468,7 @@ cin &lt;&lt; i;
 <p>该程序试图将输出运算符作用在输入流。因为<code>istream</code>本身没有定义<code>&lt;&lt;</code>，所以本来这段代码应该产生错误。然而，该代码能使用<code>istream</code>的<code>bool</code>类型转换运算符将<code>cin</code>转换成<code>bool</code>，而这个<code>bool</code>值会接着被提升成<code>int</code>并用作内置的左移运算符的左侧运算对象。这样一来，提升后的<code>bool</code>值（1或0）最终会被左移42个位置。这一结果显然与我们的预期大相径庭。</p>
 <h4>显示的类型转换运算符</h4>
 <p>为了防止这样的异常情况发生，C++ 11新标准引入了显示的类型转换运算符（explicit conversion operator）：</p>
-<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">SmallInt</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">SmallInt</span> <span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//编译器不会自动执行这一类型转换</span>
     <span class="nx">explicit</span> <span class="nx">operator</span> <span class="kr">int</span><span class="p">()</span> <span class="kr">const</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">val</span><span class="p">;</span> <span class="p">}</span>
@@ -478,7 +478,7 @@ cin &lt;&lt; i;
 
 
 <p>和显示的构造函数一样，编译器(通常)也不会将一个显式的类型转换运算符用于隐式类型转换：</p>
-<div class="highlight"><pre><span></span>SmallInt si = 3;    //正确：SmallInt 的构造函数不是显式的
+<div class="codehilite"><pre><span></span>SmallInt si = 3;    //正确：SmallInt 的构造函数不是显式的
 si + 3; //错误：此处需要隐式的类型转换，但类的运算符是显式的
 static_cast&lt;int&gt;(si) + 3;   //正确：显式地请求类型转换
 </pre></div>

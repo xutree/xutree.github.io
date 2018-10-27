@@ -80,7 +80,7 @@
 <h2>一些基本 X3D 概念：Nodes、Components 和 Profiles</h2>
 <h3>X3D Nodes</h3>
 <p>X3D 定义每一个 3D 场景都是由一组 node 组成。每一个 node 代表 3D 场景中一个确定的部分：光线、物体、物体表面的材质等等。场景里的所用 node 排列成树结构或者图结构，整体结构被叫做 <em>scene-graph</em>。每一个 node 的行为，比如材质的颜色，可以通过node的 <em>fields</em> 设置。例如，一个用来设置某物体表面颜色为红色（RGB编码 1 0 0）的node的 XML 描述为：</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;Material</span> <span class="na">diffuseColor=</span><span class="s">&#39;1 0 0&#39;</span><span class="nt">&gt;&lt;/Material&gt;</span>
+<div class="codehilite"><pre><span></span><span class="nt">&lt;Material</span> <span class="na">diffuseColor=</span><span class="s">&#39;1 0 0&#39;</span><span class="nt">&gt;&lt;/Material&gt;</span>
 </pre></div>
 
 
@@ -103,25 +103,25 @@
 <li>目前的 development 版本总是位于 dec 子文件夹：<a href="http://x3dom.org/download/dev/x3dom.js">http://x3dom.org/download/dev/x3dom.js</a></li>
 </ul>
 <p>为使用最新版本 release X3DOM，你可以在你的HTML页面中包含下面的标签：</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://www.x3dom.org/release/x3dom.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="codehilite"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://www.x3dom.org/release/x3dom.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://www.x3dom.org/release/x3dom.css&quot;</span><span class="nt">&gt;</span>
 </pre></div>
 
 
 <p>为使用最新的 development 版本，使用下面的标签：</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://www.x3dom.org/download/dev/x3dom.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="codehilite"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://www.x3dom.org/download/dev/x3dom.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://www.x3dom.org/download/dev/x3dom.css&quot;</span><span class="nt">&gt;</span>
 </pre></div>
 
 
 <p>为使用版本1.5的 X3DOM-Full 版本，使用下面的标签：</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://www.x3dom.org/download/1.5/x3dom-full.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="codehilite"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://www.x3dom.org/download/1.5/x3dom-full.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://www.x3dom.org/download/1.5/x3dom.css&quot;</span><span class="nt">&gt;</span>
 </pre></div>
 
 
 <p>最后，为使用1.3版本的 release X3DOM 和额外的 Geospatial component 和另外的 flash 支持，使用下面的标签：</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://www.x3dom.org/download/1.3/x3dom.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="codehilite"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://www.x3dom.org/download/1.3/x3dom.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://www.x3dom.org/download/1.3/components/Geospatial.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://www.x3dom.org/download/1.3/x3dom.swf&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://www.x3dom.org/download/1.3/x3dom.css&quot;</span><span class="nt">&gt;</span>
@@ -133,22 +133,22 @@
 <h2>运行 X3DOM 应用</h2>
 <h3>通过简单的 Python 服务器</h3>
 <p>一个简便的方法在服务器上来测试你的 Web 应用是使用 Python 的 HTTP 服务器模块。你只需要安装一个 Python 解释器。你可以在<a href="http://python.org/">这里</a>下载。你可以用 Python 做许多有趣的事情。首先，打开命令行窗口，定位到 X3DOM 文件夹。如果你的 Python 是2.X版本，你可以使用 <em>SimpleHTTP</em> 服务器模块如下所示：</p>
-<div class="highlight"><pre><span></span>python -m SimpleHTTPServer
+<div class="codehilite"><pre><span></span>python -m SimpleHTTPServer
 </pre></div>
 
 
 <p>如果你的 Python 是3.x版本，如下所示：</p>
-<div class="highlight"><pre><span></span>python3 -m http.server
+<div class="codehilite"><pre><span></span>python3 -m http.server
 </pre></div>
 
 
 <p>默认情况下，服务器使用8000端口。如果你想改变端口，直接在命令后面加上端口号即可，例如：</p>
-<div class="highlight"><pre><span></span>python -m SimpleHTTPServer 8023
+<div class="codehilite"><pre><span></span>python -m SimpleHTTPServer 8023
 </pre></div>
 
 
 <p>然后，通过浏览器输入如下地址就可以到达你的服务器：</p>
-<div class="highlight"><pre><span></span>http://localhost:8023
+<div class="codehilite"><pre><span></span>http://localhost:8023
 </pre></div>
 
 

@@ -142,7 +142,7 @@
 <p><code>good()</code>函数在所有错误位均未置位的情况下返回<code>true</code>。</p>
 <p>我们将流当做条件使用的代码等价于<code>!fail()</code>。</p>
 <h3>管理条件状态</h3>
-<div class="highlight"><pre><span></span>// 记住 cin 的当前状态
+<div class="codehilite"><pre><span></span>// 记住 cin 的当前状态
 auto old_state = cin.rdstate(); // 记住 cin 的当前状态
 cin.clean();  // 使 cin 有效
 process_input(cin); // 使用 cin
@@ -150,7 +150,7 @@ cin.setstate(old_state);  // 将 cin 置为原有状态
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>// 复位 failbit 和 badbit，保持其他标志位布标
+<div class="codehilite"><pre><span></span>// 复位 failbit 和 badbit，保持其他标志位布标
 cin.clear(cin.rdstate() &amp; ~cin.failbit &amp; ~cin.badbit);
 </pre></div>
 
@@ -167,7 +167,7 @@ cin.clear(cin.rdstate() &amp; ~cin.failbit &amp; ~cin.badbit);
 </ul>
 <h3>unitbuf 操纵符</h3>
 <p>如果想在每次输出操作后都刷新缓冲区，可以使用<code>unitbuf</code>操纵符。它告诉流在接下来的每次写操作之后都执行一次<code>flush</code>刷新。<code>nounitbuf</code>操纵符则重置流，使其恢复使用正常的系统管理的缓冲区刷新机制：</p>
-<div class="highlight"><pre><span></span>cout &lt;&lt; unitbuf;    // 所有输出操作后都会立即刷新缓冲区
+<div class="codehilite"><pre><span></span>cout &lt;&lt; unitbuf;    // 所有输出操作后都会立即刷新缓冲区
 // 任何输出都会立即刷新，无缓冲
 cout &lt;&lt; nounitbuf;    // 回到正常的缓冲方式
 </pre></div>

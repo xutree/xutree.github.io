@@ -63,7 +63,7 @@
 
                 <h2>插入排序</h2>
 <p>插入排序（英语：Insertion Sort）是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用 in-place 排序（即只需用到 <span class="math">\(O(1)\)</span> 的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。</p>
-<div class="highlight"><pre><span></span>void insertion_sort(int arr[], int len) {
+<div class="codehilite"><pre><span></span>void insertion_sort(int arr[], int len) {
         for (int i = 1; i &lt; len; i++) {
                 int key = arr[i];
                 int j;
@@ -79,7 +79,7 @@
 <p>如果目标是把 <span class="math">\(n\)</span> 个元素的序列升序排列，那么采用插入排序存在最好情况和最坏情况。最好情况就是，序列已经是升序排列了，在这种情况下，需要进行的比较操作需 <span class="math">\(n-1\)</span> 次即可。最坏情况就是，序列是降序排列，那么此时需要进行的比较共有 <span class="math">\(\frac {1}{2}n(n-1)\)</span> 次。插入排序的赋值操作是比较操作的次数减去 <span class="math">\(n-1\)</span> 次，（因为 <span class="math">\(n-1\)</span> 次循环中，每一次循环的比较都比赋值多一个，多在最后那一次比较并不带来赋值）。平均来说插入排序算法复杂度为 <span class="math">\(O(n^{2})\)</span>。因而，插入排序不适合对于数据量比较大的排序应用。但是，如果需要排序的数据量很小，例如，量级小于千；或者若已知输入元素大致上按照顺序排列，那么插入排序还是一个不错的选择。 插入排序在工业级库中也有着广泛的应用，在 STL 的 sort 算法和 stdlib 的 qsort 算法中，都将插入排序作为快速排序的补充，用于少量元素的排序（通常为8个或以下）。</p>
 <h2>归并排序</h2>
 <p>归并排序（英语：Merge sort，或 mergesort），是创建在归并操作上的一种有效的排序算法，效率为 <span class="math">\(O(n\log n)\)</span>。1945年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。</p>
-<div class="highlight"><pre><span></span><span class="nt">template</span> <span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">Iterator</span><span class="o">&gt;</span>
+<div class="codehilite"><pre><span></span><span class="nt">template</span> <span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">Iterator</span><span class="o">&gt;</span>
 <span class="nt">void</span> <span class="nt">merge</span><span class="o">(</span><span class="nt">Iterator</span> <span class="nt">begin</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">end</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">middle</span><span class="o">)</span> <span class="p">{</span>
         <span class="err">typedef</span> <span class="err">typename</span> <span class="n">std</span><span class="p">:</span><span class="o">:</span><span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">Iterator</span><span class="o">&gt;::</span><span class="n">value_type</span>
                 <span class="n">T</span><span class="p">;</span> <span class="err">//</span> <span class="err">迭代器指向对象的值类型</span>

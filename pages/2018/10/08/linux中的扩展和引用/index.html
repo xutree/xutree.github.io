@@ -66,7 +66,7 @@
 <p>一个 🌰 :<code>echo *</code>会将当前目录下所有的非隐藏文件名打印出来。</p>
 <h3>单词分隔</h3>
 <p>单词分隔会先查找是否存在空格、制表符以及换行，然后把它们作为单词的界定符（delimiter）。所以下面的命令后面跟着4个不同的参数：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo this is a test
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ echo this is a test
 this is a test
 </pre></div>
 
@@ -75,19 +75,19 @@ this is a test
 <p>通过使用通配符来实现扩展的机制称为路径名扩展（pathname expansion）。</p>
 <h3>波浪线扩展（~）</h3>
 <p>如果把它用在一个单词的开头，那么它将被扩展为指定用户的主目录名；如果没有指定用户名，则扩展为当前用户的主目录：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ ech ~
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ ech ~
 /home/me
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ ech ~foo
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ ech ~foo
 /home/foo
 </pre></div>
 
 
 <h3>算术扩展</h3>
 <p>shell 支持通过扩展来运行算术表达式。这允许我们把 shell 提示符当做计算器来使用：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $((2+2))
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ echo $((2+2))
 4
 </pre></div>
 
@@ -129,13 +129,13 @@ this is a test
 </tbody>
 </table>
 <p>空格在算术表达式中无意义，表达式可以嵌套：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $(($((5**2)) * 3))
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ echo $(($((5**2)) * 3))
 75
 </pre></div>
 
 
 <p>还可以使用一对括号来组合多个子表达式：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $(((5**2) * 3))
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ echo $(((5**2) * 3))
 75
 </pre></div>
 
@@ -168,7 +168,7 @@ this is a test
 </tbody>
 </table>
 <p>🌰 ：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $((0xff))
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ echo $((0xff))
 255
 [me@linuxbox ~]$ echo $((3#11))
 4
@@ -177,7 +177,7 @@ this is a test
 
 <h3>花括号扩展</h3>
 <p>花括号扩展可以用于创建多种文本字符串，例如</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo Front-{A,B,C}-Back
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ echo Front-{A,B,C}-Back
 Front-A-Back Front-B-Back Front-C-Back
 </pre></div>
 
@@ -185,7 +185,7 @@ Front-A-Back Front-B-Back Front-C-Back
 <p>用于花括号扩展的模式信息可以包含一个称为<strong>前导字符</strong>的开头部分和一个称为<strong>附言</strong>的结尾部分。花括号表达式本身可以包含一些列逗号分隔的字符串，也可以包含一系列整数或者单个字符。</p>
 <p>模式信息不能包含内嵌的空白。</p>
 <p>花括号扩展最普遍的应用是创建一系列的文件或者目录：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ mkdir {2009..2011}-0{1..9} {2009..2010}-{10..12}
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ mkdir {2009..2011}-0{1..9} {2009..2010}-{10..12}
 </pre></div>
 
 
@@ -194,7 +194,7 @@ Front-A-Back Front-B-Back Front-C-Back
 <h4>基本参数</h4>
 <p>参数扩展的最简单形式体现在平时对变量的使用中。举例来说，<code>$a</code>扩展后成为变量 a 所包含的内容，无论 a 包含什么。</p>
 <p>简单参数可以被括号包围，如<code>${a}</code>，当变量相邻与其他文本时，必须使用括号，否则可能让 shell 混淆。</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ a=&quot;foo&quot;
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ a=&quot;foo&quot;
 [me@linuxbox ~]$ echo &quot;<span class="nv">$a_file</span>&quot;
 
 [me@linuxbox ~]$ echo &quot;<span class="cp">${</span><span class="n">a</span><span class="cp">}</span>_file&quot;
@@ -207,7 +207,7 @@ foo_file
 <h4>空变量扩展的管理</h4>
 <p>有的参数扩展用于处理不存在的变量和空变量。这些参数扩展在处理缺失的位置参数和给参数赋默认值时很有用。</p>
 <p><code>${parameter:-word}</code>：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值。如果 parameter 非空，则扩展为 parameter 的值。</p>
-<div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">foo</span><span class="o">=</span>
+<div class="codehilite"><pre><span></span><span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">foo</span><span class="o">=</span>
 <span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="p">{</span><span class="nn">foo</span><span class="p">:</span><span class="s s-Atom">-</span><span class="s2">&quot;substitute value if unset&quot;</span><span class="p">}</span>
 <span class="s s-Atom">substitute</span> <span class="s s-Atom">value</span> <span class="s s-Atom">if</span> <span class="s s-Atom">unset</span>
 <span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="s s-Atom">foo</span>
@@ -220,7 +220,7 @@ foo_file
 
 
 <p><code>${parameter:=word}</code>：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值；此外，word 的值也将赋给 parameter。如果 parameter 非空，则扩展为 parameter 的值。注意：位置参数和其他特殊参数不能以这种方式赋值。</p>
-<div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">foo</span><span class="o">=</span>
+<div class="codehilite"><pre><span></span><span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">foo</span><span class="o">=</span>
 <span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="p">{</span><span class="nn">foo</span><span class="p">:</span><span class="s s-Atom">=</span><span class="s2">&quot;deafult value if unset&quot;</span><span class="p">}</span>
 <span class="s s-Atom">deafult</span> <span class="s s-Atom">value</span> <span class="s s-Atom">if</span> <span class="s s-Atom">unset</span>
 <span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="s s-Atom">foo</span>
@@ -234,7 +234,7 @@ foo_file
 
 
 <p><code>${parameter:？word}</code>：如果 parameter 未被设定或者是空参数，这样扩展会致使脚本出错而退出，并且 word 的内容输出到标准错误。如果 parameter 非空，则扩展为 parameter 的值。</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ foo=
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="err">?</span><span class="s2">&quot;parameter is empty&quot;</span><span class="cp">}</span>
 bash: foo: parameter is empty
 [me@linuxbox ~]$ echo $?
@@ -248,7 +248,7 @@ bar
 
 
 <p><code>${parameter:+word}</code>：如果 parameter 未被设定或者是空参数，则不产生任何扩展。若 parameter 非空，word 的值将取代 parameter 的值产生扩展；然而，parameter 的值并不发生变化。</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ foo=
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="o">+</span><span class="s2">&quot;substitute value if unset&quot;</span><span class="cp">}</span>
 [me@linuxbox ~]$ foo=bar
 
@@ -261,7 +261,7 @@ bar
 
 <h4>返回变量名的扩展</h4>
 <p>shell 具有返回变量名的扩展。这种功能在相当特殊的情况下才会使用。</p>
-<div class="highlight"><pre><span></span><span class="cp">${</span><span class="err">!</span><span class="n">prefix</span><span class="o">*</span><span class="cp">}</span>
+<div class="codehilite"><pre><span></span><span class="cp">${</span><span class="err">!</span><span class="n">prefix</span><span class="o">*</span><span class="cp">}</span>
 <span class="cp">${</span><span class="err">!</span><span class="n">prefix</span><span class="err">@</span><span class="cp">}</span>
 </pre></div>
 
@@ -269,14 +269,14 @@ bar
 <p>该扩展返回当前以 prefix 开通的变量名。根据 bash 文档，这两种形式的扩展形式执行的效果一模一样。</p>
 <h4>字符串操作</h4>
 <p><code>${#parameter}</code>：扩展为 parameter 内包含的字符串的长度。如果 parameter 是 “@” 或 “*”，那么扩展的结果就是位置参数的个数。</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
 [me@linuxbox ~]$ echo &quot;&#39;<span class="nv">$foo</span>&#39; is <span class="cp">${</span><span class="c1">#foo</span><span class="cp">}</span> characters long.&quot;
 &#39;This string is long.&#39; is 20 characters long.
 </pre></div>
 
 
 <p><code>{parameter:offset}</code>和<code>{parameter:offset:length}</code>：这个扩展提取一部分字符串。扩展以 offset 字符开始，直到字符串末尾，除非 length 特别指定它。</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="mi">5</span><span class="cp">}</span>
 string is long.
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">6</span><span class="cp">}</span>
@@ -285,7 +285,7 @@ string
 
 
 <p>如果 offset 为负，默认表示从字符串末尾开始。<strong>注意，负值前必须有一个空格</strong>，以防和<code>${parameter:-word}</code>扩展混淆。length 不能小于0。</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="cp">}</span>
 long.
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="cp">}</span>
@@ -295,7 +295,7 @@ lo
 
 <p>如果参数是 “@”，扩展的结果则是从 offset 开始，length 为位置参数。</p>
 <p><code>${parameter#pattern}</code>和<code>${parameter##pattern}</code>：pattern 是一个通配符模式，“#” 去除最短匹配，”##” 去除最长匹配。</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=file.txt.zip
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ foo=file.txt.zip
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="c1">#*.</span><span class="cp">}</span>
 txt.zip
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="c1">##*.</span><span class="cp">}</span>
@@ -304,7 +304,7 @@ zip
 
 
 <p><code>${parameter%pattern}</code>和<code>${parameter%%pattern}</code>：从尾部去除。pattern 是一个通配符模式，“%” 去除最短匹配，”%%” 去除最长匹配。</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=file.txt.zip
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ foo=file.txt.zip
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">%*.</span><span class="cp">}</span>
 file.txt
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">%%*.</span><span class="cp">}</span>
@@ -317,7 +317,7 @@ file
 <p><code>${parameter/#pattern/string}</code>：要求匹配出现在字符串开头</p>
 <p><code>${parameter/%pattern/string}</code>：要求匹配出现在字符串末尾</p>
 <p><code>/string</code>可以省略，此时匹配到的字符被删除</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=JPG.JPG
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ foo=JPG.JPG
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">/</span><span class="n">JPG</span><span class="o">/</span><span class="n">jpg</span><span class="cp">}</span>
 jpg.JPG
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">//</span><span class="n">JPG</span><span class="o">/</span><span class="n">jpg</span><span class="cp">}</span>
@@ -331,13 +331,13 @@ JPG.jpg
 
 <h3>命令替换</h3>
 <p>命令替换可以把一个命令的输出作为一个扩展模式使用：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ ls -l $(which cp)
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ ls -l $(which cp)
 -rwxr-xr-x  1 root  wheel  29008 10 26  2017 /bin/cp
 </pre></div>
 
 
 <p>在早期的 shell 程序中，存在命令替换的另一种语法，bash 也支持这种格式。它用反引号代替美元符号和括号：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ ls -l `which cp`
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ ls -l `which cp`
 -rwxr-xr-x  1 root  wheel  29008 10 26  2017 /bin/cp
 </pre></div>
 
@@ -386,12 +386,12 @@ JPG.jpg
 </tbody>
 </table>
 <p>在<code>echo</code>命令中带上 -e 选项，就能够解释转义字符序列，也可以将其放在 “$''”中。下面的例子，实现一个简单的倒计时计时器：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ sleep 10; echo -e &quot;Time&#39;s up\a&quot;
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ sleep 10; echo -e &quot;Time&#39;s up\a&quot;
 </pre></div>
 
 
 <p>也可以这样做：</p>
-<div class="highlight"><pre><span></span>[me@linuxbox ~]$ sleep 10; echo -e &quot;Time&#39;s up&quot; $&#39;\a&#39;
+<div class="codehilite"><pre><span></span>[me@linuxbox ~]$ sleep 10; echo -e &quot;Time&#39;s up&quot; $&#39;\a&#39;
 </pre></div>
                 <aside>
                     <hr />

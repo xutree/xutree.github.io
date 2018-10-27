@@ -89,13 +89,13 @@
 <h2>异常处理</h2>
 <h3>throw 表达式</h3>
 <p>异常检测部分使用<code>throw</code>表达式来表示它遇到了无法处理的问题。我们说<code>throw</code>引发了异常，例如：</p>
-<div class="highlight"><pre><span></span>throw runtime_error(&quot;Data must refer to same ISBN&quot;);
+<div class="codehilite"><pre><span></span>throw runtime_error(&quot;Data must refer to same ISBN&quot;);
 </pre></div>
 
 
 <h3>try 语句块</h3>
 <p>异常处理部分使用<code>try</code>语句处理异常。<code>try</code>语句块以关键字<code>try</code>开始，并以一个或多个<code>catch</code>字句结束。<code>try</code>语句块中代码抛出的异常通常会被某个catch字句处理，这些字句称为异常处理代码。</p>
-<div class="highlight"><pre><span></span>try{
+<div class="codehilite"><pre><span></span>try{
     program-statements
 } catch (exception-declaration) {
     handler-statements
