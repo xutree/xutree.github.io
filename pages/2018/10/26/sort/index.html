@@ -78,7 +78,7 @@
 
 <p>如果目标是把 <span class="math">\(n\)</span> 个元素的序列升序排列，那么采用插入排序存在最好情况和最坏情况。最好情况就是，序列已经是升序排列了，在这种情况下，需要进行的比较操作需 <span class="math">\(n-1\)</span> 次即可。最坏情况就是，序列是降序排列，那么此时需要进行的比较共有 <span class="math">\(\frac {1}{2}n(n-1)\)</span> 次。插入排序的赋值操作是比较操作的次数减去 <span class="math">\(n-1\)</span> 次，（因为 <span class="math">\(n-1\)</span> 次循环中，每一次循环的比较都比赋值多一个，多在最后那一次比较并不带来赋值）。平均来说插入排序算法复杂度为 <span class="math">\(O(n^{2})\)</span>。因而，插入排序不适合对于数据量比较大的排序应用。但是，如果需要排序的数据量很小，例如，量级小于千；或者若已知输入元素大致上按照顺序排列，那么插入排序还是一个不错的选择。 插入排序在工业级库中也有着广泛的应用，在 STL 的 sort 算法和 stdlib 的 qsort 算法中，都将插入排序作为快速排序的补充，用于少量元素的排序（通常为8个或以下）。</p>
 <h2>归并排序</h2>
-<p>归并排序（英语：Merge sort，或 mergesort），是创建在归并操作上的一种有效的排序算法，效率为 <span class="math">\(O(n\log n)}\)</span>。1945年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。</p>
+<p>归并排序（英语：Merge sort，或 mergesort），是创建在归并操作上的一种有效的排序算法，效率为 <span class="math">\(O(n\log n)\)</span>。1945年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。</p>
 <div class="highlight"><pre><span></span><span class="nt">template</span> <span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">Iterator</span><span class="o">&gt;</span>
 <span class="nt">void</span> <span class="nt">merge</span><span class="o">(</span><span class="nt">Iterator</span> <span class="nt">begin</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">end</span><span class="o">,</span> <span class="nt">Iterator</span> <span class="nt">middle</span><span class="o">)</span> <span class="p">{</span>
         <span class="err">typedef</span> <span class="err">typename</span> <span class="n">std</span><span class="p">:</span><span class="o">:</span><span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">Iterator</span><span class="o">&gt;::</span><span class="n">value_type</span>
@@ -253,7 +253,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-10-26T23:08:38+08:00">2018-10-26 23:08:38</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-27 21:07:32</div>
+                    <div class="last_updated">2018-10-27 22:28:38</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
