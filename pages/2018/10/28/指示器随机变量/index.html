@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="Pelican, 教程, " />
-    <title>安装 Pelican  · You Know Nothing
+<meta name="keywords" content="概率, 数学, 其他, " />
+    <title>指示器随机变量  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -54,7 +54,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/04/在mac上安装Pelican/"> 安装 Pelican  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/28/指示器随机变量/"> 指示器随机变量  </a></h1>
         </header>
     </div>
 
@@ -62,98 +62,117 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <h2>安装 Pelican</h2>
-<p><a href="https://blog.getpelican.com/">Pelican</a>目前支持最好的是 Python 2.7 和 3.3+，早期版本的 Python 已经不支持了。有许多不同的方法可以安装 Pelican，最简单的方法是使用 pip，在终端输入：</p>
-<div class="highlight"><pre><span></span>    pip install pelican
-</pre></div>
+                <p>指示器随机变量为概率和期望之间的转换提供了一个便利的方法。给定一个样本空间 <span class="math">\(S\)</span> 和一个事件 <span class="math">\(A\)</span>，那么事件 <span class="math">\(A\)</span> 对应的<strong>指示器随机变量</strong> <span class="math">\(I\{A\}\)</span> 定义为：</p>
+<div class="math">$$\text{I}\{A\}=\cases{
+1  &amp; 如果 A 发生 \\
+0 &amp; 如果 A 不发生
+}$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
 
-<p>上面是最简单的方法，官方更为推荐的方法是利用 <a href="http://www.virtualenv.org/">virtualenv</a> 为 Pelican 建立一个虚拟环境。假设你已经安装好了 virtualenv，下面打开终端，开始为 Pelican 新建一个虚拟环境：</p>
-<div class="highlight"><pre><span></span>    virtualenv ~/virtualenv/pelican
-    cd ~/virtualenv/pelican
-    source bin/activate
-</pre></div>
-
-
-<p>当虚拟环境被创建并激活以后，然后利用<code>pip install pelican</code>安装 Pelican。</p>
-<p>当 Pelican 安装好以后，你可以在终端输入<code>pelican --help</code>查看使用选项。</p>
-<h2>可选的 Packages</h2>
-<p>如果你计划用 <a href="http://pypi.python.org/pypi/Markdown">Markdown</a> 来书写你的网页的话，你需要安装 Markdown：<code>pip install Markdown</code></p>
-<p>通过设置 Pelican 的 pelicanconf.py 文件，你可以对生成的 HTML 文件启用增强语法。但是首先你需要安装 <a href="https://pypi.org/project/typogrify/">Typogrify</a>：<code>pip install typorify</code></p>
-<h2>更新</h2>
-<p>更新到最新的稳定版本，使用：
-<code>pip install --upgrade pelican</code></p>
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
                 <aside>
                     <hr />
-                    <nav class="newer">
+                    <nav class="older">
                         <h1>
-                            <font color="#771515"><em>NEWER</em></font>
+                            <font color="#771515"><em>OLDER</em></font>
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/04/X3DOM第一课/">
-                                    X3DOM 第一课
+                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">
+                                    最大子数组问题
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/04/X3DOM-hello/">
-                                    Hello，X3DOM！
+                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">
+                                    排序算法
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/">
-                                    X3DOM，HTML，CSS 和 JavaScript
+                                <a href="https://xutree.github.io/pages/2018/10/23/矩阵求导/">
+                                    矩阵微积分
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/">
-                                    X3DOM 图像和视频纹理
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">
+                                    C++ Primer 第十七章 标准库特殊设施
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">
-                                    HTML 入门
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">
+                                    C++ Primer 第十六章 模板与泛型编程
                                 </a>
                             </li>
                         </ul>
                     </nav>
-                    <!-- Gitalk 评论 start  -->
-
-                    <!-- Link Gitalk 的支持文件  -->
-                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-                    <div id="gitalk-container"></div>
-                    <script type="text/javascript">
-                        var dateTime = Date.now();
-                        var timestamp = Math.floor(dateTime / 1000);
-                        var gitalk = new Gitalk({
-
-                            // gitalk的主要参数
-                            clientID: '93f43349e9fd3154bfad',
-                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
-                            repo: 'xutree.github.io',
-                            owner: 'xutree',
-                            admin: ['xutree'],
-                            id: String(timestamp)
-
-                        });
-                        gitalk.render('gitalk-container');
-                    </script> -->
-                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-10-04T10:20:00+08:00">2018-10-04 10:20:00</time>
+                    <time pubdate="pubdate" datetime="2018-10-28T22:54:17+08:00">2018-10-28 22:54:17</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-06 21:15:21</div>
+                    <div class="last_updated">2018-10-28 22:54:17</div>
                     <h4>分类</h4>
-                    <a class="category-link" href="/categories.html#教程-ref">教程</a>
+                    <a class="category-link" href="/categories.html#其他-ref">其他</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
-                        <li><a href="/tags.html#Pelican-ref">Pelican
+                        <li><a href="/tags.html#概率-ref">概率
                                 <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#数学-ref">数学
+                                <span>2</span>
 </a></li>
                     </ul>
 
