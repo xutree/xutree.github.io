@@ -65,7 +65,7 @@
 <h2>暴力求解</h2>
 <p>先找出从第1个元素开始的最大子数组，而后再从第2个元素开始找出从第2个元素开始的最大子数组，依次类推，比较得出最大的子数组。</p>
 <p>时间复杂度 <span class="math">\(O(n^2)\)</span>。</p>
-<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
 
 <span class="kr">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kr">int</span><span class="p">,</span> <span class="kr">int</span><span class="p">,</span> <span class="kr">int</span><span class="o">&gt;</span> <span class="n">array_info_message</span><span class="p">;</span>
 <span class="n">array_info_message</span> <span class="nf">find_max_subarray</span><span class="p">(</span><span class="kr">int</span> <span class="n">a</span><span class="p">[],</span> <span class="kr">int</span> <span class="n">len</span><span class="p">)</span> <span class="p">{</span>
@@ -91,7 +91,7 @@
 
 <h2>分治算法</h2>
 <p>时间复杂度 <span class="math">\(O(nlgn)\)</span>。</p>
-<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
 
 <span class="kr">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kr">int</span><span class="p">,</span> <span class="kr">int</span><span class="p">,</span> <span class="kr">int</span><span class="o">&gt;</span> <span class="n">array_info_message</span><span class="p">;</span>
@@ -149,7 +149,7 @@
 <h2>动态规划：Kadane 算法</h2>
 <p>Kadane 算法扫描一次整个数列的所有数值，在每一个扫描点计算以该点数值为结束点的子数列的最大和（正数和）。该子数列由两部分组成：以前一个位置为结束点的最大子数列、该位置的数值。因为该算法用到了“最佳子结构”（以每个位置为终点的最大子数列都是基于其前一位置的最大子数列计算得出）。</p>
 <p>Kadane 算法时间复杂度为 <span class="math">\(O(n)\)</span>，空间复杂度为 <span class="math">\(O(1)\)</span>。</p>
-<div class="codehilite"><pre><span></span><span class="nt">array_info_message</span> <span class="nt">find_max_subarray</span><span class="o">(</span><span class="nt">int</span> <span class="nt">a</span><span class="cp">[]</span><span class="o">,</span> <span class="nt">int</span> <span class="nt">n</span><span class="o">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nt">array_info_message</span> <span class="nt">find_max_subarray</span><span class="o">(</span><span class="nt">int</span> <span class="nt">a</span><span class="cp">[]</span><span class="o">,</span> <span class="nt">int</span> <span class="nt">n</span><span class="o">)</span> <span class="p">{</span>
         <span class="err">int</span> <span class="err">i,</span> <span class="err">cur_left,</span> <span class="err">cur_right,</span> <span class="err">max_left,</span> <span class="err">max_right</span><span class="p">;</span>
         <span class="err">int</span> <span class="err">cur_max,</span> <span class="err">max</span><span class="p">;</span>
         <span class="err">cur_max</span> <span class="err">=</span> <span class="err">max</span> <span class="err">=</span> <span class="err">max_left</span> <span class="err">=</span> <span class="err">max_right</span> <span class="err">=</span> <span class="err">cur_left</span> <span class="err">=</span> <span class="err">cur_right</span> <span class="err">=</span> <span class="err">0</span><span class="p">;</span>
@@ -175,7 +175,7 @@
 
 <p>注意，对于数组元素全为负的情况，所以 Kadane 算法无法给出正确答案。</p>
 <p>若我们只需要求最大和，则有如下简洁解法：</p>
-<div class="codehilite"><pre><span></span><span class="nt">int</span> <span class="nt">maxSubArray</span><span class="o">(</span><span class="nt">int</span> <span class="nt">a</span><span class="cp">[]</span><span class="o">,</span> <span class="nt">int</span> <span class="nt">n</span><span class="o">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nt">int</span> <span class="nt">maxSubArray</span><span class="o">(</span><span class="nt">int</span> <span class="nt">a</span><span class="cp">[]</span><span class="o">,</span> <span class="nt">int</span> <span class="nt">n</span><span class="o">)</span> <span class="p">{</span>
         <span class="err">int</span> <span class="err">max</span> <span class="err">=</span> <span class="n">std</span><span class="p">:</span><span class="o">:</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="n">int</span><span class="o">&gt;::</span><span class="nf">min</span><span class="p">();</span>
         <span class="err">int</span> <span class="err">sum</span> <span class="err">=</span> <span class="err">0</span><span class="p">;</span>
         <span class="err">for</span> <span class="err">(int</span> <span class="err">i</span> <span class="err">=</span> <span class="err">0</span><span class="p">;</span> <span class="err">i</span> <span class="err">&lt;</span> <span class="err">n</span><span class="p">;</span> <span class="err">i++)</span> <span class="err">{</span>

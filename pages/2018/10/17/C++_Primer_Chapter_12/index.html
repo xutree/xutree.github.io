@@ -74,7 +74,7 @@
 <p>为了更容易地使用动态内存，新的标准提供了两种智能指针(smart pointer)类型来管理动态对象。<code>shared_ptr</code>允许多个指针指向同一个对象；<code>unique_ptr</code>则“独占”所指向的对象。标准库还定义了一个名为<code>weak_ptr</code>的伴随类，指向<code>shared_ptr</code>所管理的对象。这三种类型都定义在<code>memory</code>头文件中。</p>
 <h3>shared_ptr 类</h3>
 <p>类似<code>vector</code>智能指针也是模板：</p>
-<div class="codehilite"><pre><span></span>shared_ptr&lt;string&gt; p1;  //shared_ptr，可以指向 string
+<div class="highlight"><pre><span></span>shared_ptr&lt;string&gt; p1;  //shared_ptr，可以指向 string
 shared_ptr&lt;list&lt;int&gt;&gt; p2;   //shared_ptr,可以指向 int 的 list
 </pre></div>
 
@@ -84,7 +84,7 @@ shared_ptr&lt;list&lt;int&gt;&gt; p2;   //shared_ptr,可以指向 int 的 list
 <p><img alt="智能指针操作" src="https://xutree.github.io/images/c++12-1.jpg"></p>
 <h4>make_shared 函数</h4>
 <p>最安全的分配和使用动态内存的方法是调用一个名为<code>make_shared</code>的标准库函数。此函数在动态内存中分配一个对象并初始化它，返回指向此对象的<code>shared_ptr</code>。与智能指针一样，<code>make_shared</code>也定义在<code>memory</code>头文件中。</p>
-<div class="codehilite"><pre><span></span>//指向一个值为42的 int 的 shared_ptr
+<div class="highlight"><pre><span></span>//指向一个值为42的 int 的 shared_ptr
 shared_ptr&lt;int&gt; p3 = make_shared&lt;int&gt;(42);
 //p4 指向一个值为”999999999”的 string
 shared_ptr&lt;string&gt; p4 = make_shared&lt;string&gt;(10,&#39;9&#39;);
@@ -95,7 +95,7 @@ shared_ptr&lt;int&gt; p5 = make_shared&lt;int&gt;();
 
 <p>类似顺序容器的<code>emplace</code>成员，<code>make_shared</code>用其参数来构造给定类型的对象。例如，调用<code>make_shared&lt;string&gt;</code>时传递的参数必须与<code>string</code>的某个构造函数相匹配。</p>
 <p>当然，我们通常用<code>auto</code>定义一个对象来保存<code>make_shared</code>的结果，这种方式简单：</p>
-<div class="codehilite"><pre><span></span>//p6 指向一个动态分配的空 vector&lt;string&gt;
+<div class="highlight"><pre><span></span>//p6 指向一个动态分配的空 vector&lt;string&gt;
 auto p6 = make_shared&lt;vector&lt;string&gt;&gt;();
 </pre></div>
 
@@ -104,7 +104,7 @@ auto p6 = make_shared&lt;vector&lt;string&gt;&gt;();
 <p>当进行拷贝或赋值操作时，每个<code>shared_ptr</code>都会记录有多少个其他<code>shared_ptr</code>指向相同的对象。</p>
 <p>我们可以认为每个<code>shared_ptr</code>都有一个关联的计数器，通常称其为引用计数(reference count)。无论何时我们拷贝一个<code>shared_ptr</code>，计数器都会递增；当我们给<code>shared_ptr</code>赋予一个新值或是<code>shared_ptr</code>被销毁时，计算器就会递减。
 一旦一个<code>shared_ptr</code>的计数器变为0，它就会自动释放自己所管理的对象。</p>
-<div class="codehilite"><pre><span></span>auto r = make_shared&lt;int&gt;(42);  //r 指向的 int 只有一个引用者
+<div class="highlight"><pre><span></span>auto r = make_shared&lt;int&gt;(42);  //r 指向的 int 只有一个引用者
 r = q;  //给 r 赋值，令它指向另一个地址
     //递增 q 指向的对象的引用计数
     //递减 r 原来指向对象的引用计数
@@ -118,12 +118,12 @@ r = q;  //给 r 赋值，令它指向另一个地址
 <p>C++ 语言定义了两个运算符来分配和释放动态内存。运算符<code>new</code>分配内存，<code>delete</code>释放<code>new</code>分配的内存。相对于智能指针，使用这两个运算符管理内存非常容易出错。</p>
 <h4>使用 new 动态分配和初始化对象</h4>
 <p>在自由空间分配的内存是无名的，因此<code>new</code>无法为其分配的对象命名，而是返回一个指向该对象的指针：</p>
-<div class="codehilite"><pre><span></span>int *pi = new int;    //pi 指向一个动态分配的、未初始化的无名对象
+<div class="highlight"><pre><span></span>int *pi = new int;    //pi 指向一个动态分配的、未初始化的无名对象
 </pre></div>
 
 
 <p>默认情况下，动态分配的对象是默认初始化的，这意味着内置类型或组合类型的对象的值将是未定义的，而类类型对象将用默认构造函数进行初始化：</p>
-<div class="codehilite"><pre><span></span>string *ps = new string;    //初始化为空 string
+<div class="highlight"><pre><span></span>string *ps = new string;    //初始化为空 string
 int *pi = new int;  //pi 指向一个未初始化的 int
 
 //可以使用直接初始化方式来初始化一个动态分配的对象
@@ -135,7 +135,7 @@ vector&lt;int&gt; *pv = new vector&lt;int&gt;{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 
 <p>也可以对动态分配的对象进行值初始化，只需在类型名之后跟一对空括号即可：</p>
-<div class="codehilite"><pre><span></span>string *ps1 = new string;   //默认初始化为空 string
+<div class="highlight"><pre><span></span>string *ps1 = new string;   //默认初始化为空 string
 string *ps = new string();  //值初始化为空 string
 int *pi1 = new int;     //默认初始化；*pi1 的值未定义
 int *pi2 = new int();       //值初始化为0；*pi2 为0
@@ -144,7 +144,7 @@ int *pi2 = new int();       //值初始化为0；*pi2 为0
 
 <p>如果我们提供了一个括号包围的初始化器，就可以用<code>auto</code>从此初始化器推断我们想要分配的对象的类型。但是由于编译器要用初始化器类型来推断分配的类型，只有当括号中仅有单一初始化器时才可以使用<code>auto</code>（这也意味着不能用<code>auto</code>动态分配数组）。</p>
 <h4>动态分配的 const 对象</h4>
-<div class="codehilite"><pre><span></span>//分配并初始化一个 const int
+<div class="highlight"><pre><span></span>//分配并初始化一个 const int
 const int *pci = new const int(1024);
 //分配并默认初始化一个 const 的空 string
 const string *pcs =new const string;
@@ -154,7 +154,7 @@ const string *pcs =new const string;
 <p>类似其他任何<code>const</code>对象，一个动态分配的<code>const</code>对象必须进行初始化。对于一个定义了默认构造函数的类类型，其<code>const</code>动态对象可以隐式初始化，而其他类型的对象就必须显式初始化。由于分配的对象是<code>const</code>的，<code>new</code>返回的指针是一个指向<code>const</code>的指针。</p>
 <h4>内存耗尽</h4>
 <p>默认情况下，如果<code>new</code>不能分配所要求的内存空间，它会抛出一个类型为<code>bad_alloc</code>的异常。我们可以改变使用<code>new</code>的方式来阻止它抛出异常：</p>
-<div class="codehilite"><pre><span></span>//若果分配失败，new返回一个空指针
+<div class="highlight"><pre><span></span>//若果分配失败，new返回一个空指针
 int *p1 = new int;  //如果分配失败，new 抛出std::bad_alloc
 int *p2 = new (nothrow) int;    //如果分配失败，new 返回一个空指针
 </pre></div>
@@ -172,19 +172,19 @@ int *p2 = new (nothrow) int;    //如果分配失败，new 返回一个空指针
 <p>如前所述，如果我们不初始化一个智能指针，他就会被初始化为一个空指针。如下表所示，我们还可以用<code>new</code>返回的指针来初始化智能指针：</p>
 <p><img alt="智能指针其他操作" src="https://xutree.github.io/images/c++12-2.jpg"></p>
 <p><img alt="智能指针其他操作" src="https://xutree.github.io/images/c++12-3.jpg"></p>
-<div class="codehilite"><pre><span></span>shared_ptr&lt;double&gt; p1;  //shared_ptr 可以指向一个 double
+<div class="highlight"><pre><span></span>shared_ptr&lt;double&gt; p1;  //shared_ptr 可以指向一个 double
 shared_ptr&lt;int&gt; p2(new int (42));   //p2 指向一个值为42的 int
 </pre></div>
 
 
 <p>接受指针参数的智能指针构造函数是<code>explicit</code>的。因此，我们不能将一个内置指针隐式转换为一个智能指针，必须使用直接初始化形式来初始化一个智能指针：</p>
-<div class="codehilite"><pre><span></span>shared_ptr&lt;int&gt; p1 = new int(1024); //错误：必须使用直接初始化形式
+<div class="highlight"><pre><span></span>shared_ptr&lt;int&gt; p1 = new int(1024); //错误：必须使用直接初始化形式
 shared_ptr&lt;int&gt; p2(new int (1024)); //正确：使用了直接初始化
 </pre></div>
 
 
 <p>出于相同的原因，一个返回<code>shared_ptr</code>的函数不能在其返回语句中隐式转换一个普通指针：</p>
-<div class="codehilite"><pre><span></span>shared_ptr&lt;int&gt; clone(int p){
+<div class="highlight"><pre><span></span>shared_ptr&lt;int&gt; clone(int p){
     return new int(p);  //错误：隐式转换为 shared_ptr&lt;int&gt;
 }
 //我们必须将 shared_ptr 显式绑定到一个想要返回的指针上：
@@ -203,13 +203,13 @@ shared_ptr&lt;int&gt; clone(int p){
 <h3>unique_ptr 指针</h3>
 <p>一个<code>unique_ptr</code>“拥有”它所指向的对象。与<code>shared_ptr</code>不同，某个时刻只能有一个<code>unique_ptr</code>指向一个给定对象。</p>
 <p>与<code>shared_ptr</code>不同，没有类似<code>make_shared</code>的标准库函数返回一个<code>unique_ptr</code>。当我们定义一个<code>unique_ptr</code>时，需要将其绑定到一个<code>new</code>返回的指针上。类似<code>shared_ptr</code>，初始化<code>unique_ptr</code>必须采用直接初始化形式：</p>
-<div class="codehilite"><pre><span></span>unique_ptr&lt;double&gt; p1;  //可以指向一个 double 的 unique_ptr
+<div class="highlight"><pre><span></span>unique_ptr&lt;double&gt; p1;  //可以指向一个 double 的 unique_ptr
 unique_ptr&lt;int&gt; p2(new int(42));    //p2 指向一个值为42的 int
 </pre></div>
 
 
 <p>由于一个<code>unique_ptr</code>拥有它指向的对象，因此<code>unique_ptr</code>不支持普通的拷贝或赋值操作：</p>
-<div class="codehilite"><pre><span></span>unique_ptr&lt;string&gt; p1(new string(&quot;Stegosaurus&quot;);
+<div class="highlight"><pre><span></span>unique_ptr&lt;string&gt; p1(new string(&quot;Stegosaurus&quot;);
 unique_ptr&lt;string&gt; p2(p1);  //错误：unique_ptr 不支持拷贝
 unique_ptr&lt;string&gt; p3;
 p3 = p2;    //错误：unique_ptr 不支持赋值
@@ -219,7 +219,7 @@ p3 = p2;    //错误：unique_ptr 不支持赋值
 <p><code>unique_ptr</code>特有的操作：</p>
 <p><img alt="unique_ptr特有的操作" src="https://xutree.github.io/images/c++12-6.jpg"></p>
 <p>虽然我不能拷贝或赋值<code>unique_ptr</code>，但可以通过调用<code>release</code>或<code>reset</code>将指针的所有权从一个（非<code>const</code>）<code>unique_ptr</code>转移给另一个<code>unique</code>：</p>
-<div class="codehilite"><pre><span></span>//将所有权从 p1（指向 string Stegosaurus）转移给 p2
+<div class="highlight"><pre><span></span>//将所有权从 p1（指向 string Stegosaurus）转移给 p2
 unique_ptr&lt;string&gt; p2(p1.release());    //release 将 p1 置为空
 unique_ptr&lt;string&gt; p3(new string(&quot;Trex&quot;));
 //将所有权从 p3 转移给 p2
@@ -230,7 +230,7 @@ p2.reset(p3.release()); //reset 释放了 p2 原来指向的内存
 <p>调用<code>release</code>会切断<code>unique_ptr</code>和它原来管理的对象间的联系。<code>release</code>返回的指针通常被用来初始化另一个智能指针或给另一个智能指针赋值。</p>
 <h4>传递 unique_ptr 参数和返回 unique_ptr</h4>
 <p>不能拷贝<code>unique_ptr</code>的规则有一个例外：我们可以拷贝或赋值一个将要被销毁的<code>unique_ptr</code>。最常见的例子是从函数返回一个<code>unique_ptr</code>：</p>
-<div class="codehilite"><pre><span></span>unique_ptr&lt;int&gt; clone(int p){
+<div class="highlight"><pre><span></span>unique_ptr&lt;int&gt; clone(int p){
     //正确：从int*创建一个unique_ptr&lt;int&gt;
     return unique_ptr&lt;int&gt;(new int(p));
 }
@@ -246,7 +246,7 @@ unique_ptr&lt;int&gt; clone(int p){
 <p>对于两段代码，编译器都知道要返回的对象将要销毁。在此情况下，编译器执行一种特殊的“拷贝”。</p>
 <h4>向 unique_ptr 传递删除器</h4>
 <p>类似<code>shared_ptr</code>，<code>unique_ptr</code>默认情况下用<code>delete</code>释放它指向的对象。与<code>shared_ptr</code>一样，我们可以重载一个<code>unique_ptr</code>中默认的删除器。与重载关联容器的比较操作类似，我们必须在尖括号中<code>unique_ptr</code>指向类型之后提供删除器类型。在创建或<code>reset</code>一个这种<code>unique_ptr</code>类型对象时，必须提供一个指定类型的可调用对象（删除器）：</p>
-<div class="codehilite"><pre><span></span>//p指向一个类型为 objT 的对象，并使用一个类型为 delT 的对象释放 objT 对象
+<div class="highlight"><pre><span></span>//p指向一个类型为 objT 的对象，并使用一个类型为 delT 的对象释放 objT 对象
 //它会调用一个名为 fcn 的 delT 类型对象
 unique_ptr&lt;objT, delT&gt; p(new objT,fcn);
 
@@ -269,7 +269,7 @@ void f(destination &amp;d /*其他需要的参数*/)
 <p><code>weak_ptr</code>操作：</p>
 <p><img alt="weak_ptr操作" src="https://xutree.github.io/images/c++12-7.jpg"></p>
 <p>当创建一个<code>weak_ptr</code>时，要用一个<code>shared_ptr</code>来初始化它：</p>
-<div class="codehilite"><pre><span></span>auto p = make_shared&lt;int&gt;(42);
+<div class="highlight"><pre><span></span>auto p = make_shared&lt;int&gt;(42);
 weak_ptr&lt;int&gt; wp(p);    //wp 弱共享 p；p 的引用计数未改变
 </pre></div>
 
@@ -280,13 +280,13 @@ weak_ptr&lt;int&gt; wp(p);    //wp 弱共享 p；p 的引用计数未改变
 标准库中包含一个名为<code>allocator</code>的类，允许我们将分配和初始化分离。使用<code>allocator</code>通常会提供更好的性能和更灵活的内存管理能力。</p>
 <p>大多数应用应该使用标准库容器而不是动态分配的数组。使用容器更为简单、更不容易出现内存管理错误并且可能有更好的性能。</p>
 <h3>new 和数组</h3>
-<div class="codehilite"><pre><span></span>//调用 get_size 确定分配多少个 int
+<div class="highlight"><pre><span></span>//调用 get_size 确定分配多少个 int
 int *pia = new int[get_size];   //pia 指向第一个 int
 //方括号中的大小必须是整型，但不必是常量
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>typedef int arrT[42];   //arrT 表示42个 int 的数组类型
+<div class="highlight"><pre><span></span>typedef int arrT[42];   //arrT 表示42个 int 的数组类型
 int *p = new arrT;  //
 </pre></div>
 
@@ -297,7 +297,7 @@ int *p = new arrT;  //
 <p><strong>要记住我们所说的动态数组并不是数组类型，这是很重要的。</strong></p>
 <h4>初始化动态分配对象的数组</h4>
 <p>默认情况下，<code>new</code>分配的对象，不管是单个分配的还是数组中的，都是默认初始化的。可以对数组中的元素进行值初始化，方法是在大小之后跟一对空括号。</p>
-<div class="codehilite"><pre><span></span>int *pia = new int[10]; //10个未初始化的 int
+<div class="highlight"><pre><span></span>int *pia = new int[10]; //10个未初始化的 int
 int *pia2 = new int[10]();  //10个值初始化为0的 int
 string *psa = new string[10];   //10个空 string
 string *psa2 = new string[10]();    //10个空 string
@@ -312,14 +312,14 @@ string *psa3 = new string[10]{&quot;a&quot;, &quot;an&quot;, &quot;the&quot;, st
 <p>如果初始化器数目大于元素数目，则<code>new</code>表达式失败，不会分配任何内存，并抛出<code>bad_array_new_length</code>的异常，类似于<code>bad_alloc</code>，此类型定义在头文件<code>new</code>中。</p>
 <h4>动态分配一个空数组是合法的</h4>
 <p>我们在使用<code>new</code>分配一个动态数组时，可以指定分配数组的大小为0，这样做是合法的：</p>
-<div class="codehilite"><pre><span></span>char *pc = new char(0);
+<div class="highlight"><pre><span></span>char *pc = new char(0);
 </pre></div>
 
 
 <p>此时<code>new</code>返回一个与其他<code>new</code>表达式返回类型都不同的指针类型， 该指针不能解引用，就像一个数组的尾后迭代器一样。</p>
 <h4>释放动态数组</h4>
 <p>为了释放动态数组，我们使用一种特殊形式的<code>delete</code>——在指针前加上一个空括号对：</p>
-<div class="codehilite"><pre><span></span>delete p;    //p 必须指向一个动态分配的对象或为空
+<div class="highlight"><pre><span></span>delete p;    //p 必须指向一个动态分配的对象或为空
 delete [] pa;  //pa 必须指向一个动态分配的数组或为空
 </pre></div>
 
@@ -329,26 +329,26 @@ delete [] pa;  //pa 必须指向一个动态分配的数组或为空
 <p>前面我们讲到， 可以使用<code>typedef</code>来给动态数组起一个别名，这样在<code>new</code>一个动态数组时就不必添加方括号<code>[]</code>，即使这样，我们在释放一个动态数组时，仍然需要添加方括号<code>[]</code>，因为它本质上还是一个动态数组。</p>
 <h4>智能指针和动态数组</h4>
 <p><code>unique_ptr</code>智能指针有个可以管理<code>new</code>分配的动态数组的版本，为了使用一个<code>unique_ptr</code>来管理动态数组，需要在对象类型后加一个空方括号<code>[]</code>:</p>
-<div class="codehilite"><pre><span></span>unique_ptr&lt;int[]&gt; up(new int[10]());
+<div class="highlight"><pre><span></span>unique_ptr&lt;int[]&gt; up(new int[10]());
 up.release(); // 自动调用 delete [] 销毁其指针
 </pre></div>
 
 
 <p>当一个<code>unique_ptr</code>指向一个数组时，我们不能使用点和箭头成员运算符，毕竟，<code>unique_ptr</code>指向的是一个数组而不是单个对象。不过，我们可以使用下表运算符来访问数组中的元素：</p>
-<div class="codehilite"><pre><span></span>for (size_t i = 0; i &lt; 10; ++i)
+<div class="highlight"><pre><span></span>for (size_t i = 0; i &lt; 10; ++i)
     up[i] = i;
 </pre></div>
 
 
 <p><code>shared_ptr</code>不支持动态数组，如果希望使用<code>shared_ptr</code>管理一个动态数组，我们需要提供自己的删除器：</p>
-<div class="codehilite"><pre><span></span>shared_ptr&lt;int&gt; sp(new int[10], [](int* p){ delete [] p; });
+<div class="highlight"><pre><span></span>shared_ptr&lt;int&gt; sp(new int[10], [](int* p){ delete [] p; });
 sp.reset();
 </pre></div>
 
 
 <p>我们在这个例子中使用<code>lambda</code>做为<code>shared_ptr</code>的删除器，如果我们不提供删除器，这样的行为是未定义的，因为默认情况下<code>shared_ptr</code>使用<code>delete</code>来释放内存，使用<code>delete</code>来释放一个动态数组的定位是未定义的。</p>
 <p><code>shared_ptr</code>不支持动态数组这一特性会影响我们访问数组中的元素：</p>
-<div class="codehilite"><pre><span></span>for (size_t i = 0; i != 10; ++i)
+<div class="highlight"><pre><span></span>for (size_t i = 0; i != 10; ++i)
     *(sp.get() + i) = i;
 </pre></div>
 
@@ -357,7 +357,7 @@ sp.reset();
 <h3>allocator 类</h3>
 <p>标准库<code>allocator</code>类定义在头文件<code>memory</code>中。它帮助我们将内存分配和构造分离开来，它分配的内存是原始的、未构造的。</p>
 <p>类似<code>vector</code>，<code>allocator</code>也是一个模板类，我们在定义一个<code>allocator</code>类类型的时候需要制定它要分配内存的类型，它会根据给定的对象类型来确定恰当的内存大小和对齐位置：</p>
-<div class="codehilite"><pre><span></span>allocator&lt;string&gt; alloc;
+<div class="highlight"><pre><span></span>allocator&lt;string&gt; alloc;
 auto const p = alloc.allocate(n); // 分配 n 个未初始化的 string
 </pre></div>
 
@@ -394,7 +394,7 @@ auto const p = alloc.allocate(n); // 分配 n 个未初始化的 string
 </tbody>
 </table>
 <h4>allocator 分配未构造的内存</h4>
-<div class="codehilite"><pre><span></span>auto q = p; //q 指向最后构造的元素之后的位置
+<div class="highlight"><pre><span></span>auto q = p; //q 指向最后构造的元素之后的位置
 alloc.construct(q++);   //*q 为空字符串
 alloc.construct(q++, 10, &#39;c&#39;);  //*q 为cccccccccc
 alloc.construct(q++, &quot;hi&quot;); //*q 为hi
@@ -403,13 +403,13 @@ alloc.construct(q++, &quot;hi&quot;); //*q 为hi
 
 <p>为了使用<code>allocate</code>返回的内存，我们必须用<code>construct</code>构造对象。使用未构造的内存，其行为是未定义的。</p>
 <p>当我们用完对象后，必须对每个构造的元素调用<code>destroy</code>来销毁它们。函数<code>destroy</code>接受一个指针，对指向的对象执行析构函数：</p>
-<div class="codehilite"><pre><span></span>while(q != p)
+<div class="highlight"><pre><span></span>while(q != p)
     alloc.destroy(--q); //释放我们真正构造的 string
 </pre></div>
 
 
 <p>一旦元素被销毁后，就可以重新使用这部分内存来保存其他<code>string</code>，也可以将其归还给系统。释放内存通过调用<code>deallocate</code>来完成：</p>
-<div class="codehilite"><pre><span></span>alloc.deallocate(p, n);
+<div class="highlight"><pre><span></span>alloc.deallocate(p, n);
 //传递给 deallocate 的指针不能为空，它必须指向由 allocate 分配的内存
 //传递给 deallcoate 的大小参数必须与调用 allocate 分配内存时提供的大小参数具有一样的值
 </pre></div>
@@ -445,7 +445,7 @@ alloc.construct(q++, &quot;hi&quot;); //*q 为hi
 </tbody>
 </table>
 <p>这些函数在给定目的位置创建元素，而不是由系统分配内存给他们。</p>
-<div class="codehilite"><pre><span></span>vector&lt;int&gt; vec{0, 1, 2, 3, 4, 5};
+<div class="highlight"><pre><span></span>vector&lt;int&gt; vec{0, 1, 2, 3, 4, 5};
 auto p = alloc.allocate(vec.size() * 2);
 auto q = uninitialized_copy(vec.begin(), vec.end(), p);
 uninitialize_fill_n(q, vec.size(), 42);

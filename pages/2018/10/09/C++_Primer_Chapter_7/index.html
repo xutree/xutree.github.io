@@ -75,7 +75,7 @@
 <p>编译器分两步处理类：首先编译成员的声明，然后才轮到成员函数体（如果有的话）。因此，成员函数体可以随意使用类中的其他成员而无须在意这些成员出现的顺序。</p>
 <p>编译器处理完类中的全部声明后才会处理成员函数的定义。</p>
 <p>这种两阶段的处理方式只适用于成员函数中使用的名字。声明中使用的名字，包括返回类型或者参数列表中使用的名字，都必须在使用前确保可见。如果某个成员的声明使用了类中尚未出现的名字，则编译器将会在定义该类的作用域中继续查找。</p>
-<div class="codehilite"><pre><span></span><span class="nx">typedef</span> <span class="kr">double</span> <span class="nx">Money</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nx">typedef</span> <span class="kr">double</span> <span class="nx">Money</span><span class="p">;</span>
 <span class="kt">string</span> <span class="nx">bal</span><span class="p">;</span>
 <span class="kr">class</span> <span class="nx">Account</span> <span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
@@ -104,7 +104,7 @@
 <p>构造函数初始值列表只说明用于初始化成员的值。成员的初始化顺序与它们在类定义中出现顺序一致。</p>
 <h4>委托构造函数</h4>
 <p>一个委托构造函数使用它所属类的其他构造函数执行它自己的初始化过程，或者说它把它自己的一些（或者全部）职责委托给了其他构造函数。</p>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">Sales_data</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Sales_data</span> <span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">// 非委托构造函数</span>
     <span class="nx">Sales_data</span><span class="p">(</span><span class="nx">std</span><span class="o">::</span><span class="kt">string</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">unsigned</span> <span class="nx">cnt</span><span class="p">,</span> <span class="kr">double</span> <span class="nx">price</span><span class="p">)</span> <span class="o">:</span>
@@ -137,7 +137,7 @@
 <h3>返回 *this 的成员函数</h3>
 <p>一个<code>const</code>成员函数如果以引用的方式返回*this，那么它的返回类型将是常量引用。</p>
 <p>基于<code>const</code>的重载：</p>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">Screen</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Screen</span> <span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">// 根据对象是否是 const 重载 display 函数</span>
     <span class="nx">Screen</span> <span class="o">&amp;</span><span class="nx">display</span><span class="p">(</span><span class="nx">std</span><span class="o">::</span><span class="nx">ostream</span> <span class="o">&amp;</span><span class="nx">os</span><span class="p">)</span>
@@ -166,7 +166,7 @@
 <p>只能在类内声明构造函数时使用<code>explicit</code>关键字，在类外部定义时不应重复。</p>
 <p><code>explicit</code>构造函数只能用于直接初始化。</p>
 <p>尽管编译器不会将<code>explicit</code>的构造函数用于隐式转换过程，但是我们可以使用这样的构造函数显式地强制类型转换：</p>
-<div class="codehilite"><pre><span></span>item.combine(static_cast&lt;Sales_data&gt;(cin));
+<div class="highlight"><pre><span></span>item.combine(static_cast&lt;Sales_data&gt;(cin));
 </pre></div>
 
 
@@ -179,7 +179,7 @@
 <li>没有基类，也没有虚函数</li>
 </ul>
 <p>例子：</p>
-<div class="codehilite"><pre><span></span>struct Data {
+<div class="highlight"><pre><span></span>struct Data {
     int ival;
     string s;
 }

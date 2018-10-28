@@ -66,13 +66,13 @@
 <p>支持的操作：</p>
 <p><img alt="tuple支持的操作" src="https://xutree.github.io/images/c++17-1.jpg"></p>
 <p>要访问一个<code>tuple</code>的成员，使用<code>get</code>标准库模板。为了使用<code>get</code>，我们必须指定一个显式模板参数，它指明我们想要访问第几个成员。这个显式模板参数必须是一个整型常量表达式，从0开始计数，返回指定成员的引用。</p>
-<div class="codehilite"><pre><span></span>auto book = get&lt;0&gt;(item);  // 返回 item 的第一个成员
+<div class="highlight"><pre><span></span>auto book = get&lt;0&gt;(item);  // 返回 item 的第一个成员
 get&lt;0&gt;(item) *= 0.8;       // 修改书的单价
 </pre></div>
 
 
 <p>借助辅助类模板<code>tuple_size</code>和<code>tuple_element</code>，可以查询<code>tuple</code>成员的数量和类型。不过使用这两个类，必须知道 <code>tuple</code>对象的类型，这可以通过<code>decltype</code>很简单地得到：</p>
-<div class="codehilite"><pre><span></span>typedef decltype(item) trans;
+<div class="highlight"><pre><span></span>typedef decltype(item) trans;
 // 返回 trans 类型对象中成员的数量
 size_t sz = tuple_size&lt;trans&gt;::value;  // 返回 3
 // cnt 的类型与 item 中第二个成员相同，是一个 int
@@ -86,7 +86,7 @@ tuple_element&lt;1, trans&gt;::type cnt = get&lt;1&gt;(item);
 <p>支持的操作：</p>
 <p><img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-2.jpg"></p>
 <p><strong>使用字符串初始化<code>bitset</code>时，下标最小的字符对应<code>bitset</code>中的高位。</strong></p>
-<div class="codehilite"><pre><span></span>bitset&lt;32&gt; bitvec4(&quot;1100&quot;);   // 2、3两位为1，剩余位为0
+<div class="highlight"><pre><span></span>bitset&lt;32&gt; bitvec4(&quot;1100&quot;);   // 2、3两位为1，剩余位为0
 </pre></div>
 
 

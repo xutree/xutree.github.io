@@ -69,7 +69,7 @@
 <h2>拷贝、赋值和销毁</h2>
 <h3>拷贝构造函数</h3>
 <p>如果一个构造函数的第一个参数是自身类类型的引用，且任何额外参数都有默认值，则此构造函数是拷贝构造函数。</p>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">Foo</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Foo</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="nx">Foo</span><span class="p">();</span>  <span class="c1">//默认构造函数</span>
     <span class="nx">Foo</span><span class="p">(</span><span class="kr">const</span> <span class="nx">Foo</span><span class="o">&amp;</span><span class="p">);</span>    <span class="c1">//拷贝构造函数</span>
@@ -82,7 +82,7 @@
 <h4>合成拷贝构造函数（synthesized copy constructor）</h4>
 <p>如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。与合成默认构造函数不同，即使我们定义了其他构造函数，编译器也会为我们合成一个拷贝构造函数。</p>
 <p>每个成员的类型决定了它如何拷贝：对类类型成员，会使用其拷贝构造函数来拷贝；内置类型的成员则直接拷贝。Sales_data 类的合成拷贝构造函数等价于：</p>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">Slaes_data</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Slaes_data</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//其他成员和构造函数的定义，如前</span>
     <span class="c1">//与合成的拷贝构造函数等价的拷贝构造函数的声明</span>
@@ -102,7 +102,7 @@
 
 
 <h4>拷贝初始化（copy initialization）</h4>
-<div class="codehilite"><pre><span></span>string dots(10,&#39;.&#39;);    //直接初始化
+<div class="highlight"><pre><span></span>string dots(10,&#39;.&#39;);    //直接初始化
 string s(dots);     //直接初始化
 string s2 = dots;   //拷贝初始化
 string null_book = &quot;9-999-99999-9&quot;; //拷贝初始化
@@ -124,7 +124,7 @@ string nines = string(100, &#39;9&#39;);    //拷贝初始化
 <p>拷贝构造函数被用来初始化非引用类类型参数，这一特性解释了为什么拷贝构造函数自己的参数必须是引用类型。如果其参数不是引用类型，则调用永远也不会成功——为了调用拷贝构造函数，我们必须拷贝它的实参，但为了拷贝实参，我们又需要调用拷贝构造函数，如此无限循环。</p>
 <h4>拷贝初始化的限制</h4>
 <p>如前所述，如果我们使用的初始化值要求通过一个<code>explicit</code>的构造函数来进行类型转换，那么使用拷贝初始化还是直接初始化就不是无关紧要的了：</p>
-<div class="codehilite"><pre><span></span>vector&lt;int&gt; v1(10); //正确，直接初始化
+<div class="highlight"><pre><span></span>vector&lt;int&gt; v1(10); //正确，直接初始化
 vector&lt;int&gt; v2 = 10;    //错误：接受大小参数的构造函数是 explicit 的
 void f(vector&lt;int&gt;);    //f 的参数进行拷贝初始化
 f(10);  //错误：不能用一个 explicit 的构造函数拷贝一个实参
@@ -134,19 +134,19 @@ f(vector&lt;int&gt;(10)); //正确：从一个 int 直接构造一个临时的 v
 
 <h4>编译器可以绕过拷贝构造函数</h4>
 <p>在拷贝初始化的过程中，编译器可以（但不是必须）跳过拷贝/移动构造函数，直接创建对象。即，编译器允许将下面的代码：</p>
-<div class="codehilite"><pre><span></span>string null_book = &quot;9-999-99999-9&quot;; //拷贝初始化
+<div class="highlight"><pre><span></span>string null_book = &quot;9-999-99999-9&quot;; //拷贝初始化
 </pre></div>
 
 
 <p>改写为：</p>
-<div class="codehilite"><pre><span></span>string null_book(&quot;9-999-99999-9&quot;);  //编译器略过了拷贝构造函数
+<div class="highlight"><pre><span></span>string null_book(&quot;9-999-99999-9&quot;);  //编译器略过了拷贝构造函数
 </pre></div>
 
 
 <p>但是，即使编译器略过拷贝/移动构造函数，但在这个程序点上，拷贝/移动构造函数必须是存在并且是可访问的（例如，不能是 private 的）。</p>
 <h3>拷贝赋值运算符</h3>
 <p>与控制其对象如何初始化一样，类也可以控制其对象如何赋值：</p>
-<div class="codehilite"><pre><span></span>Sales_data trans, accum;
+<div class="highlight"><pre><span></span>Sales_data trans, accum;
 trans = accum;    //使用 Sales_data 的拷贝赋值运算符
 </pre></div>
 
@@ -154,7 +154,7 @@ trans = accum;    //使用 Sales_data 的拷贝赋值运算符
 <h4>重载赋值运算符</h4>
 <p>重载运算符本质上是函数，其名字由<code>operator</code>关键字后接表示要定义的运算符的符号组成。因此，赋值运算符就是一个名为<code>operator=</code>的函数。</p>
 <p>某些运算符，包括赋值运算符，必须定义为成员函数。如果一个运算符是一个成员函数，其左侧运算对象就绑定到隐式的<code>this</code>参数。对于一个二元运算符，例如赋值运算符，其右侧运算对象作为显式参数传递。</p>
-<div class="codehilite"><pre><span></span><span class="c1">//拷贝赋值运算符接受一个与其所在类相同类型的参数</span>
+<div class="highlight"><pre><span></span><span class="c1">//拷贝赋值运算符接受一个与其所在类相同类型的参数</span>
 <span class="kr">class</span> <span class="nx">Foo</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="nx">Foo</span> <span class="o">&amp;</span><span class="nx">operator</span><span class="o">=</span><span class="p">(</span><span class="kr">const</span> <span class="nx">Foo</span><span class="o">&amp;</span><span class="p">);</span> <span class="c1">//赋值运算符</span>
@@ -165,7 +165,7 @@ trans = accum;    //使用 Sales_data 的拷贝赋值运算符
 
 <p>为了与内置类型的赋值保持一致，赋值运算符通常返回一个指向其左侧运算对象的引用。</p>
 <h4>合成拷贝赋值运算符</h4>
-<div class="codehilite"><pre><span></span>//等价于合成拷贝赋值运算符
+<div class="highlight"><pre><span></span>//等价于合成拷贝赋值运算符
 Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 {
     bookNo = rhs.bookNo；    //调用 string::operator=
@@ -179,7 +179,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 <h3>析构函数</h3>
 <p>析构函数执行与构造函数相反的操作：构造函数初始化对象的非<code>static</code>数据成员，还可能做一些其他工作；析构函数释放对象使用的资源，并销毁对象的非<code>static</code>数据成员。</p>
 <p>析构函数是类的一个成员函数，名字由波浪号接类名构成，没有返回值，也不接受参数：</p>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">Foo</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Foo</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="o">~</span><span class="nx">Foo</span><span class="p">();</span> <span class="c1">//析构函数</span>
     <span class="c1">//...</span>
@@ -195,7 +195,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 <li>隐式销毁一个内置指针类型的成员不会<code>delete</code>它所指向的对象</li>
 <li>当指向一个对象的引用或指针离开作用域时，析构函数不会执行</li>
 </ul>
-<div class="codehilite"><pre><span></span>{ //新作用域
+<div class="highlight"><pre><span></span>{ //新作用域
     //p 和 p2 指向动态分配的内存
     Sales_data *p = new Sales_data; //p 是一个内置指针
     auto p2 = make_shared&lt;Sales_data&gt;();    //p2 是一个 shared_ptr
@@ -220,7 +220,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 </ul>
 <h4>合成析构函数（synthesized destructor）</h4>
 <p>当一个类未定义自己的析构函数时，编译器会为他定义一个合成析构函数。例如，下面的代码等价于 Sales_data 的合成析构函数：</p>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">Sales_data</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Sales_data</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//成员会被自动销毁，除此之外不需要做其他事情</span>
     <span class="o">~</span><span class="nx">Sales_data() {</span><span class="p">}</span>
@@ -239,7 +239,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 <p>虽然很多类需要定义所有(或是不需要定义任何)拷贝控制成员，但某些类所要完成的工作，只需要拷贝或赋值操作，不需要析构函数。第二个基本原则：如果一个类需要一个拷贝构造函数，几乎可以肯定它也需要一个拷贝赋值运算符。反之亦然。</p>
 <h3>使用 =default</h3>
 <p>我们可以通过将拷贝控制成员定义为=default来显示地要求编译器生成合成的版本：</p>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">Sales_data</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Sales_data</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//拷贝控制成员；使用default</span>
     <span class="nx">Sales_data</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
@@ -260,7 +260,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 <p>为了阻止拷贝，看起来可能应该不定义拷贝控制成员。但是，这种策略是无效的：如果我们的类未定义这些操作，编译器为它生成合成的版本。</p>
 <h4>定义删除的函数</h4>
 <p>在新标准下，我们可以通过将拷贝构造函数和拷贝赋值运算符定义为删除的函数（deleted function）来阻止拷贝。删除的函数是这样一种函数：我们虽然声明了它们但不能以任何方式使用它们：</p>
-<div class="codehilite"><pre><span></span>struct NoCopy{
+<div class="highlight"><pre><span></span>struct NoCopy{
     NoCopy() = default; //使用合成的默认构造函数
     NoCopy(const NoCopy&amp;) = delete; //阻止拷贝
     NoCopy &amp;operator=(const NoCopy&amp;) = delete;  //阻止赋值
@@ -281,7 +281,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 <p>如果一个类有数据成员不能默认构造、拷贝、复制或销毁，则对应的成员函数将被定义为删除的。</p>
 <h4>private 拷贝控制</h4>
 <p>在新标准发布之前，类是通过将其拷贝构造函数和拷贝赋值运算符声明为<code>private</code>的来阻止拷贝：</p>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">PrivateCopy</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">PrivateCopy</span><span class="p">{</span>
     <span class="c1">//无访问说明符；接下来的成员默认为 private 的</span>
     <span class="c1">//拷贝控制成员是 private 的，因此普通用户代码无法访问</span>
     <span class="nx">PrivateCopy</span><span class="p">(</span><span class="kr">const</span> <span class="nx">PrivateCopy</span><span class="o">&amp;</span><span class="p">);</span>
@@ -302,7 +302,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 <p>类的行为像一个值，意味着它应该也有自己的状态。当我们拷贝一个像值的对象时，副本和原对象是完全独立的。改变副本不会对原对象有任何影响，反之亦然；</p>
 <p>行为像指针的类则共享状态。当我们拷贝一个这种类的对象时，副本和原对象使用相同的底层数据。改变副本也会改变原对象，反之亦然。</p>
 <h3>行为像值的类</h3>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">HasPtr</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">HasPtr</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="nx">HasPtr</span><span class="p">(</span><span class="kr">const</span> <span class="nx">std</span><span class="o">::</span><span class="kt">string</span> <span class="o">&amp;</span><span class="nx">s</span> <span class="o">=</span> <span class="nx">std</span><span class="o">::</span><span class="kt">string</span><span class="p">())</span><span class="o">:</span><span class="nx">ps</span><span class="p">(</span><span class="k">new</span> <span class="nx">std</span><span class="o">::</span><span class="kt">string</span><span class="p">(</span><span class="nx">s</span><span class="p">)),</span>
             <span class="nx">i</span><span class="p">(</span><span class="mi">0</span><span class="p">){</span> <span class="p">}</span>
@@ -320,7 +320,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 
 <p>类值拷贝赋值运算符赋值运算符通常组合了析构函数和构造函数的操作：类似析构函数，赋值操作会销毁左侧运算对象的资源；类似拷贝构造函数，赋值操作会从右侧运算对象拷贝数据。</p>
 <p>本例中，通过先拷贝右侧运算对象，我们可以处理自赋值情况，并能保证异常发生时代码也是安全的。在完成拷贝后，我们释放左侧运算对象的资源，并更新指针指向新分配的<code>string</code>：</p>
-<div class="codehilite"><pre><span></span>HasPtr&amp; HasPtr::operator=(const HasPtr&amp;rhs)
+<div class="highlight"><pre><span></span>HasPtr&amp; HasPtr::operator=(const HasPtr&amp;rhs)
 {
     auto newp = new string(*rhs.ps);    //拷贝底层 string，注意成员选择优先级大于解引用，故等价于*(rhs.ps)
     delete ps;  //释放旧内存
@@ -338,7 +338,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 </ul>
 <p>当你编写一个赋值运算符时，一个好的模式是先将右侧运算对象拷贝到一个局部临时对象中。当拷贝完成后，销毁左侧运算对象的现有成员就是安全的了。一旦左侧运算对象的资源被销毁，就只剩下将数据从临时对象拷贝到左侧运算对象的成员中了。</p>
 <p>为了说明防范自赋值操作的重要性，看下面一个错误的例子：</p>
-<div class="codehilite"><pre><span></span>//这样编写赋值运算符是错误的！
+<div class="highlight"><pre><span></span>//这样编写赋值运算符是错误的！
 HasPtr&amp; HasPtr::operator=(const HasPtr &amp;rhs)
 {
     delete ps;  //释放对象指向的 string
@@ -363,14 +363,14 @@ HasPtr&amp; HasPtr::operator=(const HasPtr &amp;rhs)
 <li>析构函数判断引用计数是否为0，如果为0，则销毁左侧对象</li>
 </ul>
 <p>引用计数的实现：我们假设有下面的情况：</p>
-<div class="codehilite"><pre><span></span>HasPtr h1;
+<div class="highlight"><pre><span></span>HasPtr h1;
 HasPtr h2(h1);
 HasPtr h3(h1);
 </pre></div>
 
 
 <p>HasPtr 是一个行为像指针的类，新创建的 h1的引用计数为1，创建 h2，用 h1 初始化 h2，会递增 h1 的引用计数值，此时 h2 保存了 h1 中的引用计数，在创建 h3 的时候，递增了 h1 的引用计数值，而且我们必须做的是要更新 h2 中的引用计数值，此时无法更新 h2 中的引用计数值。因此，我们需要将引用计数保存在动态内存中，这样原对象和其他副本对象都会指向相同的计数器，这样就可以自动更新引用计数在每个共享对象中的状态。</p>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">HasPtr</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">HasPtr</span> <span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//构造函数分配新的 string 和新的计数器，将计数器置为1</span>
     <span class="nx">HasPtr</span><span class="p">(</span><span class="kr">const</span> <span class="nx">std</span><span class="o">::</span><span class="kt">string</span><span class="o">&amp;</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">std</span><span class="o">::</span><span class="kt">string</span><span class="p">())</span> <span class="o">:</span> <span class="nx">ps</span><span class="p">(</span><span class="k">new</span> <span class="nx">std</span><span class="o">::</span><span class="kt">string</span><span class="p">(</span><span class="nx">s</span><span class="p">)),</span> <span class="nx">i</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">size_t</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="p">{}</span>
@@ -409,7 +409,7 @@ HasPtr h3(h1);
 <p>通常，管理资源的类除了定义拷贝控制成员之外，还会定义交换操作的函数<code>swap</code>。</p>
 <p>如果一个类定义了自己的<code>swap</code>，那么算法将使用类自定义版本，否则，将使用标准库定义的<code>swap</code>。</p>
 <p>理论上来说，我们的<code>swap</code>函数应该是这样的：</p>
-<div class="codehilite"><pre><span></span>//交换两个类值 HasPtr 对象的代码可能像下面这样：
+<div class="highlight"><pre><span></span>//交换两个类值 HasPtr 对象的代码可能像下面这样：
 HasPtr temp = v1;   //创建 v1 的值的一个临时副本
 v1 = v2;    //将 v2 的值赋予 v1
 v2 = temp;  //将保存的 v1 的值赋予 v2
@@ -417,14 +417,14 @@ v2 = temp;  //将保存的 v1 的值赋予 v2
 
 
 <p>这样的代码将 v1 中<code>string</code>拷贝了两次，但是这样做是没有必要的，我们希望<code>swap</code>交换指针，而不是分配<code>string</code>的副本：</p>
-<div class="codehilite"><pre><span></span>string *temp = v1.ps;   //为 v1.ps 中的指针创建一个副本
+<div class="highlight"><pre><span></span>string *temp = v1.ps;   //为 v1.ps 中的指针创建一个副本
 v1.ps = v2.ps;  //将 v2.ps 中的指针赋予 v1.ps1
 v2.ps = temp;   //将保存的 v1.ps 中原来的指针赋予 v2.ps
 </pre></div>
 
 
 <h3>编写我们自己的 swap 函数</h3>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">HasPtr</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">HasPtr</span> <span class="p">{</span>
     <span class="nx">friend</span> <span class="k">void</span> <span class="nx">swap</span> <span class="p">(</span><span class="nx">HasPtr</span><span class="o">&amp;</span><span class="p">,</span> <span class="nx">HasPtr</span><span class="o">&amp;</span><span class="p">);</span>
     <span class="c1">//其他成员定义</span>
 <span class="p">};</span>
@@ -444,7 +444,7 @@ v2.ps = temp;   //将保存的 v1.ps 中原来的指针赋予 v2.ps
 <p><code>swap</code>里交换类的指针和<code>int</code>成员，并不会发生递归循环，HasPtr 的数据成员是内置类型的，这时候会调用标准库版本的<code>swap</code>。</p>
 <h3>在赋值运算符中使用 swap</h3>
 <p>定义<code>swap</code>的类通常用<code>swap</code>来定义它们的赋值运算符。这些运算符使用了一种名为拷贝并交换（copy and swap）的技术。这种技术将左侧运算对象与右侧运算对象的一个副本进行交换：</p>
-<div class="codehilite"><pre><span></span>//注意 rhs 是按值传递的，意味着 HasPtr 的拷贝构造函数将
+<div class="highlight"><pre><span></span>//注意 rhs 是按值传递的，意味着 HasPtr 的拷贝构造函数将
 //右侧运算对象中的 string 拷贝到 rhs
 HasPtr&amp; HasPtr::operator=(HasPtr rhs)
 {
@@ -466,7 +466,7 @@ HasPtr&amp; HasPtr::operator=(HasPtr rhs)
 <p>为了支持移动操作，新标准引入了一种新的引用类型——右值引用（rvalue reference）。我们通过<code>&amp;&amp;</code>而不是<code>&amp;</code>来获得右值引用。右值引用一个重要性质——只能绑定到一个将要销毁的对象。</p>
 <p>一般而言，一个左值表达式表示的是一个对象的身份，而一个右值表达式表示的是对象的值。</p>
 <p>对于常规引用(我们可以称之为左值引用)，我们不能将其绑定到要求转换的表达式、字面常量或是返回右值的表达式。右值引用有着完全相反的特性：我们可以将一个右值引用绑定到这类表达式上，但不能将一个右值引用直接绑定到一个左值上：</p>
-<div class="codehilite"><pre><span></span>int i = 42;
+<div class="highlight"><pre><span></span>int i = 42;
 int &amp;r = i; //正确：r 引用 i
 int &amp;&amp;rr = i;   //错误：不能将一个右值引用绑定到一个左值上
 int &amp;r2 = i * 42;   //错误：i * 42是一个右值
@@ -486,7 +486,7 @@ int &amp;&amp;rr2 = i * 42; //正确：将 rr2 绑定到乘法结果上
 <p>这两个特性意味着：使用右值引用的代码可以自由地接管所引用的对象的资源。右值引用指向将要被销毁的对象。因此，我们可以从绑定到右值引用的对象“窃取”状态。</p>
 <h4>变量是左值</h4>
 <p>变量可以看作只有一个运算对象而没有运算符的表达式。变量表达式都是左值，这意味着我们不能讲一个右值引用绑定到一个右值引用类型的变量上：</p>
-<div class="codehilite"><pre><span></span>int &amp;&amp;rr1 = 42;   //正确：字面常量是右值
+<div class="highlight"><pre><span></span>int &amp;&amp;rr1 = 42;   //正确：字面常量是右值
 it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 </pre></div>
 
@@ -495,7 +495,7 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 <p><strong>变量是左值，因此我们不能将一个右值引用直接绑定到一个变量上，即使这个变量是右值引用类型也不行。</strong></p>
 <h4>标准库 move 函数</h4>
 <p>虽然不能将一个右值引用直接绑定到一个左值上，但我们可以显示地将一个左值转换为对应的右值引用类型。我们还可以通过调用一个名为<code>move</code>的新标准库函数来获得绑定到左值上的右值引用。<code>move</code>定义在头文件<code>utility</code>中。</p>
-<div class="codehilite"><pre><span></span><span class="p">#</span><span class="nn">inclue</span> <span class="o">&lt;</span><span class="nt">utility</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">inclue</span> <span class="o">&lt;</span><span class="nt">utility</span><span class="o">&gt;</span>
 <span class="nt">int</span> <span class="o">&amp;&amp;</span><span class="nt">rr3</span> <span class="o">=</span> <span class="nt">std</span><span class="p">::</span><span class="nd">move</span><span class="o">(</span><span class="nt">rr1</span><span class="o">);</span>   <span class="o">//</span><span class="nt">ok</span>
 </pre></div>
 
@@ -508,7 +508,7 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 <p>类似拷贝构造函数，移动构造函数的第一个参数是该类类型的一个引用。不同于拷贝构造函数的是，这个引用参数在移动构造函数中是一个右值引用。与拷贝构造函数一样，任何额外的参数都必须有默认实参。</p>
 <p>除了完成资源移动，移动构造函数还必须确保移后源对象处于这样一个状态——销毁它是无害的。</p>
 <p>作为一个例子，我们为 StrVec 类定义移动构造函数，实现从一个 StrVec 到另一个 StrVec 的元素移动而非拷贝：</p>
-<div class="codehilite"><pre><span></span>StrVec::StrVec(StrVec &amp;&amp;s) noexcept //移动操作不应抛出任何异常
+<div class="highlight"><pre><span></span>StrVec::StrVec(StrVec &amp;&amp;s) noexcept //移动操作不应抛出任何异常
 //c成员初始化器接管s中的资源
   ：elements(s.elements), first_free(s.first_free), cap(s.cap)
 {
@@ -524,7 +524,7 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 <p><img alt="为什么指定noexcept" src="https://xutree.github.io/images/c++13-1.jpg"></p>
 <h4>移动赋值运算符</h4>
 <p>移动赋值运算符执行与析构函数和移动构造函数相同的工作。</p>
-<div class="codehilite"><pre><span></span>StrVec &amp;StrVec::operator=(StrVec &amp;&amp;rhs) noexcept
+<div class="highlight"><pre><span></span>StrVec &amp;StrVec::operator=(StrVec &amp;&amp;rhs) noexcept
 {
     //直接检测自赋值
     if (this != &amp;rhs){
@@ -559,7 +559,7 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 <p>新标准库中定义了一种移动迭代器（move iterator）适配器。一个移动迭代器通过改变给定迭代器的解引用运算符的行为来适配此迭代器。一般来说，一个迭代器的解引用运算符返回一个指向元素的左值。与其他迭代器不同，移动迭代器的解引用运算符生成一个右值引用。</p>
 <p>我们通过调用标准库的<code>make_move_iterator</code>函数将一个普通迭代器转换为一个移动迭代器。此函数接受一个迭代器参数，返回一个移动迭代器。</p>
 <p>原迭代器的所有其他操作在移动迭代器中都照常工作。由于移动迭代器支持正常的迭代器操作，我们可以将一对移动迭代器传递给算法。特别地，可以将移动迭代器传递给<code>uninitialized_copy</code>：</p>
-<div class="codehilite"><pre><span></span>void StrVec::reallocate()
+<div class="highlight"><pre><span></span>void StrVec::reallocate()
 {
     //分配大小两倍于当前规模的内存空间
     auto newcapacity = size() ? 2 * size() : 1;
@@ -580,7 +580,7 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 <p>除了构造函数和赋值运算符外，如果一个成员函数同时提供拷贝和移动操作，它也能从中受益。一个版本接受一个指向<code>const</code>的左值引用，另一个版本接受指向非<code>const</code>的右值引用。</p>
 <p>一般来说，我们不需要为函数操作定义接受一个<code>const X&amp;&amp;</code>或是一个（普通的）<code>X&amp;</code>参数的版本。当我们希望从实参“窃取”数据时，通常传递一个右值引用。为了达到这一目的，实参不能是<code>const</code>的。类似的，从一个对象进行拷贝的操作不应该改变该对象，因此，通常不需要定义一个接受（普通的）<code>X&amp;</code>参数的版本。</p>
 <p>区分移动和拷贝的重载函数通常有一个版本接受一个<code>const T&amp;</code>，而另一个版本接受<code>T&amp;&amp;</code>。</p>
-<div class="codehilite"><pre><span></span><span class="kr">class</span> <span class="nx">StrVec</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">StrVec</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="k">void</span> <span class="nx">push_back</span><span class="p">(</span><span class="kr">const</span> <span class="nx">std</span><span class="o">::</span><span class="kt">string</span> <span class="o">&amp;</span><span class="p">);</span> <span class="c1">//移动元素</span>
     <span class="k">void</span> <span class="nx">push_back</span><span class="p">(</span><span class="nx">std</span><span class="o">::</span><span class="kt">string</span> <span class="o">&amp;&amp;</span><span class="p">);</span> <span class="c1">//拷贝元素</span>

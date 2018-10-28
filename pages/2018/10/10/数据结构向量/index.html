@@ -141,7 +141,7 @@
 </tbody>
 </table>
 <h2>Vector 模板类</h2>
-<div class="codehilite"><pre><span></span>typedef int Rank;   //秩
+<div class="highlight"><pre><span></span>typedef int Rank;   //秩
 #define DEFAULT_CAPACITY 3  //默认的初始容量（实际应用中可设置为更大）
 
 template &lt;typename T&gt; class Vector {    //向量模板类
@@ -205,7 +205,7 @@ public:
 <p>整个默认构造过程顺序进行，没有任何迭代，故忽略用于分配数组空间的时间，需要常数时间。</p>
 <h3>基于复制的构造函数</h3>
 <p>在模板的实现中，我们将基于数组或者向量的复制操作（局部或整体的）都转交给如下的<code>copyFrom</code>函数处理：</p>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; void Vector&lt;T&gt;::copyFrom(T const* A, Rank lo, Rank hi) {
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; void Vector&lt;T&gt;::copyFrom(T const* A, Rank lo, Rank hi) {
     _elem = new T[_capacity = 2 * (hi -lo) ]; _size = 0; //分配空间，规模清零
     while( lo &lt;hi) //A[lo,hi) 元素逐一复制
         _elem[_size++] = A[lo++];   //
@@ -215,7 +215,7 @@ public:
 
 <p>需要 <em>O</em>(_size) 时间。</p>
 <p>需要强调的是，由于向量内部含有动态分配的空间，默认的“=”运算符不足以支持向量之间的直接赋值。故要重建“=”：</p>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; Vector&lt;T&gt;&amp; Vector&lt;T&gt;::operator=(Vector&lt;T&gt; const&amp; V) {
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; Vector&lt;T&gt;&amp; Vector&lt;T&gt;::operator=(Vector&lt;T&gt; const&amp; V) {
     if( _elem ) delet [] _elem;
     copyFrom(V._elem, 0, V.size());
     return *this;
@@ -227,7 +227,7 @@ public:
 <p>若不计系统用于空间回收的时间，整个析构过程只需常数时间。</p>
 <h2>动态空间管理</h2>
 <h3>扩容</h3>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; void Vector&lt;T&gt;::expand() {
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; void Vector&lt;T&gt;::expand() {
     if(_size &lt; _capacity) return;   //尚未满员，不必扩容
     if(_capacity &lt; DEFAULT_CAPACITY) _capacity = DEFAULT_CAPACITY;  //不低于最小容量
     T *oldElem = _elem; _elem = new T[_capacity &lt;&lt; 1]; //容量加倍
@@ -240,7 +240,7 @@ public:
 
 <p>分摊运行时间为 <em>O</em>(1)</p>
 <h3>缩容</h3>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; void Vector&lt;T&gt;::shrink() {
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; void Vector&lt;T&gt;::shrink() {
     if(_capacity &lt; DEFAULT_CAPACITY &lt;&lt; 1) return;   //不至收缩到DEFAULT_CAPACITY
     if(_size &lt;&lt; 2 &gt; _capacity) return;  //以25%为界
     T *oldElem = _elem; _elem = new T[_capacity &gt;&gt; 1]; //容量减半
@@ -255,14 +255,14 @@ public:
 <h2>常规向量</h2>
 <h3>直接引用元素</h3>
 <p>与数组直接通过下标访问元素的形式相比，向量 ADT（abstract data type）所设置的<code>get()</code>和<code>put()</code>接口都显得不甚自然。</p>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; T&amp; Vector&lt;T&gt;::operator[](Rank r) const
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; T&amp; Vector&lt;T&gt;::operator[](Rank r) const
 { return _elem[r]; }    //assert: 0 &lt;= r &lt; _size
 </pre></div>
 
 
 <h3>置乱器</h3>
 <p>重载后<code>[]</code>返回的是对数组元素的引用，这就意味着它既可以取代<code>get()</code>操作（通常作为赋值表达式的右值），也可以取代<code>set()</code>操作（通常作为左值）。采用这种形式，可以很清晰地实现如下的向量置乱器：</p>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; void permute(Vector&lt;T&gt;&amp; V) {
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; void permute(Vector&lt;T&gt;&amp; V) {
     for(int i = V.size(); i &gt; 0; i--)
         swap(V[i-1], V[rand() % i]); //V[i-1] 与 V[0,i) 中某一随机元素交换
 }
@@ -271,7 +271,7 @@ public:
 
 <p>从理论上讲，上述算法可以枚举出同一向量所有可能的排列，而且能够保证生成各种排列的概率均等。</p>
 <p>为便于对各种向量算法的测试与比较，不妨将上述算法封装到向量 ADT 中，并对外提供向量的置乱接口操作：</p>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; void Vector&lt;T&gt;::unsort(Rank lo, Rank hi) {
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; void Vector&lt;T&gt;::unsort(Rank lo, Rank hi) {
     T* V = _elem + lo;
     for(Rank i =hi -lo; i &gt; 0; i--)
         swap(V[i-1], V[rand() % i]);
@@ -281,7 +281,7 @@ public:
 
 <p>上述两段代码的细微差异：上面的代码通过重载“[]”，利用秩间接访问<strong>向量</strong>元素，下面的代码通过下标直接访问内部<strong>数组</strong>的元素。</p>
 <h3>判等器和比较器</h3>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; static bool lt(T* a, T* b) { return lt(*a, *b); } //less than
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; static bool lt(T* a, T* b) { return lt(*a, *b); } //less than
 template &lt;typename T&gt; static bool lt(T&amp; a, T&amp; b) { return a &lt; b; } //less than
 template &lt;typename T&gt; static bool eq(T* a, T* b) { return eq(*a, *b); } //equal
 template &lt;typename T&gt; static bool eq(T&amp; a, T&amp; b) { return a == b; } //equal
@@ -294,7 +294,7 @@ template &lt;typename T&gt; static bool eq(T&amp; a, T&amp; b) { return a == b; 
 <p><code>Vector</code>模板中的<code>find</code>接口的语义为“查找与数据对象 e 相等的元素”。这暗示向量元素可以通过相互“比对”判断是否相等。这类仅支持比对，但未必支持比较的向量，称为无序向量（unsorted vector）。</p>
 <h4>顺序查找</h4>
 <p>由于<code>find</code>函数查找相等的最大秩元素，故从后往前比对：</p>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; Rank Vector&lt;T&gt;::find(T const&amp; e, Rank lo, Rank hi) const {
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; Rank Vector&lt;T&gt;::find(T const&amp; e, Rank lo, Rank hi) const {
     while( (lo &lt; hi--) &amp;&amp; (e != _elem[hi]) ); //assert: 0 &lt;= lo &lt; hi &lt;= _size
     return hi;
 }
@@ -303,7 +303,7 @@ template &lt;typename T&gt; static bool eq(T&amp; a, T&amp; b) { return a == b; 
 
 <p>最坏情况：<em>O</em>(n)；最好情况：<em>O</em>(1)。为输入敏感（input sensitive）算法。</p>
 <h3>插入</h3>
-<div class="codehilite"><pre><span></span>//assert: 0 &lt;= r &lt;= size
+<div class="highlight"><pre><span></span>//assert: 0 &lt;= r &lt;= size
 template &lt;typename T&gt; Rank Vector&lt;T&gt;::insert(Rank r, T const&amp; e) {
     expan(); //如有必要，扩容
     for(int i = _size; i &gt; r; i--) _elem[i] = _elem[i-1];
@@ -317,7 +317,7 @@ template &lt;typename T&gt; Rank Vector&lt;T&gt;::insert(Rank r, T const&amp; e)
 <h3>删除</h3>
 <p>应将单元素删除视为区间删除的特例，并基于后者来实现前者。</p>
 <h4>区间删除</h4>
-<div class="codehilite"><pre><span></span>//删除区间[lo, hi)
+<div class="highlight"><pre><span></span>//删除区间[lo, hi)
 template &lt;typename T&gt; int Vector&lt;T&gt;::remove(Rank lo, Rank hi) {
     if(lo === hi) return 0;
     while(hi &lt; _size)   _elem[lo++] = _elem[hi++];
@@ -329,7 +329,7 @@ template &lt;typename T&gt; int Vector&lt;T&gt;::remove(Rank lo, Rank hi) {
 
 
 <h4>单元素删除</h4>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; T Vector&lt;T&gt;::remove(Rank r) {
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; T Vector&lt;T&gt;::remove(Rank r) {
     T e = _elem[r];
     remove(r, r + 1);
     return e;
@@ -339,7 +339,7 @@ template &lt;typename T&gt; int Vector&lt;T&gt;::remove(Rank lo, Rank hi) {
 
 <p>被删除元素在向量中的位置越靠后（前）所需时间越短（长），最好为<em>O</em>(1)，最坏为<em>O</em>(n)。</p>
 <h3>唯一化</h3>
-<div class="codehilite"><pre><span></span>template &lt;typename T&gt; int Vector&lt;T&gt;::deduplicate() {
+<div class="highlight"><pre><span></span>template &lt;typename T&gt; int Vector&lt;T&gt;::deduplicate() {
     int oldSize = _size;
     Rank i = 1;
     while(i &lt; _size)

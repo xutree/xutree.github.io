@@ -573,7 +573,7 @@
 <p><img alt="compare 函数" src="https://xutree.github.io/images/c++9-5.jpg"></p>
 <h3>数值转换</h3>
 <p><img alt="string 数值转换" src="https://xutree.github.io/images/c++9-6.jpg"></p>
-<div class="codehilite"><pre><span></span>string s2 = &quot;pi = 3.14&quot;;
+<div class="highlight"><pre><span></span>string s2 = &quot;pi = 3.14&quot;;
 d = stod(s2.substr(s2.find_first_of(&quot;+-.0123456789&quot;)));
 </pre></div>
 
@@ -644,13 +644,13 @@ d = stod(s2.substr(s2.find_first_of(&quot;+-.0123456789&quot;)));
 </li>
 </ul>
 <p>两种构造方法：默认构造函数创建一个空对象；接受一个容器的构造函数拷贝该容器来初始化适配器。</p>
-<div class="codehilite"><pre><span></span>//假设 deq 是一个 deque&lt;int&gt;
+<div class="highlight"><pre><span></span>//假设 deq 是一个 deque&lt;int&gt;
 stack&lt;int&gt; stk(deq);    //从 deq 拷贝元素到 stk
 </pre></div>
 
 
 <p>我们可以在创建一个适配器时将一个命名的顺序容器作为第二个类型参数，来重载默认容器类型：</p>
-<div class="codehilite"><pre><span></span>//在 vector 上实现的空栈
+<div class="highlight"><pre><span></span>//在 vector 上实现的空栈
 stack&lt;string, vector&lt;string&gt;&gt; str_stk;
 //在 vector 上实现的空栈，初始化时保存 svec 的拷贝
 stack&lt;string, vector&lt;string&gt;&gt; str_stk2（svec);
@@ -659,7 +659,7 @@ stack&lt;string, vector&lt;string&gt;&gt; str_stk2（svec);
 
 <h3>栈适配器</h3>
 <p><code>stack</code>类型定义在同名头文件中。下面展示了如何使用：</p>
-<div class="codehilite"><pre><span></span>stack&lt;int&gt; intStack;  //空栈
+<div class="highlight"><pre><span></span>stack&lt;int&gt; intStack;  //空栈
 //填满栈
 for (size_t ix = 0; ix != 10; ++ix)
     intStack.push(ix);  //栈保存0-9十个数

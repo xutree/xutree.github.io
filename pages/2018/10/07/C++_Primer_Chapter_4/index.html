@@ -75,7 +75,7 @@
 <h2>求值顺序</h2>
 <p>优先级规定了运算对象的组合方式，但是没有说明运算对象按照什么顺序求值。对于那些没有指定执行顺序的运算符来说，如果表达式指向并修改了同一个对象，将会引发错误并产生未定义的行为。</p>
 <p>例如，下面的输出表达式是未定义的，我们无法推测编译器是先求 ++i 还是先输出：</p>
-<div class="codehilite"><pre><span></span>int i = 0;
+<div class="highlight"><pre><span></span>int i = 0;
 cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; ++i &lt;&lt; endl;    //未定义的
 </pre></div>
 
@@ -92,7 +92,7 @@ cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; ++i &lt;&lt; endl;    //未定�
 <p>+(正号)、-(负号)、*(乘)、/(除),%(求余)，+(加)、-(减)</p>
 <p>算术运算符的运算对象和求值结果都是右值。</p>
 <p>一元正号负号运算符对运算对象作用后，返回一个（提升后的）副本：</p>
-<div class="codehilite"><pre><span></span>int i = 1024;
+<div class="highlight"><pre><span></span>int i = 1024;
 int k = -i;
 bool b = true;
 bool b2 = -b;   //b2 是 true
@@ -141,7 +141,7 @@ bool b2 = -b;   //b2 是 true
 <h2>sizeof运算符</h2>
 <p><code>sizeof</code>运算符返回一条表达式或一个类型名字所占的字节数。<code>sizeof</code>运算符满足右结合律，其所得的值是一个<code>size_t</code>类型的常量表达式</p>
 <p>两种形式</p>
-<div class="codehilite"><pre><span></span>sizeof (type)
+<div class="highlight"><pre><span></span>sizeof (type)
 sizeof expr
 </pre></div>
 
@@ -186,7 +186,7 @@ sizeof expr
 <li>类类型能定义由编译器自动执行的转换，不过编译器每次只能执行一种类类型的转换，如果同时提出多个转换请求，这些请求将被拒绝</li>
 <li>之前遇到过的类类型转换</li>
 </ul>
-<div class="codehilite"><pre><span></span>string s, t = &quot;a value&quot;;    //字符串字面值转换成 string 类型
+<div class="highlight"><pre><span></span>string s, t = &quot;a value&quot;;    //字符串字面值转换成 string 类型
 wile( cin &gt;&gt; s)     //while 的条件部分把 cin 转换成布尔值
 </pre></div>
 
@@ -198,14 +198,14 @@ wile( cin &gt;&gt; s)     //while 的条件部分把 cin 转换成布尔值
 <h3>static_cast</h3>
 <p>任何具有明确定义的类型转换，只要不包含底层<code>const</code>，都可以使用<code>static_cast</code>。当需要把一个较大的算术类型赋给较小的类型时，<code>static_cast</code>非常有用。此时，强制类型转换告诉程序的读者和编译器：我们知道并且不在乎潜在的精度损失。</p>
 <p><code>static_cast</code>对于编译器无法自动执行的类型转换也非常有用。例如，我们可以使用它找回<code>void *</code>指针中的值:</p>
-<div class="codehilite"><pre><span></span>void *p = &amp;d;
+<div class="highlight"><pre><span></span>void *p = &amp;d;
 double *dp = static_cast&lt;double *&gt;(p);
 </pre></div>
 
 
 <h3>const_cast</h3>
 <p><code>const_cast</code>只能改变运算对象的底层<code>const</code>:</p>
-<div class="codehilite"><pre><span></span>const char *pc;
+<div class="highlight"><pre><span></span>const char *pc;
 char *p = const_cast&lt;char*&gt;(pc);//正确，但通过p写值是未定义的行为
 </pre></div>
 
@@ -214,13 +214,13 @@ char *p = const_cast&lt;char*&gt;(pc);//正确，但通过p写值是未定义的
 <h3>reinterpret_cast</h3>
 <p><code>einterpret_cast</code>通常为运算对象的位模式提供较低层次上的重新解释。</p>
 <p>假如有以下转换：</p>
-<div class="codehilite"><pre><span></span>int *ip;
+<div class="highlight"><pre><span></span>int *ip;
 char *pc = reinterpret_cast&lt;char*&gt;(ip);
 </pre></div>
 
 
 <p>我们必须牢记 pc 所指的真实对象是一个 int 而非字符，如果把 pc 当成普通的字符指针使用就可能在运行时发生错误。</p>
-<div class="codehilite"><pre><span></span>string str(pc);     //可能导致异常的运行时行为
+<div class="highlight"><pre><span></span>string str(pc);     //可能导致异常的运行时行为
 </pre></div>
 
 
@@ -228,13 +228,13 @@ char *pc = reinterpret_cast&lt;char*&gt;(ip);
 <p>强制类型转换干扰了正常的类型检查，因此强烈建议避免使用强制类型转换。</p>
 <h3>旧式的强制类型转换</h3>
 <p>在早期版本的 C++ 语言中，显示地进行强制类型转换包含两种形式：</p>
-<div class="codehilite"><pre><span></span>type (expr);    //函数形式的强制类型转换
+<div class="highlight"><pre><span></span>type (expr);    //函数形式的强制类型转换
 (type) expr;    //C 语言风格的强制类型转换
 </pre></div>
 
 
 <p>根据所设计的类型不同，旧式的强制类型转换分别具有与<code>const_cast</code>，<code>static_cast</code>或<code>reinterpret_cast</code>相似的行为。当我们在某处执行旧式的强制类型转换时，如果换成<code>const_cast</code>和<code>static_cast</code>也合法，则其行为与相应的命名转换一致。如果替换后不合法，则旧式强制类型转换执行与<code>reinterpret_cast</code>类似的功能。</p>
-<div class="codehilite"><pre><span></span>char *pc = (char*) ip;  //ip是指向整数的指针
+<div class="highlight"><pre><span></span>char *pc = (char*) ip;  //ip是指向整数的指针
 </pre></div>
 
 
