@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
+    <title>统计学习方法 第一章 统计学习方法概论  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
+        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/基础知识.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 基础知识 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/其他.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 其他 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/11/04/第一章-统计学习方法概论/"> 统计学习方法 第一章 统计学习方法概论  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <h2>统计学习</h2>
+<h3>特点</h3>
+<p>统计学习（statistical learning）是关于计算机基于<strong>数据</strong>构建概率统计模型并运用模型对数据进行<strong>预测与分析</strong>的一门学科。</p>
+<p>赫尔伯特·西蒙（Herbert A.Simon）对“学习”给出如下定义：如果一个系统能够通过执行某个过程改变它的性能，这就是学习。</p>
+<h3>对象</h3>
+<p>统计学习的对象是数据。</p>
+<p>统计学习关于数据的基本假设是同类数据具有一定的统计规律性，这是统计学习的前提。</p>
+<h3>目的</h3>
+<p>统计学习用于对数据进行预测和分析，特别是对未知新数据进行预测与分析。</p>
+<h3>方法</h3>
+<ul>
+<li>监督学习（supervised learning）</li>
+<li>非监督学习（unsupervised learning）</li>
+<li>半监督学习（semi-supervised learning）</li>
+<li>强化学习（reinforcement learning）</li>
+</ul>
+<h3>统计学习方法三要素</h3>
+<ul>
+<li><strong>模型（model）</strong>：即假设空间（hypothesis space），假设空间是一个集合，这个集合包含要学习的模型</li>
+<li><strong>策略（strategy）</strong>：模型选择的准则</li>
+<li><strong>算法（algorithm）</strong>：模型学习的算法</li>
+</ul>
+<h2>监督学习</h2>
+<p>监督学习（supervised learning）的任务是学习一个模型，使模型能够对任意给定的输入，对其相应的输出做出一个好的预测。</p>
+<h3>基本概念</h3>
+<ul>
+<li><strong>输入空间（input space）</strong>：输入的所有可能取值的集合，表示为 <span class="math">\({\cal X}\)</span></li>
+<li><strong>输出空间（output space）</strong>：输出的所有可能取值的集合，表示为 <span class="math">\({\cal Y}\)</span></li>
+<li><strong>实例（instance）</strong>：每个具体的输入，通常由特征向量（feature vector）表示</li>
+<li><strong>特征空间（feature space）</strong>：所有特征向量存在的空间，每一维度对应一个特征</li>
+<li><strong>训练数据（training data）</strong>：由输入（或特征向量）与输出对组成</li>
+<li><strong>联合概率分布（joint probability distribution）</strong>：监督学习假设输入与输出的随机变量 <span class="math">\(X\)</span> 和 <span class="math">\(Y\)</span> 遵循联合概率分布 <span class="math">\(P(X,Y)\)</span></li>
+<li><strong>假设空间（hypothesis space）</strong>：模型属于由输入空间到输出空间的映射的集合，这个集合就是假设空间。假设空间的确定意味着学习范围的确定</li>
+</ul>
+<p><strong>注1</strong>：输入和输出空间可以使有限集也可以是整个欧式空间；输入与输出空间可以使用一个空间，也可以是不同的空间；通常输出空间远小于输入空间。</p>
+<p><strong>注2</strong>：有时假设输入空间与特征空间为相同的空间，对它们不予区分；有时假设输入空间与特征空间为不同的空间，将实例从输入空间映射到特征空间。模型实际上都是定义在特征空间上的。</p>
+<p><strong>注3</strong>：在学习过程中，假设联合概率分布存在，但对于学习系统来说，联合概率分布的具体定义是未知的。训练数据与测试数据被看作是依联合概率分布 <span class="math">\(P(X,Y)\)</span> 独立同分布（independent and identically distribution）产生的。统计学习假设数据存在一定的统计规律，<span class="math">\(X\)</span> 和 <span class="math">\(Y\)</span> 遵循联合概率分布 <span class="math">\(P(X,Y)\)</span> 就是监督学习关于数据的基本假设。</p>
+<p>在监督学习过程中，将输入和输出看做是定义在输入（特征）空间与输出空间上的随机变量的取值。输入、输出变量用大写字母表示，输入、输出变量所取的值用小写字母表示。</p>
+<p>输入实例 <span class="math">\(x\)</span> 的特征向量记作：<span class="math">\(x=\left(x^{(1)},x^{(2)},\dots,x^{(n)}\right)^\text{T}\)</span>，<span class="math">\(x^{(i)}\)</span> 表示 <span class="math">\(x\)</span> 的第 <span class="math">\(i\)</span> 个特征。</p>
+<p>多个输入变量的第 <span class="math">\(i\)</span> 个记作：<span class="math">\(x_i=\left(x_i^{(1)},x_i^{(2)},\dots,x_i^{(n)}\right)^\text{T}\)</span></p>
+<p>训练集：<span class="math">\(T=\{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}\)</span></p>
+<p>监督学习的模型可以是概率模型或非概率模型，由条件概率分布 <span class="math">\(P(Y|X)\)</span> 或决策函数（decision function）<span class="math">\(Y=f(X)\)</span> 表示。对具体的输入进行相应的输出预测时，写作 <span class="math">\(P(y|x)\)</span> 或 <span class="math">\(y=f(x)\)</span>。</p>
+<h2>统计学习三要素</h2>
+<h3>模型</h3>
+<p>统计学习首要考虑的问题是学习什么样的模型。模型的假设空间包含所有可能的条件概率分布或决策函数。假设空间中的模型一般有无穷多个。</p>
+<p>假设空间用 <span class="math">\(\cal{F}\)</span> 表示。假设空间可以定义为决策函数或条件概率分布的集合：
+</p>
+<div class="math">$${\cal F}=\{f|Y=f_\theta(X),\theta \in \mathbb R^n\}\ \ 或\ \ {\cal F}=\{P|P_\theta(Y|X),\theta \in \mathbb R^n\}$$</div>
+<p></p>
+<p>参数向量 <span class="math">\(\theta\)</span> 取值于 <span class="math">\(n\)</span> 维欧式空间 <span class="math">\(\mathbb R^n\)</span>，称为参数空间（parameter space）。</p>
+<h3>策略</h3>
+<p>有了模型的假设空间，统计学习接着需要考虑的是按照什么样的准则学习或选择最优的模型。</p>
+<h4>损失函数和风险函数</h4>
+<p>损失函数（loss function）或代价函数（cost function）用来度量预测错误的程度。损失函数是 <span class="math">\(f(X)\)</span> 和 <span class="math">\(Y\)</span> 的非负实值函数，记作 <span class="math">\(L(Y,f(X))\)</span>。</p>
+<p>统计学习常用的损失函数有以下几种：</p>
+<ol>
+<li>
+<p>0-1 损失函数（0-1 loss function）
+<div class="math">$$L(Y,f(X)=\begin{cases}
+1, &amp; Y\neq f(X) \\
+0, &amp; Y=f(X)
+\end{cases}$$</div>
+</p>
+</li>
+<li>
+<p>平方损失函数（quadratic loss function）
+<div class="math">$$L(Y,f(X))=(Y-f(X))^2$$</div>
+</p>
+</li>
+<li>
+<p>绝对损失函数（absolute loss function）
+<div class="math">$$L(Y,f(X))=|Y-f(X)|$$</div>
+</p>
+</li>
+<li>
+<p>对数损失函数（logarithmic loss function）或对数似然损失函数（log-likelihood loss function）
+<div class="math">$$L(Y,P(Y|X)=-\log P(Y|X)$$</div>
+</p>
+</li>
+</ol>
+<p>风险函数（risk function）或期望损失（expected loss）：理论上模型 <span class="math">\(f(X)\)</span> 关于联合分布 <span class="math">\(P(X,Y)\)</span> 评价意义下的损失，记作 <span class="math">\(R_\text{exp}\)</span>。
+</p>
+<div class="math">$$R_\text{exp}(f)=\text{E}_P[L(Y,f(X))]=\int_{{\cal X}\times{\cal Y}}L(y,f(x))P(x,y)dxdy$$</div>
+<p>经验风险（empirical risk）或经验损失（empirical loss）：模型 <span class="math">\(f(X)\)</span> 关于训数据集的平均损失，记作 <span class="math">\(R_\text{emp}\)</span>。
+</p>
+<div class="math">$$R_\text{emp}(f)=\frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)$$</div>
+<h4>经验风险最小化</h4>
+<p>经验风险最小化（empirical risk minimization，ERM）策略认为：经验风险最小的模型是最优的模型。即求解下面的最优化问题：
+</p>
+<div class="math">$$ \min_{f\in {\cal F}} \frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)$$</div>
+<p>
+其中 <span class="math">\({\cal F}\)</span> 是假设空间。</p>
+<p>当样本容量足够大时，经验风险最小化能保证有很好的学习效果。例如，极大似然估计（maximum likelihood estimation）就是经验风险最小化的一个例子。当模型是条件概率分布，损失函数是对数损失函数时，经验风险最小化就等价于极大似然估计。</p>
+<p>但是，当样本容量很小时，经验风险最小化学习的效果就未必很好，会产生“过拟合（over-fitting）现象”。</p>
+<h4>结构风险最小化</h4>
+<p>结构风险最小化（structural risk minimization，SRM）是为了防止过拟合而提出来的策略。结构风险最小化等价于正则化（regularization）。结构风险在经验风险上加上表示模型复杂度的正则化项（regularizer）或罚项（penalty term），定义如下：
+</p>
+<div class="math">$$R_\text{srm}=\frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)+\lambda J(f)$$</div>
+<p>
+其中 <span class="math">\(J(f)\)</span> 为模型的复杂度，是定义在假设空间 <span class="math">\({\cal F}\)</span> 上的泛函。模型 <span class="math">\(f\)</span> 越复杂，<span class="math">\(J(f)\)</span> 越大。也就是说，复杂度表示了对复杂模型的惩罚，<span class="math">\(\lambda\geq 0\)</span> 是系数，用以权衡经验风险和模型复杂度。</p>
+<p>结构风险小需要经验风险与模型复杂度同时小，结构风险小的模型往往对训练数据以及未知的测试数据都有较好的预测。结构化风险最小化策略认为：结构风险最小的模型是最优的模型。即求解下面的最优化问题：
+</p>
+<div class="math">$$ \min_{f\in {\cal F}} \frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)+\lambda J(f)$$</div>
+<p>贝叶斯估计中的最大后验概率估计（maximum posterior probability estimation，MAP）就是结构化风险最小化的一个例子。当模型是条件概率分布，损失函数是对数损失函数，模型复杂度由模型的先验概率表示时，结构风险最小化就等价于最大后验概率估计。</p>
+<h3>算法</h3>
+<p>算法是指学习模型的具体计算方法。统计学习基于训练数据集，根据学习策略，从假设空间中选择最优模型，最后需要考虑用什么样的计算方法求解最优模型。</p>
+<p>如果最优化问题有显式的解析解，这个最优化问题就比较简单，但通常解析解不存在，这就需要用数值方法求解。如何保证找到全局最优解，并使求解的过程非常高效，就成为一个重要问题。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/28/指示器随机变量/">
+                                    指示器随机变量
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">
+                                    最大子数组问题
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">
+                                    排序算法
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/23/矩阵求导/">
+                                    矩阵微积分
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">
+                                    C++ Primer 第十七章 标准库特殊设施
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-11-04T12:54:21+08:00">2018-11-04 12:54:21</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-11-04 14:11:42</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#机器学习-ref">机器学习
+                                <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#统计学习-ref">统计学习
+                                <span>1</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>

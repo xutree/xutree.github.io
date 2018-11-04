@@ -1,5 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-01T22:21:00+08:00</updated><entry><title>最大子数组问题</title><link href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/" rel="alternate"></link><published>2018-10-27T22:26:28+08:00</published><updated>2018-10-28T13:02:31+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-27:/pages/2018/10/27/find_maximum_subarray/</id><summary type="html">&lt;p&gt;寻找数组中和最大的非空连续子数组。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-04T14:11:42+08:00</updated><entry><title>统计学习方法 第一章 统计学习方法概论</title><link href="https://xutree.github.io/pages/2018/11/04/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%A6%82%E8%AE%BA/" rel="alternate"></link><published>2018-11-04T12:54:21+08:00</published><updated>2018-11-04T14:11:42+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/第一章-统计学习方法概论/</id><summary type="html">&lt;h2&gt;统计学习&lt;/h2&gt;
+&lt;h3&gt;特点&lt;/h3&gt;
+&lt;p&gt;统计学习（statistical learning）是关于计算机基于&lt;strong&gt;数据&lt;/strong&gt;构建概率统计模型并运用模型对数据进行&lt;strong&gt;预测与分析&lt;/strong&gt;的一门学科。&lt;/p&gt;
+&lt;p&gt;赫尔伯特·西蒙（Herbert A.Simon）对“学习”给出如下定义：如果一个系统能够通过执行某个过程改变它的性能，这就是学习。&lt;/p&gt;
+&lt;h3&gt;对象&lt;/h3&gt;
+&lt;p&gt;统计学习的对象是数据。&lt;/p&gt;
+&lt;p&gt;统计学习关于数据的基本假设是同类数据具有一定的统计规律性，这是统计学习的前提。&lt;/p&gt;
+&lt;h3&gt;目的&lt;/h3&gt;
+&lt;p&gt;统计学习用于对数据进行预测和分析，特别是对未知新数据进行预测与分析。&lt;/p&gt;
+&lt;h3&gt;方法&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;监督学习（supervised learning）&lt;/li&gt;
+&lt;li&gt;非监督学习（unsupervised learning）&lt;/li&gt;
+&lt;li&gt;半监督学习（semi-supervised learning）&lt;/li&gt;
+&lt;li&gt;强化学习（reinforcement learning）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;统计学习方法三要素&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;模型（model）&lt;/strong&gt;：即假设空间（hypothesis space），假设空间是一个集合，这个集合包含要学习的模型&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;策略（strategy …&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h2&gt;统计学习&lt;/h2&gt;
+&lt;h3&gt;特点&lt;/h3&gt;
+&lt;p&gt;统计学习（statistical learning）是关于计算机基于&lt;strong&gt;数据&lt;/strong&gt;构建概率统计模型并运用模型对数据进行&lt;strong&gt;预测与分析&lt;/strong&gt;的一门学科。&lt;/p&gt;
+&lt;p&gt;赫尔伯特·西蒙（Herbert A.Simon）对“学习”给出如下定义：如果一个系统能够通过执行某个过程改变它的性能，这就是学习。&lt;/p&gt;
+&lt;h3&gt;对象&lt;/h3&gt;
+&lt;p&gt;统计学习的对象是数据。&lt;/p&gt;
+&lt;p&gt;统计学习关于数据的基本假设是同类数据具有一定的统计规律性，这是统计学习的前提。&lt;/p&gt;
+&lt;h3&gt;目的&lt;/h3&gt;
+&lt;p&gt;统计学习用于对数据进行预测和分析，特别是对未知新数据进行预测与分析。&lt;/p&gt;
+&lt;h3&gt;方法&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;监督学习（supervised learning）&lt;/li&gt;
+&lt;li&gt;非监督学习（unsupervised learning）&lt;/li&gt;
+&lt;li&gt;半监督学习（semi-supervised learning）&lt;/li&gt;
+&lt;li&gt;强化学习（reinforcement learning）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;统计学习方法三要素&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;模型（model）&lt;/strong&gt;：即假设空间（hypothesis space），假设空间是一个集合，这个集合包含要学习的模型&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;策略（strategy）&lt;/strong&gt;：模型选择的准则&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;算法（algorithm）&lt;/strong&gt;：模型学习的算法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;监督学习&lt;/h2&gt;
+&lt;p&gt;监督学习（supervised learning）的任务是学习一个模型，使模型能够对任意给定的输入，对其相应的输出做出一个好的预测。&lt;/p&gt;
+&lt;h3&gt;基本概念&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;输入空间（input space）&lt;/strong&gt;：输入的所有可能取值的集合，表示为 &lt;span class="math"&gt;\({\cal X}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;输出空间（output space）&lt;/strong&gt;：输出的所有可能取值的集合，表示为 &lt;span class="math"&gt;\({\cal Y}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实例（instance）&lt;/strong&gt;：每个具体的输入，通常由特征向量（feature vector）表示&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;特征空间（feature space）&lt;/strong&gt;：所有特征向量存在的空间，每一维度对应一个特征&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;训练数据（training data）&lt;/strong&gt;：由输入（或特征向量）与输出对组成&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;联合概率分布（joint probability distribution）&lt;/strong&gt;：监督学习假设输入与输出的随机变量 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 遵循联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;假设空间（hypothesis space）&lt;/strong&gt;：模型属于由输入空间到输出空间的映射的集合，这个集合就是假设空间。假设空间的确定意味着学习范围的确定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;注1&lt;/strong&gt;：输入和输出空间可以使有限集也可以是整个欧式空间；输入与输出空间可以使用一个空间，也可以是不同的空间；通常输出空间远小于输入空间。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注2&lt;/strong&gt;：有时假设输入空间与特征空间为相同的空间，对它们不予区分；有时假设输入空间与特征空间为不同的空间，将实例从输入空间映射到特征空间。模型实际上都是定义在特征空间上的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注3&lt;/strong&gt;：在学习过程中，假设联合概率分布存在，但对于学习系统来说，联合概率分布的具体定义是未知的。训练数据与测试数据被看作是依联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 独立同分布（independent and identically distribution）产生的。统计学习假设数据存在一定的统计规律，&lt;span class="math"&gt;\(X\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 遵循联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 就是监督学习关于数据的基本假设。&lt;/p&gt;
+&lt;p&gt;在监督学习过程中，将输入和输出看做是定义在输入（特征）空间与输出空间上的随机变量的取值。输入、输出变量用大写字母表示，输入、输出变量所取的值用小写字母表示。&lt;/p&gt;
+&lt;p&gt;输入实例 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的特征向量记作：&lt;span class="math"&gt;\(x=\left(x^{(1)},x^{(2)},\dots,x^{(n)}\right)^\text{T}\)&lt;/span&gt;，&lt;span class="math"&gt;\(x^{(i)}\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的第 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 个特征。&lt;/p&gt;
+&lt;p&gt;多个输入变量的第 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 个记作：&lt;span class="math"&gt;\(x_i=\left(x_i^{(1)},x_i^{(2)},\dots,x_i^{(n)}\right)^\text{T}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;训练集：&lt;span class="math"&gt;\(T=\{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;监督学习的模型可以是概率模型或非概率模型，由条件概率分布 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 或决策函数（decision function）&lt;span class="math"&gt;\(Y=f(X)\)&lt;/span&gt; 表示。对具体的输入进行相应的输出预测时，写作 &lt;span class="math"&gt;\(P(y|x)\)&lt;/span&gt; 或 &lt;span class="math"&gt;\(y=f(x)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;h2&gt;统计学习三要素&lt;/h2&gt;
+&lt;h3&gt;模型&lt;/h3&gt;
+&lt;p&gt;统计学习首要考虑的问题是学习什么样的模型。模型的假设空间包含所有可能的条件概率分布或决策函数。假设空间中的模型一般有无穷多个。&lt;/p&gt;
+&lt;p&gt;假设空间用 &lt;span class="math"&gt;\(\cal{F}\)&lt;/span&gt; 表示。假设空间可以定义为决策函数或条件概率分布的集合：
+&lt;/p&gt;
+&lt;div class="math"&gt;$${\cal F}=\{f|Y=f_\theta(X),\theta \in \mathbb R^n\}\ \ 或\ \ {\cal F}=\{P|P_\theta(Y|X),\theta \in \mathbb R^n\}$$&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;参数向量 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; 取值于 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维欧式空间 &lt;span class="math"&gt;\(\mathbb R^n\)&lt;/span&gt;，称为参数空间（parameter space）。&lt;/p&gt;
+&lt;h3&gt;策略&lt;/h3&gt;
+&lt;p&gt;有了模型的假设空间，统计学习接着需要考虑的是按照什么样的准则学习或选择最优的模型。&lt;/p&gt;
+&lt;h4&gt;损失函数和风险函数&lt;/h4&gt;
+&lt;p&gt;损失函数（loss function）或代价函数（cost function）用来度量预测错误的程度。损失函数是 &lt;span class="math"&gt;\(f(X)\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 的非负实值函数，记作 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;统计学习常用的损失函数有以下几种：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;0-1 损失函数（0-1 loss function）
+&lt;div class="math"&gt;$$L(Y,f(X)=\begin{cases}
+1, &amp;amp; Y\neq f(X) \\
+0, &amp;amp; Y=f(X)
+\end{cases}$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;平方损失函数（quadratic loss function）
+&lt;div class="math"&gt;$$L(Y,f(X))=(Y-f(X))^2$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;绝对损失函数（absolute loss function）
+&lt;div class="math"&gt;$$L(Y,f(X))=|Y-f(X)|$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对数损失函数（logarithmic loss function）或对数似然损失函数（log-likelihood loss function）
+&lt;div class="math"&gt;$$L(Y,P(Y|X)=-\log P(Y|X)$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;风险函数（risk function）或期望损失（expected loss）：理论上模型 &lt;span class="math"&gt;\(f(X)\)&lt;/span&gt; 关于联合分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 评价意义下的损失，记作 &lt;span class="math"&gt;\(R_\text{exp}\)&lt;/span&gt;。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$R_\text{exp}(f)=\text{E}_P[L(Y,f(X))]=\int_{{\cal X}\times{\cal Y}}L(y,f(x))P(x,y)dxdy$$&lt;/div&gt;
+&lt;p&gt;经验风险（empirical risk）或经验损失（empirical loss）：模型 &lt;span class="math"&gt;\(f(X)\)&lt;/span&gt; 关于训数据集的平均损失，记作 &lt;span class="math"&gt;\(R_\text{emp}\)&lt;/span&gt;。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$R_\text{emp}(f)=\frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)$$&lt;/div&gt;
+&lt;h4&gt;经验风险最小化&lt;/h4&gt;
+&lt;p&gt;经验风险最小化（empirical risk minimization，ERM）策略认为：经验风险最小的模型是最优的模型。即求解下面的最优化问题：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$ \min_{f\in {\cal F}} \frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\({\cal F}\)&lt;/span&gt; 是假设空间。&lt;/p&gt;
+&lt;p&gt;当样本容量足够大时，经验风险最小化能保证有很好的学习效果。例如，极大似然估计（maximum likelihood estimation）就是经验风险最小化的一个例子。当模型是条件概率分布，损失函数是对数损失函数时，经验风险最小化就等价于极大似然估计。&lt;/p&gt;
+&lt;p&gt;但是，当样本容量很小时，经验风险最小化学习的效果就未必很好，会产生“过拟合（over-fitting）现象”。&lt;/p&gt;
+&lt;h4&gt;结构风险最小化&lt;/h4&gt;
+&lt;p&gt;结构风险最小化（structural risk minimization，SRM）是为了防止过拟合而提出来的策略。结构风险最小化等价于正则化（regularization）。结构风险在经验风险上加上表示模型复杂度的正则化项（regularizer）或罚项（penalty term），定义如下：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$R_\text{srm}=\frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)+\lambda J(f)$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\(J(f)\)&lt;/span&gt; 为模型的复杂度，是定义在假设空间 &lt;span class="math"&gt;\({\cal F}\)&lt;/span&gt; 上的泛函。模型 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 越复杂，&lt;span class="math"&gt;\(J(f)\)&lt;/span&gt; 越大。也就是说，复杂度表示了对复杂模型的惩罚，&lt;span class="math"&gt;\(\lambda\geq 0\)&lt;/span&gt; 是系数，用以权衡经验风险和模型复杂度。&lt;/p&gt;
+&lt;p&gt;结构风险小需要经验风险与模型复杂度同时小，结构风险小的模型往往对训练数据以及未知的测试数据都有较好的预测。结构化风险最小化策略认为：结构风险最小的模型是最优的模型。即求解下面的最优化问题：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$ \min_{f\in {\cal F}} \frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)+\lambda J(f)$$&lt;/div&gt;
+&lt;p&gt;贝叶斯估计中的最大后验概率估计（maximum posterior probability estimation，MAP）就是结构化风险最小化的一个例子。当模型是条件概率分布，损失函数是对数损失函数，模型复杂度由模型的先验概率表示时，结构风险最小化就等价于最大后验概率估计。&lt;/p&gt;
+&lt;h3&gt;算法&lt;/h3&gt;
+&lt;p&gt;算法是指学习模型的具体计算方法。统计学习基于训练数据集，根据学习策略，从假设空间中选择最优模型，最后需要考虑用什么样的计算方法求解最优模型。&lt;/p&gt;
+&lt;p&gt;如果最优化问题有显式的解析解，这个最优化问题就比较简单，但通常解析解不存在，这就需要用数值方法求解。如何保证找到全局最优解，并使求解的过程非常高效，就成为一个重要问题。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>最大子数组问题</title><link href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/" rel="alternate"></link><published>2018-10-27T22:26:28+08:00</published><updated>2018-10-28T13:02:31+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-10-27:/pages/2018/10/27/find_maximum_subarray/</id><summary type="html">&lt;p&gt;寻找数组中和最大的非空连续子数组。&lt;/p&gt;
 &lt;h2&gt;暴力求解&lt;/h2&gt;
 &lt;p&gt;先找出从第1个元素开始的最大子数组，而后再从第2个元素开始找出从第2个元素开始的最大子数组，依次类推，比较得出最大的子数组。&lt;/p&gt;
 &lt;p&gt;时间复杂度 &lt;span class="math"&gt;\(O(n^2)\)&lt;/span&gt;。&lt;/p&gt;
