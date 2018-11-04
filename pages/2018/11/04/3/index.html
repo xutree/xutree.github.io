@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
+    <title>统计学习方法 第三章 $k$ 近邻法  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
+        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/基础知识.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 基础知识 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/其他.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 其他 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/11/04/3/"> 统计学习方法 第三章 $k$ 近邻法  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <p><span class="math">\(k\)</span> 近邻法（k-nearest neighbor，<span class="math">\(k\)</span>-NN）是一种基本分类与回归方法。<span class="math">\(k\)</span> 近邻法的输入为实例的特征向量，输出为实例的类别，可以取多类。<span class="math">\(k\)</span> 近邻法假设给定一个训练集数据，其中的实例类别已定。分类时，对新的实例，根据其 <span class="math">\(k\)</span> 个最近邻的训练实例的类别，通过多数表决等方式进行预测。因此，<span class="math">\(k\)</span> 近邻法不具有显式的学习过程。</p>
+<p><span class="math">\(k\)</span> 近邻法实际上利用训练数据集对特征向量空间进行划分，并作为其分类的模型。</p>
+<p><span class="math">\(k\)</span> 值得选择、距离度量以及分类决策规则是 <span class="math">\(k\)</span> 近邻法的三个基本要素。</p>
+<h2>3.1 <span class="math">\(k\)</span> 近邻算法</h2>
+<p><strong>算法 3.1 （<span class="math">\(k\)</span> 近邻法）<br>
+输入：训练数据集
+<div class="math">$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
+其中
+<div class="math">$$x_i\in{\cal X}\subseteq\mathbb{R}^n$$</div>
+为实例的特征空间，
+<div class="math">$$y_i\in{\cal Y}=\{c_1,c_2,\cdots,c_K\}$$</div>
+为实例的类别；
+实例特征向量 <span class="math">\(x\)</span><br>
+输出：实例 <span class="math">\(x\)</span> 所属的类 <span class="math">\(y\)</span><br>
+(1) 根据给定的距离度量，在训练集 <span class="math">\(T\)</span> 中找出与 <span class="math">\(x\)</span> 最邻近的 <span class="math">\(k\)</span> 个点，涵盖这 <span class="math">\(k\)</span> 个点的 <span class="math">\(x\)</span> 的邻域记作 <span class="math">\(N_k(x)\)</span><br>
+(2) 在 <span class="math">\(N_k(x)\)</span>  中根据分类决策规则（如多数表决）决定 <span class="math">\(x\)</span> 的类别 <span class="math">\(y\)</span>
+<div class="math">$$y=\arg\max_{c_j}\sum_{x_i\in N_k(x)}\mathbb{I}(y_i=c_j),i=1,2,\cdots,N; j=1,2,\cdots,K$$</div>
+式中，<span class="math">\(\mathbb{I}\)</span> 为指示函数
+</strong></p>
+<p><span class="math">\(k\)</span> 近邻法的特殊情况是 <span class="math">\(k=1\)</span> 的情形，称为最近邻算法。对于输入的实例点（特征向量）<span class="math">\(x\)</span>，最邻近法将数据集中与 <span class="math">\(x\)</span> 最邻近点的类作为 <span class="math">\(x\)</span> 的类。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/04/2/">
+                                    统计学习方法 第二章 感知机
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/04/1/">
+                                    统计学习方法 第一章 统计学习方法概论
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/28/指示器随机变量/">
+                                    指示器随机变量
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">
+                                    最大子数组问题
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">
+                                    排序算法
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-11-04T23:11:36+08:00">2018-11-04 23:11:36</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-11-04 23:30:30</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#机器学习-ref">机器学习
+                                <span>3</span>
+</a></li>
+                        <li><a href="/tags.html#统计学习-ref">统计学习
+                                <span>3</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
