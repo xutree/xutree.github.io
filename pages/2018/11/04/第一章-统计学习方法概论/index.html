@@ -221,6 +221,67 @@
 <p>应用最多的是 <span class="math">\(S\)</span> 折交叉验证（S-fold cross validation），方法如下：首先随机的将已给数据切分为 <span class="math">\(S\)</span> 个互不相交的大小相同的子集；然后利用 <span class="math">\(S-1\)</span> 个子集的数据训练模型，利用余下的子集测试模型；将这一过程对可能的 <span class="math">\(S\)</span> 种选择重复进行；最后选出 <span class="math">\(S\)</span> 次评估中平均测试误差最小的模型。</p>
 <h4>5.2.3 留一交叉验证</h4>
 <p><span class="math">\(S\)</span> 折交叉验证的特殊情形是 <span class="math">\(S=N\)</span>，称为留一交叉验证（leave-one-out cross validation），往往在数据缺乏的情况下使用。这里 <span class="math">\(N\)</span> 是给定数据集的容量。</p>
+<h2>1.6 泛化能力</h2>
+<h3>1.6.1 泛化误差</h3>
+<p>学习方法的泛化能力（generalization ability）是指由该学习方法学到的模型对未知数据的预测能力。</p>
+<p>泛化误差（generalization error）：如果学到的模型是 <span class="math">\(\hat{f}\)</span>，那么用这个模型对未知数据预测的误差即为泛化误差。
+</p>
+<div class="math">$$R_\text{exp}(\hat{f})=\text{E}_P[L(Y,f(X))]=\int_{{\cal X}\times{\cal Y}}L(y,\hat{f}(x))P(x,y)dxdy$$</div>
+<p>
+实际上，泛化误差就是所学习到的模型的期望风险。</p>
+<h3>1.6.2 泛化误差上界</h3>
+<p>学习方法的泛化能力分析往往使用过研究泛化误差的概率上界进行的，简称为泛化误差上界（generalization error bound）。也就是说，可以通过比较两种学习方法的泛化误差上界的大小来比较它们的优劣。</p>
+<p>泛化误差上界具有如下性质：</p>
+<ul>
+<li>它是样本容量的函数，当样本容量增加时，泛化误差上界趋于 0</li>
+<li>它是假设空间容量（capacity）的函数，假设空间容量越大，模型就越难学，泛化误差上界就越大</li>
+</ul>
+<h3>1.6.3 二分类问题的泛化误差上界</h3>
+<p>考虑二分类问题。已知训练数据集 <span class="math">\(T=\{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}\)</span>，它是从联合概率分布 <span class="math">\(P(X,Y)\)</span> 独立同分布产生的，<span class="math">\(X\in \mathbb R^n\)</span>，<span class="math">\(Y\in \{-1,1\}\)</span>。假设空间是函数的有限集合 <span class="math">\({\cal F}=\{f_1.f_2.\dots,f_d\}\)</span>，<span class="math">\(d\)</span> 是函数个数。设 <span class="math">\(f\)</span> 是从 <span class="math">\({\cal F}\)</span> 中选取的函数。损失函数是 0-1 损失。关于 <span class="math">\(f\)</span> 的期望风险和经验风险分别是：
+</p>
+<div class="math">$$R_\text{exp}(f)=\text{E}_P[L(Y,f(X))]$$</div>
+<div class="math">$$R_\text{emp}(f)=\frac{1}{N}\sum_{i=1}^NL(y_i,f(x_i))$$</div>
+<p>
+经验风险最小化函数是：
+</p>
+<div class="math">$$f_N=\arg \min_{f\in{\cal F}}R_\text{emp}(f)$$</div>
+<p>
+人们更关心的是 <span class="math">\(f_N\)</span> 的泛化能力：
+</p>
+<div class="math">$$R(f_N)=\text{E}_P[L(Y,f_N(X))]$$</div>
+<blockquote>
+<p>定理 1.1（泛化误差上界）对二分类问题，当假设空间是有限个函数的集合 <span class="math">\({\cal F}=\{f_1.f_2.\dots,f_d\}\)</span> 时，对任意一个函数 <span class="math">\(f\in{\cal F}\)</span>，至少以概率 <span class="math">\(1-\delta\)</span>，以下不等式成立：
+<div class="math">$$R(f)\leq R_\text{emp}(f)+\epsilon(d,N,\delta)$$</div>
+其中，
+<div class="math">$$\epsilon(d,N,\delta)=\sqrt{\frac{1}{2N}\left(\log d+\log \frac{1}{\delta}\right)}$$</div>
+</p>
+</blockquote>
+<p>上述定理表明：训练误差越小，泛化误差也越小；当 <span class="math">\(N\)</span> 趋于无穷时，第二项为 0；假设空间包含的函数越多，泛化误差越大。</p>
+<blockquote>
+<p>证明：在证明过程中要用到 Hoeffding 不等式，先叙述如下：</p>
+<p>Hoeffding 不等式适用于有界的随机变量。设有两两独立的一系列随机变量 <span class="math">\(X_{1},\dots ,X_{n}\)</span>。假设对所有的 <span class="math">\(1\leq i\leq n\)</span>，<span class="math">\(X_{i}\)</span> 都是几乎有界的变量，即满足：
+<div class="math">$$\mathbb {P} (X_{i}\in [a_{i},b_{i}])=1$$</div>
+那么这 <span class="math">\(n\)</span> 个随机变量的经验期望：
+<div class="math">$$\overline {X}={\frac {X_{1}+\cdots +X_{n}}{n}}$$</div>
+满足以下的不等式：
+<div class="math">$$\mathbb {P}({\overline {X}}-\mathbb {E} [{\overline {X}}]\geq t)\leq \exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$</div>
+<div class="math">$$\mathbb {P} (|{\overline {X}}-\mathbb {E} [{\overline {X}}]|\geq t)\leq 2\exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$</div>
+</p>
+<p>对任意函数 <span class="math">\(f\in{\cal F}\)</span>，<span class="math">\(R_\text{emp}(f)\)</span> 是 <span class="math">\(N\)</span> 个随机变量 <span class="math">\(L(Y,f(X))\)</span> 的样本均值，<span class="math">\(R(f)\)</span> 是随机变量 <span class="math">\(L(Y,f(X))\)</span> 的期望值。如果损失函数取值于区间 [0,1]，则由 Hoeffding 不等式得到，对 <span class="math">\(\epsilon&gt;0\)</span>，以下不等式成立：
+<div class="math">$$P(R(f)-R_\text{emp}(f)\geq\epsilon)\leq\exp (-2N\epsilon^2)$$</div>
+由于 <span class="math">\({\cal F}=\{f_1;f_2,\dots,f_d\}\)</span> 是一个有限集合，故
+<div class="math">$$P\left(\exists f\in{\cal F}:R(f)-R_\text{emp}(f\right)\geq\epsilon)=P\left(\bigcup_{f\in{\cal F}}\{R(f)-R_\text{emp}(f)\geq\epsilon\}\right)\\
+\leq\sum_{f\in{\cal F}}P(R(f)-R_\text{emp}(f)\geq\epsilon)\\
+\leq d\exp(-2N\epsilon^2)$$</div>
+</p>
+<p>或者等价的，对任意的 <span class="math">\(f\in{\cal F}\)</span>，有
+<div class="math">$$P(R(f)-R_\text{emp}(f)\geq\epsilon))\geq1-d\exp(-2N\epsilon^2)$$</div>
+令
+<div class="math">$$\delta=d \exp(-2N\epsilon^2)$$</div>
+则
+<div class="math">$$P(R(f)&lt;R_\text{emp}(f)+\epsilon)\geq1-\delta$$</div>
+证毕。</p>
+</blockquote>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

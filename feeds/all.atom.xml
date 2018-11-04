@@ -174,6 +174,67 @@
 &lt;p&gt;应用最多的是 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 折交叉验证（S-fold cross validation），方法如下：首先随机的将已给数据切分为 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 个互不相交的大小相同的子集；然后利用 &lt;span class="math"&gt;\(S-1\)&lt;/span&gt; 个子集的数据训练模型，利用余下的子集测试模型；将这一过程对可能的 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 种选择重复进行；最后选出 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 次评估中平均测试误差最小的模型。&lt;/p&gt;
 &lt;h4&gt;5.2.3 留一交叉验证&lt;/h4&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(S\)&lt;/span&gt; 折交叉验证的特殊情形是 &lt;span class="math"&gt;\(S=N\)&lt;/span&gt;，称为留一交叉验证（leave-one-out cross validation），往往在数据缺乏的情况下使用。这里 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 是给定数据集的容量。&lt;/p&gt;
+&lt;h2&gt;1.6 泛化能力&lt;/h2&gt;
+&lt;h3&gt;1.6.1 泛化误差&lt;/h3&gt;
+&lt;p&gt;学习方法的泛化能力（generalization ability）是指由该学习方法学到的模型对未知数据的预测能力。&lt;/p&gt;
+&lt;p&gt;泛化误差（generalization error）：如果学到的模型是 &lt;span class="math"&gt;\(\hat{f}\)&lt;/span&gt;，那么用这个模型对未知数据预测的误差即为泛化误差。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$R_\text{exp}(\hat{f})=\text{E}_P[L(Y,f(X))]=\int_{{\cal X}\times{\cal Y}}L(y,\hat{f}(x))P(x,y)dxdy$$&lt;/div&gt;
+&lt;p&gt;
+实际上，泛化误差就是所学习到的模型的期望风险。&lt;/p&gt;
+&lt;h3&gt;1.6.2 泛化误差上界&lt;/h3&gt;
+&lt;p&gt;学习方法的泛化能力分析往往使用过研究泛化误差的概率上界进行的，简称为泛化误差上界（generalization error bound）。也就是说，可以通过比较两种学习方法的泛化误差上界的大小来比较它们的优劣。&lt;/p&gt;
+&lt;p&gt;泛化误差上界具有如下性质：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它是样本容量的函数，当样本容量增加时，泛化误差上界趋于 0&lt;/li&gt;
+&lt;li&gt;它是假设空间容量（capacity）的函数，假设空间容量越大，模型就越难学，泛化误差上界就越大&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.6.3 二分类问题的泛化误差上界&lt;/h3&gt;
+&lt;p&gt;考虑二分类问题。已知训练数据集 &lt;span class="math"&gt;\(T=\{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}\)&lt;/span&gt;，它是从联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 独立同分布产生的，&lt;span class="math"&gt;\(X\in \mathbb R^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(Y\in \{-1,1\}\)&lt;/span&gt;。假设空间是函数的有限集合 &lt;span class="math"&gt;\({\cal F}=\{f_1.f_2.\dots,f_d\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(d\)&lt;/span&gt; 是函数个数。设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是从 &lt;span class="math"&gt;\({\cal F}\)&lt;/span&gt; 中选取的函数。损失函数是 0-1 损失。关于 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 的期望风险和经验风险分别是：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$R_\text{exp}(f)=\text{E}_P[L(Y,f(X))]$$&lt;/div&gt;
+&lt;div class="math"&gt;$$R_\text{emp}(f)=\frac{1}{N}\sum_{i=1}^NL(y_i,f(x_i))$$&lt;/div&gt;
+&lt;p&gt;
+经验风险最小化函数是：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f_N=\arg \min_{f\in{\cal F}}R_\text{emp}(f)$$&lt;/div&gt;
+&lt;p&gt;
+人们更关心的是 &lt;span class="math"&gt;\(f_N\)&lt;/span&gt; 的泛化能力：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$R(f_N)=\text{E}_P[L(Y,f_N(X))]$$&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;定理 1.1（泛化误差上界）对二分类问题，当假设空间是有限个函数的集合 &lt;span class="math"&gt;\({\cal F}=\{f_1.f_2.\dots,f_d\}\)&lt;/span&gt; 时，对任意一个函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，至少以概率 &lt;span class="math"&gt;\(1-\delta\)&lt;/span&gt;，以下不等式成立：
+&lt;div class="math"&gt;$$R(f)\leq R_\text{emp}(f)+\epsilon(d,N,\delta)$$&lt;/div&gt;
+其中，
+&lt;div class="math"&gt;$$\epsilon(d,N,\delta)=\sqrt{\frac{1}{2N}\left(\log d+\log \frac{1}{\delta}\right)}$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上述定理表明：训练误差越小，泛化误差也越小；当 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 趋于无穷时，第二项为 0；假设空间包含的函数越多，泛化误差越大。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;证明：在证明过程中要用到 Hoeffding 不等式，先叙述如下：&lt;/p&gt;
+&lt;p&gt;Hoeffding 不等式适用于有界的随机变量。设有两两独立的一系列随机变量 &lt;span class="math"&gt;\(X_{1},\dots ,X_{n}\)&lt;/span&gt;。假设对所有的 &lt;span class="math"&gt;\(1\leq i\leq n\)&lt;/span&gt;，&lt;span class="math"&gt;\(X_{i}\)&lt;/span&gt; 都是几乎有界的变量，即满足：
+&lt;div class="math"&gt;$$\mathbb {P} (X_{i}\in [a_{i},b_{i}])=1$$&lt;/div&gt;
+那么这 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 个随机变量的经验期望：
+&lt;div class="math"&gt;$$\overline {X}={\frac {X_{1}+\cdots +X_{n}}{n}}$$&lt;/div&gt;
+满足以下的不等式：
+&lt;div class="math"&gt;$$\mathbb {P}({\overline {X}}-\mathbb {E} [{\overline {X}}]\geq t)\leq \exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\mathbb {P} (|{\overline {X}}-\mathbb {E} [{\overline {X}}]|\geq t)\leq 2\exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;p&gt;对任意函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，&lt;span class="math"&gt;\(R_\text{emp}(f)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 个随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的样本均值，&lt;span class="math"&gt;\(R(f)\)&lt;/span&gt; 是随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的期望值。如果损失函数取值于区间 [0,1]，则由 Hoeffding 不等式得到，对 &lt;span class="math"&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;，以下不等式成立：
+&lt;div class="math"&gt;$$P(R(f)-R_\text{emp}(f)\geq\epsilon)\leq\exp (-2N\epsilon^2)$$&lt;/div&gt;
+由于 &lt;span class="math"&gt;\({\cal F}=\{f_1;f_2,\dots,f_d\}\)&lt;/span&gt; 是一个有限集合，故
+&lt;div class="math"&gt;$$P\left(\exists f\in{\cal F}:R(f)-R_\text{emp}(f\right)\geq\epsilon)=P\left(\bigcup_{f\in{\cal F}}\{R(f)-R_\text{emp}(f)\geq\epsilon\}\right)\\
+\leq\sum_{f\in{\cal F}}P(R(f)-R_\text{emp}(f)\geq\epsilon)\\
+\leq d\exp(-2N\epsilon^2)$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;p&gt;或者等价的，对任意的 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，有
+&lt;div class="math"&gt;$$P(R(f)-R_\text{emp}(f)\geq\epsilon))\geq1-d\exp(-2N\epsilon^2)$$&lt;/div&gt;
+令
+&lt;div class="math"&gt;$$\delta=d \exp(-2N\epsilon^2)$$&lt;/div&gt;
+则
+&lt;div class="math"&gt;$$P(R(f)&amp;lt;R_\text{emp}(f)+\epsilon)\geq1-\delta$$&lt;/div&gt;
+证毕。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
