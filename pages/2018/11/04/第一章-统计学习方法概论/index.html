@@ -196,7 +196,7 @@
 <p>如果一味追求提高对训练数据的预测能力，所选模型的复杂度则往往会比真模型更高，这种现象称为过拟合。</p>
 <p>过拟合是指学习时选择的模型所包含的参数过多，以致于出现这一模型对已知数据预测得很好，但对未知数据预测很差的现象。</p>
 <p>训练误差与测试误差和模型复杂度关系如下：</p>
-<p><img alt="训练误差与测试误差和模型复杂度" src="https://xutree.github.io/images/statistical_learning_1.3.jpg"></p>
+<p><img alt="训练误差与测试误差和模型复杂度" src="https://xutree.github.io/images/statistical_learning_1.3.png"></p>
 <h2>5. 正则化与交叉验证</h2>
 <p>正则化与交叉验证是两种常用的模型选择方法。</p>
 <h3>5.1 正则化</h3>
@@ -283,6 +283,67 @@
 <div class="math">$$P(R(f)&lt;R_\text{emp}(f)+\epsilon)\geq1-\delta$$</div>
 证毕。</p>
 </blockquote>
+<h2>1.7 生成模型与判别模型</h2>
+<p>监督学习方法也可以分为生成方法（generative approach）和判别方法（discriminative approach）。所学到的模型分别称为生成模型（generative model）和判别模型（discriminative model）。</p>
+<h3>1.7.1 生成方法</h3>
+<p>生成方法由数据学习联合概率分布 <span class="math">\(P(X,Y)\)</span>，然后求出条件概率分布 <span class="math">\(P(Y|X)\)</span> 作为预测的模型，即生成模型：
+</p>
+<div class="math">$$P(Y|X)=\frac{P(X,Y)}{P(X)}$$</div>
+<p>
+这样的方法之所以称为生成方法，是因为模型表示了给定输入 <span class="math">\(X\)</span> 产生输出 <span class="math">\(Y\)</span> 的生成关系。</p>
+<p>典型的生成模型有：朴素贝叶斯法和隐马尔科夫模型。</p>
+<h3>1.7.2 判别方法</h3>
+<p>判别方法由数据直接学习策略函数 <span class="math">\(f(X)\)</span> 或者条件概率分布 <span class="math">\(P(Y|X)\)</span> 作为预测的模型。判别方法关心的是对给定的输入 <span class="math">\(X\)</span>，应该预测什么样的输出 <span class="math">\(Y\)</span>。</p>
+<p>典型的判别模型有：<span class="math">\(k\)</span> 近邻法，感知机，决策树，logistic 回归模型，最大熵模型，支持向量机，提升方法和条件随机场等。</p>
+<h3>1.7.3 不同方法的特点</h3>
+<p>生成方法：</p>
+<ul>
+<li>生成方法可以还原出联合概率分布 <span class="math">\(P(X,Y)\)</span>，而判别方法则不能</li>
+<li>生成方法的学习收敛速度更快，即当样本容量增加时，学到的模型可以更快的收敛到真实模型</li>
+<li>当存在隐变量时，仍可以使用生成方法，此时判别方法就不能用了</li>
+</ul>
+<p>判别方法：</p>
+<ul>
+<li>判别方法直接学习的是条件概率 <span class="math">\(P(Y|X)\)</span> 或决策函数 <span class="math">\(f(X)\)</span>，直接面对预测，往往学习的准确率更高</li>
+<li>由于直接学习 <span class="math">\(P(Y|X)\)</span> 或 <span class="math">\(f(X)\)</span>，可以对数据进行各种程度上的抽象、定义特征并使用特征，因此可以简化学习问题</li>
+</ul>
+<h2>1.8 分类问题</h2>
+<p>在监督学习中，当输出变量 <span class="math">\(Y\)</span> 取有限个离散值时，预测问题便成为分类问题。</p>
+<p><strong>分类器（classifier）</strong>：从数据中学习到的一个分类模型或分类决策函数。</p>
+<p>评价分类器性能的指标一般是<strong>分类准确率（accuracy）</strong>：对于给定的测试数据集，分类器正确分类的样本数与总样本数之比。</p>
+<p>对于二分类问题常用的评价指标是<strong>精确率（precision）</strong>和<strong>召回率（recall）</strong>。</p>
+<p>通常以关注的类为正类，其他类为负类，分类器在测试数据集上的预测或正确或不正确，4 种情况出现的总数分别记为：</p>
+<ul>
+<li>TP：将正类预测为正类的数目</li>
+<li>FN：将正类预测为负类的数目</li>
+<li>FP：将负类预测为正类的数目</li>
+<li>TN：将负类预测为负类的数目</li>
+</ul>
+<p>精确率定义：
+</p>
+<div class="math">$$P=\frac{TP}{TP+FP}$$</div>
+<p>
+召回率定义：
+</p>
+<div class="math">$$R=\frac{TP}{TP+FN}$$</div>
+<p>
+<span class="math">\(F_1\)</span> 值：
+</p>
+<div class="math">$$\frac{2}{F_1}=\frac{1}{P}+\frac{1}{R}\longrightarrow
+F_1=\frac{2TP}{2TP+FP+FN}$$</div>
+<p>许多统计学习方法可以用于分类，包括 <span class="math">\(k\)</span> 近邻法，感知机，朴素贝叶斯法，决策树，决策列表，logistic 回归模型，支持向量机，提升方法，贝叶斯网络，神经网络，Winnow 等。</p>
+<p>一个分类应用的例子：垃圾邮件、非垃圾邮件分类。</p>
+<h2>1.9 标注问题</h2>
+<p>标注（tagging）也是一个监督学习问题，可以认为标注问题是分类问题的一个推广，标注问题又是更复杂的结构预测（structure prediction）问题的简单形式。</p>
+<p>标注问题的输入是一个观测序列，输出是一个标记序列或状态序列。标注问题的目标在于学习一个模型，使它能够对观测序列给出标记序列作为预测。注意，可能的标记个数是有限的，但其组合所成的标记序列的个数是依序列长度呈指数级增长的。</p>
+<p>评价标注模型的指标和分类模型一样，常用的有标注准确率、精确率和召回率。</p>
+<p>标注常用的统计学习方法有：隐马尔科夫模型，条件随机场。</p>
+<p>一个标注的例子：对英文文章进行标注，英文单词是一个观察，英文句子是一个观察序列，标记表示名词短语的“开始”、“结束”和“其他”。</p>
+<h2>1.10 回归问题</h2>
+<p>回归（regression）是监督学习的另一个重要问题。回归用于预测输入变量（自变量）和输出变量（因变量）之间的关系，特别是当输入变量的值发生变化时，输出变量的值随之发生的变化。回归问题等价于函数拟合：选择一条函数曲线使其很好的拟合已知数据且很好的预测未知数据。</p>
+<p>回归问题按照输入变量的个数，分为一元回归和多元回归；按照输入变量和输出变量之间的关系分为线性回归和非线性回归。</p>
+<p>回归学习中最常用的损失函数是平方损失函数，在此情况下，回归问题可以用最小二乘法（least squares）求解。</p>
+<p>一个回归的例子：市场趋势预测。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -379,7 +440,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-04T12:54:21+08:00">2018-11-04 12:54:21</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-04 16:42:22</div>
+                    <div class="last_updated">2018-11-04 18:31:03</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
