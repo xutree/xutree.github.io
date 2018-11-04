@@ -1,5 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-04T18:31:03+08:00</updated><entry><title>统计学习方法 第一章 统计学习方法概论</title><link href="https://xutree.github.io/pages/2018/11/04/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%A6%82%E8%AE%BA/" rel="alternate"></link><published>2018-11-04T12:54:21+08:00</published><updated>2018-11-04T18:31:03+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/第一章-统计学习方法概论/</id><summary type="html">&lt;h2&gt;1. 统计学习&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-04T21:20:45+08:00</updated><entry><title>统计学习方法 第二章 感知机</title><link href="https://xutree.github.io/pages/2018/11/04/2/" rel="alternate"></link><published>2018-11-04T21:04:02+08:00</published><updated>2018-11-04T21:19:51+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/2/</id><summary type="html">&lt;p&gt;感知机（perceptron）是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别，取 +1 和 -1 二值。感知机对应于输入空间（特征空间）中将实例划分为正负类别的分离超平面，属于判别模型。&lt;/p&gt;
+&lt;h2&gt;2.1 感知机模型&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义 2.1（感知机）假设输入空间（特征空间）是 &lt;span class="math"&gt;\({\cal X}\subseteq\mathbb{R}^n\)&lt;/span&gt;，输出空间是 &lt;span class="math"&gt;\({\cal Y}=\{+1,-1\}\)&lt;/span&gt;。输入 &lt;span class="math"&gt;\(x\in{\cal X}\)&lt;/span&gt; 表示实例的特征向量，对应于输入空间（特征空间）的点；输出 &lt;span class="math"&gt;\(y\in{\cal Y}\)&lt;/span&gt; 表示实例的类别 …&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;p&gt;感知机（perceptron）是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别，取 +1 和 -1 二值。感知机对应于输入空间（特征空间）中将实例划分为正负类别的分离超平面，属于判别模型。&lt;/p&gt;
+&lt;h2&gt;2.1 感知机模型&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义 2.1（感知机）假设输入空间（特征空间）是 &lt;span class="math"&gt;\({\cal X}\subseteq\mathbb{R}^n\)&lt;/span&gt;，输出空间是 &lt;span class="math"&gt;\({\cal Y}=\{+1,-1\}\)&lt;/span&gt;。输入 &lt;span class="math"&gt;\(x\in{\cal X}\)&lt;/span&gt; 表示实例的特征向量，对应于输入空间（特征空间）的点；输出 &lt;span class="math"&gt;\(y\in{\cal Y}\)&lt;/span&gt; 表示实例的类别。由输入空间到输出空间的如下函数：
+&lt;div class="math"&gt;$$f(x)=\text{sign}(w\cdot x+b)$$&lt;/div&gt;
+称为感知机。其中，&lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 为感知机模型参数，&lt;span class="math"&gt;\(w\in\mathbb{R}^n\)&lt;/span&gt; 叫做权值（weight）或权值向量（weight vector），&lt;span class="math"&gt;\(b\in\mathbb{R}\)&lt;/span&gt; 叫做偏置（bias），&lt;span class="math"&gt;\(w\cdot x\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的内积。sign 是符号函数，即：
+&lt;div class="math"&gt;$$\text{sign}(x)=\begin{cases}+1, &amp;amp; x\geq0 \\ -1, &amp;amp; x&amp;lt;0\end{cases}$$&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;感知机是一种线性分类模型。感知机模型的假设空间是定义在特征空间中的所有线性分类模型（linear classification model）或线性分类器（linear classifier），即函数集合：&lt;span class="math"&gt;\(\{f|f(x)=w\cdot x+b\}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;感知机的几何解释：对于线性方程
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w\cdot x+b=0$$&lt;/div&gt;
+&lt;p&gt;
+对应于特征空间 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中的一个超平面 &lt;span class="math"&gt;\(S\)&lt;/span&gt;，称为分离超平面（separating hyperplane），其中 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 是超平面的法向量，&lt;span class="math"&gt;\(b\)&lt;/span&gt; 是超平面的截距。这个超平面将特征空间划分为两个部分。&lt;/p&gt;
+&lt;h2&gt;2.2 感知机学习策略&lt;/h2&gt;
+&lt;h3&gt;2.2.1 数据集的线性可分性&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;定义 2.2 （数据集的线性可分性）给定一个数据集
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+其中，&lt;span class="math"&gt;\(x_i\in{\cal X}=\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_i\in{\cal Y}=\{+1,-1\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;，如果存在某个超平面 &lt;span class="math"&gt;\(S\)&lt;/span&gt;
+&lt;div class="math"&gt;$$w\cdot x+b=0$$&lt;/div&gt;
+能够将数据集的正负实例完全正确的划分到超平面的两侧，则称数据集 &lt;span class="math"&gt;\(T\)&lt;/span&gt; 是线性可分数据集（linearly separable data set）；否则，则称数据集 &lt;span class="math"&gt;\(T\)&lt;/span&gt; 线性不可分。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;2.2.2 感知机学习策略&lt;/h3&gt;
+&lt;p&gt;为了找出超平面，需要一个学习策略，即定义（经验）损失函数并将损失函数极小化。&lt;/p&gt;
+&lt;p&gt;损失函数的一个自然选择是误分类点的总数。但是，这样的损失函数不是参数 &lt;span class="math"&gt;\(w\)&lt;/span&gt;、&lt;span class="math"&gt;\(b\)&lt;/span&gt; 的连续可导函数，不易优化。损失函数的另一个选择是误分类点到超平面 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 的总距离，这是感知机所采用的。&lt;/p&gt;
+&lt;p&gt;首先，输入空间 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中任一点 &lt;span class="math"&gt;\(x_0\)&lt;/span&gt; 到超平面 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 的距离为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{1}{||w||}|w\cdot x+b|$$&lt;/div&gt;
+&lt;p&gt;
+这里，&lt;span class="math"&gt;\(||w||\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 的 &lt;span class="math"&gt;\(L_2\)&lt;/span&gt; 范数。&lt;/p&gt;
+&lt;p&gt;其次，注意到对于误分类点数据 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt;，下式成立：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$-y_i(w\cdot x_i+b)&amp;gt;0$$&lt;/div&gt;
+&lt;p&gt;
+因此，误分类点到超平面的总距离为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$-\frac{1}{||w||}\sum_{x_i\in M}y_i(w\cdot x_i+b)$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(M\)&lt;/span&gt; 是误分类点集合。不考虑 &lt;span class="math"&gt;\(\frac{1}{||w||}\)&lt;/span&gt;，就得到感知机学习的损失函数。&lt;/p&gt;
+&lt;p&gt;给定训练数据集：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+&lt;p&gt;
+感知机 &lt;span class="math"&gt;\(\text{sign}(w\cdot x+b)\)&lt;/span&gt; 学习的损失函数定义为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L(w,b)=-\sum_{x_i\in M}y_i(w\cdot x_i+b)$$&lt;/div&gt;
+&lt;p&gt;感知机学习的策略是在假设空间中选取使上面的损失函数最小的模型参数 &lt;span class="math"&gt;\(w\)&lt;/span&gt;，&lt;span class="math"&gt;\(b\)&lt;/span&gt;，即感知机模型。&lt;/p&gt;
+&lt;h2&gt;2.3 感知机学习算法&lt;/h2&gt;
+&lt;p&gt;为最优化上节的损失函数，采取随机梯度下降法（stochastic gradient descent）。&lt;/p&gt;
+&lt;h3&gt;2.3.1 感知机学习算法的原始形式&lt;/h3&gt;
+&lt;p&gt;感知机学习算法是对以下最优化问题的算法。给定训练数据集：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\(x_i\in{\cal X}=\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_i\in{\cal Y}=\{+1,-1\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;，求参数 &lt;span class="math"&gt;\(w\)&lt;/span&gt;，&lt;span class="math"&gt;\(b\)&lt;/span&gt;，使其为以下损失函数极小化的一个解：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_{w,b} L(w,b)=-\sum_{x_i\in M}y_i(w\cdot x_i+b)$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(M\)&lt;/span&gt; 是误分类点集合。&lt;/p&gt;
+&lt;p&gt;随机梯度下降法步骤如下：首先，任意选取一个超平面 &lt;span class="math"&gt;\(w_0\)&lt;/span&gt;，&lt;span class="math"&gt;\(b_0\)&lt;/span&gt;，然后用梯度下降法不断地极小化目标函数。极小化过程不是一次使 &lt;span class="math"&gt;\(M\)&lt;/span&gt; 中所有误分类法的梯度下降，而是一次随机选取一个误分类点使其梯度下降。&lt;/p&gt;
+&lt;p&gt;假设误分类点集合 &lt;span class="math"&gt;\(M\)&lt;/span&gt; 是固定的，那么损失函数 &lt;span class="math"&gt;\(L(w,b)\)&lt;/span&gt; 的梯度为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\nabla_wL(w,b)=-\sum_{x_i\in M}y_ix_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\nabla_bL(w,b)=-\sum_{x_i\in M}y_i$$&lt;/div&gt;
+&lt;p&gt;随机选取一个误分类点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 对 &lt;span class="math"&gt;\(w\)&lt;/span&gt;，&lt;span class="math"&gt;\(b\)&lt;/span&gt; 进行更新：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w\longleftarrow w+\eta y_ix_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$b\longleftarrow b+\eta y_i$$&lt;/div&gt;
+&lt;p&gt;
+式中 &lt;span class="math"&gt;\(\eta\ (0&amp;lt;\eta\leq 1)\)&lt;/span&gt; 是步长，也称学习率（learning rate）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;算法 2.1 （感知机学习算法的原始形式)&lt;br&gt;
+输入：训练数据集
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+其中
+&lt;div class="math"&gt;$$x_i\in{\cal X}=\mathbb{R}^n$，$y_i\in{\cal Y}=\{+1,-1\},i=1,2,\cdots,N$$&lt;/div&gt;
+学习率
+&lt;div class="math"&gt;$$\eta\ (0&amp;lt;\eta\leq 1)$$&lt;/div&gt;
+输出：&lt;span class="math"&gt;\(w\)&lt;/span&gt;，&lt;span class="math"&gt;\(b\)&lt;/span&gt;；
+感知机模型
+&lt;div class="math"&gt;$$f(x)=\text{sign}(w\cdot x+b)$$&lt;/div&gt;
+(1). 选取初值 &lt;span class="math"&gt;\(w_0\)&lt;/span&gt;，&lt;span class="math"&gt;\(b_0\)&lt;/span&gt;&lt;br&gt;
+(2). 在训练集中选取数据 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt;&lt;br&gt;
+(3). 如果 &lt;span class="math"&gt;\(y_i(w\cdot x_i+b)\leq 0\)&lt;/span&gt;
+&lt;div class="math"&gt;$$w\longleftarrow w+\eta y_ix_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$b\longleftarrow b+\eta y_i$$&lt;/div&gt;
+(4). 转至 (2)，直至训练集中没有误分类点&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;2.3.2 算法的收敛性&lt;/h3&gt;
+&lt;p&gt;为便于推导，将偏置并入权重向量，记为 &lt;span class="math"&gt;\(\hat{w}=(w^\text{T},b)^\text{T}\)&lt;/span&gt;，同样也将输入向量加以扩充，加进常数 1，记作 &lt;span class="math"&gt;\(\hat{x}=(x^\text{T},1)^\text{T}\)&lt;/span&gt;。这样，&lt;span class="math"&gt;\(\hat{x}\in\mathbb{R}^{n+1}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\hat{w}\in\mathbb{R}^{n+1}\)&lt;/span&gt;，显然 &lt;span class="math"&gt;\(\hat{w}\cdot\hat{x}=w\cdot x+b\)&lt;/span&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第一章 统计学习方法概论</title><link href="https://xutree.github.io/pages/2018/11/04/1/" rel="alternate"></link><published>2018-11-04T12:54:21+08:00</published><updated>2018-11-04T21:20:45+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/1/</id><summary type="html">&lt;h2&gt;1. 统计学习&lt;/h2&gt;
 &lt;h3&gt;1.1 特点&lt;/h3&gt;
 &lt;p&gt;统计学习（statistical learning）是关于计算机基于&lt;strong&gt;数据&lt;/strong&gt;构建概率统计模型并运用模型对数据进行&lt;strong&gt;预测与分析&lt;/strong&gt;的一门学科。&lt;/p&gt;
 &lt;p&gt;赫尔伯特·西蒙（Herbert A.Simon）对“学习”给出如下定义：如果一个系统能够通过执行某个过程改变它的性能，这就是学习。&lt;/p&gt;
@@ -203,39 +399,47 @@
 人们更关心的是 &lt;span class="math"&gt;\(f_N\)&lt;/span&gt; 的泛化能力：
 &lt;/p&gt;
 &lt;div class="math"&gt;$$R(f_N)=\text{E}_P[L(Y,f_N(X))]$$&lt;/div&gt;
-&lt;blockquote&gt;
-&lt;p&gt;定理 1.1（泛化误差上界）对二分类问题，当假设空间是有限个函数的集合 &lt;span class="math"&gt;\({\cal F}=\{f_1.f_2.\dots,f_d\}\)&lt;/span&gt; 时，对任意一个函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，至少以概率 &lt;span class="math"&gt;\(1-\delta\)&lt;/span&gt;，以下不等式成立：
+&lt;p&gt;&lt;strong&gt;定理 1.1（泛化误差上界）对二分类问题，当假设空间是有限个函数的集合 &lt;span class="math"&gt;\({\cal F}=\{f_1.f_2.\dots,f_d\}\)&lt;/span&gt; 时，对任意一个函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，至少以概率 &lt;span class="math"&gt;\(1-\delta\)&lt;/span&gt;，以下不等式成立：
 &lt;div class="math"&gt;$$R(f)\leq R_\text{emp}(f)+\epsilon(d,N,\delta)$$&lt;/div&gt;
 其中，
-&lt;div class="math"&gt;$$\epsilon(d,N,\delta)=\sqrt{\frac{1}{2N}\left(\log d+\log \frac{1}{\delta}\right)}$$&lt;/div&gt;
-&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;div class="math"&gt;$$\epsilon(d,N,\delta)=\sqrt{\frac{1}{2N}\left(\log d+\log \frac{1}{\delta}\right)}$$&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;上述定理表明：训练误差越小，泛化误差也越小；当 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 趋于无穷时，第二项为 0；假设空间包含的函数越多，泛化误差越大。&lt;/p&gt;
-&lt;blockquote&gt;
 &lt;p&gt;证明：在证明过程中要用到 Hoeffding 不等式，先叙述如下：&lt;/p&gt;
 &lt;p&gt;Hoeffding 不等式适用于有界的随机变量。设有两两独立的一系列随机变量 &lt;span class="math"&gt;\(X_{1},\dots ,X_{n}\)&lt;/span&gt;。假设对所有的 &lt;span class="math"&gt;\(1\leq i\leq n\)&lt;/span&gt;，&lt;span class="math"&gt;\(X_{i}\)&lt;/span&gt; 都是几乎有界的变量，即满足：
+&lt;/p&gt;
 &lt;div class="math"&gt;$$\mathbb {P} (X_{i}\in [a_{i},b_{i}])=1$$&lt;/div&gt;
+&lt;p&gt;
 那么这 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 个随机变量的经验期望：
+&lt;/p&gt;
 &lt;div class="math"&gt;$$\overline {X}={\frac {X_{1}+\cdots +X_{n}}{n}}$$&lt;/div&gt;
+&lt;p&gt;
 满足以下的不等式：
+&lt;/p&gt;
 &lt;div class="math"&gt;$$\mathbb {P}({\overline {X}}-\mathbb {E} [{\overline {X}}]\geq t)\leq \exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$&lt;/div&gt;
 &lt;div class="math"&gt;$$\mathbb {P} (|{\overline {X}}-\mathbb {E} [{\overline {X}}]|\geq t)\leq 2\exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$&lt;/div&gt;
+&lt;p&gt;
+对任意函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，&lt;span class="math"&gt;\(R_\text{emp}(f)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 个随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的样本均值，&lt;span class="math"&gt;\(R(f)\)&lt;/span&gt; 是随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的期望值。如果损失函数取值于区间 [0,1]，则由 Hoeffding 不等式得到，对 &lt;span class="math"&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;，以下不等式成立：
 &lt;/p&gt;
-&lt;p&gt;对任意函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，&lt;span class="math"&gt;\(R_\text{emp}(f)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 个随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的样本均值，&lt;span class="math"&gt;\(R(f)\)&lt;/span&gt; 是随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的期望值。如果损失函数取值于区间 [0,1]，则由 Hoeffding 不等式得到，对 &lt;span class="math"&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;，以下不等式成立：
 &lt;div class="math"&gt;$$P(R(f)-R_\text{emp}(f)\geq\epsilon)\leq\exp (-2N\epsilon^2)$$&lt;/div&gt;
+&lt;p&gt;
 由于 &lt;span class="math"&gt;\({\cal F}=\{f_1;f_2,\dots,f_d\}\)&lt;/span&gt; 是一个有限集合，故
+&lt;/p&gt;
 &lt;div class="math"&gt;$$P\left(\exists f\in{\cal F}:R(f)-R_\text{emp}(f\right)\geq\epsilon)=P\left(\bigcup_{f\in{\cal F}}\{R(f)-R_\text{emp}(f)\geq\epsilon\}\right)\\
 \leq\sum_{f\in{\cal F}}P(R(f)-R_\text{emp}(f)\geq\epsilon)\\
 \leq d\exp(-2N\epsilon^2)$$&lt;/div&gt;
-&lt;/p&gt;
-&lt;p&gt;或者等价的，对任意的 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，有
+&lt;p&gt;
+或者等价的，对任意的 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，有 &lt;/p&gt;
 &lt;div class="math"&gt;$$P(R(f)-R_\text{emp}(f)\geq\epsilon))\geq1-d\exp(-2N\epsilon^2)$$&lt;/div&gt;
+&lt;p&gt;
 令
+&lt;/p&gt;
 &lt;div class="math"&gt;$$\delta=d \exp(-2N\epsilon^2)$$&lt;/div&gt;
+&lt;p&gt;
 则
+&lt;/p&gt;
 &lt;div class="math"&gt;$$P(R(f)&amp;lt;R_\text{emp}(f)+\epsilon)\geq1-\delta$$&lt;/div&gt;
+&lt;p&gt;
 证毕。&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;h2&gt;1.7 生成模型与判别模型&lt;/h2&gt;
 &lt;p&gt;监督学习方法也可以分为生成方法（generative approach）和判别方法（discriminative approach）。所学到的模型分别称为生成模型（generative model）和判别模型（discriminative model）。&lt;/p&gt;
 &lt;h3&gt;1.7.1 生成方法&lt;/h3&gt;

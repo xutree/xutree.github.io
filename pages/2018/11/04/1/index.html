@@ -54,7 +54,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/04/第一章-统计学习方法概论/"> 统计学习方法 第一章 统计学习方法概论  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/04/1/"> 统计学习方法 第一章 统计学习方法概论  </a></h1>
         </header>
     </div>
 
@@ -250,39 +250,47 @@
 人们更关心的是 <span class="math">\(f_N\)</span> 的泛化能力：
 </p>
 <div class="math">$$R(f_N)=\text{E}_P[L(Y,f_N(X))]$$</div>
-<blockquote>
-<p>定理 1.1（泛化误差上界）对二分类问题，当假设空间是有限个函数的集合 <span class="math">\({\cal F}=\{f_1.f_2.\dots,f_d\}\)</span> 时，对任意一个函数 <span class="math">\(f\in{\cal F}\)</span>，至少以概率 <span class="math">\(1-\delta\)</span>，以下不等式成立：
+<p><strong>定理 1.1（泛化误差上界）对二分类问题，当假设空间是有限个函数的集合 <span class="math">\({\cal F}=\{f_1.f_2.\dots,f_d\}\)</span> 时，对任意一个函数 <span class="math">\(f\in{\cal F}\)</span>，至少以概率 <span class="math">\(1-\delta\)</span>，以下不等式成立：
 <div class="math">$$R(f)\leq R_\text{emp}(f)+\epsilon(d,N,\delta)$$</div>
 其中，
-<div class="math">$$\epsilon(d,N,\delta)=\sqrt{\frac{1}{2N}\left(\log d+\log \frac{1}{\delta}\right)}$$</div>
-</p>
-</blockquote>
+<div class="math">$$\epsilon(d,N,\delta)=\sqrt{\frac{1}{2N}\left(\log d+\log \frac{1}{\delta}\right)}$$</div></strong></p>
 <p>上述定理表明：训练误差越小，泛化误差也越小；当 <span class="math">\(N\)</span> 趋于无穷时，第二项为 0；假设空间包含的函数越多，泛化误差越大。</p>
-<blockquote>
 <p>证明：在证明过程中要用到 Hoeffding 不等式，先叙述如下：</p>
 <p>Hoeffding 不等式适用于有界的随机变量。设有两两独立的一系列随机变量 <span class="math">\(X_{1},\dots ,X_{n}\)</span>。假设对所有的 <span class="math">\(1\leq i\leq n\)</span>，<span class="math">\(X_{i}\)</span> 都是几乎有界的变量，即满足：
+</p>
 <div class="math">$$\mathbb {P} (X_{i}\in [a_{i},b_{i}])=1$$</div>
+<p>
 那么这 <span class="math">\(n\)</span> 个随机变量的经验期望：
+</p>
 <div class="math">$$\overline {X}={\frac {X_{1}+\cdots +X_{n}}{n}}$$</div>
+<p>
 满足以下的不等式：
+</p>
 <div class="math">$$\mathbb {P}({\overline {X}}-\mathbb {E} [{\overline {X}}]\geq t)\leq \exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$</div>
 <div class="math">$$\mathbb {P} (|{\overline {X}}-\mathbb {E} [{\overline {X}}]|\geq t)\leq 2\exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$</div>
+<p>
+对任意函数 <span class="math">\(f\in{\cal F}\)</span>，<span class="math">\(R_\text{emp}(f)\)</span> 是 <span class="math">\(N\)</span> 个随机变量 <span class="math">\(L(Y,f(X))\)</span> 的样本均值，<span class="math">\(R(f)\)</span> 是随机变量 <span class="math">\(L(Y,f(X))\)</span> 的期望值。如果损失函数取值于区间 [0,1]，则由 Hoeffding 不等式得到，对 <span class="math">\(\epsilon&gt;0\)</span>，以下不等式成立：
 </p>
-<p>对任意函数 <span class="math">\(f\in{\cal F}\)</span>，<span class="math">\(R_\text{emp}(f)\)</span> 是 <span class="math">\(N\)</span> 个随机变量 <span class="math">\(L(Y,f(X))\)</span> 的样本均值，<span class="math">\(R(f)\)</span> 是随机变量 <span class="math">\(L(Y,f(X))\)</span> 的期望值。如果损失函数取值于区间 [0,1]，则由 Hoeffding 不等式得到，对 <span class="math">\(\epsilon&gt;0\)</span>，以下不等式成立：
 <div class="math">$$P(R(f)-R_\text{emp}(f)\geq\epsilon)\leq\exp (-2N\epsilon^2)$$</div>
+<p>
 由于 <span class="math">\({\cal F}=\{f_1;f_2,\dots,f_d\}\)</span> 是一个有限集合，故
+</p>
 <div class="math">$$P\left(\exists f\in{\cal F}:R(f)-R_\text{emp}(f\right)\geq\epsilon)=P\left(\bigcup_{f\in{\cal F}}\{R(f)-R_\text{emp}(f)\geq\epsilon\}\right)\\
 \leq\sum_{f\in{\cal F}}P(R(f)-R_\text{emp}(f)\geq\epsilon)\\
 \leq d\exp(-2N\epsilon^2)$$</div>
-</p>
-<p>或者等价的，对任意的 <span class="math">\(f\in{\cal F}\)</span>，有
+<p>
+或者等价的，对任意的 <span class="math">\(f\in{\cal F}\)</span>，有 </p>
 <div class="math">$$P(R(f)-R_\text{emp}(f)\geq\epsilon))\geq1-d\exp(-2N\epsilon^2)$$</div>
+<p>
 令
+</p>
 <div class="math">$$\delta=d \exp(-2N\epsilon^2)$$</div>
+<p>
 则
+</p>
 <div class="math">$$P(R(f)&lt;R_\text{emp}(f)+\epsilon)\geq1-\delta$$</div>
+<p>
 证毕。</p>
-</blockquote>
 <h2>1.7 生成模型与判别模型</h2>
 <p>监督学习方法也可以分为生成方法（generative approach）和判别方法（discriminative approach）。所学到的模型分别称为生成模型（generative model）和判别模型（discriminative model）。</p>
 <h3>1.7.1 生成方法</h3>
@@ -433,6 +441,41 @@ F_1=\frac{2TP}{2TP+FP+FN}$$</div>
                             </li>
                         </ul>
                     </nav>
+                    <nav class="newer">
+                        <h1>
+                            <font color="#771515"><em>NEWER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/04/2/">
+                                    统计学习方法 第二章 感知机
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Gitalk 评论 start  -->
+
+                    <!-- Link Gitalk 的支持文件  -->
+                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                    <div id="gitalk-container"></div>
+                    <script type="text/javascript">
+                        var dateTime = Date.now();
+                        var timestamp = Math.floor(dateTime / 1000);
+                        var gitalk = new Gitalk({
+
+                            // gitalk的主要参数
+                            clientID: '93f43349e9fd3154bfad',
+                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
+                            repo: 'xutree.github.io',
+                            owner: 'xutree',
+                            admin: ['xutree'],
+                            id: String(timestamp)
+
+                        });
+                        gitalk.render('gitalk-container');
+                    </script> -->
+                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
@@ -440,16 +483,16 @@ F_1=\frac{2TP}{2TP+FP+FN}$$</div>
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-04T12:54:21+08:00">2018-11-04 12:54:21</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-04 18:31:03</div>
+                    <div class="last_updated">2018-11-04 21:20:45</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
                         <li><a href="/tags.html#机器学习-ref">机器学习
-                                <span>1</span>
+                                <span>2</span>
 </a></li>
                         <li><a href="/tags.html#统计学习-ref">统计学习
-                                <span>1</span>
+                                <span>2</span>
 </a></li>
                     </ul>
 
