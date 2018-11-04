@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-04T21:20:45+08:00</updated><entry><title>统计学习方法 第二章 感知机</title><link href="https://xutree.github.io/pages/2018/11/04/2/" rel="alternate"></link><published>2018-11-04T21:04:02+08:00</published><updated>2018-11-04T21:19:51+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/2/</id><summary type="html">&lt;p&gt;感知机（perceptron）是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别，取 +1 和 -1 二值。感知机对应于输入空间（特征空间）中将实例划分为正负类别的分离超平面，属于判别模型。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-04T23:06:31+08:00</updated><entry><title>统计学习方法 第二章 感知机</title><link href="https://xutree.github.io/pages/2018/11/04/2/" rel="alternate"></link><published>2018-11-04T21:04:02+08:00</published><updated>2018-11-04T23:06:31+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/2/</id><summary type="html">&lt;p&gt;感知机（perceptron）是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别，取 +1 和 -1 二值。感知机对应于输入空间（特征空间）中将实例划分为正负类别的分离超平面，属于判别模型。&lt;/p&gt;
 &lt;h2&gt;2.1 感知机模型&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;定义 2.1（感知机）假设输入空间（特征空间）是 &lt;span class="math"&gt;\({\cal X}\subseteq\mathbb{R}^n\)&lt;/span&gt;，输出空间是 &lt;span class="math"&gt;\({\cal Y}=\{+1,-1\}\)&lt;/span&gt;。输入 &lt;span class="math"&gt;\(x\in{\cal X}\)&lt;/span&gt; 表示实例的特征向量，对应于输入空间（特征空间）的点；输出 &lt;span class="math"&gt;\(y\in{\cal Y}\)&lt;/span&gt; 表示实例的类别 …&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -126,21 +126,107 @@
 输入：训练数据集
 &lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
 其中
-&lt;div class="math"&gt;$$x_i\in{\cal X}=\mathbb{R}^n$，$y_i\in{\cal Y}=\{+1,-1\},i=1,2,\cdots,N$$&lt;/div&gt;
+&lt;div class="math"&gt;$$x_i\in{\cal X}=\mathbb{R}^n,y_i\in{\cal Y}=\{+1,-1\},i=1,2,\cdots,N$$&lt;/div&gt;
 学习率
 &lt;div class="math"&gt;$$\eta\ (0&amp;lt;\eta\leq 1)$$&lt;/div&gt;
 输出：&lt;span class="math"&gt;\(w\)&lt;/span&gt;，&lt;span class="math"&gt;\(b\)&lt;/span&gt;；
 感知机模型
 &lt;div class="math"&gt;$$f(x)=\text{sign}(w\cdot x+b)$$&lt;/div&gt;
-(1). 选取初值 &lt;span class="math"&gt;\(w_0\)&lt;/span&gt;，&lt;span class="math"&gt;\(b_0\)&lt;/span&gt;&lt;br&gt;
-(2). 在训练集中选取数据 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt;&lt;br&gt;
-(3). 如果 &lt;span class="math"&gt;\(y_i(w\cdot x_i+b)\leq 0\)&lt;/span&gt;
+(1) 选取初值 &lt;span class="math"&gt;\(w_0\)&lt;/span&gt;，&lt;span class="math"&gt;\(b_0\)&lt;/span&gt;&lt;br&gt;
+(2) 在训练集中选取数据 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt;&lt;br&gt;
+(3) 如果 &lt;span class="math"&gt;\(y_i(w\cdot x_i+b)\leq 0\)&lt;/span&gt;
 &lt;div class="math"&gt;$$w\longleftarrow w+\eta y_ix_i$$&lt;/div&gt;
 &lt;div class="math"&gt;$$b\longleftarrow b+\eta y_i$$&lt;/div&gt;
-(4). 转至 (2)，直至训练集中没有误分类点&lt;/strong&gt;&lt;/p&gt;
+(4) 转至 (2)，直至训练集中没有误分类点&lt;/strong&gt;&lt;/p&gt;
 &lt;h3&gt;2.3.2 算法的收敛性&lt;/h3&gt;
 &lt;p&gt;为便于推导，将偏置并入权重向量，记为 &lt;span class="math"&gt;\(\hat{w}=(w^\text{T},b)^\text{T}\)&lt;/span&gt;，同样也将输入向量加以扩充，加进常数 1，记作 &lt;span class="math"&gt;\(\hat{x}=(x^\text{T},1)^\text{T}\)&lt;/span&gt;。这样，&lt;span class="math"&gt;\(\hat{x}\in\mathbb{R}^{n+1}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\hat{w}\in\mathbb{R}^{n+1}\)&lt;/span&gt;，显然 &lt;span class="math"&gt;\(\hat{w}\cdot\hat{x}=w\cdot x+b\)&lt;/span&gt;。&lt;/p&gt;
-&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;定理 2.1 （Novikoff）设训练集
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+线性可分，则&lt;br&gt;
+(1). 存在满足条件 &lt;span class="math"&gt;\(||\hat{w}_\text{opt}||=1\)&lt;/span&gt; 的超平面
+&lt;div class="math"&gt;$$\hat{w}_\text{opt}\cdot\hat{x}=w_\text{opt}\cdot x_+b_\text{opt}=0$$&lt;/div&gt;
+将训练数据集完全正确分开；切存在 &lt;span class="math"&gt;\(\gamma&amp;gt;0\)&lt;/span&gt;，对所有 &lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;
+&lt;div class="math"&gt;$$y_i(\hat{w}_\text{opt}\cdot\hat{x}_i)=y_i(w_\text{opt}\cdot x_i+b_\text{opt})\geq\gamma$$&lt;/div&gt;
+(2). 令
+&lt;div class="math"&gt;$$R=\max_{1\leq i\leq N}||\hat{x}_i||$$&lt;/div&gt;，则感知机算法 2.1 在训练数据集上的误分类次数 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 满足不等式
+&lt;div class="math"&gt;$$k\leq\left(\frac{R}{\gamma}\right)^2$$&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;证明：（1）由线性可分性的定义即可证明，其中：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\gamma=\min_i\{y_i(w_\text{opt}\cdot x_i+b_\text{opt})\}$$&lt;/div&gt;
+&lt;p&gt;
+（2）感知机算法从 &lt;span class="math"&gt;\(\hat{w}_0\)&lt;/span&gt; 开始，如果实例被误分类，则更新权重。令 &lt;span class="math"&gt;\(\hat{w}_{k-1}\)&lt;/span&gt; 是第 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个误分类实例之前的扩充权重向量，即：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\hat{w}_{k-1}=(w_{k-1}^\text{T},b_{k-1})^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+则第 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个被误分类实例的条件是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$y_i(\hat{w}_{k-1}\cdot\hat{x}_i)=y_i(w_{k-1}\cdot x_i+b_{k-1})\leq0$$&lt;/div&gt;
+&lt;p&gt;
+若 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 是被 &lt;span class="math"&gt;\(\hat{w}_{k-1}\)&lt;/span&gt; 误分类的数据，则 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 的更新为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w_k\longleftarrow w_{k-1}+\eta y_ix_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$b_k\longleftarrow b_{k-1}+\eta y_i$$&lt;/div&gt;
+&lt;p&gt;
+即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\hat{w}_k\longleftarrow \hat{w}_{k-1}+\eta y_i\hat{x}_i$$&lt;/div&gt;
+&lt;p&gt;下面推导两个不等式：&lt;/p&gt;
+&lt;p&gt;i. &lt;span class="math"&gt;\(\hat{w}_k\cdot\hat{w}_\text{opt}\geq k\eta\gamma\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\hat{w}_k\cdot\hat{w}_\text{opt}=(\hat{w}_{k-1}+\eta y_i\hat{x}_i)\cdot\hat{w}_\text{opt}\geq\hat{w}_{k-1}\cdot\hat{w}_\text{opt}+\eta\gamma\geq\cdots\geq k\eta\gamma$$&lt;/div&gt;
+&lt;p&gt;
+ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$||\hat{w}_k||^2=||\hat{w}_{k-1}+\eta y_i\hat{x}_i||^2\\
+=||\hat{w}_{k-1}||^2+2\eta y_i\hat{w}_{k-1}\cdot\hat{x}_i+\eta^2||\hat{x}_i||^2\\
+\leq||\hat{w}_{k-1}||^2+\eta^2||\hat{x}_i||^2\\
+\leq||\hat{w}_{k-1}||^2+\eta^2R^2\leq\cdots\leq k\eta^2R^2$$&lt;/div&gt;
+&lt;p&gt;由上述两个不等式
+&lt;/p&gt;
+&lt;div class="math"&gt;$$k\eta\gamma\leq\hat{w}_k\cdot\hat{w}_\text{opt}\leq||\hat{w}_k||\ ||\hat{w}_\text{opt}||\leq\sqrt{k}\eta R$$&lt;/div&gt;
+&lt;p&gt;
+于是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$k\leq\left(\frac{R}{\gamma}\right)^2$$&lt;/div&gt;
+&lt;p&gt;定理表明，误分类次数是有上界的，经过有限次搜索可以找到将训练数据完全正确分开的分离超平面。&lt;/p&gt;
+&lt;p&gt;感知机学习算法存在许多解，这些解既依赖于初值的选择，也依赖于迭代过程中误分类点的选择顺序。&lt;/p&gt;
+&lt;p&gt;当训练集线性不可分时，感知机学习算法不收敛，迭代结果会发生震荡。&lt;/p&gt;
+&lt;h3&gt;2.3.3 感知机学习算法的对偶形式&lt;/h3&gt;
+&lt;p&gt;对偶形式的基本想法是，将 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 表示为实例 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 和标记 &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; 的线性组合的形式，通过求解其系数而求得 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt;。不失一般性，在算法 2.1 中可以假设初始值 &lt;span class="math"&gt;\(w_0\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b_0\)&lt;/span&gt; 均为 0，对误分类点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 通过
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w\longleftarrow w+\eta y_ix_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$b\longleftarrow b+\eta y_i$$&lt;/div&gt;
+&lt;p&gt;
+逐步修改 &lt;span class="math"&gt;\(w\)&lt;/span&gt;，&lt;span class="math"&gt;\(b\)&lt;/span&gt;，设修改 &lt;span class="math"&gt;\(n\)&lt;/span&gt;次（随机梯度下降，一个点可能被选择多次），则 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 关于 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt;  的增量分别是 &lt;span class="math"&gt;\(\alpha_iy_ix_i\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\alpha_iy_i\)&lt;/span&gt; 这里
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_i=n_i\eta$$&lt;/div&gt;
+&lt;p&gt;
+这样，从学习过程不难看出，最后学习到的 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 可以分别表示为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w=\sum_{i=1}^N\alpha_iy_ix_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$b=\sum_{i=1}^N\alpha_iy_i$$&lt;/div&gt;
+&lt;p&gt;
+这里，&lt;span class="math"&gt;\(\alpha_i\geq0\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;，当 &lt;span class="math"&gt;\(\eta=1\)&lt;/span&gt; 时，表示第 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 个实例点由于误分类而进行更新的次数。实例点更新次数越多，意味着它距离分离超平面越近，也就越难正确分类。换句话说，这样的实例对学习结果影响很大。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;算法 2.2 （感知机学习算法的对偶形式）&lt;br&gt;
+输入：训练数据集
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+其中
+&lt;div class="math"&gt;$$x_i\in{\cal X}=\mathbb{R}^n,y_i\in{\cal Y}=\{+1,-1\},i=1,2,\cdots,N$$&lt;/div&gt;
+学习率
+&lt;div class="math"&gt;$$\eta\ (0&amp;lt;\eta\leq 1)$$&lt;/div&gt;
+输出：&lt;span class="math"&gt;\(\alpha\)&lt;/span&gt;，&lt;span class="math"&gt;\(b\)&lt;/span&gt;；
+感知机模型
+&lt;div class="math"&gt;$$f(x)=\text{sign}(\sum_{j=1}^N\alpha_jy_jx_j\cdot x+b)$$&lt;/div&gt;
+其中 &lt;span class="math"&gt;\(\alpha=(\alpha_1,\alpha_2,\cdots,\alpha_N)^\text{T}\)&lt;/span&gt;&lt;br&gt;
+(1) &lt;span class="math"&gt;\(\alpha\longleftarrow0\)&lt;/span&gt;， &lt;span class="math"&gt;\(b\longleftarrow0\)&lt;/span&gt;&lt;br&gt;
+(2) 在训练集中选取数据 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt;&lt;br&gt;
+(3) 如果 &lt;span class="math"&gt;\(y_i\left(\sum_{j=1}^N\alpha_jy_jx_j\cdot x_i+b\right)\leq 0\)&lt;/span&gt;
+&lt;div class="math"&gt;$$\alpha_i\longleftarrow \alpha_i+\eta$$&lt;/div&gt;
+&lt;div class="math"&gt;$$b\longleftarrow b+\eta y_i$$&lt;/div&gt;
+(4) 转至 (2)，直至训练集中没有误分类点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;对偶形式中训练实例仅以内积的形式出现。为了方便，可以预先将训练集中实例间的内积计算出来并以矩阵的形式存储，这个矩阵就是所谓的 Gram 矩阵（Gram matrix）
+&lt;/p&gt;
+&lt;div class="math"&gt;$$G=[x_i\cdot x_j]_{N\times N}$$&lt;/div&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -195,7 +281,7 @@
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第一章 统计学习方法概论</title><link href="https://xutree.github.io/pages/2018/11/04/1/" rel="alternate"></link><published>2018-11-04T12:54:21+08:00</published><updated>2018-11-04T21:20:45+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/1/</id><summary type="html">&lt;h2&gt;1. 统计学习&lt;/h2&gt;
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第一章 统计学习方法概论</title><link href="https://xutree.github.io/pages/2018/11/04/1/" rel="alternate"></link><published>2018-11-04T12:54:21+08:00</published><updated>2018-11-04T22:09:30+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/1/</id><summary type="html">&lt;h2&gt;1. 统计学习&lt;/h2&gt;
 &lt;h3&gt;1.1 特点&lt;/h3&gt;
 &lt;p&gt;统计学习（statistical learning）是关于计算机基于&lt;strong&gt;数据&lt;/strong&gt;构建概率统计模型并运用模型对数据进行&lt;strong&gt;预测与分析&lt;/strong&gt;的一门学科。&lt;/p&gt;
 &lt;p&gt;赫尔伯特·西蒙（Herbert A.Simon）对“学习”给出如下定义：如果一个系统能够通过执行某个过程改变它的性能，这就是学习。&lt;/p&gt;
@@ -256,7 +342,7 @@
 &lt;h2&gt;3. 统计学习三要素&lt;/h2&gt;
 &lt;h3&gt;3.1 模型&lt;/h3&gt;
 &lt;p&gt;统计学习首要考虑的问题是学习什么样的模型。模型的假设空间包含所有可能的条件概率分布或决策函数。假设空间中的模型一般有无穷多个。&lt;/p&gt;
-&lt;p&gt;假设空间用 &lt;span class="math"&gt;\(\cal{F}\)&lt;/span&gt; 表示。假设空间可以定义为决策函数或条件概率分布的集合：
+&lt;p&gt;假设空间用 &lt;span class="math"&gt;\(\cal{F}\)&lt;/span&gt; 表示。假设空间可以定义为决策函数或条件概率分布的集合
 &lt;/p&gt;
 &lt;div class="math"&gt;$${\cal F}=\{f|Y=f_\theta(X),\theta \in \mathbb R^n\}\ \ 或\ \ {\cal F}=\{P|P_\theta(Y|X),\theta \in \mathbb R^n\}$$&lt;/div&gt;
 &lt;p&gt;
@@ -298,7 +384,7 @@
 &lt;/p&gt;
 &lt;div class="math"&gt;$$R_\text{emp}(f)=\frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)$$&lt;/div&gt;
 &lt;h4&gt;3.2.2 经验风险最小化&lt;/h4&gt;
-&lt;p&gt;经验风险最小化（empirical risk minimization，ERM）策略认为：经验风险最小的模型是最优的模型。即求解下面的最优化问题：
+&lt;p&gt;经验风险最小化（empirical risk minimization，ERM）策略认为：经验风险最小的模型是最优的模型。即求解下面的最优化问题
 &lt;/p&gt;
 &lt;div class="math"&gt;$$ \min_{f\in {\cal F}} \frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)$$&lt;/div&gt;
 &lt;p&gt;
@@ -306,12 +392,12 @@
 &lt;p&gt;当样本容量足够大时，经验风险最小化能保证有很好的学习效果。例如，极大似然估计（maximum likelihood estimation）就是经验风险最小化的一个例子。当模型是条件概率分布，损失函数是对数损失函数时，经验风险最小化就等价于极大似然估计。&lt;/p&gt;
 &lt;p&gt;但是，当样本容量很小时，经验风险最小化学习的效果就未必很好，会产生“过拟合（over-fitting）现象”。&lt;/p&gt;
 &lt;h4&gt;3.2.3 结构风险最小化&lt;/h4&gt;
-&lt;p&gt;结构风险最小化（structural risk minimization，SRM）是为了防止过拟合而提出来的策略。结构风险最小化等价于正则化（regularization）。结构风险在经验风险上加上表示模型复杂度的正则化项（regularizer）或罚项（penalty term），定义如下：
+&lt;p&gt;结构风险最小化（structural risk minimization，SRM）是为了防止过拟合而提出来的策略。结构风险最小化等价于正则化（regularization）。结构风险在经验风险上加上表示模型复杂度的正则化项（regularizer）或罚项（penalty term），定义如下
 &lt;/p&gt;
 &lt;div class="math"&gt;$$R_\text{srm}=\frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)+\lambda J(f)$$&lt;/div&gt;
 &lt;p&gt;
 其中 &lt;span class="math"&gt;\(J(f)\)&lt;/span&gt; 为模型的复杂度，是定义在假设空间 &lt;span class="math"&gt;\({\cal F}\)&lt;/span&gt; 上的泛函。模型 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 越复杂，&lt;span class="math"&gt;\(J(f)\)&lt;/span&gt; 越大。也就是说，复杂度表示了对复杂模型的惩罚，&lt;span class="math"&gt;\(\lambda\geq 0\)&lt;/span&gt; 是系数，用以权衡经验风险和模型复杂度。&lt;/p&gt;
-&lt;p&gt;结构风险小需要经验风险与模型复杂度同时小，结构风险小的模型往往对训练数据以及未知的测试数据都有较好的预测。结构化风险最小化策略认为：结构风险最小的模型是最优的模型。即求解下面的最优化问题：
+&lt;p&gt;结构风险小需要经验风险与模型复杂度同时小，结构风险小的模型往往对训练数据以及未知的测试数据都有较好的预测。结构化风险最小化策略认为：结构风险最小的模型是最优的模型。即求解下面的最优化问题
 &lt;/p&gt;
 &lt;div class="math"&gt;$$ \min_{f\in {\cal F}} \frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)+\lambda J(f)$$&lt;/div&gt;
 &lt;p&gt;
@@ -321,21 +407,21 @@
 &lt;p&gt;如果最优化问题有显式的解析解，这个最优化问题就比较简单，但通常解析解不存在，这就需要用数值方法求解。如何保证找到全局最优解，并使求解的过程非常高效，就成为一个重要问题。&lt;/p&gt;
 &lt;h2&gt;4. 模型评估与模型选择&lt;/h2&gt;
 &lt;h3&gt;4.1 训练误差&lt;/h3&gt;
-&lt;p&gt;假设学习到的模型是 &lt;span class="math"&gt;\(Y=\hat{f}(X)\)&lt;/span&gt;，训练误差（training error）是模型 &lt;span class="math"&gt;\(Y=\hat{f}(X)\)&lt;/span&gt; 关于训练数据集的平均损失：
+&lt;p&gt;假设学习到的模型是 &lt;span class="math"&gt;\(Y=\hat{f}(X)\)&lt;/span&gt;，训练误差（training error）是模型 &lt;span class="math"&gt;\(Y=\hat{f}(X)\)&lt;/span&gt; 关于训练数据集的平均损失
 &lt;/p&gt;
 &lt;div class="math"&gt;$$R_\text{emp}(\hat{f})=\frac{1}{N}\sum_{i=1}^NL(y_i,\hat{f}(x_i))$$&lt;/div&gt;
 &lt;p&gt;其中 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 是训练样本容量。&lt;/p&gt;
 &lt;h3&gt;4.2 测试误差&lt;/h3&gt;
-&lt;p&gt;测试误差是模型 &lt;span class="math"&gt;\(Y=\hat{f}(X)\)&lt;/span&gt; 关于测试数据集的平均损失：
+&lt;p&gt;测试误差是模型 &lt;span class="math"&gt;\(Y=\hat{f}(X)\)&lt;/span&gt; 关于测试数据集的平均损失
 &lt;/p&gt;
 &lt;div class="math"&gt;$$e_\text{test}(\hat{f})=\frac{1}{N'}\sum_{i=1}^{N'}L(y_i,\hat{f}(x_i))$$&lt;/div&gt;
 &lt;p&gt;其中 &lt;span class="math"&gt;\(N'\)&lt;/span&gt; 是测试样本容量。&lt;/p&gt;
-&lt;p&gt;例如，当损失函数是 0-1 损失时，测试误差就变成了常见的测试数据集上的误差率（error rate）：
+&lt;p&gt;例如，当损失函数是 0-1 损失时，测试误差就变成了常见的测试数据集上的误差率（error rate）
 &lt;/p&gt;
 &lt;div class="math"&gt;$$e_\text{test}=\frac{1}{N'}\sum_{i=1}^{N'}{\mathbb I}(y_i\neq \hat{f}(x_i))$$&lt;/div&gt;
 &lt;p&gt;
 这里 &lt;span class="math"&gt;\({\mathbb I}\)&lt;/span&gt; 是指示函数，即 &lt;span class="math"&gt;\(y_i\neq \hat{f}(x_i)\)&lt;/span&gt; 时为 1，否则为 0。&lt;/p&gt;
-&lt;p&gt;相应的，常见的测试数据集上的准确率（accuracy）为：
+&lt;p&gt;相应的，常见的测试数据集上的准确率（accuracy）为
 &lt;/p&gt;
 &lt;div class="math"&gt;$$r_\text{test}=\frac{1}{N'}\sum_{i=1}^{N'}{\mathbb I}(y_i=\hat{f}(x_i))$$&lt;/div&gt;
 &lt;p&gt;训练误差的大小，对判断给定的问题是不是一个容易学习的问题是有意义的，但本质上不重要。&lt;/p&gt;
@@ -350,12 +436,12 @@
 &lt;p&gt;正则化与交叉验证是两种常用的模型选择方法。&lt;/p&gt;
 &lt;h3&gt;5.1 正则化&lt;/h3&gt;
 &lt;p&gt;正则化是结构风险最小化策略的实现。正则化项一般是模型复杂度的单调递增函数，模型越复杂，正则化值就越大。&lt;/p&gt;
-&lt;p&gt;正则化一般形式形式：
+&lt;p&gt;正则化一般形式形式
 &lt;/p&gt;
 &lt;div class="math"&gt;$$ \min_{f\in {\cal F}} \frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)+\lambda J(f)$$&lt;/div&gt;
 &lt;p&gt;
 其中，第一项是经验风险，第二项是正则化项，&lt;span class="math"&gt;\(\lambda\geq 0\)&lt;/span&gt; 为调整两者关系之间的系数。&lt;/p&gt;
-&lt;p&gt;正则化项可以取不同的形式。例如：回归问题中，损失函数是平方损失，正则化项可以是参数向量的 &lt;span class="math"&gt;\(L_2\)&lt;/span&gt; 范数：
+&lt;p&gt;正则化项可以取不同的形式。例如：回归问题中，损失函数是平方损失，正则化项可以是参数向量的 &lt;span class="math"&gt;\(L_2\)&lt;/span&gt; 范数
 &lt;/p&gt;
 &lt;div class="math"&gt;$$L(w)=\frac{1}{N}\sum_{i=1}^N\left(f(x_i;w)-y_i\right)^2+\frac{\lambda}{2}||w||^2$$&lt;/div&gt;
 &lt;p&gt;
@@ -387,38 +473,38 @@
 &lt;li&gt;它是假设空间容量（capacity）的函数，假设空间容量越大，模型就越难学，泛化误差上界就越大&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;1.6.3 二分类问题的泛化误差上界&lt;/h3&gt;
-&lt;p&gt;考虑二分类问题。已知训练数据集 &lt;span class="math"&gt;\(T=\{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}\)&lt;/span&gt;，它是从联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 独立同分布产生的，&lt;span class="math"&gt;\(X\in \mathbb R^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(Y\in \{-1,1\}\)&lt;/span&gt;。假设空间是函数的有限集合 &lt;span class="math"&gt;\({\cal F}=\{f_1.f_2.\dots,f_d\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(d\)&lt;/span&gt; 是函数个数。设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是从 &lt;span class="math"&gt;\({\cal F}\)&lt;/span&gt; 中选取的函数。损失函数是 0-1 损失。关于 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 的期望风险和经验风险分别是：
+&lt;p&gt;考虑二分类问题。已知训练数据集 &lt;span class="math"&gt;\(T=\{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}\)&lt;/span&gt;，它是从联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 独立同分布产生的，&lt;span class="math"&gt;\(X\in \mathbb R^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(Y\in \{-1,1\}\)&lt;/span&gt;。假设空间是函数的有限集合 &lt;span class="math"&gt;\({\cal F}=\{f_1.f_2.\dots,f_d\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(d\)&lt;/span&gt; 是函数个数。设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是从 &lt;span class="math"&gt;\({\cal F}\)&lt;/span&gt; 中选取的函数。损失函数是 0-1 损失。关于 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 的期望风险和经验风险分别是
 &lt;/p&gt;
 &lt;div class="math"&gt;$$R_\text{exp}(f)=\text{E}_P[L(Y,f(X))]$$&lt;/div&gt;
 &lt;div class="math"&gt;$$R_\text{emp}(f)=\frac{1}{N}\sum_{i=1}^NL(y_i,f(x_i))$$&lt;/div&gt;
 &lt;p&gt;
-经验风险最小化函数是：
+经验风险最小化函数是
 &lt;/p&gt;
 &lt;div class="math"&gt;$$f_N=\arg \min_{f\in{\cal F}}R_\text{emp}(f)$$&lt;/div&gt;
 &lt;p&gt;
-人们更关心的是 &lt;span class="math"&gt;\(f_N\)&lt;/span&gt; 的泛化能力：
+人们更关心的是 &lt;span class="math"&gt;\(f_N\)&lt;/span&gt; 的泛化能力
 &lt;/p&gt;
 &lt;div class="math"&gt;$$R(f_N)=\text{E}_P[L(Y,f_N(X))]$$&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;定理 1.1（泛化误差上界）对二分类问题，当假设空间是有限个函数的集合 &lt;span class="math"&gt;\({\cal F}=\{f_1.f_2.\dots,f_d\}\)&lt;/span&gt; 时，对任意一个函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，至少以概率 &lt;span class="math"&gt;\(1-\delta\)&lt;/span&gt;，以下不等式成立：
+&lt;p&gt;&lt;strong&gt;定理 1.1（泛化误差上界）对二分类问题，当假设空间是有限个函数的集合 &lt;span class="math"&gt;\({\cal F}=\{f_1.f_2.\dots,f_d\}\)&lt;/span&gt; 时，对任意一个函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，至少以概率 &lt;span class="math"&gt;\(1-\delta\)&lt;/span&gt;，以下不等式成立
 &lt;div class="math"&gt;$$R(f)\leq R_\text{emp}(f)+\epsilon(d,N,\delta)$$&lt;/div&gt;
 其中，
 &lt;div class="math"&gt;$$\epsilon(d,N,\delta)=\sqrt{\frac{1}{2N}\left(\log d+\log \frac{1}{\delta}\right)}$$&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;上述定理表明：训练误差越小，泛化误差也越小；当 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 趋于无穷时，第二项为 0；假设空间包含的函数越多，泛化误差越大。&lt;/p&gt;
 &lt;p&gt;证明：在证明过程中要用到 Hoeffding 不等式，先叙述如下：&lt;/p&gt;
-&lt;p&gt;Hoeffding 不等式适用于有界的随机变量。设有两两独立的一系列随机变量 &lt;span class="math"&gt;\(X_{1},\dots ,X_{n}\)&lt;/span&gt;。假设对所有的 &lt;span class="math"&gt;\(1\leq i\leq n\)&lt;/span&gt;，&lt;span class="math"&gt;\(X_{i}\)&lt;/span&gt; 都是几乎有界的变量，即满足：
+&lt;p&gt;Hoeffding 不等式适用于有界的随机变量。设有两两独立的一系列随机变量 &lt;span class="math"&gt;\(X_{1},\dots ,X_{n}\)&lt;/span&gt;。假设对所有的 &lt;span class="math"&gt;\(1\leq i\leq n\)&lt;/span&gt;，&lt;span class="math"&gt;\(X_{i}\)&lt;/span&gt; 都是几乎有界的变量，即满足
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\mathbb {P} (X_{i}\in [a_{i},b_{i}])=1$$&lt;/div&gt;
 &lt;p&gt;
-那么这 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 个随机变量的经验期望：
+那么这 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 个随机变量的经验期望
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\overline {X}={\frac {X_{1}+\cdots +X_{n}}{n}}$$&lt;/div&gt;
 &lt;p&gt;
-满足以下的不等式：
+满足以下的不等式
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\mathbb {P}({\overline {X}}-\mathbb {E} [{\overline {X}}]\geq t)\leq \exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$&lt;/div&gt;
 &lt;div class="math"&gt;$$\mathbb {P} (|{\overline {X}}-\mathbb {E} [{\overline {X}}]|\geq t)\leq 2\exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$&lt;/div&gt;
 &lt;p&gt;
-对任意函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，&lt;span class="math"&gt;\(R_\text{emp}(f)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 个随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的样本均值，&lt;span class="math"&gt;\(R(f)\)&lt;/span&gt; 是随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的期望值。如果损失函数取值于区间 [0,1]，则由 Hoeffding 不等式得到，对 &lt;span class="math"&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;，以下不等式成立：
+对任意函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，&lt;span class="math"&gt;\(R_\text{emp}(f)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 个随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的样本均值，&lt;span class="math"&gt;\(R(f)\)&lt;/span&gt; 是随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的期望值。如果损失函数取值于区间 [0,1]，则由 Hoeffding 不等式得到，对 &lt;span class="math"&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;，以下不等式成立
 &lt;/p&gt;
 &lt;div class="math"&gt;$$P(R(f)-R_\text{emp}(f)\geq\epsilon)\leq\exp (-2N\epsilon^2)$$&lt;/div&gt;
 &lt;p&gt;
@@ -443,7 +529,7 @@
 &lt;h2&gt;1.7 生成模型与判别模型&lt;/h2&gt;
 &lt;p&gt;监督学习方法也可以分为生成方法（generative approach）和判别方法（discriminative approach）。所学到的模型分别称为生成模型（generative model）和判别模型（discriminative model）。&lt;/p&gt;
 &lt;h3&gt;1.7.1 生成方法&lt;/h3&gt;
-&lt;p&gt;生成方法由数据学习联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt;，然后求出条件概率分布 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 作为预测的模型，即生成模型：
+&lt;p&gt;生成方法由数据学习联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt;，然后求出条件概率分布 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 作为预测的模型，即生成模型
 &lt;/p&gt;
 &lt;div class="math"&gt;$$P(Y|X)=\frac{P(X,Y)}{P(X)}$$&lt;/div&gt;
 &lt;p&gt;
@@ -476,15 +562,15 @@
 &lt;li&gt;FP：将负类预测为正类的数目&lt;/li&gt;
 &lt;li&gt;TN：将负类预测为负类的数目&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;精确率定义：
+&lt;p&gt;精确率定义
 &lt;/p&gt;
 &lt;div class="math"&gt;$$P=\frac{TP}{TP+FP}$$&lt;/div&gt;
 &lt;p&gt;
-召回率定义：
+召回率定义
 &lt;/p&gt;
 &lt;div class="math"&gt;$$R=\frac{TP}{TP+FN}$$&lt;/div&gt;
 &lt;p&gt;
-&lt;span class="math"&gt;\(F_1\)&lt;/span&gt; 值：
+&lt;span class="math"&gt;\(F_1\)&lt;/span&gt; 值
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\frac{2}{F_1}=\frac{1}{P}+\frac{1}{R}\longrightarrow
 F_1=\frac{2TP}{2TP+FP+FN}$$&lt;/div&gt;
