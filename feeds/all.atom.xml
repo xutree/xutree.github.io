@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-04T23:30:30+08:00</updated><entry><title>统计学习方法 第三章 k 近邻法</title><link href="https://xutree.github.io/pages/2018/11/04/3/" rel="alternate"></link><published>2018-11-04T23:11:36+08:00</published><updated>2018-11-04T23:30:30+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/3/</id><summary type="html">&lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法（k-nearest neighbor，&lt;span class="math"&gt;\(k\)&lt;/span&gt;-NN）是一种基本分类与回归方法。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的输入为实例的特征向量，输出为实例的类别，可以取多类。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法假设给定一个训练集数据，其中的实例类别已定。分类时，对新的实例，根据其 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个最近邻的训练实例的类别，通过多数表决等方式进行预测。因此，&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法不具有显式的学习过程。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-05T17:57:15+08:00</updated><entry><title>统计学习方法 第三章 k 近邻法</title><link href="https://xutree.github.io/pages/2018/11/04/3/" rel="alternate"></link><published>2018-11-04T23:11:36+08:00</published><updated>2018-11-05T17:57:15+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/3/</id><summary type="html">&lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法（&lt;span class="math"&gt;\(k\)&lt;/span&gt;-nearest neighbor，&lt;span class="math"&gt;\(k\)&lt;/span&gt;-NN）是一种基本分类与回归方法。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的输入为实例的特征向量，输出为实例的类别，可以取多类。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法假设给定一个训练集数据，其中的实例类别已定。分类时，对新的实例，根据其 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个最近邻的训练实例的类别，通过多数表决等方式进行预测。因此，&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法不具有显式的学习过程。&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法实际上利用训练数据集对特征向量空间进行划分，并作为其分类的模型。&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 值得选择、距离度量以及分类决策规则是 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的三个基本要素。&lt;/p&gt;
 &lt;h2&gt;3.1 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻算法&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;算法 3.1 （&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法）&lt;br&gt;
 输入：训练数据集
-&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots …&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2 …&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
         linebreak = "false";
@@ -59,7 +59,7 @@
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法（k-nearest neighbor，&lt;span class="math"&gt;\(k\)&lt;/span&gt;-NN）是一种基本分类与回归方法。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的输入为实例的特征向量，输出为实例的类别，可以取多类。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法假设给定一个训练集数据，其中的实例类别已定。分类时，对新的实例，根据其 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个最近邻的训练实例的类别，通过多数表决等方式进行预测。因此，&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法不具有显式的学习过程。&lt;/p&gt;
+&lt;/script&gt;</summary><content type="html">&lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法（&lt;span class="math"&gt;\(k\)&lt;/span&gt;-nearest neighbor，&lt;span class="math"&gt;\(k\)&lt;/span&gt;-NN）是一种基本分类与回归方法。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的输入为实例的特征向量，输出为实例的类别，可以取多类。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法假设给定一个训练集数据，其中的实例类别已定。分类时，对新的实例，根据其 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个最近邻的训练实例的类别，通过多数表决等方式进行预测。因此，&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法不具有显式的学习过程。&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法实际上利用训练数据集对特征向量空间进行划分，并作为其分类的模型。&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 值得选择、距离度量以及分类决策规则是 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的三个基本要素。&lt;/p&gt;
 &lt;h2&gt;3.1 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻算法&lt;/h2&gt;
@@ -76,9 +76,36 @@
 (1) 根据给定的距离度量，在训练集 &lt;span class="math"&gt;\(T\)&lt;/span&gt; 中找出与 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 最邻近的 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个点，涵盖这 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个点的 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的邻域记作 &lt;span class="math"&gt;\(N_k(x)\)&lt;/span&gt;&lt;br&gt;
 (2) 在 &lt;span class="math"&gt;\(N_k(x)\)&lt;/span&gt;  中根据分类决策规则（如多数表决）决定 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的类别 &lt;span class="math"&gt;\(y\)&lt;/span&gt;
 &lt;div class="math"&gt;$$y=\arg\max_{c_j}\sum_{x_i\in N_k(x)}\mathbb{I}(y_i=c_j),i=1,2,\cdots,N; j=1,2,\cdots,K$$&lt;/div&gt;
-式中，&lt;span class="math"&gt;\(\mathbb{I}\)&lt;/span&gt; 为指示函数
-&lt;/strong&gt;&lt;/p&gt;
+式中，&lt;span class="math"&gt;\(\mathbb{I}\)&lt;/span&gt; 为指示函数&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的特殊情况是 &lt;span class="math"&gt;\(k=1\)&lt;/span&gt; 的情形，称为最近邻算法。对于输入的实例点（特征向量）&lt;span class="math"&gt;\(x\)&lt;/span&gt;，最邻近法将数据集中与 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 最邻近点的类作为 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的类。&lt;/p&gt;
+&lt;h2&gt;3.2 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻模型&lt;/h2&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法使用的模型实际上对应于特征空间的划分。模型由三个基本要素——距离度量，&lt;span class="math"&gt;\(k\)&lt;/span&gt; 值得选取和分类决策规则决定。&lt;/p&gt;
+&lt;h3&gt;3.2.1 距离度量&lt;/h3&gt;
+&lt;p&gt;特征空间中两个实例点的距离是两个实例点相似程度的反应。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻模型的特征空间一般是 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维实数向量空间 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt;。使用的距离是欧氏距离，也可以使用其他距离，例如更一般的 &lt;span class="math"&gt;\(L_p\)&lt;/span&gt; 距离或 Minkowski 距离。&lt;/p&gt;
+&lt;p&gt;设特征空间 &lt;span class="math"&gt;\({\cal X}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维实数向量空间 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(x_i,x_j\in{\cal X}\)&lt;/span&gt;，&lt;span class="math"&gt;\(x_i=\left(x_i^{(1)},x_i^{(2)},\cdots,x_i^{(n)}\right)^\text{T}\)&lt;/span&gt;，&lt;span class="math"&gt;\(x_j=\left(x_j^{(1)},x_j^{(2)},\cdots,x_j^{(n)}\right)^\text{T}\)&lt;/span&gt;，&lt;span class="math"&gt;\(x_i,x_j\)&lt;/span&gt; 的 &lt;span class="math"&gt;\(L_p\)&lt;/span&gt; 距离定义为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L_p(x_i,x_j)=\left(\sum_{l=1}^n\left|x_i^{(l)}-x_j^{(l)}\right|^p\right)^\frac{1}{p}$$&lt;/div&gt;
+&lt;h3&gt;3.2.2 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 值的选择&lt;/h3&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 值得选择会对 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的结果产生重大影响。&lt;/p&gt;
+&lt;p&gt;如果选择较小的 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 值，就相当于用较小的邻域中的训练实例进行预测。“学习”的近似误差（approximation error）会减小，只有与输入实例较近的（相似的）训练实例才会对预测结果起作用。但缺点是“学习”的估计误差（estimation error）会增大，预测结果会对近邻的实例点非常敏感。如果邻近的实例点恰巧是噪声点，预测就会出错。换句话说，&lt;span class="math"&gt;\(k\)&lt;/span&gt; 值得减小就意味着整体模型变的复杂，容易发生过拟合。&lt;/p&gt;
+&lt;p&gt;如果 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 值选择过大，就相当于用较大邻域中的训练实例进行预测。其优点是可以减小学习的估计误差，但缺点是学习的近似误差会增大。这时与输入实例较远的（不相似的）训练实例也会对预测起作用，使预测发生错误。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 值的增大意味着整体的模型变得简单。&lt;/p&gt;
+&lt;p&gt;如果 &lt;span class="math"&gt;\(k=N\)&lt;/span&gt;，那么无论输入的实例是什么，都将简单的预测它属于在训练实例中最多的类，这时，模型过于简单，是不可取的。&lt;/p&gt;
+&lt;p&gt;在应用中，&lt;span class="math"&gt;\(k\)&lt;/span&gt; 值一般取一个比较小的数值，通常采用交叉验证法来选取最优的 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 值。&lt;/p&gt;
+&lt;h3&gt;3.2.3 分类决策规则&lt;/h3&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法中的分类决策规则往往是多数表决，即由输入实例的 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个邻近的训练实例中的多数类决定输入实例的类。&lt;/p&gt;
+&lt;p&gt;多数表决规则（majority voting rule）有如下解释：如果分类的损失函数是 0-1 损失函数，分类函数为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f:\mathbb{R}^n\longrightarrow\{c_1,c_2,\cdots,c_K\}$$&lt;/div&gt;
+&lt;p&gt;
+那么误分类的概率是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(Y\neq f(X))=1-P(Y=f(X))$$&lt;/div&gt;
+&lt;p&gt;
+对于给定的实例 &lt;span class="math"&gt;\(x\in{\cal X}\)&lt;/span&gt;，其最邻近的 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个训练实例点构成集合 &lt;span class="math"&gt;\(N_k(x)\)&lt;/span&gt;。如果涵盖 &lt;span class="math"&gt;\(N_k(x)\)&lt;/span&gt; 的区域类别是 &lt;span class="math"&gt;\(c_j\)&lt;/span&gt;，那么误分类率是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{1}{k}\sum_{x_i\in N_k(x)}\mathbb{I}(y_i\neq c_j)=1-\frac{1}{k}\sum_{x_i\in N_k(x)}\mathbb{I}(y_i= c_j)$$&lt;/div&gt;
+&lt;p&gt;
+要使误分类率最小即经验风险最小，就要使 &lt;span class="math"&gt;\(\sum_{x_i\in N_k(x)}\mathbb{I}(y_i= c_j)\)&lt;/span&gt; 最大，所以多数表决规则等价于经验风险最小化。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
