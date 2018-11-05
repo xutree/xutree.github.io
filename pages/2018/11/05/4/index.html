@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="概率, 数学, 其他, " />
-    <title>指示器随机变量  · You Know Nothing
+<meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
+    <title>统计学习方法 第四章 朴素贝叶斯法  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -54,7 +54,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/28/指示器随机变量/"> 指示器随机变量  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/05/4/"> 统计学习方法 第四章 朴素贝叶斯法  </a></h1>
         </header>
     </div>
 
@@ -62,66 +62,34 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>指示器随机变量为概率和期望之间的转换提供了一个便利的方法。给定一个样本空间 <span class="math">\(S\)</span> 和一个事件 <span class="math">\(A\)</span>，那么事件 <span class="math">\(A\)</span> 对应的<strong>指示器随机变量</strong> <span class="math">\(I\{A\}\)</span> 定义为：</p>
-<div class="math">$$\text{I}\{A\}=\cases{
-1  &amp; 如果 A 发生 \\
-0 &amp; 如果 A 不发生
-}$$</div>
-<p>指示器随机变量有如下性质：</p>
-<div class="math">$$\text{E}[X_A]=\text{Pr}\{A\}$$</div>
-<p>就是说，指示器随机变量的期望等于它所指示事件发生的概率，指示器随机变量在分析重复随机试验时很有用。</p>
-<p><strong>例题1</strong>：连续抛硬币 <span class="math">\(n\)</span> 次，求正面出现次数的期望。</p>
-<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_i\)</span> 对应第 <span class="math">\(i\)</span> 次抛硬币时正面朝上的事件。设随机变量 <span class="math">\(X\)</span> 表示 <span class="math">\(n\)</span> 次抛硬币中出现正面的总次数，则：</p>
-<div class="math">$$X=\sum_{i=1}^nX_i$$</div>
-<p>对上式取期望：</p>
-<div class="math">$$\text{E}[X]=\text{E}\left[\sum_{i=1}^nX_i\right]=\sum_{i=1}^n\text{E}[X_i]=\sum_{i=1}^n1/2=n/2$$</div>
-<p><strong>例题2</strong>：雇佣问题。计算雇佣一个新的办公助理的期望次数。</p>
-<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_i\)</span> 对应第 <span class="math">\(i\)</span> 个应聘者被雇用的事件。设随机变量 <span class="math">\(X\)</span> 表示 雇用一个新办公助理的次数，则：</p>
-<div class="math">$$X_i=\text{I}\{应聘者\ i\ 被雇用\}=\cases{
-1  &amp; 如果应聘者 i 被雇用 \\
-0 &amp; 如果应聘者 i 不被雇用
-}$$</div>
-<p>以及：</p>
-<div class="math">$$X=\sum_{i=1}^nX_i$$</div>
-<p>容易得到：</p>
-<div class="math">$$\text{E}[X_i]=\frac{\text{A}_{n-1}^{n-1}}{\text{A}_n^n}=\frac{1}{n}$$</div>
-<p>故：</p>
-<div class="math">$$\text{E}[X]=\text{E}\left[\sum_{i=1}^nX_i\right]=\sum_{i=1}^n\text{E}[X_i]=\sum_{i=1}^n1/i=\ln n+O(1)$$</div>
-<p><strong>例题3</strong>：<span class="math">\(n\)</span> 位顾客，他们每个人给餐厅核对帽子的服务生一顶帽子。服务生以随机顺序将帽子归还给顾客，求拿到自己帽子的客户的期望数。</p>
-<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_i\)</span> 对应第 <span class="math">\(i\)</span> 个顾客拿到自己帽子的事件。设随机变量 <span class="math">\(X\)</span> 表示拿到自己帽子的客户的期望数，则：</p>
-<div class="math">$$X_i=\text{I}\{第\ i\ 个顾客拿到自己的帽子\}=\cases{
-1  &amp; 如果第 i 个顾客拿到自己的帽子 \\
-0 &amp; 如果第 i 个顾客没有拿到自己的帽子
-}$$</div>
-<p>以及：</p>
-<div class="math">$$X=\sum_{i=1}^nX_i$$</div>
-<p>容易得到：</p>
-<p>故：</p>
-<div class="math">$$\text{E}[X]=\text{E}\left[\sum_{i=1}^nX_i\right]=\sum_{i=1}^n\text{E}[X_i]=\sum_{i=1}^n1/n=1$$</div>
-<p><strong>例题4</strong>：设 <span class="math">\(A[1\dots n]\)</span> 是由 <span class="math">\(n\)</span> 个不同数构成的数列。如果 <span class="math">\(i&lt;j\)</span> 且 <span class="math">\(A[i]&gt;A[j]\)</span>，则称 <span class="math">\((i,j)\)</span> 对为 <span class="math">\(A\)</span> 的一个逆序对。假设 <span class="math">\(A\)</span> 的元素构成 <span class="math">\(&lt;1,2,\dots,n&gt;\)</span> 上的一个均匀分布。求其中逆序对数目的期望。</p>
-<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_{ij}\)</span> 对应 <span class="math">\((i,j)\)</span> 为逆序对的事件。则：</p>
-<div class="math">$$X_{ij}=\text{I}\{A[i]&gt;A[j], \text{for}\ 1\leq i&lt;j\leq n\}$$</div>
-<p>容易得到：</p>
-<div class="math">$$\text{E}[X_{ij}]=\text{Pr}\{X_{ij}=1\}=1/2$$</div>
-<p>设随机变量 <span class="math">\(X\)</span> 表示逆序对总数目，则：</p>
-<div class="math">$$X=\sum_{i=1}^{n-1}\sum_{j=i+1}^nX_{ij}$$</div>
-<p>故：</p>
-<div class="math">$$\text{E}[X]=\text{E}\left[\sum_{i=1}^{n-1}\sum_{j=i+1}^nX_{ij}\right]=\sum_{i=1}^{n-1}\sum_{j=i+1}^n\text{E}[X_{ij}]=\sum_{i=1}^{n-1}\sum_{j=i+1}^n1/2\\=\frac{1}{2}\text{C}_n^2=\frac{n(n-1)}{4}$$</div>
-<p><strong>例题5</strong>：一个骰子，6面，1个面是 1， 2个面是2， 3个面是3， 问平均掷多少次能使1,2,3都至少出现一次？</p>
-<p><strong>解答</strong>：</p>
-<p>设指示器随机变量 <span class="math">\(X_{i}\)</span>，对应“前i次掷骰子，1，2，3没能都至少出现一次”的事件，其值为1表示“前n次掷骰子，1，2，3没能都至少出现一次”的事件，其值为0表示这个事件没有发生，即“前n次掷骰子，1，2，3各至少出现一次”。</p>
-<p>设随机变量 <span class="math">\(X\)</span> 表示1，2，3刚好全部出现过需要的投掷次数。</p>
-<div class="math">$$X=\sum_0^{\infty}X_i$$</div>
-<p>说明一下，等式两边都是随机变量，假设对于某个随机实例（例如，这里指一次具体的投掷序列），其对应事件是：“投了 <span class="math">\(K\)</span> 次恰好1，2，3都出现了”，于是等式左边显然等于 <span class="math">\(K\)</span>；而等式右边，对于 <span class="math">\(n &lt; K\)</span>，由于这些项的对应定义事件发生了（即1，2，3没能出现），所以他们的实例值是1，而对于 <span class="math">\(n\geq K\)</span>，则由于对应定义事件都没发生，实例值为0，可见这个和也是 <span class="math">\(K\)</span>。故两侧相等。（为了达到这个相等关系，可以看出需要把 <span class="math">\(X_0\)</span> 包含在内的必要性）。</p>
-<p>值得注意的是，对 <span class="math">\(n &lt; 3\)</span>，<span class="math">\(X_n\)</span> 显然恒为1。而对于 <span class="math">\(n\geq 3\)</span>，这些随机变量不是独立的。他们的相关性是不容易求出的，唯一容易知道的是，当序列中一个项为0时，其后的项均为0。好在对于这题我们不需要担忧这个相关性。</p>
-<p>下面求 <span class="math">\(\text{E}[X_i]\)</span>，由于 <span class="math">\(X_i\)</span> 考虑的是 <span class="math">\(i\)</span> 次投掷三者没有全部出现，于是就是其中两者出现或仅一者出现。假设单次投掷1，2和3出现的概率分别为：<span class="math">\(p1\)</span>，<span class="math">\(p2\)</span> 和 <span class="math">\(p3\)</span>。于是 <span class="math">\((p1+p2)^i\)</span> 表示 <span class="math">\(i\)</span> 次投掷只出现1或2的概率，这其中包括了出现全1和全2的情形，于是求 <span class="math">\(\text{Pr}\{X_{i}=1\}\)</span> 可由这样的项求和并剔除重复计算的单面值情形：</p>
-<div class="math">$$\text{Pr}\{X_{i}=1\}=\cases{
-(p1+p2)^i+(p1+p3)^i+(p2+p3)^i-p1^i-p2^i-p3^i &amp; i&gt;0\\
-0 &amp; i=0}$$</div>
-<p>故：</p>
-<div class="math">$$\text{E}[X]=\text{E}\left[\sum_{i=0}^{\infty}X_i\right]=\sum_{i=0}^{\infty}\text{E}[X_i]=\sum_{i=0}^{\infty}\text{Pr}\{X_{i}=1\}\\
-=1+\frac{1-p3}{p3}+\frac{1-p2}{p2}+\frac{1-p1}{p1}-\frac{p1}{1-p1}-\frac{p2}{1-p2}-\frac{p3}{1-p3}\\
-=7.3$$</div>
+                <p>朴素贝叶斯（naive Bayes）法是基于贝叶斯定理与特征条件独立假设的分类方法。朴素贝叶斯法实现简单，学习和预测效率都很高，是一种常用的方法。</p>
+<h2>4.1 朴素贝叶斯法的学习与分类</h2>
+<h3>4.1.1 基本方法</h3>
+<p>设输入特征向量
+</p>
+<div class="math">$$x\in{\cal X}\subseteq\mathbb{R}^n$$</div>
+<p>
+输出类标记
+</p>
+<div class="math">$$y\in{\cal Y}=\{c_1,c_2,\cdots,c_K\}$$</div>
+<p>
+<span class="math">\(X\)</span> 是定义在输入空间 <span class="math">\({\cal X}\)</span> 上的随机变量，<span class="math">\(Y\)</span> 是定义在输出空间 <span class="math">\({\cal Y}\)</span> 上的随机变量，<span class="math">\(P(X,Y)\)</span> 是 <span class="math">\(X\)</span> 和 <span class="math">\(Y\)</span> 的联合概率分布。训练数据集
+</p>
+<div class="math">$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
+<p>
+由 <span class="math">\(P(X,Y)\)</span> 独立同分布产生。</p>
+<p>朴素贝叶斯法通过训练数据集学习联合概率分布 <span class="math">\(P(X,Y)\)</span>。具体地，学习以下先验概率分布及条件概率分布。先验概率分布
+</p>
+<div class="math">$$P(Y=c_k),k=1,2,\cdots,K$$</div>
+<p>
+条件概率分布
+</p>
+<div class="math">$$P(X=x|Y=c_k)=P(X^{(1)}=x^{(1)},\cdots,X^{(n)}=x^{(n)}|Y=c_k),k=1,2,\cdots,K$$</div>
+<p>
+于是学习到联合概率分布
+</p>
+<div class="math">$$P(X,Y)=P(X=x|Y=c_k)P(Y=c_k)$$</div>
+<p>条件概率分布 <span class="math">\(P(X=x|Y=c_k)\)</span> 由指数级数量的参数，其估计实际是不可行的。事实上，假设 <span class="math">\(x^{(i)}\)</span> 可取值有 <span class="math">\(S_j\)</span> 个，<span class="math">\(Y\)</span> 可取值有 <span class="math">\(K\)</span> 个，那么参数个数为 <span class="math">\(K\prod_{j=1}^nS_j\)</span>。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -185,28 +153,28 @@
                         </h1>
                         <ul>
                             <li>
+                                <a href="https://xutree.github.io/pages/2018/11/04/3/">
+                                    统计学习方法 第三章 k 近邻法
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/04/2/">
+                                    统计学习方法 第二章 感知机
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/04/1/">
+                                    统计学习方法 第一章 统计学习方法概论
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/28/指示器随机变量/">
+                                    指示器随机变量
+                                </a>
+                            </li>
+                            <li>
                                 <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">
                                     最大子数组问题
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">
-                                    排序算法
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/10/23/矩阵求导/">
-                                    矩阵微积分
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">
-                                    C++ Primer 第十七章 标准库特殊设施
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">
-                                    C++ Primer 第十六章 模板与泛型编程
                                 </a>
                             </li>
                         </ul>
@@ -216,26 +184,6 @@
                             <font color="#771515"><em>NEWER</em></font>
                         </h1>
                         <ul>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/04/1/">
-                                    统计学习方法 第一章 统计学习方法概论
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/04/2/">
-                                    统计学习方法 第二章 感知机
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/04/3/">
-                                    统计学习方法 第三章 k 近邻法
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/05/4/">
-                                    统计学习方法 第四章 朴素贝叶斯法
-                                </a>
-                            </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/05/bayes/">
                                     贝叶斯定理
@@ -271,18 +219,16 @@
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-10-28T22:54:17+08:00">2018-10-28 22:54:17</time>
-                    <h4>最后更新</h4>
-                    <div class="last_updated">2018-10-29 18:53:28</div>
+                    <time pubdate="pubdate" datetime="2018-11-05T19:09:26.924635+08:00">2018-11-05 19:09:26</time>
                     <h4>分类</h4>
-                    <a class="category-link" href="/categories.html#其他-ref">其他</a>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
-                        <li><a href="/tags.html#概率-ref">概率
-                                <span>2</span>
+                        <li><a href="/tags.html#机器学习-ref">机器学习
+                                <span>4</span>
 </a></li>
-                        <li><a href="/tags.html#数学-ref">数学
-                                <span>3</span>
+                        <li><a href="/tags.html#统计学习-ref">统计学习
+                                <span>4</span>
 </a></li>
                     </ul>
 
