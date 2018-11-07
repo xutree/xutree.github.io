@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-05T19:25:38+08:00</updated><entry><title>贝叶斯定理</title><link href="https://xutree.github.io/pages/2018/11/05/bayes/" rel="alternate"></link><published>2018-11-05T19:25:38+08:00</published><updated>2018-11-05T19:25:38+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-05:/pages/2018/11/05/bayes/</id><summary type="html">&lt;p&gt;贝叶斯定理是关于随机事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 的条件概率的一则定理。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-07T12:47:06+08:00</updated><entry><title>贝叶斯定理</title><link href="https://xutree.github.io/pages/2018/11/05/bayes/" rel="alternate"></link><published>2018-11-05T19:25:38+08:00</published><updated>2018-11-07T12:47:06+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-05:/pages/2018/11/05/bayes/</id><summary type="html">&lt;p&gt;贝叶斯定理是关于随机事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 的条件概率的一则定理。
 &lt;/p&gt;
 &lt;div class="math"&gt;$$P(A|B)=\frac{P(A)\times P(B|A)}{P(B)}$$&lt;/div&gt;
 &lt;p&gt;
@@ -74,6 +74,29 @@
 &lt;li&gt;&lt;span class="math"&gt;\(P(B)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 的先验概率或边缘概率&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;推导&lt;/h2&gt;
+&lt;p&gt;根据条件概率的定义。在事件 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 发生的条件下事件A发生的概率是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(A|B)={\frac {P(A\cap B)}{P(B)}}$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 的联合概率表示为 &lt;span class="math"&gt;\(P(A\cap B)\)&lt;/span&gt; 或者 &lt;span class="math"&gt;\(P(A,B)\)&lt;/span&gt; 或者 &lt;span class="math"&gt;\(P(AB)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;同样地，在事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 发生的条件下事件 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 发生的概率
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(B|A)={\frac {P(A\cap B)}{P(A)}}$$&lt;/div&gt;
+&lt;p&gt;整理与合并这两个方程式，我们可以得到
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(A|B)\,P(B)=P(A\cap B)=P(B|A)P(A)$$&lt;/div&gt;
+&lt;p&gt;
+这个引理有时称作概率乘法规则。上式两边同除以 &lt;span class="math"&gt;\(P(B)\)&lt;/span&gt;，若 &lt;span class="math"&gt;\(P(B)\)&lt;/span&gt; 是非零的，我们可以得到贝叶斯定理
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(A|B)=\frac{P(B|A)P(A)}{P(B)}$$&lt;/div&gt;
+&lt;h2&gt;其他形式&lt;/h2&gt;
+&lt;div class="math"&gt;$$P(A|B)={\frac {P(B|A)\,P(A)}{P(B|A)P(A)+P(B|A^{C})P(A^{C})}}$$&lt;/div&gt;
+&lt;p&gt;其中 &lt;span class="math"&gt;\(A^C\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 的补集（即非 &lt;span class="math"&gt;\(A\)&lt;/span&gt;），因为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(B)=P(A,B)+P(A^{C},B)=P(B|A)P(A)+P(B|A^{C})P(A^{C})$$&lt;/div&gt;
+&lt;p&gt;在更一般化的情况，假设 &lt;span class="math"&gt;\(A_i\)&lt;/span&gt; 是事件集合里的部分集合，对于任意的 &lt;span class="math"&gt;\(A_i\)&lt;/span&gt;，贝叶斯定理可用下式表示
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(A_{i}|B)={\frac {P(B|A_{i})\,P(A_{i})}{\sum_{j}P(B|A_{j})\,P(A_{j})}}$$&lt;/div&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

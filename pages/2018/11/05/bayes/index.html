@@ -75,6 +75,29 @@
 <li><span class="math">\(P(B)\)</span> 是 <span class="math">\(B\)</span> 的先验概率或边缘概率</li>
 </ul>
 <h2>推导</h2>
+<p>根据条件概率的定义。在事件 <span class="math">\(B\)</span> 发生的条件下事件A发生的概率是
+</p>
+<div class="math">$$P(A|B)={\frac {P(A\cap B)}{P(B)}}$$</div>
+<p>
+其中 <span class="math">\(A\)</span> 与 <span class="math">\(B\)</span> 的联合概率表示为 <span class="math">\(P(A\cap B)\)</span> 或者 <span class="math">\(P(A,B)\)</span> 或者 <span class="math">\(P(AB)\)</span>。</p>
+<p>同样地，在事件 <span class="math">\(A\)</span> 发生的条件下事件 <span class="math">\(B\)</span> 发生的概率
+</p>
+<div class="math">$$P(B|A)={\frac {P(A\cap B)}{P(A)}}$$</div>
+<p>整理与合并这两个方程式，我们可以得到
+</p>
+<div class="math">$$P(A|B)\,P(B)=P(A\cap B)=P(B|A)P(A)$$</div>
+<p>
+这个引理有时称作概率乘法规则。上式两边同除以 <span class="math">\(P(B)\)</span>，若 <span class="math">\(P(B)\)</span> 是非零的，我们可以得到贝叶斯定理
+</p>
+<div class="math">$$P(A|B)=\frac{P(B|A)P(A)}{P(B)}$$</div>
+<h2>其他形式</h2>
+<div class="math">$$P(A|B)={\frac {P(B|A)\,P(A)}{P(B|A)P(A)+P(B|A^{C})P(A^{C})}}$$</div>
+<p>其中 <span class="math">\(A^C\)</span> 是 <span class="math">\(A\)</span> 的补集（即非 <span class="math">\(A\)</span>），因为
+</p>
+<div class="math">$$P(B)=P(A,B)+P(A^{C},B)=P(B|A)P(A)+P(B|A^{C})P(A^{C})$$</div>
+<p>在更一般化的情况，假设 <span class="math">\(A_i\)</span> 是事件集合里的部分集合，对于任意的 <span class="math">\(A_i\)</span>，贝叶斯定理可用下式表示
+</p>
+<div class="math">$$P(A_{i}|B)={\frac {P(B|A_{i})\,P(A_{i})}{\sum_{j}P(B|A_{j})\,P(A_{j})}}$$</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -171,7 +194,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-05T19:25:38+08:00">2018-11-05 19:25:38</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-05 19:25:38</div>
+                    <div class="last_updated">2018-11-07 12:47:06</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#基础知识-ref">基础知识</a>
                     <h4>标签</h4>
