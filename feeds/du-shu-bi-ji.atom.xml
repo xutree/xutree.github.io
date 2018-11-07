@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-05T19:09:26+08:00</updated><entry><title>统计学习方法 第四章 朴素贝叶斯法</title><link href="https://xutree.github.io/pages/2018/11/05/4/" rel="alternate"></link><published>2018-11-05T19:09:26+08:00</published><updated>2018-11-05T19:09:26+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-05:/pages/2018/11/05/4/</id><summary type="html">&lt;p&gt;朴素贝叶斯（naive Bayes）法是基于贝叶斯定理与特征条件独立假设的分类方法。朴素贝叶斯法实现简单，学习和预测效率都很高，是一种常用的方法。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-07T16:42:01+08:00</updated><entry><title>统计学习方法 第四章 朴素贝叶斯法</title><link href="https://xutree.github.io/pages/2018/11/07/4/" rel="alternate"></link><published>2018-11-07T16:42:01+08:00</published><updated>2018-11-07T16:42:01+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-07:/pages/2018/11/07/4/</id><summary type="html">&lt;p&gt;朴素贝叶斯（naive Bayes）法是基于贝叶斯定理与特征条件独立假设的分类方法。朴素贝叶斯法实现简单，学习和预测效率都很高，是一种常用的方法。&lt;/p&gt;
 &lt;h2&gt;4.1 朴素贝叶斯法的学习与分类&lt;/h2&gt;
 &lt;h3&gt;4.1.1 基本方法&lt;/h3&gt;
 &lt;p&gt;设输入特征向量
@@ -92,6 +92,105 @@
 &lt;/p&gt;
 &lt;div class="math"&gt;$$P(X,Y)=P(X=x|Y=c_k)P(Y=c_k)$$&lt;/div&gt;
 &lt;p&gt;条件概率分布 &lt;span class="math"&gt;\(P(X=x|Y=c_k)\)&lt;/span&gt; 由指数级数量的参数，其估计实际是不可行的。事实上，假设 &lt;span class="math"&gt;\(x^{(i)}\)&lt;/span&gt; 可取值有 &lt;span class="math"&gt;\(S_j\)&lt;/span&gt; 个，&lt;span class="math"&gt;\(Y\)&lt;/span&gt; 可取值有 &lt;span class="math"&gt;\(K\)&lt;/span&gt; 个，那么参数个数为 &lt;span class="math"&gt;\(K\prod_{j=1}^nS_j\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;朴素贝叶斯法对条件概率分布作了条件独立性的假设。这是一个较强的假设，朴素贝叶斯法也由此得名。具体的，条件独立性假设是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(X=x|Y=c_k)=P(X^{(1)}=x^{(1)},\cdots,X^{(n)}=x^{(n)})|Y=c_k)\\=\prod_{j=1}^nP(X^{(j)}=x^{(j)}|Y=c_k)$$&lt;/div&gt;
+&lt;p&gt;朴素贝叶斯法实际上学习到生成数据的机制，所以属于生成模型。条件独立假设等于是说分类的特征在类确定的条件下都是条件独立的。这一假设使朴素贝叶斯法变得简单，但有时会牺牲一定的分类准确率。&lt;/p&gt;
+&lt;p&gt;利用朴素贝叶斯法对给定输入 &lt;span class="math"&gt;\(x\)&lt;/span&gt;分类是，将后验概率最大的类作为 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的类输出，后验概率根据贝叶斯定理计算
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(Y=c_k|X=x)=\frac{P(X=x|Y=c_k)P(Y=c_k)}{\sum_kP(X=x|Y=c_k)P(Y=c_k)}$$&lt;/div&gt;
+&lt;p&gt;
+利用条件独立假设
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(Y=c_k|X=x)=\frac{P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}{\sum_kP(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}$$&lt;/div&gt;
+&lt;p&gt;
+这是朴素贝叶斯法的基本公式，于是朴素贝叶斯分类器可表示为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$y=f(x)=\arg\max_{c_k}\frac{P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}{\sum_kP(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}$$&lt;/div&gt;
+&lt;p&gt;
+注意到上式中分母对所有 &lt;span class="math"&gt;\(c_k\)&lt;/span&gt; 都为 &lt;span class="math"&gt;\(P(X=x)\)&lt;/span&gt;，所以
+&lt;/p&gt;
+&lt;div class="math"&gt;$$y=f(x)=\arg\max_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$$&lt;/div&gt;
+&lt;h3&gt;4.1.2 后验概率最大化的含义&lt;/h3&gt;
+&lt;p&gt;朴素贝叶斯法将实例分类到后验概率最大的类中，这等价于期望风险最小化。假设 0-1 损失函数
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L(Y,f(X))=\begin{cases}1,&amp;amp;Y\neq f(X)\\0,&amp;amp; Y=f(X)\end{cases}$$&lt;/div&gt;
+&lt;p&gt;
+式中 &lt;span class="math"&gt;\(f(X)\)&lt;/span&gt; 是分类决策函数。这时期望风险函数为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$R_\text{exp}(f)=\text{E}[L(Y,f(X))]=\int_{{\cal X}\times{\cal Y}}L(y,f(x))P(x,y)dxdy\\=\int_{\cal X}\int_{\cal Y}L(y,f(x))P(y|x)P(x)dxdy\\=\int_{\cal X} \left[\int_{\cal Y}L(y,f(x))P(y|x)dy\right] P(x)dx$$&lt;/div&gt;
+&lt;p&gt;
+期望是对联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 取的。由此取条件期望
+&lt;/p&gt;
+&lt;div class="math"&gt;$$R_\text{exp}(f)=\text{E}_X\sum_{k=1}^K[L(c_k,f(X))]P(c_k|X)$$&lt;/div&gt;
+&lt;p&gt;
+为了使期望风险最小化，只需对 &lt;span class="math"&gt;\(X=x\)&lt;/span&gt; 逐个极小化，得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}f(x) &amp;amp;=&amp;amp; \arg\min_{y\in{\cal Y}}\sum_{k=1}^KL(c_k,y)P(c_k|X=x)\\&amp;amp;=&amp;amp;\arg\min_{y\in\cal Y}\sum_{k=1}^KP(y\neq c_k|X=x)\\&amp;amp;=&amp;amp;\arg\min_{y\in{\cal Y}}(1-P(y=c_k|X=x))\\&amp;amp;=&amp;amp;\arg\max_{y\in\cal Y}P(y=c_k|X=x)\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+这样一来，根据期望风险最小化准则就得到了后验概率最大化准则
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(x)=\arg\max_{c_k}P(c_k|X=x)$$&lt;/div&gt;
+&lt;p&gt;
+即朴素贝叶斯法采用的原理。&lt;/p&gt;
+&lt;h2&gt;4.2 朴素贝叶斯法的参数估计&lt;/h2&gt;
+&lt;h3&gt;4.2.1 极大似然估计&lt;/h3&gt;
+&lt;p&gt;对于
+&lt;/p&gt;
+&lt;div class="math"&gt;$$y=f(x)=\arg\max_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$$&lt;/div&gt;
+&lt;p&gt;
+朴素贝叶斯学习意味着估计 &lt;span class="math"&gt;\(P(Y=c_k)\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(P(X^{(j)}=x^{(j)}|Y=c_k)\)&lt;/span&gt;。可以应用极大似然估计法估计相应的概率。&lt;/p&gt;
+&lt;p&gt;先验概率 &lt;span class="math"&gt;\(P(Y=c_k)\)&lt;/span&gt; 的极大似然估计是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(Y=c_k)=\frac{\sum_{i=1}^N\mathbb{I}(y_i=c_k)}{N},k=1,2,\cdots,K$$&lt;/div&gt;
+&lt;p&gt;
+设第 &lt;span class="math"&gt;\(j\)&lt;/span&gt; 个特征 &lt;span class="math"&gt;\(x^{(j)}\)&lt;/span&gt; 可能的取值集合为 &lt;span class="math"&gt;\(\{a_{j1},a_{j2},\cdots,a_{jS_j}\}\)&lt;/span&gt;，条件概率的极大似然估计是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^N\mathbb{I}(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^N\mathbb{I}(y_i=c_k)}\\
+j=1,2,\cdots,n; l=1,2,\cdots,S_j; k=1,2,\cdots,K$$&lt;/div&gt;
+&lt;h3&gt;4.2.2 学习与分类算法&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 4.1 朴素贝叶斯法（naive Bayes algorithm）&lt;br&gt;
+输入：&lt;br&gt;
+(a) 训练数据集
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+其中
+&lt;div class="math"&gt;$$x_i=\left(x_i^{(1)},x_i^{(2)},\cdots,x_i^{(n)}\right)^\text{T}$$&lt;/div&gt;
+&lt;span class="math"&gt;\(x_i^{(j)}\)&lt;/span&gt; 是第 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 个样本的第 &lt;span class="math"&gt;\(j\)&lt;/span&gt; 个特征，且
+&lt;div class="math"&gt;$$x_i^{(j)}\in\{a_{j1},a_{j2},\cdots,a_{jS_j}\}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$y_i\in\{c_1,c_2,\cdots,c_K\}$$&lt;/div&gt;
+(b) 实例 &lt;span class="math"&gt;\(x\)&lt;/span&gt;&lt;br&gt;
+输出：实例 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的分类&lt;br&gt;
+(1) 计算先验概率及条件概率
+&lt;div class="math"&gt;$$\begin{eqnarray}
+P(Y=c_k) &amp;amp;=&amp;amp; \frac{\sum_{i=1}^N\mathbb{I}(y_i=c_k)}{N} \\
+P(X^{(j)}=a_{jl}|Y=c_k) &amp;amp;=&amp;amp; \frac{\sum_{i=1}^N\mathbb{I}(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^N\mathbb{I}(y_i=c_k)}
+\end{eqnarray}\\
+j=1,2,\cdots,n; l=1,2,\cdots,S_j; k=1,2,\cdots,K$$&lt;/div&gt;
+(2) 对于给定的实例 &lt;span class="math"&gt;\(x=\left(x^{(1)},x^{(2)},\cdots,x^{(n)}\right)^\text{T}\)&lt;/span&gt;，计算
+&lt;div class="math"&gt;$$P(Y=c_k)\prod_{j=1}P(X^{(j)}=x^{(j)}|Y=c_k),k=1,2,\cdots,K$$&lt;/div&gt;
+(3) 确定实例 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的类
+&lt;div class="math"&gt;$$y=f(x)=\arg\max_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;4.2.3 贝叶斯估计&lt;/h3&gt;
+&lt;p&gt;用极大似然估计可能会出现所要估计的概率值为 0 的情况。这时会影响到后验概率的计算结果，使分类产生偏差。解决这一问题的方法是采用贝叶斯估计。&lt;/p&gt;
+&lt;p&gt;先验概率的贝叶斯估计是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^N\mathbb{I}(y_i=c_k)+\lambda}{N+K\lambda},k=1,2,\cdots,K$$&lt;/div&gt;
+&lt;p&gt;条件概率的贝叶斯估计是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P_\lambda(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^N\mathbb{I}(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N\mathbb{I}(y_i=c_k)+S_j\lambda}\\
+j=1,2,\cdots,n; l=1,2,\cdots,S_j; k=1,2,\cdots,K$$&lt;/div&gt;
+&lt;p&gt;
+式中 &lt;span class="math"&gt;\(\lambda\geq0\)&lt;/span&gt;，等价于在随机变量各个取值的频数上赋予一个非负数。当 &lt;span class="math"&gt;\(\lambda=0\)&lt;/span&gt; 时，就是极大似然估计。常取 &lt;span class="math"&gt;\(\lambda=1\)&lt;/span&gt;，这是称为拉普拉斯平滑（Laplace smoothing）。&lt;/p&gt;
+&lt;p&gt;显然
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+P_\lambda(X^{(j)}=a_{jl}|Y=c_k) &amp;amp;\geq&amp;amp; 0 \\
+\sum_{l=1}^{S_j}P_\lambda(X^{(j)}=a_{jl}|Y=c_k) &amp;amp;=&amp;amp; 1
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+表明这的确是一种概率分布。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -331,7 +430,7 @@
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第二章 感知机</title><link href="https://xutree.github.io/pages/2018/11/04/2/" rel="alternate"></link><published>2018-11-04T21:04:02+08:00</published><updated>2018-11-04T23:06:31+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/2/</id><summary type="html">&lt;p&gt;感知机（perceptron）是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别，取 +1 和 -1 二值。感知机对应于输入空间（特征空间）中将实例划分为正负类别的分离超平面，属于判别模型。&lt;/p&gt;
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第二章 感知机</title><link href="https://xutree.github.io/pages/2018/11/04/2/" rel="alternate"></link><published>2018-11-04T21:04:02+08:00</published><updated>2018-11-07T15:34:59+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/2/</id><summary type="html">&lt;p&gt;感知机（perceptron）是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别，取 +1 和 -1 二值。感知机对应于输入空间（特征空间）中将实例划分为正负类别的分离超平面，属于判别模型。&lt;/p&gt;
 &lt;h2&gt;2.1 感知机模型&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;定义 2.1（感知机）假设输入空间（特征空间）是 &lt;span class="math"&gt;\({\cal X}\subseteq\mathbb{R}^n\)&lt;/span&gt;，输出空间是 &lt;span class="math"&gt;\({\cal Y}=\{+1,-1\}\)&lt;/span&gt;。输入 &lt;span class="math"&gt;\(x\in{\cal X}\)&lt;/span&gt; 表示实例的特征向量，对应于输入空间（特征空间）的点；输出 &lt;span class="math"&gt;\(y\in{\cal Y}\)&lt;/span&gt; 表示实例的类别 …&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -446,12 +545,16 @@
 &lt;p&gt;随机梯度下降法步骤如下：首先，任意选取一个超平面 &lt;span class="math"&gt;\(w_0\)&lt;/span&gt;，&lt;span class="math"&gt;\(b_0\)&lt;/span&gt;，然后用梯度下降法不断地极小化目标函数。极小化过程不是一次使 &lt;span class="math"&gt;\(M\)&lt;/span&gt; 中所有误分类法的梯度下降，而是一次随机选取一个误分类点使其梯度下降。&lt;/p&gt;
 &lt;p&gt;假设误分类点集合 &lt;span class="math"&gt;\(M\)&lt;/span&gt; 是固定的，那么损失函数 &lt;span class="math"&gt;\(L(w,b)\)&lt;/span&gt; 的梯度为：
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\nabla_wL(w,b)=-\sum_{x_i\in M}y_ix_i$$&lt;/div&gt;
-&lt;div class="math"&gt;$$\nabla_bL(w,b)=-\sum_{x_i\in M}y_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\nabla_wL(w,b) &amp;amp;=&amp;amp; -\sum_{x_i\in M}y_ix_i \\
+\nabla_bL(w,b) &amp;amp;=&amp;amp; -\sum_{x_i\in M}y_i
+\end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;随机选取一个误分类点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 对 &lt;span class="math"&gt;\(w\)&lt;/span&gt;，&lt;span class="math"&gt;\(b\)&lt;/span&gt; 进行更新：
 &lt;/p&gt;
-&lt;div class="math"&gt;$$w\longleftarrow w+\eta y_ix_i$$&lt;/div&gt;
-&lt;div class="math"&gt;$$b\longleftarrow b+\eta y_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+w &amp;amp;\longleftarrow&amp;amp; w+\eta y_ix_i \\
+b &amp;amp;\longleftarrow&amp;amp; b+\eta y_i
+\end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;
 式中 &lt;span class="math"&gt;\(\eta\ (0&amp;lt;\eta\leq 1)\)&lt;/span&gt; 是步长，也称学习率（learning rate）。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;算法 2.1 （感知机学习算法的原始形式)&lt;br&gt;
@@ -467,8 +570,10 @@
 (1) 选取初值 &lt;span class="math"&gt;\(w_0\)&lt;/span&gt;，&lt;span class="math"&gt;\(b_0\)&lt;/span&gt;&lt;br&gt;
 (2) 在训练集中选取数据 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt;&lt;br&gt;
 (3) 如果 &lt;span class="math"&gt;\(y_i(w\cdot x_i+b)\leq 0\)&lt;/span&gt;
-&lt;div class="math"&gt;$$w\longleftarrow w+\eta y_ix_i$$&lt;/div&gt;
-&lt;div class="math"&gt;$$b\longleftarrow b+\eta y_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+w &amp;amp;\longleftarrow&amp;amp; w+\eta y_ix_i \\
+b &amp;amp;\longleftarrow&amp;amp; b+\eta y_i
+\end{eqnarray}$$&lt;/div&gt;
 (4) 转至 (2)，直至训练集中没有误分类点&lt;/strong&gt;&lt;/p&gt;
 &lt;h3&gt;2.3.2 算法的收敛性&lt;/h3&gt;
 &lt;p&gt;为便于推导，将偏置并入权重向量，记为 &lt;span class="math"&gt;\(\hat{w}=(w^\text{T},b)^\text{T}\)&lt;/span&gt;，同样也将输入向量加以扩充，加进常数 1，记作 &lt;span class="math"&gt;\(\hat{x}=(x^\text{T},1)^\text{T}\)&lt;/span&gt;。这样，&lt;span class="math"&gt;\(\hat{x}\in\mathbb{R}^{n+1}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\hat{w}\in\mathbb{R}^{n+1}\)&lt;/span&gt;，显然 &lt;span class="math"&gt;\(\hat{w}\cdot\hat{x}=w\cdot x+b\)&lt;/span&gt;。&lt;/p&gt;
@@ -496,8 +601,10 @@
 &lt;p&gt;
 若 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 是被 &lt;span class="math"&gt;\(\hat{w}_{k-1}\)&lt;/span&gt; 误分类的数据，则 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 的更新为
 &lt;/p&gt;
-&lt;div class="math"&gt;$$w_k\longleftarrow w_{k-1}+\eta y_ix_i$$&lt;/div&gt;
-&lt;div class="math"&gt;$$b_k\longleftarrow b_{k-1}+\eta y_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+w_k &amp;amp;\longleftarrow&amp;amp; w_{k-1}+\eta y_ix_i \\
+b_k &amp;amp;\longleftarrow&amp;amp; b_{k-1}+\eta y_i
+\end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;
 即
 &lt;/p&gt;
@@ -509,10 +616,13 @@
 &lt;p&gt;
 ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;/p&gt;
-&lt;div class="math"&gt;$$||\hat{w}_k||^2=||\hat{w}_{k-1}+\eta y_i\hat{x}_i||^2\\
-=||\hat{w}_{k-1}||^2+2\eta y_i\hat{w}_{k-1}\cdot\hat{x}_i+\eta^2||\hat{x}_i||^2\\
-\leq||\hat{w}_{k-1}||^2+\eta^2||\hat{x}_i||^2\\
-\leq||\hat{w}_{k-1}||^2+\eta^2R^2\leq\cdots\leq k\eta^2R^2$$&lt;/div&gt;
+&lt;div class="math"&gt;$$
+\begin{eqnarray}
+||\hat{w}_k||^2 &amp;amp;=&amp;amp; ||\hat{w}_{k-1}+\eta y_i\hat{x}_i||^2 \\
+&amp;amp;=&amp;amp; ||\hat{w}_{k-1}||^2+2\eta y_i\hat{w}_{k-1}\cdot\hat{x}_i+\eta^2||\hat{x}_i||^2 \\
+&amp;amp;\leq&amp;amp; ||\hat{w}_{k-1}||^2+\eta^2||\hat{x}_i||^2 \\
+&amp;amp;\leq&amp;amp; ||\hat{w}_{k-1}||^2+\eta^2R^2\leq\cdots\leq k\eta^2R^2
+\end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;由上述两个不等式
 &lt;/p&gt;
 &lt;div class="math"&gt;$$k\eta\gamma\leq\hat{w}_k\cdot\hat{w}_\text{opt}\leq||\hat{w}_k||\ ||\hat{w}_\text{opt}||\leq\sqrt{k}\eta R$$&lt;/div&gt;
@@ -526,8 +636,10 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;h3&gt;2.3.3 感知机学习算法的对偶形式&lt;/h3&gt;
 &lt;p&gt;对偶形式的基本想法是，将 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 表示为实例 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 和标记 &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; 的线性组合的形式，通过求解其系数而求得 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt;。不失一般性，在算法 2.1 中可以假设初始值 &lt;span class="math"&gt;\(w_0\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b_0\)&lt;/span&gt; 均为 0，对误分类点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 通过
 &lt;/p&gt;
-&lt;div class="math"&gt;$$w\longleftarrow w+\eta y_ix_i$$&lt;/div&gt;
-&lt;div class="math"&gt;$$b\longleftarrow b+\eta y_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+w &amp;amp;\longleftarrow&amp;amp; w+\eta y_ix_i \\
+b &amp;amp;\longleftarrow&amp;amp; b+\eta y_i
+\end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;
 逐步修改 &lt;span class="math"&gt;\(w\)&lt;/span&gt;，&lt;span class="math"&gt;\(b\)&lt;/span&gt;，设修改 &lt;span class="math"&gt;\(n\)&lt;/span&gt;次（随机梯度下降，一个点可能被选择多次），则 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 关于 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt;  的增量分别是 &lt;span class="math"&gt;\(\alpha_iy_ix_i\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\alpha_iy_i\)&lt;/span&gt; 这里
 &lt;/p&gt;
@@ -535,8 +647,10 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;p&gt;
 这样，从学习过程不难看出，最后学习到的 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 可以分别表示为
 &lt;/p&gt;
-&lt;div class="math"&gt;$$w=\sum_{i=1}^N\alpha_iy_ix_i$$&lt;/div&gt;
-&lt;div class="math"&gt;$$b=\sum_{i=1}^N\alpha_iy_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+w &amp;amp;=&amp;amp; \sum_{i=1}^N\alpha_iy_ix_i \\
+b &amp;amp;=&amp;amp; \sum_{i=1}^N\alpha_iy_i
+\end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;
 这里，&lt;span class="math"&gt;\(\alpha_i\geq0\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;，当 &lt;span class="math"&gt;\(\eta=1\)&lt;/span&gt; 时，表示第 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 个实例点由于误分类而进行更新的次数。实例点更新次数越多，意味着它距离分离超平面越近，也就越难正确分类。换句话说，这样的实例对学习结果影响很大。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;算法 2.2 （感知机学习算法的对偶形式）&lt;br&gt;
@@ -553,8 +667,10 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 (1) &lt;span class="math"&gt;\(\alpha\longleftarrow0\)&lt;/span&gt;， &lt;span class="math"&gt;\(b\longleftarrow0\)&lt;/span&gt;&lt;br&gt;
 (2) 在训练集中选取数据 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt;&lt;br&gt;
 (3) 如果 &lt;span class="math"&gt;\(y_i\left(\sum_{j=1}^N\alpha_jy_jx_j\cdot x_i+b\right)\leq 0\)&lt;/span&gt;
-&lt;div class="math"&gt;$$\alpha_i\longleftarrow \alpha_i+\eta$$&lt;/div&gt;
-&lt;div class="math"&gt;$$b\longleftarrow b+\eta y_i$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\alpha_i &amp;amp;\longleftarrow&amp;amp; \alpha_i+\eta \\
+b &amp;amp;\longleftarrow&amp;amp; b+\eta y_i
+\end{eqnarray}$$&lt;/div&gt;
 (4) 转至 (2)，直至训练集中没有误分类点&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;对偶形式中训练实例仅以内积的形式出现。为了方便，可以预先将训练集中实例间的内积计算出来并以矩阵的形式存储，这个矩阵就是所谓的 Gram 矩阵（Gram matrix）
 &lt;/p&gt;
@@ -613,47 +729,44 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第一章 统计学习方法概论</title><link href="https://xutree.github.io/pages/2018/11/04/1/" rel="alternate"></link><published>2018-11-04T12:54:21+08:00</published><updated>2018-11-04T22:09:30+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/1/</id><summary type="html">&lt;h2&gt;1. 统计学习&lt;/h2&gt;
-&lt;h3&gt;1.1 特点&lt;/h3&gt;
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第一章 统计学习方法概论</title><link href="https://xutree.github.io/pages/2018/11/04/1/" rel="alternate"></link><published>2018-11-04T12:54:21+08:00</published><updated>2018-11-07T15:28:51+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/1/</id><summary type="html">&lt;h2&gt;1.1 统计学习&lt;/h2&gt;
+&lt;h3&gt;1.1.1 特点&lt;/h3&gt;
 &lt;p&gt;统计学习（statistical learning）是关于计算机基于&lt;strong&gt;数据&lt;/strong&gt;构建概率统计模型并运用模型对数据进行&lt;strong&gt;预测与分析&lt;/strong&gt;的一门学科。&lt;/p&gt;
 &lt;p&gt;赫尔伯特·西蒙（Herbert A.Simon）对“学习”给出如下定义：如果一个系统能够通过执行某个过程改变它的性能，这就是学习。&lt;/p&gt;
-&lt;h3&gt;1.2 对象&lt;/h3&gt;
+&lt;h3&gt;1.1.2 对象&lt;/h3&gt;
 &lt;p&gt;统计学习的对象是数据。&lt;/p&gt;
 &lt;p&gt;统计学习关于数据的基本假设是同类数据具有一定的统计规律性，这是统计学习的前提。&lt;/p&gt;
-&lt;h3&gt;1.3 目的&lt;/h3&gt;
+&lt;h3&gt;1.1.3 目的&lt;/h3&gt;
 &lt;p&gt;统计学习用于对数据进行预测和分析，特别是对未知新数据进行预测与分析。&lt;/p&gt;
-&lt;h3&gt;1.4 方法&lt;/h3&gt;
+&lt;h3&gt;1.1.4 方法&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;监督学习（supervised learning）&lt;/li&gt;
+&lt;li&gt;非监督学习（unsupervised learning）&lt;/li&gt;
+&lt;li&gt;半监督学习（semi-supervised …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h2&gt;1.1 统计学习&lt;/h2&gt;
+&lt;h3&gt;1.1.1 特点&lt;/h3&gt;
+&lt;p&gt;统计学习（statistical learning）是关于计算机基于&lt;strong&gt;数据&lt;/strong&gt;构建概率统计模型并运用模型对数据进行&lt;strong&gt;预测与分析&lt;/strong&gt;的一门学科。&lt;/p&gt;
+&lt;p&gt;赫尔伯特·西蒙（Herbert A.Simon）对“学习”给出如下定义：如果一个系统能够通过执行某个过程改变它的性能，这就是学习。&lt;/p&gt;
+&lt;h3&gt;1.1.2 对象&lt;/h3&gt;
+&lt;p&gt;统计学习的对象是数据。&lt;/p&gt;
+&lt;p&gt;统计学习关于数据的基本假设是同类数据具有一定的统计规律性，这是统计学习的前提。&lt;/p&gt;
+&lt;h3&gt;1.1.3 目的&lt;/h3&gt;
+&lt;p&gt;统计学习用于对数据进行预测和分析，特别是对未知新数据进行预测与分析。&lt;/p&gt;
+&lt;h3&gt;1.1.4 方法&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;监督学习（supervised learning）&lt;/li&gt;
 &lt;li&gt;非监督学习（unsupervised learning）&lt;/li&gt;
 &lt;li&gt;半监督学习（semi-supervised learning）&lt;/li&gt;
 &lt;li&gt;强化学习（reinforcement learning）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;1 …&lt;/h3&gt;</summary><content type="html">&lt;h2&gt;1. 统计学习&lt;/h2&gt;
-&lt;h3&gt;1.1 特点&lt;/h3&gt;
-&lt;p&gt;统计学习（statistical learning）是关于计算机基于&lt;strong&gt;数据&lt;/strong&gt;构建概率统计模型并运用模型对数据进行&lt;strong&gt;预测与分析&lt;/strong&gt;的一门学科。&lt;/p&gt;
-&lt;p&gt;赫尔伯特·西蒙（Herbert A.Simon）对“学习”给出如下定义：如果一个系统能够通过执行某个过程改变它的性能，这就是学习。&lt;/p&gt;
-&lt;h3&gt;1.2 对象&lt;/h3&gt;
-&lt;p&gt;统计学习的对象是数据。&lt;/p&gt;
-&lt;p&gt;统计学习关于数据的基本假设是同类数据具有一定的统计规律性，这是统计学习的前提。&lt;/p&gt;
-&lt;h3&gt;1.3 目的&lt;/h3&gt;
-&lt;p&gt;统计学习用于对数据进行预测和分析，特别是对未知新数据进行预测与分析。&lt;/p&gt;
-&lt;h3&gt;1.4 方法&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;监督学习（supervised learning）&lt;/li&gt;
-&lt;li&gt;非监督学习（unsupervised learning）&lt;/li&gt;
-&lt;li&gt;半监督学习（semi-supervised learning）&lt;/li&gt;
-&lt;li&gt;强化学习（reinforcement learning）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;1.5 统计学习方法三要素&lt;/h3&gt;
+&lt;h3&gt;1.1.5 统计学习方法三要素&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;模型（model）&lt;/strong&gt;：即假设空间（hypothesis space），假设空间是一个集合，这个集合包含要学习的模型&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;策略（strategy）&lt;/strong&gt;：模型选择的准则&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;算法（algorithm）&lt;/strong&gt;：模型学习的算法&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;2. 监督学习&lt;/h2&gt;
+&lt;h2&gt;1.2 监督学习&lt;/h2&gt;
 &lt;p&gt;监督学习（supervised learning）的任务是学习一个模型，使模型能够对任意给定的输入，对其相应的输出做出一个好的预测。&lt;/p&gt;
-&lt;h3&gt;2.1 基本概念&lt;/h3&gt;
+&lt;h3&gt;1.2.1 基本概念&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;输入空间（input space）&lt;/strong&gt;：输入的所有可能取值的集合，表示为 &lt;span class="math"&gt;\({\cal X}\)&lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;输出空间（output space）&lt;/strong&gt;：输出的所有可能取值的集合，表示为 &lt;span class="math"&gt;\({\cal Y}\)&lt;/span&gt;&lt;/li&gt;
@@ -671,17 +784,17 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;p&gt;多个输入变量的第 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 个记作：&lt;span class="math"&gt;\(x_i=\left(x_i^{(1)},x_i^{(2)},\dots,x_i^{(n)}\right)^\text{T}\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;训练集：&lt;span class="math"&gt;\(T=\{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;监督学习的模型可以是概率模型或非概率模型，由条件概率分布 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 或决策函数（decision function）&lt;span class="math"&gt;\(Y=f(X)\)&lt;/span&gt; 表示。对具体的输入进行相应的输出预测时，写作 &lt;span class="math"&gt;\(P(y|x)\)&lt;/span&gt; 或 &lt;span class="math"&gt;\(y=f(x)\)&lt;/span&gt;。&lt;/p&gt;
-&lt;h2&gt;3. 统计学习三要素&lt;/h2&gt;
-&lt;h3&gt;3.1 模型&lt;/h3&gt;
+&lt;h2&gt;1.3 统计学习三要素&lt;/h2&gt;
+&lt;h3&gt;1.3.1 模型&lt;/h3&gt;
 &lt;p&gt;统计学习首要考虑的问题是学习什么样的模型。模型的假设空间包含所有可能的条件概率分布或决策函数。假设空间中的模型一般有无穷多个。&lt;/p&gt;
 &lt;p&gt;假设空间用 &lt;span class="math"&gt;\(\cal{F}\)&lt;/span&gt; 表示。假设空间可以定义为决策函数或条件概率分布的集合
 &lt;/p&gt;
 &lt;div class="math"&gt;$${\cal F}=\{f|Y=f_\theta(X),\theta \in \mathbb R^n\}\ \ 或\ \ {\cal F}=\{P|P_\theta(Y|X),\theta \in \mathbb R^n\}$$&lt;/div&gt;
 &lt;p&gt;
 参数向量 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; 取值于 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维欧式空间 &lt;span class="math"&gt;\(\mathbb R^n\)&lt;/span&gt;，称为参数空间（parameter space）。&lt;/p&gt;
-&lt;h3&gt;3.2 策略&lt;/h3&gt;
+&lt;h3&gt;1.3.2 策略&lt;/h3&gt;
 &lt;p&gt;有了模型的假设空间，统计学习接着需要考虑的是按照什么样的准则学习或选择最优的模型。&lt;/p&gt;
-&lt;h4&gt;3.2.1 损失函数和风险函数&lt;/h4&gt;
+&lt;h4&gt;损失函数和风险函数&lt;/h4&gt;
 &lt;p&gt;损失函数（loss function）或代价函数（cost function）用来度量预测错误的程度。损失函数是 &lt;span class="math"&gt;\(f(X)\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 的非负实值函数，记作 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt;。&lt;/p&gt;
 &lt;p&gt;统计学习常用的损失函数有以下几种：&lt;/p&gt;
 &lt;ol&gt;
@@ -715,7 +828,7 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;p&gt;经验风险（empirical risk）或经验损失（empirical loss）：模型 &lt;span class="math"&gt;\(f(X)\)&lt;/span&gt; 关于训数据集的平均损失，记作 &lt;span class="math"&gt;\(R_\text{emp}\)&lt;/span&gt;。
 &lt;/p&gt;
 &lt;div class="math"&gt;$$R_\text{emp}(f)=\frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)$$&lt;/div&gt;
-&lt;h4&gt;3.2.2 经验风险最小化&lt;/h4&gt;
+&lt;h4&gt;经验风险最小化&lt;/h4&gt;
 &lt;p&gt;经验风险最小化（empirical risk minimization，ERM）策略认为：经验风险最小的模型是最优的模型。即求解下面的最优化问题
 &lt;/p&gt;
 &lt;div class="math"&gt;$$ \min_{f\in {\cal F}} \frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)$$&lt;/div&gt;
@@ -723,7 +836,7 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 其中 &lt;span class="math"&gt;\({\cal F}\)&lt;/span&gt; 是假设空间。&lt;/p&gt;
 &lt;p&gt;当样本容量足够大时，经验风险最小化能保证有很好的学习效果。例如，极大似然估计（maximum likelihood estimation）就是经验风险最小化的一个例子。当模型是条件概率分布，损失函数是对数损失函数时，经验风险最小化就等价于极大似然估计。&lt;/p&gt;
 &lt;p&gt;但是，当样本容量很小时，经验风险最小化学习的效果就未必很好，会产生“过拟合（over-fitting）现象”。&lt;/p&gt;
-&lt;h4&gt;3.2.3 结构风险最小化&lt;/h4&gt;
+&lt;h4&gt;结构风险最小化&lt;/h4&gt;
 &lt;p&gt;结构风险最小化（structural risk minimization，SRM）是为了防止过拟合而提出来的策略。结构风险最小化等价于正则化（regularization）。结构风险在经验风险上加上表示模型复杂度的正则化项（regularizer）或罚项（penalty term），定义如下
 &lt;/p&gt;
 &lt;div class="math"&gt;$$R_\text{srm}=\frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)+\lambda J(f)$$&lt;/div&gt;
@@ -734,16 +847,16 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;div class="math"&gt;$$ \min_{f\in {\cal F}} \frac{1}{N}\sum_{i=1}^NL\left(y_i,f(x_i)\right)+\lambda J(f)$$&lt;/div&gt;
 &lt;p&gt;
 贝叶斯估计中的最大后验概率估计（maximum posterior probability estimation，MAP）就是结构化风险最小化的一个例子。当模型是条件概率分布，损失函数是对数损失函数，模型复杂度由模型的先验概率表示时，结构风险最小化就等价于最大后验概率估计。&lt;/p&gt;
-&lt;h3&gt;3.3 算法&lt;/h3&gt;
+&lt;h3&gt;1.3.3 算法&lt;/h3&gt;
 &lt;p&gt;算法是指学习模型的具体计算方法。统计学习基于训练数据集，根据学习策略，从假设空间中选择最优模型，最后需要考虑用什么样的计算方法求解最优模型。&lt;/p&gt;
 &lt;p&gt;如果最优化问题有显式的解析解，这个最优化问题就比较简单，但通常解析解不存在，这就需要用数值方法求解。如何保证找到全局最优解，并使求解的过程非常高效，就成为一个重要问题。&lt;/p&gt;
-&lt;h2&gt;4. 模型评估与模型选择&lt;/h2&gt;
-&lt;h3&gt;4.1 训练误差&lt;/h3&gt;
+&lt;h2&gt;1.4 模型评估与模型选择&lt;/h2&gt;
+&lt;h3&gt;1.4.1 训练误差&lt;/h3&gt;
 &lt;p&gt;假设学习到的模型是 &lt;span class="math"&gt;\(Y=\hat{f}(X)\)&lt;/span&gt;，训练误差（training error）是模型 &lt;span class="math"&gt;\(Y=\hat{f}(X)\)&lt;/span&gt; 关于训练数据集的平均损失
 &lt;/p&gt;
 &lt;div class="math"&gt;$$R_\text{emp}(\hat{f})=\frac{1}{N}\sum_{i=1}^NL(y_i,\hat{f}(x_i))$$&lt;/div&gt;
 &lt;p&gt;其中 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 是训练样本容量。&lt;/p&gt;
-&lt;h3&gt;4.2 测试误差&lt;/h3&gt;
+&lt;h3&gt;1.4.2 测试误差&lt;/h3&gt;
 &lt;p&gt;测试误差是模型 &lt;span class="math"&gt;\(Y=\hat{f}(X)\)&lt;/span&gt; 关于测试数据集的平均损失
 &lt;/p&gt;
 &lt;div class="math"&gt;$$e_\text{test}(\hat{f})=\frac{1}{N'}\sum_{i=1}^{N'}L(y_i,\hat{f}(x_i))$$&lt;/div&gt;
@@ -758,15 +871,15 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;div class="math"&gt;$$r_\text{test}=\frac{1}{N'}\sum_{i=1}^{N'}{\mathbb I}(y_i=\hat{f}(x_i))$$&lt;/div&gt;
 &lt;p&gt;训练误差的大小，对判断给定的问题是不是一个容易学习的问题是有意义的，但本质上不重要。&lt;/p&gt;
 &lt;p&gt;测试误差反应了学习方法对未知的测试数据集的预测能力，是学习中的重要概念。&lt;/p&gt;
-&lt;h3&gt;4.3 过拟合&lt;/h3&gt;
+&lt;h3&gt;1.4.3 过拟合&lt;/h3&gt;
 &lt;p&gt;当假设空间含有不同复杂度（例如，不同的参数个数）的模型时，就要面临模型选择（model selection）的问题。我们希望选择或学习一个合适的模型。&lt;/p&gt;
 &lt;p&gt;如果一味追求提高对训练数据的预测能力，所选模型的复杂度则往往会比真模型更高，这种现象称为过拟合。&lt;/p&gt;
 &lt;p&gt;过拟合是指学习时选择的模型所包含的参数过多，以致于出现这一模型对已知数据预测得很好，但对未知数据预测很差的现象。&lt;/p&gt;
 &lt;p&gt;训练误差与测试误差和模型复杂度关系如下：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="训练误差与测试误差和模型复杂度" src="https://xutree.github.io/images/statistical_learning_1.3.png"&gt;&lt;/p&gt;
-&lt;h2&gt;5. 正则化与交叉验证&lt;/h2&gt;
+&lt;h2&gt;1.5 正则化与交叉验证&lt;/h2&gt;
 &lt;p&gt;正则化与交叉验证是两种常用的模型选择方法。&lt;/p&gt;
-&lt;h3&gt;5.1 正则化&lt;/h3&gt;
+&lt;h3&gt;1.5.1 正则化&lt;/h3&gt;
 &lt;p&gt;正则化是结构风险最小化策略的实现。正则化项一般是模型复杂度的单调递增函数，模型越复杂，正则化值就越大。&lt;/p&gt;
 &lt;p&gt;正则化一般形式形式
 &lt;/p&gt;
@@ -778,16 +891,16 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;div class="math"&gt;$$L(w)=\frac{1}{N}\sum_{i=1}^N\left(f(x_i;w)-y_i\right)^2+\frac{\lambda}{2}||w||^2$$&lt;/div&gt;
 &lt;p&gt;
 这里，&lt;span class="math"&gt;\(||w||\)&lt;/span&gt; 表示参数向量 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 的 &lt;span class="math"&gt;\(L_2\)&lt;/span&gt; 范数。&lt;/p&gt;
-&lt;h3&gt;5.2 交叉验证&lt;/h3&gt;
+&lt;h3&gt;1.5.2 交叉验证&lt;/h3&gt;
 &lt;p&gt;另一种常用的模型选择方法是交叉验证（cross validation）。&lt;/p&gt;
 &lt;p&gt;如果给定的样本数据充足，进行模型选择的一种简单方法是随机的将数据集切成三部分：训练集、验证集和测试集。训练集用来训练模型，验证集用于模型选择，测试集用于最终对学习方法的评估。&lt;/p&gt;
 &lt;p&gt;但是，在许多实际应用中数据是不充足的。为了选择好的模型，可以采用交叉验证的方法。&lt;/p&gt;
 &lt;p&gt;交叉验证的基本思想是重复的使用数据：把给定的数据进行切分，将切分的数据集组合为训练集与测试集，在此基础上反复进行训练、测试以及模型选择。&lt;/p&gt;
-&lt;h4&gt;5.2.1 简单交叉验证&lt;/h4&gt;
+&lt;h4&gt;简单交叉验证&lt;/h4&gt;
 &lt;p&gt;首先随机的将已给数据分成两部分：训练集、测试集。然后用训练集在各种条件下（例如，不同的参数个数）训练模型，从而得到不同的模型。然后，在测试集上评价各个模型的测试误差，选出测试误差最小的模型。&lt;/p&gt;
-&lt;h4&gt;5.2.2 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 折交叉验证&lt;/h4&gt;
+&lt;h4&gt;&lt;span class="math"&gt;\(S\)&lt;/span&gt; 折交叉验证&lt;/h4&gt;
 &lt;p&gt;应用最多的是 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 折交叉验证（S-fold cross validation），方法如下：首先随机的将已给数据切分为 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 个互不相交的大小相同的子集；然后利用 &lt;span class="math"&gt;\(S-1\)&lt;/span&gt; 个子集的数据训练模型，利用余下的子集测试模型；将这一过程对可能的 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 种选择重复进行；最后选出 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 次评估中平均测试误差最小的模型。&lt;/p&gt;
-&lt;h4&gt;5.2.3 留一交叉验证&lt;/h4&gt;
+&lt;h4&gt;留一交叉验证&lt;/h4&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(S\)&lt;/span&gt; 折交叉验证的特殊情形是 &lt;span class="math"&gt;\(S=N\)&lt;/span&gt;，称为留一交叉验证（leave-one-out cross validation），往往在数据缺乏的情况下使用。这里 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 是给定数据集的容量。&lt;/p&gt;
 &lt;h2&gt;1.6 泛化能力&lt;/h2&gt;
 &lt;h3&gt;1.6.1 泛化误差&lt;/h3&gt;
@@ -807,8 +920,10 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;h3&gt;1.6.3 二分类问题的泛化误差上界&lt;/h3&gt;
 &lt;p&gt;考虑二分类问题。已知训练数据集 &lt;span class="math"&gt;\(T=\{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}\)&lt;/span&gt;，它是从联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 独立同分布产生的，&lt;span class="math"&gt;\(X\in \mathbb R^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(Y\in \{-1,1\}\)&lt;/span&gt;。假设空间是函数的有限集合 &lt;span class="math"&gt;\({\cal F}=\{f_1.f_2.\dots,f_d\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(d\)&lt;/span&gt; 是函数个数。设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是从 &lt;span class="math"&gt;\({\cal F}\)&lt;/span&gt; 中选取的函数。损失函数是 0-1 损失。关于 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 的期望风险和经验风险分别是
 &lt;/p&gt;
-&lt;div class="math"&gt;$$R_\text{exp}(f)=\text{E}_P[L(Y,f(X))]$$&lt;/div&gt;
-&lt;div class="math"&gt;$$R_\text{emp}(f)=\frac{1}{N}\sum_{i=1}^NL(y_i,f(x_i))$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+R_\text{exp}(f)&amp;amp;=&amp;amp;\text{E}_P[L(Y,f(X))]\\
+R_\text{emp}(f)&amp;amp;=&amp;amp;\frac{1}{N}\sum_{i=1}^NL(y_i,f(x_i))
+\end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;
 经验风险最小化函数是
 &lt;/p&gt;
@@ -833,8 +948,10 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;p&gt;
 满足以下的不等式
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\mathbb {P}({\overline {X}}-\mathbb {E} [{\overline {X}}]\geq t)\leq \exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$&lt;/div&gt;
-&lt;div class="math"&gt;$$\mathbb {P} (|{\overline {X}}-\mathbb {E} [{\overline {X}}]|\geq t)\leq 2\exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\mathbb {P}({\overline {X}}-\mathbb {E} [{\overline {X}}]\geq t) &amp;amp;\leq&amp;amp; \exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)\\
+\mathbb {P} (|{\overline {X}}-\mathbb {E} [{\overline {X}}]|\geq t)&amp;amp;\leq&amp;amp; 2\exp \left(-{\frac {2t^{2}n^{2}}{\sum_{i=1}^{n}(b_{i}-a_{i})^{2}}}\right)
+\end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;
 对任意函数 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，&lt;span class="math"&gt;\(R_\text{emp}(f)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(N\)&lt;/span&gt; 个随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的样本均值，&lt;span class="math"&gt;\(R(f)\)&lt;/span&gt; 是随机变量 &lt;span class="math"&gt;\(L(Y,f(X))\)&lt;/span&gt; 的期望值。如果损失函数取值于区间 [0,1]，则由 Hoeffding 不等式得到，对 &lt;span class="math"&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;，以下不等式成立
 &lt;/p&gt;
@@ -842,9 +959,11 @@ ii. &lt;span class="math"&gt;\(||\hat{w}_k||^2\leq k\eta^2R^2\)&lt;/span&gt;
 &lt;p&gt;
 由于 &lt;span class="math"&gt;\({\cal F}=\{f_1;f_2,\dots,f_d\}\)&lt;/span&gt; 是一个有限集合，故
 &lt;/p&gt;
-&lt;div class="math"&gt;$$P\left(\exists f\in{\cal F}:R(f)-R_\text{emp}(f\right)\geq\epsilon)=P\left(\bigcup_{f\in{\cal F}}\{R(f)-R_\text{emp}(f)\geq\epsilon\}\right)\\
-\leq\sum_{f\in{\cal F}}P(R(f)-R_\text{emp}(f)\geq\epsilon)\\
-\leq d\exp(-2N\epsilon^2)$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+P\left(\exists f\in{\cal F}:R(f)-R_\text{emp}(f\right)\geq\epsilon)&amp;amp;=&amp;amp;P\left(\bigcup_{f\in{\cal F}}\{R(f)-R_\text{emp}(f)\geq\epsilon\}\right)\\
+&amp;amp;\leq&amp;amp;\sum_{f\in{\cal F}}P(R(f)-R_\text{emp}(f)\geq\epsilon)\\
+&amp;amp;\leq&amp;amp; d\exp(-2N\epsilon^2)
+\end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;
 或者等价的，对任意的 &lt;span class="math"&gt;\(f\in{\cal F}\)&lt;/span&gt;，有 &lt;/p&gt;
 &lt;div class="math"&gt;$$P(R(f)-R_\text{emp}(f)\geq\epsilon))\geq1-d\exp(-2N\epsilon^2)$$&lt;/div&gt;
