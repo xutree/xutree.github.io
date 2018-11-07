@@ -236,6 +236,24 @@ R_2(j,s) &amp;amp;=&amp;amp; \{x|x^{(j)}&amp;gt;s\}
 &lt;div class="math"&gt;$$\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]$$&lt;/div&gt;
 &lt;p&gt;
 历遍所有输入变量，找到最优的切分变量 &lt;span class="math"&gt;\(j\)&lt;/span&gt;，构成一个对 &lt;span class="math"&gt;\((j,s)\)&lt;/span&gt;。依次将输入空间划分为两个区域。接着，对每个区域重复上述划分过程，直到满足停止条件为止。这种方法生成的回归树通常称为最小二乘回归树（least squares regression tree）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 5.5 （最小二乘回归树生成算法）&lt;br&gt;
+输入：训练数据集 &lt;span class="math"&gt;\(D\)&lt;/span&gt;&lt;br&gt;
+输出：回归树 &lt;span class="math"&gt;\(f(x)\)&lt;/span&gt;&lt;br&gt;
+在训练数据集所在的输入空间中，递归的将每个区域划分为两个子区域并决定每个子区域的输出值，构建二叉决策树&lt;br&gt;
+(1) 选择最优切分变量 &lt;span class="math"&gt;\(j\)&lt;/span&gt; 和切分点 &lt;span class="math"&gt;\(s\)&lt;/span&gt;，求解
+&lt;div class="math"&gt;$$\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]$$&lt;/div&gt;
+遍历 &lt;span class="math"&gt;\(j\)&lt;/span&gt;，对固定的切分变量 &lt;span class="math"&gt;\(j\)&lt;/span&gt; 扫描切分点 &lt;span class="math"&gt;\(s\)&lt;/span&gt;，选择使上式最小的对 &lt;span class="math"&gt;\((j,s)\)&lt;/span&gt;&lt;br&gt;
+(2) 用选定的对 &lt;span class="math"&gt;\((j,s)\)&lt;/span&gt; 划分区域并决定相应的输出值
+&lt;div class="math"&gt;$$\begin{eqnarray}
+R_1(j,s) &amp;amp;=&amp;amp; \{x|x^{(j)}\leq s\} \\
+R_2(j,s) &amp;amp;=&amp;amp; \{x|x^{(j)}&amp;gt;s\}
+\end{eqnarray}\\
+\hat{c}_m=\frac{1}{N_m}\sum_{x_i\in R_m(j,s)}y_i,x\in R_m,m=1,2$$&lt;/div&gt;
+(3) 继续对两个子区域调用步骤 (1)，(2)，直到满足停止条件&lt;br&gt;
+(4) 将输入空间划分为 &lt;span class="math"&gt;\(M\)&lt;/span&gt; 个区域 &lt;span class="math"&gt;\(R_1,R_2,\cdots,R_M\)&lt;/span&gt;，生成决策树
+&lt;div class="math"&gt;$$f(x)=\sum_{m=1}^M\hat{c}_m\mathbb{I}(x\in R_m)$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
