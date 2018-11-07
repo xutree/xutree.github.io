@@ -201,6 +201,39 @@
 <li>决策树生成：基于训练数据集生成决策树，生成的决策树要尽量大</li>
 <li>决策树剪枝：用验证数据集对已生成的树进行剪枝并选择最优子树，这时用损失函数最小作为剪枝的标准</li>
 </ul>
+<h3>5.5.1 CART 生成</h3>
+<p>决策树的生成就是递归的构建二叉决策树的过程，对回归树用平方误差最小化准则，对分类树用基尼指数（Gini index）最小化准则，进行特征选择，生成二叉树。</p>
+<h4>回归树的生成</h4>
+<p>假设 <span class="math">\(X\)</span> 和 <span class="math">\(Y\)</span> 分别为输入和输出变量，并且 <span class="math">\(Y\)</span> 是连续变量，给定训练数据集
+</p>
+<div class="math">$$D=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
+<p>
+一个回归树对应着输入空间（特征空间）的一个划分以及在划分的单元上的输出值。假设已经将输入空间划分为 <span class="math">\(M\)</span> 个单元 <span class="math">\(R_1,R_2,\cdots,R_M\)</span>，并且每个单元 <span class="math">\(R_m\)</span> 上有一个固定的输出值 <span class="math">\(c_m\)</span>，于是，回归树模型可表示为
+</p>
+<div class="math">$$f(x)=\sum_{m=1}^Mc_m\mathbb{I}(x\in R_m)$$</div>
+<p>
+当输入空间的划分确定时，可以用平方误差
+</p>
+<div class="math">$$\sum_{x_i\in R_m}\left(y_i-f(x_i)\right)^2$$</div>
+<p>
+来表示回归树对于训练数据集的预测误差，用平方误差最下的准则求解每个单元上的最优输出值。</p>
+<p>易知，单元 <span class="math">\(R_m\)</span> 上的 <span class="math">\(c_m\)</span> 的最优值 <span class="math">\(\hat{c}_m\)</span> 是 <span class="math">\(R_m\)</span> 上所有输入实例 <span class="math">\(x_i\)</span> 对于的输出 <span class="math">\(y_i\)</span> 的均值，即
+</p>
+<div class="math">$$\hat{c}_m=\text{ave}(y_i|x_i\in R_m)$$</div>
+<p>
+问题是怎么对输入空间进行划分。</p>
+<p>这里采用启发式的方法，选择第 <span class="math">\(j\)</span> 个特征 <span class="math">\(x^{(i)}\)</span> 和它的取值 <span class="math">\(s\)</span>，作为切分变量（splitting variable）和切分点（splitting point），并定义两个区域
+</p>
+<div class="math">$$\begin{eqnarray}
+R_1(j,s) &amp;=&amp; \{x|x^{(j)}\leq s\} \\
+R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
+\end{eqnarray}$$</div>
+<p>
+然后对于固定的 <span class="math">\(j\)</span> 可以找到最优切分的 <span class="math">\(s\)</span>，具体的，求解
+</p>
+<div class="math">$$\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]$$</div>
+<p>
+历遍所有输入变量，找到最优的切分变量 <span class="math">\(j\)</span>，构成一个对 <span class="math">\((j,s)\)</span>。依次将输入空间划分为两个区域。接着，对每个区域重复上述划分过程，直到满足停止条件为止。这种方法生成的回归树通常称为最小二乘回归树（least squares regression tree）。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

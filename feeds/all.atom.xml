@@ -203,6 +203,39 @@
 &lt;li&gt;决策树生成：基于训练数据集生成决策树，生成的决策树要尽量大&lt;/li&gt;
 &lt;li&gt;决策树剪枝：用验证数据集对已生成的树进行剪枝并选择最优子树，这时用损失函数最小作为剪枝的标准&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3&gt;5.5.1 CART 生成&lt;/h3&gt;
+&lt;p&gt;决策树的生成就是递归的构建二叉决策树的过程，对回归树用平方误差最小化准则，对分类树用基尼指数（Gini index）最小化准则，进行特征选择，生成二叉树。&lt;/p&gt;
+&lt;h4&gt;回归树的生成&lt;/h4&gt;
+&lt;p&gt;假设 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 分别为输入和输出变量，并且 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 是连续变量，给定训练数据集
+&lt;/p&gt;
+&lt;div class="math"&gt;$$D=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+&lt;p&gt;
+一个回归树对应着输入空间（特征空间）的一个划分以及在划分的单元上的输出值。假设已经将输入空间划分为 &lt;span class="math"&gt;\(M\)&lt;/span&gt; 个单元 &lt;span class="math"&gt;\(R_1,R_2,\cdots,R_M\)&lt;/span&gt;，并且每个单元 &lt;span class="math"&gt;\(R_m\)&lt;/span&gt; 上有一个固定的输出值 &lt;span class="math"&gt;\(c_m\)&lt;/span&gt;，于是，回归树模型可表示为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(x)=\sum_{m=1}^Mc_m\mathbb{I}(x\in R_m)$$&lt;/div&gt;
+&lt;p&gt;
+当输入空间的划分确定时，可以用平方误差
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\sum_{x_i\in R_m}\left(y_i-f(x_i)\right)^2$$&lt;/div&gt;
+&lt;p&gt;
+来表示回归树对于训练数据集的预测误差，用平方误差最下的准则求解每个单元上的最优输出值。&lt;/p&gt;
+&lt;p&gt;易知，单元 &lt;span class="math"&gt;\(R_m\)&lt;/span&gt; 上的 &lt;span class="math"&gt;\(c_m\)&lt;/span&gt; 的最优值 &lt;span class="math"&gt;\(\hat{c}_m\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(R_m\)&lt;/span&gt; 上所有输入实例 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 对于的输出 &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; 的均值，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\hat{c}_m=\text{ave}(y_i|x_i\in R_m)$$&lt;/div&gt;
+&lt;p&gt;
+问题是怎么对输入空间进行划分。&lt;/p&gt;
+&lt;p&gt;这里采用启发式的方法，选择第 &lt;span class="math"&gt;\(j\)&lt;/span&gt; 个特征 &lt;span class="math"&gt;\(x^{(i)}\)&lt;/span&gt; 和它的取值 &lt;span class="math"&gt;\(s\)&lt;/span&gt;，作为切分变量（splitting variable）和切分点（splitting point），并定义两个区域
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+R_1(j,s) &amp;amp;=&amp;amp; \{x|x^{(j)}\leq s\} \\
+R_2(j,s) &amp;amp;=&amp;amp; \{x|x^{(j)}&amp;gt;s\}
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+然后对于固定的 &lt;span class="math"&gt;\(j\)&lt;/span&gt; 可以找到最优切分的 &lt;span class="math"&gt;\(s\)&lt;/span&gt;，具体的，求解
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]$$&lt;/div&gt;
+&lt;p&gt;
+历遍所有输入变量，找到最优的切分变量 &lt;span class="math"&gt;\(j\)&lt;/span&gt;，构成一个对 &lt;span class="math"&gt;\((j,s)\)&lt;/span&gt;。依次将输入空间划分为两个区域。接着，对每个区域重复上述划分过程，直到满足停止条件为止。这种方法生成的回归树通常称为最小二乘回归树（least squares regression tree）。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
