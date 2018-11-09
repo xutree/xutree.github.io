@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-09T11:41:59+08:00</updated><entry><title>统计学习方法 第五章 决策树</title><link href="https://xutree.github.io/pages/2018/11/07/5/" rel="alternate"></link><published>2018-11-07T16:52:41+08:00</published><updated>2018-11-09T11:41:59+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-07:/pages/2018/11/07/5/</id><summary type="html">&lt;p&gt;决策树（decision tree）是一种基本的分类与回归方法。其主要优点是模型具有可读性，分类速度快。决策树学习通常包括三个步骤：特征选择、决策树的生成和决策树的修剪。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-09T14:49:41+08:00</updated><entry><title>统计学习方法 第五章 决策树</title><link href="https://xutree.github.io/pages/2018/11/07/5/" rel="alternate"></link><published>2018-11-07T16:52:41+08:00</published><updated>2018-11-09T14:49:41+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-07:/pages/2018/11/07/5/</id><summary type="html">&lt;p&gt;决策树（decision tree）是一种基本的分类与回归方法。其主要优点是模型具有可读性，分类速度快。决策树学习通常包括三个步骤：特征选择、决策树的生成和决策树的修剪。&lt;/p&gt;
 &lt;h2&gt;5.1 决策树模型与学习&lt;/h2&gt;
 &lt;h3&gt;5.1.1 决策树模型&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;
@@ -288,6 +288,84 @@ R_2(j,s) &amp;amp;=&amp;amp; \{x|x^{(j)}&amp;gt;s\}
 (4) 生成 CART 决策树
 &lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;算法停止的条件是节点中的样本个数少于预定阈值，或样本集的基尼指数小于预定阈值（样本基本属于同一类），或者没有更多特征。&lt;/p&gt;
+&lt;h3&gt;5.5.2 CART 剪枝&lt;/h3&gt;
+&lt;p&gt;CART 剪枝算法从“完全生长”的决策树的底端剪去一些子树，使决策树变小（模型变简单），从而能够对未知数据有更准确的预测。&lt;/p&gt;
+&lt;p&gt;CART 剪枝算法由两步组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从生成算法产生的决策树 &lt;span class="math"&gt;\(T_0\)&lt;/span&gt; 底部开始不断剪枝，直到 &lt;span class="math"&gt;\(T_0\)&lt;/span&gt; 的根节点，行成一个子树序列
+&lt;div class="math"&gt;$$\{T_0,T_1,\cdots,T_n\}$$&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;通过交叉验证法在独立的验证数据集上对子树序列进行测试，从中选择最优子树&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;剪枝，形成一个子树序列&lt;/h4&gt;
+&lt;p&gt;在剪枝过程中，计算子树的损失函数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$C_\alpha(T)=C(T)+\alpha|T|$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(T\)&lt;/span&gt; 为任意子树，&lt;span class="math"&gt;\(C(T)\)&lt;/span&gt; 为对训练数据的预测误差（如基尼指数），&lt;span class="math"&gt;\(|T|\)&lt;/span&gt; 为子树的叶节点个数，&lt;span class="math"&gt;\(\alpha\geq0\)&lt;/span&gt; 为参数，&lt;span class="math"&gt;\(C_\alpha(T)\)&lt;/span&gt; 为参数是 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 时的子树 &lt;span class="math"&gt;\(T\)&lt;/span&gt; 的整体损失。参数 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 权衡训练数据的拟合程度与模型的复杂度。&lt;/p&gt;
+&lt;p&gt;对固定的 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt;，一定存在使损失函数 &lt;span class="math"&gt;\(C_\alpha(T)\)&lt;/span&gt; 最小的子树，将其表示为 &lt;span class="math"&gt;\(T_\alpha\)&lt;/span&gt;。&lt;span class="math"&gt;\(T_\alpha\)&lt;/span&gt; 在损失函数 &lt;span class="math"&gt;\(C_\alpha(T)\)&lt;/span&gt; 最小的意义下是最优的。容易验证这样的最优子树是唯一的。当 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 大的时候，最优子树 &lt;span class="math"&gt;\(T_\alpha\)&lt;/span&gt; 偏小；当 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 小的时候，最优子树 &lt;span class="math"&gt;\(T_\alpha\)&lt;/span&gt; 偏大。极端情况下，如果 &lt;span class="math"&gt;\(\alpha=0\)&lt;/span&gt;，那么整体树是最优的。当 &lt;span class="math"&gt;\(\alpha\to+\infty\)&lt;/span&gt; 时，根节点组成的单节点树是最优的。&lt;/p&gt;
+&lt;p&gt;Breiman 等人证明：可以用递归的方法对树进行剪枝.将 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 从小增大：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$0=\alpha_0&amp;lt;\alpha_1&amp;lt;\cdots&amp;lt;\alpha_n&amp;lt;+\infty$$&lt;/div&gt;
+&lt;p&gt;
+产生一系列的区间：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$[\alpha_i,\alpha_{i+1}),i=0,1,\cdots,n$$&lt;/div&gt;
+&lt;p&gt;
+剪枝得到的子树序列对应着区间 &lt;span class="math"&gt;\(\alpha\in[\alpha_i,\alpha_{i+1}),i=0,1,\cdots,n\)&lt;/span&gt; 的最优子树序列：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\{T_0,T_1,\cdots,T_n\}$$&lt;/div&gt;
+&lt;p&gt;
+序列中的子树是嵌套的。&lt;/p&gt;
+&lt;p&gt;具体的，从整体树 &lt;span class="math"&gt;\(T_0\)&lt;/span&gt; 开始剪枝。对 &lt;span class="math"&gt;\(T_0\)&lt;/span&gt; 的任意内部节点 &lt;span class="math"&gt;\(t\)&lt;/span&gt;，以 &lt;span class="math"&gt;\(t\)&lt;/span&gt; 为单节点树的损失函数是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$C_\alpha(t)=C(t)+\alpha$$&lt;/div&gt;
+&lt;p&gt;
+以 &lt;span class="math"&gt;\(t\)&lt;/span&gt; 为根节点的子树 &lt;span class="math"&gt;\(T_t\)&lt;/span&gt; 的损失函数是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$C_\alpha(T_t)=C(T_t)+\alpha|T_t|$$&lt;/div&gt;
+&lt;p&gt;
+当 &lt;span class="math"&gt;\(\alpha=0\)&lt;/span&gt; 及 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 充分小时，有不等式
+&lt;/p&gt;
+&lt;div class="math"&gt;$$C_\alpha(T_t)&amp;lt;C_\alpha(t)$$&lt;/div&gt;
+&lt;p&gt;
+当 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 增大时，在某一 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 有
+&lt;/p&gt;
+&lt;div class="math"&gt;$$C_\alpha(T_t)=C_\alpha(t)$$&lt;/div&gt;
+&lt;p&gt;
+当 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 再增大时，有
+&lt;/p&gt;
+&lt;div class="math"&gt;$$C_\alpha(T_t)&amp;gt;C_\alpha(t)$$&lt;/div&gt;
+&lt;p&gt;综上所述，只要
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha=\frac{C(t)-C(T_t)}{|T_t|-1}$$&lt;/div&gt;
+&lt;p&gt;
+则 &lt;span class="math"&gt;\(T_t\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(t\)&lt;/span&gt; 有相同的损失函数值，而 &lt;span class="math"&gt;\(t\)&lt;/span&gt; 的节点少，对 &lt;span class="math"&gt;\(T_t\)&lt;/span&gt; 进行剪枝。&lt;/p&gt;
+&lt;p&gt;所以，对 &lt;span class="math"&gt;\(T_0\)&lt;/span&gt; 中每一内部节点 &lt;span class="math"&gt;\(t\)&lt;/span&gt;，计算
+&lt;/p&gt;
+&lt;div class="math"&gt;$$g(t)=\frac{C(t)-C(T_t)}{|T_t|-1}$$&lt;/div&gt;
+&lt;p&gt;
+它表示剪枝后整体损失函数减少的程度。在 &lt;span class="math"&gt;\(T_0\)&lt;/span&gt; 中剪去 &lt;span class="math"&gt;\(g(t)\)&lt;/span&gt; 最小的 &lt;span class="math"&gt;\(T_t\)&lt;/span&gt;（这里我们是要得到一系列的 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 区间，所以是剪去最小的），将得到的子树作为 &lt;span class="math"&gt;\(T_1\)&lt;/span&gt;，同时将最小的 &lt;span class="math"&gt;\(g(t)\)&lt;/span&gt; 设为 &lt;span class="math"&gt;\(\alpha_1\)&lt;/span&gt;。&lt;span class="math"&gt;\(T_1\)&lt;/span&gt; 为区间 &lt;span class="math"&gt;\([\alpha_1,\alpha_2)\)&lt;/span&gt; 的最优子树。&lt;/p&gt;
+&lt;p&gt;如此剪枝下去，直到得到根节点。在这一过程中，不断的增加 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 的值，产生新的区间。&lt;/p&gt;
+&lt;h4&gt;在剪枝得到的子树序列中通过交叉验证选取最优子树 &lt;span class="math"&gt;\(T_\alpha\)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;具体的，利用独立的验证数据集，测试子树序列中各棵子树的平方误差或基尼指数。平方误差或基尼指数小的决策树被认为是最优的决策树。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 5.7 （CART 剪枝算法）&lt;br&gt;
+输入：CART 算法生成的决策树 &lt;span class="math"&gt;\(T_0\)&lt;/span&gt;&lt;br&gt;
+输出：最优决策树 &lt;span class="math"&gt;\(T_\alpha\)&lt;/span&gt;&lt;br&gt;
+(1) 设 &lt;span class="math"&gt;\(k=0,T=T_0\)&lt;/span&gt;&lt;br&gt;
+(2) 设 &lt;span class="math"&gt;\(\alpha=+\infty\)&lt;/span&gt;
+(3) 自下而上的对各个内部节点 &lt;span class="math"&gt;\(t\)&lt;/span&gt; 计算 &lt;span class="math"&gt;\(C(T_t)\)&lt;/span&gt;，&lt;span class="math"&gt;\(|T_t|\)&lt;/span&gt; 以及
+&lt;div class="math"&gt;$$\begin{eqnarray}
+g(t) &amp;amp;=&amp;amp; \frac{C(t)-C(T_t)}{|T_t|-1} \\
+\alpha &amp;amp;=&amp;amp; \min(\alpha,g(t))
+\end{eqnarray}$$&lt;/div&gt;
+这里，&lt;span class="math"&gt;\(T_t\)&lt;/span&gt; 表示以 &lt;span class="math"&gt;\(t\)&lt;/span&gt; 为根节点的子树，&lt;span class="math"&gt;\(C(T_t)\)&lt;/span&gt; 是对训练数据的预测误差，&lt;span class="math"&gt;\(|T_t|\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(T_t\)&lt;/span&gt; 的叶节点个数&lt;br&gt;
+(4) 对 &lt;span class="math"&gt;\(g(t)=\alpha\)&lt;/span&gt; 的内部节点 &lt;span class="math"&gt;\(t\)&lt;/span&gt; 进行剪枝，并对叶节点 &lt;span class="math"&gt;\(t\)&lt;/span&gt; 以多数表决法决定其类，得到树 &lt;span class="math"&gt;\(T\)&lt;/span&gt;&lt;br&gt;
+(5) 设 &lt;span class="math"&gt;\(k=k+1.\alpha_k=\alpha,T_k=T\)&lt;/span&gt;&lt;br&gt;
+(6) 如果 &lt;span class="math"&gt;\(T_k\)&lt;/span&gt; 不是由根节点及两个叶节点构成的树，则返回到步骤 (3)；否则，令 &lt;span class="math"&gt;\(T_k=T_n\)&lt;/span&gt;&lt;br&gt;
+(7) 采用交叉验证法在子树序列 &lt;span class="math"&gt;\(T_0,T_1,\cdots,T_n\)&lt;/span&gt; 中选择最优子树 &lt;span class="math"&gt;\(T_\alpha\)&lt;/span&gt;
+&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

@@ -286,6 +286,84 @@ R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
 (4) 生成 CART 决策树
 </strong></p>
 <p>算法停止的条件是节点中的样本个数少于预定阈值，或样本集的基尼指数小于预定阈值（样本基本属于同一类），或者没有更多特征。</p>
+<h3>5.5.2 CART 剪枝</h3>
+<p>CART 剪枝算法从“完全生长”的决策树的底端剪去一些子树，使决策树变小（模型变简单），从而能够对未知数据有更准确的预测。</p>
+<p>CART 剪枝算法由两步组成：</p>
+<ul>
+<li>从生成算法产生的决策树 <span class="math">\(T_0\)</span> 底部开始不断剪枝，直到 <span class="math">\(T_0\)</span> 的根节点，行成一个子树序列
+<div class="math">$$\{T_0,T_1,\cdots,T_n\}$$</div>
+</li>
+<li>通过交叉验证法在独立的验证数据集上对子树序列进行测试，从中选择最优子树</li>
+</ul>
+<h4>剪枝，形成一个子树序列</h4>
+<p>在剪枝过程中，计算子树的损失函数：
+</p>
+<div class="math">$$C_\alpha(T)=C(T)+\alpha|T|$$</div>
+<p>
+其中，<span class="math">\(T\)</span> 为任意子树，<span class="math">\(C(T)\)</span> 为对训练数据的预测误差（如基尼指数），<span class="math">\(|T|\)</span> 为子树的叶节点个数，<span class="math">\(\alpha\geq0\)</span> 为参数，<span class="math">\(C_\alpha(T)\)</span> 为参数是 <span class="math">\(\alpha\)</span> 时的子树 <span class="math">\(T\)</span> 的整体损失。参数 <span class="math">\(\alpha\)</span> 权衡训练数据的拟合程度与模型的复杂度。</p>
+<p>对固定的 <span class="math">\(\alpha\)</span>，一定存在使损失函数 <span class="math">\(C_\alpha(T)\)</span> 最小的子树，将其表示为 <span class="math">\(T_\alpha\)</span>。<span class="math">\(T_\alpha\)</span> 在损失函数 <span class="math">\(C_\alpha(T)\)</span> 最小的意义下是最优的。容易验证这样的最优子树是唯一的。当 <span class="math">\(\alpha\)</span> 大的时候，最优子树 <span class="math">\(T_\alpha\)</span> 偏小；当 <span class="math">\(\alpha\)</span> 小的时候，最优子树 <span class="math">\(T_\alpha\)</span> 偏大。极端情况下，如果 <span class="math">\(\alpha=0\)</span>，那么整体树是最优的。当 <span class="math">\(\alpha\to+\infty\)</span> 时，根节点组成的单节点树是最优的。</p>
+<p>Breiman 等人证明：可以用递归的方法对树进行剪枝.将 <span class="math">\(\alpha\)</span> 从小增大：
+</p>
+<div class="math">$$0=\alpha_0&lt;\alpha_1&lt;\cdots&lt;\alpha_n&lt;+\infty$$</div>
+<p>
+产生一系列的区间：
+</p>
+<div class="math">$$[\alpha_i,\alpha_{i+1}),i=0,1,\cdots,n$$</div>
+<p>
+剪枝得到的子树序列对应着区间 <span class="math">\(\alpha\in[\alpha_i,\alpha_{i+1}),i=0,1,\cdots,n\)</span> 的最优子树序列：
+</p>
+<div class="math">$$\{T_0,T_1,\cdots,T_n\}$$</div>
+<p>
+序列中的子树是嵌套的。</p>
+<p>具体的，从整体树 <span class="math">\(T_0\)</span> 开始剪枝。对 <span class="math">\(T_0\)</span> 的任意内部节点 <span class="math">\(t\)</span>，以 <span class="math">\(t\)</span> 为单节点树的损失函数是
+</p>
+<div class="math">$$C_\alpha(t)=C(t)+\alpha$$</div>
+<p>
+以 <span class="math">\(t\)</span> 为根节点的子树 <span class="math">\(T_t\)</span> 的损失函数是
+</p>
+<div class="math">$$C_\alpha(T_t)=C(T_t)+\alpha|T_t|$$</div>
+<p>
+当 <span class="math">\(\alpha=0\)</span> 及 <span class="math">\(\alpha\)</span> 充分小时，有不等式
+</p>
+<div class="math">$$C_\alpha(T_t)&lt;C_\alpha(t)$$</div>
+<p>
+当 <span class="math">\(\alpha\)</span> 增大时，在某一 <span class="math">\(\alpha\)</span> 有
+</p>
+<div class="math">$$C_\alpha(T_t)=C_\alpha(t)$$</div>
+<p>
+当 <span class="math">\(\alpha\)</span> 再增大时，有
+</p>
+<div class="math">$$C_\alpha(T_t)&gt;C_\alpha(t)$$</div>
+<p>综上所述，只要
+</p>
+<div class="math">$$\alpha=\frac{C(t)-C(T_t)}{|T_t|-1}$$</div>
+<p>
+则 <span class="math">\(T_t\)</span> 与 <span class="math">\(t\)</span> 有相同的损失函数值，而 <span class="math">\(t\)</span> 的节点少，对 <span class="math">\(T_t\)</span> 进行剪枝。</p>
+<p>所以，对 <span class="math">\(T_0\)</span> 中每一内部节点 <span class="math">\(t\)</span>，计算
+</p>
+<div class="math">$$g(t)=\frac{C(t)-C(T_t)}{|T_t|-1}$$</div>
+<p>
+它表示剪枝后整体损失函数减少的程度。在 <span class="math">\(T_0\)</span> 中剪去 <span class="math">\(g(t)\)</span> 最小的 <span class="math">\(T_t\)</span>（这里我们是要得到一系列的 <span class="math">\(\alpha\)</span> 区间，所以是剪去最小的），将得到的子树作为 <span class="math">\(T_1\)</span>，同时将最小的 <span class="math">\(g(t)\)</span> 设为 <span class="math">\(\alpha_1\)</span>。<span class="math">\(T_1\)</span> 为区间 <span class="math">\([\alpha_1,\alpha_2)\)</span> 的最优子树。</p>
+<p>如此剪枝下去，直到得到根节点。在这一过程中，不断的增加 <span class="math">\(\alpha\)</span> 的值，产生新的区间。</p>
+<h4>在剪枝得到的子树序列中通过交叉验证选取最优子树 <span class="math">\(T_\alpha\)</span></h4>
+<p>具体的，利用独立的验证数据集，测试子树序列中各棵子树的平方误差或基尼指数。平方误差或基尼指数小的决策树被认为是最优的决策树。</p>
+<p><strong>
+算法 5.7 （CART 剪枝算法）<br>
+输入：CART 算法生成的决策树 <span class="math">\(T_0\)</span><br>
+输出：最优决策树 <span class="math">\(T_\alpha\)</span><br>
+(1) 设 <span class="math">\(k=0,T=T_0\)</span><br>
+(2) 设 <span class="math">\(\alpha=+\infty\)</span>
+(3) 自下而上的对各个内部节点 <span class="math">\(t\)</span> 计算 <span class="math">\(C(T_t)\)</span>，<span class="math">\(|T_t|\)</span> 以及
+<div class="math">$$\begin{eqnarray}
+g(t) &amp;=&amp; \frac{C(t)-C(T_t)}{|T_t|-1} \\
+\alpha &amp;=&amp; \min(\alpha,g(t))
+\end{eqnarray}$$</div>
+这里，<span class="math">\(T_t\)</span> 表示以 <span class="math">\(t\)</span> 为根节点的子树，<span class="math">\(C(T_t)\)</span> 是对训练数据的预测误差，<span class="math">\(|T_t|\)</span> 是 <span class="math">\(T_t\)</span> 的叶节点个数<br>
+(4) 对 <span class="math">\(g(t)=\alpha\)</span> 的内部节点 <span class="math">\(t\)</span> 进行剪枝，并对叶节点 <span class="math">\(t\)</span> 以多数表决法决定其类，得到树 <span class="math">\(T\)</span><br>
+(5) 设 <span class="math">\(k=k+1.\alpha_k=\alpha,T_k=T\)</span><br>
+(6) 如果 <span class="math">\(T_k\)</span> 不是由根节点及两个叶节点构成的树，则返回到步骤 (3)；否则，令 <span class="math">\(T_k=T_n\)</span><br>
+(7) 采用交叉验证法在子树序列 <span class="math">\(T_0,T_1,\cdots,T_n\)</span> 中选择最优子树 <span class="math">\(T_\alpha\)</span>
+</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -382,7 +460,7 @@ R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-07T16:52:41+08:00">2018-11-07 16:52:41</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-09 11:41:59</div>
+                    <div class="last_updated">2018-11-09 14:49:41</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
