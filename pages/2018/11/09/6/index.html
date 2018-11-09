@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="概率, 数学, 基础知识, " />
-    <title>贝叶斯定理  · You Know Nothing
+<meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
+    <title>统计学习方法 第六章 logistic 回归与最大熵模型  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -54,7 +54,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/05/bayes/"> 贝叶斯定理  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/09/6/"> 统计学习方法 第六章 logistic 回归与最大熵模型  </a></h1>
         </header>
     </div>
 
@@ -62,42 +62,32 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>贝叶斯定理是关于随机事件 <span class="math">\(A\)</span> 和 <span class="math">\(B\)</span> 的条件概率的一则定理。
+                <p>logistic 回归是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。</p>
+<p>logistic 回归模型和最大熵模型都属于对数线性模型。</p>
+<h2>6.1 logistic 回归模型</h2>
+<h3>6.1.1 logistic 分布</h3>
+<p><strong>
+定义 6.1 （logistic 分布）设 <span class="math">\(X\)</span> 是连续随机变量，<span class="math">\(X\)</span> 服从 logistic 分布是指 <span class="math">\(X\)</span> 具有下列分布函数和密度函数：
+<div class="math">$$\begin{eqnarray}
+F(x) &amp;=&amp; P(X\leq x)=\frac{1}{1+\text{e}^{-(x-\mu)/\gamma}} \\
+f(x) &amp;=&amp; F'(x)=\frac{\text{e}^{-(x-\mu)/\gamma}}{\gamma(1+\text{e}^{-(x-\mu)/\gamma})^2}
+\end{eqnarray}$$</div>
+式中，<span class="math">\(\mu\)</span> 为位置参数，<span class="math">\(\gamma&gt;0\)</span> 为形状参数。
+</strong></p>
+<p>下图中绘制了对于不用 <span class="math">\(\gamma\)</span> logistic 分布函数和概率密度函数。分布函数是一条 S 形曲线（sigmoid curve）。该曲线以点 <span class="math">\(\left(\mu,\frac{1}{2}\right)\)</span> 为中心对称，即满足
 </p>
-<div class="math">$$P(A|B)=\frac{P(A)\times P(B|A)}{P(B)}$$</div>
-<p>
-其中 <span class="math">\(P(A|B)\)</span> 是指在事件 <span class="math">\(B\)</span> 发生的情况下事件 <span class="math">\(A\)</span> 发生的概率。</p>
-<p>在贝叶斯定理中，每个名词都有约定俗成的名称：</p>
-<ul>
-<li><span class="math">\(P(A|B)\)</span> 是已知 <span class="math">\(B\)</span> 发生后 <span class="math">\(A\)</span> 的条件概率，也由于得自 <span class="math">\(B\)</span> 的取值而被称作 <span class="math">\(A\)</span> 的后验概率</li>
-<li><span class="math">\(P(A)\)</span> 是 <span class="math">\(A\)</span> 的先验概率（或边缘概率），之所以称为"先验"是因为它不考虑任何 <span class="math">\(B\)</span> 方面的因素</li>
-<li><span class="math">\(P(B|A)\)</span> 是已知 <span class="math">\(A\)</span> 发生后 <span class="math">\(B\)</span> 的条件概率，也由于得自 <span class="math">\(A\)</span> 的取值而被称作 <span class="math">\(B\)</span> 的后验概率</li>
-<li><span class="math">\(P(B)\)</span> 是 <span class="math">\(B\)</span> 的先验概率或边缘概率</li>
-</ul>
-<h2>推导</h2>
-<p>根据条件概率的定义。在事件 <span class="math">\(B\)</span> 发生的条件下事件A发生的概率是
-</p>
-<div class="math">$$P(A|B)={\frac {P(A\cap B)}{P(B)}}$$</div>
-<p>
-其中 <span class="math">\(A\)</span> 与 <span class="math">\(B\)</span> 的联合概率表示为 <span class="math">\(P(A\cap B)\)</span> 或者 <span class="math">\(P(A,B)\)</span> 或者 <span class="math">\(P(AB)\)</span>。</p>
-<p>同样地，在事件 <span class="math">\(A\)</span> 发生的条件下事件 <span class="math">\(B\)</span> 发生的概率
-</p>
-<div class="math">$$P(B|A)={\frac {P(A\cap B)}{P(A)}}$$</div>
-<p>整理与合并这两个方程式，我们可以得到
-</p>
-<div class="math">$$P(A|B)\,P(B)=P(A\cap B)=P(B|A)P(A)$$</div>
-<p>
-这个引理有时称作概率乘法规则。上式两边同除以 <span class="math">\(P(B)\)</span>，若 <span class="math">\(P(B)\)</span> 是非零的，我们可以得到贝叶斯定理
-</p>
-<div class="math">$$P(A|B)=\frac{P(B|A)P(A)}{P(B)}$$</div>
-<h2>其他形式</h2>
-<div class="math">$$P(A|B)={\frac {P(B|A)\,P(A)}{P(B|A)P(A)+P(B|A^{C})P(A^{C})}}$$</div>
-<p>其中 <span class="math">\(A^C\)</span> 是 <span class="math">\(A\)</span> 的补集（即非 <span class="math">\(A\)</span>），因为
-</p>
-<div class="math">$$P(B)=P(A,B)+P(A^{C},B)=P(B|A)P(A)+P(B|A^{C})P(A^{C})$$</div>
-<p>在更一般化的情况，假设 <span class="math">\(A_i\)</span> 是事件集合里的部分集合，对于任意的 <span class="math">\(A_i\)</span>，贝叶斯定理可用下式表示
-</p>
-<div class="math">$$P(A_{i}|B)={\frac {P(B|A_{i})\,P(A_{i})}{\sum_{j}P(B|A_{j})\,P(A_{j})}}$$</div>
+<div class="math">$$F(-x+\mu)+F(x+\mu)=1$$</div>
+<p><img alt="logistic分布" src="https://xutree.github.io/images/statistical_learning_6.1.png"></p>
+<p>曲线在中心附近增长速度较快，在两端增长速度较慢。</p>
+<h3>6.1.2 二项 logistic 回归模型</h3>
+<p>二项 logistic 回归模型（binomial logistic regression model）是一种分类模型，由条件概率 <span class="math">\(P(Y|X)\)</span> 表示，形式为参数化的 logistic 分布。这里，随机变量 <span class="math">\(X\)</span> 取值为实数，随机变量 <span class="math">\(Y\)</span> 取值为 1 或 0，我们通过监督学习的方法来估计模型参数。</p>
+<p><strong>
+定义 6.2 （logistic 回归模型）二项 logistic 回归模型是如下的条件概率分布：
+<div class="math">$$\begin{eqnarray}
+P(Y=1|x) &amp;=&amp; \frac{\exp(w\cdot x+b)}{1+\exp(w\cdot x+b)} \\
+P(Y=0|x) &amp;=&amp; \frac{1}{1+\exp(w\cdot x+b)}
+\end{eqnarray}$$</div>
+</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -161,6 +151,21 @@
                         </h1>
                         <ul>
                             <li>
+                                <a href="https://xutree.github.io/pages/2018/11/07/5/">
+                                    统计学习方法 第五章 决策树
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/07/4/">
+                                    统计学习方法 第四章 朴素贝叶斯法
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/05/bayes/">
+                                    贝叶斯定理
+                                </a>
+                            </li>
+                            <li>
                                 <a href="https://xutree.github.io/pages/2018/11/04/3/">
                                     统计学习方法 第三章 k 近邻法
                                 </a>
@@ -170,85 +175,25 @@
                                     统计学习方法 第二章 感知机
                                 </a>
                             </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/04/1/">
-                                    统计学习方法 第一章 统计学习方法概论
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/10/28/指示器随机变量/">
-                                    指示器随机变量
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">
-                                    最大子数组问题
-                                </a>
-                            </li>
                         </ul>
                     </nav>
-                    <nav class="newer">
-                        <h1>
-                            <font color="#771515"><em>NEWER</em></font>
-                        </h1>
-                        <ul>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/07/4/">
-                                    统计学习方法 第四章 朴素贝叶斯法
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/07/5/">
-                                    统计学习方法 第五章 决策树
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/09/6/">
-                                    统计学习方法 第六章 logistic 回归与最大熵模型
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- Gitalk 评论 start  -->
-
-                    <!-- Link Gitalk 的支持文件  -->
-                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-                    <div id="gitalk-container"></div>
-                    <script type="text/javascript">
-                        var dateTime = Date.now();
-                        var timestamp = Math.floor(dateTime / 1000);
-                        var gitalk = new Gitalk({
-
-                            // gitalk的主要参数
-                            clientID: '93f43349e9fd3154bfad',
-                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
-                            repo: 'xutree.github.io',
-                            owner: 'xutree',
-                            admin: ['xutree'],
-                            id: String(timestamp)
-
-                        });
-                        gitalk.render('gitalk-container');
-                    </script> -->
-                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-11-05T19:25:38+08:00">2018-11-05 19:25:38</time>
+                    <time pubdate="pubdate" datetime="2018-11-09T16:17:17+08:00">2018-11-09 16:17:17</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-07 12:47:06</div>
+                    <div class="last_updated">2018-11-09 16:17:17</div>
                     <h4>分类</h4>
-                    <a class="category-link" href="/categories.html#基础知识-ref">基础知识</a>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
-                        <li><a href="/tags.html#概率-ref">概率
-                                <span>2</span>
+                        <li><a href="/tags.html#机器学习-ref">机器学习
+                                <span>6</span>
 </a></li>
-                        <li><a href="/tags.html#数学-ref">数学
-                                <span>3</span>
+                        <li><a href="/tags.html#统计学习-ref">统计学习
+                                <span>6</span>
 </a></li>
                     </ul>
 

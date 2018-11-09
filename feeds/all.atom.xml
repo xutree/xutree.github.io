@@ -1,5 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-09T14:49:41+08:00</updated><entry><title>统计学习方法 第五章 决策树</title><link href="https://xutree.github.io/pages/2018/11/07/5/" rel="alternate"></link><published>2018-11-07T16:52:41+08:00</published><updated>2018-11-09T14:49:41+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-07:/pages/2018/11/07/5/</id><summary type="html">&lt;p&gt;决策树（decision tree）是一种基本的分类与回归方法。其主要优点是模型具有可读性，分类速度快。决策树学习通常包括三个步骤：特征选择、决策树的生成和决策树的修剪。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-09T16:17:17+08:00</updated><entry><title>统计学习方法 第六章 logistic 回归与最大熵模型</title><link href="https://xutree.github.io/pages/2018/11/09/6/" rel="alternate"></link><published>2018-11-09T16:17:17+08:00</published><updated>2018-11-09T16:17:17+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-09:/pages/2018/11/09/6/</id><summary type="html">&lt;p&gt;logistic 回归是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。&lt;/p&gt;
+&lt;p&gt;logistic 回归模型和最大熵模型都属于对数线性模型。&lt;/p&gt;
+&lt;h2&gt;6.1 logistic 回归模型&lt;/h2&gt;
+&lt;h3&gt;6.1.1 logistic 分布&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 6.1 （logistic 分布）设 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 是连续随机变量，&lt;span class="math"&gt;\(X\)&lt;/span&gt; 服从 logistic 分布是指 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 具有下列分布函数和密度函数：
+&lt;div class="math"&gt;$$\begin{eqnarray}
+F(x) &amp;amp;=&amp;amp; P(X\leq x)=\frac{1}{1+\text{e}^{-(x-\mu)/\gamma}} \\
+f(x …&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;p&gt;logistic 回归是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。&lt;/p&gt;
+&lt;p&gt;logistic 回归模型和最大熵模型都属于对数线性模型。&lt;/p&gt;
+&lt;h2&gt;6.1 logistic 回归模型&lt;/h2&gt;
+&lt;h3&gt;6.1.1 logistic 分布&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 6.1 （logistic 分布）设 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 是连续随机变量，&lt;span class="math"&gt;\(X\)&lt;/span&gt; 服从 logistic 分布是指 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 具有下列分布函数和密度函数：
+&lt;div class="math"&gt;$$\begin{eqnarray}
+F(x) &amp;amp;=&amp;amp; P(X\leq x)=\frac{1}{1+\text{e}^{-(x-\mu)/\gamma}} \\
+f(x) &amp;amp;=&amp;amp; F'(x)=\frac{\text{e}^{-(x-\mu)/\gamma}}{\gamma(1+\text{e}^{-(x-\mu)/\gamma})^2}
+\end{eqnarray}$$&lt;/div&gt;
+式中，&lt;span class="math"&gt;\(\mu\)&lt;/span&gt; 为位置参数，&lt;span class="math"&gt;\(\gamma&amp;gt;0\)&lt;/span&gt; 为形状参数。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;下图中绘制了对于不用 &lt;span class="math"&gt;\(\gamma\)&lt;/span&gt; logistic 分布函数和概率密度函数。分布函数是一条 S 形曲线（sigmoid curve）。该曲线以点 &lt;span class="math"&gt;\(\left(\mu,\frac{1}{2}\right)\)&lt;/span&gt; 为中心对称，即满足
+&lt;/p&gt;
+&lt;div class="math"&gt;$$F(-x+\mu)+F(x+\mu)=1$$&lt;/div&gt;
+&lt;p&gt;&lt;img alt="logistic分布" src="https://xutree.github.io/images/statistical_learning_6.1.png"&gt;&lt;/p&gt;
+&lt;p&gt;曲线在中心附近增长速度较快，在两端增长速度较慢。&lt;/p&gt;
+&lt;h3&gt;6.1.2 二项 logistic 回归模型&lt;/h3&gt;
+&lt;p&gt;二项 logistic 回归模型（binomial logistic regression model）是一种分类模型，由条件概率 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 表示，形式为参数化的 logistic 分布。这里，随机变量 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 取值为实数，随机变量 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 取值为 1 或 0，我们通过监督学习的方法来估计模型参数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 6.2 （logistic 回归模型）二项 logistic 回归模型是如下的条件概率分布：
+&lt;div class="math"&gt;$$\begin{eqnarray}
+P(Y=1|x) &amp;amp;=&amp;amp; \frac{\exp(w\cdot x+b)}{1+\exp(w\cdot x+b)} \\
+P(Y=0|x) &amp;amp;=&amp;amp; \frac{1}{1+\exp(w\cdot x+b)}
+\end{eqnarray}$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第五章 决策树</title><link href="https://xutree.github.io/pages/2018/11/07/5/" rel="alternate"></link><published>2018-11-07T16:52:41+08:00</published><updated>2018-11-09T14:49:41+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-07:/pages/2018/11/07/5/</id><summary type="html">&lt;p&gt;决策树（decision tree）是一种基本的分类与回归方法。其主要优点是模型具有可读性，分类速度快。决策树学习通常包括三个步骤：特征选择、决策树的生成和决策树的修剪。&lt;/p&gt;
 &lt;h2&gt;5.1 决策树模型与学习&lt;/h2&gt;
 &lt;h3&gt;5.1.1 决策树模型&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;
