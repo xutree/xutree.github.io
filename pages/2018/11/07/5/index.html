@@ -252,6 +252,40 @@ R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
 (4) 将输入空间划分为 <span class="math">\(M\)</span> 个区域 <span class="math">\(R_1,R_2,\cdots,R_M\)</span>，生成决策树
 <div class="math">$$f(x)=\sum_{m=1}^M\hat{c}_m\mathbb{I}(x\in R_m)$$</div>
 </strong></p>
+<h4>分类树的生成</h4>
+<p>分类树用基尼指数选择最优特征，同时决定该特征的最优二值切分点。</p>
+<p><strong>
+定义 5.4 （基尼指数）分类问题中，假设有 <span class="math">\(K\)</span> 个类，样本点属于第 <span class="math">\(k\)</span> 类的概率为 <span class="math">\(p_k\)</span>，则概率分布的基尼指数定义为
+<div class="math">$$\text{Gini}(p)=\sum_{k=1}^Kp_k(1-p_k)=1-\sum_{k=1}^Kp_k^2$$</div>
+对于二分类问题，若样本点属于第一个类的概率是 <span class="math">\(p\)</span>，则概率分布的基尼指数为
+<div class="math">$$\text{Gini}(p)=2p(1-p)$$</div>
+</strong></p>
+<p>对于给定的样本集合 <span class="math">\(D\)</span>，其基尼指数为
+</p>
+<div class="math">$$\text{Gini}(D)=1-\sum_{k=1}^K\left(\frac{|C_k|}{|D|}\right)^2$$</div>
+<p>
+这里，<span class="math">\(C_k\)</span> 是属于第 <span class="math">\(k\)</span> 类的样本子集，<span class="math">\(K\)</span> 是类的个数。</p>
+<p>如果样本集合 <span class="math">\(D\)</span> 根据特征 <span class="math">\(A\)</span> 是否取某一可能值 <span class="math">\(a\)</span> 被分割成 <span class="math">\(D_1\)</span> 和 <span class="math">\(D_2\)</span> 两部分，即
+</p>
+<div class="math">$$D_1=\{(x,y)\in D|A(x)=a\},D_2=D-D_1$$</div>
+<p>
+则在特征 A 的条件下，集合 D 的基尼指数定义为
+</p>
+<div class="math">$$\text{Gini}(D,A)=\frac{|D_1|}{|D|}\text{Gini}(D_1)+\frac{|D_2|}{|D|}\text{Gini}(D_2)$$</div>
+<p>
+基尼指数 <span class="math">\(\text{Gini}(D)\)</span> 表示集合 <span class="math">\(D\)</span> 的不确定性，基尼指数 <span class="math">\(\text{Gini}(D,A)\)</span> 表示经 <span class="math">\(A=a\)</span> 分割后集合 <span class="math">\(D\)</span> 的不确定性。基尼指数数值越大，样本集合的不确定性也就越大，这一点与熵类似。
+
+<strong>
+算法 5.6 （CART 生成算法）<br>
+输入：训练数据集 <span class="math">\(D\)</span>，停止计算的条件<br>
+输出：CART 决策树<br>
+根据训练数据集，从根节点开始，递归的对每个节点进行以下操作，构建二叉决策树：<br>
+(1) 设节点的训练数据集为 <span class="math">\(D\)</span>，计算现有特征对该数据集的基尼指数。此时，对每一个特征 <span class="math">\(A\)</span>，对其可能取的每个值 <span class="math">\(a\)</span>，根据样本点对 <span class="math">\(A=a\)</span> 的测试为“是”或“否”将 <span class="math">\(D\)</span> 分割为两部分，计算 <span class="math">\(A=a\)</span> 时的基尼指数<br>
+(2) 在所有可能的特征 <span class="math">\(A\)</span> 以及它们所有可能的切分点 <span class="math">\(a\)</span> 中，选择基尼指数最小的特征及其对应的切分点作为最优特征和最优切分点。依最优特征和最优切分点，从现节点生成两个子节点，将训练数据集依特征分配到两个子节点去<br>
+(3) 对两个子节点递归的调用 (1)、(2)，直至满足停止条件<br>
+(4) 生成 CART 决策树
+</strong></p>
+<p>算法停止的条件是节点中的样本个数少于预定阈值，或样本集的基尼指数小于预定阈值（样本基本属于同一类），或者没有更多特征。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -348,7 +382,7 @@ R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-07T16:52:41+08:00">2018-11-07 16:52:41</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-07 22:05:12</div>
+                    <div class="last_updated">2018-11-09 11:41:59</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
