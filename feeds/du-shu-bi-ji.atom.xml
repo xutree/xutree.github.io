@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-09T17:33:29+08:00</updated><entry><title>统计学习方法 第六章 逻辑回归与最大熵模型</title><link href="https://xutree.github.io/pages/2018/11/09/6/" rel="alternate"></link><published>2018-11-09T16:17:17+08:00</published><updated>2018-11-09T17:33:29+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-09:/pages/2018/11/09/6/</id><summary type="html">&lt;p&gt;逻辑回归（logistic regression）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-10T16:50:37+08:00</updated><entry><title>统计学习方法 第六章 逻辑回归与最大熵模型</title><link href="https://xutree.github.io/pages/2018/11/09/6/" rel="alternate"></link><published>2018-11-09T16:17:17+08:00</published><updated>2018-11-10T16:50:37+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-09:/pages/2018/11/09/6/</id><summary type="html">&lt;p&gt;逻辑回归（logistic regression）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。&lt;/p&gt;
 &lt;p&gt;逻辑回归模型和最大熵模型都属于对数线性模型。&lt;/p&gt;
 &lt;h2&gt;6.1 逻辑回归模型&lt;/h2&gt;
 &lt;h3&gt;6.1.1 逻辑分布&lt;/h3&gt;
@@ -142,7 +142,7 @@ L(w) &amp;amp;=&amp;amp; \sum_{i=1}^N\left[y_i\log\pi(x_i)+(1-y_i)\log(1-\pi(x_i
 &lt;/p&gt;
 &lt;div class="math"&gt;$$P(Y=1|x)=\frac{\exp(\hat{w}\cdot x)}{1+\exp(\hat{w}\cdot x)} \\
 P(Y=0|x)=\frac{1}{1+\exp(\hat{w}\cdot x)}$$&lt;/div&gt;
-&lt;h3&gt;6.1.4 多项逻辑回归&lt;/h3&gt;
+&lt;h3&gt;6.1.4 多项逻辑回归&lt;/h3&gt;
 &lt;p&gt;可以将二项回归模型推广到多项逻辑回归模型（multi-nominal logistic regression model），用于多类分类。&lt;/p&gt;
 &lt;p&gt;假设离散型随机变量 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 的取值集合是 &lt;span class="math"&gt;\(\{1,2,\cdots,K\}\)&lt;/span&gt;，那么多项逻辑回归模型是
 &lt;/p&gt;
@@ -167,6 +167,47 @@ P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}\exp(w_k\cdot x)}$$&lt;/div&gt;
 式中，&lt;span class="math"&gt;\(|X|\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 取值个数，当且仅当 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 的分布是均匀分布时右边的等号成立。也就是说，当 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 服从均匀分布时，熵最大。&lt;/p&gt;
 &lt;h3&gt;6.2.2 最大熵模型的定义&lt;/h3&gt;
 &lt;p&gt;最大熵原理是统计学习的一般原理，将它应用到分类得到最大熵模型。&lt;/p&gt;
+&lt;p&gt;假设分类模型是一个条件概率分布 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt;，给定一个训练数据集
+&lt;/p&gt;
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+&lt;p&gt;
+学习的目标是用最大熵原理选择最好的分类模型。&lt;/p&gt;
+&lt;p&gt;首先考虑模型应该满足的条件。给定训练数据集，可以确定联合概率分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 和边缘分布 &lt;span class="math"&gt;\(P(X)\)&lt;/span&gt; 的经验分布，分别用 &lt;span class="math"&gt;\(\tilde{P}(X,Y)\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\tilde{P}(X)\)&lt;/span&gt; 表示
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\tilde{P}(X=x,Y=y)=\frac{v(X=x,Y=y)}{N} \\
+\tilde{P}(X=x)=\frac{v(X=x)}{N}$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(v(\cdot)\)&lt;/span&gt; 表示频数，&lt;span class="math"&gt;\(N\)&lt;/span&gt; 是训练样本容量。&lt;/p&gt;
+&lt;p&gt;用特征函数（feature function）&lt;span class="math"&gt;\(f(x,y)\)&lt;/span&gt; 描述输入 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 和输出 &lt;span class="math"&gt;\(y\)&lt;/span&gt; 之间的某一个事实。其定义是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(x,y)=\begin{cases}
+1, &amp;amp; x\ 与\ y\ 满足某一事实 \\
+0, &amp;amp; 否则
+\end{cases}$$&lt;/div&gt;
+&lt;p&gt;
+它是一个二值函数（一般的，特征函数可以是任意的实值函数）。&lt;/p&gt;
+&lt;p&gt;特征函数 &lt;span class="math"&gt;\(f(x,y)\)&lt;/span&gt; 关于经验分布 &lt;span class="math"&gt;\(\tilde{P}(X,Y)\)&lt;/span&gt; 的期望值，用 &lt;span class="math"&gt;\(\text{E}_{\tilde{P}}(f)\)&lt;/span&gt; 表示
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{E}_{\tilde{P}}(f)=\sum_{x,y}\tilde{P}(x,y)f(x,y)$$&lt;/div&gt;
+&lt;p&gt;特征函数 &lt;span class="math"&gt;\(f(x,y)\)&lt;/span&gt; 关于模型 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 与经验分布 &lt;span class="math"&gt;\(\tilde{P}(X)\)&lt;/span&gt; 的期望值，用 &lt;span class="math"&gt;\(\text{E}_P(f)\)&lt;/span&gt; 表示
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{E}_P(f)=\sum_{x,y}\tilde{P}(x)P(y|x)f(x,y)$$&lt;/div&gt;
+&lt;p&gt;如果模型能够获取训练数据中的信息，那么就可以假设这两个期望值相等，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{E}_P(f)=\text{E}_{\tilde{P}}(f)$$&lt;/div&gt;
+&lt;p&gt;
+即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\sum_{x,y}\tilde{P}(x)P(y|x)f(x,y)=\sum_{x,y}\tilde{P}(x,y)f(x,y)$$&lt;/div&gt;
+&lt;p&gt;
+我们将上式作为模型学习的约束条件。假如有 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 个特征函数 &lt;span class="math"&gt;\(f_i(x,y)\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,n\)&lt;/span&gt;，那么就有 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 个约束条件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 6.3（最大熵模型）假设满足所有约束条件的模型集合为
+&lt;div class="math"&gt;$${\cal C}\equiv\left\{P\in{\cal P}|\text{E}_P(f_i)=\text{E}_{\tilde{P}}(f_i),i=1,2,\cdots,n\right\}$$&lt;/div&gt;
+定义在条件概率分布 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 上的条件熵为
+&lt;div class="math"&gt;$$H(P)=-\sum_{x,y}\tilde{P}(x)P(y|x)\log P(y|x)$$&lt;/div&gt;
+则模型集合 &lt;span class="math"&gt;\({\cal C}\)&lt;/span&gt; 中条件熵 &lt;span class="math"&gt;\(H(P)\)&lt;/span&gt; 最大的模型称为最大熵模型。式中的对数为自然对数。
+&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
