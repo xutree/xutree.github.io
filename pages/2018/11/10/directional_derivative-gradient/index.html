@@ -63,20 +63,23 @@
             <div class="span8 offset2 article-content">
 
                 <h2>1. 方向导数</h2>
-<p>多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率</p>
-<blockquote>
-<p>定义 1.1（方向导数）设 <span class="math">\(f\)</span> 是定义于 <span class="math">\(\mathbb{R}^n\)</span> 中某区域 <span class="math">\(D\)</span> 上的函数，点 <span class="math">\(P_0\in D\)</span>，<span class="math">\(l\)</span> 为一给定的非零向量，<span class="math">\(P\)</span> 为一动点，向量 <span class="math">\(\vec{P_0P}\)</span> 与 <span class="math">\(l\)</span> 的方向始终一致。如果极限
+<p>多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率。</p>
+<p><strong>
+定义 1.1（方向导数）设 <span class="math">\(f\)</span> 是定义于 <span class="math">\(\mathbb{R}^n\)</span> 中某区域 <span class="math">\(D\)</span> 上的函数，点 <span class="math">\(P_0\in D\)</span>，<span class="math">\(l\)</span> 为一给定的非零向量，<span class="math">\(P\)</span> 为一动点，向量 <span class="math">\(\vec{P_0P}\)</span> 与 <span class="math">\(l\)</span> 的方向始终一致。如果极限
 <div class="math">$$\lim_{\|P_0P\|\to0}\frac{f(P)-f(P_0}{\|\vec{P_0P}\|}$$</div>
-存在，则称此极限为函数 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\)</span> 处沿 <span class="math">\(l\)</span> 方向的方向导数，记作 <span class="math">\(\frac{\partial f}{\partial l}\)</span>。</p>
-<p>定义 1.2（方向余弦）设 <span class="math">\(l\)</span> 是一个 <span class="math">\(n\)</span> 维非零向量，<span class="math">\(l_0=\frac{l}{\|l\|}，即 $l_0\)</span> 是与 <span class="math">\(l\)</span> 同向的单位向量。取 <span class="math">\(0\leq\alpha_i\leq\pi\)</span>，使
+存在，则称此极限为函数 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\)</span> 处沿 <span class="math">\(l\)</span> 方向的方向导数，记作 <span class="math">\(\frac{\partial f}{\partial l}\)</span>。
+</strong></p>
+<p><strong>
+定义 1.2（方向余弦）设 <span class="math">\(l\)</span> 是一个 <span class="math">\(n\)</span> 维非零向量，<span class="math">\(l_0=\frac{l}{\|l\|}，即 $l_0\)</span> 是与 <span class="math">\(l\)</span> 同向的单位向量。取 <span class="math">\(0\leq\alpha_i\leq\pi\)</span>，使
 <div class="math">$$l_0=(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n)$$</div>
 称
 <div class="math">$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$</div>
-为向量 <span class="math">\(l\)</span> 的方向余弦。</p>
-<p>定理 1.1（方向导数计算公式）若函数 <span class="math">\(f\)</span> 在点 <span class="math">\(P_0\)</span> 处可微，向量 <span class="math">\(l\)</span> 的方向余弦为 <span class="math">\(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n\)</span>，则函数 <span class="math">\(f\)</span> 在点 <span class="math">\(P_0\)</span> 处沿 <span class="math">\(l\)</span> 方向的方向导数存在，且
+为向量 <span class="math">\(l\)</span> 的方向余弦。
+</strong></p>
+<p><strong>
+定理 1.1（方向导数计算公式）若函数 <span class="math">\(f\)</span> 在点 <span class="math">\(P_0\)</span> 处可微，向量 <span class="math">\(l\)</span> 的方向余弦为 <span class="math">\(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n\)</span>，则函数 <span class="math">\(f\)</span> 在点 <span class="math">\(P_0\)</span> 处沿 <span class="math">\(l\)</span> 方向的方向导数存在，且
 <div class="math">$$\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$</div>
-</p>
-</blockquote>
+</strong></p>
 <p>证：因为 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\)</span> 处可微，向量 <span class="math">\(\vec{P_0P}=(\Delta x_1,\Delta x_2,\cdots,\Delta x_n)\)</span> 与 <span class="math">\(l\)</span> 同向，故
 </p>
 <div class="math">$$f(P)-f(P_0)=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\Delta x_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\Delta x_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\Delta x_n+o(\|\vec{P_0P}\|)$$</div>
@@ -120,11 +123,11 @@
 当且仅当 <span class="math">\(\boldsymbol{g}\)</span> 与 <span class="math">\(\boldsymbol{l_0}\)</span> 同向时，等号成立。而且
 </p>
 <div class="math">$$\max\frac{\partial f}{\partial l}=\|\boldsymbol{g}\|=\left[\sum_{i=1}^n\left(\frac{\partial f}{\partial x_i}\right)^2\right]^{\frac{1}{2}}$$</div>
-<blockquote>
-<p>定义 2.1（梯度）设 <span class="math">\(f\)</span> 是 <span class="math">\(\mathbb{R}^n\)</span> 中区域 <span class="math">\(D\)</span> 上的数量场，如果 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\in D\)</span> 处可微，称向量
+<p><strong>
+定义 2.1（梯度）设 <span class="math">\(f\)</span> 是 <span class="math">\(\mathbb{R}^n\)</span> 中区域 <span class="math">\(D\)</span> 上的数量场，如果 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\in D\)</span> 处可微，称向量
 <div class="math">$$\left(\frac{\partial f}{\partial x_1},\frac{\partial f}{\partial x_2},\cdots,\frac{\partial f}{\partial x_n}\right)\bigg\rvert_{P_0}$$</div>
-为 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\)</span> 处的梯度，记作 <span class="math">\({\bf grad}f(P_0)\)</span>。</p>
-</blockquote>
+为 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\)</span> 处的梯度，记作 <span class="math">\({\bf grad}f(P_0)\)</span>。
+</strong></p>
 <p>沿梯度方向，函数值增加最快。同样可知，方向导数的最小值在梯度的相反方向取得。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",

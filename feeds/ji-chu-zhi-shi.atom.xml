@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 基础知识</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/ji-chu-zhi-shi.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-10T15:44:43+08:00</updated><entry><title>方向导数和梯度</title><link href="https://xutree.github.io/pages/2018/11/10/directional_derivative-gradient/" rel="alternate"></link><published>2018-11-10T15:44:43+08:00</published><updated>2018-11-10T15:44:43+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-10:/pages/2018/11/10/directional_derivative-gradient/</id><summary type="html">&lt;h2&gt;1. 方向导数&lt;/h2&gt;
-&lt;p&gt;多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;定义 1.1（方向导数）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是定义于 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中某区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的函数，点 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt;，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 为一给定的非零向量，&lt;span class="math"&gt;\(P\)&lt;/span&gt; 为一动点，向量 &lt;span class="math"&gt;\(\vec{P_0P}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向始终一致。如果极限
+&lt;p&gt;多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 1.1（方向导数）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是定义于 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中某区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的函数，点 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt;，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 为一给定的非零向量，&lt;span class="math"&gt;\(P\)&lt;/span&gt; 为一动点，向量 &lt;span class="math"&gt;\(\vec{P_0P}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向始终一致。如果极限
 &lt;div class="math"&gt;$$\lim_{\|P_0P\|\to0}\frac{f(P)-f(P_0}{\|\vec{P_0P}\|}$$&lt;/div&gt;
-存在，则称此极限为函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0 …&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+存在，则称此极限为函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0 …&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
         linebreak = "false";
@@ -59,20 +59,23 @@
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;</summary><content type="html">&lt;h2&gt;1. 方向导数&lt;/h2&gt;
-&lt;p&gt;多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;定义 1.1（方向导数）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是定义于 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中某区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的函数，点 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt;，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 为一给定的非零向量，&lt;span class="math"&gt;\(P\)&lt;/span&gt; 为一动点，向量 &lt;span class="math"&gt;\(\vec{P_0P}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向始终一致。如果极限
+&lt;p&gt;多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 1.1（方向导数）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是定义于 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中某区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的函数，点 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt;，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 为一给定的非零向量，&lt;span class="math"&gt;\(P\)&lt;/span&gt; 为一动点，向量 &lt;span class="math"&gt;\(\vec{P_0P}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向始终一致。如果极限
 &lt;div class="math"&gt;$$\lim_{\|P_0P\|\to0}\frac{f(P)-f(P_0}{\|\vec{P_0P}\|}$$&lt;/div&gt;
-存在，则称此极限为函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处沿 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 方向的方向导数，记作 &lt;span class="math"&gt;\(\frac{\partial f}{\partial l}\)&lt;/span&gt;。&lt;/p&gt;
-&lt;p&gt;定义 1.2（方向余弦）设 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 是一个 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维非零向量，&lt;span class="math"&gt;\(l_0=\frac{l}{\|l\|}，即 $l_0\)&lt;/span&gt; 是与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 同向的单位向量。取 &lt;span class="math"&gt;\(0\leq\alpha_i\leq\pi\)&lt;/span&gt;，使
+存在，则称此极限为函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处沿 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 方向的方向导数，记作 &lt;span class="math"&gt;\(\frac{\partial f}{\partial l}\)&lt;/span&gt;。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 1.2（方向余弦）设 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 是一个 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维非零向量，&lt;span class="math"&gt;\(l_0=\frac{l}{\|l\|}，即 $l_0\)&lt;/span&gt; 是与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 同向的单位向量。取 &lt;span class="math"&gt;\(0\leq\alpha_i\leq\pi\)&lt;/span&gt;，使
 &lt;div class="math"&gt;$$l_0=(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n)$$&lt;/div&gt;
 称
 &lt;div class="math"&gt;$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$&lt;/div&gt;
-为向量 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向余弦。&lt;/p&gt;
-&lt;p&gt;定理 1.1（方向导数计算公式）若函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处可微，向量 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向余弦为 &lt;span class="math"&gt;\(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n\)&lt;/span&gt;，则函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处沿 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 方向的方向导数存在，且
+为向量 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向余弦。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定理 1.1（方向导数计算公式）若函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处可微，向量 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向余弦为 &lt;span class="math"&gt;\(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n\)&lt;/span&gt;，则函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处沿 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 方向的方向导数存在，且
 &lt;div class="math"&gt;$$\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$&lt;/div&gt;
-&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;证：因为 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处可微，向量 &lt;span class="math"&gt;\(\vec{P_0P}=(\Delta x_1,\Delta x_2,\cdots,\Delta x_n)\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 同向，故
 &lt;/p&gt;
 &lt;div class="math"&gt;$$f(P)-f(P_0)=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\Delta x_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\Delta x_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\Delta x_n+o(\|\vec{P_0P}\|)$$&lt;/div&gt;
@@ -116,11 +119,11 @@
 当且仅当 &lt;span class="math"&gt;\(\boldsymbol{g}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(\boldsymbol{l_0}\)&lt;/span&gt; 同向时，等号成立。而且
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\max\frac{\partial f}{\partial l}=\|\boldsymbol{g}\|=\left[\sum_{i=1}^n\left(\frac{\partial f}{\partial x_i}\right)^2\right]^{\frac{1}{2}}$$&lt;/div&gt;
-&lt;blockquote&gt;
-&lt;p&gt;定义 2.1（梯度）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的数量场，如果 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt; 处可微，称向量
+&lt;p&gt;&lt;strong&gt;
+定义 2.1（梯度）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的数量场，如果 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt; 处可微，称向量
 &lt;div class="math"&gt;$$\left(\frac{\partial f}{\partial x_1},\frac{\partial f}{\partial x_2},\cdots,\frac{\partial f}{\partial x_n}\right)\bigg\rvert_{P_0}$$&lt;/div&gt;
-为 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处的梯度，记作 &lt;span class="math"&gt;\({\bf grad}f(P_0)\)&lt;/span&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
+为 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处的梯度，记作 &lt;span class="math"&gt;\({\bf grad}f(P_0)\)&lt;/span&gt;。
+&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;沿梯度方向，函数值增加最快。同样可知，方向导数的最小值在梯度的相反方向取得。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
