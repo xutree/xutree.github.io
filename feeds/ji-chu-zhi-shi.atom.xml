@@ -1,5 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 基础知识</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/ji-chu-zhi-shi.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-07T12:47:06+08:00</updated><entry><title>贝叶斯定理</title><link href="https://xutree.github.io/pages/2018/11/05/bayes/" rel="alternate"></link><published>2018-11-05T19:25:38+08:00</published><updated>2018-11-07T12:47:06+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-05:/pages/2018/11/05/bayes/</id><summary type="html">&lt;p&gt;贝叶斯定理是关于随机事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 的条件概率的一则定理。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 基础知识</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/ji-chu-zhi-shi.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-10T14:16:04+08:00</updated><entry><title>拉格朗日对偶性</title><link href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/" rel="alternate"></link><published>2018-11-10T13:41:43+08:00</published><updated>2018-11-10T14:16:04+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-10:/pages/2018/11/10/lagrange_duality/</id><summary type="html">&lt;h2&gt;1. 原始问题&lt;/h2&gt;
+&lt;p&gt;假设 &lt;span class="math"&gt;\(f(x)\)&lt;/span&gt;，&lt;span class="math"&gt;\(c_i(x)\)&lt;/span&gt;，&lt;span class="math"&gt;\(h_j(x)\)&lt;/span&gt; 是定义在 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 上的连续可微函数。考虑约束最优化问题：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_{x\in\mathbb{R}^n}f(x) \\
+\text{s.t.}\ \ \ \ \
+\begin{eqnarray}
+c_i(x) &amp;amp;\leq&amp;amp; 0,i=1,2,\cdots,k \\
+h_j(x) &amp;amp;=&amp;amp; 0,j=1,2,\cdots,l
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+称此优化约束问题为原始最优化问题或原始问题。&lt;/p&gt;
+&lt;p&gt;首先 …&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;h2&gt;1. 原始问题&lt;/h2&gt;
+&lt;p&gt;假设 &lt;span class="math"&gt;\(f(x)\)&lt;/span&gt;，&lt;span class="math"&gt;\(c_i(x)\)&lt;/span&gt;，&lt;span class="math"&gt;\(h_j(x)\)&lt;/span&gt; 是定义在 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 上的连续可微函数。考虑约束最优化问题：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_{x\in\mathbb{R}^n}f(x) \\
+\text{s.t.}\ \ \ \ \
+\begin{eqnarray}
+c_i(x) &amp;amp;\leq&amp;amp; 0,i=1,2,\cdots,k \\
+h_j(x) &amp;amp;=&amp;amp; 0,j=1,2,\cdots,l
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+称此优化约束问题为原始最优化问题或原始问题。&lt;/p&gt;
+&lt;p&gt;首先，引进广义拉格朗日函数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L(x,\alpha,\beta)=f(x)+\sum_{i=1}^k\alpha_ic_i(x)+\sum_{j=1}^l\beta_jh_j(x)$$&lt;/div&gt;
+&lt;p&gt;
+这里，&lt;span class="math"&gt;\(x=\left(x^{(1)},x^{(2)},\cdots,x^{(n)}\right)^\text{T}\in\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(\alpha_i\)&lt;/span&gt;，&lt;span class="math"&gt;\(\beta_j\)&lt;/span&gt; 是拉格朗日乘子，&lt;span class="math"&gt;\(\alpha_i\geq0\)&lt;/span&gt;，考虑 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的函数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\theta_P(x)=\max_{\alpha,\beta:\alpha\geq0}L(x,\alpha,\beta)$$&lt;/div&gt;
+&lt;p&gt;
+这里，下标 &lt;span class="math"&gt;\(P\)&lt;/span&gt; 表示原始问题。&lt;/p&gt;
+&lt;p&gt;易知：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\theta_P(x)=\begin{cases}
+f(x), &amp;amp; x\ 满足原始问题约束 \\
++\infty, &amp;amp; 其他
+\end{cases}$$&lt;/div&gt;
+&lt;p&gt;
+所以如果考虑极小化问题
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_x\theta_P(x)=\min_x\max_{\alpha,\beta:\alpha_i\geq0}L(x,\alpha,\beta)$$&lt;/div&gt;
+&lt;p&gt;
+它是与原始最优化问题等价的问题。&lt;/p&gt;
+&lt;p&gt;为了方便，定义原始问题的最优值
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p^{\star}=\min_x\theta_P(x)$$&lt;/div&gt;
+&lt;p&gt;
+称为原始问题的值。&lt;/p&gt;
+&lt;h2&gt;2. 对偶问题&lt;/h2&gt;
+&lt;p&gt;定义
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\theta_D(\alpha,\beta)=\min_xL(x,\alpha,\beta)$$&lt;/div&gt;
+&lt;p&gt;
+再考虑极大化，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\max_{\alpha,\beta:\alpha_i\geq0}\theta_D(\alpha,\beta)=\max_{\alpha,\beta:\alpha_i\geq0}\min_xL(x,\alpha,\beta)$$&lt;/div&gt;
+&lt;p&gt;
+上述问题称为广义拉格朗日函数的极大极小问题。&lt;/p&gt;
+&lt;p&gt;可以将广义拉格朗日函数的极大极小问题表示为约束最优化问题：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\max_{\alpha,\beta}\theta_D(\alpha,\beta)=\max_{\alpha,\beta}\min_xL(x,\alpha,\beta) \\
+\text{s.t.}\ \ \ \alpha_i\geq0,i=1,2,\cdots,k$$&lt;/div&gt;
+&lt;p&gt;
+称为原始问题的对偶问题。定义对偶问题的最优值：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$d^\star=\max_{\alpha,\beta:\alpha_i\geq0}\theta_D(\alpha,\beta)$$&lt;/div&gt;
+&lt;p&gt;
+称为对偶问题的值。&lt;/p&gt;
+&lt;h2&gt;3. 原始问题和对偶问题的关系&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;定理 1&lt;/strong&gt; 若原始问题和对偶问题都有最优值，则
+&lt;div class="math"&gt;$$d^\star=\max_{\alpha,\beta:\alpha_i\geq0}\min_xL(x,\alpha,\beta)\leq\min_x\max_{\alpha,\beta:\alpha_i\geq0}L(x,\alpha,\beta)=p^\star$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推论 1&lt;/strong&gt; 设 &lt;span class="math"&gt;\(x^\star\)&lt;/span&gt; 是原始问题的可行解，&lt;span class="math"&gt;\(\alpha^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(\beta^\star\)&lt;/span&gt; 是对偶问题的可行解，并且 &lt;span class="math"&gt;\(d^\star=p^\star\)&lt;/span&gt;，则它们分别是原始问题和对偶问题的最优解。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定理 2&lt;/strong&gt; 考虑原始问题和对偶问题。假设函数 &lt;span class="math"&gt;\(f(x)\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(c_i(x)\)&lt;/span&gt; 是凸函数，&lt;span class="math"&gt;\(h_j(x)\)&lt;/span&gt; 是仿射函数；并且假设不等式约束 &lt;span class="math"&gt;\(c_i(x)\)&lt;/span&gt; 是严格可行的，即存在 &lt;span class="math"&gt;\(x\)&lt;/span&gt;，对所有 &lt;span class="math"&gt;\(i\)&lt;/span&gt;，有 &lt;span class="math"&gt;\(c_i&amp;lt;0\)&lt;/span&gt;，则存在 &lt;span class="math"&gt;\(x^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(\alpha^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(\beta^\star\)&lt;/span&gt;，使 &lt;span class="math"&gt;\(x^\star\)&lt;/span&gt; 是原始问题的解，&lt;span class="math"&gt;\(\alpha^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(\beta^\star\)&lt;/span&gt; 是对偶问题的解，并且
+&lt;div class="math"&gt;$$p^\star=d^\star=L(x^\star,\alpha^\star,\beta^\star)$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定理 3&lt;/strong&gt; 对原始问题和对偶问题，假设函数 &lt;span class="math"&gt;\(f(x)\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(c_i(x)\)&lt;/span&gt; 是凸函数，&lt;span class="math"&gt;\(h_j(x)\)&lt;/span&gt; 是仿射函数，并且假设不等式约束 &lt;span class="math"&gt;\(c_i(x)\)&lt;/span&gt; 是严格可行的，则 &lt;span class="math"&gt;\(x^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(\alpha^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(\beta^\star\)&lt;/span&gt; 分别是原始问题和对偶问题的解的充要条件是 &lt;span class="math"&gt;\(x^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(\alpha^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(\beta^\star\)&lt;/span&gt; 满足下面的 Karush-Kuhn-Tucker（KKT）条件
+&lt;div class="math"&gt;$$\nabla_xL(x^\star,\alpha^\star,\beta^\star)=0 \\
+\alpha_i^\star c_i(x^\star)=0,i=1,2,\cdots,k \\
+c_i(x^\star)\leq0,i=1,2,\cdots,k \\
+\alpha_i^\star\geq0,i=1,2,\cdots,k \\
+h_j(x^\star)=0,j=1,2,\cdots,l$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="数学"></category><category term="机器学习"></category><category term="统计学习"></category></entry><entry><title>贝叶斯定理</title><link href="https://xutree.github.io/pages/2018/11/05/bayes/" rel="alternate"></link><published>2018-11-05T19:25:38+08:00</published><updated>2018-11-07T12:47:06+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-05:/pages/2018/11/05/bayes/</id><summary type="html">&lt;p&gt;贝叶斯定理是关于随机事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 的条件概率的一则定理。
 &lt;/p&gt;
 &lt;div class="math"&gt;$$P(A|B)=\frac{P(A)\times P(B|A)}{P(B)}$$&lt;/div&gt;
 &lt;p&gt;
