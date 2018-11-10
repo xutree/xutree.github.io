@@ -209,6 +209,86 @@ P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}\exp(w_k\cdot x)}$$</div>
 <div class="math">$$H(P)=-\sum_{x,y}\tilde{P}(x)P(y|x)\log P(y|x)$$</div>
 则模型集合 <span class="math">\({\cal C}\)</span> 中条件熵 <span class="math">\(H(P)\)</span> 最大的模型称为最大熵模型。式中的对数为自然对数。
 </strong></p>
+<h3>6.2.3 最大熵模型的学习</h3>
+<p>最大熵模型的学习过程就是求解最大熵模型的过程。最大熵模型的学习可以形式化为约束最优化问题。</p>
+<p>对于给定的训练数据集
+</p>
+<div class="math">$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
+<p>
+以及特征函数
+</p>
+<div class="math">$$f_i(x,y),\ i=1,2,\cdots,n$$</div>
+<p>
+最大熵模型的学习等价于约束优化问题：
+</p>
+<div class="math">$$\max_{P\in{\cal C}}\ \ \ \ \ H(P)=-\sum_{x,y}\tilde{P}(x)P(y|x)\log P(y|x) \\
+\text{s.t.}\ \ \ \ \ \text{E}_P(f_i)=\text{E}_{\tilde{P}}(f_i),\ i=1,2,\cdots,n \\
+\sum_{y}P(y|x)=1$$</div>
+<p>按照最优化问题的习惯，将求最大值问题改写为等价的求最小值问题：
+</p>
+<div class="math">$$\min_{P\in{\cal C}}\ \ \ \ \ -H(P)=\sum_{x,y}\tilde{P}(x)P(y|x)\log P(y|x) \\
+\text{s.t.}\ \ \ \ \ \text{E}_P(f_i)-\text{E}_{\tilde{P}}(f_i)=0,\ i=1,2,\cdots,n \\
+\sum_{y}P(y|x)=1$$</div>
+<p>这里，将约束最优化问题的原始问题转换为无约束最优化的对偶问题，通过求解对偶问题求解原始问题。</p>
+<p>首先，引进拉格朗日乘子 <span class="math">\(w_0,w_1,w_2,\cdots,w_n\)</span>，定义拉格朗日函数
+</p>
+<div class="math">$$\begin{eqnarray}
+L(P,w) &amp;\equiv&amp; -H(P)+w_0\left(1-\sum_yP(y|x)\right)+\sum_{i=1}^nw_i\left(\text{E}_P(f_i)-\text{E}_{\tilde{P}}(f_i)\right) \\
+&amp;=&amp; \sum_{x,y}\tilde{P}(x)P(y|x)\log P(y|x)+w_0\left(1-\sum_yP(y|x)\right) \\
+&amp;+&amp; \sum_{i=1}^nw_i\left(\sum_{x,y}\tilde{P}(x,y)f_i(x,y)-\sum_{x,y}\tilde{P}(x)P(y|x)f_i(x,y)\right)
+\end{eqnarray}$$</div>
+<p>
+最优化的原始问题是
+</p>
+<div class="math">$$\min_{P\in{\cal C}}\max_wL(P,w)$$</div>
+<p>
+对偶问题是
+</p>
+<div class="math">$$\max_w\min_{P\in{\cal C}}L(P,w)$$</div>
+<p>
+由于拉格朗日函数 <span class="math">\(L(P,w)\)</span> 是 <span class="math">\(P\)</span> 的凸函数，原始问题的解和对偶问题的解是等价的。</p>
+<p>首先，求解对偶问题内部的极小化问题，记作
+</p>
+<div class="math">$$\Psi(w)=\min_{P\in{\cal C}}L(P,w)=L(P_w,w)$$</div>
+<p>
+<span class="math">\(\Psi(w)\)</span> 称为对偶函数，同时，将其解记作
+</p>
+<div class="math">$$P_w=\arg\min_{P\in{\cal C}}L(P,w)=P_w(y|x)$$</div>
+<p>
+通过令偏导数等于 0
+</p>
+<div class="math">$$\begin{eqnarray}
+\frac{\partial L(P,w)}{\partial P(y|x)} &amp;=&amp; \sum_{x,y}\tilde{P}(x)\left(\log P(y|x)+1\right)-\sum_yw_0-\sum_{x,y}\left(\tilde{P}(x)\sum_{i=1}^nw_if_i(x,y)\right) \\
+&amp;=&amp; \sum_{x,y}\tilde{P}(x)\left(\log P(y|x)+1-w_0-\sum_{i=1}^nw_if_i(x,y)\right)
+\end{eqnarray}$$</div>
+<p>
+在 <span class="math">\(\tilde{P}(x)&gt;0\)</span> 的情况下，解得
+</p>
+<div class="math">$$\begin{eqnarray}
+P(y|x) &amp;=&amp; \exp\left(\sum_{i=1}^nw_if_i(x,y)+w_0-1\right) \\
+&amp;=&amp; \frac{\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)}{\exp(1-w_0)}
+\end{eqnarray}$$</div>
+<p>
+由于 <span class="math">\(\sum_yP(y|x)=1\)</span>，得
+</p>
+<div class="math">$$P_w(y|x)=\frac{1}{Z_w(x)}\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)$$</div>
+<p>
+其中
+</p>
+<div class="math">$$Z_w(x)=\sum_y\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)$$</div>
+<p>
+称为规范化因子；<span class="math">\(f_i(x,y)\)</span> 是特征函数，<span class="math">\(w_i\)</span> 是特征函数的权值。由以上两式表示的 <span class="math">\(P_w(y|x)\)</span> 就是最大熵模型，<span class="math">\(w\)</span> 是最大熵模型中的参数向量。</p>
+<p>之后，求解对偶问题外部的极大化问题
+</p>
+<div class="math">$$\max_w\Psi(w)$$</div>
+<p>
+将其解记为 <span class="math">\(w^\star\)</span>，即
+</p>
+<div class="math">$$w^\star=\arg\max_w\Psi(w)$$</div>
+<p>
+故最终的最大熵模型是
+</p>
+<div class="math">$$P^\star=P_{w^\star}=P_{w^\star}(y|x)$$</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -345,7 +425,7 @@ P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}\exp(w_k\cdot x)}$$</div>
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-09T16:17:17+08:00">2018-11-09 16:17:17</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-10 16:50:37</div>
+                    <div class="last_updated">2018-11-10 20:36:09</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>

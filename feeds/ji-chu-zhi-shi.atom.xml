@@ -66,7 +66,7 @@
 存在，则称此极限为函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处沿 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 方向的方向导数，记作 &lt;span class="math"&gt;\(\frac{\partial f}{\partial l}\)&lt;/span&gt;。
 &lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;
-定义 1.2（方向余弦）设 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 是一个 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维非零向量，&lt;span class="math"&gt;\(l_0=\frac{l}{\|l\|}，即 $l_0\)&lt;/span&gt; 是与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 同向的单位向量。取 &lt;span class="math"&gt;\(0\leq\alpha_i\leq\pi\)&lt;/span&gt;，使
+定义 1.2（方向余弦）设 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 是一个 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维非零向量，&lt;span class="math"&gt;\(l_0=\frac{l}{\|l\|}\)&lt;/span&gt;，即 &lt;span class="math"&gt;\(l_0\)&lt;/span&gt; 是与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 同向的单位向量。取 &lt;span class="math"&gt;\(0\leq\alpha_i\leq\pi\)&lt;/span&gt;，使
 &lt;div class="math"&gt;$$l_0=(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n)$$&lt;/div&gt;
 称
 &lt;div class="math"&gt;$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$&lt;/div&gt;
