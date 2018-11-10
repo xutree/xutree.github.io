@@ -83,7 +83,7 @@
 故
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\lim_{\|\vec{P_0P}\|\to0}\frac{f(P)-f(P_0)}{\|\vec{P_0P}\|}=\lim_{\|\vec{P_0P}\|\to0}\left[\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\frac{\Delta x_1}{\|\vec{P_0P}\|}+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\frac{\Delta x_2}{\|\vec{P_0P}\|}+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\frac{\Delta x_n}{\|\vec{P_0P}\|}+\frac{o(\|\vec{P_0P}\|)}{\|\vec{P_0P}\|}\right] \\
-=\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$&lt;/div&gt;
+=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$&lt;/div&gt;
 &lt;p&gt;
 因为 &lt;span class="math"&gt;\(\frac{\partial f}{\partial l}\bigg\rvert_{P_0}\)&lt;/span&gt; 存在，所以
 &lt;/p&gt;
