@@ -1,5 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-10T14:16:04+08:00</updated><entry><title>拉格朗日对偶性</title><link href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/" rel="alternate"></link><published>2018-11-10T13:41:43+08:00</published><updated>2018-11-10T14:16:04+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-10:/pages/2018/11/10/lagrange_duality/</id><summary type="html">&lt;h2&gt;1. 原始问题&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-10T15:44:43+08:00</updated><entry><title>方向导数和梯度</title><link href="https://xutree.github.io/pages/2018/11/10/directional_derivative-gradient/" rel="alternate"></link><published>2018-11-10T15:44:43+08:00</published><updated>2018-11-10T15:44:43+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-10:/pages/2018/11/10/directional_derivative-gradient/</id><summary type="html">&lt;h2&gt;1. 方向导数&lt;/h2&gt;
+&lt;p&gt;多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;定义 1.1（方向导数）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是定义于 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中某区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的函数，点 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt;，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 为一给定的非零向量，&lt;span class="math"&gt;\(P\)&lt;/span&gt; 为一动点，向量 &lt;span class="math"&gt;\(\vec{P_0P}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向始终一致。如果极限
+&lt;div class="math"&gt;$$\lim_{\|P_0P\|\to0}\frac{f(P)-f(P_0}{\|\vec{P_0P}\|}$$&lt;/div&gt;
+存在，则称此极限为函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0 …&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;h2&gt;1. 方向导数&lt;/h2&gt;
+&lt;p&gt;多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;定义 1.1（方向导数）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是定义于 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中某区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的函数，点 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt;，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 为一给定的非零向量，&lt;span class="math"&gt;\(P\)&lt;/span&gt; 为一动点，向量 &lt;span class="math"&gt;\(\vec{P_0P}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向始终一致。如果极限
+&lt;div class="math"&gt;$$\lim_{\|P_0P\|\to0}\frac{f(P)-f(P_0}{\|\vec{P_0P}\|}$$&lt;/div&gt;
+存在，则称此极限为函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处沿 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 方向的方向导数，记作 &lt;span class="math"&gt;\(\frac{\partial f}{\partial l}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;定义 1.2（方向余弦）设 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 是一个 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维非零向量，&lt;span class="math"&gt;\(l_0=\frac{l}{\|l\|}，即 $l_0\)&lt;/span&gt; 是与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 同向的单位向量。取 &lt;span class="math"&gt;\(0\leq\alpha_i\leq\pi\)&lt;/span&gt;，使
+&lt;div class="math"&gt;$$l_0=(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n)$$&lt;/div&gt;
+称
+&lt;div class="math"&gt;$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$&lt;/div&gt;
+为向量 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向余弦。&lt;/p&gt;
+&lt;p&gt;定理 1.1（方向导数计算公式）若函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处可微，向量 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向余弦为 &lt;span class="math"&gt;\(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n\)&lt;/span&gt;，则函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处沿 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 方向的方向导数存在，且
+&lt;div class="math"&gt;$$\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$&lt;/div&gt;
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;证：因为 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处可微，向量 &lt;span class="math"&gt;\(\vec{P_0P}=(\Delta x_1,\Delta x_2,\cdots,\Delta x_n)\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 同向，故
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(P)-f(P_0)=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\Delta x_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\Delta x_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\Delta x_n+o(\|\vec{P_0P}\|)$$&lt;/div&gt;
+&lt;p&gt;
+故
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\lim_{\|\vec{P_0P}\|\to0}\frac{f(P)-f(P_0)}{\|\vec{P_0P}\|}=\lim_{\|\vec{P_0P}\|\to0}\left[\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\frac{\Delta x_1}{\|\vec{P_0P}\|}+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\frac{\Delta x_2}{\|\vec{P_0P}\|}+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\frac{\Delta x_n}{\|\vec{P_0P}\|}+\frac{o(\|\vec{P_0P}\|)}{\|\vec{P_0P}\|}\right] \\
+=\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$&lt;/div&gt;
+&lt;p&gt;
+因为 &lt;span class="math"&gt;\(\frac{\partial f}{\partial l}\bigg\rvert_{P_0}\)&lt;/span&gt; 存在，所以
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$&lt;/div&gt;
+&lt;p&gt;注意：一个函数即使在某一点处连续，可偏导，且沿所有方向的方向导
+数都存在，也不一定在该点可微。所以定义中的可微条件是必须的。&lt;/p&gt;
+&lt;h2&gt;2. 梯度&lt;/h2&gt;
+&lt;p&gt;设函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 定义于 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 的区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上，或者说 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的一个数量场。我们的问题是在点 &lt;span class="math"&gt;\(P\in D\)&lt;/span&gt; 处 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 的方向导数沿哪个方向取得最大值，即沿哪个方向数量场的变化率最大？这就是梯度（gradient）问题。&lt;/p&gt;
+&lt;p&gt;如果向量 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向余弦为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$&lt;/div&gt;
+&lt;p&gt;
+那么 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(P\)&lt;/span&gt; 处沿 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 方向的方向导数为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial f}{\partial l}=\frac{\partial f}{\partial x_1}\cos\alpha_1+\cdots+\frac{\partial f}{\partial x_n}\cos\alpha_n$$&lt;/div&gt;
+&lt;p&gt;
+记 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维向量
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol{g}=\left(\frac{\partial f}{\partial x_1},\cdots,\frac{\partial f}{\partial x_n}\right)$$&lt;/div&gt;
+&lt;p&gt;
+又记 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 方向的单位向量为 &lt;span class="math"&gt;\(\boldsymbol{l_0}\)&lt;/span&gt;，则
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol{l_0}=\left(\cos\alpha_1,\cdots,\cos\alpha_n\right)$$&lt;/div&gt;
+&lt;p&gt;
+故
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial f}{\partial l}=(\boldsymbol{g},\boldsymbol{l_0})$$&lt;/div&gt;
+&lt;p&gt;
+上式右端表示向量内积，由施瓦兹不等式
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\left|\frac{\partial f}{\partial l}\right|=|(\boldsymbol{g},\boldsymbol{l_0})|\leq\|\boldsymbol{g}\|\|\boldsymbol{l_0}\|=\|\boldsymbol{g}\|$$&lt;/div&gt;
+&lt;p&gt;
+当且仅当 &lt;span class="math"&gt;\(\boldsymbol{g}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(\boldsymbol{l_0}\)&lt;/span&gt; 同向时，等号成立。而且
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\max\frac{\partial f}{\partial l}=\|\boldsymbol{g}\|=\left[\sum_{i=1}^n\left(\frac{\partial f}{\partial x_i}\right)^2\right]^{\frac{1}{2}}$$&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;定义 2.1（梯度）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的数量场，如果 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt; 处可微，称向量
+&lt;div class="math"&gt;$$\left(\frac{\partial f}{\partial x_1},\frac{\partial f}{\partial x_2},\cdots,\frac{\partial f}{\partial x_n}\right)\bigg\rvert_{P_0}$$&lt;/div&gt;
+为 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0\)&lt;/span&gt; 处的梯度，记作 &lt;span class="math"&gt;\({\bf grad}f(P_0)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;沿梯度方向，函数值增加最快。同样可知，方向导数的最小值在梯度的相反方向取得。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="数学"></category></entry><entry><title>梯度下降法</title><link href="https://xutree.github.io/pages/2018/11/10/gradient_descent/" rel="alternate"></link><published>2018-11-10T14:18:44+08:00</published><updated>2018-11-10T14:18:44+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-10:/pages/2018/11/10/gradient_descent/</id><summary type="html"></summary><content type="html"></content><category term="数学"></category></entry><entry><title>拉格朗日对偶性</title><link href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/" rel="alternate"></link><published>2018-11-10T13:41:43+08:00</published><updated>2018-11-10T14:16:04+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-10:/pages/2018/11/10/lagrange_duality/</id><summary type="html">&lt;h2&gt;1. 原始问题&lt;/h2&gt;
 &lt;p&gt;假设 &lt;span class="math"&gt;\(f(x)\)&lt;/span&gt;，&lt;span class="math"&gt;\(c_i(x)\)&lt;/span&gt;，&lt;span class="math"&gt;\(h_j(x)\)&lt;/span&gt; 是定义在 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 上的连续可微函数。考虑约束最优化问题：
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\min_{x\in\mathbb{R}^n}f(x) \\
@@ -192,7 +369,7 @@ h_j(x^\star)=0,j=1,2,\cdots,l$$&lt;/div&gt;
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="数学"></category><category term="机器学习"></category><category term="统计学习"></category></entry><entry><title>统计学习方法 第六章 逻辑回归与最大熵模型</title><link href="https://xutree.github.io/pages/2018/11/09/6/" rel="alternate"></link><published>2018-11-09T16:17:17+08:00</published><updated>2018-11-09T17:33:29+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-09:/pages/2018/11/09/6/</id><summary type="html">&lt;p&gt;逻辑回归（logistic regression）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。&lt;/p&gt;
+&lt;/script&gt;</content><category term="数学"></category></entry><entry><title>统计学习方法 第六章 逻辑回归与最大熵模型</title><link href="https://xutree.github.io/pages/2018/11/09/6/" rel="alternate"></link><published>2018-11-09T16:17:17+08:00</published><updated>2018-11-09T17:33:29+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-09:/pages/2018/11/09/6/</id><summary type="html">&lt;p&gt;逻辑回归（logistic regression）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。&lt;/p&gt;
 &lt;p&gt;逻辑回归模型和最大熵模型都属于对数线性模型。&lt;/p&gt;
 &lt;h2&gt;6.1 逻辑回归模型&lt;/h2&gt;
 &lt;h3&gt;6.1.1 逻辑分布&lt;/h3&gt;
