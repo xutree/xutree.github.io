@@ -289,6 +289,64 @@ P(y|x) &amp;=&amp; \exp\left(\sum_{i=1}^nw_if_i(x,y)+w_0-1\right) \\
 故最终的最大熵模型是
 </p>
 <div class="math">$$P^\star=P_{w^\star}=P_{w^\star}(y|x)$$</div>
+<h3>6.2.4 极大似然估计</h3>
+<p>从最大熵模型学习中可以看出，最大熵模型是由下面两个式子表示的条件概率分布：
+</p>
+<div class="math">$$P_w(y|x)=\frac{1}{Z_w(x)}\exp\left(\sum_{i=1}^nw_if_i(x,y)\right) \\
+Z_w(x)=\sum_y\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)$$</div>
+<p>
+下面证明，对偶函数的极大化等价于最大熵模型的极大似然估计。</p>
+<p>最大似然函数的一般形式是样本集中各个样本的联合概率：
+</p>
+<div class="math">$$L(x_1,x_2,\cdots,x_N;\theta)=\prod_{i=1}^{n} p(x_i;\theta)$$</div>
+<p>
+其中利用了数据是独立同分布产生的假设。<span class="math">\(x_1,x_2,\cdots,x_N\)</span> 是样本具体观测值。随机变量 <span class="math">\(X\)</span> 是离散的，所以它的取值范围是一个集合，假设样本集的大小为 <span class="math">\(N\)</span>，<span class="math">\(X\)</span> 的取值有 <span class="math">\(K\)</span> 个，分别是 <span class="math">\(c_1,c_2,\cdots,c_K\)</span>。用 <span class="math">\(v(X=c_i)\)</span>表示在观测值中样本 <span class="math">\(c_i\)</span> 出现的频数。则：
+</p>
+<div class="math">$$L(x_1,x_2,\cdots,x_N;\theta)=\prod_{i=1}^{k}p(v_i;\theta)^{v(X=c_i)}$$</div>
+<p>
+对等式两边同时开 <span class="math">\(N\)</span> 次方，可得：
+</p>
+<div class="math">$$L(x_1,x_2,\cdots,x_N;\theta)^{\frac{1}{N}}=\prod_{i=1}^{k}p(v_i;\theta)^{\frac{v(X=c_i)}{N}}$$</div>
+<p>
+因为经验概率 <span class="math">\(\tilde{p}(x)=\frac{v(X=c_i)}{N}\)</span>，所以：
+</p>
+<div class="math">$$L(x_1,x_2,\cdots,x_N;\theta)^{\frac{1}{N}}=\prod_{x}p(x;\theta)^{\tilde{p}(x)}$$</div>
+<p>
+很明显对 <span class="math">\(L(x_1,x_2,\cdots,x_N;\theta)\)</span> 求最大值和对 <span class="math">\(L(x_1,x_2,\cdots,x_N;\theta)^{\frac{1}{N}}\)</span>求最大值的优化的结果是一样的。整理上式所以最终的最大似然函数可以表示为：
+</p>
+<div class="math">$$L(x;\theta)=\prod_{x} p(x;\theta)^{\tilde{p}(x)}$$</div>
+<p>已知训练数据的经验概率分布 <span class="math">\(\tilde{P}(X,Y)\)</span>，条件概率分布 <span class="math">\(P(Y|X)\)</span> 的对数似然函数表示为：
+</p>
+<div class="math">$$L_{\tilde{P}}(P_w)=\log\prod_{x,y}P(y|x)^{\tilde{P}(x,y)}=\sum_{x,y}\tilde{P}(x,y)\log P(y|x)$$</div>
+<p>
+当条件概率分布 <span class="math">\(P(y|x)\)</span> 是最大熵模型时，对数似然函数为
+</p>
+<div class="math">$$\begin{eqnarray}
+L_{\tilde{P}}(P_w) &amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\log P(y|x) \\
+&amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^nw_if_i(x,y)-\sum_{x,y}\tilde{P}(x,y)\log Z_w(x) \\
+&amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^nw_if_i(x,y)-\sum_x\tilde{P}(x)\log Z_w(x)
+\end{eqnarray}$$</div>
+<p>
+再看对偶函数 <span class="math">\(\Psi(w)\)</span>:
+</p>
+<div class="math">$$\begin{eqnarray}
+\Psi(w) &amp;=&amp; \sum_{x,y}\tilde{P}(x)P_w(y|x)\log P_w(y|x)+w_0\left(1-\sum_yP_w(y|x)\right) \\
+&amp;+&amp; \sum_{i=1}^nw_i\left(\sum_{x,y}\tilde{P}(x,y)f_i(x,y)-\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)\right) \\
+&amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^nw_if_i(x,y) \\
+&amp;+&amp; \sum_{x,y}\tilde{P}(x)P_w(y|x)\left(\log P_w(y|x)-\sum_{i=1}^nw_if_i(x,y)\right) \\
+&amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^nw_if_i(x,y)-\sum_{x,y}\tilde{P}(x)P_w(y|x)\log Z_w(x) \\
+&amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^nw_if_i(x,y)-\sum_{x}\tilde{P}(x)\log Z_w(x)
+\end{eqnarray}$$</div>
+<p>
+其中利用了 <span class="math">\(\sum_yP(y|x)=1\)</span>。</p>
+<p>比较易得 <span class="math">\(\Psi(w)=L_{\tilde{P}}(P_w)\)</span>，于是证明了最大熵学习中的对偶函数极大化等价于最大熵模型的极大似然估计这一事实。这样，最大熵模型的学习问题就转换为具体求解对数似然函数极大化或对偶函数极大化的问题。</p>
+<p>可以将最大熵模型写成更一般的形式：
+</p>
+<div class="math">$$P_w(y|x)=\frac{1}{Z_w(x)}\exp\left(\sum_{i=1}^nw_if_i(x,y)\right) \\
+Z_w(x)=\sum_y\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)$$</div>
+<p>
+这里，<span class="math">\(x\in\mathbb{R}^n\)</span> 为输入，<span class="math">\(y\in\{1,2,\cdots,K\}\)</span> 为输出，<span class="math">\(w\in\mathbb{R}^n\)</span> 为权值向量，<span class="math">\(f_i(x,y)\)</span>，<span class="math">\(i=1,2,\cdots,n\)</span> 为任意实值特征函数。</p>
+<p>最大熵模型与逻辑回归模型有着类似的形式，它们又称为对数线性模型（log linear model）。模型学习就是在给定的训练数据条件下对模型进行极大似然估计或正则化的极大似然估计。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -425,7 +483,7 @@ P(y|x) &amp;=&amp; \exp\left(\sum_{i=1}^nw_if_i(x,y)+w_0-1\right) \\
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-09T16:17:17+08:00">2018-11-09 16:17:17</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-10 20:36:09</div>
+                    <div class="last_updated">2018-11-11 00:20:19</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
