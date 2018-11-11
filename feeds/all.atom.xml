@@ -835,14 +835,14 @@ $$&lt;/div&gt;
 算法 6.2（最大熵模型学习的 BFGS）算法&lt;br&gt;
 输入：特征函数 &lt;span class="math"&gt;\(f_1,f_2,\cdots,f_n\)&lt;/span&gt;；经验分布 &lt;span class="math"&gt;\(\tilde{P}(x,y)\)&lt;/span&gt;，目标函数 &lt;span class="math"&gt;\(f(w)\)&lt;/span&gt;，梯度 &lt;span class="math"&gt;\(g(w)=\nabla f(w)\)&lt;/span&gt;，精度要求 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt;&lt;br&gt;
 输出：最优化参数值 &lt;span class="math"&gt;\(w^\star\)&lt;/span&gt;；最优模型 &lt;span class="math"&gt;\(P_{w^\star}(y|x)\)&lt;/span&gt;&lt;br&gt;
-(1) 选定初始点 &lt;span class="math"&gt;\(w^{(0)}\)&lt;/span&gt;，取 &lt;span class="math"&gt;\(\boldsymbol{B_0}\)&lt;/span&gt; 为正定对称矩阵，置 &lt;span class="math"&gt;\(k=0\)&lt;/span&gt;&lt;br&gt;
+(1) 选定初始点 &lt;span class="math"&gt;\(w^{(0)}\)&lt;/span&gt;，取 &lt;span class="math"&gt;\({\bf B_0}\)&lt;/span&gt; 为正定对称矩阵，置 &lt;span class="math"&gt;\(k=0\)&lt;/span&gt;&lt;br&gt;
 (2) 计算 &lt;span class="math"&gt;\(g_k=g(w^{(k)})\)&lt;/span&gt;，若 &lt;span class="math"&gt;\(\|g_k\|&amp;lt;\epsilon\)&lt;/span&gt;，则停止计算，得 &lt;span class="math"&gt;\(w^\star=w^{(k)}\)&lt;/span&gt;；否则，转到 (3)&lt;br&gt;
-(3) 由 &lt;span class="math"&gt;\(\boldsymbol{B_k}p_k=-g_k\)&lt;/span&gt; 求出 &lt;span class="math"&gt;\(p_k\)&lt;/span&gt;&lt;br&gt;
+(3) 由 &lt;span class="math"&gt;\({\bf B_k}p_k=-g_k\)&lt;/span&gt; 求出 &lt;span class="math"&gt;\(p_k\)&lt;/span&gt;&lt;br&gt;
 (4) 一维搜索：求 &lt;span class="math"&gt;\(\lambda_k\)&lt;/span&gt; 使得
 &lt;div class="math"&gt;$$f(w^{(k)}+\lambda_kp_k)=\min_{\lambda\geq0}f(w^{(k)}+\lambda p_k)$$&lt;/div&gt;
 (5) 置 &lt;span class="math"&gt;\(w^{(k+1)}=w^{(k)}+\lambda_k p_k\)&lt;/span&gt;&lt;br&gt;
-(6) 计算 &lt;span class="math"&gt;\(g_{k+1}=g(w^{(k+1)})\)&lt;/span&gt;，若 &lt;span class="math"&gt;\(\|g_{k+1}\|&amp;lt;\epsilon\)&lt;/span&gt;，则停止计算，得 &lt;span class="math"&gt;\(w^\star=w^{(k+1)}\)&lt;/span&gt;；否则，按照下式求出 &lt;span class="math"&gt;\(\boldsymbol{B_{k+1}}\)&lt;/span&gt;
-&lt;div class="math"&gt;$$\boldsymbol{B_{k+1}}=\boldsymbol{B_k}+\frac{y_ky_k^\text{T}}{y_k^\text{T}\delta_k}-\frac{\boldsymbol{B_k}\delta_k\delta_k^\text{T}\boldsymbol{B_k}}{\delta_k^\text{T}\boldsymbol{B_k}\delta_k}$$&lt;/div&gt;
+(6) 计算 &lt;span class="math"&gt;\(g_{k+1}=g(w^{(k+1)})\)&lt;/span&gt;，若 &lt;span class="math"&gt;\(\|g_{k+1}\|&amp;lt;\epsilon\)&lt;/span&gt;，则停止计算，得 &lt;span class="math"&gt;\(w^\star=w^{(k+1)}\)&lt;/span&gt;；否则，按照下式求出 &lt;span class="math"&gt;\({\bf B_{k+1}}\)&lt;/span&gt;
+&lt;div class="math"&gt;$${\bf B_{k+1}}={\bf B_k}+\frac{y_ky_k^\text{T}}{y_k^\text{T}\delta_k}-\frac{{\bf B_k}\delta_k\delta_k^\text{T}{\bf B_k}}{\delta_k^\text{T}{\bf B_k}\delta_k}$$&lt;/div&gt;
 其中，
 &lt;div class="math"&gt;$$y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)}$$&lt;/div&gt;
 (7) 置 &lt;span class="math"&gt;\(k=k+1\)&lt;/span&gt;，转到 (3)
