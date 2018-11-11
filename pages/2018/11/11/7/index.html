@@ -62,7 +62,7 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>支持向量机（support vector machines，SVM）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。</p>
+                <p>支持向量机（support vector machines，SVM）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于<a href="https://xutree.github.io/pages/2018/11/04/2/">感知机</a>；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。</p>
 <p>支持向量机的学习策略就是间隔最大化，可形式化为一个求解凸二次规划（convex quadratic programming）的问题，也等价于正则化的合页损失函数的最小化问题。支持向量机的学习算法是求解凸二次规划的最优化算法。</p>
 <p>支持向量机学习方法包含构建由间至繁的模型：</p>
 <ul>
@@ -155,6 +155,101 @@ $$</div>
 <h4>最大间隔分离超平面的存在唯一性</h4>
 <p><strong>
 定理 7.1（最大间隔分离超平面的存在唯一性）若训练数据集线性可分，则可将训练数据集中的样本点完全正确分开的最大间隔分离超平面存在且唯一。
+</strong></p>
+<h4>支持向量和间隔边界</h4>
+<p>在线性可分情况下，训练数据集的样本点中与分离超平面距离最近的样本点的实例称为支持向量（support vector）。支持向量是约束条件
+</p>
+<div class="math">$$y_i\left(w\cdot x_i+b\right)-1\geq0,\ i=1,2,\cdots,N$$</div>
+<p>
+等号成立的点，即
+</p>
+<div class="math">$$y_i(w\cdot x_i+b)-1=0$$</div>
+<p>
+对 <span class="math">\(y_i=+1\)</span> 的正例点，支持向量在超平面
+</p>
+<div class="math">$$H_1:\ w\cdot x+b=1$$</div>
+<p>
+上。对 <span class="math">\(y_i=-1\)</span> 的负例点，支持向量在超平面
+</p>
+<div class="math">$$H_2:\ w\cdot x+b=-1$$</div>
+<p>
+上。</p>
+<p><img alt="支持向量和间隔边界" src="https://xutree.github.io/images/statistical_learning_7.3.png"></p>
+<p>注意到 <span class="math">\(H_1\)</span> 和 <span class="math">\(H_2\)</span> 平行，之间的距离称为间隔（margin）。间隔依赖于分离超平面的法向量，等于 <span class="math">\(\frac{2}{\|w\|}\)</span>，<span class="math">\(H_1\)</span> 和 <span class="math">\(H_2\)</span> 称为间隔边界。</p>
+<p>所有的支持向量都精确的落在边缘上。不管空间的维度有多大，或者数据集合有多大，支持向量的个数一般很少，都可以像 2 个这么小。在决定分离超平面时，只有支持向量起着至关重要的作用，其他的点并不起作用。所以支持向量机是由这些很少的、很“重要的”训练数据决定的。</p>
+<h3>7.1.4 学习的对偶算法</h3>
+<p>为了求解线性可分支持向量机的最优化问题
+</p>
+<div class="math">$$\min_{w,b}\ \frac{1}{2}\|w\|^2 \\
+\text{s.t.}\ \ \ \ y_i\left(w\cdot x_i+b\right)-1\geq0,\ i=1,2,\cdots,N$$</div>
+<p>
+可以构造对偶问题。这样做的优点，一是对偶问题往往更容易求解；二是自然引入核函数，进而推广到非线性分类问题。</p>
+<p>定义<a href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/">拉格朗日函数</a>：
+</p>
+<div class="math">$$L(w,b,\alpha)=\frac{1}{2}\|w\|^2-\sum_{i=1}^N\alpha_iy_i(w\cdot x_i+b)+\sum_{i=1}^N\alpha_i$$</div>
+<p>
+其中，<span class="math">\(\alpha_i\geq0\)</span>，<span class="math">\(\alpha=(\alpha_1,\alpha_2,\cdots,\alpha_N)^\text{T}\)</span> 为拉格朗日乘子向量。</p>
+<p>根据拉格朗日对偶性，原始问题的对偶问题是极大极小问题：
+</p>
+<div class="math">$$\max_\alpha\min_{w,b}L(w,b,\alpha)$$</div>
+<p><span class="math">\(\blacksquare\)</span> 求 <span class="math">\(\min_{w,b}L(w,b,\alpha)\)</span></p>
+<p>求偏导并令偏导为 0
+</p>
+<div class="math">$$\nabla_wL(w,b,\alpha)=w-\sum_{i=1}^N\alpha_iy_ix_i=0 \\
+\nabla_bL(w,b,\alpha)=-\sum_{i=1}^N\alpha_iy_i=0$$</div>
+<p>
+得
+</p>
+<div class="math">$$w=\sum_{i=1}^N\alpha_iy_ix_i \\
+\sum_{i=1}^N\alpha_iy_i=0$$</div>
+<p>
+利用上面两式，得
+</p>
+<div class="math">$$L(w,b,\alpha)=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)+\sum_{i=1}^N\alpha_i$$</div>
+<p>
+即
+</p>
+<div class="math">$$\min_{w,b}L(w,b,\alpha)=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)+\sum_{i=1}^N\alpha_i$$</div>
+<p><span class="math">\(\blacksquare\)</span> 求 <span class="math">\(\min_{w,b}L(w,b,\alpha)\)</span> 对 <span class="math">\(\alpha\)</span> 的极大</p>
+<p>即是求对偶问题
+</p>
+<div class="math">$$\max_\alpha -\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)+\sum_{i=1}^N\alpha_i \\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+\sum_{i=1}^N\alpha_iy_i &amp;=&amp; 0 \\
+\alpha_i \geq 0,\ i &amp;=&amp; 1,2,\cdots,N
+\end{eqnarray}$$</div>
+<p>
+也就是下面等价的最小化问题
+</p>
+<div class="math">$$\min_\alpha \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)-\sum_{i=1}^N\alpha_i \\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+\sum_{i=1}^N\alpha_iy_i &amp;=&amp; 0 \\
+\alpha_i \geq 0,\ i &amp;=&amp; 1,2,\cdots,N
+\end{eqnarray}$$</div>
+<p>原始最优化问题和对偶最优化问题满足拉格朗日对偶性<a href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/">定理 2</a> 的条件，所以存在 <span class="math">\(w^\star\)</span>，<span class="math">\(b^\star\)</span> 和 <span class="math">\(\alpha^\star\)</span> 使 <span class="math">\(w^\star\)</span>，<span class="math">\(b^\star\)</span>是原始问题的解，<span class="math">\(\alpha^\star\)</span>是对偶问题的解。</p>
+<p>对线性可分训练数据集，假设对偶最优化问题的解是
+</p>
+<div class="math">$$\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}$$</div>
+<p>
+可以由下面的定理求得 <span class="math">\(w^\star\)</span> 和 <span class="math">\(b^\star\)</span>。</p>
+<p><strong>
+定理 7.2 设 <span class="math">\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)</span> 是对偶最优问题的解，则存在下标 <span class="math">\(j\)</span>，使得 <span class="math">\(\alpha_j&gt;0\)</span>，并且可按下式求得原始最优化问题的解
+<div class="math">$$w^\star=\sum_{i=1}^N\alpha_i^\star y_ix_i \\
+b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$</div>
+</strong></p>
+<p>由此定理可知，分离超平面可以写成
+</p>
+<div class="math">$$\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star=0$$</div>
+<p>
+分类决策函数可以写成
+</p>
+<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star\right)$$</div>
+<p>
+分类决策函数只依赖于输入 <span class="math">\(x\)</span> 和训练样本输入的内积。上式称为线性可分支持向量机的对偶形式。</p>
+<p><strong>
+算法 7.2（线性可分支持向量机学习算法）<br>
+输入：线性可分训练数据集 <span class="math">\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)</span>，其中 <span class="math">\(x_i\in{\cal X}=\mathbb{R}^n\)</span>，<span class="math">\(y_i\in{\cal Y}=\{+1,-1\}\)</span>，<span class="math">\(i=1,2,\cdots,N\)</span><br>
+输出：分离超平面和分类决策函数
 </strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
