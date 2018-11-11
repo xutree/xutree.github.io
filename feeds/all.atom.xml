@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-11T17:55:33+08:00</updated><entry><title>统计学习方法 第七章 支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/7/" rel="alternate"></link><published>2018-11-11T13:47:48+08:00</published><updated>2018-11-11T17:55:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/7/</id><summary type="html">&lt;p&gt;支持向量机（support vector machines，SVM）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于&lt;a href="https://xutree.github.io/pages/2018/11/04/2/"&gt;感知机&lt;/a&gt;；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-11T17:55:33+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（1）——线性可分支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/7/" rel="alternate"></link><published>2018-11-11T13:47:48+08:00</published><updated>2018-11-11T17:55:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/7/</id><summary type="html">&lt;p&gt;支持向量机（support vector machines，SVM）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于&lt;a href="https://xutree.github.io/pages/2018/11/04/2/"&gt;感知机&lt;/a&gt;；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。&lt;/p&gt;
 &lt;p&gt;支持向量机的学习策略就是间隔最大化，可形式化为一个求解凸二次规划（convex quadratic programming）的问题，也等价于正则化的合页损失函数的最小化问题。支持向量机的学习算法是求解凸二次规划的最优化算法。&lt;/p&gt;
 &lt;p&gt;支持向量机学习方法包含构建由间至繁的模型：&lt;/p&gt;
 &lt;ul&gt;
@@ -192,8 +192,24 @@ b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;
 算法 7.2（线性可分支持向量机学习算法）&lt;br&gt;
 输入：线性可分训练数据集 &lt;span class="math"&gt;\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)&lt;/span&gt;，其中 &lt;span class="math"&gt;\(x_i\in{\cal X}=\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_i\in{\cal Y}=\{+1,-1\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;&lt;br&gt;
-输出：分离超平面和分类决策函数
+输出：分离超平面和分类决策函数&lt;br&gt;
+(1) 构造并求解约束最优化问题
+&lt;div class="math"&gt;$$\min_\alpha \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)-\sum_{i=1}^N\alpha_i \\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+\sum_{i=1}^N\alpha_iy_i &amp;amp;=&amp;amp; 0 \\
+\alpha_i \geq 0,\ i &amp;amp;=&amp;amp; 1,2,\cdots,N
+\end{eqnarray}$$&lt;/div&gt;
+求得最优解 &lt;span class="math"&gt;\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)&lt;/span&gt;&lt;br&gt;
+(2) 计算
+&lt;div class="math"&gt;$$w^\star=\sum_{i=1}^N\alpha_i^\star y_ix_i$$&lt;/div&gt;
+并选择 &lt;span class="math"&gt;\(\alpha^\star\)&lt;/span&gt; 的一个正分量 &lt;span class="math"&gt;\(\alpha_j^\star&amp;gt;0\)&lt;/span&gt;，计算
+&lt;div class="math"&gt;$$b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$&lt;/div&gt;
+(3) 求得分离超平面
+&lt;div class="math"&gt;$$\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star=0$$&lt;/div&gt;
+分类决策函数
+&lt;div class="math"&gt;$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star\right)$$&lt;/div&gt;
 &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;由公式知 &lt;span class="math"&gt;\(w^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(b^\star\)&lt;/span&gt; 只依赖于训练数据中对于与 &lt;span class="math"&gt;\(\alpha_i^\star&amp;gt;0\)&lt;/span&gt; 的样本点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt;，我们将这些实例点称为支持向量。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

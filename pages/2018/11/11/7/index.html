@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
-    <title>统计学习方法 第七章 支持向量机  · You Know Nothing
+    <title>统计学习方法 第七章 支持向量机（1）——线性可分支持向量机  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -54,7 +54,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/11/7/"> 统计学习方法 第七章 支持向量机  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/11/7/"> 统计学习方法 第七章 支持向量机（1）——线性可分支持向量机  </a></h1>
         </header>
     </div>
 
@@ -249,8 +249,24 @@ b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$</div>
 <p><strong>
 算法 7.2（线性可分支持向量机学习算法）<br>
 输入：线性可分训练数据集 <span class="math">\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)</span>，其中 <span class="math">\(x_i\in{\cal X}=\mathbb{R}^n\)</span>，<span class="math">\(y_i\in{\cal Y}=\{+1,-1\}\)</span>，<span class="math">\(i=1,2,\cdots,N\)</span><br>
-输出：分离超平面和分类决策函数
+输出：分离超平面和分类决策函数<br>
+(1) 构造并求解约束最优化问题
+<div class="math">$$\min_\alpha \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)-\sum_{i=1}^N\alpha_i \\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+\sum_{i=1}^N\alpha_iy_i &amp;=&amp; 0 \\
+\alpha_i \geq 0,\ i &amp;=&amp; 1,2,\cdots,N
+\end{eqnarray}$$</div>
+求得最优解 <span class="math">\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)</span><br>
+(2) 计算
+<div class="math">$$w^\star=\sum_{i=1}^N\alpha_i^\star y_ix_i$$</div>
+并选择 <span class="math">\(\alpha^\star\)</span> 的一个正分量 <span class="math">\(\alpha_j^\star&gt;0\)</span>，计算
+<div class="math">$$b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$</div>
+(3) 求得分离超平面
+<div class="math">$$\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star=0$$</div>
+分类决策函数
+<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star\right)$$</div>
 </strong></p>
+<p>由公式知 <span class="math">\(w^\star\)</span>，<span class="math">\(b^\star\)</span> 只依赖于训练数据中对于与 <span class="math">\(\alpha_i^\star&gt;0\)</span> 的样本点 <span class="math">\((x_i,y_i)\)</span>，我们将这些实例点称为支持向量。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
