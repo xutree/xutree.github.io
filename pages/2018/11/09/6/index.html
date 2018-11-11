@@ -430,18 +430,51 @@ B(\delta|w) &amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^n\delta_if_i(x,y)+1 \
 输出：最优参数值 <span class="math">\(w_i^\star\)</span>；最优模型 <span class="math">\(P_{w^\star}\)</span><br>
 (1) 对所有 <span class="math">\(i\in\{1,2,\cdots,n\}\)</span>，取初值 <span class="math">\(w_i=0\)</span><br>
 (2) 对每一 <span class="math">\(i\in\{1,2,\cdots,n\}\)</span>：<br>
-\ \ \ \ \ \ \ (a) 令 <span class="math">\(\delta_i\)</span> 是方程
+(2.a) 令 <span class="math">\(\delta_i\)</span> 是方程
 <div class="math">$$\sum_x\tilde{P}(x)\sum_yP_w(y|x)f_i(x,y)\exp\left(\delta_if^\sharp(x,y)\right)=\text{E}_{\tilde{P}}(f_i)$$</div>
-\ \ \ \ \ \ \ 的解，这里
+的解，这里
 <div class="math">$$f^\sharp(x,y)=\sum_{i=1}^nf_i(x,y)$$</div><br>
-\ \ \ \ \ \ \ (b) 更新：<span class="math">\(w_i\leftarrow w_i+\delta_i\)</span><br>
+(2.b) 更新：<span class="math">\(w_i\leftarrow w_i+\delta_i\)</span><br>
 (3) 如果不是所有 <span class="math">\(w_i\)</span> 都收敛，重复步骤 (2)
 </strong></p>
-<p>这一算法关键步骤是 (a)，如果 <span class="math">\(f^\sharp(x,y)\)</span> 是常数，即对任意的 <span class="math">\(x\)</span>，<span class="math">\(y\)</span>，有 <span class="math">\(f^\sharp(x,y)=M\)</span>，那么 <span class="math">\(\delta_i\)</span> 可以显示的表示为
+<p>这一算法关键步骤是 (2.a)，如果 <span class="math">\(f^\sharp(x,y)\)</span> 是常数，即对任意的 <span class="math">\(x\)</span>，<span class="math">\(y\)</span>，有 <span class="math">\(f^\sharp(x,y)=M\)</span>，那么 <span class="math">\(\delta_i\)</span> 可以显示的表示为
 </p>
 <div class="math">$$\delta_i=\frac{1}{M}\log\frac{\text{E}_\tilde{P}(f_i)}{\text{E}_P(f_i)}$$</div>
 <p>
 如果 <span class="math">\(f^\sharp(x,y)\)</span> 不是常数，就必须数值计算求 <span class="math">\(\delta_i\)</span>，简单有效的方法是牛顿法，由于方程有单根，因此牛顿法恒收敛，且收敛速度很快。</p>
+<h3>6.3.2 拟牛顿法</h3>
+<p>最大熵模型学习还可以应用牛顿法或拟牛顿法。</p>
+<p>对于最大熵模型
+</p>
+<div class="math">$$P_w(y|x)=\frac{\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)}{\sum_y\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)}$$</div>
+<p>目标函数为：
+</p>
+<div class="math">$$\min_{w\in\mathbb{R}^n}\ \ f(w)=\sum_x\tilde{P}(x)\log\sum_y\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)-\sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^nw_if_i(x,y)
+$$</div>
+<p>
+梯度：
+</p>
+<div class="math">$$g(w)=\left(\frac{\partial f(w)}{\partial w_1},\frac{\partial f(w)}{\partial w_2},\cdots,\frac{\partial f(w)}{\partial w_n}\right)^\text{T}$$</div>
+<p>
+其中
+</p>
+<div class="math">$$\frac{\partial f(w)}{\partial w_i}=\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)-\text{E}_{\tilde{P}}(f_i),i=1,2,\cdots,n$$</div>
+<p><strong>
+算法 6.2（最大熵模型学习的 BFGS）算法<br>
+输入：特征函数 <span class="math">\(f_1,f_2,\cdots,f_n\)</span>；经验分布 <span class="math">\(\tilde{P}(x,y)\)</span>，目标函数 <span class="math">\(f(w)\)</span>，梯度 <span class="math">\(g(w)=\nabla f(w)\)</span>，精度要求 <span class="math">\(\epsilon\)</span><br>
+输出：最优化参数值 <span class="math">\(w^\star\)</span>；最优模型 <span class="math">\(P_{w^\star}(y|x)\)</span><br>
+(1) 选定初始点 <span class="math">\(w^{(0)}\)</span>，取 <span class="math">\(\boldsymbol{B_0}\)</span> 为正定对称矩阵，置 <span class="math">\(k=0\)</span><br>
+(2) 计算 <span class="math">\(g_k=g(w^{(k)})\)</span>，若 <span class="math">\(\|g_k\|&lt;\epsilon\)</span>，则停止计算，得 <span class="math">\(w^\star=w^{(k)}\)</span>；否则，转到 (3)<br>
+(3) 由 <span class="math">\(\boldsymbol{B_k}p_k=-g_k\)</span> 求出 <span class="math">\(p_k\)</span><br>
+(4) 一维搜索：求 <span class="math">\(\lambda_k\)</span> 使得
+<div class="math">$$f(w^{(k)}+\lambda_kp_k)=\min_{\lambda\geq0}f(w^{(k)}+\lambda p_k)$$</div>
+(5) 置 <span class="math">\(w^{(k+1)}=w^{(k)}+\lambda_k p_k\)</span><br>
+(6) 计算 <span class="math">\(g_{k+1}=g(w^{(k+1)})\)</span>，若 <span class="math">\(\|g_{k+1}\|&lt;\epsilon\)</span>，则停止计算，得 <span class="math">\(w^\star=w^{(k+1)}\)</span>；否则，按照下式求出 <span class="math">\(\boldsymbol{B_{k+1}}\)</span>
+<div class="math">$$\boldsymbol{B_{k+1}}=\boldsymbol{B_k}+\frac{y_ky_k^\text{T}}{y_k^\text{T}\delta_k}-\frac{\boldsymbol{B_k}\delta_k\delta_k^\text{T}\boldsymbol{B_k}}{\delta_k^\text{T}\boldsymbol{B_k}\delta_k}$$</div>
+其中，
+<div class="math">$$y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)}$$</div>
+(7) 置 <span class="math">\(k=k+1\)</span>，转到 (3)
+</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -578,7 +611,7 @@ B(\delta|w) &amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^n\delta_if_i(x,y)+1 \
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-09T16:17:17+08:00">2018-11-09 16:17:17</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-11 10:53:13</div>
+                    <div class="last_updated">2018-11-11 13:21:32</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-11T10:53:13+08:00</updated><entry><title>方向导数和梯度</title><link href="https://xutree.github.io/pages/2018/11/10/directional_derivative-gradient/" rel="alternate"></link><published>2018-11-10T15:44:43+08:00</published><updated>2018-11-10T15:44:43+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-10:/pages/2018/11/10/directional_derivative-gradient/</id><summary type="html">&lt;h2&gt;1. 方向导数&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-11T13:21:32+08:00</updated><entry><title>方向导数和梯度</title><link href="https://xutree.github.io/pages/2018/11/10/directional_derivative-gradient/" rel="alternate"></link><published>2018-11-10T15:44:43+08:00</published><updated>2018-11-10T15:44:43+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-10:/pages/2018/11/10/directional_derivative-gradient/</id><summary type="html">&lt;h2&gt;1. 方向导数&lt;/h2&gt;
 &lt;p&gt;多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;
 定义 1.1（方向导数）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是定义于 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中某区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的函数，点 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt;，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 为一给定的非零向量，&lt;span class="math"&gt;\(P\)&lt;/span&gt; 为一动点，向量 &lt;span class="math"&gt;\(\vec{P_0P}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向始终一致。如果极限
@@ -372,7 +372,7 @@ h_j(x^\star)=0,j=1,2,\cdots,l$$&lt;/div&gt;
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="数学"></category></entry><entry><title>统计学习方法 第六章 逻辑回归与最大熵模型</title><link href="https://xutree.github.io/pages/2018/11/09/6/" rel="alternate"></link><published>2018-11-09T16:17:17+08:00</published><updated>2018-11-11T10:53:13+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-09:/pages/2018/11/09/6/</id><summary type="html">&lt;p&gt;逻辑回归（logistic regression）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。&lt;/p&gt;
+&lt;/script&gt;</content><category term="数学"></category></entry><entry><title>统计学习方法 第六章 逻辑回归与最大熵模型</title><link href="https://xutree.github.io/pages/2018/11/09/6/" rel="alternate"></link><published>2018-11-09T16:17:17+08:00</published><updated>2018-11-11T13:21:32+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-09:/pages/2018/11/09/6/</id><summary type="html">&lt;p&gt;逻辑回归（logistic regression）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。&lt;/p&gt;
 &lt;p&gt;逻辑回归模型和最大熵模型都属于对数线性模型。&lt;/p&gt;
 &lt;h2&gt;6.1 逻辑回归模型&lt;/h2&gt;
 &lt;h3&gt;6.1.1 逻辑分布&lt;/h3&gt;
@@ -802,18 +802,51 @@ B(\delta|w) &amp;amp;=&amp;amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^n\delta_if_i(
 输出：最优参数值 &lt;span class="math"&gt;\(w_i^\star\)&lt;/span&gt;；最优模型 &lt;span class="math"&gt;\(P_{w^\star}\)&lt;/span&gt;&lt;br&gt;
 (1) 对所有 &lt;span class="math"&gt;\(i\in\{1,2,\cdots,n\}\)&lt;/span&gt;，取初值 &lt;span class="math"&gt;\(w_i=0\)&lt;/span&gt;&lt;br&gt;
 (2) 对每一 &lt;span class="math"&gt;\(i\in\{1,2,\cdots,n\}\)&lt;/span&gt;：&lt;br&gt;
-\ \ \ \ \ \ \ (a) 令 &lt;span class="math"&gt;\(\delta_i\)&lt;/span&gt; 是方程
+(2.a) 令 &lt;span class="math"&gt;\(\delta_i\)&lt;/span&gt; 是方程
 &lt;div class="math"&gt;$$\sum_x\tilde{P}(x)\sum_yP_w(y|x)f_i(x,y)\exp\left(\delta_if^\sharp(x,y)\right)=\text{E}_{\tilde{P}}(f_i)$$&lt;/div&gt;
-\ \ \ \ \ \ \ 的解，这里
+的解，这里
 &lt;div class="math"&gt;$$f^\sharp(x,y)=\sum_{i=1}^nf_i(x,y)$$&lt;/div&gt;&lt;br&gt;
-\ \ \ \ \ \ \ (b) 更新：&lt;span class="math"&gt;\(w_i\leftarrow w_i+\delta_i\)&lt;/span&gt;&lt;br&gt;
+(2.b) 更新：&lt;span class="math"&gt;\(w_i\leftarrow w_i+\delta_i\)&lt;/span&gt;&lt;br&gt;
 (3) 如果不是所有 &lt;span class="math"&gt;\(w_i\)&lt;/span&gt; 都收敛，重复步骤 (2)
 &lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;这一算法关键步骤是 (a)，如果 &lt;span class="math"&gt;\(f^\sharp(x,y)\)&lt;/span&gt; 是常数，即对任意的 &lt;span class="math"&gt;\(x\)&lt;/span&gt;，&lt;span class="math"&gt;\(y\)&lt;/span&gt;，有 &lt;span class="math"&gt;\(f^\sharp(x,y)=M\)&lt;/span&gt;，那么 &lt;span class="math"&gt;\(\delta_i\)&lt;/span&gt; 可以显示的表示为
+&lt;p&gt;这一算法关键步骤是 (2.a)，如果 &lt;span class="math"&gt;\(f^\sharp(x,y)\)&lt;/span&gt; 是常数，即对任意的 &lt;span class="math"&gt;\(x\)&lt;/span&gt;，&lt;span class="math"&gt;\(y\)&lt;/span&gt;，有 &lt;span class="math"&gt;\(f^\sharp(x,y)=M\)&lt;/span&gt;，那么 &lt;span class="math"&gt;\(\delta_i\)&lt;/span&gt; 可以显示的表示为
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\delta_i=\frac{1}{M}\log\frac{\text{E}_\tilde{P}(f_i)}{\text{E}_P(f_i)}$$&lt;/div&gt;
 &lt;p&gt;
 如果 &lt;span class="math"&gt;\(f^\sharp(x,y)\)&lt;/span&gt; 不是常数，就必须数值计算求 &lt;span class="math"&gt;\(\delta_i\)&lt;/span&gt;，简单有效的方法是牛顿法，由于方程有单根，因此牛顿法恒收敛，且收敛速度很快。&lt;/p&gt;
+&lt;h3&gt;6.3.2 拟牛顿法&lt;/h3&gt;
+&lt;p&gt;最大熵模型学习还可以应用牛顿法或拟牛顿法。&lt;/p&gt;
+&lt;p&gt;对于最大熵模型
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P_w(y|x)=\frac{\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)}{\sum_y\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)}$$&lt;/div&gt;
+&lt;p&gt;目标函数为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_{w\in\mathbb{R}^n}\ \ f(w)=\sum_x\tilde{P}(x)\log\sum_y\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)-\sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^nw_if_i(x,y)
+$$&lt;/div&gt;
+&lt;p&gt;
+梯度：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$g(w)=\left(\frac{\partial f(w)}{\partial w_1},\frac{\partial f(w)}{\partial w_2},\cdots,\frac{\partial f(w)}{\partial w_n}\right)^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+其中
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\partial f(w)}{\partial w_i}=\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)-\text{E}_{\tilde{P}}(f_i),i=1,2,\cdots,n$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 6.2（最大熵模型学习的 BFGS）算法&lt;br&gt;
+输入：特征函数 &lt;span class="math"&gt;\(f_1,f_2,\cdots,f_n\)&lt;/span&gt;；经验分布 &lt;span class="math"&gt;\(\tilde{P}(x,y)\)&lt;/span&gt;，目标函数 &lt;span class="math"&gt;\(f(w)\)&lt;/span&gt;，梯度 &lt;span class="math"&gt;\(g(w)=\nabla f(w)\)&lt;/span&gt;，精度要求 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt;&lt;br&gt;
+输出：最优化参数值 &lt;span class="math"&gt;\(w^\star\)&lt;/span&gt;；最优模型 &lt;span class="math"&gt;\(P_{w^\star}(y|x)\)&lt;/span&gt;&lt;br&gt;
+(1) 选定初始点 &lt;span class="math"&gt;\(w^{(0)}\)&lt;/span&gt;，取 &lt;span class="math"&gt;\(\boldsymbol{B_0}\)&lt;/span&gt; 为正定对称矩阵，置 &lt;span class="math"&gt;\(k=0\)&lt;/span&gt;&lt;br&gt;
+(2) 计算 &lt;span class="math"&gt;\(g_k=g(w^{(k)})\)&lt;/span&gt;，若 &lt;span class="math"&gt;\(\|g_k\|&amp;lt;\epsilon\)&lt;/span&gt;，则停止计算，得 &lt;span class="math"&gt;\(w^\star=w^{(k)}\)&lt;/span&gt;；否则，转到 (3)&lt;br&gt;
+(3) 由 &lt;span class="math"&gt;\(\boldsymbol{B_k}p_k=-g_k\)&lt;/span&gt; 求出 &lt;span class="math"&gt;\(p_k\)&lt;/span&gt;&lt;br&gt;
+(4) 一维搜索：求 &lt;span class="math"&gt;\(\lambda_k\)&lt;/span&gt; 使得
+&lt;div class="math"&gt;$$f(w^{(k)}+\lambda_kp_k)=\min_{\lambda\geq0}f(w^{(k)}+\lambda p_k)$$&lt;/div&gt;
+(5) 置 &lt;span class="math"&gt;\(w^{(k+1)}=w^{(k)}+\lambda_k p_k\)&lt;/span&gt;&lt;br&gt;
+(6) 计算 &lt;span class="math"&gt;\(g_{k+1}=g(w^{(k+1)})\)&lt;/span&gt;，若 &lt;span class="math"&gt;\(\|g_{k+1}\|&amp;lt;\epsilon\)&lt;/span&gt;，则停止计算，得 &lt;span class="math"&gt;\(w^\star=w^{(k+1)}\)&lt;/span&gt;；否则，按照下式求出 &lt;span class="math"&gt;\(\boldsymbol{B_{k+1}}\)&lt;/span&gt;
+&lt;div class="math"&gt;$$\boldsymbol{B_{k+1}}=\boldsymbol{B_k}+\frac{y_ky_k^\text{T}}{y_k^\text{T}\delta_k}-\frac{\boldsymbol{B_k}\delta_k\delta_k^\text{T}\boldsymbol{B_k}}{\delta_k^\text{T}\boldsymbol{B_k}\delta_k}$$&lt;/div&gt;
+其中，
+&lt;div class="math"&gt;$$y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)}$$&lt;/div&gt;
+(7) 置 &lt;span class="math"&gt;\(k=k+1\)&lt;/span&gt;，转到 (3)
+&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
