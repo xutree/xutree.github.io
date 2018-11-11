@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-11T22:47:20+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（2）——线性支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/7_2/" rel="alternate"></link><published>2018-11-11T22:47:20+08:00</published><updated>2018-11-11T22:47:20+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/7_2/</id><summary type="html">&lt;h2&gt;7.2 线性支持向量机&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-11T23:38:08+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（2）——线性支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/7_2/" rel="alternate"></link><published>2018-11-11T23:38:08+08:00</published><updated>2018-11-11T23:38:08+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/7_2/</id><summary type="html">&lt;h2&gt;7.2 线性支持向量机&lt;/h2&gt;
 &lt;p&gt;假设给定一个特征空间上的训练数据集
 &lt;/p&gt;
 &lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
@@ -179,6 +179,50 @@ b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$&lt;/div&gt;
 分类决策函数
 &lt;div class="math"&gt;$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star\right)$$&lt;/div&gt;
 &lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;7.2.3 支持向量&lt;/h3&gt;
+&lt;p&gt;在线性不可分的情况下，将对偶问题的解
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+中对应于 &lt;span class="math"&gt;\(\alpha_i^\star&amp;gt;0\)&lt;/span&gt; 的样本点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 的实例 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 称为支持向量（软间隔的支持向量）。实例 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 到间隔边界的距离是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{\xi_i}{\|w\|}$$&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;若 &lt;span class="math"&gt;\(\alpha_i^\star&amp;lt;C\)&lt;/span&gt;，则 &lt;span class="math"&gt;\(\xi_i=0\)&lt;/span&gt;，支持向量 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 正好落在间隔边界上&lt;/li&gt;
+&lt;li&gt;若 &lt;span class="math"&gt;\(\alpha_i^\star=C\)&lt;/span&gt; 且 &lt;span class="math"&gt;\(\xi_i=0\)&lt;/span&gt;，则分类正确，支持向量 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 正好落在间隔边界上&lt;/li&gt;
+&lt;li&gt;若 &lt;span class="math"&gt;\(\alpha_i^\star=C\)&lt;/span&gt; 且 &lt;span class="math"&gt;\(0&amp;lt;\xi_i&amp;lt;1\)&lt;/span&gt;，则分类正确，支持向量 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 在间隔边界和分离超平面之间&lt;/li&gt;
+&lt;li&gt;若 &lt;span class="math"&gt;\(\alpha_i^\star=C\)&lt;/span&gt; 且 &lt;span class="math"&gt;\(\xi_i=1\)&lt;/span&gt;，则支持向量 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 在分离超平面上&lt;/li&gt;
+&lt;li&gt;若 &lt;span class="math"&gt;\(\alpha_i^\star=C\)&lt;/span&gt; 且 &lt;span class="math"&gt;\(\xi_i&amp;gt;1\)&lt;/span&gt;，则分类错误，支持向量 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 位于分离超平面误分类一侧&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;7.2.4 合页损失函数&lt;/h3&gt;
+&lt;p&gt;线性支持向量机学习还有另外一种解释，就是最小化以下目标函数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\sum_{i=1}^N[1-y_i(w\cdot x_i+b)]_++\lambda\|w\|^2$$&lt;/div&gt;
+&lt;p&gt;
+目标函数的第一项是经验损失或经验风险，函数
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L(y(w\cdot x+b))=[1-y(w\cdot x+b)]_+$$&lt;/div&gt;
+&lt;p&gt;
+称为合页损失函数（hinge loss function）。下标 “+” 表示以下取正值的函数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$[z]_+=\begin{cases}
+z, &amp;amp; z&amp;gt;0 \\
+0, &amp;amp; z\leq0\end{cases}$$&lt;/div&gt;
+&lt;p&gt;
+也就是说当样本被正确分类且函数间隔（确信度）大于 1 时，损失是 0。目标函数的第二项是系数为 &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt; 的 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 的 &lt;span class="math"&gt;\(L_2\)&lt;/span&gt; 范数，是正则化项。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定理 7.4 线性支持向量机原始优化问题
+&lt;div class="math"&gt;$$\min_{w,b,\xi}\ \frac{1}{2}\|w\|^2+C\sum_{i=1}^N\xi_i\\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+y_i\left(w\cdot x_i+b\right) &amp;amp;\geq&amp;amp; 1-\xi_i,\ i=1,2,\cdots,N \\
+\xi_i &amp;amp;\geq&amp;amp; 0,\ i=1,2,\cdots,N
+\end{eqnarray}$$&lt;/div&gt;
+等价于最优化问题
+&lt;div class="math"&gt;$$\min_{w,b}\sum_{i=1}^N[1-y_i(w\cdot x_i+b)]_++\lambda\|w\|^2$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;下图中绘制了合页损失函数。图中还画出了 0-1 损失函数，可以认为 0-1 损失函数是二类分类问题的真正的损失函数，而合页损失函数是 0-1 损失函数的上界。由于 0-1 损失函数不是连续可导的，直接优化由其构成的目标函数比较困难，可以认为线性支持向量机是优化由 0-1 损失函数的上界（合页损失函数）构成的目标函数，这时的上界损失函数又称为代理损失函数（surrogate loss function）。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="合页损失函数" src="https://xutree.github.io/images/statistical_learning_7.6.png"&gt;&lt;/p&gt;
+&lt;p&gt;相比于感知机损失函数，合页损失函数不仅要求正确分类，而且确信度足够高时损失才为 0，也就是说，合页损失函数对学习有更高的要求。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
