@@ -1,5 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-11T17:55:33+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（1）——线性可分支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/7/" rel="alternate"></link><published>2018-11-11T13:47:48+08:00</published><updated>2018-11-11T17:55:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/7/</id><summary type="html">&lt;p&gt;支持向量机（support vector machines，SVM）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于&lt;a href="https://xutree.github.io/pages/2018/11/04/2/"&gt;感知机&lt;/a&gt;；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-11T22:47:20+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（2）——线性支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/7_2/" rel="alternate"></link><published>2018-11-11T22:47:20+08:00</published><updated>2018-11-11T22:47:20+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/7_2/</id><summary type="html">&lt;h2&gt;7.2 线性支持向量机&lt;/h2&gt;
+&lt;p&gt;假设给定一个特征空间上的训练数据集
+&lt;/p&gt;
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\(x_i\in{\cal X}=\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_i\in{\cal Y}=\{+1,-1\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;。再假设训练数据集不是线性可分的。通常情况是，训练数据中有一些特异点（outlier），将这些特异点除去后，剩下大部分的样本点组成的集合是线性可分的。&lt;/p&gt;
+&lt;p&gt;线性不可分意味着某些样本点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 不能满足函数间隔大于等于 1 的约束条件，为了解决这个问题，可以对每个样本点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 引进一个松弛变量 &lt;span class="math"&gt;\(\xi_i …&lt;/span&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;h2&gt;7.2 线性支持向量机&lt;/h2&gt;
+&lt;p&gt;假设给定一个特征空间上的训练数据集
+&lt;/p&gt;
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\(x_i\in{\cal X}=\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_i\in{\cal Y}=\{+1,-1\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;。再假设训练数据集不是线性可分的。通常情况是，训练数据中有一些特异点（outlier），将这些特异点除去后，剩下大部分的样本点组成的集合是线性可分的。&lt;/p&gt;
+&lt;p&gt;线性不可分意味着某些样本点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 不能满足函数间隔大于等于 1 的约束条件，为了解决这个问题，可以对每个样本点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 引进一个松弛变量 &lt;span class="math"&gt;\(\xi_i\geq0\)&lt;/span&gt;，使函数间隔加上松弛变量大于等于 1。这样，约束条件变为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$y_i(w\cdot x_i+b)\geq1-\xi_i$$&lt;/div&gt;
+&lt;p&gt;
+同时，对每个松弛变量支付一个代价，目标函数由原来的 &lt;span class="math"&gt;\(\frac{1}{2}\|w\|^2\)&lt;/span&gt; 变成
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\frac{1}{2}\|w\|^2+C\sum_{i=1}^N\xi_i$$&lt;/div&gt;
+&lt;p&gt;
+这里，&lt;span class="math"&gt;\(C&amp;gt;0\)&lt;/span&gt; 称为惩罚参数。一般由应用问题决定，&lt;span class="math"&gt;\(C\)&lt;/span&gt; 值大时对误分类的惩罚增加，&lt;span class="math"&gt;\(C\)&lt;/span&gt; 值小时对误分类的惩罚减小。&lt;/p&gt;
+&lt;p&gt;线性不可分的线性支持向量机的学习问题变成如下凸二次规划（convex quadratic programming）问题（原始问题）：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_{w,b,\xi}\ \frac{1}{2}\|w\|^2+C\sum_{i=1}^N\xi_i\\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+y_i\left(w\cdot x_i+b\right) &amp;amp;\geq&amp;amp; 1-\xi_i,\ i=1,2,\cdots,N \\
+\xi_i &amp;amp;\geq&amp;amp; 0,\ i=1,2,\cdots,N
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+原始问题关于 &lt;span class="math"&gt;\((w,b,\xi)\)&lt;/span&gt; 的解是存在的。可以证明 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 的解是唯一的，但 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 的解可能不唯一，而是存在于一个区间。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 7.5（线性支持向量机）对于给定的线性不可分的训练数据集，通过求解下面的凸二次规划问题
+&lt;div class="math"&gt;$$\min_{w,b,\xi}\ \frac{1}{2}\|w\|^2+C\sum_{i=1}^N\xi_i\\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+y_i\left(w\cdot x_i+b\right) &amp;amp;\geq&amp;amp; 1-\xi_i,\ i=1,2,\cdots,N \\
+\xi_i &amp;amp;\geq&amp;amp; 0,\ i=1,2,\cdots,N
+\end{eqnarray}$$&lt;/div&gt;
+即软间隔最大化问题，得到的分离超平面为
+&lt;div class="math"&gt;$$w^\star\cdot x+b^\star=0$$&lt;/div&gt;
+以及相应的分类决策函数
+&lt;div class="math"&gt;$$f(x)=\text{sign}(w^\star\cdot x+b^\star)$$&lt;/div&gt;
+称为线性支持向量机。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;7.2.2 学习的对偶算法&lt;/h3&gt;
+&lt;p&gt;定义&lt;a href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/"&gt;拉格朗日函数&lt;/a&gt;：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L(w,b,\xi,\alpha,\mu)=\frac{1}{2}\|w\|^2+C\sum_{i=1}^N\xi_i-\sum_{i=1}^N\alpha_iy_i(w\cdot x_i+b) \\
++\sum_{i=1}^N\alpha_i-\sum_{i=1}^N\alpha_i\xi_i-\sum_{i=1}^N\mu_i\xi_i$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(\alpha_i\geq0\)&lt;/span&gt;，&lt;span class="math"&gt;\(\mu_i\geq0\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;根据拉格朗日对偶性，原始问题的对偶问题是极大极小问题：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\max_{\alpha,\mu}\min_{w,b,\xi}L(w,b,\xi,\alpha,\mu)$$&lt;/div&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 求 &lt;span class="math"&gt;\(\min_{w,b,\xi}L(w,b,\alpha,\mu)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;求偏导并令偏导为 0
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\nabla_wL(w,b,\xi,\alpha,\mu)=w-\sum_{i=1}^N\alpha_iy_ix_i=0 \\
+\nabla_bL(w,b,\xi,\alpha,\mu)=-\sum_{i=1}^N\alpha_iy_i=0 \\
+\nabla_{\xi_i} L(w,b,\xi,\alpha,\mu)=C-\alpha_i-\mu_i=0$$&lt;/div&gt;
+&lt;p&gt;
+得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w=\sum_{i=1}^N\alpha_iy_ix_i \\
+\sum_{i=1}^N\alpha_iy_i=0 \\
+C-\alpha_i-\mu_i=0$$&lt;/div&gt;
+&lt;p&gt;
+利用上面三式，得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L(w,b,\xi,\alpha,\mu)=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)+\sum_{i=1}^N\alpha_i$$&lt;/div&gt;
+&lt;p&gt;
+即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_{w,b,\xi}L(w,b,\xi,\alpha,\mu)=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)+\sum_{i=1}^N\alpha_i$$&lt;/div&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 求 &lt;span class="math"&gt;\(\min_{w,b,\xi}L(w,b,\xi,\alpha,\mu)\)&lt;/span&gt; 对 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt;，&lt;span class="math"&gt;\(\mu\)&lt;/span&gt; 的极大&lt;/p&gt;
+&lt;p&gt;即是求对偶问题
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\max_{\alpha,\mu} -\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)+\sum_{i=1}^N\alpha_i \\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+\sum_{i=1}^N\alpha_iy_i &amp;amp;=&amp;amp; 0 \\
+C-\alpha_i &amp;amp;-&amp;amp; \mu_i = 0 \\
+\alpha_i \geq 0\ i &amp;amp;=&amp;amp; 1,2,\cdots,N \\
+\mu_i\geq0\ i &amp;amp;=&amp;amp; 1,2,\cdots,N
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+也就是下面等价的最小化问题
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)-\sum_{i=1}^N\alpha_i \\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+\sum_{i=1}^N\alpha_iy_i &amp;amp;=&amp;amp; 0 \\
+0\leq\alpha_i\leq C,\ i &amp;amp;=&amp;amp; 1,2,\cdots,N
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;原始最优化问题和对偶最优化问题满足拉格朗日对偶性&lt;a href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/"&gt;定理 2&lt;/a&gt; 的条件，所以存在 &lt;span class="math"&gt;\(w^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(b^\star\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\alpha^\star\)&lt;/span&gt; 使 &lt;span class="math"&gt;\(w^\star\)&lt;/span&gt;，&lt;span class="math"&gt;\(b^\star\)&lt;/span&gt;是原始问题的解，&lt;span class="math"&gt;\(\alpha^\star\)&lt;/span&gt;是对偶问题的解。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定理 7.3 设 &lt;span class="math"&gt;\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)&lt;/span&gt; 是对偶最优问题的解，则存在下标 &lt;span class="math"&gt;\(j\)&lt;/span&gt;，使得 &lt;span class="math"&gt;\(0&amp;lt;\alpha_i^\star&amp;lt;C\)&lt;/span&gt;，并且可按下式求得原始最优化问题的解
+&lt;div class="math"&gt;$$w^\star=\sum_{i=1}^N\alpha_i^\star y_ix_i \\
+b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;由此定理可知，分离超平面可以写成
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star=0$$&lt;/div&gt;
+&lt;p&gt;
+分类决策函数可以写成
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star\right)$$&lt;/div&gt;
+&lt;p&gt;
+分类决策函数只依赖于输入 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 和训练样本输入的内积。上式称为线性支持向量机的对偶形式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 7.3（线性支持向量机学习算法）&lt;br&gt;
+输入：线性可分训练数据集 &lt;span class="math"&gt;\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)&lt;/span&gt;，其中 &lt;span class="math"&gt;\(x_i\in{\cal X}=\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_i\in{\cal Y}=\{+1,-1\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;&lt;br&gt;
+输出：分离超平面和分类决策函数&lt;br&gt;
+(1) 选择惩罚参数 &lt;span class="math"&gt;\(C&amp;gt;0\)&lt;/span&gt;，构造并求解约束最优化问题
+&lt;div class="math"&gt;$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)-\sum_{i=1}^N\alpha_i \\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+\sum_{i=1}^N\alpha_iy_i &amp;amp;=&amp;amp; 0 \\
+0\leq\alpha_i\leq C,\ i &amp;amp;=&amp;amp; 1,2,\cdots,N
+\end{eqnarray}$$&lt;/div&gt;
+求得最优解 &lt;span class="math"&gt;\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)&lt;/span&gt;&lt;br&gt;
+(2) 计算
+&lt;div class="math"&gt;$$w^\star=\sum_{i=1}^N\alpha_i^\star y_ix_i$$&lt;/div&gt;
+并选择 &lt;span class="math"&gt;\(\alpha^\star\)&lt;/span&gt; 的一个分量满足 &lt;span class="math"&gt;\(0&amp;lt;\alpha_i^\star&amp;lt;C\)&lt;/span&gt;，计算
+&lt;div class="math"&gt;$$b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$&lt;/div&gt;
+(3) 求得分离超平面
+&lt;div class="math"&gt;$$\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star=0$$&lt;/div&gt;
+分类决策函数
+&lt;div class="math"&gt;$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star\right)$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第七章 支持向量机（1）——线性可分支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/7_1/" rel="alternate"></link><published>2018-11-11T13:47:48+08:00</published><updated>2018-11-11T17:55:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/7_1/</id><summary type="html">&lt;p&gt;支持向量机（support vector machines，SVM）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于&lt;a href="https://xutree.github.io/pages/2018/11/04/2/"&gt;感知机&lt;/a&gt;；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。&lt;/p&gt;
 &lt;p&gt;支持向量机的学习策略就是间隔最大化，可形式化为一个求解凸二次规划（convex quadratic programming）的问题，也等价于正则化的合页损失函数的最小化问题。支持向量机的学习算法是求解凸二次规划的最优化算法。&lt;/p&gt;
 &lt;p&gt;支持向量机学习方法包含构建由间至繁的模型：&lt;/p&gt;
 &lt;ul&gt;
@@ -176,7 +410,7 @@ $$&lt;/div&gt;
 &lt;p&gt;
 可以由下面的定理求得 &lt;span class="math"&gt;\(w^\star\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(b^\star\)&lt;/span&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;
-定理 7.2 设 &lt;span class="math"&gt;\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)&lt;/span&gt; 是对偶最优问题的解，则存在下标 &lt;span class="math"&gt;\(j\)&lt;/span&gt;，使得 &lt;span class="math"&gt;\(\alpha_j&amp;gt;0\)&lt;/span&gt;，并且可按下式求得原始最优化问题的解
+定理 7.2 设 &lt;span class="math"&gt;\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)&lt;/span&gt; 是对偶最优问题的解，则存在下标 &lt;span class="math"&gt;\(j\)&lt;/span&gt;，使得 &lt;span class="math"&gt;\(\alpha_j^\star&amp;gt;0\)&lt;/span&gt;，并且可按下式求得原始最优化问题的解
 &lt;div class="math"&gt;$$w^\star=\sum_{i=1}^N\alpha_i^\star y_ix_i \\
 b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$&lt;/div&gt;
 &lt;/strong&gt;&lt;/p&gt;
