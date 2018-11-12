@@ -103,6 +103,11 @@ Z_m &amp;amp;=&amp;amp; \sum_{i=1}^Nw_{mi}\exp(-\alpha_my_iG_m(x_i)) \\
 &lt;div class="math"&gt;$$\sqrt{1-4\gamma_m^2}\leq\exp(-2\gamma_m^2)$$&lt;/div&gt;
 &lt;p&gt;
 进而得到。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+推论 8.1 如果存在 &lt;span class="math"&gt;\(\gamma&amp;gt;0\)&lt;/span&gt;，对所有的 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 有 &lt;span class="math"&gt;\(\gamma_m\geq\gamma\)&lt;/span&gt;，则
+&lt;div class="math"&gt;$$\frac{1}{N}\sum_{i=1}^N\mathbb{I}\left(G(x_i)\neq y_i\right)\leq\exp(-2M\gamma^2)$$&lt;/div&gt;
+&lt;/strong&gt;
+这表明在此条件下，AdaBoost 训练误差关于训练次数 &lt;span class="math"&gt;\(M\)&lt;/span&gt; 以指数速率下降。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
