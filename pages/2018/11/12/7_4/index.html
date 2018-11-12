@@ -91,6 +91,176 @@ W(\alpha_1,\alpha_2) &amp;=&amp; \frac{1}{2}K_{11}\alpha_1^2+\frac{1}{2}K_{22}\a
 <p><img alt="二变量优化问题" src="https://xutree.github.io/images/statistical_learning_7.4.png"></p>
 <p>上图中显示了 <span class="math">\(\alpha_{1}\)</span>，<span class="math">\(\alpha_2\)</span> 的取值范围，即位于平行于对角线的线段之上。所以两变量最优化问题实际上为单变量最优化问题，不妨考虑变量 <span class="math">\(\alpha_2\)</span> 的最优化问题。</p>
 <p>假设二次规划问题的初始可行解是 <span class="math">\(\alpha_1^\text{old}\)</span>，<span class="math">\(\alpha_2^\text{old}\)</span>，最优解为 <span class="math">\(\alpha_1^\text{new}\)</span>，<span class="math">\(\alpha_2^\text{new}\)</span>，并且假设在沿着约束方向未经剪辑时 <span class="math">\(\alpha_2\)</span> 的最优解为 <span class="math">\(\alpha_2^\text{new,unc}\)</span>。</p>
+<p>由于 <span class="math">\(\alpha_2^\text{new}\)</span> 需要满足不等式约束 <span class="math">\(0\leq\alpha_2^\text{new}\leq C\)</span>，所以最优值 <span class="math">\(\alpha_2^\text{new}\)</span> 的取值范围必须满足
+</p>
+<div class="math">$$L\leq \alpha_2^\text{new} \leq H$$</div>
+<p>下面求解 <span class="math">\(L\)</span> 和 <span class="math">\(H\)</span>：</p>
+<hr>
+<p><span class="math">\(\blacksquare\)</span> 若 <span class="math">\(y_1\neq y_2\)</span></p>
+<p>则由
+</p>
+<div class="math">$$\alpha_1^\text{new}y_1+\alpha_2^\text{new}y_2=\varsigma=\alpha_1^\text{old}y_1+\alpha_2^\text{old}y_2$$</div>
+<p>
+得
+</p>
+<div class="math">$$\begin{eqnarray}
+\alpha_2^\text{new} &amp;=&amp; \alpha_1^\text{old}\frac{y_1}{y_2}+\alpha_2^\text{old}\frac{y_2}{y_2}-\alpha_1^\text{new}\frac{y_1}{y_2} \\
+&amp;=&amp; \alpha_2^\text{old}-\alpha_1^\text{old}+\alpha_1^\text{new}
+\end{eqnarray}$$</div>
+<p>
+利用
+</p>
+<div class="math">$$\alpha_1^\text{new}\in[0,C]$$</div>
+<p>
+得
+</p>
+<div class="math">$$\alpha_2^\text{new}\in[\alpha_2^\text{old}-\alpha_1^\text{old},C+\alpha_2^\text{old}-\alpha_1^\text{old}]$$</div>
+<p>
+再结合
+</p>
+<div class="math">$$\alpha_2^\text{new}\in[0,C]$$</div>
+<p>
+得
+</p>
+<div class="math">$$L=\max(0,\alpha_2^\text{old}-\alpha_1^\text{old}) \\
+H=\min(C,C+\alpha_2^\text{old}-\alpha_1^\text{old})$$</div>
+<p><span class="math">\(\blacksquare\)</span> 若 <span class="math">\(y_1=y_2\)</span></p>
+<p>则由
+</p>
+<div class="math">$$\alpha_1^\text{new}y_1+\alpha_2^\text{new}y_2=\varsigma=\alpha_1^\text{old}y_1+\alpha_2^\text{old}y_2$$</div>
+<p>
+得
+</p>
+<div class="math">$$\begin{eqnarray}
+\alpha_2^\text{new} &amp;=&amp; \alpha_1^\text{old}\frac{y_1}{y_2}+\alpha_2^\text{old}\frac{y_2}{y_2}-\alpha_1^\text{new}\frac{y_1}{y_2} \\
+&amp;=&amp; \alpha_1^\text{old}+\alpha_2^\text{old}-\alpha_1^\text{new}
+\end{eqnarray}$$</div>
+<p>
+利用
+</p>
+<div class="math">$$\alpha_1^\text{new}\in[0,C]$$</div>
+<p>
+得
+</p>
+<div class="math">$$\alpha_2^\text{new}\in[\alpha_1^\text{old}+\alpha_2^\text{old}-C,\alpha_1^\text{old}+\alpha_2^\text{old}]$$</div>
+<p>
+再结合
+</p>
+<div class="math">$$\alpha_2^\text{new}\in[0,C]$$</div>
+<p>
+得
+</p>
+<div class="math">$$L=\max(0,\alpha_1^\text{old}+\alpha_2^\text{old}-C) \\
+H=\min(C,\alpha_1^\text{old}+\alpha_2^\text{old})$$</div>
+<hr>
+<p>记
+</p>
+<div class="math">$$g(x)=\sum_{i=1}^N\alpha_iy_iK(x_i,x)+b$$</div>
+<p>
+令
+</p>
+<div class="math">$$E_i=g(x_i)-y_i=\left(\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b\right)-y_i$$</div>
+<p>
+当 <span class="math">\(i=1,2\)</span> 时，<span class="math">\(E_i\)</span> 为函数 <span class="math">\(g(x)\)</span> 对输入 <span class="math">\(x_i\)</span> 的预测值与真实输出 <span class="math">\(y_i\)</span> 之差。</p>
+<p><strong>
+定理 7.6 两个变量最优化问题沿着约束方向未经剪辑时的解是
+<div class="math">$$\alpha_2^\text{new,unc}=\alpha_2^\text{old}+\frac{y_2(E_1-E_2)}{\eta}$$</div>
+其中
+<div class="math">$$\eta=K_{11}+K_{22}-2K_{12}=\|\Phi(x_1)-\Phi(x_2)\|^2$$</div>
+<span class="math">\(\Phi(x)\)</span> 是输入空间到特征空间的映射。经剪辑后 <span class="math">\(\alpha_2\)</span> 的解是
+<div class="math">$$\alpha_2^\text{new}=\begin{cases}
+H, &amp; \alpha_2^\text{new,unc}&gt;H \\
+\alpha_2^\text{new,unc}, &amp; L\leq\alpha_2^\text{new,unc}\leq H \\
+L, &amp; \alpha_2^\text{new,unc}&lt;L
+\end{cases}$$</div>
+由 <span class="math">\(\alpha_2^\text{new}\)</span> 求得 <span class="math">\(\alpha_1^\text{new}\)</span> 是
+<div class="math">$$\alpha_1^\text{new}=\alpha_1^\text{old}+y_1y_2(\alpha_2^\text{old}-\alpha_2^\text{new})$$</div>
+</strong></p>
+<h3>7.4.2 变量的选择方法</h3>
+<p>可以采用启发式的方法选择每次迭代中需要优化的向量。第一个向量可以选取不满足支持向量机 KKT 条件的向量，亦即不满足</p>
+<div class="math">$$y_{i}g(x_i)\begin{cases}
+\geq1 &amp; \alpha_{i}=0 \\
+=1 &amp; 0&lt;\alpha_{1}&lt;C \\
+\leq1 &amp; \alpha_{i}=C
+\end{cases}$$</div>
+<p>
+的向量。其中
+</p>
+<div class="math">$$g(x)=\sum_{i=1}^N\alpha_iy_iK(x_i,x)+b$$</div>
+<p>而第二个向量可以选择使得 <span class="math">\(|E_{1}-E_{2}|\)</span> 最大的向量。</p>
+<h3>7.4.3 计算阈值 <span class="math">\(b\)</span> 和差值 <span class="math">\(\text{E}_i\)</span></h3>
+<p>在每次完成两个变量的优化后，都要重新计算阈值 <span class="math">\(b\)</span>。</p>
+<p><span class="math">\(\blacksquare\)</span> 当 <span class="math">\(0&lt;\alpha_1^\text{new}&lt;C\)</span> 时</p>
+<div class="math">$$y_{i}g(x_i)=1\longrightarrow g(x_i)=y_i\ (利用\ y_i^2=1)$$</div>
+<p>于是
+</p>
+<div class="math">$$b_1^\text{new}=y_1-\sum_{i=3}^N\alpha_iy_iK_{i1}-\alpha_1^\text{new}y_1K_{11}-\alpha_2^\text{new}y_2K_{21}$$</div>
+<p>
+由 <span class="math">\(E_1\)</span> 的定义式有
+</p>
+<div class="math">$$E_1=\sum_{i=3}^N\alpha_iy_iK_{i1}+\alpha_1^\text{old}y_1K_{11}+\alpha_2^\text{old}y_2K_{21}+b^\text{old}-y_1$$</div>
+<p>
+连立两式，得
+</p>
+<div class="math">$$b_1^\text{new}=-E_1-y_1K_{11}\left(\alpha_1^\text{new}-\alpha_1^\text{old}\right)-y_2K_{21}\left(\alpha_2^\text{new}-\alpha_2^\text{old}\right)+b^\text{old}$$</div>
+<p><span class="math">\(\blacksquare\)</span> 当 <span class="math">\(0&lt;\alpha_2^\text{new}&lt;C\)</span> 时</p>
+<p>同理
+</p>
+<div class="math">$$b_2^\text{new}=-E_2-y_1K_{12}\left(\alpha_1^\text{new}-\alpha_1^\text{old}\right)-y_2K_{22}\left(\alpha_2^\text{new}-\alpha_2^\text{old}\right)+b^\text{old}$$</div>
+<p><span class="math">\(\blacksquare\)</span> 当 <span class="math">\(0&lt;\alpha_1^\text{new}&lt;C\)</span> 且 <span class="math">\(0&lt;\alpha_2^\text{new}&lt;C\)</span> 时</p>
+<div class="math">$$b_1^\text{new}=b_2^\text{new}$$</div>
+<p><span class="math">\(\blacksquare\)</span> 当 <span class="math">\(\alpha_1^\text{new}\)</span>，<span class="math">\(\alpha_2^\text{new}\)</span> 是 0 或 <span class="math">\(C\)</span> 时</p>
+<p><span class="math">\(b_{1}^\text{new}\)</span>，<span class="math">\(b_{2}^\text{new}\)</span>  和它们之间的数都是满足 KKT 条件的阈值，这时选择它们的中点，即
+</p>
+<div class="math">$$b^\text{new}=\frac{b_{1}^\text{new}+b_{2}^\text{new}}{2}$$</div>
+<p>在每次完成两个变量的优化之后，还必须更新对应的 <span class="math">\(E_i\)</span> 值。<span class="math">\(E_i\)</span> 值的更新需要用到 <span class="math">\(b^\text{new}\)</span> 值，以及所有支持向量对应的 <span class="math">\(\alpha_j\)</span>
+</p>
+<div class="math">$$E_i^\text{new}=\sum_{S}y_j\alpha_jK(x_i,x_j)+b^\text{new}-y_i$$</div>
+<p>
+其中 <span class="math">\(S\)</span> 是所有支持向量 <span class="math">\(x_j\)</span> 的集合。</p>
+<h3>7.4.4 SMO 算法</h3>
+<p><strong>
+输入：训练数据集 <span class="math">\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)</span>，其中 <span class="math">\(x_i\in{\cal X}=\mathbb{R}^n\)</span>，<span class="math">\(y_i\in{\cal Y}=\{+1,-1\}\)</span>，<span class="math">\(i=1,2,\cdots,N\)</span>，适当的核函数 <span class="math">\(K(x,z)\)</span>，惩罚参数 <span class="math">\(C&gt;0\)</span>，精度 <span class="math">\(\epsilon\)</span><br>
+输出：近似解 <span class="math">\(\hat{\alpha}\)</span><br>
+(1) 取初值 <span class="math">\(\alpha^{(0)}=0\)</span>，<span class="math">\(b_0=0\)</span>，令 <span class="math">\(k=0\)</span><br>
+(2) 计算 <span class="math">\(\eta\)</span><br>
+<div class="math">$$\eta=K_{11}+K_{22}-2K_{12}=\|\Phi(x_1)-\Phi(x_2)\|^2$$</div>
+(3) 选取优化变量 <span class="math">\(\alpha_1^{(k)}\)</span>，<span class="math">\(\alpha_2^{(k)}\)</span><br>
+(4) 计算误差
+<div class="math">$$E_i^{k}=\left(\sum_{j=1}^N\alpha_j^{(k)}y_jK(x_j,x_i)+b_k\right)-y_i,\ i=1,2$$</div>
+(5) 计算边界
+<div class="math">$$\begin{cases}
+L=\max(0,\alpha_2^{(k)}-\alpha_1^{(k)}),\ H=\min(C,C+\alpha_2^{(k)}-\alpha_1^{(k)}) &amp; 当\ y_1\neq y_2 \\
+L=\max(0,\alpha_1^{(k)}+\alpha_2^{(k)}-C),\ H=\min(C,\alpha_1^{(k)}+\alpha_2^{(k)}) &amp; 当\ y_1=y_2
+\end{cases}$$</div>
+(6) 求解 <span class="math">\(\alpha_2^{(k+1)}\)</span><br>
+<div class="math">$$\alpha_2^{(k+1)}=\alpha_2^{(k)}+\frac{y_2(E_1^{k}-E_2^k)}{\eta}$$</div>
+(7) 剪辑 <span class="math">\(\alpha_2^{(k+1)}\)</span><br>
+<div class="math">$$\alpha_2^{(k+1)}=\begin{cases}
+H, &amp; \alpha_2^{(k+1)}&gt;H \\
+\alpha_2^{(k+1)}, &amp; L\leq\alpha_2^{(k+1)}\leq H \\
+L, &amp; \alpha_2^{(k+1)}&lt;L
+\end{cases}$$</div>
+(8) 求解 <span class="math">\(\alpha_1^{(k+1)}\)</span><br>
+<div class="math">$$\alpha_1^{(k+1)}=\alpha_1^{(k)}+y_1y_2\left(\alpha_2^{(k)}-\alpha_2^{(k+1)}\right)$$</div>
+(9) 更新 <span class="math">\(b_{k+1}\)</span><br>
+<div class="math">$$b_{1(k+1)}=-E_1-y_1K_{11}\left(\alpha_{1}^{(k+1)}-\alpha_{1}^{(k)}\right)-y_2K_{21}\left(\alpha_{2}^{(k+1)}-\alpha_{2}^{(k)}\right)+b_k$$</div>
+<div class="math">$$b_{2(k+1)}=-E_2-y_1K_{12}\left(\alpha_{1}^{(k+1)}-\alpha_{1}^{(k)}\right)-y_2K_{22}\left(\alpha_{2}^{(k+1)}-\alpha_{2}^{(k)}\right)+b_k$$</div>
+<div class="math">$$b_{k+1}=\frac{b_{1(k+1)}+b_{2(k+1)}}{2}$$</div>
+(10) 更新 <span class="math">\(E_i^{k+1}\)</span><br>
+<div class="math">$$E_i^{k+1}=\sum_{S}y_j\alpha_jK\left(x_i^{(k)},x_j\right)+b_{k+1}-y_i^{(k)}$$</div>
+其中 <span class="math">\(S\)</span> 是所有支持向量 <span class="math">\(x_j\)</span> 的集合<br>
+(11) 更新 <span class="math">\(\alpha=\alpha^{(k+1)}\)</span>，若在精度 <span class="math">\(\epsilon\)</span> 范围内满足停机条件
+<div class="math">$$\sum_{i=1}^N\alpha_iy_i=0 \\
+0\leq\alpha_i\leq C,\ i=1,2,\cdots,N \\
+y_i\cdot g(x_i)=\begin{cases}
+\geq1, &amp; \{x_i|\alpha_i=0\} \\
+=1, &amp; \{x_i|0&lt;\alpha_i&lt;C\} \\
+\leq 1, &amp; \{x_i|\alpha_i=C\}
+\end{cases}$$</div>
+其中 <span class="math">\(g(x_i)=\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b\)</span>，则转 (12)，否则令 <span class="math">\(k=k+1\)</span>，转 (3)<br>
+(12) 取 <span class="math">\(\hat{\alpha}=\alpha^{(k+1)}\)</span>
+</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -185,7 +355,9 @@ W(\alpha_1,\alpha_2) &amp;=&amp; \frac{1}{2}K_{11}\alpha_1^2+\frac{1}{2}K_{22}\a
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-11-12T14:58:41.284242+08:00">2018-11-12 14:58:41</time>
+                    <time pubdate="pubdate" datetime="2018-11-12T18:32:53+08:00">2018-11-12 18:32:53</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-11-12 18:32:53</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>

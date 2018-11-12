@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-12T14:58:41+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（4）——序列最小最优化算法</title><link href="https://xutree.github.io/pages/2018/11/12/7_4/" rel="alternate"></link><published>2018-11-12T14:58:41+08:00</published><updated>2018-11-12T14:58:41+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/7_4/</id><summary type="html">&lt;h2&gt;7.4 序列最小最优化算法&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-12T18:32:53+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（4）——序列最小最优化算法</title><link href="https://xutree.github.io/pages/2018/11/12/7_4/" rel="alternate"></link><published>2018-11-12T18:32:53+08:00</published><updated>2018-11-12T18:32:53+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/7_4/</id><summary type="html">&lt;h2&gt;7.4 序列最小最优化算法&lt;/h2&gt;
 &lt;p&gt;序列最小优化算法（Sequential minimal optimization, SMO）是一种用于解决支持向量机训练过程中所产生优化问题的算法。SMO 由微软研究院的约翰·普莱特于 1998 年发明，目前被广泛使用于 SVM 的训练过程中，并在通行的 SVM 库 LIBSVM 中得到实现。1998 年，SMO 算法发表在 SVM 研究领域内引起了轰动，因为先前可用的 SVM 训练方法必须使用复杂的方法，并需要昂贵的第三方二次规划工具。而 SMO 算法较好地避免了这一问题。&lt;/p&gt;
 &lt;p&gt;SMO 算法主要用于解决如下凸二次规划的对偶问题
 &lt;/p&gt;
@@ -86,6 +86,176 @@ W(\alpha_1,\alpha_2) &amp;amp;=&amp;amp; \frac{1}{2}K_{11}\alpha_1^2+\frac{1}{2}
 &lt;p&gt;&lt;img alt="二变量优化问题" src="https://xutree.github.io/images/statistical_learning_7.4.png"&gt;&lt;/p&gt;
 &lt;p&gt;上图中显示了 &lt;span class="math"&gt;\(\alpha_{1}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\alpha_2\)&lt;/span&gt; 的取值范围，即位于平行于对角线的线段之上。所以两变量最优化问题实际上为单变量最优化问题，不妨考虑变量 &lt;span class="math"&gt;\(\alpha_2\)&lt;/span&gt; 的最优化问题。&lt;/p&gt;
 &lt;p&gt;假设二次规划问题的初始可行解是 &lt;span class="math"&gt;\(\alpha_1^\text{old}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\alpha_2^\text{old}\)&lt;/span&gt;，最优解为 &lt;span class="math"&gt;\(\alpha_1^\text{new}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\alpha_2^\text{new}\)&lt;/span&gt;，并且假设在沿着约束方向未经剪辑时 &lt;span class="math"&gt;\(\alpha_2\)&lt;/span&gt; 的最优解为 &lt;span class="math"&gt;\(\alpha_2^\text{new,unc}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;由于 &lt;span class="math"&gt;\(\alpha_2^\text{new}\)&lt;/span&gt; 需要满足不等式约束 &lt;span class="math"&gt;\(0\leq\alpha_2^\text{new}\leq C\)&lt;/span&gt;，所以最优值 &lt;span class="math"&gt;\(\alpha_2^\text{new}\)&lt;/span&gt; 的取值范围必须满足
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L\leq \alpha_2^\text{new} \leq H$$&lt;/div&gt;
+&lt;p&gt;下面求解 &lt;span class="math"&gt;\(L\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(H\)&lt;/span&gt;：&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 若 &lt;span class="math"&gt;\(y_1\neq y_2\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;则由
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_1^\text{new}y_1+\alpha_2^\text{new}y_2=\varsigma=\alpha_1^\text{old}y_1+\alpha_2^\text{old}y_2$$&lt;/div&gt;
+&lt;p&gt;
+得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\alpha_2^\text{new} &amp;amp;=&amp;amp; \alpha_1^\text{old}\frac{y_1}{y_2}+\alpha_2^\text{old}\frac{y_2}{y_2}-\alpha_1^\text{new}\frac{y_1}{y_2} \\
+&amp;amp;=&amp;amp; \alpha_2^\text{old}-\alpha_1^\text{old}+\alpha_1^\text{new}
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+利用
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_1^\text{new}\in[0,C]$$&lt;/div&gt;
+&lt;p&gt;
+得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_2^\text{new}\in[\alpha_2^\text{old}-\alpha_1^\text{old},C+\alpha_2^\text{old}-\alpha_1^\text{old}]$$&lt;/div&gt;
+&lt;p&gt;
+再结合
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_2^\text{new}\in[0,C]$$&lt;/div&gt;
+&lt;p&gt;
+得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L=\max(0,\alpha_2^\text{old}-\alpha_1^\text{old}) \\
+H=\min(C,C+\alpha_2^\text{old}-\alpha_1^\text{old})$$&lt;/div&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 若 &lt;span class="math"&gt;\(y_1=y_2\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;则由
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_1^\text{new}y_1+\alpha_2^\text{new}y_2=\varsigma=\alpha_1^\text{old}y_1+\alpha_2^\text{old}y_2$$&lt;/div&gt;
+&lt;p&gt;
+得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\alpha_2^\text{new} &amp;amp;=&amp;amp; \alpha_1^\text{old}\frac{y_1}{y_2}+\alpha_2^\text{old}\frac{y_2}{y_2}-\alpha_1^\text{new}\frac{y_1}{y_2} \\
+&amp;amp;=&amp;amp; \alpha_1^\text{old}+\alpha_2^\text{old}-\alpha_1^\text{new}
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+利用
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_1^\text{new}\in[0,C]$$&lt;/div&gt;
+&lt;p&gt;
+得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_2^\text{new}\in[\alpha_1^\text{old}+\alpha_2^\text{old}-C,\alpha_1^\text{old}+\alpha_2^\text{old}]$$&lt;/div&gt;
+&lt;p&gt;
+再结合
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_2^\text{new}\in[0,C]$$&lt;/div&gt;
+&lt;p&gt;
+得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L=\max(0,\alpha_1^\text{old}+\alpha_2^\text{old}-C) \\
+H=\min(C,\alpha_1^\text{old}+\alpha_2^\text{old})$$&lt;/div&gt;
+&lt;hr&gt;
+&lt;p&gt;记
+&lt;/p&gt;
+&lt;div class="math"&gt;$$g(x)=\sum_{i=1}^N\alpha_iy_iK(x_i,x)+b$$&lt;/div&gt;
+&lt;p&gt;
+令
+&lt;/p&gt;
+&lt;div class="math"&gt;$$E_i=g(x_i)-y_i=\left(\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b\right)-y_i$$&lt;/div&gt;
+&lt;p&gt;
+当 &lt;span class="math"&gt;\(i=1,2\)&lt;/span&gt; 时，&lt;span class="math"&gt;\(E_i\)&lt;/span&gt; 为函数 &lt;span class="math"&gt;\(g(x)\)&lt;/span&gt; 对输入 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 的预测值与真实输出 &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; 之差。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定理 7.6 两个变量最优化问题沿着约束方向未经剪辑时的解是
+&lt;div class="math"&gt;$$\alpha_2^\text{new,unc}=\alpha_2^\text{old}+\frac{y_2(E_1-E_2)}{\eta}$$&lt;/div&gt;
+其中
+&lt;div class="math"&gt;$$\eta=K_{11}+K_{22}-2K_{12}=\|\Phi(x_1)-\Phi(x_2)\|^2$$&lt;/div&gt;
+&lt;span class="math"&gt;\(\Phi(x)\)&lt;/span&gt; 是输入空间到特征空间的映射。经剪辑后 &lt;span class="math"&gt;\(\alpha_2\)&lt;/span&gt; 的解是
+&lt;div class="math"&gt;$$\alpha_2^\text{new}=\begin{cases}
+H, &amp;amp; \alpha_2^\text{new,unc}&amp;gt;H \\
+\alpha_2^\text{new,unc}, &amp;amp; L\leq\alpha_2^\text{new,unc}\leq H \\
+L, &amp;amp; \alpha_2^\text{new,unc}&amp;lt;L
+\end{cases}$$&lt;/div&gt;
+由 &lt;span class="math"&gt;\(\alpha_2^\text{new}\)&lt;/span&gt; 求得 &lt;span class="math"&gt;\(\alpha_1^\text{new}\)&lt;/span&gt; 是
+&lt;div class="math"&gt;$$\alpha_1^\text{new}=\alpha_1^\text{old}+y_1y_2(\alpha_2^\text{old}-\alpha_2^\text{new})$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;7.4.2 变量的选择方法&lt;/h3&gt;
+&lt;p&gt;可以采用启发式的方法选择每次迭代中需要优化的向量。第一个向量可以选取不满足支持向量机 KKT 条件的向量，亦即不满足&lt;/p&gt;
+&lt;div class="math"&gt;$$y_{i}g(x_i)\begin{cases}
+\geq1 &amp;amp; \alpha_{i}=0 \\
+=1 &amp;amp; 0&amp;lt;\alpha_{1}&amp;lt;C \\
+\leq1 &amp;amp; \alpha_{i}=C
+\end{cases}$$&lt;/div&gt;
+&lt;p&gt;
+的向量。其中
+&lt;/p&gt;
+&lt;div class="math"&gt;$$g(x)=\sum_{i=1}^N\alpha_iy_iK(x_i,x)+b$$&lt;/div&gt;
+&lt;p&gt;而第二个向量可以选择使得 &lt;span class="math"&gt;\(|E_{1}-E_{2}|\)&lt;/span&gt; 最大的向量。&lt;/p&gt;
+&lt;h3&gt;7.4.3 计算阈值 &lt;span class="math"&gt;\(b\)&lt;/span&gt; 和差值 &lt;span class="math"&gt;\(\text{E}_i\)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;在每次完成两个变量的优化后，都要重新计算阈值 &lt;span class="math"&gt;\(b\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 当 &lt;span class="math"&gt;\(0&amp;lt;\alpha_1^\text{new}&amp;lt;C\)&lt;/span&gt; 时&lt;/p&gt;
+&lt;div class="math"&gt;$$y_{i}g(x_i)=1\longrightarrow g(x_i)=y_i\ (利用\ y_i^2=1)$$&lt;/div&gt;
+&lt;p&gt;于是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$b_1^\text{new}=y_1-\sum_{i=3}^N\alpha_iy_iK_{i1}-\alpha_1^\text{new}y_1K_{11}-\alpha_2^\text{new}y_2K_{21}$$&lt;/div&gt;
+&lt;p&gt;
+由 &lt;span class="math"&gt;\(E_1\)&lt;/span&gt; 的定义式有
+&lt;/p&gt;
+&lt;div class="math"&gt;$$E_1=\sum_{i=3}^N\alpha_iy_iK_{i1}+\alpha_1^\text{old}y_1K_{11}+\alpha_2^\text{old}y_2K_{21}+b^\text{old}-y_1$$&lt;/div&gt;
+&lt;p&gt;
+连立两式，得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$b_1^\text{new}=-E_1-y_1K_{11}\left(\alpha_1^\text{new}-\alpha_1^\text{old}\right)-y_2K_{21}\left(\alpha_2^\text{new}-\alpha_2^\text{old}\right)+b^\text{old}$$&lt;/div&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 当 &lt;span class="math"&gt;\(0&amp;lt;\alpha_2^\text{new}&amp;lt;C\)&lt;/span&gt; 时&lt;/p&gt;
+&lt;p&gt;同理
+&lt;/p&gt;
+&lt;div class="math"&gt;$$b_2^\text{new}=-E_2-y_1K_{12}\left(\alpha_1^\text{new}-\alpha_1^\text{old}\right)-y_2K_{22}\left(\alpha_2^\text{new}-\alpha_2^\text{old}\right)+b^\text{old}$$&lt;/div&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 当 &lt;span class="math"&gt;\(0&amp;lt;\alpha_1^\text{new}&amp;lt;C\)&lt;/span&gt; 且 &lt;span class="math"&gt;\(0&amp;lt;\alpha_2^\text{new}&amp;lt;C\)&lt;/span&gt; 时&lt;/p&gt;
+&lt;div class="math"&gt;$$b_1^\text{new}=b_2^\text{new}$$&lt;/div&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 当 &lt;span class="math"&gt;\(\alpha_1^\text{new}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\alpha_2^\text{new}\)&lt;/span&gt; 是 0 或 &lt;span class="math"&gt;\(C\)&lt;/span&gt; 时&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(b_{1}^\text{new}\)&lt;/span&gt;，&lt;span class="math"&gt;\(b_{2}^\text{new}\)&lt;/span&gt;  和它们之间的数都是满足 KKT 条件的阈值，这时选择它们的中点，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$b^\text{new}=\frac{b_{1}^\text{new}+b_{2}^\text{new}}{2}$$&lt;/div&gt;
+&lt;p&gt;在每次完成两个变量的优化之后，还必须更新对应的 &lt;span class="math"&gt;\(E_i\)&lt;/span&gt; 值。&lt;span class="math"&gt;\(E_i\)&lt;/span&gt; 值的更新需要用到 &lt;span class="math"&gt;\(b^\text{new}\)&lt;/span&gt; 值，以及所有支持向量对应的 &lt;span class="math"&gt;\(\alpha_j\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$E_i^\text{new}=\sum_{S}y_j\alpha_jK(x_i,x_j)+b^\text{new}-y_i$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 是所有支持向量 &lt;span class="math"&gt;\(x_j\)&lt;/span&gt; 的集合。&lt;/p&gt;
+&lt;h3&gt;7.4.4 SMO 算法&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;
+输入：训练数据集 &lt;span class="math"&gt;\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)&lt;/span&gt;，其中 &lt;span class="math"&gt;\(x_i\in{\cal X}=\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_i\in{\cal Y}=\{+1,-1\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;，适当的核函数 &lt;span class="math"&gt;\(K(x,z)\)&lt;/span&gt;，惩罚参数 &lt;span class="math"&gt;\(C&amp;gt;0\)&lt;/span&gt;，精度 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt;&lt;br&gt;
+输出：近似解 &lt;span class="math"&gt;\(\hat{\alpha}\)&lt;/span&gt;&lt;br&gt;
+(1) 取初值 &lt;span class="math"&gt;\(\alpha^{(0)}=0\)&lt;/span&gt;，&lt;span class="math"&gt;\(b_0=0\)&lt;/span&gt;，令 &lt;span class="math"&gt;\(k=0\)&lt;/span&gt;&lt;br&gt;
+(2) 计算 &lt;span class="math"&gt;\(\eta\)&lt;/span&gt;&lt;br&gt;
+&lt;div class="math"&gt;$$\eta=K_{11}+K_{22}-2K_{12}=\|\Phi(x_1)-\Phi(x_2)\|^2$$&lt;/div&gt;
+(3) 选取优化变量 &lt;span class="math"&gt;\(\alpha_1^{(k)}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\alpha_2^{(k)}\)&lt;/span&gt;&lt;br&gt;
+(4) 计算误差
+&lt;div class="math"&gt;$$E_i^{k}=\left(\sum_{j=1}^N\alpha_j^{(k)}y_jK(x_j,x_i)+b_k\right)-y_i,\ i=1,2$$&lt;/div&gt;
+(5) 计算边界
+&lt;div class="math"&gt;$$\begin{cases}
+L=\max(0,\alpha_2^{(k)}-\alpha_1^{(k)}),\ H=\min(C,C+\alpha_2^{(k)}-\alpha_1^{(k)}) &amp;amp; 当\ y_1\neq y_2 \\
+L=\max(0,\alpha_1^{(k)}+\alpha_2^{(k)}-C),\ H=\min(C,\alpha_1^{(k)}+\alpha_2^{(k)}) &amp;amp; 当\ y_1=y_2
+\end{cases}$$&lt;/div&gt;
+(6) 求解 &lt;span class="math"&gt;\(\alpha_2^{(k+1)}\)&lt;/span&gt;&lt;br&gt;
+&lt;div class="math"&gt;$$\alpha_2^{(k+1)}=\alpha_2^{(k)}+\frac{y_2(E_1^{k}-E_2^k)}{\eta}$$&lt;/div&gt;
+(7) 剪辑 &lt;span class="math"&gt;\(\alpha_2^{(k+1)}\)&lt;/span&gt;&lt;br&gt;
+&lt;div class="math"&gt;$$\alpha_2^{(k+1)}=\begin{cases}
+H, &amp;amp; \alpha_2^{(k+1)}&amp;gt;H \\
+\alpha_2^{(k+1)}, &amp;amp; L\leq\alpha_2^{(k+1)}\leq H \\
+L, &amp;amp; \alpha_2^{(k+1)}&amp;lt;L
+\end{cases}$$&lt;/div&gt;
+(8) 求解 &lt;span class="math"&gt;\(\alpha_1^{(k+1)}\)&lt;/span&gt;&lt;br&gt;
+&lt;div class="math"&gt;$$\alpha_1^{(k+1)}=\alpha_1^{(k)}+y_1y_2\left(\alpha_2^{(k)}-\alpha_2^{(k+1)}\right)$$&lt;/div&gt;
+(9) 更新 &lt;span class="math"&gt;\(b_{k+1}\)&lt;/span&gt;&lt;br&gt;
+&lt;div class="math"&gt;$$b_{1(k+1)}=-E_1-y_1K_{11}\left(\alpha_{1}^{(k+1)}-\alpha_{1}^{(k)}\right)-y_2K_{21}\left(\alpha_{2}^{(k+1)}-\alpha_{2}^{(k)}\right)+b_k$$&lt;/div&gt;
+&lt;div class="math"&gt;$$b_{2(k+1)}=-E_2-y_1K_{12}\left(\alpha_{1}^{(k+1)}-\alpha_{1}^{(k)}\right)-y_2K_{22}\left(\alpha_{2}^{(k+1)}-\alpha_{2}^{(k)}\right)+b_k$$&lt;/div&gt;
+&lt;div class="math"&gt;$$b_{k+1}=\frac{b_{1(k+1)}+b_{2(k+1)}}{2}$$&lt;/div&gt;
+(10) 更新 &lt;span class="math"&gt;\(E_i^{k+1}\)&lt;/span&gt;&lt;br&gt;
+&lt;div class="math"&gt;$$E_i^{k+1}=\sum_{S}y_j\alpha_jK\left(x_i^{(k)},x_j\right)+b_{k+1}-y_i^{(k)}$$&lt;/div&gt;
+其中 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 是所有支持向量 &lt;span class="math"&gt;\(x_j\)&lt;/span&gt; 的集合&lt;br&gt;
+(11) 更新 &lt;span class="math"&gt;\(\alpha=\alpha^{(k+1)}\)&lt;/span&gt;，若在精度 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt; 范围内满足停机条件
+&lt;div class="math"&gt;$$\sum_{i=1}^N\alpha_iy_i=0 \\
+0\leq\alpha_i\leq C,\ i=1,2,\cdots,N \\
+y_i\cdot g(x_i)=\begin{cases}
+\geq1, &amp;amp; \{x_i|\alpha_i=0\} \\
+=1, &amp;amp; \{x_i|0&amp;lt;\alpha_i&amp;lt;C\} \\
+\leq 1, &amp;amp; \{x_i|\alpha_i=C\}
+\end{cases}$$&lt;/div&gt;
+其中 &lt;span class="math"&gt;\(g(x_i)=\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b\)&lt;/span&gt;，则转 (12)，否则令 &lt;span class="math"&gt;\(k=k+1\)&lt;/span&gt;，转 (3)&lt;br&gt;
+(12) 取 &lt;span class="math"&gt;\(\hat{\alpha}=\alpha^{(k+1)}\)&lt;/span&gt;
+&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
