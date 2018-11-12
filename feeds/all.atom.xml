@@ -1,5 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-12T18:32:53+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（4）——序列最小最优化算法</title><link href="https://xutree.github.io/pages/2018/11/12/7_4/" rel="alternate"></link><published>2018-11-12T18:32:53+08:00</published><updated>2018-11-12T18:32:53+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/7_4/</id><summary type="html">&lt;h2&gt;7.4 序列最小最优化算法&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-12T21:42:33+08:00</updated><entry><title>统计学习方法 第八章 提升方法</title><link href="https://xutree.github.io/pages/2018/11/12/8/" rel="alternate"></link><published>2018-11-12T21:42:33+08:00</published><updated>2018-11-12T21:42:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/8/</id><summary type="html">&lt;p&gt;提升（boosting）方法是一种常用的统计学习方法，应用广泛且有效。在分类问题中，它通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。&lt;/p&gt;
+&lt;h2&gt;8.1 提升方法 AdaBoost 算法&lt;/h2&gt;
+&lt;h3&gt;8.1.1 提升方法的基本思想&lt;/h3&gt;
+&lt;p&gt;提升方法是一种可以用来减小监督式学习中偏差的机器学习元算法。面对的问题是迈可·肯斯（Michael Kearns）提出的：一组“弱学习者”的集合能否生成一个“强学习者”？弱学习者一般是指一个分类器，它的结果只比随机分类好一点点；强学习者指分类器的结果非常接近真值。&lt;/p&gt;
+&lt;p&gt;大多数的提升方法都是改变训练数据的概率分布（训练数据的权值分布），针对不同的训练数据分布调用弱学习算法学习一系列弱分类器。这样对于提升方法来说，有两个问题需要回答：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在每一轮如何改变训练数据的权值或概率分布&lt;/li&gt;
+&lt;li&gt;如何将弱分类器组合为一个强分类器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关于第一个问题，AdaBoost 的做法是，提高那些被前一轮分类器错误分类样本的权值，而降低那些被正确分类样本的权值。至于第二个问题，即弱分类器的组合，AdaBoost 采取加权多数表决的方法，具体的加大分类误差率小的弱分类器的权值，使其在表决中起较大的作用 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;提升（boosting）方法是一种常用的统计学习方法，应用广泛且有效。在分类问题中，它通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。&lt;/p&gt;
+&lt;h2&gt;8.1 提升方法 AdaBoost 算法&lt;/h2&gt;
+&lt;h3&gt;8.1.1 提升方法的基本思想&lt;/h3&gt;
+&lt;p&gt;提升方法是一种可以用来减小监督式学习中偏差的机器学习元算法。面对的问题是迈可·肯斯（Michael Kearns）提出的：一组“弱学习者”的集合能否生成一个“强学习者”？弱学习者一般是指一个分类器，它的结果只比随机分类好一点点；强学习者指分类器的结果非常接近真值。&lt;/p&gt;
+&lt;p&gt;大多数的提升方法都是改变训练数据的概率分布（训练数据的权值分布），针对不同的训练数据分布调用弱学习算法学习一系列弱分类器。这样对于提升方法来说，有两个问题需要回答：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在每一轮如何改变训练数据的权值或概率分布&lt;/li&gt;
+&lt;li&gt;如何将弱分类器组合为一个强分类器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关于第一个问题，AdaBoost 的做法是，提高那些被前一轮分类器错误分类样本的权值，而降低那些被正确分类样本的权值。至于第二个问题，即弱分类器的组合，AdaBoost 采取加权多数表决的方法，具体的加大分类误差率小的弱分类器的权值，使其在表决中起较大的作用。&lt;/p&gt;
+&lt;h3&gt;8.1.2 AdaBoost 算法&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 8.1（AdaBoost）&lt;br&gt;
+输入：训练数据集
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
+其中 &lt;span class="math"&gt;\(x_i\in{\cal X}\subseteq\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_i\inΥ=\{−1,+1\}\)&lt;/span&gt;；弱学习算法&lt;br&gt;
+输出：最终分类器 &lt;span class="math"&gt;\(G(x)\)&lt;/span&gt;&lt;br&gt;
+(1) 初始化训练数据的权值分布
+&lt;div class="math"&gt;$$D_1= (w_{11},\cdots,w_{1i},w_{1N}),\ w_{1i}=\frac{1}{N},\ i=1,2,\cdots,N$$&lt;/div&gt;
+(2) 对 &lt;span class="math"&gt;\(m=1,2,\cdots,M\)&lt;/span&gt;&lt;br&gt;
+(2.a) 使用具有权值分布 &lt;span class="math"&gt;\(D_m\)&lt;/span&gt; 的训练数据集学习，得到基本分类器
+&lt;div class="math"&gt;$$G_m(x):{\cal X} \rightarrow \{-1,+1\}$$&lt;/div&gt;
+(2.b) 计算 &lt;span class="math"&gt;\(G_m(x)\)&lt;/span&gt; 在训练数据集上的分类误差率
+&lt;div class="math"&gt;$$e_m = \sum_{i=1}^NP(G_m(x_i)\neq y_i)=\sum_{i=1}^Nw_{mi}\mathbb{I}(G_m(x_i)\neq y_i)$$&lt;/div&gt;
+(2.c) 计算 &lt;span class="math"&gt;\(G_m(x)\)&lt;/span&gt; 的系数
+&lt;div class="math"&gt;$$\alpha_m=\frac{1}{2}\log\frac{1-e_m}{e_m}$$&lt;/div&gt;
+这里的对数是自然对数&lt;br&gt;
+(2.d) 更新训练数据集的权值分布
+&lt;div class="math"&gt;$$D_{m+1}=(w_{m+1,1},\cdots,w_{m+1,i},\cdots,w_{m+1,N}) \\
+w_{m+1,i}=\frac{w_{mi}}{Z_m}\exp(-\alpha_my_iG_m(x_i)),\ i=1,2,\cdots,N$$&lt;/div&gt;
+这里，&lt;span class="math"&gt;\(Z_m\)&lt;/span&gt; 是规范化因子
+&lt;div class="math"&gt;$$Z_m=\sum_{i=1}^{N}w_{mi}\exp\left(-\alpha_my_iG_m(x_i)\right)$$&lt;/div&gt;
+它使 &lt;span class="math"&gt;\(D_{m+1}\)&lt;/span&gt; 成为一个概率分布&lt;br&gt;
+(3) 构建基本分类器的线性组合
+&lt;div class="math"&gt;$$f(x)=\sum_{m=1}^{M}\alpha_mG_m(x)$$&lt;/div&gt;
+得到最终分类器
+&lt;div class="math"&gt;$$G(x)=\text{sign}(f(x))=\text{sign}\left(\sum_{m=1}^M\alpha_mG_m(x)\right)$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\alpha_m\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(G_m(x)\)&lt;/span&gt; 在最终分类器中的重要性。当 &lt;span class="math"&gt;\(e_m\leq\frac{1}{2}\)&lt;/span&gt; 时，&lt;span class="math"&gt;\(\alpha_m\geq0\)&lt;/span&gt;，并且 &lt;span class="math"&gt;\(\alpha_m\)&lt;/span&gt; 随着 &lt;span class="math"&gt;\(e_m\)&lt;/span&gt; 的减小而增大。&lt;/p&gt;
+&lt;p&gt;更新数据的权值方案也可以写为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w_{m+1,i}=\begin{cases}
+\frac{w_{mi}}{Z_m}\text{e}^{-\alpha_m}, &amp;amp; G_m(x_i)=y_i \\
+\frac{w_{mi}}{Z_m}\text{e}^{\alpha_m}, &amp;amp; G_m(x_i)\neq y_i
+\end{cases}$$&lt;/div&gt;
+&lt;p&gt;
+显然，正确分类样本的权值在缩小，错误分类样本的权值在增大，误分类样本的权值被放大
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{e}^{2\alpha_m}=\frac{1-e_m}{e_m}$$&lt;/div&gt;
+&lt;h2&gt;8.2 AdaBoost  算法的训练误差分析&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;
+定理 8.1（AdaBoost 的训练误差界）AdaBoost 算法最终分类器的训练误差界为
+&lt;div class="math"&gt;$$\frac{1}{N}\sum_{i=1}^N\mathbb{I}\left(G(x_i)\neq y_i\right)\leq\frac{1}{N}\sum_{i=1}^N\exp(-y_if(x_i))=\prod_{m=1}^MZ_m$$&lt;/div&gt;
+其中
+&lt;div class="math"&gt;$$G(x)=\text{sign}(f(x))=\text{sign}\left(\sum_{m=1}^M\alpha_mG_m(x)\right) \\
+f(x)=\sum_{m=1}^{M}\alpha_mG_m(x) \\
+Z_m=\sum_{i=1}^{N}w_{mi}\exp\left(-\alpha_my_iG_m(x_i)\right)$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明&lt;/strong&gt;：当 &lt;span class="math"&gt;\(G(x_i)\neq y_i\)&lt;/span&gt; 时，&lt;span class="math"&gt;\(y_if(x_i)&amp;lt;0\)&lt;/span&gt;，因而 &lt;span class="math"&gt;\(\exp(-y_if(x_i))\geq1\)&lt;/span&gt;，前半部分成立。&lt;/p&gt;
+&lt;p&gt;对于后半部分，注意到
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w_{mi}\exp(-\alpha_my_iG_m(x_i))=Z_mw_{m+1,i}$$&lt;/div&gt;
+&lt;p&gt;
+则
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\frac{1}{N} &amp;amp;\sum_i&amp;amp; \exp(-y_if(x_i)) \\
+&amp;amp;=&amp;amp; \frac{1}{N}\sum_i\exp\left(-y_i\sum_{m=1}^{M}\alpha_mG_m(x_i)\right) \\
+&amp;amp;=&amp;amp; \frac{1}{N}\sum_i\prod_{m=1}^M\exp\left(-y_i\alpha_mG_m(x_i)\right) \\
+&amp;amp;=&amp;amp; \sum_iw_{1i}\prod_{m=1}^M\exp\left(-y_i\alpha_mG_m(x_i)\right) \\
+&amp;amp;=&amp;amp; Z_1\sum_iw_{2i}\prod_{m=2}^M\exp\left(-y_i\alpha_mG_m(x_i)\right) \\
+&amp;amp;=&amp;amp; Z_1Z_2\sum_iw_{3i}\prod_{m=3}^M\exp\left(-y_i\alpha_mG_m(x_i)\right) \\
+&amp;amp;=&amp;amp; \cdots \\
+&amp;amp;=&amp;amp; \prod_{m=1}^MZ_m
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;这一定理说明，可以在每一轮选取适当的 &lt;span class="math"&gt;\(G_m\)&lt;/span&gt; 使得 &lt;span class="math"&gt;\(Z_m\)&lt;/span&gt; 最小，从而使训练误差下降最快。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定理 8.2（二类分类问题 AdaBoost 的训练误差界）
+&lt;div class="math"&gt;$$\prod_{m=1}^MZ_m=\prod_{m=1}^M\left[2\sqrt{e_m(1-e_m)}\right]=\prod_{m=1}^M\sqrt{(1-4\gamma_m^2)}\leq\exp\left(-2\sum_{m=1}^M\gamma_m^2\right)$$&lt;/div&gt;
+这里，&lt;span class="math"&gt;\(\gamma_m=\frac{1}{2}-e_m\)&lt;/span&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明&lt;/strong&gt;：对二类分类问题
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+Z_m &amp;amp;=&amp;amp; \sum_{i=1}^Nw_{mi}\exp(-\alpha_my_iG_m(x_i)) \\
+&amp;amp;=&amp;amp; \sum_{y_i=G_m(x_i)}w_{mi}\text{e}^{-\alpha_m}+\sum_{y_i\neq G_m(x_i)}w_{mi}\text{e}^{\alpha_m} \\
+&amp;amp;=&amp;amp; (1-e_m)\text{e}^{-\alpha_m}+e_m\text{e}^{\alpha_m} \\
+&amp;amp;=&amp;amp; 2\sqrt{e_m(1-e_m)}=\sqrt{1-4\gamma_m^2}
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+后半部分证明可以由 &lt;span class="math"&gt;\(\text{e}^x\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\sqrt{1-x}\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(x=0\)&lt;/span&gt; 的泰勒展开式推出不等式
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\sqrt{1-4\gamma_m^2}\leq\exp(-2\gamma_m^2)$$&lt;/div&gt;
+&lt;p&gt;
+进而得到。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第七章 支持向量机（4）——序列最小最优化算法</title><link href="https://xutree.github.io/pages/2018/11/12/7_4/" rel="alternate"></link><published>2018-11-12T18:32:53+08:00</published><updated>2018-11-12T18:32:53+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/7_4/</id><summary type="html">&lt;h2&gt;7.4 序列最小最优化算法&lt;/h2&gt;
 &lt;p&gt;序列最小优化算法（Sequential minimal optimization, SMO）是一种用于解决支持向量机训练过程中所产生优化问题的算法。SMO 由微软研究院的约翰·普莱特于 1998 年发明，目前被广泛使用于 SVM 的训练过程中，并在通行的 SVM 库 LIBSVM 中得到实现。1998 年，SMO 算法发表在 SVM 研究领域内引起了轰动，因为先前可用的 SVM 训练方法必须使用复杂的方法，并需要昂贵的第三方二次规划工具。而 SMO 算法较好地避免了这一问题。&lt;/p&gt;
 &lt;p&gt;SMO 算法主要用于解决如下凸二次规划的对偶问题
 &lt;/p&gt;
