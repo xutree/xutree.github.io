@@ -1,5 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-11T23:38:08+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（2）——线性支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/7_2/" rel="alternate"></link><published>2018-11-11T23:38:08+08:00</published><updated>2018-11-11T23:38:08+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/7_2/</id><summary type="html">&lt;h2&gt;7.2 线性支持向量机&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-12T10:50:23+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（3）——非线性支持向量机</title><link href="https://xutree.github.io/pages/2018/11/12/7_3/" rel="alternate"></link><published>2018-11-12T10:50:23+08:00</published><updated>2018-11-12T10:50:23+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/7_3/</id><summary type="html">&lt;h2&gt;7.3 非线性支持向量机与核函数&lt;/h2&gt;
+&lt;p&gt;对解线性分类问题，线性分类支持向量机是一种非常有效的方法。但是，有时分类问题是非线性的，这时可以使用非线性支持向量机。&lt;/p&gt;
+&lt;h3&gt;7.3.1 核技巧&lt;/h3&gt;
+&lt;h4&gt;非线性分类问题&lt;/h4&gt;
+&lt;p&gt;非线性分类问题是指通过利用非线性模型才能很好的进行分类的问题。如果能用一个超曲面把正负例正确分开，则称这个问题是非线性可分问题。&lt;/p&gt;
+&lt;p&gt;非线性问题往往不好求解，所以希望能用解线性分类问题的方法解决这个问题。所采取的方法是进行一个非线性变换。&lt;/p&gt;
+&lt;p&gt;用线性方法求解非线性问题分为两步：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用一个变换将原空间的数据映射到新空间&lt;/li&gt;
+&lt;li&gt;在新空间里用线性分类学习方法从训练数据集中学习到分类模型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;核技巧（kernel trick）应用到支持向量机，其基本思想就是通过一个非线性变换将输入空间（欧式空间 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 或离散空间）对应于一个特征空间（希尔伯特空间 &lt;span class="math"&gt;\({\cal H}\)&lt;/span&gt;。在数学里，希尔伯特空间 Hilbert space，即完备的内积空间，也就是说一个带有内积的完备向量空间。希尔伯特空间是有限维欧几里得空间的一个推广，使之不局限于实数的情形和有限的维数，但又不失完备性），使得在输入空间中的超曲面模型对应于特征空间中的超平面模型（支持向量机）。&lt;/p&gt;
+&lt;h4&gt;核函数的定义&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 7 …&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;h2&gt;7.3 非线性支持向量机与核函数&lt;/h2&gt;
+&lt;p&gt;对解线性分类问题，线性分类支持向量机是一种非常有效的方法。但是，有时分类问题是非线性的，这时可以使用非线性支持向量机。&lt;/p&gt;
+&lt;h3&gt;7.3.1 核技巧&lt;/h3&gt;
+&lt;h4&gt;非线性分类问题&lt;/h4&gt;
+&lt;p&gt;非线性分类问题是指通过利用非线性模型才能很好的进行分类的问题。如果能用一个超曲面把正负例正确分开，则称这个问题是非线性可分问题。&lt;/p&gt;
+&lt;p&gt;非线性问题往往不好求解，所以希望能用解线性分类问题的方法解决这个问题。所采取的方法是进行一个非线性变换。&lt;/p&gt;
+&lt;p&gt;用线性方法求解非线性问题分为两步：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用一个变换将原空间的数据映射到新空间&lt;/li&gt;
+&lt;li&gt;在新空间里用线性分类学习方法从训练数据集中学习到分类模型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;核技巧（kernel trick）应用到支持向量机，其基本思想就是通过一个非线性变换将输入空间（欧式空间 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 或离散空间）对应于一个特征空间（希尔伯特空间 &lt;span class="math"&gt;\({\cal H}\)&lt;/span&gt;。在数学里，希尔伯特空间 Hilbert space，即完备的内积空间，也就是说一个带有内积的完备向量空间。希尔伯特空间是有限维欧几里得空间的一个推广，使之不局限于实数的情形和有限的维数，但又不失完备性），使得在输入空间中的超曲面模型对应于特征空间中的超平面模型（支持向量机）。&lt;/p&gt;
+&lt;h4&gt;核函数的定义&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 7.6（核函数）设 &lt;span class="math"&gt;\({\cal X}\)&lt;/span&gt; 是输入空间（欧式空间 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 的子集或离散空间），又设 &lt;span class="math"&gt;\({\cal H}\)&lt;/span&gt; 为特征空间（希尔伯特空间），如果存在一个从 &lt;span class="math"&gt;\({\cal X}\)&lt;/span&gt; 到 &lt;span class="math"&gt;\({\cal H}\)&lt;/span&gt; 的映射
+&lt;div class="math"&gt;$$\phi(x):{\cal X}\to{\cal H}$$&lt;/div&gt;
+使得对所有的 &lt;span class="math"&gt;\(x,z\in{\cal X}\)&lt;/span&gt;，函数 &lt;span class="math"&gt;\(K(x,z)\)&lt;/span&gt; 满足条件
+&lt;div class="math"&gt;$$K(x,z)=\phi(x)\cdot\phi(z)$$&lt;/div&gt;
+则称 &lt;span class="math"&gt;\(K(x,z)\)&lt;/span&gt; 为核函数，&lt;span class="math"&gt;\(\phi(x)\)&lt;/span&gt; 为映射函数，式中 &lt;span class="math"&gt;\(\cdot\)&lt;/span&gt; 为内积运算。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;核技巧的想法是，在学习和预测中只定义核函数 &lt;span class="math"&gt;\(K(x,z)\)&lt;/span&gt;，而不显示的定义映射函数 &lt;span class="math"&gt;\(\phi\)&lt;/span&gt;。通常，直接计算 &lt;span class="math"&gt;\(K(x,z)\)&lt;/span&gt; 比较容易，而通过内积计算 &lt;span class="math"&gt;\(K(x,z)\)&lt;/span&gt; 并不容易。&lt;/p&gt;
+&lt;p&gt;特征空间 &lt;span class="math"&gt;\({\cal H}\)&lt;/span&gt; 一般是高维或无穷维的，对于给定的核 &lt;span class="math"&gt;\(K(x,z)\)&lt;/span&gt;，特征空间核映射函数的取法并不唯一，可以取不同的特征空间，即便是在同一特征空间里也可以取不同的映射。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;例 7.3&lt;/strong&gt; 假设输入空间是 &lt;span class="math"&gt;\(\mathbb{R}^2\)&lt;/span&gt;，核函数是 &lt;span class="math"&gt;\(K(x,z)=(x\cdot z)^2\)&lt;/span&gt;，试找出其相关的特征空间 &lt;span class="math"&gt;\({\cal H}\)&lt;/span&gt; 和映射 &lt;span class="math"&gt;\(\phi(x):\mathbb{R}^2\to{\cal H}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;：取特征空间 &lt;span class="math"&gt;\({\cal H}=\mathbb{R}^3\)&lt;/span&gt;，记 &lt;span class="math"&gt;\(x=\left(x^{(1)},x^{(2)}\right)^\text{T}\)&lt;/span&gt;，&lt;span class="math"&gt;\(z=\left(z^{(1)},z^{(2)}\right)^\text{T}\)&lt;/span&gt;，由于
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+(x\cdot z)^2 &amp;amp;=&amp;amp; \left(x^{(1)}z^{(1)}+x^{(2)}z^{(2)}\right)^2 \\
+&amp;amp;=&amp;amp; \left(x^{(1)}z^{(1)}\right)^2+2x^{(1)}z^{(1)}x^{(2)}z^{(2)}+\left(x^{(2)}z^{(2)}\right)^2
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+所以可以取映射
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\phi(x)=\left(\left(x^{(1)}\right)^2,\sqrt{2}x^{(1)}x^{(2)},\left(x^{(2)}\right)^2\right)^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+容易验证
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\phi(x)\cdot\phi(z)=(x\cdot z)^2=K(x,z)$$&lt;/div&gt;
+&lt;p&gt;仍取 &lt;span class="math"&gt;\({\cal H}=\mathbb{R}^3\)&lt;/span&gt; 以及
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\phi(x)=\frac{1}{\sqrt{2}}\left(\left(x^{(1)}\right)^2-\left(x^{(2)}\right)^2,2x^{(1)}x^{(2)},\left(x^{(1)}\right)^2+\left(x^{(2)}\right)^2\right)^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+同样有 &lt;span class="math"&gt;\(\phi(x)\cdot\phi(z)=(x\cdot z)^2=K(x,z)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;还可以取 &lt;span class="math"&gt;\({\cal H}=\mathbb{R}^4\)&lt;/span&gt; 和
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\phi(x)=\left(\left(x^{(1)}\right)^2,x^{(1)}x^{(2)},x^{(1)}x^{(2)},\left(x^{(2)}\right)^2\right)^\text{T}$$&lt;/div&gt;
+&lt;hr&gt;
+&lt;h4&gt;核技巧在支持向量机中的应用&lt;/h4&gt;
+&lt;p&gt;注意到在线性支持向量机的对偶问题中，无论是目标函数还是决策函数（分离超平面）都只涉及输入实例与实例之间的内积。在对偶问题的目标函数中的内积可以用核函数来代替。此时对偶问题的目标函数变为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$W(\alpha)=\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i$$&lt;/div&gt;
+&lt;p&gt;
+同样，分类决策函数中的内积也用核函数代替，变为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}\alpha_i^\star y_iK(x_i,x)+b^\star\right)$$&lt;/div&gt;
+&lt;p&gt;
+学习是隐式的在特征空间进行的，不需要显式的定义特征空间和映射函数。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第七章 支持向量机（2）——线性支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/7_2/" rel="alternate"></link><published>2018-11-11T23:38:08+08:00</published><updated>2018-11-11T23:38:08+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/7_2/</id><summary type="html">&lt;h2&gt;7.2 线性支持向量机&lt;/h2&gt;
 &lt;p&gt;假设给定一个特征空间上的训练数据集
 &lt;/p&gt;
 &lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
