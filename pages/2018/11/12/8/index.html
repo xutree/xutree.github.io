@@ -176,6 +176,101 @@ Z_m &amp;=&amp; \sum_{i=1}^Nw_{mi}\exp(-\alpha_my_iG_m(x_i)) \\
 <p>通常这是一个复杂的优化问题。前向分步算法（forward stagewise algorithm）求解这一问题的想法是：因为学习是加法模型，如果能够从前向后，每一步只学习一个基函数及其系数，逐步逼近优化目标函数式，那么就可以简化优化的复杂度。具体的，每步只需优化如下损失函数
 </p>
 <div class="math">$$\begin{align*} \\ &amp; \min_{\beta,\gamma} \sum_{i=1}^{N} L \left( y_{i}, \beta b\left(x_{i};\gamma\right) \right) \end{align*}$$</div>
+<p><strong>
+算法 8.2（前向分步算法）<br>
+输入：训练数据集
+<div class="math">$$T=\left\{(x_{1},y_{1}),(x_{2},y_{2}),\cdots,(x_{N},y_{N})\right\}$$</div>
+损失函数 <span class="math">\(L\left(y,f\left(x\right)\right)\)</span>；基函数集 <span class="math">\(\left\{b\left(x;\gamma\right)\right\}\)</span><br>
+输出：加法模型 <span class="math">\(f\left(x\right)\)</span><br>
+(1) 初始化 <span class="math">\(f_{0}\left(x\right)=0\)</span><br>
+(2) 对 <span class="math">\(m=1,2,\cdots,M\)</span><br>
+(2.a) 极小化损失函数
+<div class="math">$$\begin{align*} \\ &amp; \left(\beta_{m},\gamma_{m}\right) = \arg \min_{\beta,\gamma} \sum_{i=1}^{N} L \left( y_{i},f_{m-1} \left(x_{i}\right) + \beta b\left(x_{i};\gamma \right)\right) \end{align*}$$</div>
+得到参数 <span class="math">\(\beta_{m}\)</span>，<span class="math">\(\gamma_{m}\)</span><br>
+(2.b) 更新
+<div class="math">$$\begin{align*} \\&amp; f_{m} \left(x\right) = f_{m-1} \left(x\right) + \beta_{m} b\left(x;\gamma_{m}\right) \end{align*}$$</div>
+(3) 得到加法模型
+<div class="math">$$\begin{align*} \\ &amp; f \left( x \right) = f_{M} \left( x \right) = \sum_{m=1}^{M} \beta_{m} b \left( x; \gamma_{m} \right) \end{align*}$$</div>
+</strong></p>
+<h3>8.3.2 前向分布算法与 AdaBoost</h3>
+<p><strong>
+定理 8.3 AdaBoost 算法是前向分布加法算法的特例。这时模型是由基本分类器组成的加法模型，损失函数是指数函数。
+</strong></p>
+<p><strong>证明</strong>：加法模型等价于 AdaBoost 的最终分类器
+</p>
+<div class="math">$$f(x)=\sum_{m=1}^{M}\alpha_{m}G_{m}(x)$$</div>
+<p>
+由基本分类器 <span class="math">\(G_{m}(x)\)</span> 及其系数 <span class="math">\(\alpha_{m}\)</span> 组成，<span class="math">\(m=1,2,\cdots,M\)</span>。前向分布算法逐一学习基本函数，这一过程与 AdaBoost 算法逐一学习基本分类器的过程一致。下面证明前向分布算法的损失函数是指数损失函数（exponential loss function）
+</p>
+<div class="math">$$L(y,f(x))=exp[-yf(x)]$$</div>
+<p>
+时，其学习的具体操作等价于 AdaBoost 算法学习的具体操作。</p>
+<p>假设经过 <span class="math">\(m-1\)</span> 轮迭代前向分布算法已经得到 <span class="math">\(f_{m-1}(x)\)</span>：
+</p>
+<div class="math">$$\begin{eqnarray}
+f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
+&amp;=&amp; \alpha_{1}G_{1}(x)+\cdots +\alpha_{m-1}G_{m-1}(x)
+\end{eqnarray}$$</div>
+<p>
+在第 <span class="math">\(m\)</span> 轮得到 <span class="math">\(\alpha_{m}\)</span>，<span class="math">\(G_{m}(x)\)</span> 和 <span class="math">\(f_{m}(x)\)</span>
+</p>
+<div class="math">$$f_{m}(x)=f_{m-1}(x)+\alpha_{m}G_{m}(x)$$</div>
+<p>
+目标是使前向算法得到的 <span class="math">\(\alpha_{m}\)</span> 和 <span class="math">\(G_{m}\)</span> 使 <span class="math">\(f_{m}(x)\)</span> 在训练数据集 <span class="math">\(T\)</span> 上的指数损失最小，即：
+</p>
+<div class="math">$$\left(\alpha_{m},G_{m}(x)\right)=\arg\underset{\alpha,G}{\min}\sum_{i=1}^{N}\exp\left[-y_{i}(f_{m-1}(x_{i})+\alpha G(x_{i}))\right]$$</div>
+<p>
+可以表示成：
+</p>
+<div class="math">$$(\alpha_{m},G_{m}(x))=\arg\underset{\alpha,G}{\min}\sum_{i=1}^{N}\overline{w}_{mi}\exp[-y_{i}\alpha G(x_{i})]$$</div>
+<p>
+其中
+</p>
+<div class="math">$$\overline{w}_{mi}=\exp[-y_{i}f_{m-1}(x_{i})]$$</div>
+<p> <span class="math">\(\overline{w}_{mi}\)</span> 不依赖于 <span class="math">\(\alpha\)</span>，也不依赖于 <span class="math">\(G\)</span>，但依赖于 <span class="math">\(f_{m-1}(x)\)</span>，随着每一轮迭代而发生改变。</p>
+<p>首先求 <span class="math">\(G_{m}^{\star}(x)\)</span>，进一步展开：
+</p>
+<div class="math">$$\begin{eqnarray}
+\sum_{i=1}^{N}\overline{w}_{mi}\exp[-y_{i}\alpha G(x_{i})] &amp;=&amp; \sum_{i=1}^{N}\overline{w}_{mi}\text{e}^{-\alpha}\mathbb{I}(y_{i}=G(x_{i}))+\sum_{i=1}^{N}\overline{w}_{mi}\text{e}^{\alpha}\mathbb{I}(y_{i}\neq G(x_{i})) \\
+&amp;=&amp; \text{e}^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}=G(x_{i}))+\text{e}^{\alpha}\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i})) \\
+&amp;+&amp; \text{e}^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))-e^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i})) \\
+&amp;=&amp; \text{e}^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}+(\text{e}^{\alpha}-\text{e}^{-\alpha})\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))
+\end{eqnarray}$$</div>
+<p>
+所以最小化 <span class="math">\(G(x)\)</span> 由下式得到：
+</p>
+<div class="math">$$G_{m}^{\star}(x)=\arg\underset{G}{\min}\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))$$</div>
+<p>之后我们求解 <span class="math">\(\alpha_{m}^{\star}\)</span>：
+</p>
+<div class="math">$$\sum_{i=1}^{N}\overline{w}_{mi}\exp[-y_{i}\alpha G(x_{i})]=\sum_{y_{i}=G_{m}(x_{i})}\overline{w}_{mi}\text{e}^{-\alpha}+\sum_{y_{i}\neq G_{m}(x_{i})}\overline{w}_{mi}\text{e}^{\alpha}\\
+=\text{e}^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}+(\text{e}^{\alpha}-\text{e}^{-\alpha})\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))$$</div>
+<p>对 <span class="math">\(\alpha\)</span> 求导：
+</p>
+<div class="math">$$\frac{\partial }{\partial \alpha}\left(\text{e}^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}+(\text{e}^{\alpha}-\text{e}^{-\alpha})\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))\right)\\
+=-\text{e}^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}+(\text{e}^{\alpha}+\text{e}^{-\alpha})\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))=0$$</div>
+<p>
+即得：
+</p>
+<div class="math">$$\frac{\text{e}^{\alpha}+\text{e}^{-\alpha}}{\text{e}^{-\alpha}}=\frac {\sum_{i=1}^{N}\overline{w}_{mi}}{\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))} \\
+\alpha_{m}^{\star}=\frac{1}{2}\log\frac{1-e_{m}}{e_{m}}$$</div>
+<p>
+其中 <span class="math">\(e_{m}\)</span> 是分类错误率：
+</p>
+<div class="math">$$e_{m}=\frac {\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))}{\sum_{i=1}^{N}\overline{w}_{mi}}=\sum_{i=1}^{N}w_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))$$</div>
+<p>这里的 <span class="math">\(\alpha_{m}^{\star}\)</span> 与 AdaBoost 算法的 <span class="math">\(\alpha_{m}\)</span> 完全一致。</p>
+<p>再看一下每一轮的权值更新，由：
+</p>
+<div class="math">$$f_{m}(x)=f_{m-1}(x)+\alpha_{m}G_{m}(x)$$</div>
+<p>
+以及
+</p>
+<div class="math">$$\overline{w}_{mi}=\exp[-y_{i}f_{m-1}(x_{i})]$$</div>
+<p>
+可得：
+</p>
+<div class="math">$$\overline{w}_{m+1,i}=\overline{w}_{m,i}\exp[-y_{i}\alpha_{m}G_{m}(x)]$$</div>
+<p>
+这与 AdaBoost 算法的样本权值的更新，只相差规范会因子，因此等价。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -272,7 +367,7 @@ Z_m &amp;=&amp; \sum_{i=1}^Nw_{mi}\exp(-\alpha_my_iG_m(x_i)) \\
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-12T21:42:33+08:00">2018-11-12 21:42:33</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-12 21:42:33</div>
+                    <div class="last_updated">2018-11-13 00:17:44</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
