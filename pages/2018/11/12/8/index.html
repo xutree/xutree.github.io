@@ -162,6 +162,20 @@ Z_m &amp;=&amp; \sum_{i=1}^Nw_{mi}\exp(-\alpha_my_iG_m(x_i)) \\
 <div class="math">$$\frac{1}{N}\sum_{i=1}^N\mathbb{I}\left(G(x_i)\neq y_i\right)\leq\exp(-2M\gamma^2)$$</div>
 </strong>
 这表明在此条件下，AdaBoost 训练误差关于训练次数 <span class="math">\(M\)</span> 以指数速率下降。</p>
+<h2>8.3 AdaBoost 算法的解释</h2>
+<p>AdaBoost 算法还有另外一个解释，即可以认为 AdaBoost 算法是模型为加法模型，损失函数为指数函数，学习算法为前向分步算法时的二类分类学习方法。</p>
+<h3>8.3.1 前向分步算法</h3>
+<p>考虑加法模型（additive model）
+</p>
+<div class="math">$$f(x)=\sum_{m=1}^M\beta_mb(x;\gamma_m)$$</div>
+<p>
+其中，<span class="math">\(b\left(x;\gamma_{m}\right)\)</span> 为基函数，<span class="math">\(\beta_{m}\)</span> 为基函数系数，<span class="math">\(\gamma_{m}\)</span> 为基函数参数。</p>
+<p>在给定训练数据及损失函数 <span class="math">\(L\left(y,f\left(x\right)\right)\)</span> 的条件下，学习加法模型 <span class="math">\(f\left(x\right)\)</span> 成为经验风险极小化问题
+</p>
+<div class="math">$$\begin{align*} \\ &amp; \min_{\beta_{m},\gamma_{m}} \sum_{i=1}^{N} L \left( y_{i}, \sum_{m=1}^{M} \beta_{m} b\left(x_{i};\gamma_{m}\right) \right) \end{align*}$$</div>
+<p>通常这是一个复杂的优化问题。前向分步算法（forward stagewise algorithm）求解这一问题的想法是：因为学习是加法模型，如果能够从前向后，每一步只学习一个基函数及其系数，逐步逼近优化目标函数式，那么就可以简化优化的复杂度。具体的，每步只需优化如下损失函数
+</p>
+<div class="math">$$\begin{align*} \\ &amp; \min_{\beta,\gamma} \sum_{i=1}^{N} L \left( y_{i}, \beta b\left(x_{i};\gamma\right) \right) \end{align*}$$</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
