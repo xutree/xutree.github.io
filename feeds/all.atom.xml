@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-12T10:50:23+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（3）——非线性支持向量机</title><link href="https://xutree.github.io/pages/2018/11/12/7_3/" rel="alternate"></link><published>2018-11-12T10:50:23+08:00</published><updated>2018-11-12T10:50:23+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/7_3/</id><summary type="html">&lt;h2&gt;7.3 非线性支持向量机与核函数&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-12T12:41:58+08:00</updated><entry><title>统计学习方法 第七章 支持向量机（3）——非线性支持向量机</title><link href="https://xutree.github.io/pages/2018/11/12/7_3/" rel="alternate"></link><published>2018-11-12T10:50:23+08:00</published><updated>2018-11-12T12:41:58+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/7_3/</id><summary type="html">&lt;h2&gt;7.3 非线性支持向量机与核函数&lt;/h2&gt;
 &lt;p&gt;对解线性分类问题，线性分类支持向量机是一种非常有效的方法。但是，有时分类问题是非线性的，这时可以使用非线性支持向量机。&lt;/p&gt;
 &lt;h3&gt;7.3.1 核技巧&lt;/h3&gt;
 &lt;h4&gt;非线性分类问题&lt;/h4&gt;
@@ -131,6 +131,45 @@
 &lt;div class="math"&gt;$$K=\left[K(x_i,x_j)\right]_{m\times m}$$&lt;/div&gt;
 是半正定矩阵。
 &lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;7.3.3 常用核函数&lt;/h3&gt;
+&lt;p&gt;(a) 多项式核函数（polynomial kernel function）
+&lt;/p&gt;
+&lt;div class="math"&gt;$$K(x,z)=(x\cdot z+1)^p$$&lt;/div&gt;
+&lt;p&gt;
+对应的支持向量机是一个 &lt;span class="math"&gt;\(p\)&lt;/span&gt; 次多项式分类器。决策函数为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}a_i^\star y_i(x_i\cdot x+1)^p+b^\star\right)$$&lt;/div&gt;
+&lt;p&gt;(b) 高斯核函数（Gaussian kernel function）
+&lt;/p&gt;
+&lt;div class="math"&gt;$$K(x,z)=\exp\left(-\frac{\|x-z\|^2}{2\sigma^2}\right)$$&lt;/div&gt;
+&lt;p&gt;
+对应的支持向量机是高斯径向基函数（radial basis function）分类器。决策函数为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}a_i^\star y_i\exp\left(-\frac{\|x-z\|^2}{2\sigma^2}\right)+b^\star\right)$$&lt;/div&gt;
+&lt;p&gt;(c) 字符串核函数（string kernel function）它与一般的核函数不同。其他核函数一般定义在欧氏空间上，而字符串核函数是定义在字符串集合上的核函数。字符串核函数被广泛用在文本分类、信息检索等方面。可以由动态规划快速的计算。&lt;/p&gt;
+&lt;h3&gt;7.3.4 非线性支持向量分类机&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 7.8（非线性支持向量机）从非线性分类训练集，通过核函数与软间隔最大化，或凸二次规划，学习得到的分类决策函数
+&lt;div class="math"&gt;$$f(x)=\text{sign}\left(\sum_{i=1}^{N}\alpha_i^\star y_iK(x_i,x)+b^\star\right)$$&lt;/div&gt;
+称为非线性支持向量机，&lt;span class="math"&gt;\(K(x,z)\)&lt;/span&gt; 是正定核函数。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 7.4（非线性支持向量机学习算法）&lt;br&gt;
+输入：训练数据集 &lt;span class="math"&gt;\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)&lt;/span&gt;，其中 &lt;span class="math"&gt;\(x_i\in{\cal X}=\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_i\in{\cal Y}=\{+1,-1\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;&lt;br&gt;
+输出：分类决策函数&lt;br&gt;
+(1) 选择适当的核函数 &lt;span class="math"&gt;\(K(x,z)\)&lt;/span&gt; 和惩罚参数 &lt;span class="math"&gt;\(C&amp;gt;0\)&lt;/span&gt;，构造并求解约束最优化问题
+&lt;div class="math"&gt;$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i \\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+\sum_{i=1}^N\alpha_iy_i &amp;amp;=&amp;amp; 0 \\
+0\leq\alpha_i\leq C,\ i &amp;amp;=&amp;amp; 1,2,\cdots,N
+\end{eqnarray}$$&lt;/div&gt;
+求得最优解 &lt;span class="math"&gt;\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)&lt;/span&gt;&lt;br&gt;
+(2) 选择 &lt;span class="math"&gt;\(\alpha^\star\)&lt;/span&gt; 的一个分量满足 &lt;span class="math"&gt;\(0&amp;lt;\alpha_i^\star&amp;lt;C\)&lt;/span&gt;，计算
+&lt;div class="math"&gt;$$b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_iK(x_i,x_j)$$&lt;/div&gt;
+(3) 构造分类决策函数
+&lt;div class="math"&gt;$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_iK(x,x_i)+b^\star\right)$$&lt;/div&gt;
+&lt;/strong&gt;
+当 &lt;span class="math"&gt;\(K(x,z)\)&lt;/span&gt; 是正定核函数时，最优化问题是凸二次规划问题，解是存在的。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

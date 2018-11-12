@@ -126,6 +126,45 @@
 <div class="math">$$K=\left[K(x_i,x_j)\right]_{m\times m}$$</div>
 是半正定矩阵。
 </strong></p>
+<h3>7.3.3 常用核函数</h3>
+<p>(a) 多项式核函数（polynomial kernel function）
+</p>
+<div class="math">$$K(x,z)=(x\cdot z+1)^p$$</div>
+<p>
+对应的支持向量机是一个 <span class="math">\(p\)</span> 次多项式分类器。决策函数为
+</p>
+<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}a_i^\star y_i(x_i\cdot x+1)^p+b^\star\right)$$</div>
+<p>(b) 高斯核函数（Gaussian kernel function）
+</p>
+<div class="math">$$K(x,z)=\exp\left(-\frac{\|x-z\|^2}{2\sigma^2}\right)$$</div>
+<p>
+对应的支持向量机是高斯径向基函数（radial basis function）分类器。决策函数为
+</p>
+<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}a_i^\star y_i\exp\left(-\frac{\|x-z\|^2}{2\sigma^2}\right)+b^\star\right)$$</div>
+<p>(c) 字符串核函数（string kernel function）它与一般的核函数不同。其他核函数一般定义在欧氏空间上，而字符串核函数是定义在字符串集合上的核函数。字符串核函数被广泛用在文本分类、信息检索等方面。可以由动态规划快速的计算。</p>
+<h3>7.3.4 非线性支持向量分类机</h3>
+<p><strong>
+定义 7.8（非线性支持向量机）从非线性分类训练集，通过核函数与软间隔最大化，或凸二次规划，学习得到的分类决策函数
+<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^{N}\alpha_i^\star y_iK(x_i,x)+b^\star\right)$$</div>
+称为非线性支持向量机，<span class="math">\(K(x,z)\)</span> 是正定核函数。
+</strong></p>
+<p><strong>
+算法 7.4（非线性支持向量机学习算法）<br>
+输入：训练数据集 <span class="math">\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)</span>，其中 <span class="math">\(x_i\in{\cal X}=\mathbb{R}^n\)</span>，<span class="math">\(y_i\in{\cal Y}=\{+1,-1\}\)</span>，<span class="math">\(i=1,2,\cdots,N\)</span><br>
+输出：分类决策函数<br>
+(1) 选择适当的核函数 <span class="math">\(K(x,z)\)</span> 和惩罚参数 <span class="math">\(C&gt;0\)</span>，构造并求解约束最优化问题
+<div class="math">$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i \\
+\text{s.t.}\ \ \ \ \begin{eqnarray}
+\sum_{i=1}^N\alpha_iy_i &amp;=&amp; 0 \\
+0\leq\alpha_i\leq C,\ i &amp;=&amp; 1,2,\cdots,N
+\end{eqnarray}$$</div>
+求得最优解 <span class="math">\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)</span><br>
+(2) 选择 <span class="math">\(\alpha^\star\)</span> 的一个分量满足 <span class="math">\(0&lt;\alpha_i^\star&lt;C\)</span>，计算
+<div class="math">$$b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_iK(x_i,x_j)$$</div>
+(3) 构造分类决策函数
+<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_iK(x,x_i)+b^\star\right)$$</div>
+</strong>
+当 <span class="math">\(K(x,z)\)</span> 是正定核函数时，最优化问题是凸二次规划问题，解是存在的。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -222,7 +261,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-12T10:50:23+08:00">2018-11-12 10:50:23</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-12 10:50:23</div>
+                    <div class="last_updated">2018-11-12 12:41:58</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
