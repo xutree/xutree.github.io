@@ -329,6 +329,30 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 (3) 得到回归提升树
 <div class="math">$$\begin{align*} \\ &amp; f_{M} \left( x \right) = \sum_{m=1}^{M} T \left(x;\varTheta_{m}\right) \end{align*}$$</div>
 </strong></p>
+<h3>8.4.3 梯度提升</h3>
+<p>提升树用加法模型与前向分布算法实现学习的优化过程。当损失函数是平方损失函数时，每一步优化是很简单的，但是对一般损失函数而言，往往每一步优化并不那么容易。因此Freidman提过了梯度提升（gradient boosting）。这是利用最速下降法的近似方法，其关键是利用损失函数的负梯度在当前模型的值：
+</p>
+<div class="math">$$-\left [ \frac{\partial L(y_{i},f(x_{i}))}{\partial f(x_{i})} \right]_{f(x)=f_{m-1}(x)}$$</div>
+<p>
+作为回归问题提升树算法中的残差近似值，拟合一个回归树。</p>
+<p><strong>
+算法 8.4（梯度提升算法）<br>
+输入：训练数据集
+<div class="math">$$T = \left\{ \left( x_{1}, y_{1} \right), \left( x_{2}, y_{2} \right), \cdots, \left( x_{N}, y_{N} \right) \right\}$$</div>
+<span class="math">\(x_{i} \in \mathcal{X} \subseteq \mathbb{R}^{n}\)</span>，<span class="math">\(y_{i} \in \mathcal{Y} \subseteq \mathbb{R}\)</span>，<span class="math">\(i = 1, 2, \cdots, N\)</span>，最大迭代次数 <span class="math">\(M\)</span> ，损失函数 <span class="math">\(L\left(y,f\left(x\right)\right)\)</span><br>
+输出：回归树 <span class="math">\(\hat f\left(x\right)\)</span><br>
+(1) 初始化
+<div class="math">$$\begin{align*} \\ &amp; f_{0}\left(x\right) = \arg \min_{c} \sum_{i=1}^{N} L \left(y_{i},c\right) \end{align*}$$</div>
+(2) 对 <span class="math">\(m=1,2,\cdots,M\)</span><br>
+(2.a) 对 <span class="math">\(i=1,2,\cdots,N\)</span> 计算
+<div class="math">$$\begin{align*} \\ &amp; r_{mi}=- \left[ \dfrac {\partial L \left(y_{i},f\left(x_{i}\right) \right)}{\partial f \left(x_{i} \right)}\right]_{f\left(x\right)=f_{m-1}\left(x\right)} \end{align*}$$</div>
+(2.b) 对 <span class="math">\(r_{mi}\)</span> 拟合回归树，得到第 <span class="math">\(m\)</span> 棵树的叶结点区域 <span class="math">\(R_{mj}\)</span>，<span class="math">\(j=1,2,\cdots,J\)</span> <br>
+(2.c) 对 <span class="math">\(j=1,2,\cdots,J\)</span>，计算<br>
+<div class="math">$$\begin{align*} \\ &amp; c_{mj}=\arg \min_{c} \sum_{x_{i} \in R_{mj}} L \left( y_{i},f_{m-1} \left(x_{i}\right)+c \right) \end{align*}$$</div>
+(2.d) 更新 <span class="math">\(f_{m}\left(x\right)= f_{m-1}\left(x\right) + \sum_{j=1}^{J} c_{mj} \mathbb{I} \left(x \in R_{mj} \right)\)</span><br>
+(3) 得到回归树
+<div class="math">$$\begin{align*} \\ &amp; \hat f \left( x \right) = f_{M} \left( x \right) = \sum_{m=1}^{M} \sum_{j=1}^{J} c_{mj} \mathbb{I} \left( x \in R_{mj} \right) \end{align*}$$</div>
+</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -425,7 +449,7 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-12T21:42:33+08:00">2018-11-12 21:42:33</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-13 10:19:52</div>
+                    <div class="last_updated">2018-11-13 10:34:40</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>

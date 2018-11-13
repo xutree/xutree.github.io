@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-13T10:19:52+08:00</updated><entry><title>统计学习方法 第八章 提升方法</title><link href="https://xutree.github.io/pages/2018/11/12/8/" rel="alternate"></link><published>2018-11-12T21:42:33+08:00</published><updated>2018-11-13T10:19:52+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/8/</id><summary type="html">&lt;p&gt;提升（boosting）方法是一种常用的统计学习方法，应用广泛且有效。在分类问题中，它通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-13T10:34:40+08:00</updated><entry><title>统计学习方法 第八章 提升方法</title><link href="https://xutree.github.io/pages/2018/11/12/8/" rel="alternate"></link><published>2018-11-12T21:42:33+08:00</published><updated>2018-11-13T10:34:40+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/8/</id><summary type="html">&lt;p&gt;提升（boosting）方法是一种常用的统计学习方法，应用广泛且有效。在分类问题中，它通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。&lt;/p&gt;
 &lt;h2&gt;8.1 提升方法 AdaBoost 算法&lt;/h2&gt;
 &lt;h3&gt;8.1.1 提升方法的基本思想&lt;/h3&gt;
 &lt;p&gt;提升方法是一种可以用来减小监督式学习中偏差的机器学习元算法。面对的问题是迈可·肯斯（Michael Kearns）提出的：一组“弱学习者”的集合能否生成一个“强学习者”？弱学习者一般是指一个分类器，它的结果只比随机分类好一点点；强学习者指分类器的结果非常接近真值。&lt;/p&gt;
@@ -274,6 +274,30 @@ f_{m-1}(x) &amp;amp;=&amp;amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 (2.c) 更新 &lt;div class="math"&gt;$$f_{m}=f_{m-1}\left(x\right)+T\left(x;\varTheta_{m}\right)$$&lt;/div&gt;
 (3) 得到回归提升树
 &lt;div class="math"&gt;$$\begin{align*} \\ &amp;amp; f_{M} \left( x \right) = \sum_{m=1}^{M} T \left(x;\varTheta_{m}\right) \end{align*}$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;8.4.3 梯度提升&lt;/h3&gt;
+&lt;p&gt;提升树用加法模型与前向分布算法实现学习的优化过程。当损失函数是平方损失函数时，每一步优化是很简单的，但是对一般损失函数而言，往往每一步优化并不那么容易。因此Freidman提过了梯度提升（gradient boosting）。这是利用最速下降法的近似方法，其关键是利用损失函数的负梯度在当前模型的值：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$-\left [ \frac{\partial L(y_{i},f(x_{i}))}{\partial f(x_{i})} \right]_{f(x)=f_{m-1}(x)}$$&lt;/div&gt;
+&lt;p&gt;
+作为回归问题提升树算法中的残差近似值，拟合一个回归树。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 8.4（梯度提升算法）&lt;br&gt;
+输入：训练数据集
+&lt;div class="math"&gt;$$T = \left\{ \left( x_{1}, y_{1} \right), \left( x_{2}, y_{2} \right), \cdots, \left( x_{N}, y_{N} \right) \right\}$$&lt;/div&gt;
+&lt;span class="math"&gt;\(x_{i} \in \mathcal{X} \subseteq \mathbb{R}^{n}\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_{i} \in \mathcal{Y} \subseteq \mathbb{R}\)&lt;/span&gt;，&lt;span class="math"&gt;\(i = 1, 2, \cdots, N\)&lt;/span&gt;，最大迭代次数 &lt;span class="math"&gt;\(M\)&lt;/span&gt; ，损失函数 &lt;span class="math"&gt;\(L\left(y,f\left(x\right)\right)\)&lt;/span&gt;&lt;br&gt;
+输出：回归树 &lt;span class="math"&gt;\(\hat f\left(x\right)\)&lt;/span&gt;&lt;br&gt;
+(1) 初始化
+&lt;div class="math"&gt;$$\begin{align*} \\ &amp;amp; f_{0}\left(x\right) = \arg \min_{c} \sum_{i=1}^{N} L \left(y_{i},c\right) \end{align*}$$&lt;/div&gt;
+(2) 对 &lt;span class="math"&gt;\(m=1,2,\cdots,M\)&lt;/span&gt;&lt;br&gt;
+(2.a) 对 &lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt; 计算
+&lt;div class="math"&gt;$$\begin{align*} \\ &amp;amp; r_{mi}=- \left[ \dfrac {\partial L \left(y_{i},f\left(x_{i}\right) \right)}{\partial f \left(x_{i} \right)}\right]_{f\left(x\right)=f_{m-1}\left(x\right)} \end{align*}$$&lt;/div&gt;
+(2.b) 对 &lt;span class="math"&gt;\(r_{mi}\)&lt;/span&gt; 拟合回归树，得到第 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 棵树的叶结点区域 &lt;span class="math"&gt;\(R_{mj}\)&lt;/span&gt;，&lt;span class="math"&gt;\(j=1,2,\cdots,J\)&lt;/span&gt; &lt;br&gt;
+(2.c) 对 &lt;span class="math"&gt;\(j=1,2,\cdots,J\)&lt;/span&gt;，计算&lt;br&gt;
+&lt;div class="math"&gt;$$\begin{align*} \\ &amp;amp; c_{mj}=\arg \min_{c} \sum_{x_{i} \in R_{mj}} L \left( y_{i},f_{m-1} \left(x_{i}\right)+c \right) \end{align*}$$&lt;/div&gt;
+(2.d) 更新 &lt;span class="math"&gt;\(f_{m}\left(x\right)= f_{m-1}\left(x\right) + \sum_{j=1}^{J} c_{mj} \mathbb{I} \left(x \in R_{mj} \right)\)&lt;/span&gt;&lt;br&gt;
+(3) 得到回归树
+&lt;div class="math"&gt;$$\begin{align*} \\ &amp;amp; \hat f \left( x \right) = f_{M} \left( x \right) = \sum_{m=1}^{M} \sum_{j=1}^{J} c_{mj} \mathbb{I} \left( x \in R_{mj} \right) \end{align*}$$&lt;/div&gt;
 &lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
