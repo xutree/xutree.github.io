@@ -271,6 +271,64 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 <div class="math">$$\overline{w}_{m+1,i}=\overline{w}_{m,i}\exp[-y_{i}\alpha_{m}G_{m}(x)]$$</div>
 <p>
 这与 AdaBoost 算法的样本权值的更新，只相差规范会因子，因此等价。</p>
+<h2>8.4 提升树</h2>
+<p>提升树是以分类或回归树为基本分类器的提升方法。提升树被认为是统计学习中性能最好的方法之一。</p>
+<h3>8.4.1 提升树模型</h3>
+<p>提升方法实际采用加法模型（即基函数的线性组合）与前向分布算法。以决策树为基函数的提升方法称为提升树（boosting tree）。对分类问题决策树是二叉分类树，对回归问题决策树是二叉回归树。只有一个条件的基本分类器可以看做是由一个根结点直接连接两个叶结点简单决策树，即所谓的决策树桩（decision stump）。提升树模型可以表示为决策树的加法模型：
+</p>
+<div class="math">$$f_{M}(x)=\sum_{m=1}^{M}T(x;\Theta_{m})$$</div>
+<p>
+其中，<span class="math">\(T(x;\Theta_{m})\)</span> 表示决策树；<span class="math">\(\Theta_{m}\)</span> 为决策树的参数；<span class="math">\(M\)</span> 为树的个数。提升树中树之间没有权重，或者说它们的权重都是一样的，树之间是独立的，训练样本之间也没有权重的概念，这是提升树和随机森林、AdaBoost 之间的区别。</p>
+<h3>8.4.2 提升树算法</h3>
+<p>提升树算法采用前向分步算法。首先确定初始提升树 <span class="math">\(f_{0}(x)=0\)</span>，第 <span class="math">\(m\)</span> 步的模型是：
+</p>
+<div class="math">$$f_{m}(x)=f_{m-1}(x)+T(x;\Theta_{m})$$</div>
+<p>其中，<span class="math">\(f_{m-1}(x)\)</span> 为当前模型，通过经验风险最小化确定下一决策树的参数 <span class="math">\(\Theta_{m}\)</span>：
+</p>
+<div class="math">$$\hat {\Theta}_{m}=\arg\underset{\Theta_{m}}{\min}\sum_{i=1}^{N}L(y_{i},f_{m-1}(x_{i})+T(x_{i};\Theta_{m})$$</div>
+<p>不同问题的提升树有不同的学习算法，其主要区别在于使用的损失函数不同。包含用平凡误差损失函数的回归问题，用指数损失函数的分类问题，以及用一般损失函数的一般决策问题。对于二分类问题，提升树只需将 Adaboost 算法的基本分类器限制为二分类即可，可以说这时的提升树算法是 Adaboost 算法的特殊情况。下面主要讨论下回归问题。</p>
+<p>已知训练数据集
+</p>
+<div class="math">$$\begin{align*} \\&amp; T = \left\{ \left( x_{1}, y_{1} \right), \left( x_{2}, y_{2} \right), \cdots, \left( x_{N}, y_{N} \right) \right\} \end{align*} \\ $$</div>
+<p>
+其中，<span class="math">\(x_{i} \in \mathcal{X} \subseteq \mathbb{R}^{n}\)</span>，<span class="math">\(y_{i} \in \mathcal{Y} \subseteq \mathbb{R}\)</span>，<span class="math">\(i = 1, 2,\cdots, N\)</span>。</p>
+<p>将输入空间 <span class="math">\(\mathcal{X}\)</span> 划分为 <span class="math">\(J\)</span> 个互不相交的区域 <span class="math">\(R_{1},R_{2},\cdots,R_{J}\)</span>，且在每个区域上确定输出的常量 <span class="math">\(c_{j}\)</span>，则回归树
+</p>
+<div class="math">$$\begin{align*} \\&amp; T \left(x; \varTheta\right) = \sum_{j=1}^{J} c_{j} \mathbb{I} \left(x \in R_{j}\right) \end{align*} \\$$</div>
+<p>
+其中，参数
+</p>
+<div class="math">$$\varTheta = \left\{ \left(R_{1}, c_{1}\right),\left(R_{2}, c_{2}\right),\cdots,\left(R_{J}, c_{J}\right) \right\}$$</div>
+<p>
+表示树的区域划分和各区域上的常数。<span class="math">\(J\)</span> 是回归树的复杂度即叶结点个数。</p>
+<p>回归提升树使用前向分布算法
+</p>
+<div class="math">$$\begin{align*} \\&amp; f_{0}=0 \\ &amp; f_{m}\left(x\right) = f_{m-1}\left(x\right) + T \left(x; \varTheta_{m}\right),\ m=1,2,\cdots,M\\ &amp; f_{M} = \sum_{m=1}^{M} T \left(x; \varTheta_{m}\right) \end{align*} \\$$</div>
+<p>在前向分布算法的第 <span class="math">\(m\)</span> 步给定当前模型 <span class="math">\(f_{m-1}\left(x\right)\)</span>，模型参数
+</p>
+<div class="math">$$\begin{align*} \\&amp; \hat \varTheta_{m} = \arg \min_{\varTheta_{m}} \sum_{i=1}^{N} L \left( y_{i}, f_{m-1}\left(x_{i}\right) + T \left( x_{i}; \varTheta_{m} \right) \right) \end{align*} \\ $$</div>
+<p>
+得到第 <span class="math">\(m\)</span> 棵树的参数 <span class="math">\(\hat \varTheta_{m}\)</span></p>
+<p>当采用平方误差损失函数
+</p>
+<div class="math">$$\begin{align*} \\&amp; L \left( y, f_{m-1}\left(x\right)+T\left(x;\varTheta_{m}\right)\right) \\ &amp; = \left[y-f_{m-1}\left(x\right)-T\left(x;\varTheta_{m}\right)\right]^{2} \\ &amp; = \left[r-T\left(x;\varTheta_{m}\right)\right]^{2}\end{align*} \\ $$</div>
+<p>
+其中，<span class="math">\(r=y-f_{m-1}\left(x\right)\)</span> 是当前模型拟合数据的残差。</p>
+<p><strong>
+算法 8.3（回归问题的提升树方法）<br>
+输入：训练数据集
+<div class="math">$$T = \left\{ \left( x_{1}, y_{1} \right), \left( x_{2}, y_{2} \right), \cdots, \left( x_{N}, y_{N} \right) \right\}$$</div>
+<span class="math">\(x_{i} \in \mathcal{X} \subseteq R^{n}\)</span>，<span class="math">\(y_{i} \in \mathcal{Y} \subseteq R\)</span>，<span class="math">\(i = 1, 2, \cdots, N\)</span><br>
+输出：回归提升树 <span class="math">\(f_{M}\left(x\right)\)</span><br>
+(1) 初始化 <span class="math">\(f_{0}\left(x\right)=0\)</span><br>
+(2) 对 <span class="math">\(m=1,2,\cdots,M\)</span><br>
+(2.) 计算残差
+<div class="math">$$\begin{align*} \\ &amp; r_{mi}=y_{i}-f_{m-1}\left(x_{i}\right),\quad i=1,2,\cdots,N \end{align*}$$</div>
+(2.b) 拟合残差 <span class="math">\(r_{mi}\)</span> 学习一个回归树，得到 <span class="math">\(T\left(x;\varTheta_{m}\right)\)</span><br>
+(2.c) 更新 <div class="math">$$f_{m}=f_{m-1}\left(x\right)+T\left(x;\varTheta_{m}\right)$$</div>
+(3) 得到回归提升树
+<div class="math">$$\begin{align*} \\ &amp; f_{M} \left( x \right) = \sum_{m=1}^{M} T \left(x;\varTheta_{m}\right) \end{align*}$$</div>
+</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -367,7 +425,7 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-12T21:42:33+08:00">2018-11-12 21:42:33</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-13 00:17:44</div>
+                    <div class="last_updated">2018-11-13 10:19:52</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
