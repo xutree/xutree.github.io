@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="数学, 基础知识, " />
-    <title>拉格朗日对偶性  · You Know Nothing
+<meta name="keywords" content="概率, 数学, 基础知识, " />
+    <title>似然函数  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -54,7 +54,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/"> 拉格朗日对偶性  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/16/likelihood-function/"> 似然函数  </a></h1>
         </header>
     </div>
 
@@ -62,80 +62,30 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <h2>1. 原始问题</h2>
-<p>假设 <span class="math">\(f(x)\)</span>，<span class="math">\(c_i(x)\)</span>，<span class="math">\(h_j(x)\)</span> 是定义在 <span class="math">\(\mathbb{R}^n\)</span> 上的连续可微函数。考虑约束最优化问题：
+                <h2>似然函数</h2>
+<p>在数理统计学中，似然函数（likelihood function）是一种关于统计模型中的<strong>参数</strong>的函数，表示模型参数中的似然性。似然函数在统计推断中有重大作用，如在最大似然估计和费希尔信息之中的应用等等。“似然性”与“或然性”或“概率”意思相近，都是指某种事件发生的可能性，但是在统计学中，“似然性”和“概率”（或然性）又有明确的区分。概率用于在已知一些参数的情况下，预测接下来的观测所得到的结果，而似然性则是用于在已知某些观测所得到的结果时，对有关事物的性质的参数进行估计。</p>
+<p>在这种意义上，似然函数可以理解为条件概率的逆反。在已知某个参数 <span class="math">\(B\)</span> 时，事件 <span class="math">\(A\)</span> 会发生的概率写作：
 </p>
-<div class="math">$$\min_{x\in\mathbb{R}^n}f(x) \\
-\text{s.t.}\ \ \ \ \
-\begin{eqnarray}
-c_i(x) &amp;\leq&amp; 0,i=1,2,\cdots,k \\
-h_j(x) &amp;=&amp; 0,j=1,2,\cdots,l
-\end{eqnarray}$$</div>
+<div class="math">$$P(A\mid B)={\frac{P(A,B)}{P(B)}}$$</div>
 <p>
-称此优化约束问题为原始最优化问题或原始问题。</p>
-<p>首先，引进广义拉格朗日函数：
+利用贝叶斯定理，
 </p>
-<div class="math">$$L(x,\alpha,\beta)=f(x)+\sum_{i=1}^k\alpha_ic_i(x)+\sum_{j=1}^l\beta_jh_j(x)$$</div>
+<div class="math">$$P(B\mid A)={\frac  {P(A\mid B)\;P(B)}{P(A)}}\!$$</div>
 <p>
-这里，<span class="math">\(x=\left(x^{(1)},x^{(2)},\cdots,x^{(n)}\right)^\text{T}\in\mathbb{R}^n\)</span>，<span class="math">\(\alpha_i\)</span>，<span class="math">\(\beta_j\)</span> 是拉格朗日乘子，<span class="math">\(\alpha_i\geq0\)</span>，考虑 <span class="math">\(x\)</span> 的函数：
-</p>
-<div class="math">$$\theta_P(x)=\max_{\alpha,\beta:\alpha\geq0}L(x,\alpha,\beta)$$</div>
+因此，我们可以反过来构造表示似然性的方法：已知有事件 <span class="math">\(A\)</span> 发生，运用似然函数 </p>
+<div class="math">$$\mathbb{L}(B\mid A)$$</div>
 <p>
-这里，下标 <span class="math">\(P\)</span> 表示原始问题。</p>
-<p>易知：
+我们估计参数 <span class="math">\(B\)</span> 的可能性。形式上，似然函数也是一种条件概率函数，但我们关注的变量改变了：
 </p>
-<div class="math">$$\theta_P(x)=\begin{cases}
-f(x), &amp; x\ 满足原始问题约束 \\
-+\infty, &amp; 其他
-\end{cases}$$</div>
+<div class="math">$$b\mapsto P(A\mid B=b)$$</div>
 <p>
-所以如果考虑极小化问题
+注意到这里并不要求似然函数满足归一性：
 </p>
-<div class="math">$$\min_x\theta_P(x)=\min_x\max_{\alpha,\beta:\alpha_i\geq0}L(x,\alpha,\beta)$$</div>
+<div class="math">$$\sum_{{b\in {\mathcal  {B}}}}P(A\mid B=b)=1$$</div>
 <p>
-它是与原始最优化问题等价的问题。</p>
-<p>为了方便，定义原始问题的最优值
+一个似然函数乘以一个正的常数之后仍然是似然函数。对所有 <span class="math">\(\alpha&gt;0\)</span>，都可以有似然函数：
 </p>
-<div class="math">$$p^{\star}=\min_x\theta_P(x)$$</div>
-<p>
-称为原始问题的值。</p>
-<h2>2. 对偶问题</h2>
-<p>定义
-</p>
-<div class="math">$$\theta_D(\alpha,\beta)=\min_xL(x,\alpha,\beta)$$</div>
-<p>
-再考虑极大化，即
-</p>
-<div class="math">$$\max_{\alpha,\beta:\alpha_i\geq0}\theta_D(\alpha,\beta)=\max_{\alpha,\beta:\alpha_i\geq0}\min_xL(x,\alpha,\beta)$$</div>
-<p>
-上述问题称为广义拉格朗日函数的极大极小问题。</p>
-<p>可以将广义拉格朗日函数的极大极小问题表示为约束最优化问题：
-</p>
-<div class="math">$$\max_{\alpha,\beta}\theta_D(\alpha,\beta)=\max_{\alpha,\beta}\min_xL(x,\alpha,\beta) \\
-\text{s.t.}\ \ \ \alpha_i\geq0,i=1,2,\cdots,k$$</div>
-<p>
-称为原始问题的对偶问题。定义对偶问题的最优值：
-</p>
-<div class="math">$$d^\star=\max_{\alpha,\beta:\alpha_i\geq0}\theta_D(\alpha,\beta)$$</div>
-<p>
-称为对偶问题的值。</p>
-<h2>3. 原始问题和对偶问题的关系</h2>
-<blockquote>
-<p><strong>定理 1</strong> 若原始问题和对偶问题都有最优值，则
-<div class="math">$$d^\star=\max_{\alpha,\beta:\alpha_i\geq0}\min_xL(x,\alpha,\beta)\leq\min_x\max_{\alpha,\beta:\alpha_i\geq0}L(x,\alpha,\beta)=p^\star$$</div>
-</p>
-<p><strong>推论 1</strong> 设 <span class="math">\(x^\star\)</span> 是原始问题的可行解，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span> 是对偶问题的可行解，并且 <span class="math">\(d^\star=p^\star\)</span>，则它们分别是原始问题和对偶问题的最优解。</p>
-<p><strong>定理 2</strong> 考虑原始问题和对偶问题。假设函数 <span class="math">\(f(x)\)</span> 和 <span class="math">\(c_i(x)\)</span> 是凸函数，<span class="math">\(h_j(x)\)</span> 是仿射函数；并且假设不等式约束 <span class="math">\(c_i(x)\)</span> 是严格可行的，即存在 <span class="math">\(x\)</span>，对所有 <span class="math">\(i\)</span>，有 <span class="math">\(c_i&lt;0\)</span>，则存在 <span class="math">\(x^\star\)</span>，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span>，使 <span class="math">\(x^\star\)</span> 是原始问题的解，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span> 是对偶问题的解，并且
-<div class="math">$$p^\star=d^\star=L(x^\star,\alpha^\star,\beta^\star)$$</div>
-</p>
-<p><strong>定理 3</strong> 对原始问题和对偶问题，假设函数 <span class="math">\(f(x)\)</span> 和 <span class="math">\(c_i(x)\)</span> 是凸函数，<span class="math">\(h_j(x)\)</span> 是仿射函数，并且假设不等式约束 <span class="math">\(c_i(x)\)</span> 是严格可行的，则 <span class="math">\(x^\star\)</span>，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span> 分别是原始问题和对偶问题的解的充要条件是 <span class="math">\(x^\star\)</span>，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span> 满足下面的 Karush-Kuhn-Tucker（KKT）条件
-<div class="math">$$\nabla_xL(x^\star,\alpha^\star,\beta^\star)=0 \\
-\alpha_i^\star c_i(x^\star)=0,i=1,2,\cdots,k \\
-c_i(x^\star)\leq0,i=1,2,\cdots,k \\
-\alpha_i^\star\geq0,i=1,2,\cdots,k \\
-h_j(x^\star)=0,j=1,2,\cdots,l$$</div>
-</p>
-</blockquote>
+<div class="math">$$L(b\mid A)=\alpha P(A\mid B=b)$$</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -199,50 +149,13 @@ h_j(x^\star)=0,j=1,2,\cdots,l$$</div>
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/09/6/">
-                                    统计学习方法 第六章 逻辑回归与最大熵模型
+                                <a href="https://xutree.github.io/pages/2018/11/12/8/">
+                                    统计学习方法 第八章 提升方法
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/07/5/">
-                                    统计学习方法 第五章 决策树
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/07/4/">
-                                    统计学习方法 第四章 朴素贝叶斯法
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/05/bayes/">
-                                    贝叶斯定理
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/04/3/">
-                                    统计学习方法 第三章 k 近邻法
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <nav class="newer">
-                        <h1>
-                            <font color="#771515"><em>NEWER</em></font>
-                        </h1>
-                        <ul>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/10/directional_derivative-gradient/">
-                                    方向导数和梯度
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/11/7_1/">
-                                    统计学习方法 第七章 支持向量机（1）——线性可分支持向量机
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/11/7_2/">
-                                    统计学习方法 第七章 支持向量机（2）——线性支持向量机
+                                <a href="https://xutree.github.io/pages/2018/11/12/7_4/">
+                                    统计学习方法 第七章 支持向量机（4）——序列最小最优化算法
                                 </a>
                             </li>
                             <li>
@@ -251,47 +164,32 @@ h_j(x^\star)=0,j=1,2,\cdots,l$$</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/12/7_4/">
-                                    统计学习方法 第七章 支持向量机（4）——序列最小最优化算法
+                                <a href="https://xutree.github.io/pages/2018/11/11/7_2/">
+                                    统计学习方法 第七章 支持向量机（2）——线性支持向量机
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/11/7_1/">
+                                    统计学习方法 第七章 支持向量机（1）——线性可分支持向量机
                                 </a>
                             </li>
                         </ul>
                     </nav>
-                    <!-- Gitalk 评论 start  -->
-
-                    <!-- Link Gitalk 的支持文件  -->
-                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-                    <div id="gitalk-container"></div>
-                    <script type="text/javascript">
-                        var dateTime = Date.now();
-                        var timestamp = Math.floor(dateTime / 1000);
-                        var gitalk = new Gitalk({
-
-                            // gitalk的主要参数
-                            clientID: '93f43349e9fd3154bfad',
-                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
-                            repo: 'xutree.github.io',
-                            owner: 'xutree',
-                            admin: ['xutree'],
-                            id: String(timestamp)
-
-                        });
-                        gitalk.render('gitalk-container');
-                    </script> -->
-                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-11-10T13:41:43+08:00">2018-11-10 13:41:43</time>
+                    <time pubdate="pubdate" datetime="2018-11-16T18:52:37+08:00">2018-11-16 18:52:37</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-10 14:16:04</div>
+                    <div class="last_updated">2018-11-16 18:52:37</div>
                     <h4>分类</h4>
-                    <a class="category-link" href="/categories.html#基础知识-ref">基础知识</a>
+                    <a class="category-link" href="/categories.html#基础知识-ref">基础知识</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#概率-ref">概率
+                                <span>3</span>
+</a></li>
                         <li><a href="/tags.html#数学-ref">数学
                                 <span>6</span>
 </a></li>
