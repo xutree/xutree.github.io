@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="概率, 数学, 基础知识, " />
-    <title>似然函数  · You Know Nothing
+<meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
+    <title>统计学习方法 第九章 EM 算法及其推广  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -54,7 +54,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/16/likelihood-function/"> 似然函数  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/16/9/"> 统计学习方法 第九章 EM 算法及其推广  </a></h1>
         </header>
     </div>
 
@@ -62,22 +62,40 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <h2>似然函数</h2>
-<p>在数理统计学中，似然函数（likelihood function）是一种关于统计模型中的<strong>参数</strong>的函数，表示模型参数中的似然性。似然函数在统计推断中有重大作用，如在最大似然估计和费希尔信息之中的应用等等。“似然性”与“或然性”或“概率”意思相近，都是指某种事件发生的可能性，但是在统计学中，“似然性”和“概率”（或然性）又有明确的区分。概率用于在已知一些参数的情况下，预测接下来的观测所得到的结果，而似然性则是用于在已知某些观测所得到的结果时，对有关事物的性质的参数进行估计。</p>
-<h3>定义</h3>
-<p>对于离散和连续概率分布，似然函数总是被定义为参数 <span class="math">\(\theta\)</span> 的函数。</p>
-<p><span class="math">\(\blacksquare\)</span> 离散概率分布</p>
-<p>设 <span class="math">\(X\)</span> 是离散随机变量，概率质量函数 <span class="math">\(p\)</span> 依赖于参数 <span class="math">\(\theta\)</span>。那么函数
+                <p>EM 算法是一种迭代算法，用于含有隐变量（hidden varibale）的概率模型参数的极大似然估计，或极大后验概率估计。EM 算法每次的迭代分两步：E 步，求期望（expectation）；M 步，求加大（maximization）。所以这一算法被称为期望极大算法（expectation maximization）。</p>
+<h2>9.1 EM 算法的引入</h2>
+<p>概率模型有时既含有观测变量（observable variable），又含有隐变量或潜在变量（latent variable）。如果概率模型的变量都是观测变量，那么给定数据，可以直接用极大似然估计法，或贝叶斯估计法估计模型参数。但是，当模型含有隐变量时，就不能简单的使用这些估计方法。EM 算法就是含有隐变量的概率模型参数的极大似然估计法，或极大后验概率估计法。</p>
+<p>一般的，用 <span class="math">\(Y\)</span> 表示观测随机变量的数据，<span class="math">\(Z\)</span> 表示隐随机变量的数据。<span class="math">\(Y\)</span> 和 <span class="math">\(Z\)</span> 连在一起称为完全数据（complete-data），观测数据 <span class="math">\(Y\)</span> 又称为不完全数据（incomplete-data）。假设给定观测数据 <span class="math">\(Y\)</span>，其概率分布是 <span class="math">\(P(Y|\theta)\)</span>，其中 <span class="math">\(\Theta\)</span> 是需要估计的模型参数，那么不完全数据了 <span class="math">\(Y\)</span> 的似然函数是 <span class="math">\(P(Y|\theta)\)</span>，对数似然函数是 <span class="math">\(L(\theta)=\log P(Y|\theta)\)</span>；假设 <span class="math">\(Y\)</span> 和 <span class="math">\(Z\)</span> 的联合概率分布是 <span class="math">\(P(Y,Z|\theta)\)</span>，那么完全数据的对数似然函数是 <span class="math">\(\log P(Y,Z|\theta)\)</span>。</p>
+<p>EM 算法通过迭代求 <span class="math">\(L(\theta)=\log P(Y|\theta)\)</span> 的极大似然估计。</p>
+<p><strong>
+算法 9.1（EM 算法）<br>
+输入：观测变量数据 <span class="math">\(Y\)</span>，隐变量数据 <span class="math">\(Z\)</span>，联合分布 <span class="math">\(P(Y,Z|\theta)\)</span>，条件分布 <span class="math">\(P(Z|Y,\theta)\)</span><br>
+输出：模型参数 <span class="math">\(\theta\)</span><br>
+(1) 选择参数的初值 <span class="math">\(\theta^{(0)}\)</span>，开始迭代<br>
+(2) E 步：记 <span class="math">\(\theta^{(i)}\)</span> 为第 <span class="math">\(i\)</span> 次迭代参数 <span class="math">\(\theta\)</span> 的估计值。在第 <span class="math">\(i+1\)</span> 次迭代的 E 步，计算
+<div class="math">$$\begin{eqnarray}
+Q\left(\theta,\theta^{(i)}\right) &amp;=&amp; \text{E}_Z\left[\log P(Y,Z|\theta)|Y,\theta^{(i)}\right] \\
+&amp;=&amp; \sum_{Z}\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})
+\end{eqnarray}$$</div>
+这里，<span class="math">\(P(Z|Y,\theta^{(i)})\)</span> 是在给定观测数据 <span class="math">\(Y\)</span> 和当前的参数估计 <span class="math">\(\theta^{(i)}\)</span> 下隐变量数据 <span class="math">\(Z\)</span> 的条件概率分布<br>
+(3) M 步：求极大，更新 <span class="math">\(\theta\)</span><br>
+<div class="math">$$\theta^{(i+1)}=\arg\max_{\theta}Q\left(\theta,\theta^{(i)}\right)$$</div>
+(4) 重复 (2)，(3)，直到收敛
+</strong></p>
+<p><span class="math">\(Q\)</span> 函数是 EM 算法的核心。</p>
+<p><strong>
+定义 9.1（<span class="math">\(Q\)</span> 函数）玩去数据的对数似然函数 <span class="math">\(\log P(Y,Z|\theta)\)</span> 关于在给定观测数据 <span class="math">\(Y\)</span> 的当前参数 <span class="math">\(\theta^{(i)}\)</span> 下对未观测数据 <span class="math">\(Z\)</span> 的条件概率分布 <span class="math">\(P\left(Z|Y,\theta^{(i)}\right)\)</span> 的期望称为 <span class="math">\(Q\)</span> 函数，即
+<div class="math">$$Q\left(\theta,\theta^{(i)}\right)=\text{E}_Z\left[\log P(Y,Z|\theta)|Y,\theta^{(i)}\right]$$</div>
+</strong></p>
+<p>关于 EM 算法需要注意：参数的初值可以任意选择，但需注意 EM 算法对初值是敏感的；给出停止迭代的条件，一般是对较小的正数 <span class="math">\(\epsilon_1\)</span>，<span class="math">\(\epsilon_2\)</span>，若满足
 </p>
-<div class="math">$${\cal L}(\theta|x)=p_\theta(x)=p_\theta(X=x)$$</div>
+<div class="math">$$\|\theta^{(i+1)}-\theta^{(i)}\|&lt;\epsilon_1 $$</div>
 <p>
-称为关于 <span class="math">\(\theta\)</span> 的似然函数。</p>
-<p><span class="math">\(\blacksquare\)</span> 连续概率分布</p>
-<p>设 <span class="math">\(X\)</span> 是连续随机变量，概率密度函数 <span class="math">\(f\)</span> 依赖于参数 <span class="math">\(\theta\)</span>。那么函数
+或
 </p>
-<div class="math">$${\cal L}(\theta|x)=f_\theta(x)$$</div>
+<div class="math">$$\left\|Q\left(\theta^{(i+1)},\theta^{(i)}\right)-Q\left(\theta^{(i)},\theta^{(i)}\right)\right\|&lt;\epsilon_2$$</div>
 <p>
-称为关于 <span class="math">\(\theta\)</span> 的似然函数。</p>
+则迭代停止。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -141,6 +159,11 @@
                         </h1>
                         <ul>
                             <li>
+                                <a href="https://xutree.github.io/pages/2018/11/16/likelihood-function/">
+                                    似然函数
+                                </a>
+                            </li>
+                            <li>
                                 <a href="https://xutree.github.io/pages/2018/11/12/8/">
                                     统计学习方法 第八章 提升方法
                                 </a>
@@ -160,65 +183,25 @@
                                     统计学习方法 第七章 支持向量机（2）——线性支持向量机
                                 </a>
                             </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/11/7_1/">
-                                    统计学习方法 第七章 支持向量机（1）——线性可分支持向量机
-                                </a>
-                            </li>
                         </ul>
                     </nav>
-                    <nav class="newer">
-                        <h1>
-                            <font color="#771515"><em>NEWER</em></font>
-                        </h1>
-                        <ul>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/16/9/">
-                                    统计学习方法 第九章 EM 算法及其推广
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- Gitalk 评论 start  -->
-
-                    <!-- Link Gitalk 的支持文件  -->
-                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-                    <div id="gitalk-container"></div>
-                    <script type="text/javascript">
-                        var dateTime = Date.now();
-                        var timestamp = Math.floor(dateTime / 1000);
-                        var gitalk = new Gitalk({
-
-                            // gitalk的主要参数
-                            clientID: '93f43349e9fd3154bfad',
-                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
-                            repo: 'xutree.github.io',
-                            owner: 'xutree',
-                            admin: ['xutree'],
-                            id: String(timestamp)
-
-                        });
-                        gitalk.render('gitalk-container');
-                    </script> -->
-                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-11-16T18:52:37+08:00">2018-11-16 18:52:37</time>
+                    <time pubdate="pubdate" datetime="2018-11-16T20:59:28+08:00">2018-11-16 20:59:28</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-16 18:52:37</div>
+                    <div class="last_updated">2018-11-16 20:59:28</div>
                     <h4>分类</h4>
-                    <a class="category-link" href="/categories.html#基础知识-ref">基础知识</a>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
-                        <li><a href="/tags.html#概率-ref">概率
-                                <span>3</span>
+                        <li><a href="/tags.html#机器学习-ref">机器学习
+                                <span>12</span>
 </a></li>
-                        <li><a href="/tags.html#数学-ref">数学
-                                <span>6</span>
+                        <li><a href="/tags.html#统计学习-ref">统计学习
+                                <span>12</span>
 </a></li>
                     </ul>
 

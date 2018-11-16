@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 基础知识</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/ji-chu-zhi-shi.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-16T18:52:37+08:00</updated><entry><title>似然函数</title><link href="https://xutree.github.io/pages/2018/11/16/likelihood-function/" rel="alternate"></link><published>2018-11-16T18:52:37+08:00</published><updated>2018-11-16T18:52:37+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-16:/pages/2018/11/16/likelihood-function/</id><summary type="html">&lt;h2&gt;似然函数&lt;/h2&gt;
 &lt;p&gt;在数理统计学中，似然函数（likelihood function）是一种关于统计模型中的&lt;strong&gt;参数&lt;/strong&gt;的函数，表示模型参数中的似然性。似然函数在统计推断中有重大作用，如在最大似然估计和费希尔信息之中的应用等等。“似然性”与“或然性”或“概率”意思相近，都是指某种事件发生的可能性，但是在统计学中，“似然性”和“概率”（或然性）又有明确的区分。概率用于在已知一些参数的情况下，预测接下来的观测所得到的结果，而似然性则是用于在已知某些观测所得到的结果时，对有关事物的性质的参数进行估计。&lt;/p&gt;
-&lt;p&gt;在这种意义上，似然函数可以理解为条件概率的逆反。在已知某个参数 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 时，事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 会发生的概率写作：
+&lt;h3&gt;定义&lt;/h3&gt;
+&lt;p&gt;对于离散和连续概率分布，似然函数总是被定义为参数 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; 的函数。&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 离散概率分布&lt;/p&gt;
+&lt;p&gt;设 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 是离散随机变量，概率质量函数 &lt;span class="math"&gt;\(p\)&lt;/span&gt; 依赖于参数 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;。那么函数
 &lt;/p&gt;
-&lt;div class="math"&gt;$$P(A\mid B)={\frac{P(A,B)}{P(B)}}$$&lt;/div&gt;
-&lt;p&gt;
-利用贝叶斯定理，
-&lt;/p&gt;
-&lt;div class="math"&gt;$$P(B\mid …&lt;/div&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+&lt;div class="math"&gt;$${\cal L}(\theta|x)=p_\theta(x …&lt;/div&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
         linebreak = "false";
@@ -63,28 +62,20 @@
 }
 &lt;/script&gt;</summary><content type="html">&lt;h2&gt;似然函数&lt;/h2&gt;
 &lt;p&gt;在数理统计学中，似然函数（likelihood function）是一种关于统计模型中的&lt;strong&gt;参数&lt;/strong&gt;的函数，表示模型参数中的似然性。似然函数在统计推断中有重大作用，如在最大似然估计和费希尔信息之中的应用等等。“似然性”与“或然性”或“概率”意思相近，都是指某种事件发生的可能性，但是在统计学中，“似然性”和“概率”（或然性）又有明确的区分。概率用于在已知一些参数的情况下，预测接下来的观测所得到的结果，而似然性则是用于在已知某些观测所得到的结果时，对有关事物的性质的参数进行估计。&lt;/p&gt;
-&lt;p&gt;在这种意义上，似然函数可以理解为条件概率的逆反。在已知某个参数 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 时，事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 会发生的概率写作：
+&lt;h3&gt;定义&lt;/h3&gt;
+&lt;p&gt;对于离散和连续概率分布，似然函数总是被定义为参数 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; 的函数。&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 离散概率分布&lt;/p&gt;
+&lt;p&gt;设 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 是离散随机变量，概率质量函数 &lt;span class="math"&gt;\(p\)&lt;/span&gt; 依赖于参数 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;。那么函数
 &lt;/p&gt;
-&lt;div class="math"&gt;$$P(A\mid B)={\frac{P(A,B)}{P(B)}}$$&lt;/div&gt;
+&lt;div class="math"&gt;$${\cal L}(\theta|x)=p_\theta(x)=p_\theta(X=x)$$&lt;/div&gt;
 &lt;p&gt;
-利用贝叶斯定理，
+称为关于 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; 的似然函数。&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 连续概率分布&lt;/p&gt;
+&lt;p&gt;设 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 是连续随机变量，概率密度函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 依赖于参数 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;。那么函数
 &lt;/p&gt;
-&lt;div class="math"&gt;$$P(B\mid A)={\frac  {P(A\mid B)\;P(B)}{P(A)}}\!$$&lt;/div&gt;
+&lt;div class="math"&gt;$${\cal L}(\theta|x)=f_\theta(x)$$&lt;/div&gt;
 &lt;p&gt;
-因此，我们可以反过来构造表示似然性的方法：已知有事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 发生，运用似然函数 &lt;/p&gt;
-&lt;div class="math"&gt;$$\mathbb{L}(B\mid A)$$&lt;/div&gt;
-&lt;p&gt;
-我们估计参数 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 的可能性。形式上，似然函数也是一种条件概率函数，但我们关注的变量改变了：
-&lt;/p&gt;
-&lt;div class="math"&gt;$$b\mapsto P(A\mid B=b)$$&lt;/div&gt;
-&lt;p&gt;
-注意到这里并不要求似然函数满足归一性：
-&lt;/p&gt;
-&lt;div class="math"&gt;$$\sum_{{b\in {\mathcal  {B}}}}P(A\mid B=b)=1$$&lt;/div&gt;
-&lt;p&gt;
-一个似然函数乘以一个正的常数之后仍然是似然函数。对所有 &lt;span class="math"&gt;\(\alpha&amp;gt;0\)&lt;/span&gt;，都可以有似然函数：
-&lt;/p&gt;
-&lt;div class="math"&gt;$$L(b\mid A)=\alpha P(A\mid B=b)$$&lt;/div&gt;
+称为关于 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; 的似然函数。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

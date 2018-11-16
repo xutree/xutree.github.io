@@ -1,5 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-13T10:34:40+08:00</updated><entry><title>统计学习方法 第八章 提升方法</title><link href="https://xutree.github.io/pages/2018/11/12/8/" rel="alternate"></link><published>2018-11-12T21:42:33+08:00</published><updated>2018-11-13T10:34:40+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/8/</id><summary type="html">&lt;p&gt;提升（boosting）方法是一种常用的统计学习方法，应用广泛且有效。在分类问题中，它通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-16T20:59:28+08:00</updated><entry><title>统计学习方法 第九章 EM 算法及其推广</title><link href="https://xutree.github.io/pages/2018/11/16/9/" rel="alternate"></link><published>2018-11-16T20:59:28+08:00</published><updated>2018-11-16T20:59:28+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-16:/pages/2018/11/16/9/</id><summary type="html">&lt;p&gt;EM 算法是一种迭代算法，用于含有隐变量（hidden varibale）的概率模型参数的极大似然估计，或极大后验概率估计。EM 算法每次的迭代分两步：E 步，求期望（expectation）；M 步，求加大（maximization）。所以这一算法被称为期望极大算法（expectation maximization）。&lt;/p&gt;
+&lt;h2&gt;9.1 EM 算法的引入&lt;/h2&gt;
+&lt;p&gt;概率模型有时既含有观测变量（observable variable），又含有隐变量或潜在变量（latent variable）。如果概率模型的变量都是观测变量，那么给定数据，可以直接用极大似然估计法，或贝叶斯估计法估计模型参数。但是，当模型含有隐变量时，就不能简单的使用这些估计方法。EM 算法就是含有隐变量的概率模型参数的极大似然估计法，或极大后验概率估计法。&lt;/p&gt;
+&lt;p&gt;一般的，用 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 表示观测随机变量的数据，&lt;span class="math"&gt;\(Z\)&lt;/span&gt; 表示隐随机变量的数据。&lt;span class="math"&gt;\(Y\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Z\)&lt;/span&gt; 连在一起称为完全数据 …&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;p&gt;EM 算法是一种迭代算法，用于含有隐变量（hidden varibale）的概率模型参数的极大似然估计，或极大后验概率估计。EM 算法每次的迭代分两步：E 步，求期望（expectation）；M 步，求加大（maximization）。所以这一算法被称为期望极大算法（expectation maximization）。&lt;/p&gt;
+&lt;h2&gt;9.1 EM 算法的引入&lt;/h2&gt;
+&lt;p&gt;概率模型有时既含有观测变量（observable variable），又含有隐变量或潜在变量（latent variable）。如果概率模型的变量都是观测变量，那么给定数据，可以直接用极大似然估计法，或贝叶斯估计法估计模型参数。但是，当模型含有隐变量时，就不能简单的使用这些估计方法。EM 算法就是含有隐变量的概率模型参数的极大似然估计法，或极大后验概率估计法。&lt;/p&gt;
+&lt;p&gt;一般的，用 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 表示观测随机变量的数据，&lt;span class="math"&gt;\(Z\)&lt;/span&gt; 表示隐随机变量的数据。&lt;span class="math"&gt;\(Y\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Z\)&lt;/span&gt; 连在一起称为完全数据（complete-data），观测数据 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 又称为不完全数据（incomplete-data）。假设给定观测数据 &lt;span class="math"&gt;\(Y\)&lt;/span&gt;，其概率分布是 &lt;span class="math"&gt;\(P(Y|\theta)\)&lt;/span&gt;，其中 &lt;span class="math"&gt;\(\Theta\)&lt;/span&gt; 是需要估计的模型参数，那么不完全数据了 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 的似然函数是 &lt;span class="math"&gt;\(P(Y|\theta)\)&lt;/span&gt;，对数似然函数是 &lt;span class="math"&gt;\(L(\theta)=\log P(Y|\theta)\)&lt;/span&gt;；假设 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Z\)&lt;/span&gt; 的联合概率分布是 &lt;span class="math"&gt;\(P(Y,Z|\theta)\)&lt;/span&gt;，那么完全数据的对数似然函数是 &lt;span class="math"&gt;\(\log P(Y,Z|\theta)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;EM 算法通过迭代求 &lt;span class="math"&gt;\(L(\theta)=\log P(Y|\theta)\)&lt;/span&gt; 的极大似然估计。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 9.1（EM 算法）&lt;br&gt;
+输入：观测变量数据 &lt;span class="math"&gt;\(Y\)&lt;/span&gt;，隐变量数据 &lt;span class="math"&gt;\(Z\)&lt;/span&gt;，联合分布 &lt;span class="math"&gt;\(P(Y,Z|\theta)\)&lt;/span&gt;，条件分布 &lt;span class="math"&gt;\(P(Z|Y,\theta)\)&lt;/span&gt;&lt;br&gt;
+输出：模型参数 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;&lt;br&gt;
+(1) 选择参数的初值 &lt;span class="math"&gt;\(\theta^{(0)}\)&lt;/span&gt;，开始迭代&lt;br&gt;
+(2) E 步：记 &lt;span class="math"&gt;\(\theta^{(i)}\)&lt;/span&gt; 为第 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 次迭代参数 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; 的估计值。在第 &lt;span class="math"&gt;\(i+1\)&lt;/span&gt; 次迭代的 E 步，计算
+&lt;div class="math"&gt;$$\begin{eqnarray}
+Q\left(\theta,\theta^{(i)}\right) &amp;amp;=&amp;amp; \text{E}_Z\left[\log P(Y,Z|\theta)|Y,\theta^{(i)}\right] \\
+&amp;amp;=&amp;amp; \sum_{Z}\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})
+\end{eqnarray}$$&lt;/div&gt;
+这里，&lt;span class="math"&gt;\(P(Z|Y,\theta^{(i)})\)&lt;/span&gt; 是在给定观测数据 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 和当前的参数估计 &lt;span class="math"&gt;\(\theta^{(i)}\)&lt;/span&gt; 下隐变量数据 &lt;span class="math"&gt;\(Z\)&lt;/span&gt; 的条件概率分布&lt;br&gt;
+(3) M 步：求极大，更新 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;&lt;br&gt;
+&lt;div class="math"&gt;$$\theta^{(i+1)}=\arg\max_{\theta}Q\left(\theta,\theta^{(i)}\right)$$&lt;/div&gt;
+(4) 重复 (2)，(3)，直到收敛
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(Q\)&lt;/span&gt; 函数是 EM 算法的核心。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 9.1（&lt;span class="math"&gt;\(Q\)&lt;/span&gt; 函数）玩去数据的对数似然函数 &lt;span class="math"&gt;\(\log P(Y,Z|\theta)\)&lt;/span&gt; 关于在给定观测数据 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 的当前参数 &lt;span class="math"&gt;\(\theta^{(i)}\)&lt;/span&gt; 下对未观测数据 &lt;span class="math"&gt;\(Z\)&lt;/span&gt; 的条件概率分布 &lt;span class="math"&gt;\(P\left(Z|Y,\theta^{(i)}\right)\)&lt;/span&gt; 的期望称为 &lt;span class="math"&gt;\(Q\)&lt;/span&gt; 函数，即
+&lt;div class="math"&gt;$$Q\left(\theta,\theta^{(i)}\right)=\text{E}_Z\left[\log P(Y,Z|\theta)|Y,\theta^{(i)}\right]$$&lt;/div&gt;
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;关于 EM 算法需要注意：参数的初值可以任意选择，但需注意 EM 算法对初值是敏感的；给出停止迭代的条件，一般是对较小的正数 &lt;span class="math"&gt;\(\epsilon_1\)&lt;/span&gt;，&lt;span class="math"&gt;\(\epsilon_2\)&lt;/span&gt;，若满足
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\|\theta^{(i+1)}-\theta^{(i)}\|&amp;lt;\epsilon_1 $$&lt;/div&gt;
+&lt;p&gt;
+或
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\left\|Q\left(\theta^{(i+1)},\theta^{(i)}\right)-Q\left(\theta^{(i)},\theta^{(i)}\right)\right\|&amp;lt;\epsilon_2$$&lt;/div&gt;
+&lt;p&gt;
+则迭代停止。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第八章 提升方法</title><link href="https://xutree.github.io/pages/2018/11/12/8/" rel="alternate"></link><published>2018-11-12T21:42:33+08:00</published><updated>2018-11-13T10:34:40+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-12:/pages/2018/11/12/8/</id><summary type="html">&lt;p&gt;提升（boosting）方法是一种常用的统计学习方法，应用广泛且有效。在分类问题中，它通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。&lt;/p&gt;
 &lt;h2&gt;8.1 提升方法 AdaBoost 算法&lt;/h2&gt;
 &lt;h3&gt;8.1.1 提升方法的基本思想&lt;/h3&gt;
 &lt;p&gt;提升方法是一种可以用来减小监督式学习中偏差的机器学习元算法。面对的问题是迈可·肯斯（Michael Kearns）提出的：一组“弱学习者”的集合能否生成一个“强学习者”？弱学习者一般是指一个分类器，它的结果只比随机分类好一点点；强学习者指分类器的结果非常接近真值。&lt;/p&gt;
