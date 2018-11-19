@@ -136,6 +136,189 @@ b. 观测独立性假设
 <p>已知观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span>，估计模型参数 <span class="math">\(\lambda=(A,B,\pi)\)</span>，使得在该模型下观测序列 <span class="math">\(P(O|\lambda)\)</span> 最大。即用极大似然估计的方法估计参数。</p>
 <p><span class="math">\(\blacksquare\)</span> 预测问题</p>
 <p>也称为解码（decoding）问题。已知模型 <span class="math">\(\lambda=(A,B,\pi)\)</span> 和观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span>，求对给定观测序列条件概率 <span class="math">\(P(I|O)\)</span> 最大的状态序列 <span class="math">\(I=(i_1,i_2,\cdots,i_T)\)</span>。即给定观测序列，求最可能的对应的状态序列。</p>
+<h2>10.2 概率计算算法</h2>
+<h3>10.2.1 前向算法</h3>
+<p><strong>
+定义 10.2（前向概率）给定隐马尔科夫模型 <span class="math">\(\lambda\)</span>，定义到时刻 <span class="math">\(t\)</span> 部分观测序列为 <span class="math">\(o_1,o_2,\cdots,o_t\)</span> 且状态为 <span class="math">\(q_i\)</span> 的概率为前向概率，记作
+<div class="math">$$\alpha_i(t)=P(o_1,o_2,\cdots,o_t,t_i=q_i|\lambda)$$</div>
+可以递推地求得前向概率 <span class="math">\(\alpha_t(i)\)</span> 及观测序列概率 <span class="math">\(P(O|\lambda)\)</span>。
+</strong></p>
+<p><strong>
+算法 10.2（观测序列概率的前向算法）<br>
+输入：隐马尔科夫模型 <span class="math">\(\lambda\)</span>，观测序列 <span class="math">\(O\)</span><br>
+输出：观测序列概率 <span class="math">\(P(O|\lambda)\)</span> <br>
+(1) 初值
+<div class="math">$$\alpha_1(i)=\pi_ib_i(o_1),\ i=1,2,\cdots,N$$</div>
+(2) 递推
+<div class="math">$$\alpha_{t+1}(i)=\left[\sum_{j=1}^N\alpha_t(j)a_{ji}\right]b_i(o_{t+1}),\ i=1,2,\cdots,N$$</div>
+(3) 终止
+<div class="math">$$P(O|\lambda)=\sum_{i=1}^N\alpha_T(i)$$</div>
+</strong></p>
+<p>利用前向概率计算 <span class="math">\(P(O|\lambda)\)</span> 的计算量是 <span class="math">\(O(N^2T)\)</span> 阶的，而不是直接计算的 <span class="math">\(O(TN^T)\)</span> 阶。</p>
+<h3>10.2.2 后向算法</h3>
+<p><strong>
+定义 10.3（后向概率）给定隐马尔科夫模型 <span class="math">\(\lambda\)</span>，定义在时刻 <span class="math">\(t\)</span> 状态为 <span class="math">\(q_i\)</span> 的条件下，从 <span class="math">\(t+1\)</span> 到 <span class="math">\(T\)</span> 的部分观测序列为 <span class="math">\(o_{t+1},o_{t+2},\cdots,o_T\)</span> 的概率为后向概率，记作
+<div class="math">$$\beta_t(i)=P(o_{t+1},o_{t+2},\cdots,o_{T}|i_t=q_i,\lambda)$$</div>
+可以用递推的方法求得后向概率以及观测序列概率 <span class="math">\(P(O|\lambda)\)</span>。
+</strong></p>
+<p><strong>
+算法 10.3（观测序列概率的后向算法）<br>
+输入：隐马尔科夫模型 <span class="math">\(\lambda\)</span>，观测序列 <span class="math">\(O\)</span><br>
+输出：观测序列概率 <span class="math">\(P(O|\lambda)\)</span><br>
+(1)
+<div class="math">$$\beta_T(i)=1,\ i=1,2,\cdots,N$$</div>
+(2) 对 <span class="math">\(t=T-1,T-2,\cdots,1\)</span>
+<div class="math">$$\beta_t(i)=\sum_{j=1}^Na_{ij}b_j(o_{t+1})\beta_{i+1}(j),\ i=1,2,\cdots,N$$</div>
+(3)
+<div class="math">$$P(O|\lambda)=\sum_{i=1}^N\pi_ib_i(o_1)\beta_1(i)$$</div>
+</strong></p>
+<p>利用前向概率和后向概率的定义可以将观测序列概率 <span class="math">\(P(O|\lambda)\)</span> 统一写成
+</p>
+<div class="math">$$P(O|\lambda)=\sum_{i=1}^N\sum_{j=1}^N\alpha_t(i)a_{ij}b_j(o_{t+1})\beta_{t+1}(j),\ t=1,2,\cdots,T-1$$</div>
+<p>
+当 <span class="math">\(t=1\)</span> 或 <span class="math">\(t=T-1\)</span> 时，分别为后向概率和前向概率。</p>
+<p>根据定义，我们可得如下等式
+</p>
+<div class="math">$$\alpha_t(i)\beta_t(i)=P(i_t=q_i,O|\lambda)$$</div>
+<h3>10.2.3 一些概率与期望值的计算</h3>
+<p><span class="math">\(\blacksquare\)</span> 给定模型 <span class="math">\(\lambda\)</span> 和观测 <span class="math">\(O\)</span>，在时刻 <span class="math">\(t\)</span> 处于状态 <span class="math">\(q_i\)</span> 概率</p>
+<p>记
+</p>
+<div class="math">$$\gamma_t(i)=P(i_t=q_i|O,\lambda)$$</div>
+<p>
+则
+</p>
+<div class="math">$$\gamma_t(i)=P(i_t=q_i|O,\lambda)=\frac{P(i_t=q_i,O|\lambda)}{P(O|\lambda)}=\frac{\alpha_t(i)\beta_t(i)}{\sum_{j=1}^N\alpha_t(j)\beta_t(j)}$$</div>
+<p><span class="math">\(\blacksquare\)</span> 给定模型 <span class="math">\(\lambda\)</span> 和观测 <span class="math">\(O\)</span>，在时刻 <span class="math">\(t\)</span> 处于状态 <span class="math">\(q_i\)</span> 概率且在时刻 <span class="math">\(t+1\)</span> 处于状态 <span class="math">\(q_j\)</span> 的概率</p>
+<p>记
+</p>
+<div class="math">$$\xi_t(i,j)=P(i_t=q_i,i_{t+1}=q_j|O,\lambda)$$</div>
+<p>
+则
+</p>
+<div class="math">$$\begin{eqnarray}
+\xi_t(i,j) &amp;=&amp; P(i_t=q_i,i_{t+1}=q_j|O,\lambda)=\frac{P(i_t=q_i,i_{t+1}=q_j,O|\lambda)}{P(O|\lambda)} \\
+&amp;=&amp; \frac{P(i_t=q_i,i_{t+1}=q_j,O|\lambda)}{\sum_{i=1}^N\sum_{j=1}^NP(i_t=q_i,i_{t+1}=q_j,O|\lambda)} \\
+&amp;=&amp; \frac{\alpha_t(i)a_{ij}b_j(o_{t+1})\beta_{t+1}(j)}{\sum_{i=1}^N\sum_{j=1}^N\alpha_t(i)a_{ij}b_j(o_{t+1})\beta_{t+1}(j)}
+\end{eqnarray}$$</div>
+<p><span class="math">\(\blacksquare\)</span> 将 <span class="math">\(\gamma_t(i)\)</span> 和 <span class="math">\(\xi_t(i,j)\)</span> 对各个时刻 <span class="math">\(t\)</span> 求和，可以得到一些有用的期望值</p>
+<p>a. 在观测 <span class="math">\(O\)</span> 下状态 <span class="math">\(i\)</span> 出现的期望值
+</p>
+<div class="math">$$\sum_{t=1}^T\gamma_t(i)$$</div>
+<p>
+b. 在观测 <span class="math">\(O\)</span> 下由状态 <span class="math">\(i\)</span> 转移的期望值
+</p>
+<div class="math">$$\sum_{t=1}^{T-1}\gamma_t(i)$$</div>
+<p>
+c. 在观察 <span class="math">\(O\)</span> 下由状态 <span class="math">\(i\)</span> 转移到状态 <span class="math">\(j\)</span> 的期望值
+</p>
+<div class="math">$$\sum_{t=1}^{T-1}\xi_t(i,j)$$</div>
+<h2>10.3 学习算法</h2>
+<p>隐马尔科夫模型的学习，根据训练数据是否包括观测序列和对应的状态序列还是只有观测序列，可以分别由监督学习与非监督学习实现。</p>
+<h3>10.3.1 监督学习方法</h3>
+<p>假设已给训练数据包含 <span class="math">\(S\)</span> 个长度相同的观测序列和对应的状态序列
+</p>
+<div class="math">$$\{(O_1,I_1),(O_2,I_2),\cdots,(O_S,I_S)\}$$</div>
+<p>
+那么可以用极大似然估计法来估计隐马尔科夫模型的参数。</p>
+<p><span class="math">\(\blacksquare\)</span> 转移概率 <span class="math">\(a_{ij}\)</span> 的估计</p>
+<p>设样本中时刻 <span class="math">\(t\)</span> 处于状态 <span class="math">\(i\)</span> 时刻 <span class="math">\(t+1\)</span> 转移到状态 <span class="math">\(j\)</span> 的频数是 <span class="math">\(A_{ij}\)</span>，那么状态转移概率 <span class="math">\(a_{ij}\)</span> 的估计是
+</p>
+<div class="math">$$\hat{a}_{ij}=\frac{A_{ij}}{\sum_{j=1}^NA_{ij}},\ i=1,2,\cdots,N;\ j=1,2,\cdots,N$$</div>
+<p><span class="math">\(\blacksquare\)</span> 观测概率 <span class="math">\(b_j(k)\)</span> 的估计</p>
+<p>设样本中状态为 <span class="math">\(j\)</span> 并观测为 <span class="math">\(k\)</span> 的频数是 <span class="math">\(B_{jk}\)</span>，那么状态为 <span class="math">\(j\)</span> 观测为 <span class="math">\(k\)</span> 的概率 <span class="math">\(b_j(k)\)</span> 的估计是
+</p>
+<div class="math">$$\hat{b}_j(k)=\frac{B_{jk}}{\sum_{k=1}^MB_{jk}},\ j=1,2,\cdots,N;\ k=1,2,\cdots,M$$</div>
+<p><span class="math">\(\blacksquare\)</span> 初始状态概率 <span class="math">\(\pi_i\)</span> 的估计 <span class="math">\(\hat{\pi}_i\)</span> 为 <span class="math">\(S\)</span> 个样本中初始状态为 <span class="math">\(q_i\)</span> 的频率</p>
+<p>由于监督学习需要使用训练数据，而人工标注训练数据往往代价很高，有时就会利用非监督学习的方法。</p>
+<h3>10.3.2 Baum-Welch 算法</h3>
+<p>假设给定训练数据只包含 <span class="math">\(S\)</span> 个长度为 <span class="math">\(T\)</span> 的观测序列 <span class="math">\(\{O_1,O_2,\cdots,O_S\}\)</span> 而没有对应的状态序列，目标是学习隐马尔科夫模型的参数。</p>
+<p>我们将观测序列数据看做观测数据 <span class="math">\(O\)</span>，状态序列数据看做不可观测的隐数据 <span class="math">\(I\)</span>，那么隐马尔科夫模型实际上是一个含有隐变量的概率模型
+</p>
+<div class="math">$$P(O|\lambda)=\sum_{I}P(O|I,\lambda)P(I|\lambda)$$</div>
+<p>
+它的参数学习可以由 <a href="https://xutree.github.io/pages/2018/11/17/9/">EM 算法</a>实现。</p>
+<p><span class="math">\(\blacksquare\)</span> 确定完全数据的对数似然函数</p>
+<p>所有观测数据写成 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span>，所有隐数据写成 <span class="math">\(I=(i_1,i_2,\cdots,i_T)\)</span>，完全数据是
+</p>
+<div class="math">$$(O,I)=(o_1,o_2,\cdots,o_T,i_1,i_2,\cdots,i_T)$$</div>
+<p>
+完全数据的对数似然函数是 <span class="math">\(\log P(O,I|\lambda)\)</span></p>
+<p><span class="math">\(\blacksquare\)</span> EM 算法的 E 步，求 <span class="math">\(Q\)</span> 函数 <span class="math">\(Q(\lambda,\bar{\lambda})\)</span></p>
+<div class="math">$$Q(\lambda,\bar{\lambda})=\sum_I\log P(O,I|\lambda)P(O,I|\bar{\lambda})$$</div>
+<p>其中，<span class="math">\(\bar{\lambda}\)</span> 是隐马尔科夫模型的当前估计值，<span class="math">\(\lambda\)</span> 是要极大化的隐马尔科夫模型参数，<span class="math">\(Q\)</span> 函数其中略去了对 <span class="math">\(\lambda\)</span> 而言的常数因子 <span class="math">\(1/P(O|\bar{\lambda})\)</span>
+</p>
+<div class="math">$$P(O,I|\lambda)=\pi_{i_1}b_{i_1}(o_1)a_{i_1i_2}b_{i_2}(o_2)\cdots,a_{i_{T-1}i_T}b_{i_T}(o_T)$$</div>
+<p>
+于是
+</p>
+<div class="math">$$\begin{eqnarray}
+Q(\lambda,\bar{\lambda}) &amp;=&amp; \sum_I\log\pi_{i_1}P(O,I|\bar{\lambda}) \\
+&amp;+&amp; \sum_I\left(\sum_{t=1}^{T-1}\log a_{i_ti_{t+1}}\right)P(O,I|\bar{\lambda}) \\
+&amp;+&amp; \sum_I\left(\sum_{t=1}^T\log b_{i_t}(o_t)\right)P(O,I|\bar{\lambda})
+\end{eqnarray}$$</div>
+<p>
+式中求和都是对所有训练数据的序列总长度 <span class="math">\(T\)</span> 进行的。</p>
+<p><span class="math">\(\blacksquare\)</span> EM 算法的 M 步：极大化 <span class="math">\(Q(\lambda,\bar{\lambda})\)</span> 求模型参数 <span class="math">\(\lambda=(A,B,\pi)\)</span></p>
+<p>由于要极大化的参数单独出现在 3 个项中，所以只需对各项分别极大化。</p>
+<p>a. 第一项可写成
+</p>
+<div class="math">$$\sum_I\log\pi_{i_1}P(O,I|\bar{\lambda})=\sum_{i=1}^N\log\pi_iP(O,i_1=q_i|\bar{\lambda})$$</div>
+<p>
+注意约束条件 <span class="math">\(\sum_{i=1}^N\pi_i=1\)</span>，利用拉格朗日乘子法，写出拉格朗日函数
+</p>
+<div class="math">$$\sum_{i=1}^N\log\pi_iP(O,i_1=q_i|\bar{\lambda})+\gamma\left(\sum_{i=1}^N\pi_i-1\right)$$</div>
+<p>
+求偏导并令结果为 0，得
+</p>
+<div class="math">$$P(O,i_1=q_i|\bar{\lambda})+\gamma\pi_i=0$$</div>
+<p>
+对 <span class="math">\(i\)</span> 求和得到 <span class="math">\(\gamma\)</span>
+</p>
+<div class="math">$$\gamma=-P(O|\bar{\lambda})$$</div>
+<p>
+带入得
+</p>
+<div class="math">$$\pi_i=\frac{P(O,i_1=q_i|\bar{\lambda})}{P(O|\bar{\lambda})}$$</div>
+<p>b. 第二项可以写成
+</p>
+<div class="math">$$\sum_I\left(\sum_{t=1}^{T-1}\log a_{i_ti_{t+1}}\right)P(O,I|\bar{\lambda}) \\
+=\sum_{i=1}^N\sum_{j=1}^N\sum_{t=1}^{T-1}\log a_{ij}P(O,i_t=q_i,i_{t+1}=q_j|\bar{\lambda})$$</div>
+<p>
+注意约束条件 <span class="math">\(\sum_{j=1}^Na_{ij}=1\)</span>，利用拉格朗日乘子法求出
+</p>
+<div class="math">$$a_{ij}=\frac{\sum_{t=1}^{T-1}P(O,i_t=q_i,i_{t+1}=q_j|\bar{\lambda})}{\sum_{t=1}^{T-1}P(O,i_t=q_i|\bar{\lambda})}$$</div>
+<p>c. 第三项可以写成
+</p>
+<div class="math">$$\sum_I\left(\sum_{t=1}^T\log b_{i_t}(o_t)\right)P(O,I|\bar{\lambda}) \\
+=\sum_{j=1}^N\sum_{t=1}^T\log b_j(o_t)P(O,i_t=q_j|\bar{\lambda})$$</div>
+<p>
+注意约束条件 <span class="math">\(\sum_{k=1}^Mb_{j}(k)=1\)</span>，注意，只有在 <span class="math">\(o_t=v_k\)</span> 时，<span class="math">\(b_j(o_t)\)</span> 对 <span class="math">\(b_j(k)\)</span> 的偏导才不是 0，利用拉格朗日乘子法求出
+</p>
+<div class="math">$$b_j(k)=\frac{\sum_{t=1}^TP(O,i_t=q_j|\bar{\lambda})\mathbb{I}(o_t=v_k)}{\sum_{t=1}^TP(O,i_t=q_j|\bar{\lambda})}$$</div>
+<h3>10.3.3 Baum-Welch 模型参数估计公式</h3>
+<p>结合 10.2 节，得到
+</p>
+<div class="math">$$
+a_{ij}=\frac{\sum_{t=1}^{T-1}\xi_t(i,j)}{\sum_{t=1}^{T-1}\gamma_t(i)} \\
+b_j(k)=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)} \\
+\pi_i=\gamma_1(i)
+$$</div>
+<p><strong>
+算法 10.4（Baum-Welch 算法）<br>
+输入：观测数据 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span><br>
+输出：隐马尔科夫模型参数<br>
+(1) 初始化<br>
+对 <span class="math">\(n=0\)</span>，选取 <span class="math">\(a_{ij}^{(0)}\)</span>，<span class="math">\(b_j(k)^{(0)}\)</span>，<span class="math">\(\pi_i^{(0)}\)</span>，得到模型 <span class="math">\(\lambda^{(0)}=\left(A^{(0)},B^{(0)},\pi^{(0)}\right)\)</span><br>
+(2) 递推。对 <span class="math">\(n=1,2,\cdots,\)</span><br>
+<div class="math">$$a_{ij}^{(n+1)}=\frac{\sum_{t=1}^{T-1}\xi_t(i,j)}{\sum_{t=1}^{T-1}\gamma_t(i)} \\
+b_j(k)^{(n+1)}=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)} \\
+\pi_i^{(n+1)}=\gamma_1(i)$$</div>
+右端各式按观测 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span> 和模型 <span class="math">\(\lambda^{(n)}=\left(A^{(n)},B^{(n)},\pi^{(n)}\right)\)</span> 计算，式中
+<div class="math">$$\gamma_t(i)=\frac{\alpha_t(i)\beta_t(i)}{\sum_{j=1}^N\alpha_t(j)\beta_t(j)}\\
+\xi_t(i,j)=\frac{\alpha_t(i)a_{ij}b_j(o_{t+1})\beta_{t+1}(j)}{\sum_{i=1}^N\sum_{j=1}^N\alpha_t(i)a_{ij}b_j(o_{t+1})\beta_{t+1}(j)}$$</div>
+(3) 终止。得到模型参数 <span class="math">\(\lambda^{(n+1)}=\left(A^{(n+1)},B^{(n+1)},\pi^{(n+1)}\right)\)</span>
+</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -232,7 +415,7 @@ b. 观测独立性假设
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-19T12:38:27+08:00">2018-11-19 12:38:27</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-19 12:38:27</div>
+                    <div class="last_updated">2018-11-19 16:18:22</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
