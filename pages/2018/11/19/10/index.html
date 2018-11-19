@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="概率, 数学, 基础知识, " />
-    <title>似然函数  · You Know Nothing
+<meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
+    <title>统计学习方法 第十章 隐马尔科夫模型  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -54,7 +54,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/16/likelihood-function/"> 似然函数  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/19/10/"> 统计学习方法 第十章 隐马尔科夫模型  </a></h1>
         </header>
     </div>
 
@@ -62,22 +62,80 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <h2>似然函数</h2>
-<p>在数理统计学中，似然函数（likelihood function）是一种关于统计模型中的<strong>参数</strong>的函数，表示模型参数中的似然性。似然函数在统计推断中有重大作用，如在最大似然估计和费希尔信息之中的应用等等。“似然性”与“或然性”或“概率”意思相近，都是指某种事件发生的可能性，但是在统计学中，“似然性”和“概率”（或然性）又有明确的区分。概率用于在已知一些参数的情况下，预测接下来的观测所得到的结果，而似然性则是用于在已知某些观测所得到的结果时，对有关事物的性质的参数进行估计。</p>
-<h3>定义</h3>
-<p>对于离散和连续概率分布，似然函数总是被定义为参数 <span class="math">\(\theta\)</span> 的函数。</p>
-<p><span class="math">\(\blacksquare\)</span> 离散概率分布</p>
-<p>设 <span class="math">\(X\)</span> 是离散随机变量，概率质量函数 <span class="math">\(p\)</span> 依赖于参数 <span class="math">\(\theta\)</span>。那么函数
+                <p>隐马尔科夫模型（hidden Markov model，HMM）是可用于标注问题的统计学模型，描述由隐藏的马尔科夫链随机生成观测序列的过程，属于生成模型。隐马尔科夫模型在语音识别、自然语言处理、生物信息、模式识别等领域有着广泛的应用。</p>
+<h2>10.1 隐马尔科夫模型的基本概念</h2>
+<h3>10.1.1 隐马尔科夫模型的定义</h3>
+<p><strong>
+定义 10.1（隐马尔科夫模型的定义）隐马尔科夫模型是关于时序的概率模型，描述由一个隐藏的马尔科夫链随机生成不可观测的状态随机序列，再由各个状态生成一个观测而产生观测随机序列的过程。隐藏的马尔科夫链随机生成的状态的序列称为状态序列（state sequence）；每个状态生成一个观测，由此产生的观测随机序列称为观测序列（observation sequence）。序列的每一个位置又可以看作是一个时刻
+</strong></p>
+<p>隐马尔科夫模型由初始概率分布、状态转移概率分布以及观测概率分布确定。隐马尔科夫模型的形式定义如下：</p>
+<p>设 <span class="math">\(Q\)</span> 是所有可能的状态的集合，<span class="math">\(V\)</span> 是所有可能的观测的集合
 </p>
-<div class="math">$${\cal L}(\theta|x)=p_\theta(x)=p_\theta(X=x)$$</div>
+<div class="math">$$Q=\{q_1,q_2,\cdots,q_N\},\ V=\{v_1,v_2,\cdots,v_M\}$$</div>
 <p>
-称为关于 <span class="math">\(\theta\)</span> 的似然函数。</p>
-<p><span class="math">\(\blacksquare\)</span> 连续概率分布</p>
-<p>设 <span class="math">\(X\)</span> 是连续随机变量，概率密度函数 <span class="math">\(f\)</span> 依赖于参数 <span class="math">\(\theta\)</span>。那么函数
+其中，<span class="math">\(N\)</span> 是可能的状态数，<span class="math">\(M\)</span> 是可能的观测数。</p>
+<p><span class="math">\(I\)</span> 是长度为 <span class="math">\(T\)</span> 的状态序列，<span class="math">\(O\)</span> 是对应的观测序列
 </p>
-<div class="math">$${\cal L}(\theta|x)=f_\theta(x)$$</div>
+<div class="math">$$I=\{i_1,i_2,\cdots,i_T\},\ O=\{o_1,o_2,\cdots,o_T\}$$</div>
+<p><span class="math">\(A\)</span> 是状态转移概率矩阵
+</p>
+<div class="math">$$A=\left[a_{ij}\right]_{N\times N}$$</div>
 <p>
-称为关于 <span class="math">\(\theta\)</span> 的似然函数。</p>
+其中
+</p>
+<div class="math">$$a_{ij}=P(i_{t+1}=q_j|i_t=q_i),\ i=1,2,\cdots,N;\ j=1,2,\cdots,N$$</div>
+<p>
+是在 <span class="math">\(t\)</span> 时刻处于状态 <span class="math">\(q_i\)</span> 的条件下 <span class="math">\(t+1\)</span> 时刻转移到状态 <span class="math">\(q_j\)</span> 的概率。</p>
+<p><span class="math">\(B\)</span> 是观测概率矩阵
+</p>
+<div class="math">$$B=\left[b_j(k)\right]_{N\times M}$$</div>
+<p>
+其中
+</p>
+<div class="math">$$b_j(k)=P(o_t=v_k|i_t=q_j),\ k=1,2,\cdots,M;\ j=1,2,\cdots,N$$</div>
+<p>
+是在 <span class="math">\(t\)</span> 时刻处于状态 <span class="math">\(q_j\)</span> 的条件下观测生成 <span class="math">\(v_k\)</span> 的概率。</p>
+<p><span class="math">\(\pi\)</span> 是初始状态概率向量
+</p>
+<div class="math">$$\pi=(\pi_i)$$</div>
+<p>
+其中
+</p>
+<div class="math">$$\pi_i=P(i_1=q_i),\ i=1,2,\cdots,N$$</div>
+<p>
+是时刻 <span class="math">\(t=1\)</span> 处于状态 <span class="math">\(q_i\)</span> 的概率。</p>
+<p>隐马尔科夫模型由初始状态概率向量 <span class="math">\(\pi\)</span>，状态转移概率矩阵 <span class="math">\(A\)</span> 和观测概率矩阵 <span class="math">\(B\)</span> 决定。<span class="math">\(\pi\)</span> 和 <span class="math">\(A\)</span> 决定状态序列，<span class="math">\(B\)</span> 决定观测序列。隐马尔科夫模型 <span class="math">\(\lambda\)</span> 可以用三元符号表示，即
+</p>
+<div class="math">$$\lambda=(A,B,\pi)$$</div>
+<p>
+称为隐马尔科夫模型的三要素。</p>
+<p>隐马尔科夫模型作了两个基本假设：</p>
+<p>a. 齐次马尔科夫性假设
+</p>
+<div class="math">$$P(i_t|i_{t-1},o_{t-1},\cdots,i_1,o_1)=P(i_t|i_{t-1}),\ t=1,2,\cdots,T$$</div>
+<p>
+b. 观测独立性假设
+</p>
+<div class="math">$$P(o_t|i_T,o_T,i_{T-1},o_{T-1},\cdots,i_{t+1},o_{t+1},i_t,i_{t-1},o_{t-1},\cdots,i_1,o_1)=P(o_t|i_t)$$</div>
+<p>隐马尔科夫模型可以用于标注问题，这时状态对应着标记。标注问题是给定观测的序列预测其对应的标记序列。可以假设标注问题的数据是由隐马尔科夫模型生成的。这样我们可以利用隐马尔科夫模型的学习与预测算法进行标注。</p>
+<h3>10.1.2 观测序列的生成过程</h3>
+<p><strong>
+算法 10.1（观测序列的生成)<br>
+输入：隐马尔科夫模型 <span class="math">\(\lambda=(A,B,\pi)\)</span>，观测序列长度 <span class="math">\(T\)</span><br>
+输出：观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span><br>
+(1) 按照初始状态分布 <span class="math">\(\pi\)</span> 产生状态 <span class="math">\(i_1\)</span><br>
+(2) 令 <span class="math">\(t=1\)</span><br>
+(3) 按照状态 <span class="math">\(i_t\)</span> 的观测概率分布 <span class="math">\(b_{i_t}(k)\)</span> 生成 <span class="math">\(o_t\)</span><br>
+(4) 按照状态 <span class="math">\(i_t\)</span> 的状态转移概率分布 <span class="math">\(\{a_{i_ti_{t+1}}\}\)</span> 产生状态 <span class="math">\(i_{t+1}\)</span>，<span class="math">\(i_{t+1}=1,2,\cdots,,N\)</span><br>
+(5) 令 <span class="math">\(t=t+1\)</span>；如果 <span class="math">\(t&lt;T\)</span>，转 (3)；否则，终止
+</strong></p>
+<h3>10.1.3 隐马尔科夫模型的 3 个基本问题</h3>
+<p><span class="math">\(\blacksquare\)</span> 概率计算问题</p>
+<p>给定模型 <span class="math">\(\lambda=(A,B,\pi)\)</span> 和观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span>，计算在模型 <span class="math">\(\lambda\)</span> 下观测序列 <span class="math">\(O\)</span> 出现的概率 <span class="math">\(P(O|\lambda)\)</span> 。</p>
+<p><span class="math">\(\blacksquare\)</span> 学习问题</p>
+<p>已知观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span>，估计模型参数 <span class="math">\(\lambda=(A,B,\pi)\)</span>，使得在该模型下观测序列 <span class="math">\(P(O|\lambda)\)</span> 最大。即用极大似然估计的方法估计参数。</p>
+<p><span class="math">\(\blacksquare\)</span> 预测问题</p>
+<p>也称为解码（decoding）问题。已知模型 <span class="math">\(\lambda=(A,B,\pi)\)</span> 和观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span>，求对给定观测序列条件概率 <span class="math">\(P(I|O)\)</span> 最大的状态序列 <span class="math">\(I=(i_1,i_2,\cdots,i_T)\)</span>。即给定观测序列，求最可能的对应的状态序列。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -141,6 +199,16 @@
                         </h1>
                         <ul>
                             <li>
+                                <a href="https://xutree.github.io/pages/2018/11/17/9/">
+                                    统计学习方法 第九章 EM 算法及其推广
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/16/likelihood-function/">
+                                    似然函数
+                                </a>
+                            </li>
+                            <li>
                                 <a href="https://xutree.github.io/pages/2018/11/12/8/">
                                     统计学习方法 第八章 提升方法
                                 </a>
@@ -155,75 +223,25 @@
                                     统计学习方法 第七章 支持向量机（3）——非线性支持向量机
                                 </a>
                             </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/11/7_2/">
-                                    统计学习方法 第七章 支持向量机（2）——线性支持向量机
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/11/7_1/">
-                                    统计学习方法 第七章 支持向量机（1）——线性可分支持向量机
-                                </a>
-                            </li>
                         </ul>
                     </nav>
-                    <nav class="newer">
-                        <h1>
-                            <font color="#771515"><em>NEWER</em></font>
-                        </h1>
-                        <ul>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/17/9/">
-                                    统计学习方法 第九章 EM 算法及其推广
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/19/10/">
-                                    统计学习方法 第十章 隐马尔科夫模型
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- Gitalk 评论 start  -->
-
-                    <!-- Link Gitalk 的支持文件  -->
-                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-                    <div id="gitalk-container"></div>
-                    <script type="text/javascript">
-                        var dateTime = Date.now();
-                        var timestamp = Math.floor(dateTime / 1000);
-                        var gitalk = new Gitalk({
-
-                            // gitalk的主要参数
-                            clientID: '93f43349e9fd3154bfad',
-                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
-                            repo: 'xutree.github.io',
-                            owner: 'xutree',
-                            admin: ['xutree'],
-                            id: String(timestamp)
-
-                        });
-                        gitalk.render('gitalk-container');
-                    </script> -->
-                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-11-16T18:52:37+08:00">2018-11-16 18:52:37</time>
+                    <time pubdate="pubdate" datetime="2018-11-19T12:38:27+08:00">2018-11-19 12:38:27</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-16 18:52:37</div>
+                    <div class="last_updated">2018-11-19 12:38:27</div>
                     <h4>分类</h4>
-                    <a class="category-link" href="/categories.html#基础知识-ref">基础知识</a>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
-                        <li><a href="/tags.html#概率-ref">概率
-                                <span>3</span>
+                        <li><a href="/tags.html#机器学习-ref">机器学习
+                                <span>13</span>
 </a></li>
-                        <li><a href="/tags.html#数学-ref">数学
-                                <span>6</span>
+                        <li><a href="/tags.html#统计学习-ref">统计学习
+                                <span>13</span>
 </a></li>
                     </ul>
 
