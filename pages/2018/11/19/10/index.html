@@ -319,6 +319,55 @@ b_j(k)^{(n+1)}=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)} \
 \xi_t(i,j)=\frac{\alpha_t(i)a_{ij}b_j(o_{t+1})\beta_{t+1}(j)}{\sum_{i=1}^N\sum_{j=1}^N\alpha_t(i)a_{ij}b_j(o_{t+1})\beta_{t+1}(j)}$$</div>
 (3) 终止。得到模型参数 <span class="math">\(\lambda^{(n+1)}=\left(A^{(n+1)},B^{(n+1)},\pi^{(n+1)}\right)\)</span>
 </strong></p>
+<h2>10.4 预测算法</h2>
+<h3>10.4.1 近似算法</h3>
+<p>近似算法的思想是，在每个时刻 <span class="math">\(t\)</span> 选择在该时刻最有可能出现的状态 <span class="math">\(i_t^\star\)</span>，从而得到一个状态序列 <span class="math">\(I^\star=(i_1^\star,i_2^\star,\cdots,i_T^\star)\)</span>，并将它作为预测的结果。</p>
+<p>给定隐马尔科夫模型和观测序列，在时刻 <span class="math">\(t\)</span> 处于状态 <span class="math">\(q_i\)</span> 的概率 <span class="math">\(\gamma_t(i)\)</span> 是
+</p>
+<div class="math">$$\gamma_t(i)=\frac{\alpha_t(i)\beta_t(i)}{\sum_{j=1}^N\alpha_t(j)\beta_t(j)}$$</div>
+<p>
+在每一时刻 <span class="math">\(t\)</span> 最有可能的状态 <span class="math">\(i_t^\star\)</span> 是
+</p>
+<div class="math">$$i_t^\star=\arg\max_{1\leq i\leq N}[\gamma_t(i)],\ i=1,2,\cdots,T$$</div>
+<p>
+从而得到状态序列 <span class="math">\(I^\star=(i_1^\star,i_2^\star,\cdots,i_T^\star)\)</span></p>
+<p>近似算法的优点是计算简单，其缺点是不能保证预测的状态序列整体是最有可能的状态序列，因为预测的状态序列可能有实际不发生的部分。事实上，上述方法得到的状态序列中有可能存在转移概率为 0 的相邻状态。尽管如此，近似算法仍然是有用的。</p>
+<h3>10.4.2 维特比算法</h3>
+<p>维特比算法实际上用动态规划隐马尔可夫模型预测问题，即，用动态规划（dynamic programming）求概率最大路径(最优路径)。这时一条路径对应着一个状态序列。</p>
+<p>根据动态规划原理，最优路径具有这样的特征：如果最优路径在时刻 <span class="math">\(t\)</span> 通过节点 <span class="math">\(i_t^\star\)</span>，那么这一路径中“从节点 <span class="math">\(i_1^\star\)</span> 到终点 <span class="math">\(i_T^\star\)</span> 的部分路径”对于“从节点 <span class="math">\(i_1^\star\)</span> 到终点 <span class="math">\(i_T^\star\)</span> 的所有可能的部分路径”来说必须是最优的。</p>
+<p>根据这一原理，我们只需从时刻 <span class="math">\(t=1\)</span> 开始，递推的计算在时刻 <span class="math">\(t\)</span> 状态为 <span class="math">\(i\)</span> 的各条部分路径的最大概率，直至得到时刻 <span class="math">\(t=T\)</span> 时状态为 <span class="math">\(i\)</span> 的各条路径的最大概率。时刻 <span class="math">\(t=T\)</span> 的最大概率即为最优路径的概率 <span class="math">\(P^\star\)</span>，最优路径的终点 <span class="math">\(i_T^\star\)</span> 也就同时得到了。</p>
+<p>之后，为了找出最优路径的各个节点，从终结点 <span class="math">\(i_T^\star\)</span> 开始，由后向前逐步求得节点 <span class="math">\(i_{T-1}^\star,\cdots,i_1^\star\)</span>，得到最优路径 <span class="math">\(I^\star=(i_1^\star,i_2^\star,\cdots,i_T^\star)\)</span>。这就是维特比算法。</p>
+<p>首先定义在时刻 <span class="math">\(t\)</span> 状态为 <span class="math">\(i\)</span> 的所有单个路径 <span class="math">\((i_1,i_2,\cdots,i_t)\)</span> 中概率最大值为
+</p>
+<div class="math">$$\delta_t(i)=\max_{i_1,i_2,\cdots,i_{t-1}}P(i_t=i,i_{t-1},\cdots,i_1,o_t,\cdots,o_1|\lambda),\ i=1,2,\cdots,N$$</div>
+<p>
+得递推公式
+</p>
+<div class="math">$$\begin{eqnarray}
+\delta_{t+1}(i) &amp;=&amp; \max_{i_1,i_2,\cdots,i_{t}}P(i_{t+1}=i,i_{t},\cdots,i_1,o_{t+1},\cdots,o_1|\lambda) \\
+&amp;=&amp; \max_{1\leq j\leq N}[\delta_t(ja_{ji})]b_i(o_{t+1}),\ i=1,2,\cdots,N;\ t=1,2,\cdots,T-1
+\end{eqnarray}$$</div>
+<p>
+定义在时刻 <span class="math">\(t\)</span> 状态为 <span class="math">\(i\)</span> 的所有单个路径 <span class="math">\((i_1,i_2,\cdots,i_{t-1},i)\)</span> 中概率最大的路径的第 <span class="math">\(t-1\)</span> 个节点为
+</p>
+<div class="math">$$\psi_t(i)=\arg\max_{1\leq j\leq N}[\delta_{t-1}(j)a_{ji}],\ i=1,2,\cdots,N$$</div>
+<p><strong>
+算法 10.5（维特比算法）<br>
+输入：模型 <span class="math">\(\lambda=(A,B,\pi)\)</span> 和观测 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span><br>
+输出：最优路径 <span class="math">\(I^\star=(i_1^\star,i_2^\star,\cdots,i_T^\star)\)</span><br>
+(1) 初始化<br>
+<div class="math">$$\delta_1(i)=\pi_ib_i(o_1),\ i=1,2,\cdots,N \\
+\psi_1(i)=0,\ i=1,2,\cdots,N$$</div>
+(2) 递推，对 <span class="math">\(t=2,3,\cdots,T\)</span>
+<div class="math">$$\delta_t(i)=\max_{1\leq j\leq N}[\delta_{t-1}(j)a_{ji}]b_i(o_t),\ i=1,2,\cdots,N \\
+\psi_t(i)=\arg\max_{1\leq j\leq N}[\delta_{t-1}(j)a_{ji}],\ i=1,2,\cdots,N$$</div>
+(3) 终止
+<div class="math">$$P^\star=\max_{1\leq i\leq N}\delta_T(i) \\
+i_T^\star=\arg\max_{1\leq i\leq N}[\delta_T(i)]$$</div>
+(4) 最优路径回溯，对 <span class="math">\(t=T-1,T-2,\cdots,1\)</span>
+<div class="math">$$i_t^\star=\psi_{t+1}(i_{t+1}^\star)$$</div>
+求得最优路径 <span class="math">\(I^\star=(i_1^\star,i_2^\star,\cdots,i_T^\star)\)</span>
+</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -415,7 +464,7 @@ b_j(k)^{(n+1)}=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)} \
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-19T12:38:27+08:00">2018-11-19 12:38:27</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-19 16:18:22</div>
+                    <div class="last_updated">2018-11-19 17:11:25</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
