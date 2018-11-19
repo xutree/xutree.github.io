@@ -1,7 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-19T17:27:39+08:00</updated><entry><title>统计学习方法 第十一章 条件随机场</title><link href="https://xutree.github.io/pages/2018/11/19/11/" rel="alternate"></link><published>2018-11-19T17:27:39+08:00</published><updated>2018-11-19T17:27:39+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-19:/pages/2018/11/19/11/</id><summary type="html">&lt;p&gt;条件随机场（conditional random field，CRF）是给定一组输入随机变量条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。&lt;/p&gt;
-&lt;p&gt;条件随机场可以用于不同的预测问题，本节仅讨论它在标注问题的应用，因此主要讲述线性链（linear chain）条件随机场。这时，问题变成了由输入序列对输出序列预测的判别模型，形式为对数线性模型，其学习方法通常是极大似然估计或正则化的极大似然估计。&lt;/p&gt;</summary><content type="html">&lt;p&gt;条件随机场（conditional random field，CRF）是给定一组输入随机变量条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。&lt;/p&gt;
-&lt;p&gt;条件随机场可以用于不同的预测问题，本节仅讨论它在标注问题的应用，因此主要讲述线性链（linear chain）条件随机场。这时，问题变成了由输入序列对输出序列预测的判别模型，形式为对数线性模型，其学习方法通常是极大似然估计或正则化的极大似然估计。&lt;/p&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第十章 隐马尔科夫模型</title><link href="https://xutree.github.io/pages/2018/11/19/10/" rel="alternate"></link><published>2018-11-19T12:38:27+08:00</published><updated>2018-11-19T17:11:25+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-19:/pages/2018/11/19/10/</id><summary type="html">&lt;p&gt;隐马尔科夫模型（hidden Markov model，HMM）是可用于标注问题的统计学模型，描述由隐藏的马尔科夫链随机生成观测序列的过程，属于生成模型。隐马尔科夫模型在语音识别、自然语言处理、生物信息、模式识别等领域有着广泛的应用。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-19T22:06:32+08:00</updated><entry><title>统计学习方法 第十一章 条件随机场</title><link href="https://xutree.github.io/pages/2018/11/19/11/" rel="alternate"></link><published>2018-11-19T17:27:39+08:00</published><updated>2018-11-19T22:06:32+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-19:/pages/2018/11/19/11/</id><summary type="html">&lt;p&gt;条件随机场（conditional random field，CRF）是给定一组输入随机变量条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。&lt;/p&gt;
+&lt;p&gt;条件随机场可以用于不同的预测问题，本节仅讨论它在标注问题的应用，因此主要讲述线性链（linear chain）条件随机场。这时，问题变成了由输入序列对输出序列预测的判别模型，形式为对数线性模型，其学习方法通常是极大似然估计或正则化的极大似然估计。&lt;/p&gt;
+&lt;h2&gt;11.1 概率无向图模型&lt;/h2&gt;
+&lt;p&gt;概率无向图模型（probabilistic undirected graphical model），又称为马尔科夫随机场（Markov random file），是一个可以由无向图表示的联合概率分布。&lt;/p&gt;
+&lt;h3&gt;11.1.1 模型定义&lt;/h3&gt;
+&lt;p&gt;图是由结点及连接结点的边组成的集合。结点和边分别记作 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{e}\)&lt;/span&gt; ，结点和边的集合分别记作 &lt;span class="math"&gt;\(\textsf{V}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{E}\)&lt;/span&gt; ，图记作 &lt;span class="math"&gt;\(\textsf{G …&lt;/span&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;p&gt;条件随机场（conditional random field，CRF）是给定一组输入随机变量条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。&lt;/p&gt;
+&lt;p&gt;条件随机场可以用于不同的预测问题，本节仅讨论它在标注问题的应用，因此主要讲述线性链（linear chain）条件随机场。这时，问题变成了由输入序列对输出序列预测的判别模型，形式为对数线性模型，其学习方法通常是极大似然估计或正则化的极大似然估计。&lt;/p&gt;
+&lt;h2&gt;11.1 概率无向图模型&lt;/h2&gt;
+&lt;p&gt;概率无向图模型（probabilistic undirected graphical model），又称为马尔科夫随机场（Markov random file），是一个可以由无向图表示的联合概率分布。&lt;/p&gt;
+&lt;h3&gt;11.1.1 模型定义&lt;/h3&gt;
+&lt;p&gt;图是由结点及连接结点的边组成的集合。结点和边分别记作 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{e}\)&lt;/span&gt; ，结点和边的集合分别记作 &lt;span class="math"&gt;\(\textsf{V}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{E}\)&lt;/span&gt; ，图记作 &lt;span class="math"&gt;\(\textsf{G}=(\textsf{V},\textsf{E})\)&lt;/span&gt; ，无向图是指边没有方向的图。&lt;/p&gt;
+&lt;p&gt;概率图模型（probabilistic graphical model）是由图表示的概率分布。设有联合概率分布 &lt;span class="math"&gt;\(P(Y)\)&lt;/span&gt;，&lt;span class="math"&gt;\(Y\in{\cal Y}\)&lt;/span&gt; 是一组随机变量。由无向图 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt; 表示概率分布，即在图 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt; 中，结点 &lt;span class="math"&gt;\(\textsf{v}\in\textsf{G}\)&lt;/span&gt; 表示一个随机变量 &lt;span class="math"&gt;\(Y_\textsf{v}\)&lt;/span&gt;，&lt;span class="math"&gt;\(Y=(Y_\textsf{v})_{\textsf{v}\in\textsf{V}}\)&lt;/span&gt;；边 &lt;span class="math"&gt;\(e\in\textsf{E}\)&lt;/span&gt; 表示随机变量之间的概率依赖关系。&lt;/p&gt;
+&lt;p&gt;给定一个联合概率分布 &lt;span class="math"&gt;\(P(Y)\)&lt;/span&gt; 和表示它的无向图 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt;。首先定义无向图表示的随机变量之间存在的成对马尔科夫性局（pairwise Markov property）、部马尔科夫性（local Markov property）和全局马尔科夫性（global Markov property）。分别介绍一下三个概念：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;成对马尔科夫性&lt;/strong&gt;：设 &lt;span class="math"&gt;\(\textsf{u}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 是无向图 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt; 中任意两个没有边连接的结点，结点 &lt;span class="math"&gt;\(\textsf{u}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 分别对应随机变量 &lt;span class="math"&gt;\(Y_\textsf{u}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y_\textsf{v}\)&lt;/span&gt;。其他所有结点为 &lt;span class="math"&gt;\(\textsf{O}\)&lt;/span&gt;（集合），对应的随机变量组是 &lt;span class="math"&gt;\(Y_\textsf{O}\)&lt;/span&gt;。成对马尔科夫性是指给定随机变量组 &lt;span class="math"&gt;\(Y_\textsf{O}\)&lt;/span&gt; 的条件下随机变量 &lt;span class="math"&gt;\(Y_\textsf{u}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y_\textsf{v}\)&lt;/span&gt; 是条件独立的，其实意思就是说没有直连边的任意两个节点是独立的，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(Y_\textsf{u},Y_\textsf{v}|Y_\textsf{O})=P(Y_\textsf{u}|Y_\textsf{O})P(Y_\textsf{v}|Y_\textsf{O})$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;局部马尔科夫性&lt;/strong&gt;：设 &lt;span class="math"&gt;\(\textsf{v} \in \textsf{V}\)&lt;/span&gt; 是无向图 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt; 中任意一个结点，&lt;span class="math"&gt;\(\textsf{W}\)&lt;/span&gt; 是与 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 有边连接的所有结点，&lt;span class="math"&gt;\(\textsf{O}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\textsf{W}\)&lt;/span&gt; 以外的其他所有结点。&lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 表示的随机变量是 &lt;span class="math"&gt;\(Y_\textsf{v}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\textsf{W}\)&lt;/span&gt; 表示的随机变量组是 &lt;span class="math"&gt;\(Y_\textsf{W}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\textsf{O}\)&lt;/span&gt; 表示的随机变量组是 &lt;span class="math"&gt;\(Y_\textsf{O}\)&lt;/span&gt;。局部马尔科夫性是指在给定随机变量组 &lt;span class="math"&gt;\(Y_\textsf{W}\)&lt;/span&gt; 的条件下随机变量 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 与随机变量组 &lt;span class="math"&gt;\(Y_\textsf{O}\)&lt;/span&gt; 是独立的，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(Y_\textsf{v},Y_\textsf{O}|Y_\textsf{W})=P(Y_\textsf{v}|Y_\textsf{W})P(Y_\textsf{O}|Y_\textsf{W})$$&lt;/div&gt;
+&lt;p&gt;在 &lt;span class="math"&gt;\(P(Y_\textsf{O}|Y_\textsf{W})&amp;gt;0\)&lt;/span&gt; 时，等价地
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(Y_\textsf{v}|Y_\textsf{W})=P(Y_\textsf{v}|Y_\textsf{W},Y_\textsf{O})$$&lt;/div&gt;
+&lt;p&gt;
+下图表示了局部马尔科夫性。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="局部马尔科夫性" src="https://xutree.github.io/images/statistical_learning_11.1.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;全局马尔科夫性&lt;/strong&gt;：设结点集合 &lt;span class="math"&gt;\(\textsf{A}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\textsf{B}\)&lt;/span&gt; 是在无向图 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt; 中被结点集合 &lt;span class="math"&gt;\(\textsf{C}\)&lt;/span&gt; 分开的任意结点集合，如图所示。结点集合 &lt;span class="math"&gt;\(\textsf{A}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\textsf{B}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{C}\)&lt;/span&gt; 所对应的随机变量组分别是 &lt;span class="math"&gt;\(Y_\textsf{A}\)&lt;/span&gt;，&lt;span class="math"&gt;\(Y_\textsf{B}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y_\textsf{C}\)&lt;/span&gt;。全局马尔科夫性是指给定随机变量组 &lt;span class="math"&gt;\(Y_\textsf{C}\)&lt;/span&gt; 条件下随机变量组 &lt;span class="math"&gt;\(Y_\textsf{A}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y_\textsf{B}\)&lt;/span&gt; 是条件独立的，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(Y_\textsf{A},Y_\textsf{B}|Y_\textsf{C})=P(Y_\textsf{A}|Y_\textsf{C})P(Y_\textsf{B}|Y_\textsf{C})$$&lt;/div&gt;
+&lt;p&gt;&lt;img alt="全局马尔科夫性" src="https://xutree.github.io/images/statistical_learning_11.2.png"&gt;&lt;/p&gt;
+&lt;p&gt;上述成对的、局部的、全局的马尔科夫性定义是等价的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 11.1（概率无向图模型）设有联合概率分布 &lt;span class="math"&gt;\(P(Y)\)&lt;/span&gt;，由无向图 &lt;span class="math"&gt;\(\textsf{G}=(\textsf{V},\textsf{E})\)&lt;/span&gt; 表示，在图 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt; 中，结点表示随机变量，边表示随机变量之间的依赖关系。如果联合概率分布 &lt;span class="math"&gt;\(P(Y)\)&lt;/span&gt; 满足成对、局部或全局马尔科夫性，就称此联合概率分布为概率无向图模型或马尔科夫随机场。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以上是概率无向图模型的定义，实际上，我们更关心的是如何求其联合概率分布。对给定的概率无向图模型，我们希望将整体的联合概率写成若干子联合概率的乘积的形式，也就是将联合概率进行因子分解，这样便于模型的学习与计算。事实上，概率无向图模型的最大特点就是易于因子分解。下面介绍这一结果。&lt;/p&gt;
+&lt;h3&gt;11.1.2 概率无向图模型的因子分解&lt;/h3&gt;
+&lt;p&gt;首先给出无向图中的团与最大团的定义。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 11.2（团与最大团）无向图 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt; 中任何两个结点均有边连接的结点子集称为团（clique)。若 &lt;span class="math"&gt;\(\textsf{C}\)&lt;/span&gt; 是无向图 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt; 的一个团，并且不能再加进任何一个 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt; 的结点使其成为一个更大的团，则称此 &lt;span class="math"&gt;\(\textsf{C}\)&lt;/span&gt; 为最大团（maximal clique)。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;下图表示由 4 个结点组成的无向图。图中由 2 个结点组成的团有 5 个：&lt;span class="math"&gt;\(\{\textsf{Y}_1,\textsf{Y}_2\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\{\textsf{Y}_2,\textsf{Y}_3\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\{\textsf{Y}_3,\textsf{Y}_4\}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\{\textsf{Y}_4,\textsf{Y}_2\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\{\textsf{Y}_1,\textsf{Y}_3\}\)&lt;/span&gt; 。有 2 个最大团：&lt;span class="math"&gt;\(\{\textsf{Y}_1,\textsf{Y}_2,\textsf{Y}_3\}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\{\textsf{Y}_2,\textsf{Y}_3,\textsf{Y}_4\}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="团和最大团" src="https://xutree.github.io/images/statistical_learning_11.3.png"&gt;&lt;/p&gt;
+&lt;p&gt;将概率无向图模型的联合概率分布表示为其最大团上的随机变量的函数的乘积形式的操作，称为概率无向图模型的因子分解（factorization）。&lt;/p&gt;
+&lt;p&gt;给定概率无向图模型，设无向图为 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\textsf{C}\)&lt;/span&gt; 为 &lt;span class="math"&gt;\(\textsf{G}\)&lt;/span&gt; 上的最大团，&lt;span class="math"&gt;\(Y_\textsf{C}\)&lt;/span&gt;表示 &lt;span class="math"&gt;\(\textsf{C}\)&lt;/span&gt; 对应的随机变量。那么概率无向图模型的联合概率分布 &lt;span class="math"&gt;\(P(Y)\)&lt;/span&gt; 可分解为图中所有最大团 &lt;span class="math"&gt;\(\textsf{C}\)&lt;/span&gt; 上的函数 &lt;span class="math"&gt;\(\Psi_{\textsf{C}}(Y_{\textsf{C}})\)&lt;/span&gt; 的乘积形式
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(Y)=\frac{1}{Z}\prod_\textsf{C}\Psi_{\textsf{C}}(Y_{\textsf{C}})$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(Z\)&lt;/span&gt; 是规范化因子（normalization factor)，形式如下：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Z=\sum_{\textsf{Y}}\prod_\textsf{C}\Psi_{\textsf{C}}(Y_{\textsf{C}})$$&lt;/div&gt;
+&lt;p&gt;
+规范化因子保证 &lt;span class="math"&gt;\(P(Y)\)&lt;/span&gt; 构成一个概率分布。函数 &lt;span class="math"&gt;\(\Psi_{\textsf{C}}(Y_{\textsf{C}})\)&lt;/span&gt; 称为势函数（potential function)。这里要求势函数 ΨC(YC) 是严格正的，通常定义为指数函数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\Psi_{\textsf{C}}(Y_{\textsf{C}})=\exp\{-E(Y_\textsf{C})\}$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\(E(Y_\textsf{C})\)&lt;/span&gt; 是能量函数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定理 11.1（Hammersley-Clifford 定理）概率无向图模型的联合概率分布 &lt;span class="math"&gt;\(P(Y)\)&lt;/span&gt; 可以表示为如下形式：
+&lt;div class="math"&gt;$$P(Y)=\frac{1}{Z}\prod_\textsf{C}\Psi_{\textsf{C}}(Y_{\textsf{C}}) \\
+Z=\sum_{\textsf{Y}}\prod_\textsf{C}\Psi_{\textsf{C}}(Y_{\textsf{C}})$$&lt;/div&gt;
+其中，&lt;span class="math"&gt;\(\textsf{C}\)&lt;/span&gt; 是无向图的最大团，&lt;span class="math"&gt;\(Y_\textsf{C}\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(\textsf{C}\)&lt;/span&gt; 的结点对应的随机变量，&lt;span class="math"&gt;\(\Psi_{\textsf{C}}(Y_{\textsf{C}})\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(\textsf{C}\)&lt;/span&gt; 上定义的严格正函数，乘积是在无向图所有的最大团上进行的。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;11.2 条件随机场的定义与形式&lt;/h2&gt;
+&lt;h3&gt;11.2.1 条件随机场的定义&lt;/h3&gt;
+&lt;p&gt;条件随机场（conditional random field）是给定随机变量 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 条件下，随机变量 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 的马尔可夫随机场。这里主要介绍定义在线性链上的特殊的条件随机场，称为线性链条件随机场（linear chain conditional random field)。&lt;/p&gt;
+&lt;p&gt;线性链条件随机场可以用于标注问题。这时，在条件概率模型 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 中，&lt;span class="math"&gt;\(Y\)&lt;/span&gt; 是输出变量，表示标记序列，也把标记序列称为状态序列；&lt;span class="math"&gt;\(X\)&lt;/span&gt; 是输入变量，表示观测序列。&lt;/p&gt;
+&lt;p&gt;学习时，利用训练数据集通过极大似然估计或正则化的极大似然估计得到条件概率模型  &lt;span class="math"&gt;\(\hat{P}(Y|X)\)&lt;/span&gt;；预测时，对于给定的输入序列 &lt;span class="math"&gt;\(x\)&lt;/span&gt;，求出条件概率 &lt;span class="math"&gt;\(\hat{P}(y|x)\)&lt;/span&gt; 最大的输出序列 &lt;span class="math"&gt;\(y\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 11.3（条件随机场）设 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 是随机变量，&lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 是在给定 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 的条件下 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 的条件概率分布。若随机变量 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 构成一个由无向图 &lt;span class="math"&gt;\(\textsf{G}=(\textsf{V},\textsf{E})\)&lt;/span&gt; 表示的马尔可夫随机场，即：
+&lt;div class="math"&gt;$$P(Y_\textsf{v}|X,Y_\textsf{w},\textsf{w}\neq\textsf{v})=P(Y_\textsf{v}|X,Y_\textsf{w},\textsf{w}\sim\textsf{v})$$&lt;/div&gt;
+对任意结点 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 成立，则称条件概率分布 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 为条件随机场。式中 &lt;span class="math"&gt;\(\textsf{w}\sim\textsf{v}\)&lt;/span&gt; 表示在图 &lt;span class="math"&gt;\(\textsf{G}=(\textsf{V},\textsf{E})\)&lt;/span&gt; 中与结点 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 有边连接的所有结点 &lt;span class="math"&gt;\(\textsf{w}\)&lt;/span&gt;，&lt;span class="math"&gt;\(\textsf{w}\neq\textsf{v}\)&lt;/span&gt; 表示结点 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 以外的所有结点。其实就是说当前变量只跟与之相邻的变量有关系，而独立于没有直接连接的变量。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在定义中并没有要求 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 具有相同的结构。现实中，一般假设 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 有相同的图结构。这里主要考虑无向图如下图所示为线性链的情况，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\textsf{G}=(\textsf{V}=\{1,2,\cdots,n\},\textsf{E}=\{(i,i+1)\}),\ i=1,2,\cdots,i-1$$&lt;/div&gt;
+&lt;p&gt;
+在此情况下，&lt;span class="math"&gt;\(X=(X_1,X_2,\cdots,X_n)\)&lt;/span&gt;，&lt;span class="math"&gt;\(Y=(Y_1,Y_2,\cdots,Y_n)\)&lt;/span&gt;，最大团是相邻两个节点的集合。线性链条件随机场有下面的定义&lt;/p&gt;
+&lt;p&gt;&lt;img alt="线性链条件随机场" src="https://xutree.github.io/images/statistical_learning_11.4.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定义 11.4（线性链条件随机场）设 &lt;span class="math"&gt;\(X=(X_1,X_2,\cdots,X_n)\)&lt;/span&gt;，&lt;span class="math"&gt;\(Y=(Y_1,Y_2,\cdots,Y_n)\)&lt;/span&gt; 均为线性链表示的随机变量序列，若在给定随机变量序列 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 的条件下，随机变量序列 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 的条件概率分布 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 构成条件随机场，即满足马尔可夫性
+&lt;div class="math"&gt;$$P(Y_i|X,Y_1,\cdots,Y_{i−1},Y_{i+1},\cdots,Y_n)=P(Y_i|X,Y_{i−1},Y_{i+1})$$&lt;/div&gt;
+则称 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 为线性链条件随机场。注意当 &lt;span class="math"&gt;\(i=1\)&lt;/span&gt; 或 &lt;span class="math"&gt;\(i=n\)&lt;/span&gt; 时只考虑一侧，在标注问题中，&lt;span class="math"&gt;\(X\)&lt;/span&gt; 表示输入观测序列，&lt;span class="math"&gt;\(Y\)&lt;/span&gt; 表示对应的输出标记序列或状态序列。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;11.2.2 条件随机场的参数化形式&lt;/h3&gt;
+&lt;p&gt;根据 Hammersley-Clifford 定理,可以给出线性链条件随机场 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 的因子分解式，各因子是定义在相邻两个结点上的函数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+定理 11.2（线性链条件随机场的参数化形式）设 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 为线性链条件随机场，则在随机变量 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 取值为 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的条件下，随机变量 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 取值为 &lt;span class="math"&gt;\(y\)&lt;/span&gt; 的条件概率具有如下形式
+&lt;div class="math"&gt;$$P(y|x)=\frac{1}{Z(x)}\exp\left(\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i)\right)$$&lt;/div&gt;
+其中
+&lt;div class="math"&gt;$$Z(x) = \sum_y \exp\left( \sum_{i,k}\lambda_k t_k (y_{i-1},y_i,x,i)+ \sum_{i,l}\mu_l s_l(y_i,x,i) \right)$$&lt;/div&gt;
+式中，&lt;span class="math"&gt;\(t_k\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(s_l\)&lt;/span&gt; 是特征函数，&lt;span class="math"&gt;\(\lambda_k\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\mu_l\)&lt;/span&gt; 是对应的权值。&lt;span class="math"&gt;\(Z(x)\)&lt;/span&gt; 是规范化因子，求和是在所有可能的输出序列上进行的。
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以上两个式子是线性链条件随机场模型的基本形式，表示给定输入序列 &lt;span class="math"&gt;\(x\)&lt;/span&gt; ,对输出序列 &lt;span class="math"&gt;\(y\)&lt;/span&gt; 预测的条件概率。其中 &lt;span class="math"&gt;\(t_k\)&lt;/span&gt; 是定义在边上的特征函数，称为转移特征（ transition），依赖于当前和前一个位置，&lt;span class="math"&gt;\(s_l\)&lt;/span&gt; 是定义在结点上的特征函数，称为状态特征（status），依赖于当前位置。&lt;span class="math"&gt;\(t_k\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(s_l\)&lt;/span&gt; 都依赖于位置，是局部特征函数。&lt;/p&gt;
+&lt;p&gt;通常，特征函数 &lt;span class="math"&gt;\(t_k\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(s_l\)&lt;/span&gt; 取值为 1 或 0；当满足特征条件时取值为 1，否则为 0。条件随机场完全由特征函数和对应的权值 &lt;span class="math"&gt;\(\lambda_k\)&lt;/span&gt;，&lt;span class="math"&gt;\(\mu_l\)&lt;/span&gt; 确定,线性链条件随机场也是对数线性模型（log linear model)。&lt;/p&gt;
+&lt;h3&gt;11.2.3 条件随机场的简化形式&lt;/h3&gt;
+&lt;p&gt;条件随机场还可以由简化形式表示。注意到条件随机场式中同一特征在各个位置都有定义，可以对同一个特征在各个位置求和，将局部特征函数转化为一个全局特征函数，这样就可以将条件随机场写成权值向量和特征向量的内积形式，即条件随机场的简化形式，为简便起见，首先将转移特征和状态特征及其权值用统一的符号表示。设有 &lt;span class="math"&gt;\(K_1\)&lt;/span&gt; 个转移特征，&lt;span class="math"&gt;\(K_2\)&lt;/span&gt; 个状态特征，&lt;span class="math"&gt;\(K = K_1 + K_2\)&lt;/span&gt;，则
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f_k(y_{i-1},y_i,x,i)=\begin{cases}
+t_k(y_{i-1},y_i,x,i),\ k = 1,2,\cdots,K_1 \\
+s_t(y_i,x,i),\ k = K_1 + l;\ l=1,2,\cdots,K_2
+\end{cases}$$&lt;/div&gt;
+&lt;p&gt;
+然后，对转移与状态特征在各个位置 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 求和，记作
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f_k(y,x) = \sum_{i=1}^nf_k(y_{i-1},y_i,x,i),\ k = 1,2,\cdots,K$$&lt;/div&gt;
+&lt;p&gt;
+用 &lt;span class="math"&gt;\(w_k\)&lt;/span&gt; 表示特征 &lt;span class="math"&gt;\(f_k(y,x)\)&lt;/span&gt; 的权值，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w_k = \begin{cases}
+\lambda_k, \ k=1,2,\cdots,K_1 \\
+\mu_l,\ k=K_1+l;\ l=1,2,\cdots,K_2
+\end{cases}$$&lt;/div&gt;
+&lt;p&gt;
+于是，条件随机场可表示为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{aligned} P(y|x) &amp;amp;= \frac{1}{Z(x)} \exp\sum_{k=1}^K w_k f_k(y,x) \\
+Z(x)&amp;amp;= \sum_y \exp\sum_{k=1}^Kw_kf_k(y,x)
+\end{aligned}$$&lt;/div&gt;
+&lt;p&gt;
+若 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 表示权值向量，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w= (w_1,w_2,…,w_K)^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+以 &lt;span class="math"&gt;\(F(y,x)\)&lt;/span&gt; 表示全局特征向量，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$F(y,x)=(f_1(y,x), f_2(y,x),\cdots,f_K(y,x))^\text{T}$$&lt;/div&gt;
+&lt;p&gt;则条件随机场可以写成向量 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(F(y,x)\)&lt;/span&gt; 的内积的形式
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P_w(y|x) = \frac{\exp\left(w \cdot F(y,x)\right ) }{Z_w(x)}$$&lt;/div&gt;
+&lt;p&gt;
+其中
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Z_w(x) = \sum_y \exp \left ( w  \cdot F(y,x) \right )$$&lt;/div&gt;
+&lt;h3&gt;11.2.4 条件随机场的矩阵形式&lt;/h3&gt;
+&lt;p&gt;条件随机场还可以由矩阵表示。假设 &lt;span class="math"&gt;\(P_w(y|x)\)&lt;/span&gt; 是由内积形式给出的线性链条件随机场，表示对给定观测序列 &lt;span class="math"&gt;\(x\)&lt;/span&gt;，相应的标记序列 &lt;span class="math"&gt;\(y\)&lt;/span&gt; 的条件概率。引进特殊的起点和终点状态标记 &lt;span class="math"&gt;\(y_0=\text{start}\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_{n+1}=\text{stop}\)&lt;/span&gt;，这时 &lt;span class="math"&gt;\(P_w(y|x)\)&lt;/span&gt; 可以通过矩阵形式表示。&lt;/p&gt;
+&lt;p&gt;对观测序列 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 的每一个位置 &lt;span class="math"&gt;\(i=1,2,\cdots,n+1\)&lt;/span&gt;，定义一个 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 阶矩阵（&lt;span class="math"&gt;\(m\)&lt;/span&gt; 是标记 &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; 取值的个数，因为 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 是给定的，位置&lt;span class="math"&gt;\(i-1\)&lt;/span&gt; 和位置 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 各有 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 种可能，所以是 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 阶矩阵，对于 &lt;span class="math"&gt;\(i=1\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(1\times m\)&lt;/span&gt; 的矩阵，对于 &lt;span class="math"&gt;\(i=n+1\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times 1\)&lt;/span&gt; 的矩阵）
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{aligned}  M_i(x) &amp;amp;= \left [ M_i(y_{i-1},y_i|x)\right ]  \\
+M_i(y_{i-1},y_i|x)&amp;amp;= \exp  \left [ W_i(y_{i-1} ,y_i|x)\right ] \\
+W_i(y_{i-1},y_i|x)&amp;amp;= \sum_{k=1}^Kw_kf_k(y_{i-1},y_i,x,i) \end{aligned}$$&lt;/div&gt;
+&lt;p&gt;
+其实矩阵定义了一个状态 &lt;span class="math"&gt;\(y_{i−1}\)&lt;/span&gt; 的 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 种状态到 &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; 的 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 种状态的转移的概率
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{aligned} M_i(y_{i-1} ,y_i|x) &amp;amp;= \exp\left(\sum_k\lambda_kf_k(y_{i-1},y_i,x,i)\right) \\ &amp;amp;=\exp\left( \sum_k\lambda_kt_k(y_{i-1},y_i,x,i) + \sum_l\mu_l s_l(y_i,x,i) \right) \end{aligned}$$&lt;/div&gt;
+&lt;p&gt;
+举例来说，当 &lt;span class="math"&gt;\(m=3\)&lt;/span&gt; 时，除了 &lt;span class="math"&gt;\(i=1\)&lt;/span&gt; 或者 &lt;span class="math"&gt;\(i=n-1\)&lt;/span&gt;，每个矩阵 &lt;span class="math"&gt;\(M_i(x)\in\mathbb{R}^{3\times 3}\)&lt;/span&gt;，如下图所示&lt;/p&gt;
+&lt;p&gt;&lt;img alt="条件随机场的矩阵形式" src="https://xutree.github.io/images/statistical_learning_11.5.png"&gt;&lt;/p&gt;
+&lt;p&gt;矩阵的形式类似于隐马尔科夫中的转移矩阵，代表了状态之间转移的概率，其形式是这样的
+&lt;/p&gt;
+&lt;div class="math"&gt;$$M_1(x)=\begin{bmatrix}
+M_1(y_0,y_1|x) &amp;amp; M_1(y_0,y_3|x)  &amp;amp; M_1(y_0,y_3|x)  
+\end{bmatrix} \\
+M_2(x)=\begin{bmatrix}
+M_2(y_1,y_1|x) &amp;amp; M_2(y_1,y_2|x) &amp;amp; M_2(y_1,y_3|x)\\  M_2(y_2,y_1|x) &amp;amp; M_2(y_2,y_2|x) &amp;amp; M_2(y_2,y_3|x)\\  M_2(y_3,y_1|x) &amp;amp; M_2(y_3,y_2|x) &amp;amp; M_2(y_3,y_3|x)
+\end{bmatrix} \\
+M_i(x)\ \ \text{具有和}\ M_2(x)\ \text{同样的形式}, \ i = 3,\cdots,n \\
+M_{n+1}(x)=\begin{bmatrix}  
+M_{n+1}(y_1,y_n|x)\\   
+M_{n+1}(y_2,y_n|x)\\   
+M_{n+1}(y_3,y_n|x)
+\end{bmatrix} \\$$&lt;/div&gt;
+&lt;p&gt;这样，给定观测序列 &lt;span class="math"&gt;\(x\)&lt;/span&gt;，标记序列 &lt;span class="math"&gt;\(y\)&lt;/span&gt; 的非规范化概率可以通过 &lt;span class="math"&gt;\(n+1\)&lt;/span&gt; 个矩阵的乘积 &lt;span class="math"&gt;\(\prod_{i=1}^{n+1}M_i(y_{i-1},y_i|x)\)&lt;/span&gt; 表示，于是，条件概率是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P_w(y|x) = \frac{1}{Z_w(x)} \prod_{i=1}^{n+1} M_i(y_{i-1},y_i|x)$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(Z_w(x)\)&lt;/span&gt; 为规范化因子，是 &lt;span class="math"&gt;\(n+1\)&lt;/span&gt; 个矩阵的乘积
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Z_w(x) =M_1(x)M_2(x)\cdots M_{n+1}(x)$$&lt;/div&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第十章 隐马尔科夫模型</title><link href="https://xutree.github.io/pages/2018/11/19/10/" rel="alternate"></link><published>2018-11-19T12:38:27+08:00</published><updated>2018-11-19T17:11:25+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-19:/pages/2018/11/19/10/</id><summary type="html">&lt;p&gt;隐马尔科夫模型（hidden Markov model，HMM）是可用于标注问题的统计学模型，描述由隐藏的马尔科夫链随机生成观测序列的过程，属于生成模型。隐马尔科夫模型在语音识别、自然语言处理、生物信息、模式识别等领域有着广泛的应用。&lt;/p&gt;
 &lt;h2&gt;10.1 隐马尔科夫模型的基本概念&lt;/h2&gt;
 &lt;h3&gt;10.1.1 隐马尔科夫模型的定义&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;
