@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-19T22:06:32+08:00</updated><entry><title>统计学习方法 第十一章 条件随机场</title><link href="https://xutree.github.io/pages/2018/11/19/11/" rel="alternate"></link><published>2018-11-19T17:27:39+08:00</published><updated>2018-11-19T22:06:32+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-19:/pages/2018/11/19/11/</id><summary type="html">&lt;p&gt;条件随机场（conditional random field，CRF）是给定一组输入随机变量条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-20T14:43:36+08:00</updated><entry><title>统计学习方法 第十一章 条件随机场</title><link href="https://xutree.github.io/pages/2018/11/19/11/" rel="alternate"></link><published>2018-11-19T17:27:39+08:00</published><updated>2018-11-20T14:43:36+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-19:/pages/2018/11/19/11/</id><summary type="html">&lt;p&gt;条件随机场（conditional random field，CRF）是给定一组输入随机变量条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。&lt;/p&gt;
 &lt;p&gt;条件随机场可以用于不同的预测问题，本节仅讨论它在标注问题的应用，因此主要讲述线性链（linear chain）条件随机场。这时，问题变成了由输入序列对输出序列预测的判别模型，形式为对数线性模型，其学习方法通常是极大似然估计或正则化的极大似然估计。&lt;/p&gt;
 &lt;h2&gt;11.1 概率无向图模型&lt;/h2&gt;
 &lt;p&gt;概率无向图模型（probabilistic undirected graphical model），又称为马尔科夫随机场（Markov random file），是一个可以由无向图表示的联合概率分布。&lt;/p&gt;
@@ -220,6 +220,201 @@ M_{n+1}(y_3,y_n|x)
 其中，&lt;span class="math"&gt;\(Z_w(x)\)&lt;/span&gt; 为规范化因子，是 &lt;span class="math"&gt;\(n+1\)&lt;/span&gt; 个矩阵的乘积
 &lt;/p&gt;
 &lt;div class="math"&gt;$$Z_w(x) =M_1(x)M_2(x)\cdots M_{n+1}(x)$$&lt;/div&gt;
+&lt;h2&gt;11.3 条件随机场的概率计算问题&lt;/h2&gt;
+&lt;p&gt;条件随机场的概率计算问题是给定条件随机场 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt;，输入序列 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 和输出序列 &lt;span class="math"&gt;\(y\)&lt;/span&gt;，计算条件概率 &lt;span class="math"&gt;\(P(Y_i=y_i|x)\)&lt;/span&gt;，&lt;span class="math"&gt;\(P(Y_{i-1}=y_{i-1},Y_i=y_i|x)\)&lt;/span&gt; 以及相应的数学期望的问题。&lt;/p&gt;
+&lt;h3&gt;11.3.1 前向-后向算法&lt;/h3&gt;
+&lt;p&gt;对每个指标 &lt;span class="math"&gt;\(i=0,1,\cdots,n+1\)&lt;/span&gt;，定义前向向量 &lt;span class="math"&gt;\(\alpha_i(x)\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_0(y|x)=\begin{cases}1,&amp;amp; y=\text{start} \\ 0,&amp;amp; \text{否则}\end{cases}$$&lt;/div&gt;
+&lt;p&gt;
+递推公式为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_i^\text{T}(y_i|x)=\alpha_{i-1}^\text{T}(y_{i-1}|x)[M_i(y_{i-1},y_i|x)],\ i=1,2,\cdots,n+1$$&lt;/div&gt;
+&lt;p&gt;
+又可表示为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\alpha_i^\text{T}(x)=\alpha_{i-1}^\text{T}(x)M_i(x)$$&lt;/div&gt;
+&lt;p&gt;
+&lt;span class="math"&gt;\(\alpha_i(y_i|x)\)&lt;/span&gt; 表示在位置 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 的标记是 &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; 并且到位置 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 的前部分标记序列的非规范化概率，&lt;span class="math"&gt;\(y_i\)&lt;/span&gt; 可取的值有 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 个，所以 &lt;span class="math"&gt;\(\alpha_i(x)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 维列向量。&lt;/p&gt;
+&lt;p&gt;同样，对给个指标 &lt;span class="math"&gt;\(i=0,1,\cdots,n+1\)&lt;/span&gt;，定义后向向量 &lt;span class="math"&gt;\(\beta_i(x)\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\beta_{n+1}(y_{n+1}|x)=\begin{cases}1,&amp;amp; y_{n+1}=\text{stop} \\ 0,&amp;amp; \text{否则}\end{cases} \\
+\beta_i(y_i|x)=[M_i(y_i,y_{i+1}|x)]\beta_{i+1}(y_{i+1}|x)$$&lt;/div&gt;
+&lt;p&gt;
+又可表示为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\beta_i(x)=M_{i+1}(x)\beta_{i+1}(x)$$&lt;/div&gt;
+&lt;p&gt;
+&lt;span class="math"&gt;\(\beta_i(y_i|x)\)&lt;/span&gt; 表示在位置 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 的标记为 &lt;span class="math"&gt;\(y_i\)&lt;/span&gt; 并且从 &lt;span class="math"&gt;\(i+1\)&lt;/span&gt; 到 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 的后部分标记序列的非规范化概率。&lt;/p&gt;
+&lt;p&gt;由定义不难得到
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Z(x)=\alpha_n^\text{T}(x)\cdot\mathbf{1}=\mathbf{1}^\text{T}\cdot\beta_1(x)$$&lt;/div&gt;
+&lt;p&gt;
+这里，&lt;span class="math"&gt;\(\mathbf{1}\)&lt;/span&gt; 是元素均为 1 的 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 维列向量。&lt;/p&gt;
+&lt;h3&gt;11.3.2 概率计算&lt;/h3&gt;
+&lt;div class="math"&gt;$$P(Y_i=y_i|x)=\frac{\alpha_i^\text{T}(y_i|x)\beta_i(y_i|x)}{Z(x)} \\
+P(Y_{i-1}=y_{i-1},Y_i=y_i|x)=\frac{\alpha_{i-1}^\text{T}(y_{i-1}|x)M_i(y_{i-1},y_i|x)\beta_i(y_i|x)}{Z(x)}$$&lt;/div&gt;
+&lt;p&gt;
+其中
+&lt;/p&gt;
+&lt;div class="math"&gt;$$Z(x)=\alpha_n^\text{T}(x)\cdot\mathbf{1}$$&lt;/div&gt;
+&lt;h3&gt;11.3.3 期望值的计算&lt;/h3&gt;
+&lt;p&gt;特征函数 &lt;span class="math"&gt;\(f_k\)&lt;/span&gt; 关于条件分布 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 的数学期望是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\text{E}_{P(Y|X)}[f_k] &amp;amp;=&amp;amp; \sum_yP(y|x)f_k(y,x) \\
+&amp;amp;=&amp;amp; \sum_{i=1}^{n+1}\sum_{y_{i-1}y_i}f_k(y_{i-1},y_i,x,i)\frac{\alpha_{i-1}^\text{T}(y_{i-1}|x)M_i(y_{i-1},y_i|x)\beta_i(y_i|x)}{Z(x)}
+\end{eqnarray} \\
+k=1,2,\cdots,K$$&lt;/div&gt;
+&lt;p&gt;假设经验分布是 &lt;span class="math"&gt;\(\tilde{P}(X)\)&lt;/span&gt;，特征函数 &lt;span class="math"&gt;\(f_k\)&lt;/span&gt; 关于联合分布 &lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 的数学期望是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\text{E}_{P(X,Y)}[f_k] &amp;amp;=&amp;amp; \sum_{x,y}P(x,y)\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i) \\
+&amp;amp;=&amp;amp; \sum_{x}\tilde{P}(x)\sum_yP(y|x)\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i) \\
+&amp;amp;=&amp;amp; \sum_x\tilde{P}(x)\text{E}_{P(Y|X)}[f_k]
+\end{eqnarray} \\
+k=1,2,\cdots,K$$&lt;/div&gt;
+&lt;p&gt;这些是特征函数数学期望的一般计算公式。&lt;/p&gt;
+&lt;p&gt;对于转移特征，可以将式中的 &lt;span class="math"&gt;\(f_k\)&lt;/span&gt; 换成 &lt;span class="math"&gt;\(t_k\)&lt;/span&gt;，表示为 &lt;/p&gt;
+&lt;div class="math"&gt;$$t_k(y_{i-1},y_i,x,i),\ k=1,2,\cdots,K_1$$&lt;/div&gt;
+&lt;p&gt;
+对于状态特征，可以将式中的 &lt;span class="math"&gt;\(f_k\)&lt;/span&gt; 换成 &lt;span class="math"&gt;\(s_i\)&lt;/span&gt;，表示为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$s_l(y_i,x,i),\ k=K_1+1,\ l=1,2,\cdots,K_2$$&lt;/div&gt;
+&lt;p&gt;有了本节的公式，对于给定的观测序列 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 和标记序列 &lt;span class="math"&gt;\(y\)&lt;/span&gt;，可以通过一次前向扫描计算 &lt;span class="math"&gt;\(\alpha_i\)&lt;/span&gt; 及 &lt;span class="math"&gt;\(Z(x)\)&lt;/span&gt;，通过一次后向扫描计算 &lt;span class="math"&gt;\(\beta_i\)&lt;/span&gt;，从而计算所有的概率和特征的期望。&lt;/p&gt;
+&lt;h2&gt;11.4 条件随机场的学习算法&lt;/h2&gt;
+&lt;p&gt;本节讨论给定训练数据集估计条件随机场模型参数的问题。条件随机场模型实际上是定义在时序数据上的对数线性模型，其学习方法包括极大似然估计和正则化的极大似然估计。具体的优化实现算法有改进的迭代尺度法 IIS、梯度下降法和拟牛顿法。&lt;/p&gt;
+&lt;h3&gt;11.4.1 改进的迭代尺度法&lt;/h3&gt;
+&lt;p&gt;已知训练数据集，由此可知经验概率分布 &lt;span class="math"&gt;\(\tilde{P}(X,Y)\)&lt;/span&gt;，训练数据的对数似然函数为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$L(w)=L_{\tilde{P}}(P_w)=\log\prod_{x,y}P_w(y|x)^{\tilde{P}(x,y)}=\sum_{x,y}\tilde{P}(x,y)\log P_w(y|x)$$&lt;/div&gt;
+&lt;p&gt;
+其中
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{aligned} P_w(y|x) &amp;amp;= \frac{1}{Z(x)} \exp\sum_{k=1}^K w_k f_k(y,x) \\
+Z(x)&amp;amp;= \sum_y \exp\sum_{k=1}^Kw_kf_k(y,x)
+\end{aligned}$$&lt;/div&gt;
+&lt;p&gt;
+则
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+L(w) &amp;amp;=&amp;amp; \sum_{x,y}\tilde{P}(x,y)\log P_w(y|x) \\
+&amp;amp;=&amp;amp; \sum_{x,y}\left[\tilde{P}(x,y)\sum_{k=1}^Kw_kf_k(y,x)-\tilde{P}(x,y)\log Z_w(x)\right] \\
+&amp;amp;=&amp;amp; \sum_{j=1}^N\sum_{k=1}^Kw_kf_k(y_j,x_j)-\sum_{j=1}^N\log Z_w(x_j)
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+改进的迭代尺度法通过迭代的方法不断优化对数似然函数改变量的下界，达到极大化对数似然函数的目的。&lt;/p&gt;
+&lt;p&gt;设参数向量 &lt;span class="math"&gt;\(w\)&lt;/span&gt; 的增量是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\delta=(\delta_1,\delta_2,\cdots,\delta_K)^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+根据 &lt;a href="https://xutree.github.io/pages/2018/11/09/6/"&gt;第六章&lt;/a&gt;的方法，得到关于转移特征 &lt;span class="math"&gt;\(t_k\)&lt;/span&gt; 的更新方程是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\text{E}_{\tilde{P}}[t_k] &amp;amp;=&amp;amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i) \\
+&amp;amp;=&amp;amp; \sum_{x,y}\tilde{P}(x)P(y|x)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i)\exp(\delta_kT(x,y))
+\end{eqnarray} \\
+k=1,2,\cdots,K_1$$&lt;/div&gt;
+&lt;p&gt;
+关于状态特征 &lt;span class="math"&gt;\(s_l\)&lt;/span&gt; 的更新方程是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\text{E}_{\tilde{P}}[s_l] &amp;amp;=&amp;amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^{n+1}s_l(y_i,x,i) \\
+&amp;amp;=&amp;amp; \sum_{x,y}\tilde{P}(x)P(y|x)\sum_{i=1}^{n}s_l(y_i,x,i)\exp(\delta_{K_1+l}T(x,y))
+\end{eqnarray} \\
+l=1,2,\cdots,K_2$$&lt;/div&gt;
+&lt;p&gt;
+这里，&lt;span class="math"&gt;\(T(x,y)\)&lt;/span&gt; 是在数据 &lt;span class="math"&gt;\((x,y)\)&lt;/span&gt; 中出现所有特征数的总和
+&lt;/p&gt;
+&lt;div class="math"&gt;$$T(x,y)=\sum_{k}f_k(y,x)=\sum_{k=1}^K\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i)$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 11.1（条件随机场模型学习的改进的迭代尺度法）&lt;br&gt;
+输入：特征函数 &lt;span class="math"&gt;\(t_1,t_2,\cdots,t_{K_1}\)&lt;/span&gt;，&lt;span class="math"&gt;\(s_1,s_2,\cdots,s_{K_2}\)&lt;/span&gt;；经验分布 &lt;span class="math"&gt;\(\tilde{P}(x,y)\)&lt;/span&gt;&lt;br&gt;
+输出：参数估计值 &lt;span class="math"&gt;\(\hat{w}\)&lt;/span&gt;；模型 &lt;span class="math"&gt;\(P_{\hat{w}}\)&lt;/span&gt;&lt;br&gt;
+(1) 对所有 &lt;span class="math"&gt;\(k\in\{1,2,\cdots,K\}\)&lt;/span&gt;，取初值 &lt;span class="math"&gt;\(w_k=0\)&lt;/span&gt;&lt;br&gt;
+(2) 对每一 &lt;span class="math"&gt;\(k\in\{1,2,\cdots,K\}\)&lt;/span&gt;&lt;br&gt;
+(2.a) 当 &lt;span class="math"&gt;\(k=1,2,\cdots,K_1\)&lt;/span&gt; 时，令 &lt;span class="math"&gt;\(\delta_k\)&lt;/span&gt; 是下面方程的解
+&lt;div class="math"&gt;$$\sum_{x,y}\tilde{P}(x)P(y|x)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i)\exp(\delta_kT(x,y))=\text{E}_{\tilde{P}}[t_k]$$&lt;/div&gt;
+当 &lt;span class="math"&gt;\(k=K_1+l\)&lt;/span&gt;，&lt;span class="math"&gt;\(l=1,2,\cdots,K_2\)&lt;/span&gt; 时，令 &lt;span class="math"&gt;\(\delta_{K_1+l}\)&lt;/span&gt; 是下面方程的解
+&lt;div class="math"&gt;$$\sum_{x,y}\tilde{P}(x)P(y|x)\sum_{i=1}^{n}s_l(y_i,x,i)\exp(\delta_{K_1+l}T(x,y))=\text{E}_{\tilde{P}}[s_l]$$&lt;/div&gt;
+其中
+&lt;div class="math"&gt;$$T(x,y)=\sum_{k}f_k(y,x)=\sum_{k=1}^K\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i)$$&lt;/div&gt;
+(2.b) 更新 &lt;span class="math"&gt;\(w_k\)&lt;/span&gt;：&lt;span class="math"&gt;\(w_k\gets w_k+\delta_k\)&lt;/span&gt;&lt;br&gt;
+(3) 如果不是所有的 &lt;span class="math"&gt;\(w_k\)&lt;/span&gt; 都收敛，重复步骤 (2)
+&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;上面算法中 &lt;span class="math"&gt;\(T(x,y)\)&lt;/span&gt; 对不同的数据 &lt;span class="math"&gt;\((x,y)\)&lt;/span&gt; 取值可能不同，为了处理这个问题，定义松弛特征
+&lt;/p&gt;
+&lt;div class="math"&gt;$$s(x,y)=S-\sum_{k=1}^K\sum_{i=1}^{n+1}f_k(y_{i-1},y_i,x,i)$$&lt;/div&gt;
+&lt;p&gt;
+式中 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 是一个常数。选择足够大的常数 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 使得对训练数据集的所有数据 &lt;span class="math"&gt;\((x,y)\)&lt;/span&gt;，&lt;span class="math"&gt;\(s(x,y)\geq0\)&lt;/span&gt; 成立。这时特征总可取 &lt;span class="math"&gt;\(S\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;对于转移特征 &lt;span class="math"&gt;\(t_k\)&lt;/span&gt;，&lt;span class="math"&gt;\(\delta_k\)&lt;/span&gt; 的更新方程是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\sum_{x,y}\tilde{P}(x)P(y|x)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i)\exp(\delta_kS)=\text{E}_{\tilde{P}}[t_k] \\
+\delta_k=\frac{1}{S}\log\frac{\text{E}_{\tilde{P}}[t_k]}{\text{E}_P[t_k]}$$&lt;/div&gt;
+&lt;p&gt;
+其中
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{E}_P[t_k]=\sum_x\tilde{P}(x)\sum_{i=1}^{n+1}\sum_{y_{i-1}y_i}t_k(y_{i-1},y_i,x,i)\frac{\alpha_{i-1}^\text{T}(y_{i-1}|x)M_i(y_{i-1},y_i|x)\beta_i(y_i|x)}{Z(x)}$$&lt;/div&gt;
+&lt;p&gt;对于状态特征 &lt;span class="math"&gt;\(s_l\)&lt;/span&gt;，&lt;span class="math"&gt;\(\delta_k\)&lt;/span&gt; 的更新方程是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\sum_{x,y}\tilde{P}(x)P(y|x)\sum_{i=1}^{n}s_l(y_i,x,i)\exp(\delta_{K_1+l}S)=\text{E}_{\tilde{P}}[s_l] \\
+\delta_{K_1+l}=\frac{1}{S}\log\frac{\text{E}_{\tilde{P}}[s_l]}{\text{E}_P[s_l]}$$&lt;/div&gt;
+&lt;p&gt;
+其中
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{E}_P[s_l]=\sum_x\tilde{P}(x)\sum_{i=1}^{n}\sum_{y_i}s_l(y_i,x,i)\frac{\alpha_{i}^\text{T}(y_{i}|x)\beta_i(y_i|x)}{Z(x)}$$&lt;/div&gt;
+&lt;p&gt;以上算法称为算法 S，在算法 S 中需要使常数 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 取足够大，这样一来，每步迭代的增量会变大，算法收敛会变慢。算法 T 试图解决这个问题。算法 T 对每个观测序列 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 计算其特征总数最大值 &lt;span class="math"&gt;\(T(x)\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$T(x)=\max_yT(x,y)$$&lt;/div&gt;
+&lt;p&gt;利用前向-后向递推公式，可以很容易计算 &lt;span class="math"&gt;\(T(x)=t\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这时，关于转移特征参数的更新方程是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\text{E}_{\tilde{P}}[t_k] &amp;amp;=&amp;amp; \sum_{x,y}\tilde{P}(x)P(y|x)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i)\exp(\delta_kT(x)) \\
+&amp;amp;=&amp;amp; \sum_x\tilde{P}(x)\sum_yP(y|x)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i)\exp(\delta_kT(x)) \\
+&amp;amp;=&amp;amp; \sum_x\tilde{P}(x)a_{k,t}\exp(\delta_k\cdot t) \\
+&amp;amp;=&amp;amp; \sum_{t=1}^{T_\text{max}}a_{k,t}\beta_k^t
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+这里，&lt;span class="math"&gt;\(a_{k,t}\)&lt;/span&gt; 是特征 &lt;span class="math"&gt;\(t_k\)&lt;/span&gt; 的期望值，&lt;span class="math"&gt;\(\delta_k=\log\beta_k\)&lt;/span&gt;。&lt;span class="math"&gt;\(\beta_k\)&lt;/span&gt; 是上面方程唯一的实根，可以用牛顿法求解，从而得到相关的 &lt;span class="math"&gt;\(\delta_k\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;同理，关于状态特征的更新方程是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\text{E}_{\tilde{P}}[s_l] &amp;amp;=&amp;amp; \sum_{x,y}\tilde{P}(x)P(y|x)\sum_{i=1}^{n}s_l(y_i,x,i)\exp(\delta_{K_1+l}T(x)) \\
+&amp;amp;=&amp;amp; \sum_x\tilde{P}(x)\sum_yP(y|x)\sum_{i=1}^{n}s_l(y_i,x,i)\exp(\delta_{K_1+l}T(x)) \\
+&amp;amp;=&amp;amp; \sum_x\tilde{P}(x)b_{l,t}\exp(\delta_k\cdot t) \\
+&amp;amp;=&amp;amp; \sum_{t=1}^{T_\text{max}}b_{l,t}\gamma_l^t
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+这里，&lt;span class="math"&gt;\(b_{l,t}\)&lt;/span&gt; 是特征 &lt;span class="math"&gt;\(s_l\)&lt;/span&gt; 的期望值，&lt;span class="math"&gt;\(\delta_l=\log\gamma_l\)&lt;/span&gt;。&lt;span class="math"&gt;\(\gamma_l\)&lt;/span&gt; 是上面方程唯一的实根，可以用牛顿法求解，从而得到相关的 &lt;span class="math"&gt;\(\delta_{K_1+l}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;h3&gt;11.4.2 拟牛顿法&lt;/h3&gt;
+&lt;p&gt;对于条件随机场模型
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P_w(y|x)=\frac{\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)}{\sum_y\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)}$$&lt;/div&gt;
+&lt;p&gt;
+学习的优化目标函数是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_{w\in\mathbb{R}^n}f(w)=\sum_x\tilde{P}(x)\log\sum_y\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)-\sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^nw_if_i(x,y)$$&lt;/div&gt;
+&lt;p&gt;
+其梯度函数是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$g(w)=\sum_{x,y}\tilde{P}(x)P_w(y|x)f(x,y)-\text{E}_\tilde{P}[f]$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 11.2（条件随机场模型学习的 BFGS 算法）&lt;br&gt;
+输入：特征函数 &lt;span class="math"&gt;\(f_1,f_2,\cdots,f_n\)&lt;/span&gt;；经验分布 &lt;span class="math"&gt;\(\tilde{P}(X,Y)\)&lt;/span&gt;&lt;br&gt;
+输出：最优参数值 &lt;span class="math"&gt;\(\hat{w}\)&lt;/span&gt;；最优模型 &lt;span class="math"&gt;\(P_{\hat{w}}(y|x)\)&lt;/span&gt;&lt;br&gt;
+(1) 选定初始点 &lt;span class="math"&gt;\(w^{(0)}\)&lt;/span&gt;，取 &lt;span class="math"&gt;\(\mathbf{B}_0\)&lt;/span&gt; 为正定对称矩阵，置 &lt;span class="math"&gt;\(k=0\)&lt;/span&gt;&lt;br&gt;
+(2) 计算 &lt;span class="math"&gt;\(g_k=g\left(w^{(k)}\right)\)&lt;/span&gt;，若 &lt;span class="math"&gt;\(g_k=0\)&lt;/span&gt;，则停止计算，否则转 (3)&lt;br&gt;
+(3) 由 &lt;span class="math"&gt;\(\mathbf{B}_kp_k=-g_k\)&lt;/span&gt; 求出 &lt;span class="math"&gt;\(p_k\)&lt;/span&gt;&lt;br&gt;
+(4) 一维搜索：求 &lt;span class="math"&gt;\(\lambda_k\)&lt;/span&gt; 使得
+&lt;div class="math"&gt;$$f\left(w^{(k)}+\lambda_kp_k\right)=\min_{\lambda\geq0}f\left(w^{(k)}+\lambda p_k\right)$$&lt;/div&gt;
+(5) 置 &lt;span class="math"&gt;\(w^{(k+1)}=w^{(k)}+\lambda_k p_K\)&lt;/span&gt;&lt;br&gt;
+(6) 计算 &lt;span class="math"&gt;\(g_{k+1}=g\left(w^{(k+1)}\right)\)&lt;/span&gt;，若 &lt;span class="math"&gt;\(g_{k+1}=0\)&lt;/span&gt;，则停止计算；，否则按下式计算 &lt;span class="math"&gt;\(\mathbf{B}_{k+1}\)&lt;/span&gt;
+&lt;div class="math"&gt;$$\mathbf{B}_{k+1}=\mathbf{B}_k+\frac{y_ky_K^\text{T}}{y_k^\text{T}\delta_k}-\frac{\mathbf{B}_k\delta_k\delta_k^\text{T}\mathbf{B}_k}{\delta_k^\text{T}\mathbf{B}_k\delta_k}$$&lt;/div&gt;
+其中
+&lt;div class="math"&gt;$$y_k=g_{k+1}-g_k,\ \delta_k=w^{(k+1)}-w^{(k)}$$&lt;/div&gt;
+(7) 置 &lt;span class="math"&gt;\(k=k+1\)&lt;/span&gt;，转 (3)
+&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
