@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-20T14:43:36+08:00</updated><entry><title>统计学习方法 第十一章 条件随机场</title><link href="https://xutree.github.io/pages/2018/11/19/11/" rel="alternate"></link><published>2018-11-19T17:27:39+08:00</published><updated>2018-11-20T14:43:36+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-19:/pages/2018/11/19/11/</id><summary type="html">&lt;p&gt;条件随机场（conditional random field，CRF）是给定一组输入随机变量条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-20T15:18:01+08:00</updated><entry><title>统计学习方法 第十一章 条件随机场</title><link href="https://xutree.github.io/pages/2018/11/19/11/" rel="alternate"></link><published>2018-11-19T17:27:39+08:00</published><updated>2018-11-20T15:18:01+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-19:/pages/2018/11/19/11/</id><summary type="html">&lt;p&gt;条件随机场（conditional random field，CRF）是给定一组输入随机变量条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。&lt;/p&gt;
 &lt;p&gt;条件随机场可以用于不同的预测问题，本节仅讨论它在标注问题的应用，因此主要讲述线性链（linear chain）条件随机场。这时，问题变成了由输入序列对输出序列预测的判别模型，形式为对数线性模型，其学习方法通常是极大似然估计或正则化的极大似然估计。&lt;/p&gt;
 &lt;h2&gt;11.1 概率无向图模型&lt;/h2&gt;
 &lt;p&gt;概率无向图模型（probabilistic undirected graphical model），又称为马尔科夫随机场（Markov random file），是一个可以由无向图表示的联合概率分布。&lt;/p&gt;
@@ -414,6 +414,74 @@ l=1,2,\cdots,K_2$$&lt;/div&gt;
 其中
 &lt;div class="math"&gt;$$y_k=g_{k+1}-g_k,\ \delta_k=w^{(k+1)}-w^{(k)}$$&lt;/div&gt;
 (7) 置 &lt;span class="math"&gt;\(k=k+1\)&lt;/span&gt;，转 (3)
+&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;11.5 条件随机场的预测算法&lt;/h2&gt;
+&lt;p&gt;条件随机场的预测问题是给定条件随机场 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 和输入序列（观测序列）&lt;span class="math"&gt;\(x\)&lt;/span&gt;，求条件概率最大的输出序列（标记序列）&lt;span class="math"&gt;\(y^\star\)&lt;/span&gt;，即对观测序列进行标注。条件随机场的预测算法是著名的&lt;a href="https://xutree.github.io/pages/2018/11/19/10/"&gt;维特比算法&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;由条件随机场的简化形式，得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+y^\star &amp;amp;=&amp;amp; \arg\max_yP_w(y|x) \\
+&amp;amp;=&amp;amp; \arg\max_y\frac{\exp\left(w\cdot F(y,x)\right)}{Z_w(x)} \\
+&amp;amp;=&amp;amp; \arg\max_y\exp(w\cdot F(y,x)) \\
+&amp;amp;=&amp;amp; \arg\max_y(w\cdot F(y,x))
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+于是，条件随机场的预测问题成为求非规范化概率最大的最优路径问题
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\max_y(w\cdot F(y,x))$$&lt;/div&gt;
+&lt;p&gt;
+这里，路径表示标记序列，其中
+&lt;/p&gt;
+&lt;div class="math"&gt;$$w=(w_1,w_2,\cdots,w_K)^\text{T} \\
+F(y,x)=(f_1(y,x),f_2(y,x),\cdots,f_K(y,x))^\text{T} \\
+f_k(y,x)=\sum_{i=1}^nf_k(y_{i-1},y_i,x,i),\ k=1,2,\cdots,K$$&lt;/div&gt;
+&lt;p&gt;
+这里只需要计算非规范化概率，可以大大提高效率。将优化问题改写为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\max_y\sum_{i=1}^nw\cdot F_i(y_{i-1},y_i,x)$$&lt;/div&gt;
+&lt;p&gt;
+其中
+&lt;/p&gt;
+&lt;div class="math"&gt;$$F_i(y_{i-1},y_i,x)=(f_1(y_{i-1},y_i,x,i),f_2(y_{i-1},y_i,x,i),\cdots,f_K(y_{i-1},y_i,x,i))^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+是局部特征向量。&lt;/p&gt;
+&lt;p&gt;下面叙述维特比算法。首先求出位置 1 的各个标记 &lt;span class="math"&gt;\(j=1,2,\cdots,m\)&lt;/span&gt; 的非规范化概率
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\delta_1(j)=w\cdot F_1(y_0=\text{start},y_1=j,x),\ j=1,2,\cdots,m$$&lt;/div&gt;
+&lt;p&gt;
+一般的，由递推公式，求出到位置 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 的各个标记 &lt;span class="math"&gt;\(l=1,2,\cdots,m\)&lt;/span&gt; 的非规范化概率的最大值，同时记录非规范化概率最大值的路径
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\delta_i(l)=\max_{1\leq j\leq m}\left\{\delta_{i-1}(j)+w\cdot F_i(y_{i-1}=j,y_i=l,x)\right\},\ l=1,2,\cdots,m \\
+\Psi_i(l)=\arg\max_{1\leq j\leq m}\left\{\delta_{i-1}(j)+w\cdot F_i(y_{i-1}=j,y_i=l,x)\right\},\ l=1,2,\cdots,m$$&lt;/div&gt;
+&lt;p&gt;
+直到 &lt;span class="math"&gt;\(i=n\)&lt;/span&gt; 时终止。这时求得非规范化概率最大值是
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\max_y(w\cdot F(y,x))=\max_{1\leq j\leq m}\delta_n(j)$$&lt;/div&gt;
+&lt;p&gt;
+以及最优路径的终点
+&lt;/p&gt;
+&lt;div class="math"&gt;$$y_n^\star=\arg\max_{1\leq j\leq m}\delta_n(j)$$&lt;/div&gt;
+&lt;p&gt;
+由此最优路径终点返回
+&lt;/p&gt;
+&lt;div class="math"&gt;$$y_i^\star=\Psi_{i+1}(y_{i+1}^\star),\ i=n-1,n-2,\cdots,1$$&lt;/div&gt;
+&lt;p&gt;
+求得最优路径 &lt;span class="math"&gt;\(y^\star=(y_1^\star,y_2^\star,\cdots,y_n^\star)^\text{T}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;
+算法 11.3（条件随机场预测的维特比算法）&lt;br&gt;
+输入：模型特征向量 &lt;span class="math"&gt;\(F(y,x)\)&lt;/span&gt; 和权值向量 &lt;span class="math"&gt;\(w\)&lt;/span&gt;，观测序列 &lt;span class="math"&gt;\(x=(x_1,x_2,\cdots,x_n)\)&lt;/span&gt;&lt;br&gt;
+输出：最优路径 &lt;span class="math"&gt;\(y^\star=(y_1^\star,y_2^\star,\cdots,y_n^\star)^\text{T}\)&lt;/span&gt;&lt;br&gt;
+(1) 初始化
+&lt;div class="math"&gt;$$\delta_1(j)=w\cdot F_1(y_0=\text{start},y_1=j,x),\ j=1,2,\cdots,m$$&lt;/div&gt;
+(2) 递推，对 &lt;span class="math"&gt;\(i=2,3,\cdots,n\)&lt;/span&gt;&lt;br&gt;
+&lt;div class="math"&gt;$$\delta_i(l)=\max_{1\leq j\leq m}\left\{\delta_{i-1}(j)+w\cdot F_i(y_{i-1}=j,y_i=l,x)\right\},\ l=1,2,\cdots,m \\
+\Psi_i(l)=\arg\max_{1\leq j\leq m}\left\{\delta_{i-1}(j)+w\cdot F_i(y_{i-1}=j,y_i=l,x)\right\},\ l=1,2,\cdots,m$$&lt;/div&gt;
+(3) 终止
+&lt;div class="math"&gt;$$\max_y(w\cdot F(y,x))=\max_{1\leq j\leq m}\delta_n(j) \\
+y_n^\star=\arg\max_{1\leq j\leq m}\delta_n(j)$$&lt;/div&gt;
+(4) 返回路径
+&lt;div class="math"&gt;$$y_i^\star=\Psi_{i+1}(y_{i+1}^\star),\ i=n-1,n-2,\cdots,1$$&lt;/div&gt;
+求得最优路径 &lt;span class="math"&gt;\(y^\star=(y_1^\star,y_2^\star,\cdots,y_n^\star)^\text{T}\)&lt;/span&gt;
 &lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",

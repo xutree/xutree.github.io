@@ -419,6 +419,74 @@ l=1,2,\cdots,K_2$$</div>
 <div class="math">$$y_k=g_{k+1}-g_k,\ \delta_k=w^{(k+1)}-w^{(k)}$$</div>
 (7) 置 <span class="math">\(k=k+1\)</span>，转 (3)
 </strong></p>
+<h2>11.5 条件随机场的预测算法</h2>
+<p>条件随机场的预测问题是给定条件随机场 <span class="math">\(P(Y|X)\)</span> 和输入序列（观测序列）<span class="math">\(x\)</span>，求条件概率最大的输出序列（标记序列）<span class="math">\(y^\star\)</span>，即对观测序列进行标注。条件随机场的预测算法是著名的<a href="https://xutree.github.io/pages/2018/11/19/10/">维特比算法</a>。</p>
+<p>由条件随机场的简化形式，得
+</p>
+<div class="math">$$\begin{eqnarray}
+y^\star &amp;=&amp; \arg\max_yP_w(y|x) \\
+&amp;=&amp; \arg\max_y\frac{\exp\left(w\cdot F(y,x)\right)}{Z_w(x)} \\
+&amp;=&amp; \arg\max_y\exp(w\cdot F(y,x)) \\
+&amp;=&amp; \arg\max_y(w\cdot F(y,x))
+\end{eqnarray}$$</div>
+<p>
+于是，条件随机场的预测问题成为求非规范化概率最大的最优路径问题
+</p>
+<div class="math">$$\max_y(w\cdot F(y,x))$$</div>
+<p>
+这里，路径表示标记序列，其中
+</p>
+<div class="math">$$w=(w_1,w_2,\cdots,w_K)^\text{T} \\
+F(y,x)=(f_1(y,x),f_2(y,x),\cdots,f_K(y,x))^\text{T} \\
+f_k(y,x)=\sum_{i=1}^nf_k(y_{i-1},y_i,x,i),\ k=1,2,\cdots,K$$</div>
+<p>
+这里只需要计算非规范化概率，可以大大提高效率。将优化问题改写为
+</p>
+<div class="math">$$\max_y\sum_{i=1}^nw\cdot F_i(y_{i-1},y_i,x)$$</div>
+<p>
+其中
+</p>
+<div class="math">$$F_i(y_{i-1},y_i,x)=(f_1(y_{i-1},y_i,x,i),f_2(y_{i-1},y_i,x,i),\cdots,f_K(y_{i-1},y_i,x,i))^\text{T}$$</div>
+<p>
+是局部特征向量。</p>
+<p>下面叙述维特比算法。首先求出位置 1 的各个标记 <span class="math">\(j=1,2,\cdots,m\)</span> 的非规范化概率
+</p>
+<div class="math">$$\delta_1(j)=w\cdot F_1(y_0=\text{start},y_1=j,x),\ j=1,2,\cdots,m$$</div>
+<p>
+一般的，由递推公式，求出到位置 <span class="math">\(i\)</span> 的各个标记 <span class="math">\(l=1,2,\cdots,m\)</span> 的非规范化概率的最大值，同时记录非规范化概率最大值的路径
+</p>
+<div class="math">$$\delta_i(l)=\max_{1\leq j\leq m}\left\{\delta_{i-1}(j)+w\cdot F_i(y_{i-1}=j,y_i=l,x)\right\},\ l=1,2,\cdots,m \\
+\Psi_i(l)=\arg\max_{1\leq j\leq m}\left\{\delta_{i-1}(j)+w\cdot F_i(y_{i-1}=j,y_i=l,x)\right\},\ l=1,2,\cdots,m$$</div>
+<p>
+直到 <span class="math">\(i=n\)</span> 时终止。这时求得非规范化概率最大值是
+</p>
+<div class="math">$$\max_y(w\cdot F(y,x))=\max_{1\leq j\leq m}\delta_n(j)$$</div>
+<p>
+以及最优路径的终点
+</p>
+<div class="math">$$y_n^\star=\arg\max_{1\leq j\leq m}\delta_n(j)$$</div>
+<p>
+由此最优路径终点返回
+</p>
+<div class="math">$$y_i^\star=\Psi_{i+1}(y_{i+1}^\star),\ i=n-1,n-2,\cdots,1$$</div>
+<p>
+求得最优路径 <span class="math">\(y^\star=(y_1^\star,y_2^\star,\cdots,y_n^\star)^\text{T}\)</span></p>
+<p><strong>
+算法 11.3（条件随机场预测的维特比算法）<br>
+输入：模型特征向量 <span class="math">\(F(y,x)\)</span> 和权值向量 <span class="math">\(w\)</span>，观测序列 <span class="math">\(x=(x_1,x_2,\cdots,x_n)\)</span><br>
+输出：最优路径 <span class="math">\(y^\star=(y_1^\star,y_2^\star,\cdots,y_n^\star)^\text{T}\)</span><br>
+(1) 初始化
+<div class="math">$$\delta_1(j)=w\cdot F_1(y_0=\text{start},y_1=j,x),\ j=1,2,\cdots,m$$</div>
+(2) 递推，对 <span class="math">\(i=2,3,\cdots,n\)</span><br>
+<div class="math">$$\delta_i(l)=\max_{1\leq j\leq m}\left\{\delta_{i-1}(j)+w\cdot F_i(y_{i-1}=j,y_i=l,x)\right\},\ l=1,2,\cdots,m \\
+\Psi_i(l)=\arg\max_{1\leq j\leq m}\left\{\delta_{i-1}(j)+w\cdot F_i(y_{i-1}=j,y_i=l,x)\right\},\ l=1,2,\cdots,m$$</div>
+(3) 终止
+<div class="math">$$\max_y(w\cdot F(y,x))=\max_{1\leq j\leq m}\delta_n(j) \\
+y_n^\star=\arg\max_{1\leq j\leq m}\delta_n(j)$$</div>
+(4) 返回路径
+<div class="math">$$y_i^\star=\Psi_{i+1}(y_{i+1}^\star),\ i=n-1,n-2,\cdots,1$$</div>
+求得最优路径 <span class="math">\(y^\star=(y_1^\star,y_2^\star,\cdots,y_n^\star)^\text{T}\)</span>
+</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -515,7 +583,7 @@ l=1,2,\cdots,K_2$$</div>
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-19T17:27:39+08:00">2018-11-19 17:27:39</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-20 14:43:36</div>
+                    <div class="last_updated">2018-11-20 15:18:01</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
