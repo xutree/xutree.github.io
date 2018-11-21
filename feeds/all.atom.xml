@@ -1,5 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-21T16:22:11+08:00</updated><entry><title>深度学习 第二章 线性代数</title><link href="https://xutree.github.io/pages/2018/11/21/dl-2/" rel="alternate"></link><published>2018-11-21T14:02:59+08:00</published><updated>2018-11-21T16:22:11+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-2/</id><summary type="html">&lt;h2&gt;2.1 标量、向量、矩阵和张量&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-21T20:09:05+08:00</updated><entry><title>深度学习 第三章 概率与信息论</title><link href="https://xutree.github.io/pages/2018/11/21/dl-3/" rel="alternate"></link><published>2018-11-21T20:09:05+08:00</published><updated>2018-11-21T20:09:05+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-3/</id><summary type="html">&lt;h2&gt;3.1 随机变量&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;随机变量&lt;/strong&gt;（random variable）是可以随机的取不同值的变量。通常用无格式字体（plain typeface）中的小写字母来表示随机变量本身，而用手写体中的小写字母来表示随机变量能够取到的值。例如，&lt;span class="math"&gt;\(x_1\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(x_2\)&lt;/span&gt; 都是随机变量 x 的可能取值。&lt;/p&gt;
+&lt;h2&gt;3.2 概率分布&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;概率分布&lt;/strong&gt;（probability distribution）用来描述随机变量每一个可能取到的状态的可能性的大小。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;概率质量函数&lt;/strong&gt;（probability mass function，PMF）离散型变量的概率分布。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;概率密度函数&lt;/strong&gt;（probability density function，PDF）连续型变量的概率分布。&lt;/p&gt;
+&lt;h2&gt;3.3 边缘概率&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;边缘概率分布&lt;/strong&gt;（marginal probability distribution）是一种定义在子集上的概率分布。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p(x)=\int p …&lt;/div&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;h2&gt;3.1 随机变量&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;随机变量&lt;/strong&gt;（random variable）是可以随机的取不同值的变量。通常用无格式字体（plain typeface）中的小写字母来表示随机变量本身，而用手写体中的小写字母来表示随机变量能够取到的值。例如，&lt;span class="math"&gt;\(x_1\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(x_2\)&lt;/span&gt; 都是随机变量 x 的可能取值。&lt;/p&gt;
+&lt;h2&gt;3.2 概率分布&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;概率分布&lt;/strong&gt;（probability distribution）用来描述随机变量每一个可能取到的状态的可能性的大小。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;概率质量函数&lt;/strong&gt;（probability mass function，PMF）离散型变量的概率分布。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;概率密度函数&lt;/strong&gt;（probability density function，PDF）连续型变量的概率分布。&lt;/p&gt;
+&lt;h2&gt;3.3 边缘概率&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;边缘概率分布&lt;/strong&gt;（marginal probability distribution）是一种定义在子集上的概率分布。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p(x)=\int p(x,y)dy$$&lt;/div&gt;
+&lt;h2&gt;3.4 条件概率&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;条件概率&lt;/strong&gt;（conditional probability）就是事件在另外一个事件已经发生条件下的发生概率。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(\text{y}=y|\text{x}=x)=\frac{P(\text{y}=y,\text{x}=x)}{P(\text{x}=x)}$$&lt;/div&gt;
+&lt;h2&gt;3.5 独立性和条件独立性&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;独立性&lt;/strong&gt;（independent）
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\forall x\in\text{x},y\in\text{y} \\ p(\text{x}=x,\text{y}=y)=p(\text{x}=x)p(\text{y}=y)$$&lt;/div&gt;
+&lt;p&gt;
+记为 x&lt;span class="math"&gt;\(\perp\)&lt;/span&gt;y。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;条件独立&lt;/strong&gt;（conditionally independent）
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\forall x\in\text{x},y\in\text{y},z\in\text{z} \\ p(\text{x}=x,\text{y}=y|\text{z}=z)=p(\text{x}=x|\text{z}=z)p(\text{y}=y|\text{z}=z)$$&lt;/div&gt;
+&lt;p&gt;
+记为 x&lt;span class="math"&gt;\(\perp\)&lt;/span&gt;y &lt;span class="math"&gt;\(\mid\)&lt;/span&gt; z。&lt;/p&gt;
+&lt;h2&gt;3.6 期望、方差和协方差&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;期望&lt;/strong&gt;（expectation）
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\mathbb{E}_{\text{x}\sim P}\left[x\right]=\sum_xxP(x)\ 或\ \mathbb{E}_{\text{x}\sim p}\left[x\right]=\int_xxP(x)dx$$&lt;/div&gt;
+&lt;p&gt;
+约定 &lt;span class="math"&gt;\(\mathbb{E}[\cdot]\)&lt;/span&gt; 表示对方括号内的所有随机变量的值求平均。如随机变量明确，则可以省略下标。&lt;/p&gt;
+&lt;p&gt;性质：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\mathbb{E}[a{x}+b{y}]=a\mathbb{E}[{x}]+b\mathbb{E}[{y}]$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;方差&lt;/strong&gt;（variance）
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{Var}\left(x\right)=\mathbb{E}\left[\left(x-\mathbb{E}[x]\right)^2\right]=\mathbb{E}\left[x^2\right]-\left(\mathbb{E}[x]\right)^2$$&lt;/div&gt;
+&lt;p&gt;
+方差的平方根称为&lt;strong&gt;标准差&lt;/strong&gt;（standard deviation）。&lt;/p&gt;
+&lt;p&gt;性质：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{Var}(x)\geq0 \\
+\text{Var}(x+\text{const})=\text{Var}(x) \\
+\text{Var}(ax)=a^2\text{Var}(x) \\
+\text{Var}(ax+by)=a^2\text{Var}(x)+b^2\text{Var}(y)+2ab\ \text{Cov}(x,y) \\
+\text{Var}(x-y)=\text{Var}(x)+\text{Var}(y)-2\ \text{Cov}(x,y) \\
+\text{Var}\left(\sum_{i=1}^Nx_i\right)=\sum_{i,j=1}^N\text{Cov}(x_i,x_j)=\sum_{i=1}^N\text{Var}(x_i)+\sum_{i\neq j}\text{Cov}(x_i,x_j)$$&lt;/div&gt;
+&lt;p&gt;
+最后一式为随机向量的方差。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;协方差&lt;/strong&gt;（covariance）在概率论和统计学中用于衡量两个变量的总体误差。而方差是协方差的一种特殊情况，即当两个变量是相同的情况。期望值分别为 &lt;span class="math"&gt;\(\mathbb{E}(x)=\mu\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\mathbb{E}(y)=\nu\)&lt;/span&gt; 的两个具有有限二阶矩的实数随机变量 x 与 y 之间的协方差定义为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{Cov}(x,y)=\mathbb{E}\left[(x-\mu)(y-\nu)\right]=\mathbb{E}[x\cdot y]-\mu\nu$$&lt;/div&gt;
+&lt;p&gt;
+协方差表示的是两个变量的总体的误差，这与只表示一个变量误差的方差不同。 如果两个变量的变化趋势一致，也就是说如果其中一个大于自身的期望值，另外一个也大于自身的期望值，那么两个变量之间的协方差就是正值。 如果两个变量的变化趋势相反，即其中一个大于自身的期望值，另外一个却小于自身的期望值，那么两个变量之间的协方差就是负值。&lt;/p&gt;
+&lt;p&gt;如果 x 与 y 是统计独立的，那么二者之间的协方差就是 0。&lt;/p&gt;
+&lt;p&gt;取决于协方差的&lt;strong&gt;相关性&lt;/strong&gt;（correlation）定义为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\eta=\frac{\text{cov}(x,y)}{\sqrt{\text{Var}(x)\cdot\text{Var}(y)}}$$&lt;/div&gt;
+&lt;p&gt;
+更准确地说是线性相关性，是一个衡量线性独立的无量纲数，其取值在 &lt;span class="math"&gt;\([－1,1]\)&lt;/span&gt; 之间。相关性 &lt;span class="math"&gt;\(\eta=1\)&lt;/span&gt; 时称为“完全线性相关”（相关性 &lt;span class="math"&gt;\(\eta=-1\)&lt;/span&gt; 时称为“完全线性负相关”）。&lt;/p&gt;
+&lt;p&gt;相关性为 0（因而协方差也为 0）的两个随机变量又被称为是不相关的，或者更准确地说叫作“线性无关”、“线性不相关”，这仅仅表明 x 与 y 两随机变量之间没有线性相关性，并非表示它们之间一定没有任何内在的（非线性）函数关系。&lt;/p&gt;
+&lt;p&gt;性质：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{Cov}(x,x)=\text{Var}(x) \\
+\text{Cov}(x,y)=\text{Cov}(y,x) \\
+\text{Cov}(ax,by)=ab\ \text{Cov}(x,y) \\
+\text{Cov}\left(\sum_{i=1}^nx_i\sum_{j=1}^my_j\right)=\sum_{i=1}^n\sum_{j=1}^m\text{Cov}(x_i,y_j)$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;协方差矩阵&lt;/strong&gt;（covariance matrix）对随机向量 &lt;span class="math"&gt;\(\boldsymbol x\in\mathbb{R}^n\)&lt;/span&gt;，协方差矩阵为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{Cov}(\boldsymbol x)_{i,j}=\text{Cov}(x_i,y_j)$$&lt;/div&gt;
+&lt;p&gt;
+其对角元是方差。&lt;/p&gt;
+&lt;h2&gt;3.7 常用概率分布&lt;/h2&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="机器学习"></category><category term="深度学习"></category></entry><entry><title>深度学习 第二章 线性代数</title><link href="https://xutree.github.io/pages/2018/11/21/dl-2/" rel="alternate"></link><published>2018-11-21T14:02:59+08:00</published><updated>2018-11-21T16:22:11+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-2/</id><summary type="html">&lt;h2&gt;2.1 标量、向量、矩阵和张量&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;标量&lt;/strong&gt;（scalar）：一个单独的数，用斜体小写字母表示，如 &lt;span class="math"&gt;\(n\in\mathbb{R}\)&lt;/span&gt; 中的 &lt;span class="math"&gt;\(n\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;向量&lt;/strong&gt;（vector）：一列数，用粗斜体小写字母表示
 &lt;/p&gt;

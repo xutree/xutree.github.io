@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="机器学习, 深度学习, 读书笔记, " />
+    <title>深度学习 第三章 概率与信息论  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
+        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/基础知识.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 基础知识 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/其他.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 其他 Category Atom Feed" />
+        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/11/21/dl-3/"> 深度学习 第三章 概率与信息论  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <h2>3.1 随机变量</h2>
+<p><strong>随机变量</strong>（random variable）是可以随机的取不同值的变量。通常用无格式字体（plain typeface）中的小写字母来表示随机变量本身，而用手写体中的小写字母来表示随机变量能够取到的值。例如，<span class="math">\(x_1\)</span> 和 <span class="math">\(x_2\)</span> 都是随机变量 x 的可能取值。</p>
+<h2>3.2 概率分布</h2>
+<p><strong>概率分布</strong>（probability distribution）用来描述随机变量每一个可能取到的状态的可能性的大小。</p>
+<p><strong>概率质量函数</strong>（probability mass function，PMF）离散型变量的概率分布。</p>
+<p><strong>概率密度函数</strong>（probability density function，PDF）连续型变量的概率分布。</p>
+<h2>3.3 边缘概率</h2>
+<p><strong>边缘概率分布</strong>（marginal probability distribution）是一种定义在子集上的概率分布。
+</p>
+<div class="math">$$p(x)=\int p(x,y)dy$$</div>
+<h2>3.4 条件概率</h2>
+<p><strong>条件概率</strong>（conditional probability）就是事件在另外一个事件已经发生条件下的发生概率。
+</p>
+<div class="math">$$P(\text{y}=y|\text{x}=x)=\frac{P(\text{y}=y,\text{x}=x)}{P(\text{x}=x)}$$</div>
+<h2>3.5 独立性和条件独立性</h2>
+<p><strong>独立性</strong>（independent）
+</p>
+<div class="math">$$\forall x\in\text{x},y\in\text{y} \\ p(\text{x}=x,\text{y}=y)=p(\text{x}=x)p(\text{y}=y)$$</div>
+<p>
+记为 x<span class="math">\(\perp\)</span>y。</p>
+<p><strong>条件独立</strong>（conditionally independent）
+</p>
+<div class="math">$$\forall x\in\text{x},y\in\text{y},z\in\text{z} \\ p(\text{x}=x,\text{y}=y|\text{z}=z)=p(\text{x}=x|\text{z}=z)p(\text{y}=y|\text{z}=z)$$</div>
+<p>
+记为 x<span class="math">\(\perp\)</span>y <span class="math">\(\mid\)</span> z。</p>
+<h2>3.6 期望、方差和协方差</h2>
+<p><strong>期望</strong>（expectation）
+</p>
+<div class="math">$$\mathbb{E}_{\text{x}\sim P}\left[x\right]=\sum_xxP(x)\ 或\ \mathbb{E}_{\text{x}\sim p}\left[x\right]=\int_xxP(x)dx$$</div>
+<p>
+约定 <span class="math">\(\mathbb{E}[\cdot]\)</span> 表示对方括号内的所有随机变量的值求平均。如随机变量明确，则可以省略下标。</p>
+<p>性质：
+</p>
+<div class="math">$$\mathbb{E}[a{x}+b{y}]=a\mathbb{E}[{x}]+b\mathbb{E}[{y}]$$</div>
+<p><strong>方差</strong>（variance）
+</p>
+<div class="math">$$\text{Var}\left(x\right)=\mathbb{E}\left[\left(x-\mathbb{E}[x]\right)^2\right]=\mathbb{E}\left[x^2\right]-\left(\mathbb{E}[x]\right)^2$$</div>
+<p>
+方差的平方根称为<strong>标准差</strong>（standard deviation）。</p>
+<p>性质：
+</p>
+<div class="math">$$\text{Var}(x)\geq0 \\
+\text{Var}(x+\text{const})=\text{Var}(x) \\
+\text{Var}(ax)=a^2\text{Var}(x) \\
+\text{Var}(ax+by)=a^2\text{Var}(x)+b^2\text{Var}(y)+2ab\ \text{Cov}(x,y) \\
+\text{Var}(x-y)=\text{Var}(x)+\text{Var}(y)-2\ \text{Cov}(x,y) \\
+\text{Var}\left(\sum_{i=1}^Nx_i\right)=\sum_{i,j=1}^N\text{Cov}(x_i,x_j)=\sum_{i=1}^N\text{Var}(x_i)+\sum_{i\neq j}\text{Cov}(x_i,x_j)$$</div>
+<p>
+最后一式为随机向量的方差。</p>
+<p><strong>协方差</strong>（covariance）在概率论和统计学中用于衡量两个变量的总体误差。而方差是协方差的一种特殊情况，即当两个变量是相同的情况。期望值分别为 <span class="math">\(\mathbb{E}(x)=\mu\)</span> 和 <span class="math">\(\mathbb{E}(y)=\nu\)</span> 的两个具有有限二阶矩的实数随机变量 x 与 y 之间的协方差定义为：
+</p>
+<div class="math">$$\text{Cov}(x,y)=\mathbb{E}\left[(x-\mu)(y-\nu)\right]=\mathbb{E}[x\cdot y]-\mu\nu$$</div>
+<p>
+协方差表示的是两个变量的总体的误差，这与只表示一个变量误差的方差不同。 如果两个变量的变化趋势一致，也就是说如果其中一个大于自身的期望值，另外一个也大于自身的期望值，那么两个变量之间的协方差就是正值。 如果两个变量的变化趋势相反，即其中一个大于自身的期望值，另外一个却小于自身的期望值，那么两个变量之间的协方差就是负值。</p>
+<p>如果 x 与 y 是统计独立的，那么二者之间的协方差就是 0。</p>
+<p>取决于协方差的<strong>相关性</strong>（correlation）定义为
+</p>
+<div class="math">$$\eta=\frac{\text{cov}(x,y)}{\sqrt{\text{Var}(x)\cdot\text{Var}(y)}}$$</div>
+<p>
+更准确地说是线性相关性，是一个衡量线性独立的无量纲数，其取值在 <span class="math">\([－1,1]\)</span> 之间。相关性 <span class="math">\(\eta=1\)</span> 时称为“完全线性相关”（相关性 <span class="math">\(\eta=-1\)</span> 时称为“完全线性负相关”）。</p>
+<p>相关性为 0（因而协方差也为 0）的两个随机变量又被称为是不相关的，或者更准确地说叫作“线性无关”、“线性不相关”，这仅仅表明 x 与 y 两随机变量之间没有线性相关性，并非表示它们之间一定没有任何内在的（非线性）函数关系。</p>
+<p>性质：
+</p>
+<div class="math">$$\text{Cov}(x,x)=\text{Var}(x) \\
+\text{Cov}(x,y)=\text{Cov}(y,x) \\
+\text{Cov}(ax,by)=ab\ \text{Cov}(x,y) \\
+\text{Cov}\left(\sum_{i=1}^nx_i\sum_{j=1}^my_j\right)=\sum_{i=1}^n\sum_{j=1}^m\text{Cov}(x_i,y_j)$$</div>
+<p><strong>协方差矩阵</strong>（covariance matrix）对随机向量 <span class="math">\(\boldsymbol x\in\mathbb{R}^n\)</span>，协方差矩阵为
+</p>
+<div class="math">$$\text{Cov}(\boldsymbol x)_{i,j}=\text{Cov}(x_i,y_j)$$</div>
+<p>
+其对角元是方差。</p>
+<h2>3.7 常用概率分布</h2>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">
+                                    深度学习 第二章 线性代数
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">
+                                    深度学习 第一章 引言
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/20/sl-12/">
+                                    统计学习方法 第十二章 统计学习方法总结
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/19/sl-11/">
+                                    统计学习方法 第十一章 条件随机场
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/19/sl-10/">
+                                    统计学习方法 第十章 隐马尔科夫模型
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-11-21T20:09:05+08:00">2018-11-21 20:09:05</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-11-21 20:09:05</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#机器学习-ref">机器学习
+                                <span>18</span>
+</a></li>
+                        <li><a href="/tags.html#深度学习-ref">深度学习
+                                <span>3</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
