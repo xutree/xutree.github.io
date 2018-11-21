@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-21T14:02:59+08:00</updated><entry><title>深度学习 第二章 线性代数</title><link href="https://xutree.github.io/pages/2018/11/21/dl-2/" rel="alternate"></link><published>2018-11-21T14:02:59+08:00</published><updated>2018-11-21T14:02:59+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-2/</id><summary type="html">&lt;h2&gt;2.1 标量、向量、矩阵和张量&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-21T14:31:12+08:00</updated><entry><title>深度学习 第二章 线性代数</title><link href="https://xutree.github.io/pages/2018/11/21/dl-2/" rel="alternate"></link><published>2018-11-21T14:02:59+08:00</published><updated>2018-11-21T14:31:12+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-2/</id><summary type="html">&lt;h2&gt;2.1 标量、向量、矩阵和张量&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;标量&lt;/strong&gt;（scalar）：一个单独的数，用斜体小写字母表示，如 &lt;span class="math"&gt;\(n\in\mathbb{R}\)&lt;/span&gt; 中的 &lt;span class="math"&gt;\(n\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;向量&lt;/strong&gt;（vector）：一列数，用粗斜体小写字母表示
 &lt;/p&gt;
@@ -121,7 +121,7 @@ A_{2,1} &amp;amp; A_{2,2}
 &lt;p&gt;更严格的，范数是满足下列性质的任意函数：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;span class="math"&gt;\(f({\boldsymbol x})=0\Rightarrow{\boldsymbol x}={\boldsymbol 0}\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class="math"&gt;\(f({\boldsymbol x}+{\boldsymbol y})\leq f({\boldsymbol x})+f({\boldsymbol y})\)&lt;/span&gt;（triangle inequality）&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(f({\boldsymbol x}+{\boldsymbol y})\leq f({\boldsymbol x})+f({\boldsymbol y})\)&lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;span class="math"&gt;\(\forall\alpha\in\mathbb{R},\ f(\alpha{\boldsymbol x})=|\alpha|f({\boldsymbol x})\)&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;当 &lt;span class="math"&gt;\(p=2\)&lt;/span&gt; 时，&lt;span class="math"&gt;\(L^2\)&lt;/span&gt; 范数称为&lt;strong&gt;欧几里得范数&lt;/strong&gt;（Euclidean norm），经常简化表示为 &lt;span class="math"&gt;\(\|\boldsymbol x\|\)&lt;/span&gt;，略去下标 2。平方 &lt;span class="math"&gt;\(L^2\)&lt;/span&gt; 范数也经常用来衡量向量的大小，可以简单的通过点积 &lt;span class="math"&gt;\({\boldsymbol x}^\text{T}{\boldsymbol x}\)&lt;/span&gt; 计算。&lt;/p&gt;
@@ -145,7 +145,7 @@ A_{2,1} &amp;amp; A_{2,2}
 &lt;p&gt;
 假设矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 有 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 个线性无关的特征向量 &lt;span class="math"&gt;\(\left\{\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right\}\)&lt;/span&gt;，对应和特征值 &lt;span class="math"&gt;\(\left\{\lambda_1,\cdots,\lambda_n\right\}\)&lt;/span&gt;。取矩阵 &lt;span class="math"&gt;\(\boldsymbol V=\left[\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right]\)&lt;/span&gt;，&lt;span class="math"&gt;\(\boldsymbol\lambda=[\lambda_1,\cdots,\lambda_n]^\text{T}\)&lt;/span&gt;，则 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的特征分解可记作
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{-1}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{\text{-}1}$$&lt;/div&gt;
 &lt;p&gt;实对称矩阵都可以分解成实特征值和实特征向量：
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol {Q\Lambda}{\boldsymbol Q}^{-1}$$&lt;/div&gt;
@@ -204,7 +204,8 @@ A_{2,1} &amp;amp; A_{2,2}
 &lt;p&gt;行列式的绝对值可以用来衡量矩阵参与矩阵乘法后空间扩大或缩小了多少。如果行列式是 0，那么空间至少沿着某一维完全收缩了，使其失去了所有的体积；如果行列式是 1，那么这个转换保持空间体积不变。&lt;/p&gt;
 &lt;h2&gt;2.9 实例：主成分分析&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;主成分分析&lt;/strong&gt;（principal components analysis，PCA）是一个简单的机器学习算法。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;问题&lt;/strong&gt;：假设在 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 空间中有 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 个点 &lt;span class="math"&gt;\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)&lt;/span&gt;，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;问题&lt;/strong&gt;：假设在 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 空间中有 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 个点 &lt;span class="math"&gt;\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)&lt;/span&gt;，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分析&lt;/strong&gt;：编码这些点的一种方式是用低维表示。对于&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

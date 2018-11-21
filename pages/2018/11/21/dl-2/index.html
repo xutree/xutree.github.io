@@ -118,7 +118,7 @@ A_{2,1} &amp; A_{2,2}
 <p>更严格的，范数是满足下列性质的任意函数：</p>
 <ul>
 <li><span class="math">\(f({\boldsymbol x})=0\Rightarrow{\boldsymbol x}={\boldsymbol 0}\)</span></li>
-<li><span class="math">\(f({\boldsymbol x}+{\boldsymbol y})\leq f({\boldsymbol x})+f({\boldsymbol y})\)</span>（triangle inequality）</li>
+<li><span class="math">\(f({\boldsymbol x}+{\boldsymbol y})\leq f({\boldsymbol x})+f({\boldsymbol y})\)</span></li>
 <li><span class="math">\(\forall\alpha\in\mathbb{R},\ f(\alpha{\boldsymbol x})=|\alpha|f({\boldsymbol x})\)</span></li>
 </ul>
 <p>当 <span class="math">\(p=2\)</span> 时，<span class="math">\(L^2\)</span> 范数称为<strong>欧几里得范数</strong>（Euclidean norm），经常简化表示为 <span class="math">\(\|\boldsymbol x\|\)</span>，略去下标 2。平方 <span class="math">\(L^2\)</span> 范数也经常用来衡量向量的大小，可以简单的通过点积 <span class="math">\({\boldsymbol x}^\text{T}{\boldsymbol x}\)</span> 计算。</p>
@@ -142,7 +142,7 @@ A_{2,1} &amp; A_{2,2}
 <p>
 假设矩阵 <span class="math">\(\boldsymbol A\)</span> 有 <span class="math">\(n\)</span> 个线性无关的特征向量 <span class="math">\(\left\{\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right\}\)</span>，对应和特征值 <span class="math">\(\left\{\lambda_1,\cdots,\lambda_n\right\}\)</span>。取矩阵 <span class="math">\(\boldsymbol V=\left[\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right]\)</span>，<span class="math">\(\boldsymbol\lambda=[\lambda_1,\cdots,\lambda_n]^\text{T}\)</span>，则 <span class="math">\(\boldsymbol A\)</span> 的特征分解可记作
 </p>
-<div class="math">$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{-1}$$</div>
+<div class="math">$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{\text{-}1}$$</div>
 <p>实对称矩阵都可以分解成实特征值和实特征向量：
 </p>
 <div class="math">$$\boldsymbol A=\boldsymbol {Q\Lambda}{\boldsymbol Q}^{-1}$$</div>
@@ -201,7 +201,8 @@ A_{2,1} &amp; A_{2,2}
 <p>行列式的绝对值可以用来衡量矩阵参与矩阵乘法后空间扩大或缩小了多少。如果行列式是 0，那么空间至少沿着某一维完全收缩了，使其失去了所有的体积；如果行列式是 1，那么这个转换保持空间体积不变。</p>
 <h2>2.9 实例：主成分分析</h2>
 <p><strong>主成分分析</strong>（principal components analysis，PCA）是一个简单的机器学习算法。</p>
-<p><strong>问题</strong>：假设在 <span class="math">\(\mathbb{R}^n\)</span> 空间中有 <span class="math">\(m\)</span> 个点 <span class="math">\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)</span>，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。$$</p>
+<p><strong>问题</strong>：假设在 <span class="math">\(\mathbb{R}^n\)</span> 空间中有 <span class="math">\(m\)</span> 个点 <span class="math">\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)</span>，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。</p>
+<p><strong>分析</strong>：编码这些点的一种方式是用低维表示。对于</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -298,7 +299,7 @@ A_{2,1} &amp; A_{2,2}
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-21T14:02:59+08:00">2018-11-21 14:02:59</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-21 14:02:59</div>
+                    <div class="last_updated">2018-11-21 14:31:12</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
