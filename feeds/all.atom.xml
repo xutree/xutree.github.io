@@ -145,10 +145,10 @@ A_{2,1} &amp;amp; A_{2,2}
 &lt;p&gt;
 假设矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 有 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 个线性无关的特征向量 &lt;span class="math"&gt;\(\left\{\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right\}\)&lt;/span&gt;，对应和特征值 &lt;span class="math"&gt;\(\left\{\lambda_1,\cdots,\lambda_n\right\}\)&lt;/span&gt;。取矩阵 &lt;span class="math"&gt;\(\boldsymbol V=\left[\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right]\)&lt;/span&gt;，&lt;span class="math"&gt;\(\boldsymbol\lambda=[\lambda_1,\cdots,\lambda_n]^\text{T}\)&lt;/span&gt;，则 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的特征分解可记作
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol V\text{diag}(\boldsymbol\lambda)\boldsymbol V^{-1}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{-1}$$&lt;/div&gt;
 &lt;p&gt;实对称矩阵都可以分解成实特征值和实特征向量：
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol {Q\Lambda Q}^{-1}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol {Q\Lambda}{\boldsymbol Q}^{-1}$$&lt;/div&gt;
 &lt;p&gt;
 其中，&lt;span class="math"&gt;\(\boldsymbol Q\)&lt;/span&gt; 是正交矩阵。&lt;/p&gt;
 &lt;p&gt;矩阵的特征分解提供了许多有用的信息。例如，矩阵是奇异的，当且仅当含有零特征值。&lt;/p&gt;
@@ -165,7 +165,7 @@ A_{2,1} &amp;amp; A_{2,2}
 &lt;p&gt;此外，正定矩阵还保证 &lt;span class="math"&gt;\(\boldsymbol x^\text{T}\boldsymbol{Ax}=0\Rightarrow\boldsymbol x=\boldsymbol 0\)&lt;/span&gt;。&lt;/p&gt;
 &lt;h2&gt;2.5 奇异值分解&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;奇异值分解&lt;/strong&gt;（singular value decomposition，SVD）是另一种矩阵分解方法。&lt;/p&gt;
-&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol {UDV}^\text{T}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol {UD}{\boldsymbol V}^\text{T}$$&lt;/div&gt;
 &lt;p&gt;
 其中，&lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times n\)&lt;/span&gt; 的矩阵，&lt;span class="math"&gt;\(\boldsymbol U\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times m\)&lt;/span&gt; 的正交矩阵，&lt;span class="math"&gt;\(\boldsymbol V\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(n\times n\)&lt;/span&gt; 的正交矩阵，&lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times n\)&lt;/span&gt; 的对角矩阵。&lt;/p&gt;
 &lt;p&gt;对角矩阵 &lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 对角线上的元素称为矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的奇异值（singular value）。矩阵 &lt;span class="math"&gt;\(\boldsymbol U\)&lt;/span&gt; 的列向量称为左奇异向量（left singular vector），它是 &lt;span class="math"&gt;\(\boldsymbol {AA}^\text{T}\)&lt;/span&gt; 的特征向量。矩阵 &lt;span class="math"&gt;\(\boldsymbol V\)&lt;/span&gt; 的列向量称为右奇异向量（right singular vector），它是 &lt;span class="math"&gt;\(\boldsymbol A^\text{T}\boldsymbol A\)&lt;/span&gt; 的特征向量。&lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的非零奇异值是 &lt;span class="math"&gt;\(\boldsymbol {AA}^\text{T}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\boldsymbol A^\text{T}\boldsymbol A\)&lt;/span&gt; 特征值的平方根。&lt;/p&gt;
@@ -177,7 +177,7 @@ A_{2,1} &amp;amp; A_{2,2}
 &lt;p&gt;
 一般计算使用下面的公式：
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\boldsymbol A^+=\boldsymbol {VD}^+\boldsymbol U^\text{T}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\boldsymbol A^+=\boldsymbol {V}{\boldsymbol D}^+\boldsymbol U^\text{T}$$&lt;/div&gt;
 &lt;p&gt;
 其中，矩阵 &lt;span class="math"&gt;\(\boldsymbol U\)&lt;/span&gt;、&lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\boldsymbol V\)&lt;/span&gt; 是矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 奇异值分解后得到的矩阵。对角矩阵 &lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 的伪逆 &lt;span class="math"&gt;\(\boldsymbol D^+\)&lt;/span&gt; 是其非零元素取倒数之后再转置得到的。&lt;/p&gt;
 &lt;p&gt;对于线性方程：
@@ -204,7 +204,7 @@ A_{2,1} &amp;amp; A_{2,2}
 &lt;p&gt;行列式的绝对值可以用来衡量矩阵参与矩阵乘法后空间扩大或缩小了多少。如果行列式是 0，那么空间至少沿着某一维完全收缩了，使其失去了所有的体积；如果行列式是 1，那么这个转换保持空间体积不变。&lt;/p&gt;
 &lt;h2&gt;2.9 实例：主成分分析&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;主成分分析&lt;/strong&gt;（principal components analysis，PCA）是一个简单的机器学习算法。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;问题&lt;/strong&gt;：假设在 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 空间中有 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 个点 &lt;span class="math"&gt;\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)&lt;/span&gt;，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;问题&lt;/strong&gt;：假设在 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 空间中有 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 个点 &lt;span class="math"&gt;\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)&lt;/span&gt;，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。$$&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

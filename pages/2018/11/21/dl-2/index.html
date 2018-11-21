@@ -142,10 +142,10 @@ A_{2,1} &amp; A_{2,2}
 <p>
 假设矩阵 <span class="math">\(\boldsymbol A\)</span> 有 <span class="math">\(n\)</span> 个线性无关的特征向量 <span class="math">\(\left\{\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right\}\)</span>，对应和特征值 <span class="math">\(\left\{\lambda_1,\cdots,\lambda_n\right\}\)</span>。取矩阵 <span class="math">\(\boldsymbol V=\left[\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right]\)</span>，<span class="math">\(\boldsymbol\lambda=[\lambda_1,\cdots,\lambda_n]^\text{T}\)</span>，则 <span class="math">\(\boldsymbol A\)</span> 的特征分解可记作
 </p>
-<div class="math">$$\boldsymbol A=\boldsymbol V\text{diag}(\boldsymbol\lambda)\boldsymbol V^{-1}$$</div>
+<div class="math">$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{-1}$$</div>
 <p>实对称矩阵都可以分解成实特征值和实特征向量：
 </p>
-<div class="math">$$\boldsymbol A=\boldsymbol {Q\Lambda Q}^{-1}$$</div>
+<div class="math">$$\boldsymbol A=\boldsymbol {Q\Lambda}{\boldsymbol Q}^{-1}$$</div>
 <p>
 其中，<span class="math">\(\boldsymbol Q\)</span> 是正交矩阵。</p>
 <p>矩阵的特征分解提供了许多有用的信息。例如，矩阵是奇异的，当且仅当含有零特征值。</p>
@@ -162,7 +162,7 @@ A_{2,1} &amp; A_{2,2}
 <p>此外，正定矩阵还保证 <span class="math">\(\boldsymbol x^\text{T}\boldsymbol{Ax}=0\Rightarrow\boldsymbol x=\boldsymbol 0\)</span>。</p>
 <h2>2.5 奇异值分解</h2>
 <p><strong>奇异值分解</strong>（singular value decomposition，SVD）是另一种矩阵分解方法。</p>
-<div class="math">$$\boldsymbol A=\boldsymbol {UDV}^\text{T}$$</div>
+<div class="math">$$\boldsymbol A=\boldsymbol {UD}{\boldsymbol V}^\text{T}$$</div>
 <p>
 其中，<span class="math">\(\boldsymbol A\)</span> 是 <span class="math">\(m\times n\)</span> 的矩阵，<span class="math">\(\boldsymbol U\)</span> 是 <span class="math">\(m\times m\)</span> 的正交矩阵，<span class="math">\(\boldsymbol V\)</span> 是 <span class="math">\(n\times n\)</span> 的正交矩阵，<span class="math">\(\boldsymbol D\)</span> 是 <span class="math">\(m\times n\)</span> 的对角矩阵。</p>
 <p>对角矩阵 <span class="math">\(\boldsymbol D\)</span> 对角线上的元素称为矩阵 <span class="math">\(\boldsymbol A\)</span> 的奇异值（singular value）。矩阵 <span class="math">\(\boldsymbol U\)</span> 的列向量称为左奇异向量（left singular vector），它是 <span class="math">\(\boldsymbol {AA}^\text{T}\)</span> 的特征向量。矩阵 <span class="math">\(\boldsymbol V\)</span> 的列向量称为右奇异向量（right singular vector），它是 <span class="math">\(\boldsymbol A^\text{T}\boldsymbol A\)</span> 的特征向量。<span class="math">\(\boldsymbol A\)</span> 的非零奇异值是 <span class="math">\(\boldsymbol {AA}^\text{T}\)</span> 和 <span class="math">\(\boldsymbol A^\text{T}\boldsymbol A\)</span> 特征值的平方根。</p>
@@ -174,7 +174,7 @@ A_{2,1} &amp; A_{2,2}
 <p>
 一般计算使用下面的公式：
 </p>
-<div class="math">$$\boldsymbol A^+=\boldsymbol {VD}^+\boldsymbol U^\text{T}$$</div>
+<div class="math">$$\boldsymbol A^+=\boldsymbol {V}{\boldsymbol D}^+\boldsymbol U^\text{T}$$</div>
 <p>
 其中，矩阵 <span class="math">\(\boldsymbol U\)</span>、<span class="math">\(\boldsymbol D\)</span> 和 <span class="math">\(\boldsymbol V\)</span> 是矩阵 <span class="math">\(\boldsymbol A\)</span> 奇异值分解后得到的矩阵。对角矩阵 <span class="math">\(\boldsymbol D\)</span> 的伪逆 <span class="math">\(\boldsymbol D^+\)</span> 是其非零元素取倒数之后再转置得到的。</p>
 <p>对于线性方程：
@@ -201,7 +201,7 @@ A_{2,1} &amp; A_{2,2}
 <p>行列式的绝对值可以用来衡量矩阵参与矩阵乘法后空间扩大或缩小了多少。如果行列式是 0，那么空间至少沿着某一维完全收缩了，使其失去了所有的体积；如果行列式是 1，那么这个转换保持空间体积不变。</p>
 <h2>2.9 实例：主成分分析</h2>
 <p><strong>主成分分析</strong>（principal components analysis，PCA）是一个简单的机器学习算法。</p>
-<p><strong>问题</strong>：假设在 <span class="math">\(\mathbb{R}^n\)</span> 空间中有 <span class="math">\(m\)</span> 个点 <span class="math">\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)</span>，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。</p>
+<p><strong>问题</strong>：假设在 <span class="math">\(\mathbb{R}^n\)</span> 空间中有 <span class="math">\(m\)</span> 个点 <span class="math">\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)</span>，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。$$</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
