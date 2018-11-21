@@ -142,7 +142,7 @@ A_{2,1} &amp; A_{2,2}
 <p>
 假设矩阵 <span class="math">\(\boldsymbol A\)</span> 有 <span class="math">\(n\)</span> 个线性无关的特征向量 <span class="math">\(\left\{\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right\}\)</span>，对应和特征值 <span class="math">\(\left\{\lambda_1,\cdots,\lambda_n\right\}\)</span>。取矩阵 <span class="math">\(\boldsymbol V=\left[\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right]\)</span>，<span class="math">\(\boldsymbol\lambda=[\lambda_1,\cdots,\lambda_n]^\text{T}\)</span>，则 <span class="math">\(\boldsymbol A\)</span> 的特征分解可记作
 </p>
-<div class="math">$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{\text{-}1}$$</div>
+<div class="math">$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{-1}$$</div>
 <p>实对称矩阵都可以分解成实特征值和实特征向量：
 </p>
 <div class="math">$$\boldsymbol A=\boldsymbol {Q\Lambda}{\boldsymbol Q}^{-1}$$</div>
@@ -202,7 +202,61 @@ A_{2,1} &amp; A_{2,2}
 <h2>2.9 实例：主成分分析</h2>
 <p><strong>主成分分析</strong>（principal components analysis，PCA）是一个简单的机器学习算法。</p>
 <p><strong>问题</strong>：假设在 <span class="math">\(\mathbb{R}^n\)</span> 空间中有 <span class="math">\(m\)</span> 个点 <span class="math">\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)</span>，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。</p>
-<p><strong>分析</strong>：编码这些点的一种方式是用低维表示。对于</p>
+<p><strong>分析</strong>：编码这些点的一种方式是用低维表示。对于每个点 <span class="math">\(\boldsymbol x^{(i)}\in\mathbb{R}^n\)</span>，会有一个编码向量 <span class="math">\(\boldsymbol c^{(i)}\in\mathbb{R}^l\)</span>。如果 <span class="math">\(l&lt;n\)</span>，那么我们便达到目的。</p>
+<p>设编码函数是 <span class="math">\(f(\boldsymbol x)=\boldsymbol c\)</span>，解码函数是 <span class="math">\(g(\boldsymbol c)\approx \boldsymbol x\)</span>。</p>
+<p>PCA 由我们选择的解码函数而定，为了简单，我们使用矩阵乘法将编码映射回 <span class="math">\(\mathbb{R}^n\)</span>，即 <span class="math">\(g(\boldsymbol c)=\boldsymbol{Dc}\)</span>，其中 <span class="math">\(\boldsymbol D\in\mathbb{R}^{n\times l}\)</span> 是定义解码的矩阵。</p>
+<p>为使解码器有唯一解，我们限制 <span class="math">\(\boldsymbol D\)</span> 中所有列向量都有单位范数。为了简化问题，进一步限制 <span class="math">\(\boldsymbol D\)</span> 中列向量彼此正交。</p>
+<p>为求解最佳编码函数，我们计算下面的 <span class="math">\(L^2\)</span> 最优化问题：
+</p>
+<div class="math">$$\begin{eqnarray}
+\boldsymbol c^\ast &amp;=&amp; \arg\max_{\boldsymbol c}\|\boldsymbol x-g(\boldsymbol c)\|_2 \\
+&amp;=&amp; \arg\max_{\boldsymbol c}\|\boldsymbol x-g(\boldsymbol c)\|_2^2 \\
+&amp;=&amp; \arg\max_{\boldsymbol c} \left(\boldsymbol x-g(\boldsymbol c)\right)^\text{T}\left(\boldsymbol x-g(\boldsymbol c)\right) \\
+&amp;=&amp; \arg\max_{\boldsymbol c}\boldsymbol x^\text{T}\boldsymbol x-\boldsymbol x^\text{T}g(\boldsymbol c)-g(\boldsymbol c)^\text{T}\boldsymbol x+g(\boldsymbol c)^\text{T}g(\boldsymbol c) \\
+&amp;=&amp; \arg\max_{\boldsymbol c}\boldsymbol x^\text{T}\boldsymbol x-2\boldsymbol x^\text{T}g(\boldsymbol c)+g(\boldsymbol c)^\text{T}g(\boldsymbol c)\ \ (利用标量 \ \text{Tr}(a)=a) \\
+&amp;=&amp; \arg\max_{\boldsymbol c}-2\boldsymbol x^\text{T}g(\boldsymbol c)+g(\boldsymbol c)^\text{T}g(\boldsymbol c)\ \ (忽略不含\  \boldsymbol c\ 的项) \\
+&amp;=&amp; \arg\max_{\boldsymbol c}-2\boldsymbol x^\text{T}\boldsymbol {Dc}+\boldsymbol c^\text{T}\boldsymbol D^\text{T}\boldsymbol {Dc}\ \ (带入\  g(\boldsymbol c)\ 的定义) \\
+&amp;=&amp; \arg\max_{\boldsymbol c}-2\boldsymbol x^\text{T}\boldsymbol {Dc}+\boldsymbol c^\text{T}\boldsymbol I_l\boldsymbol c\ \ (正交性单位性约束) \\
+&amp;=&amp; \arg\max_{\boldsymbol c}-2\boldsymbol x^\text{T}\boldsymbol {Dc}+\boldsymbol c^\text{T}\boldsymbol c
+\end{eqnarray}$$</div>
+<p>
+令偏导为 0（参考<a href="{filename/articles/Math/矩阵求导.md}">矩阵求导</a>），得
+</p>
+<div class="math">$$\nabla_{\boldsymbol c}(-2\boldsymbol x^\text{T}\boldsymbol {Dc}+\boldsymbol c^\text{T}\boldsymbol c)=0 \\
+-2\boldsymbol D^\text{T}\boldsymbol x+2\boldsymbol c=0 \\
+\boldsymbol c=\boldsymbol D^\text{T}\boldsymbol x$$</div>
+<p>
+这使得算法很高效，最优编玛 <span class="math">\(\boldsymbol x\)</span> 只需要一个矩阵-向量乘法操作，我们获得了编码函数：
+</p>
+<div class="math">$$f(\boldsymbol x)=\boldsymbol D^\text{T}\boldsymbol x$$</div>
+<p>
+重构操作：
+</p>
+<div class="math">$$r(\boldsymbol x)=g(f(\boldsymbol x))=\boldsymbol {DD}^\text{T}\boldsymbol x$$</div>
+<p>接下来，确定编码矩阵 <span class="math">\(\boldsymbol D\)</span>。因为用相同的矩阵 <span class="math">\(\boldsymbol D\)</span> 对所有点进行解码，我们不能再孤立的看待每个点。我们必须最小化所有维度和所有点上的误差矩阵的 Frobenius 范数：
+</p>
+<div class="math">$$D^\ast=\arg\min_{\boldsymbol D}\sqrt{\sum_{i=1,j=1}^{i=m,j=n}\left(\boldsymbol x_j^{(i)}-r(\boldsymbol x^{(i)})_j\right)^2},\ \text{s.t.}\ \boldsymbol D^\text{T}\boldsymbol D=\boldsymbol I_l$$</div>
+<p>考虑最简单的情况，<span class="math">\(l=1\)</span>，此时 <span class="math">\(\boldsymbol D\)</span> 退化成 <span class="math">\(n\times 1\)</span> 的向量 <span class="math">\(\boldsymbol d\)</span>：
+</p>
+<div class="math">$$\begin{eqnarray}
+d^\ast &amp;=&amp; \arg\min_{\boldsymbol d}\sum_{i=1}^m\left\|\boldsymbol x^{(i)}-\boldsymbol {dd}^\text{T}\boldsymbol x^{(i)}\right\|_2^2,\ \text{s.t.}\ \|\boldsymbol d\|_2=1 \\
+&amp;=&amp; \arg\min_{\boldsymbol d}\sum_{i=1}^m\left\|\boldsymbol x^{(i)}-\boldsymbol {d}^\text{T}\boldsymbol x^{(i)}\boldsymbol d\right\|_2^2,\ \text{s.t.}\ \|\boldsymbol d\|_2=1\ \ (标量和向量乘积可交换) \\
+&amp;=&amp; \arg\min_{\boldsymbol d}\sum_{i=1}^m\left\|\boldsymbol x^{(i)}-\boldsymbol x^{(i)\text{T}}\boldsymbol {dd}\right\|_2^2,\ \text{s.t.}\ \|\boldsymbol d\|_2=1\ \ (标量\ a^\text{T}=a) \\
+\end{eqnarray}$$</div>
+<p>
+令 <span class="math">\(\boldsymbol X\in\mathbb{R}^{m\times n}\)</span>，其中 <span class="math">\(\boldsymbol X_{i,:}=\boldsymbol x^{(i)\text{T}}\)</span>，则
+</p>
+<div class="math">$$\begin{eqnarray}
+d^\ast &amp;=&amp;\arg\min_{\boldsymbol d}\left\|\boldsymbol X-\boldsymbol {Xdd}^\text{T}\right\|_F^2,\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+&amp;=&amp; \arg\min_{\boldsymbol d}\text{Tr}\left(\left(\boldsymbol X-\boldsymbol {Xdd}^\text{T}\right)^\text{T}\left(\boldsymbol X-\boldsymbol {Xdd}^\text{T}\right)\right),\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+&amp;=&amp; \arg\min_{\boldsymbol d}-2\text{Tr}\left(\boldsymbol X^\text{T}\boldsymbol {Xdd}^\text{T}\right)+\text{Tr}\left(\boldsymbol {dd}^\text{T}\boldsymbol X^\text{T}\boldsymbol {Xdd}^\text{T}\right),\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+&amp;=&amp; \arg\min_{\boldsymbol d}-\text{Tr}\left(\boldsymbol X^\text{T}\boldsymbol {Xdd}^\text{T}\right),\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+&amp;=&amp; \arg\max_{\boldsymbol d}\text{Tr}\left(\boldsymbol X^\text{T}\boldsymbol {Xdd}^\text{T}\right),\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+&amp;=&amp; \arg\max_{\boldsymbol d}\text{Tr}\left(\boldsymbol {d}^\text{T}\boldsymbol X^\text{T}\boldsymbol {Xd}\right),\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+\end{eqnarray}$$</div>
+<p>
+注意到 <span class="math">\(\boldsymbol X^\text{T}\boldsymbol X\)</span> 是实对称矩阵，一定可以正交对角化，所以最优的 <span class="math">\(\boldsymbol d\)</span> 是 <span class="math">\(\boldsymbol X^\text{T}\boldsymbol X\)</span> 最大特征值对应的特征向量。</p>
+<p>以上推导特定于 <span class="math">\(l=1\)</span> 的情况，仅得到了第一个主成分，更一般的，矩阵 <span class="math">\(\boldsymbol D\)</span> 由前 <span class="math">\(l\)</span> 个最大的特征值对应的特征向量组成。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -299,7 +353,7 @@ A_{2,1} &amp; A_{2,2}
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-21T14:02:59+08:00">2018-11-21 14:02:59</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-21 14:31:12</div>
+                    <div class="last_updated">2018-11-21 16:22:11</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>

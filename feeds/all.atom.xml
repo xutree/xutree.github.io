@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-21T14:31:12+08:00</updated><entry><title>深度学习 第二章 线性代数</title><link href="https://xutree.github.io/pages/2018/11/21/dl-2/" rel="alternate"></link><published>2018-11-21T14:02:59+08:00</published><updated>2018-11-21T14:31:12+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-2/</id><summary type="html">&lt;h2&gt;2.1 标量、向量、矩阵和张量&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/all.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-21T16:22:11+08:00</updated><entry><title>深度学习 第二章 线性代数</title><link href="https://xutree.github.io/pages/2018/11/21/dl-2/" rel="alternate"></link><published>2018-11-21T14:02:59+08:00</published><updated>2018-11-21T16:22:11+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-2/</id><summary type="html">&lt;h2&gt;2.1 标量、向量、矩阵和张量&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;标量&lt;/strong&gt;（scalar）：一个单独的数，用斜体小写字母表示，如 &lt;span class="math"&gt;\(n\in\mathbb{R}\)&lt;/span&gt; 中的 &lt;span class="math"&gt;\(n\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;向量&lt;/strong&gt;（vector）：一列数，用粗斜体小写字母表示
 &lt;/p&gt;
@@ -145,7 +145,7 @@ A_{2,1} &amp;amp; A_{2,2}
 &lt;p&gt;
 假设矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 有 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 个线性无关的特征向量 &lt;span class="math"&gt;\(\left\{\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right\}\)&lt;/span&gt;，对应和特征值 &lt;span class="math"&gt;\(\left\{\lambda_1,\cdots,\lambda_n\right\}\)&lt;/span&gt;。取矩阵 &lt;span class="math"&gt;\(\boldsymbol V=\left[\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right]\)&lt;/span&gt;，&lt;span class="math"&gt;\(\boldsymbol\lambda=[\lambda_1,\cdots,\lambda_n]^\text{T}\)&lt;/span&gt;，则 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的特征分解可记作
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{\text{-}1}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{-1}$$&lt;/div&gt;
 &lt;p&gt;实对称矩阵都可以分解成实特征值和实特征向量：
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol {Q\Lambda}{\boldsymbol Q}^{-1}$$&lt;/div&gt;
@@ -205,7 +205,61 @@ A_{2,1} &amp;amp; A_{2,2}
 &lt;h2&gt;2.9 实例：主成分分析&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;主成分分析&lt;/strong&gt;（principal components analysis，PCA）是一个简单的机器学习算法。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;问题&lt;/strong&gt;：假设在 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 空间中有 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 个点 &lt;span class="math"&gt;\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)&lt;/span&gt;，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;分析&lt;/strong&gt;：编码这些点的一种方式是用低维表示。对于&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分析&lt;/strong&gt;：编码这些点的一种方式是用低维表示。对于每个点 &lt;span class="math"&gt;\(\boldsymbol x^{(i)}\in\mathbb{R}^n\)&lt;/span&gt;，会有一个编码向量 &lt;span class="math"&gt;\(\boldsymbol c^{(i)}\in\mathbb{R}^l\)&lt;/span&gt;。如果 &lt;span class="math"&gt;\(l&amp;lt;n\)&lt;/span&gt;，那么我们便达到目的。&lt;/p&gt;
+&lt;p&gt;设编码函数是 &lt;span class="math"&gt;\(f(\boldsymbol x)=\boldsymbol c\)&lt;/span&gt;，解码函数是 &lt;span class="math"&gt;\(g(\boldsymbol c)\approx \boldsymbol x\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;PCA 由我们选择的解码函数而定，为了简单，我们使用矩阵乘法将编码映射回 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt;，即 &lt;span class="math"&gt;\(g(\boldsymbol c)=\boldsymbol{Dc}\)&lt;/span&gt;，其中 &lt;span class="math"&gt;\(\boldsymbol D\in\mathbb{R}^{n\times l}\)&lt;/span&gt; 是定义解码的矩阵。&lt;/p&gt;
+&lt;p&gt;为使解码器有唯一解，我们限制 &lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 中所有列向量都有单位范数。为了简化问题，进一步限制 &lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 中列向量彼此正交。&lt;/p&gt;
+&lt;p&gt;为求解最佳编码函数，我们计算下面的 &lt;span class="math"&gt;\(L^2\)&lt;/span&gt; 最优化问题：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\boldsymbol c^\ast &amp;amp;=&amp;amp; \arg\max_{\boldsymbol c}\|\boldsymbol x-g(\boldsymbol c)\|_2 \\
+&amp;amp;=&amp;amp; \arg\max_{\boldsymbol c}\|\boldsymbol x-g(\boldsymbol c)\|_2^2 \\
+&amp;amp;=&amp;amp; \arg\max_{\boldsymbol c} \left(\boldsymbol x-g(\boldsymbol c)\right)^\text{T}\left(\boldsymbol x-g(\boldsymbol c)\right) \\
+&amp;amp;=&amp;amp; \arg\max_{\boldsymbol c}\boldsymbol x^\text{T}\boldsymbol x-\boldsymbol x^\text{T}g(\boldsymbol c)-g(\boldsymbol c)^\text{T}\boldsymbol x+g(\boldsymbol c)^\text{T}g(\boldsymbol c) \\
+&amp;amp;=&amp;amp; \arg\max_{\boldsymbol c}\boldsymbol x^\text{T}\boldsymbol x-2\boldsymbol x^\text{T}g(\boldsymbol c)+g(\boldsymbol c)^\text{T}g(\boldsymbol c)\ \ (利用标量 \ \text{Tr}(a)=a) \\
+&amp;amp;=&amp;amp; \arg\max_{\boldsymbol c}-2\boldsymbol x^\text{T}g(\boldsymbol c)+g(\boldsymbol c)^\text{T}g(\boldsymbol c)\ \ (忽略不含\  \boldsymbol c\ 的项) \\
+&amp;amp;=&amp;amp; \arg\max_{\boldsymbol c}-2\boldsymbol x^\text{T}\boldsymbol {Dc}+\boldsymbol c^\text{T}\boldsymbol D^\text{T}\boldsymbol {Dc}\ \ (带入\  g(\boldsymbol c)\ 的定义) \\
+&amp;amp;=&amp;amp; \arg\max_{\boldsymbol c}-2\boldsymbol x^\text{T}\boldsymbol {Dc}+\boldsymbol c^\text{T}\boldsymbol I_l\boldsymbol c\ \ (正交性单位性约束) \\
+&amp;amp;=&amp;amp; \arg\max_{\boldsymbol c}-2\boldsymbol x^\text{T}\boldsymbol {Dc}+\boldsymbol c^\text{T}\boldsymbol c
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+令偏导为 0（参考&lt;a href="{filename/articles/Math/矩阵求导.md}"&gt;矩阵求导&lt;/a&gt;），得
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\nabla_{\boldsymbol c}(-2\boldsymbol x^\text{T}\boldsymbol {Dc}+\boldsymbol c^\text{T}\boldsymbol c)=0 \\
+-2\boldsymbol D^\text{T}\boldsymbol x+2\boldsymbol c=0 \\
+\boldsymbol c=\boldsymbol D^\text{T}\boldsymbol x$$&lt;/div&gt;
+&lt;p&gt;
+这使得算法很高效，最优编玛 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 只需要一个矩阵-向量乘法操作，我们获得了编码函数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(\boldsymbol x)=\boldsymbol D^\text{T}\boldsymbol x$$&lt;/div&gt;
+&lt;p&gt;
+重构操作：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$r(\boldsymbol x)=g(f(\boldsymbol x))=\boldsymbol {DD}^\text{T}\boldsymbol x$$&lt;/div&gt;
+&lt;p&gt;接下来，确定编码矩阵 &lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt;。因为用相同的矩阵 &lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 对所有点进行解码，我们不能再孤立的看待每个点。我们必须最小化所有维度和所有点上的误差矩阵的 Frobenius 范数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$D^\ast=\arg\min_{\boldsymbol D}\sqrt{\sum_{i=1,j=1}^{i=m,j=n}\left(\boldsymbol x_j^{(i)}-r(\boldsymbol x^{(i)})_j\right)^2},\ \text{s.t.}\ \boldsymbol D^\text{T}\boldsymbol D=\boldsymbol I_l$$&lt;/div&gt;
+&lt;p&gt;考虑最简单的情况，&lt;span class="math"&gt;\(l=1\)&lt;/span&gt;，此时 &lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 退化成 &lt;span class="math"&gt;\(n\times 1\)&lt;/span&gt; 的向量 &lt;span class="math"&gt;\(\boldsymbol d\)&lt;/span&gt;：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+d^\ast &amp;amp;=&amp;amp; \arg\min_{\boldsymbol d}\sum_{i=1}^m\left\|\boldsymbol x^{(i)}-\boldsymbol {dd}^\text{T}\boldsymbol x^{(i)}\right\|_2^2,\ \text{s.t.}\ \|\boldsymbol d\|_2=1 \\
+&amp;amp;=&amp;amp; \arg\min_{\boldsymbol d}\sum_{i=1}^m\left\|\boldsymbol x^{(i)}-\boldsymbol {d}^\text{T}\boldsymbol x^{(i)}\boldsymbol d\right\|_2^2,\ \text{s.t.}\ \|\boldsymbol d\|_2=1\ \ (标量和向量乘积可交换) \\
+&amp;amp;=&amp;amp; \arg\min_{\boldsymbol d}\sum_{i=1}^m\left\|\boldsymbol x^{(i)}-\boldsymbol x^{(i)\text{T}}\boldsymbol {dd}\right\|_2^2,\ \text{s.t.}\ \|\boldsymbol d\|_2=1\ \ (标量\ a^\text{T}=a) \\
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+令 &lt;span class="math"&gt;\(\boldsymbol X\in\mathbb{R}^{m\times n}\)&lt;/span&gt;，其中 &lt;span class="math"&gt;\(\boldsymbol X_{i,:}=\boldsymbol x^{(i)\text{T}}\)&lt;/span&gt;，则
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+d^\ast &amp;amp;=&amp;amp;\arg\min_{\boldsymbol d}\left\|\boldsymbol X-\boldsymbol {Xdd}^\text{T}\right\|_F^2,\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+&amp;amp;=&amp;amp; \arg\min_{\boldsymbol d}\text{Tr}\left(\left(\boldsymbol X-\boldsymbol {Xdd}^\text{T}\right)^\text{T}\left(\boldsymbol X-\boldsymbol {Xdd}^\text{T}\right)\right),\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+&amp;amp;=&amp;amp; \arg\min_{\boldsymbol d}-2\text{Tr}\left(\boldsymbol X^\text{T}\boldsymbol {Xdd}^\text{T}\right)+\text{Tr}\left(\boldsymbol {dd}^\text{T}\boldsymbol X^\text{T}\boldsymbol {Xdd}^\text{T}\right),\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+&amp;amp;=&amp;amp; \arg\min_{\boldsymbol d}-\text{Tr}\left(\boldsymbol X^\text{T}\boldsymbol {Xdd}^\text{T}\right),\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+&amp;amp;=&amp;amp; \arg\max_{\boldsymbol d}\text{Tr}\left(\boldsymbol X^\text{T}\boldsymbol {Xdd}^\text{T}\right),\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+&amp;amp;=&amp;amp; \arg\max_{\boldsymbol d}\text{Tr}\left(\boldsymbol {d}^\text{T}\boldsymbol X^\text{T}\boldsymbol {Xd}\right),\ \text{s.t.}\ \boldsymbol d^\text{T}\boldsymbol d=1 \\
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+注意到 &lt;span class="math"&gt;\(\boldsymbol X^\text{T}\boldsymbol X\)&lt;/span&gt; 是实对称矩阵，一定可以正交对角化，所以最优的 &lt;span class="math"&gt;\(\boldsymbol d\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(\boldsymbol X^\text{T}\boldsymbol X\)&lt;/span&gt; 最大特征值对应的特征向量。&lt;/p&gt;
+&lt;p&gt;以上推导特定于 &lt;span class="math"&gt;\(l=1\)&lt;/span&gt; 的情况，仅得到了第一个主成分，更一般的，矩阵 &lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 由前 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 个最大的特征值对应的特征向量组成。&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
