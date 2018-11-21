@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
-    <title>统计学习方法 第十二章 统计学习方法总结  · You Know Nothing
+<meta name="keywords" content="机器学习, 深度学习, 读书笔记, " />
+    <title>深度学习 第一章 引言  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -54,7 +54,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/20/sl-12/"> 统计学习方法 第十二章 统计学习方法总结  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/21/dl-1/"> 深度学习 第一章 引言  </a></h1>
         </header>
     </div>
 
@@ -62,7 +62,14 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p><img alt="统计学习方法总结" src="https://xutree.github.io/images/statistical_learning_12.png"></p>
+                <p>让计算机从经验获取知识，可以避免由人类来给计算机形式化的指定它所需要的所有知识。层次化的概念让计算机构建较简单的概念来学习复杂概念。如果绘制出表示这些概念如何建立在彼此之上的图，我们得到一张“深”（层次很多）的图。基于这个原因，我们称这种方法为 <strong>AI 深度学习</strong>（deep learning）。</p>
+<p>人工智能的一个关键挑战是如何将非形式化的知识传达给计算机。</p>
+<p>一些人工智能项目力求将关于世界的知识用形式化的语言进行硬编码（hard-code）。这就是众所周知的知识库（knowledge base）方法。</p>
+<p>依靠硬编码的知识体系面临严重的缺陷，AI 系统需要具备自己获取知识的能力，即从原始数据中提取模式的能力。这种能力称为<strong>机器学习</strong>（machine learning）。</p>
+<p>许多人工智能任务都可以通过以下方式解决：先提取一个合适的特征集，然后将这些特征提供给简单的机器学习算法。然而，对许多任务来说，我们很难知道应该提取哪些特征。解决这个问题的途径之一是使用机器学习来发掘表示本身，而不仅仅是把表示映射到输出。这种方法称之为<strong>表示学习</strong>（representation learning）。</p>
+<p>表示学习算法的典型例子是<strong>自编码器</strong>（autoencoder）。自编码器由一个<strong>编码器</strong>（encoder）函数和一个<strong>解码器</strong>（decoder）函数组合而成。</p>
+<p>显然，从原始数据中提取高层次、抽象的特征是非常困难的。许多诸如说话口音这样的<strong>变差因素</strong>（factors of vatiation），只能通过对数据进行复杂的、接近人类水平的理解来辨识。这几乎与获得原问题的表示一样困难，因此，乍一看，表示学习似乎并不能帮助我们。</p>
+<p><strong>深度学习</strong>（deep learning）通过其他较简单的表示来表达复杂表示，解决了表达学习中的核心问题。</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -70,6 +77,11 @@
                             <font color="#771515"><em>OLDER</em></font>
                         </h1>
                         <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/20/sl-12/">
+                                    统计学习方法 第十二章 统计学习方法总结
+                                </a>
+                            </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/19/sl-11/">
                                     统计学习方法 第十一章 条件随机场
@@ -90,56 +102,16 @@
                                     似然函数
                                 </a>
                             </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/12/sl-8/">
-                                    统计学习方法 第八章 提升方法
-                                </a>
-                            </li>
                         </ul>
                     </nav>
-                    <nav class="newer">
-                        <h1>
-                            <font color="#771515"><em>NEWER</em></font>
-                        </h1>
-                        <ul>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">
-                                    深度学习 第一章 引言
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- Gitalk 评论 start  -->
-
-                    <!-- Link Gitalk 的支持文件  -->
-                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-                    <div id="gitalk-container"></div>
-                    <script type="text/javascript">
-                        var dateTime = Date.now();
-                        var timestamp = Math.floor(dateTime / 1000);
-                        var gitalk = new Gitalk({
-
-                            // gitalk的主要参数
-                            clientID: '93f43349e9fd3154bfad',
-                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
-                            repo: 'xutree.github.io',
-                            owner: 'xutree',
-                            admin: ['xutree'],
-                            id: String(timestamp)
-
-                        });
-                        gitalk.render('gitalk-container');
-                    </script> -->
-                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-11-20T16:07:23+08:00">2018-11-20 16:07:23</time>
+                    <time pubdate="pubdate" datetime="2018-11-21T08:25:14+08:00">2018-11-21 08:25:14</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-20 16:33:03</div>
+                    <div class="last_updated">2018-11-21 08:25:14</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
@@ -147,8 +119,8 @@
                         <li><a href="/tags.html#机器学习-ref">机器学习
                                 <span>16</span>
 </a></li>
-                        <li><a href="/tags.html#统计学习-ref">统计学习
-                                <span>15</span>
+                        <li><a href="/tags.html#深度学习-ref">深度学习
+                                <span>1</span>
 </a></li>
                     </ul>
 
