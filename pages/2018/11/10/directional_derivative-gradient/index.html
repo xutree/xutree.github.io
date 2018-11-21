@@ -65,125 +65,52 @@
                 <h2>1. 方向导数</h2>
 <p>多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率。</p>
 <p><strong>
-定义 1.1（方向导数）设 <span class="math">\(f\)</span> 是定义于 <span class="math">\(\mathbb{R}^n\)</span> 中某区域 <span class="math">\(D\)</span> 上的函数，点 <span class="math">\(P_0\in D\)</span>，<span class="math">\(l\)</span> 为一给定的非零向量，<span class="math">\(P\)</span> 为一动点，向量 <span class="math">\(\vec{P_0P}\)</span> 与 <span class="math">\(l\)</span> 的方向始终一致。如果极限
-<div class="math">$$\lim_{\|P_0P\|\to0}\frac{f(P)-f(P_0}{\|\vec{P_0P}\|}$$</div>
-存在，则称此极限为函数 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\)</span> 处沿 <span class="math">\(l\)</span> 方向的方向导数，记作 <span class="math">\(\frac{\partial f}{\partial l}\)</span>。
+定义 1.1（方向导数）设 $f$ 是定义于 $\mathbb{R}^n$ 中某区域 $D$ 上的函数，点 $P_0\in D$，$l$ 为一给定的非零向量，$P$ 为一动点，向量 $\vec{P_0P}$ 与 $l$ 的方向始终一致。如果极限
+$$\lim_{|P_0P|\to0}\frac{f(P)-f(P_0}{|\vec{P_0P}|}$$
+存在，则称此极限为函数 $f$ 在 $P_0$ 处沿 $l$ 方向的方向导数，记作 $\frac{\partial f}{\partial l}$。
 </strong></p>
 <p><strong>
-定义 1.2（方向余弦）设 <span class="math">\(l\)</span> 是一个 <span class="math">\(n\)</span> 维非零向量，<span class="math">\(l_0=\frac{l}{\|l\|}\)</span>，即 <span class="math">\(l_0\)</span> 是与 <span class="math">\(l\)</span> 同向的单位向量。取 <span class="math">\(0\leq\alpha_i\leq\pi\)</span>，使
-<div class="math">$$l_0=(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n)$$</div>
+定义 1.2（方向余弦）设 $l$ 是一个 $n$ 维非零向量，$l_0=\frac{l}{|l|}$，即 $l_0$ 是与 $l$ 同向的单位向量。取 $0\leq\alpha_i\leq\pi$，使
+$$l_0=(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n)$$
 称
-<div class="math">$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$</div>
-为向量 <span class="math">\(l\)</span> 的方向余弦。
+$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$
+为向量 $l$ 的方向余弦。
 </strong></p>
 <p><strong>
-定理 1.1（方向导数计算公式）若函数 <span class="math">\(f\)</span> 在点 <span class="math">\(P_0\)</span> 处可微，向量 <span class="math">\(l\)</span> 的方向余弦为 <span class="math">\(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n\)</span>，则函数 <span class="math">\(f\)</span> 在点 <span class="math">\(P_0\)</span> 处沿 <span class="math">\(l\)</span> 方向的方向导数存在，且
-<div class="math">$$\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$</div>
+定理 1.1（方向导数计算公式）若函数 $f$ 在点 $P_0$ 处可微，向量 $l$ 的方向余弦为 $\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$，则函数 $f$ 在点 $P_0$ 处沿 $l$ 方向的方向导数存在，且
+$$\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$
 </strong></p>
-<p>证：因为 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\)</span> 处可微，向量 <span class="math">\(\vec{P_0P}=(\Delta x_1,\Delta x_2,\cdots,\Delta x_n)\)</span> 与 <span class="math">\(l\)</span> 同向，故
-</p>
-<div class="math">$$f(P)-f(P_0)=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\Delta x_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\Delta x_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\Delta x_n+o(\|\vec{P_0P}\|)$$</div>
-<p>
+<p>证：因为 $f$ 在 $P_0$ 处可微，向量 $\vec{P_0P}=(\Delta x_1,\Delta x_2,\cdots,\Delta x_n)$ 与 $l$ 同向，故
+$$f(P)-f(P_0)=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\Delta x_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\Delta x_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\Delta x_n+o(|\vec{P_0P}|)$$
 故
-</p>
-<div class="math">$$\lim_{\|\vec{P_0P}\|\to0}\frac{f(P)-f(P_0)}{\|\vec{P_0P}\|}=\lim_{\|\vec{P_0P}\|\to0}\left[\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\frac{\Delta x_1}{\|\vec{P_0P}\|}+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\frac{\Delta x_2}{\|\vec{P_0P}\|}+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\frac{\Delta x_n}{\|\vec{P_0P}\|}+\frac{o(\|\vec{P_0P}\|)}{\|\vec{P_0P}\|}\right] \\
-=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$</div>
-<p>
-因为 <span class="math">\(\frac{\partial f}{\partial l}\bigg\rvert_{P_0}\)</span> 存在，所以
-</p>
-<div class="math">$$\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$</div>
+$$\lim_{|\vec{P_0P}|\to0}\frac{f(P)-f(P_0)}{|\vec{P_0P}|}=\lim_{|\vec{P_0P}|\to0}\left[\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\frac{\Delta x_1}{|\vec{P_0P}|}+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\frac{\Delta x_2}{|\vec{P_0P}|}+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\frac{\Delta x_n}{|\vec{P_0P}|}+\frac{o(|\vec{P_0P}|)}{|\vec{P_0P}|}\right] \
+=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$
+因为 $\frac{\partial f}{\partial l}\bigg\rvert_{P_0}$ 存在，所以
+$$\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$</p>
 <p>注意：一个函数即使在某一点处连续，可偏导，且沿所有方向的方向导
 数都存在，也不一定在该点可微。所以定义中的可微条件是必须的。</p>
 <h2>2. 梯度</h2>
-<p>设函数 <span class="math">\(f\)</span> 定义于 <span class="math">\(\mathbb{R}^n\)</span> 的区域 <span class="math">\(D\)</span> 上，或者说 <span class="math">\(f\)</span> 是区域 <span class="math">\(D\)</span> 上的一个数量场。我们的问题是在点 <span class="math">\(P\in D\)</span> 处 <span class="math">\(f\)</span> 的方向导数沿哪个方向取得最大值，即沿哪个方向数量场的变化率最大？这就是梯度（gradient）问题。</p>
-<p>如果向量 <span class="math">\(l\)</span> 的方向余弦为
-</p>
-<div class="math">$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$</div>
-<p>
-那么 <span class="math">\(f\)</span> 在点 <span class="math">\(P\)</span> 处沿 <span class="math">\(l\)</span> 方向的方向导数为
-</p>
-<div class="math">$$\frac{\partial f}{\partial l}=\frac{\partial f}{\partial x_1}\cos\alpha_1+\cdots+\frac{\partial f}{\partial x_n}\cos\alpha_n$$</div>
-<p>
-记 <span class="math">\(n\)</span> 维向量
-</p>
-<div class="math">$$\boldsymbol{g}=\left(\frac{\partial f}{\partial x_1},\cdots,\frac{\partial f}{\partial x_n}\right)$$</div>
-<p>
-又记 <span class="math">\(l\)</span> 方向的单位向量为 <span class="math">\(\boldsymbol{l_0}\)</span>，则
-</p>
-<div class="math">$$\boldsymbol{l_0}=\left(\cos\alpha_1,\cdots,\cos\alpha_n\right)$$</div>
-<p>
+<p>设函数 $f$ 定义于 $\mathbb{R}^n$ 的区域 $D$ 上，或者说 $f$ 是区域 $D$ 上的一个数量场。我们的问题是在点 $P\in D$ 处 $f$ 的方向导数沿哪个方向取得最大值，即沿哪个方向数量场的变化率最大？这就是梯度（gradient）问题。</p>
+<p>如果向量 $l$ 的方向余弦为
+$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$
+那么 $f$ 在点 $P$ 处沿 $l$ 方向的方向导数为
+$$\frac{\partial f}{\partial l}=\frac{\partial f}{\partial x_1}\cos\alpha_1+\cdots+\frac{\partial f}{\partial x_n}\cos\alpha_n$$
+记 $n$ 维向量
+$$\boldsymbol{g}=\left(\frac{\partial f}{\partial x_1},\cdots,\frac{\partial f}{\partial x_n}\right)$$
+又记 $l$ 方向的单位向量为 $\boldsymbol{l_0}$，则
+$$\boldsymbol{l_0}=\left(\cos\alpha_1,\cdots,\cos\alpha_n\right)$$
 故
-</p>
-<div class="math">$$\frac{\partial f}{\partial l}=(\boldsymbol{g},\boldsymbol{l_0})$$</div>
-<p>
+$$\frac{\partial f}{\partial l}=(\boldsymbol{g},\boldsymbol{l_0})$$
 上式右端表示向量内积，由施瓦兹不等式
-</p>
-<div class="math">$$\left|\frac{\partial f}{\partial l}\right|=|(\boldsymbol{g},\boldsymbol{l_0})|\leq\|\boldsymbol{g}\|\|\boldsymbol{l_0}\|=\|\boldsymbol{g}\|$$</div>
-<p>
-当且仅当 <span class="math">\(\boldsymbol{g}\)</span> 与 <span class="math">\(\boldsymbol{l_0}\)</span> 同向时，等号成立。而且
-</p>
-<div class="math">$$\max\frac{\partial f}{\partial l}=\|\boldsymbol{g}\|=\left[\sum_{i=1}^n\left(\frac{\partial f}{\partial x_i}\right)^2\right]^{\frac{1}{2}}$$</div>
+$$\left|\frac{\partial f}{\partial l}\right|=|(\boldsymbol{g},\boldsymbol{l_0})|\leq|\boldsymbol{g}||\boldsymbol{l_0}|=|\boldsymbol{g}|$$
+当且仅当 $\boldsymbol{g}$ 与 $\boldsymbol{l_0}$ 同向时，等号成立。而且
+$$\max\frac{\partial f}{\partial l}=|\boldsymbol{g}|=\left[\sum_{i=1}^n\left(\frac{\partial f}{\partial x_i}\right)^2\right]^{\frac{1}{2}}$$</p>
 <p><strong>
-定义 2.1（梯度）设 <span class="math">\(f\)</span> 是 <span class="math">\(\mathbb{R}^n\)</span> 中区域 <span class="math">\(D\)</span> 上的数量场，如果 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\in D\)</span> 处可微，称向量
-<div class="math">$$\left(\frac{\partial f}{\partial x_1},\frac{\partial f}{\partial x_2},\cdots,\frac{\partial f}{\partial x_n}\right)\bigg\rvert_{P_0}$$</div>
-为 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\)</span> 处的梯度，记作 <span class="math">\({\bf grad}f(P_0)\)</span>。
+定义 2.1（梯度）设 $f$ 是 $\mathbb{R}^n$ 中区域 $D$ 上的数量场，如果 $f$ 在 $P_0\in D$ 处可微，称向量
+$$\left(\frac{\partial f}{\partial x_1},\frac{\partial f}{\partial x_2},\cdots,\frac{\partial f}{\partial x_n}\right)\bigg\rvert_{P_0}$$
+为 $f$ 在 $P_0$ 处的梯度，记作 ${\bf grad}f(P_0)$。
 </strong></p>
 <p>沿梯度方向，函数值增加最快。同样可知，方向导数的最小值在梯度的相反方向取得。</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
                 <aside>
                     <hr />
                     <nav class="older">

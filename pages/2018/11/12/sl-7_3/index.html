@@ -73,153 +73,80 @@
 <li>使用一个变换将原空间的数据映射到新空间</li>
 <li>在新空间里用线性分类学习方法从训练数据集中学习到分类模型</li>
 </ul>
-<p>核技巧（kernel trick）应用到支持向量机，其基本思想就是通过一个非线性变换将输入空间（欧式空间 <span class="math">\(\mathbb{R}^n\)</span> 或离散空间）对应于一个特征空间（希尔伯特空间 <span class="math">\({\cal H}\)</span>。在数学里，希尔伯特空间 Hilbert space，即完备的内积空间，也就是说一个带有内积的完备向量空间。希尔伯特空间是有限维欧几里得空间的一个推广，使之不局限于实数的情形和有限的维数，但又不失完备性），使得在输入空间中的超曲面模型对应于特征空间中的超平面模型（支持向量机）。</p>
+<p>核技巧（kernel trick）应用到支持向量机，其基本思想就是通过一个非线性变换将输入空间（欧式空间 $\mathbb{R}^n$ 或离散空间）对应于一个特征空间（希尔伯特空间 ${\cal H}$。在数学里，希尔伯特空间 Hilbert space，即完备的内积空间，也就是说一个带有内积的完备向量空间。希尔伯特空间是有限维欧几里得空间的一个推广，使之不局限于实数的情形和有限的维数，但又不失完备性），使得在输入空间中的超曲面模型对应于特征空间中的超平面模型（支持向量机）。</p>
 <h4>核函数的定义</h4>
 <p><strong>
-定义 7.6（核函数）设 <span class="math">\({\cal X}\)</span> 是输入空间（欧式空间 <span class="math">\(\mathbb{R}^n\)</span> 的子集或离散空间），又设 <span class="math">\({\cal H}\)</span> 为特征空间（希尔伯特空间），如果存在一个从 <span class="math">\({\cal X}\)</span> 到 <span class="math">\({\cal H}\)</span> 的映射
-<div class="math">$$\phi(x):{\cal X}\to{\cal H}$$</div>
-使得对所有的 <span class="math">\(x,z\in{\cal X}\)</span>，函数 <span class="math">\(K(x,z)\)</span> 满足条件
-<div class="math">$$K(x,z)=\phi(x)\cdot\phi(z)$$</div>
-则称 <span class="math">\(K(x,z)\)</span> 为核函数，<span class="math">\(\phi(x)\)</span> 为映射函数，式中 <span class="math">\(\cdot\)</span> 为内积运算。
+定义 7.6（核函数）设 ${\cal X}$ 是输入空间（欧式空间 $\mathbb{R}^n$ 的子集或离散空间），又设 ${\cal H}$ 为特征空间（希尔伯特空间），如果存在一个从 ${\cal X}$ 到 ${\cal H}$ 的映射
+$$\phi(x):{\cal X}\to{\cal H}$$
+使得对所有的 $x,z\in{\cal X}$，函数 $K(x,z)$ 满足条件
+$$K(x,z)=\phi(x)\cdot\phi(z)$$
+则称 $K(x,z)$ 为核函数，$\phi(x)$ 为映射函数，式中 $\cdot$ 为内积运算。
 </strong></p>
-<p>核技巧的想法是，在学习和预测中只定义核函数 <span class="math">\(K(x,z)\)</span>，而不显示的定义映射函数 <span class="math">\(\phi\)</span>。通常，直接计算 <span class="math">\(K(x,z)\)</span> 比较容易，而通过内积计算 <span class="math">\(K(x,z)\)</span> 并不容易。</p>
-<p>特征空间 <span class="math">\({\cal H}\)</span> 一般是高维或无穷维的，对于给定的核 <span class="math">\(K(x,z)\)</span>，特征空间核映射函数的取法并不唯一，可以取不同的特征空间，即便是在同一特征空间里也可以取不同的映射。</p>
+<p>核技巧的想法是，在学习和预测中只定义核函数 $K(x,z)$，而不显示的定义映射函数 $\phi$。通常，直接计算 $K(x,z)$ 比较容易，而通过内积计算 $K(x,z)$ 并不容易。</p>
+<p>特征空间 ${\cal H}$ 一般是高维或无穷维的，对于给定的核 $K(x,z)$，特征空间核映射函数的取法并不唯一，可以取不同的特征空间，即便是在同一特征空间里也可以取不同的映射。</p>
 <hr>
-<p><strong>例 7.3</strong> 假设输入空间是 <span class="math">\(\mathbb{R}^2\)</span>，核函数是 <span class="math">\(K(x,z)=(x\cdot z)^2\)</span>，试找出其相关的特征空间 <span class="math">\({\cal H}\)</span> 和映射 <span class="math">\(\phi(x):\mathbb{R}^2\to{\cal H}\)</span></p>
-<p><strong>解</strong>：取特征空间 <span class="math">\({\cal H}=\mathbb{R}^3\)</span>，记 <span class="math">\(x=\left(x^{(1)},x^{(2)}\right)^\text{T}\)</span>，<span class="math">\(z=\left(z^{(1)},z^{(2)}\right)^\text{T}\)</span>，由于
-</p>
-<div class="math">$$\begin{eqnarray}
-(x\cdot z)^2 &amp;=&amp; \left(x^{(1)}z^{(1)}+x^{(2)}z^{(2)}\right)^2 \\
+<p><strong>例 7.3</strong> 假设输入空间是 $\mathbb{R}^2$，核函数是 $K(x,z)=(x\cdot z)^2$，试找出其相关的特征空间 ${\cal H}$ 和映射 $\phi(x):\mathbb{R}^2\to{\cal H}$</p>
+<p><strong>解</strong>：取特征空间 ${\cal H}=\mathbb{R}^3$，记 $x=\left(x^{(1)},x^{(2)}\right)^\text{T}$，$z=\left(z^{(1)},z^{(2)}\right)^\text{T}$，由于
+$$\begin{eqnarray}
+(x\cdot z)^2 &amp;=&amp; \left(x^{(1)}z^{(1)}+x^{(2)}z^{(2)}\right)^2 \
 &amp;=&amp; \left(x^{(1)}z^{(1)}\right)^2+2x^{(1)}z^{(1)}x^{(2)}z^{(2)}+\left(x^{(2)}z^{(2)}\right)^2
-\end{eqnarray}$$</div>
-<p>
+\end{eqnarray}$$
 所以可以取映射
-</p>
-<div class="math">$$\phi(x)=\left(\left(x^{(1)}\right)^2,\sqrt{2}x^{(1)}x^{(2)},\left(x^{(2)}\right)^2\right)^\text{T}$$</div>
-<p>
+$$\phi(x)=\left(\left(x^{(1)}\right)^2,\sqrt{2}x^{(1)}x^{(2)},\left(x^{(2)}\right)^2\right)^\text{T}$$
 容易验证
-</p>
-<div class="math">$$\phi(x)\cdot\phi(z)=(x\cdot z)^2=K(x,z)$$</div>
-<p>仍取 <span class="math">\({\cal H}=\mathbb{R}^3\)</span> 以及
-</p>
-<div class="math">$$\phi(x)=\frac{1}{\sqrt{2}}\left(\left(x^{(1)}\right)^2-\left(x^{(2)}\right)^2,2x^{(1)}x^{(2)},\left(x^{(1)}\right)^2+\left(x^{(2)}\right)^2\right)^\text{T}$$</div>
-<p>
-同样有 <span class="math">\(\phi(x)\cdot\phi(z)=(x\cdot z)^2=K(x,z)\)</span></p>
-<p>还可以取 <span class="math">\({\cal H}=\mathbb{R}^4\)</span> 和
-</p>
-<div class="math">$$\phi(x)=\left(\left(x^{(1)}\right)^2,x^{(1)}x^{(2)},x^{(1)}x^{(2)},\left(x^{(2)}\right)^2\right)^\text{T}$$</div>
+$$\phi(x)\cdot\phi(z)=(x\cdot z)^2=K(x,z)$$</p>
+<p>仍取 ${\cal H}=\mathbb{R}^3$ 以及
+$$\phi(x)=\frac{1}{\sqrt{2}}\left(\left(x^{(1)}\right)^2-\left(x^{(2)}\right)^2,2x^{(1)}x^{(2)},\left(x^{(1)}\right)^2+\left(x^{(2)}\right)^2\right)^\text{T}$$
+同样有 $\phi(x)\cdot\phi(z)=(x\cdot z)^2=K(x,z)$</p>
+<p>还可以取 ${\cal H}=\mathbb{R}^4$ 和
+$$\phi(x)=\left(\left(x^{(1)}\right)^2,x^{(1)}x^{(2)},x^{(1)}x^{(2)},\left(x^{(2)}\right)^2\right)^\text{T}$$</p>
 <hr>
 <h4>核技巧在支持向量机中的应用</h4>
 <p>注意到在线性支持向量机的对偶问题中，无论是目标函数还是决策函数（分离超平面）都只涉及输入实例与实例之间的内积。在对偶问题的目标函数中的内积可以用核函数来代替。此时对偶问题的目标函数变为
-</p>
-<div class="math">$$W(\alpha)=\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i$$</div>
-<p>
+$$W(\alpha)=\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i$$
 同样，分类决策函数中的内积也用核函数代替，变为
-</p>
-<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}\alpha_i^\star y_iK(x_i,x)+b^\star\right)$$</div>
-<p>
+$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}\alpha_i^\star y_iK(x_i,x)+b^\star\right)$$
 学习是隐式的在特征空间进行的，不需要显式的定义特征空间和映射函数。在实际应用中，往往依赖领域知识直接选择核函数，核函数选择的有效性需要通过实验验证。</p>
 <h3>7.3.2 正定核</h3>
-<p>已知映射函数 <span class="math">\(\phi(x)\)</span>，可以通过内积求得核函数 <span class="math">\(K(x,z)\)</span>，不用构造映射 <span class="math">\(\phi(x)\)</span> 能否直接判断一个给定的函数 <span class="math">\(K(x,z)\)</span> 是不是核函数呢？我们有如下关于正定核函数（positive definite kernel function）的定理。</p>
+<p>已知映射函数 $\phi(x)$，可以通过内积求得核函数 $K(x,z)$，不用构造映射 $\phi(x)$ 能否直接判断一个给定的函数 $K(x,z)$ 是不是核函数呢？我们有如下关于正定核函数（positive definite kernel function）的定理。</p>
 <p><strong>
-定理 7.5（正定核的充要条件）设 <span class="math">\(K:{\cal X}\times{\cal X}\to\mathbb{R}\)</span> 是对称函数，则 <span class="math">\(K(x,z)\)</span> 为正定核的充要条件是对任意 <span class="math">\(x_i\in{\cal X}\)</span>，<span class="math">\(K(x,z)\)</span> 对应的 Gram 矩阵
-<div class="math">$$K=\left[K(x_i,x_j)\right]_{m\times m}$$</div>
+定理 7.5（正定核的充要条件）设 $K:{\cal X}\times{\cal X}\to\mathbb{R}$ 是对称函数，则 $K(x,z)$ 为正定核的充要条件是对任意 $x_i\in{\cal X}$，$K(x,z)$ 对应的 Gram 矩阵
+$$K=\left[K(x_i,x_j)\right]_{m\times m}$$
 是半正定矩阵。
 </strong></p>
 <h3>7.3.3 常用核函数</h3>
 <p>(a) 多项式核函数（polynomial kernel function）
-</p>
-<div class="math">$$K(x,z)=(x\cdot z+1)^p$$</div>
-<p>
-对应的支持向量机是一个 <span class="math">\(p\)</span> 次多项式分类器。决策函数为
-</p>
-<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}a_i^\star y_i(x_i\cdot x+1)^p+b^\star\right)$$</div>
+$$K(x,z)=(x\cdot z+1)^p$$
+对应的支持向量机是一个 $p$ 次多项式分类器。决策函数为
+$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}a_i^\star y_i(x_i\cdot x+1)^p+b^\star\right)$$</p>
 <p>(b) 高斯核函数（Gaussian kernel function）
-</p>
-<div class="math">$$K(x,z)=\exp\left(-\frac{\|x-z\|^2}{2\sigma^2}\right)$$</div>
-<p>
+$$K(x,z)=\exp\left(-\frac{|x-z|^2}{2\sigma^2}\right)$$
 对应的支持向量机是高斯径向基函数（radial basis function）分类器。决策函数为
-</p>
-<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}a_i^\star y_i\exp\left(-\frac{\|x-z\|^2}{2\sigma^2}\right)+b^\star\right)$$</div>
+$$f(x)=\text{sign}\left(\sum_{i=1}^{N_s}a_i^\star y_i\exp\left(-\frac{|x-z|^2}{2\sigma^2}\right)+b^\star\right)$$</p>
 <p>(c) 字符串核函数（string kernel function）它与一般的核函数不同。其他核函数一般定义在欧氏空间上，而字符串核函数是定义在字符串集合上的核函数。字符串核函数被广泛用在文本分类、信息检索等方面。可以由动态规划快速的计算。</p>
 <h3>7.3.4 非线性支持向量分类机</h3>
 <p><strong>
 定义 7.8（非线性支持向量机）从非线性分类训练集，通过核函数与软间隔最大化，或凸二次规划，学习得到的分类决策函数
-<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^{N}\alpha_i^\star y_iK(x_i,x)+b^\star\right)$$</div>
-称为非线性支持向量机，<span class="math">\(K(x,z)\)</span> 是正定核函数。
+$$f(x)=\text{sign}\left(\sum_{i=1}^{N}\alpha_i^\star y_iK(x_i,x)+b^\star\right)$$
+称为非线性支持向量机，$K(x,z)$ 是正定核函数。
 </strong></p>
 <p><strong>
 算法 7.4（非线性支持向量机学习算法）<br>
-输入：训练数据集 <span class="math">\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)</span>，其中 <span class="math">\(x_i\in{\cal X}=\mathbb{R}^n\)</span>，<span class="math">\(y_i\in{\cal Y}=\{+1,-1\}\)</span>，<span class="math">\(i=1,2,\cdots,N\)</span><br>
+输入：训练数据集 $T={(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$，其中 $x_i\in{\cal X}=\mathbb{R}^n$，$y_i\in{\cal Y}={+1,-1}$，$i=1,2,\cdots,N$<br>
 输出：分类决策函数<br>
-(1) 选择适当的核函数 <span class="math">\(K(x,z)\)</span> 和惩罚参数 <span class="math">\(C&gt;0\)</span>，构造并求解约束最优化问题
-<div class="math">$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i \\
+(1) 选择适当的核函数 $K(x,z)$ 和惩罚参数 $C&gt;0$，构造并求解约束最优化问题
+$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i \
 \text{s.t.}\ \ \ \ \begin{eqnarray}
-\sum_{i=1}^N\alpha_iy_i &amp;=&amp; 0 \\
+\sum_{i=1}^N\alpha_iy_i &amp;=&amp; 0 \
 0\leq\alpha_i\leq C,\ i &amp;=&amp; 1,2,\cdots,N
-\end{eqnarray}$$</div>
-求得最优解 <span class="math">\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)</span><br>
-(2) 选择 <span class="math">\(\alpha^\star\)</span> 的一个分量满足 <span class="math">\(0&lt;\alpha_i^\star&lt;C\)</span>，计算
-<div class="math">$$b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_iK(x_i,x_j)$$</div>
+\end{eqnarray}$$
+求得最优解 $\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}$<br>
+(2) 选择 $\alpha^\star$ 的一个分量满足 $0&lt;\alpha_i^\star&lt;C$，计算
+$$b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_iK(x_i,x_j)$$
 (3) 构造分类决策函数
-<div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_iK(x,x_i)+b^\star\right)$$</div>
+$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_iK(x,x_i)+b^\star\right)$$
 </strong>
-当 <span class="math">\(K(x,z)\)</span> 是正定核函数时，最优化问题是凸二次规划问题，解是存在的。</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
+当 $K(x,z)$ 是正定核函数时，最优化问题是凸二次规划问题，解是存在的。</p>
                 <aside>
                     <hr />
                     <nav class="older">

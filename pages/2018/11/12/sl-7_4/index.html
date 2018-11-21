@@ -65,257 +65,160 @@
                 <h2>7.4 序列最小最优化算法</h2>
 <p>序列最小优化算法（Sequential minimal optimization, SMO）是一种用于解决支持向量机训练过程中所产生优化问题的算法。SMO 由微软研究院的约翰·普莱特于 1998 年发明，目前被广泛使用于 SVM 的训练过程中，并在通行的 SVM 库 LIBSVM 中得到实现。1998 年，SMO 算法发表在 SVM 研究领域内引起了轰动，因为先前可用的 SVM 训练方法必须使用复杂的方法，并需要昂贵的第三方二次规划工具。而 SMO 算法较好地避免了这一问题。</p>
 <p>SMO 算法主要用于解决如下凸二次规划的对偶问题
-</p>
-<div class="math">$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i \\
+$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i \
 \text{s.t.}\ \ \ \ \begin{eqnarray}
-\sum_{i=1}^N\alpha_iy_i &amp;=&amp; 0 \\
+\sum_{i=1}^N\alpha_iy_i &amp;=&amp; 0 \
 0\leq\alpha_i\leq C,\ i &amp;=&amp; 1,2,\cdots,N
-\end{eqnarray}$$</div>
-<p>
-在这个问题中，变量是拉格朗日乘子，一个变量 <span class="math">\(\alpha_i\)</span> 对应一个样本点 <span class="math">\((x_i,y_i)\)</span>，变量的总数等于训练样本容量 <span class="math">\(N\)</span>。</p>
+\end{eqnarray}$$
+在这个问题中，变量是拉格朗日乘子，一个变量 $\alpha_i$ 对应一个样本点 $(x_i,y_i)$，变量的总数等于训练样本容量 $N$。</p>
 <p>SMO 算法是一种启发式算法，基本思路是：如果所有变量的解都满足此最优化问题的 KKT 条件，那么这么最优化问题的解就得到了。因为 KKT 条件是该最优化问题的充要条件。否则，选择两个变量，固定其他变量，针对这两个变量构建一个二次规划问题，这个二次规划问题的关于这两个变量的解应该更接近原始二次规划问题的解，重要的是，这两个变量可以通过解析方法来求解，这样就可以大大提高整个算法的计算速度。</p>
 <p>整个 SMO 算法有两大部分组成，第一部分就是选择这两个变量的启发式的方法，第二部分是求解这两个变量的解析方法。</p>
 <h3>7.4.1 两个变量二次规划的求解方法</h3>
-<p>不失一般性，假设选择的两个变量是 <span class="math">\(\alpha_1\)</span>，<span class="math">\(\alpha_2\)</span>，其他变量 <span class="math">\(\alpha_i\ (i=3,4,\cdots,N)\)</span> 是固定的。于是 SMO 的最优化问题的子问题可以写成：
-</p>
-<div class="math">$$\min_{\alpha_1,\alpha_2}\ \ \begin{eqnarray}
-W(\alpha_1,\alpha_2) &amp;=&amp; \frac{1}{2}K_{11}\alpha_1^2+\frac{1}{2}K_{22}\alpha_2^2+y_1y_2K_{12}\alpha_1\alpha_2 \\
+<p>不失一般性，假设选择的两个变量是 $\alpha_1$，$\alpha_2$，其他变量 $\alpha_i\ (i=3,4,\cdots,N)$ 是固定的。于是 SMO 的最优化问题的子问题可以写成：
+$$\min_{\alpha_1,\alpha_2}\ \ \begin{eqnarray}
+W(\alpha_1,\alpha_2) &amp;=&amp; \frac{1}{2}K_{11}\alpha_1^2+\frac{1}{2}K_{22}\alpha_2^2+y_1y_2K_{12}\alpha_1\alpha_2 \
 &amp;-&amp; (\alpha_1+\alpha_2)+y_1\alpha_1\sum_{i=3}^Ny_i\alpha_iK_{i1}+y_2\alpha_2\sum_{i=3}^Ny_i\alpha_iK_{i2}
-\end{eqnarray}$$</div>
-<div class="math">$$\text{s.t.}\ \ \ \ \begin{eqnarray}
-\alpha_1y_1+\alpha_2y_2=-\sum_{i=3}^N\alpha_iy_i &amp;=&amp; \varsigma \\
+\end{eqnarray}$$
+$$\text{s.t.}\ \ \ \ \begin{eqnarray}
+\alpha_1y_1+\alpha_2y_2=-\sum_{i=3}^N\alpha_iy_i &amp;=&amp; \varsigma \
 0\leq\alpha_i\leq C,\ i = 1,2,\cdots,&amp;N&amp;
-\end{eqnarray}$$</div>
-<p>
-其中，<span class="math">\(K_{ij}=K(x_i,x_j)\)</span>，<span class="math">\(\varsigma\)</span> 是常数，并忽略了不含 <span class="math">\(\alpha_{1}\)</span>，<span class="math">\(\alpha_2\)</span> 的常数项。</p>
+\end{eqnarray}$$
+其中，$K_{ij}=K(x_i,x_j)$，$\varsigma$ 是常数，并忽略了不含 $\alpha_{1}$，$\alpha_2$ 的常数项。</p>
 <p><img alt="二变量优化问题" src="https://xutree.github.io/images/statistical_learning_7.4.png"></p>
-<p>上图中显示了 <span class="math">\(\alpha_{1}\)</span>，<span class="math">\(\alpha_2\)</span> 的取值范围，即位于平行于对角线的线段之上。所以两变量最优化问题实际上为单变量最优化问题，不妨考虑变量 <span class="math">\(\alpha_2\)</span> 的最优化问题。</p>
-<p>假设二次规划问题的初始可行解是 <span class="math">\(\alpha_1^\text{old}\)</span>，<span class="math">\(\alpha_2^\text{old}\)</span>，最优解为 <span class="math">\(\alpha_1^\text{new}\)</span>，<span class="math">\(\alpha_2^\text{new}\)</span>，并且假设在沿着约束方向未经剪辑时 <span class="math">\(\alpha_2\)</span> 的最优解为 <span class="math">\(\alpha_2^\text{new,unc}\)</span>。</p>
-<p>由于 <span class="math">\(\alpha_2^\text{new}\)</span> 需要满足不等式约束 <span class="math">\(0\leq\alpha_2^\text{new}\leq C\)</span>，所以最优值 <span class="math">\(\alpha_2^\text{new}\)</span> 的取值范围必须满足
-</p>
-<div class="math">$$L\leq \alpha_2^\text{new} \leq H$$</div>
-<p>下面求解 <span class="math">\(L\)</span> 和 <span class="math">\(H\)</span>：</p>
+<p>上图中显示了 $\alpha_{1}$，$\alpha_2$ 的取值范围，即位于平行于对角线的线段之上。所以两变量最优化问题实际上为单变量最优化问题，不妨考虑变量 $\alpha_2$ 的最优化问题。</p>
+<p>假设二次规划问题的初始可行解是 $\alpha_1^\text{old}$，$\alpha_2^\text{old}$，最优解为 $\alpha_1^\text{new}$，$\alpha_2^\text{new}$，并且假设在沿着约束方向未经剪辑时 $\alpha_2$ 的最优解为 $\alpha_2^\text{new,unc}$。</p>
+<p>由于 $\alpha_2^\text{new}$ 需要满足不等式约束 $0\leq\alpha_2^\text{new}\leq C$，所以最优值 $\alpha_2^\text{new}$ 的取值范围必须满足
+$$L\leq \alpha_2^\text{new} \leq H$$</p>
+<p>下面求解 $L$ 和 $H$：</p>
 <hr>
-<p><span class="math">\(\blacksquare\)</span> 若 <span class="math">\(y_1\neq y_2\)</span></p>
+<p>$\blacksquare$ 若 $y_1\neq y_2$</p>
 <p>则由
-</p>
-<div class="math">$$\alpha_1^\text{new}y_1+\alpha_2^\text{new}y_2=\varsigma=\alpha_1^\text{old}y_1+\alpha_2^\text{old}y_2$$</div>
-<p>
+$$\alpha_1^\text{new}y_1+\alpha_2^\text{new}y_2=\varsigma=\alpha_1^\text{old}y_1+\alpha_2^\text{old}y_2$$
 得
-</p>
-<div class="math">$$\begin{eqnarray}
-\alpha_2^\text{new} &amp;=&amp; \alpha_1^\text{old}\frac{y_1}{y_2}+\alpha_2^\text{old}\frac{y_2}{y_2}-\alpha_1^\text{new}\frac{y_1}{y_2} \\
+$$\begin{eqnarray}
+\alpha_2^\text{new} &amp;=&amp; \alpha_1^\text{old}\frac{y_1}{y_2}+\alpha_2^\text{old}\frac{y_2}{y_2}-\alpha_1^\text{new}\frac{y_1}{y_2} \
 &amp;=&amp; \alpha_2^\text{old}-\alpha_1^\text{old}+\alpha_1^\text{new}
-\end{eqnarray}$$</div>
-<p>
+\end{eqnarray}$$
 利用
-</p>
-<div class="math">$$\alpha_1^\text{new}\in[0,C]$$</div>
-<p>
+$$\alpha_1^\text{new}\in[0,C]$$
 得
-</p>
-<div class="math">$$\alpha_2^\text{new}\in[\alpha_2^\text{old}-\alpha_1^\text{old},C+\alpha_2^\text{old}-\alpha_1^\text{old}]$$</div>
-<p>
+$$\alpha_2^\text{new}\in[\alpha_2^\text{old}-\alpha_1^\text{old},C+\alpha_2^\text{old}-\alpha_1^\text{old}]$$
 再结合
-</p>
-<div class="math">$$\alpha_2^\text{new}\in[0,C]$$</div>
-<p>
+$$\alpha_2^\text{new}\in[0,C]$$
 得
-</p>
-<div class="math">$$L=\max(0,\alpha_2^\text{old}-\alpha_1^\text{old}) \\
-H=\min(C,C+\alpha_2^\text{old}-\alpha_1^\text{old})$$</div>
-<p><span class="math">\(\blacksquare\)</span> 若 <span class="math">\(y_1=y_2\)</span></p>
+$$L=\max(0,\alpha_2^\text{old}-\alpha_1^\text{old}) \
+H=\min(C,C+\alpha_2^\text{old}-\alpha_1^\text{old})$$</p>
+<p>$\blacksquare$ 若 $y_1=y_2$</p>
 <p>则由
-</p>
-<div class="math">$$\alpha_1^\text{new}y_1+\alpha_2^\text{new}y_2=\varsigma=\alpha_1^\text{old}y_1+\alpha_2^\text{old}y_2$$</div>
-<p>
+$$\alpha_1^\text{new}y_1+\alpha_2^\text{new}y_2=\varsigma=\alpha_1^\text{old}y_1+\alpha_2^\text{old}y_2$$
 得
-</p>
-<div class="math">$$\begin{eqnarray}
-\alpha_2^\text{new} &amp;=&amp; \alpha_1^\text{old}\frac{y_1}{y_2}+\alpha_2^\text{old}\frac{y_2}{y_2}-\alpha_1^\text{new}\frac{y_1}{y_2} \\
+$$\begin{eqnarray}
+\alpha_2^\text{new} &amp;=&amp; \alpha_1^\text{old}\frac{y_1}{y_2}+\alpha_2^\text{old}\frac{y_2}{y_2}-\alpha_1^\text{new}\frac{y_1}{y_2} \
 &amp;=&amp; \alpha_1^\text{old}+\alpha_2^\text{old}-\alpha_1^\text{new}
-\end{eqnarray}$$</div>
-<p>
+\end{eqnarray}$$
 利用
-</p>
-<div class="math">$$\alpha_1^\text{new}\in[0,C]$$</div>
-<p>
+$$\alpha_1^\text{new}\in[0,C]$$
 得
-</p>
-<div class="math">$$\alpha_2^\text{new}\in[\alpha_1^\text{old}+\alpha_2^\text{old}-C,\alpha_1^\text{old}+\alpha_2^\text{old}]$$</div>
-<p>
+$$\alpha_2^\text{new}\in[\alpha_1^\text{old}+\alpha_2^\text{old}-C,\alpha_1^\text{old}+\alpha_2^\text{old}]$$
 再结合
-</p>
-<div class="math">$$\alpha_2^\text{new}\in[0,C]$$</div>
-<p>
+$$\alpha_2^\text{new}\in[0,C]$$
 得
-</p>
-<div class="math">$$L=\max(0,\alpha_1^\text{old}+\alpha_2^\text{old}-C) \\
-H=\min(C,\alpha_1^\text{old}+\alpha_2^\text{old})$$</div>
+$$L=\max(0,\alpha_1^\text{old}+\alpha_2^\text{old}-C) \
+H=\min(C,\alpha_1^\text{old}+\alpha_2^\text{old})$$</p>
 <hr>
 <p>记
-</p>
-<div class="math">$$g(x)=\sum_{i=1}^N\alpha_iy_iK(x_i,x)+b$$</div>
-<p>
+$$g(x)=\sum_{i=1}^N\alpha_iy_iK(x_i,x)+b$$
 令
-</p>
-<div class="math">$$E_i=g(x_i)-y_i=\left(\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b\right)-y_i$$</div>
-<p>
-当 <span class="math">\(i=1,2\)</span> 时，<span class="math">\(E_i\)</span> 为函数 <span class="math">\(g(x)\)</span> 对输入 <span class="math">\(x_i\)</span> 的预测值与真实输出 <span class="math">\(y_i\)</span> 之差。</p>
+$$E_i=g(x_i)-y_i=\left(\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b\right)-y_i$$
+当 $i=1,2$ 时，$E_i$ 为函数 $g(x)$ 对输入 $x_i$ 的预测值与真实输出 $y_i$ 之差。</p>
 <p><strong>
 定理 7.6 两个变量最优化问题沿着约束方向未经剪辑时的解是
-<div class="math">$$\alpha_2^\text{new,unc}=\alpha_2^\text{old}+\frac{y_2(E_1-E_2)}{\eta}$$</div>
+$$\alpha_2^\text{new,unc}=\alpha_2^\text{old}+\frac{y_2(E_1-E_2)}{\eta}$$
 其中
-<div class="math">$$\eta=K_{11}+K_{22}-2K_{12}=\|\Phi(x_1)-\Phi(x_2)\|^2$$</div>
-<span class="math">\(\Phi(x)\)</span> 是输入空间到特征空间的映射。经剪辑后 <span class="math">\(\alpha_2\)</span> 的解是
-<div class="math">$$\alpha_2^\text{new}=\begin{cases}
-H, &amp; \alpha_2^\text{new,unc}&gt;H \\
-\alpha_2^\text{new,unc}, &amp; L\leq\alpha_2^\text{new,unc}\leq H \\
+$$\eta=K_{11}+K_{22}-2K_{12}=|\Phi(x_1)-\Phi(x_2)|^2$$
+$\Phi(x)$ 是输入空间到特征空间的映射。经剪辑后 $\alpha_2$ 的解是
+$$\alpha_2^\text{new}=\begin{cases}
+H, &amp; \alpha_2^\text{new,unc}&gt;H \
+\alpha_2^\text{new,unc}, &amp; L\leq\alpha_2^\text{new,unc}\leq H \
 L, &amp; \alpha_2^\text{new,unc}&lt;L
-\end{cases}$$</div>
-由 <span class="math">\(\alpha_2^\text{new}\)</span> 求得 <span class="math">\(\alpha_1^\text{new}\)</span> 是
-<div class="math">$$\alpha_1^\text{new}=\alpha_1^\text{old}+y_1y_2(\alpha_2^\text{old}-\alpha_2^\text{new})$$</div>
+\end{cases}$$
+由 $\alpha_2^\text{new}$ 求得 $\alpha_1^\text{new}$ 是
+$$\alpha_1^\text{new}=\alpha_1^\text{old}+y_1y_2(\alpha_2^\text{old}-\alpha_2^\text{new})$$
 </strong></p>
 <h3>7.4.2 变量的选择方法</h3>
 <p>可以采用启发式的方法选择每次迭代中需要优化的向量。第一个向量可以选取不满足支持向量机 KKT 条件的向量，亦即不满足</p>
-<div class="math">$$y_{i}g(x_i)\begin{cases}
-\geq1 &amp; \alpha_{i}=0 \\
-=1 &amp; 0&lt;\alpha_{1}&lt;C \\
+<p>$$y_{i}g(x_i)\begin{cases}
+\geq1 &amp; \alpha_{i}=0 \
+=1 &amp; 0&lt;\alpha_{1}&lt;C \
 \leq1 &amp; \alpha_{i}=C
-\end{cases}$$</div>
-<p>
+\end{cases}$$
 的向量。其中
-</p>
-<div class="math">$$g(x)=\sum_{i=1}^N\alpha_iy_iK(x_i,x)+b$$</div>
-<p>而第二个向量可以选择使得 <span class="math">\(|E_{1}-E_{2}|\)</span> 最大的向量。</p>
-<h3>7.4.3 计算阈值 <span class="math">\(b\)</span> 和差值 <span class="math">\(\text{E}_i\)</span></h3>
-<p>在每次完成两个变量的优化后，都要重新计算阈值 <span class="math">\(b\)</span>。</p>
-<p><span class="math">\(\blacksquare\)</span> 当 <span class="math">\(0&lt;\alpha_1^\text{new}&lt;C\)</span> 时</p>
-<div class="math">$$y_{i}g(x_i)=1\longrightarrow g(x_i)=y_i\ (利用\ y_i^2=1)$$</div>
+$$g(x)=\sum_{i=1}^N\alpha_iy_iK(x_i,x)+b$$</p>
+<p>而第二个向量可以选择使得 $|E_{1}-E_{2}|$ 最大的向量。</p>
+<h3>7.4.3 计算阈值 $b$ 和差值 $\text{E}_i$</h3>
+<p>在每次完成两个变量的优化后，都要重新计算阈值 $b$。</p>
+<p>$\blacksquare$ 当 $0&lt;\alpha_1^\text{new}&lt;C$ 时</p>
+<p>$$y_{i}g(x_i)=1\longrightarrow g(x_i)=y_i\ (利用\ y_i^2=1)$$</p>
 <p>于是
-</p>
-<div class="math">$$b_1^\text{new}=y_1-\sum_{i=3}^N\alpha_iy_iK_{i1}-\alpha_1^\text{new}y_1K_{11}-\alpha_2^\text{new}y_2K_{21}$$</div>
-<p>
-由 <span class="math">\(E_1\)</span> 的定义式有
-</p>
-<div class="math">$$E_1=\sum_{i=3}^N\alpha_iy_iK_{i1}+\alpha_1^\text{old}y_1K_{11}+\alpha_2^\text{old}y_2K_{21}+b^\text{old}-y_1$$</div>
-<p>
+$$b_1^\text{new}=y_1-\sum_{i=3}^N\alpha_iy_iK_{i1}-\alpha_1^\text{new}y_1K_{11}-\alpha_2^\text{new}y_2K_{21}$$
+由 $E_1$ 的定义式有
+$$E_1=\sum_{i=3}^N\alpha_iy_iK_{i1}+\alpha_1^\text{old}y_1K_{11}+\alpha_2^\text{old}y_2K_{21}+b^\text{old}-y_1$$
 连立两式，得
-</p>
-<div class="math">$$b_1^\text{new}=-E_1-y_1K_{11}\left(\alpha_1^\text{new}-\alpha_1^\text{old}\right)-y_2K_{21}\left(\alpha_2^\text{new}-\alpha_2^\text{old}\right)+b^\text{old}$$</div>
-<p><span class="math">\(\blacksquare\)</span> 当 <span class="math">\(0&lt;\alpha_2^\text{new}&lt;C\)</span> 时</p>
+$$b_1^\text{new}=-E_1-y_1K_{11}\left(\alpha_1^\text{new}-\alpha_1^\text{old}\right)-y_2K_{21}\left(\alpha_2^\text{new}-\alpha_2^\text{old}\right)+b^\text{old}$$</p>
+<p>$\blacksquare$ 当 $0&lt;\alpha_2^\text{new}&lt;C$ 时</p>
 <p>同理
-</p>
-<div class="math">$$b_2^\text{new}=-E_2-y_1K_{12}\left(\alpha_1^\text{new}-\alpha_1^\text{old}\right)-y_2K_{22}\left(\alpha_2^\text{new}-\alpha_2^\text{old}\right)+b^\text{old}$$</div>
-<p><span class="math">\(\blacksquare\)</span> 当 <span class="math">\(0&lt;\alpha_1^\text{new}&lt;C\)</span> 且 <span class="math">\(0&lt;\alpha_2^\text{new}&lt;C\)</span> 时</p>
-<div class="math">$$b_1^\text{new}=b_2^\text{new}$$</div>
-<p><span class="math">\(\blacksquare\)</span> 当 <span class="math">\(\alpha_1^\text{new}\)</span>，<span class="math">\(\alpha_2^\text{new}\)</span> 是 0 或 <span class="math">\(C\)</span> 时</p>
-<p><span class="math">\(b_{1}^\text{new}\)</span>，<span class="math">\(b_{2}^\text{new}\)</span>  和它们之间的数都是满足 KKT 条件的阈值，这时选择它们的中点，即
-</p>
-<div class="math">$$b^\text{new}=\frac{b_{1}^\text{new}+b_{2}^\text{new}}{2}$$</div>
-<p>在每次完成两个变量的优化之后，还必须更新对应的 <span class="math">\(E_i\)</span> 值。<span class="math">\(E_i\)</span> 值的更新需要用到 <span class="math">\(b^\text{new}\)</span> 值，以及所有支持向量对应的 <span class="math">\(\alpha_j\)</span>
-</p>
-<div class="math">$$E_i^\text{new}=\sum_{S}y_j\alpha_jK(x_i,x_j)+b^\text{new}-y_i$$</div>
-<p>
-其中 <span class="math">\(S\)</span> 是所有支持向量 <span class="math">\(x_j\)</span> 的集合。</p>
+$$b_2^\text{new}=-E_2-y_1K_{12}\left(\alpha_1^\text{new}-\alpha_1^\text{old}\right)-y_2K_{22}\left(\alpha_2^\text{new}-\alpha_2^\text{old}\right)+b^\text{old}$$</p>
+<p>$\blacksquare$ 当 $0&lt;\alpha_1^\text{new}&lt;C$ 且 $0&lt;\alpha_2^\text{new}&lt;C$ 时</p>
+<p>$$b_1^\text{new}=b_2^\text{new}$$</p>
+<p>$\blacksquare$ 当 $\alpha_1^\text{new}$，$\alpha_2^\text{new}$ 是 0 或 $C$ 时</p>
+<p>$b_{1}^\text{new}$，$b_{2}^\text{new}$  和它们之间的数都是满足 KKT 条件的阈值，这时选择它们的中点，即
+$$b^\text{new}=\frac{b_{1}^\text{new}+b_{2}^\text{new}}{2}$$</p>
+<p>在每次完成两个变量的优化之后，还必须更新对应的 $E_i$ 值。$E_i$ 值的更新需要用到 $b^\text{new}$ 值，以及所有支持向量对应的 $\alpha_j$
+$$E_i^\text{new}=\sum_{S}y_j\alpha_jK(x_i,x_j)+b^\text{new}-y_i$$
+其中 $S$ 是所有支持向量 $x_j$ 的集合。</p>
 <h3>7.4.4 SMO 算法</h3>
 <p><strong>
-输入：训练数据集 <span class="math">\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)</span>，其中 <span class="math">\(x_i\in{\cal X}=\mathbb{R}^n\)</span>，<span class="math">\(y_i\in{\cal Y}=\{+1,-1\}\)</span>，<span class="math">\(i=1,2,\cdots,N\)</span>，适当的核函数 <span class="math">\(K(x,z)\)</span>，惩罚参数 <span class="math">\(C&gt;0\)</span>，精度 <span class="math">\(\epsilon\)</span><br>
-输出：近似解 <span class="math">\(\hat{\alpha}\)</span><br>
-(1) 取初值 <span class="math">\(\alpha^{(0)}=0\)</span>，<span class="math">\(b_0=0\)</span>，令 <span class="math">\(k=0\)</span><br>
-(2) 计算 <span class="math">\(\eta\)</span><br>
-<div class="math">$$\eta=K_{11}+K_{22}-2K_{12}=\|\Phi(x_1)-\Phi(x_2)\|^2$$</div>
-(3) 选取优化变量 <span class="math">\(\alpha_1^{(k)}\)</span>，<span class="math">\(\alpha_2^{(k)}\)</span><br>
+输入：训练数据集 $T={(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)}$，其中 $x_i\in{\cal X}=\mathbb{R}^n$，$y_i\in{\cal Y}={+1,-1}$，$i=1,2,\cdots,N$，适当的核函数 $K(x,z)$，惩罚参数 $C&gt;0$，精度 $\epsilon$<br>
+输出：近似解 $\hat{\alpha}$<br>
+(1) 取初值 $\alpha^{(0)}=0$，$b_0=0$，令 $k=0$<br>
+(2) 计算 $\eta$<br>
+$$\eta=K_{11}+K_{22}-2K_{12}=|\Phi(x_1)-\Phi(x_2)|^2$$
+(3) 选取优化变量 $\alpha_1^{(k)}$，$\alpha_2^{(k)}$<br>
 (4) 计算误差
-<div class="math">$$E_i^{k}=\left(\sum_{j=1}^N\alpha_j^{(k)}y_jK(x_j,x_i)+b_k\right)-y_i,\ i=1,2$$</div>
+$$E_i^{k}=\left(\sum_{j=1}^N\alpha_j^{(k)}y_jK(x_j,x_i)+b_k\right)-y_i,\ i=1,2$$
 (5) 计算边界
-<div class="math">$$\begin{cases}
-L=\max(0,\alpha_2^{(k)}-\alpha_1^{(k)}),\ H=\min(C,C+\alpha_2^{(k)}-\alpha_1^{(k)}) &amp; 当\ y_1\neq y_2 \\
+$$\begin{cases}
+L=\max(0,\alpha_2^{(k)}-\alpha_1^{(k)}),\ H=\min(C,C+\alpha_2^{(k)}-\alpha_1^{(k)}) &amp; 当\ y_1\neq y_2 \
 L=\max(0,\alpha_1^{(k)}+\alpha_2^{(k)}-C),\ H=\min(C,\alpha_1^{(k)}+\alpha_2^{(k)}) &amp; 当\ y_1=y_2
-\end{cases}$$</div>
-(6) 求解 <span class="math">\(\alpha_2^{(k+1)}\)</span><br>
-<div class="math">$$\alpha_2^{(k+1)}=\alpha_2^{(k)}+\frac{y_2(E_1^{k}-E_2^k)}{\eta}$$</div>
-(7) 剪辑 <span class="math">\(\alpha_2^{(k+1)}\)</span><br>
-<div class="math">$$\alpha_2^{(k+1)}=\begin{cases}
-H, &amp; \alpha_2^{(k+1)}&gt;H \\
-\alpha_2^{(k+1)}, &amp; L\leq\alpha_2^{(k+1)}\leq H \\
+\end{cases}$$
+(6) 求解 $\alpha_2^{(k+1)}$<br>
+$$\alpha_2^{(k+1)}=\alpha_2^{(k)}+\frac{y_2(E_1^{k}-E_2^k)}{\eta}$$
+(7) 剪辑 $\alpha_2^{(k+1)}$<br>
+$$\alpha_2^{(k+1)}=\begin{cases}
+H, &amp; \alpha_2^{(k+1)}&gt;H \
+\alpha_2^{(k+1)}, &amp; L\leq\alpha_2^{(k+1)}\leq H \
 L, &amp; \alpha_2^{(k+1)}&lt;L
-\end{cases}$$</div>
-(8) 求解 <span class="math">\(\alpha_1^{(k+1)}\)</span><br>
-<div class="math">$$\alpha_1^{(k+1)}=\alpha_1^{(k)}+y_1y_2\left(\alpha_2^{(k)}-\alpha_2^{(k+1)}\right)$$</div>
-(9) 更新 <span class="math">\(b_{k+1}\)</span><br>
-<div class="math">$$b_{1(k+1)}=-E_1-y_1K_{11}\left(\alpha_{1}^{(k+1)}-\alpha_{1}^{(k)}\right)-y_2K_{21}\left(\alpha_{2}^{(k+1)}-\alpha_{2}^{(k)}\right)+b_k$$</div>
-<div class="math">$$b_{2(k+1)}=-E_2-y_1K_{12}\left(\alpha_{1}^{(k+1)}-\alpha_{1}^{(k)}\right)-y_2K_{22}\left(\alpha_{2}^{(k+1)}-\alpha_{2}^{(k)}\right)+b_k$$</div>
-<div class="math">$$b_{k+1}=\frac{b_{1(k+1)}+b_{2(k+1)}}{2}$$</div>
-(10) 更新 <span class="math">\(E_i^{k+1}\)</span><br>
-<div class="math">$$E_i^{k+1}=\sum_{S}y_j\alpha_jK\left(x_i^{(k)},x_j\right)+b_{k+1}-y_i^{(k)}$$</div>
-其中 <span class="math">\(S\)</span> 是所有支持向量 <span class="math">\(x_j\)</span> 的集合<br>
-(11) 更新 <span class="math">\(\alpha=\alpha^{(k+1)}\)</span>，若在精度 <span class="math">\(\epsilon\)</span> 范围内满足停机条件
-<div class="math">$$\sum_{i=1}^N\alpha_iy_i=0 \\
-0\leq\alpha_i\leq C,\ i=1,2,\cdots,N \\
+\end{cases}$$
+(8) 求解 $\alpha_1^{(k+1)}$<br>
+$$\alpha_1^{(k+1)}=\alpha_1^{(k)}+y_1y_2\left(\alpha_2^{(k)}-\alpha_2^{(k+1)}\right)$$
+(9) 更新 $b_{k+1}$<br>
+$$b_{1(k+1)}=-E_1-y_1K_{11}\left(\alpha_{1}^{(k+1)}-\alpha_{1}^{(k)}\right)-y_2K_{21}\left(\alpha_{2}^{(k+1)}-\alpha_{2}^{(k)}\right)+b_k$$
+$$b_{2(k+1)}=-E_2-y_1K_{12}\left(\alpha_{1}^{(k+1)}-\alpha_{1}^{(k)}\right)-y_2K_{22}\left(\alpha_{2}^{(k+1)}-\alpha_{2}^{(k)}\right)+b_k$$
+$$b_{k+1}=\frac{b_{1(k+1)}+b_{2(k+1)}}{2}$$
+(10) 更新 $E_i^{k+1}$<br>
+$$E_i^{k+1}=\sum_{S}y_j\alpha_jK\left(x_i^{(k)},x_j\right)+b_{k+1}-y_i^{(k)}$$
+其中 $S$ 是所有支持向量 $x_j$ 的集合<br>
+(11) 更新 $\alpha=\alpha^{(k+1)}$，若在精度 $\epsilon$ 范围内满足停机条件
+$$\sum_{i=1}^N\alpha_iy_i=0 \
+0\leq\alpha_i\leq C,\ i=1,2,\cdots,N \
 y_i\cdot g(x_i)=\begin{cases}
-\geq1, &amp; \{x_i|\alpha_i=0\} \\
-=1, &amp; \{x_i|0&lt;\alpha_i&lt;C\} \\
-\leq 1, &amp; \{x_i|\alpha_i=C\}
-\end{cases}$$</div>
-其中 <span class="math">\(g(x_i)=\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b\)</span>，则转 (12)，否则令 <span class="math">\(k=k+1\)</span>，转 (3)<br>
-(12) 取 <span class="math">\(\hat{\alpha}=\alpha^{(k+1)}\)</span>
+\geq1, &amp; {x_i|\alpha_i=0} \
+=1, &amp; {x_i|0&lt;\alpha_i&lt;C} \
+\leq 1, &amp; {x_i|\alpha_i=C}
+\end{cases}$$
+其中 $g(x_i)=\sum_{j=1}^N\alpha_jy_jK(x_j,x_i)+b$，则转 (12)，否则令 $k=k+1$，转 (3)<br>
+(12) 取 $\hat{\alpha}=\alpha^{(k+1)}$
 </strong></p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
                 <aside>
                     <hr />
                     <nav class="older">
