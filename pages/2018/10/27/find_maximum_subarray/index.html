@@ -65,7 +65,7 @@
                 <p>寻找数组中和最大的非空连续子数组。</p>
 <h2>暴力求解</h2>
 <p>先找出从第1个元素开始的最大子数组，而后再从第2个元素开始找出从第2个元素开始的最大子数组，依次类推，比较得出最大的子数组。</p>
-<p>时间复杂度 $O(n^2)$。</p>
+<p>时间复杂度 <span class="math">\(O(n^2)\)</span>。</p>
 <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
 
 <span class="kr">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kr">int</span><span class="p">,</span> <span class="kr">int</span><span class="p">,</span> <span class="kr">int</span><span class="o">&gt;</span> <span class="n">array_info_message</span><span class="p">;</span>
@@ -91,7 +91,7 @@
 
 
 <h2>分治算法</h2>
-<p>时间复杂度 $O(nlgn)$。</p>
+<p>时间复杂度 <span class="math">\(O(nlgn)\)</span>。</p>
 <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
 
@@ -149,7 +149,7 @@
 
 <h2>动态规划：Kadane 算法</h2>
 <p>Kadane 算法扫描一次整个数列的所有数值，在每一个扫描点计算以该点数值为结束点的子数列的最大和（正数和）。该子数列由两部分组成：以前一个位置为结束点的最大子数列、该位置的数值。因为该算法用到了“最佳子结构”（以每个位置为终点的最大子数列都是基于其前一位置的最大子数列计算得出）。</p>
-<p>Kadane 算法时间复杂度为 $O(n)$，空间复杂度为 $O(1)$。</p>
+<p>Kadane 算法时间复杂度为 <span class="math">\(O(n)\)</span>，空间复杂度为 <span class="math">\(O(1)\)</span>。</p>
 <div class="highlight"><pre><span></span><span class="nt">array_info_message</span> <span class="nt">find_max_subarray</span><span class="o">(</span><span class="nt">int</span> <span class="nt">a</span><span class="cp">[]</span><span class="o">,</span> <span class="nt">int</span> <span class="nt">n</span><span class="o">)</span> <span class="p">{</span>
     <span class="err">void</span> <span class="err">maxSubArray(int</span> <span class="err">a</span><span class="cp">[]</span><span class="err">,</span> <span class="err">int</span> <span class="err">n)</span> <span class="err">{</span>
     <span class="err">int</span> <span class="err">max</span> <span class="err">=</span> <span class="n">std</span><span class="p">:</span><span class="o">:</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="n">int</span><span class="o">&gt;::</span><span class="nf">min</span><span class="p">();</span>
@@ -186,6 +186,63 @@
         <span class="nt">return</span> <span class="nt">max</span><span class="o">;</span>
 <span class="err">}</span>
 </pre></div>
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
                 <aside>
                     <hr />
                     <nav class="older">

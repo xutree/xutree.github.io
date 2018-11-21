@@ -63,109 +63,200 @@
             <div class="span8 offset2 article-content">
 
                 <h2>2.1 标量、向量、矩阵和张量</h2>
-<p><strong>标量</strong>（scalar）：一个单独的数，用斜体小写字母表示，如 $n\in\mathbb{R}$ 中的 $n$</p>
+<p><strong>标量</strong>（scalar）：一个单独的数，用斜体小写字母表示，如 <span class="math">\(n\in\mathbb{R}\)</span> 中的 <span class="math">\(n\)</span></p>
 <p><strong>向量</strong>（vector）：一列数，用粗斜体小写字母表示
-$$\boldsymbol x=\begin{bmatrix}
-x_1 \
-x_2 \
-\vdots \
+</p>
+<div class="math">$$\boldsymbol x=\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
 x_n
-\end{bmatrix}$$
-$\boldsymbol x_{-1}$ 表示 $\boldsymbol x$ 中除 $x_1$ 外的所有元素构成的向量。$\boldsymbol x_{-S}$ 表示 $\boldsymbol x$ 中除 $S$ 中指定的索引外的所有元素构成的向量。</p>
+\end{bmatrix}$$</div>
+<p>
+<span class="math">\(\boldsymbol x_{-1}\)</span> 表示 <span class="math">\(\boldsymbol x\)</span> 中除 <span class="math">\(x_1\)</span> 外的所有元素构成的向量。<span class="math">\(\boldsymbol x_{-S}\)</span> 表示 <span class="math">\(\boldsymbol x\)</span> 中除 <span class="math">\(S\)</span> 中指定的索引外的所有元素构成的向量。</p>
 <p><strong>矩阵</strong>（matrix）：二位数组，用粗斜体大写字母表示
-$$\boldsymbol A=\begin{bmatrix}
-A_{1,1} &amp; A_{1,2} \
+</p>
+<div class="math">$$\boldsymbol A=\begin{bmatrix}
+A_{1,1} &amp; A_{1,2} \\
 A_{2,1} &amp; A_{2,2}
-\end{bmatrix}$$</p>
-<p><strong>张量</strong>（tensor）：坐标超过两维的数组，用粗体大写字母表示。张量 $\bf A$ 中坐标为 $(i,j,k)$ 的元素记为 ${\bf A}_{i,j,k}$</p>
+\end{bmatrix}$$</div>
+<p><strong>张量</strong>（tensor）：坐标超过两维的数组，用粗体大写字母表示。张量 <span class="math">\(\bf A\)</span> 中坐标为 <span class="math">\((i,j,k)\)</span> 的元素记为 <span class="math">\({\bf A}_{i,j,k}\)</span></p>
 <p><strong>转置</strong>（transpose）是矩阵以其主对角线（main diagonal）为轴的镜像。
-$$({\boldsymbol A}^\text{T})<em j_i="j,i">{i,j}=A</em>$$
+</p>
+<div class="math">$$({\boldsymbol A}^\text{T})_{i,j}=A_{j,i}$$</div>
+<p>
 标量的转置等于它本身。</p>
 <p><strong>广播</strong>（broadcasting）是矩阵和向量采取下面的规则相加
-$${\boldsymbol C}={\boldsymbol A}+{\boldsymbol b}\Longleftrightarrow C_{i,j}=A_{i,j}+b_j$$
-也就是向量 ${\boldsymbol b}$ 和矩阵 ${\boldsymbol A}$ 的每一行相加。</p>
+</p>
+<div class="math">$${\boldsymbol C}={\boldsymbol A}+{\boldsymbol b}\Longleftrightarrow C_{i,j}=A_{i,j}+b_j$$</div>
+<p>
+也就是向量 <span class="math">\({\boldsymbol b}\)</span> 和矩阵 <span class="math">\({\boldsymbol A}\)</span> 的每一行相加。</p>
 <h2>2.2 矩阵和向量相乘</h2>
 <p><strong>矩阵相乘</strong>（matrix product）：要求第一个矩阵的列数等于第二个矩阵的行数。满足分配律、结合律，一般不满足交换律。
-$${\boldsymbol C}=\boldsymbol {AB}\Longleftrightarrow C_{i,j}=\sum_kA_{i,k}B_{k,j}$$</p>
+</p>
+<div class="math">$${\boldsymbol C}=\boldsymbol {AB}\Longleftrightarrow C_{i,j}=\sum_kA_{i,k}B_{k,j}$$</div>
 <p><strong>Hadamard 乘积</strong>：要求两个矩阵形状一样，为对应元素乘积。满足交换律。
-$${\boldsymbol C}={\boldsymbol A}\odot{\boldsymbol B}\Longleftrightarrow C_{i,j}=A_{i,j}B_{i,j}$$</p>
+</p>
+<div class="math">$${\boldsymbol C}={\boldsymbol A}\odot{\boldsymbol B}\Longleftrightarrow C_{i,j}=A_{i,j}B_{i,j}$$</div>
 <p><strong>向量点积</strong>（vector dot product）：要求两个向量维度相同。满足交换律。
-$${\boldsymbol z}=\boldsymbol {xy}\Longleftrightarrow z_i=x_iy_i$$
+</p>
+<div class="math">$${\boldsymbol z}=\boldsymbol {xy}\Longleftrightarrow z_i=x_iy_i$$</div>
+<p>
 也可写作矩阵乘积的形式
-$${\boldsymbol z}={\boldsymbol x}^\text{T}{\boldsymbol y}$$
+</p>
+<div class="math">$${\boldsymbol z}={\boldsymbol x}^\text{T}{\boldsymbol y}$$</div>
+<p>
 和 Hadamard 乘积形式
-$${\boldsymbol z}={\boldsymbol x}\odot{\boldsymbol y}$$</p>
+</p>
+<div class="math">$${\boldsymbol z}={\boldsymbol x}\odot{\boldsymbol y}$$</div>
 <h2>2.3 范数</h2>
-<p>有时我们需要衡量一个向量的大小。在机器学习中，我们经常使用<strong>范数</strong>（norm）来衡量向量的大小。形式上，$L^p$ 范数定义如下：
-$$|{\boldsymbol x}|_p=\left(\sum_i|x_i|^p\right)^{\frac{1}{p}}$$
-其中，$p\in\mathbb{R}$，$p\geq1$。</p>
+<p>有时我们需要衡量一个向量的大小。在机器学习中，我们经常使用<strong>范数</strong>（norm）来衡量向量的大小。形式上，<span class="math">\(L^p\)</span> 范数定义如下：
+</p>
+<div class="math">$$\|{\boldsymbol x}\|_p=\left(\sum_i|x_i|^p\right)^{\frac{1}{p}}$$</div>
+<p>
+其中，<span class="math">\(p\in\mathbb{R}\)</span>，<span class="math">\(p\geq1\)</span>。</p>
 <p>更严格的，范数是满足下列性质的任意函数：</p>
 <ul>
-<li>$f({\boldsymbol x})=0\Rightarrow{\boldsymbol x}={\boldsymbol 0}$</li>
-<li>$f({\boldsymbol x}+{\boldsymbol y})\leq f({\boldsymbol x})+f({\boldsymbol y})$（triangle inequality）</li>
-<li>$\forall\alpha\in\mathbb{R},\ f(\alpha{\boldsymbol x})=|\alpha|f({\boldsymbol x})$</li>
+<li><span class="math">\(f({\boldsymbol x})=0\Rightarrow{\boldsymbol x}={\boldsymbol 0}\)</span></li>
+<li><span class="math">\(f({\boldsymbol x}+{\boldsymbol y})\leq f({\boldsymbol x})+f({\boldsymbol y})\)</span>（triangle inequality）</li>
+<li><span class="math">\(\forall\alpha\in\mathbb{R},\ f(\alpha{\boldsymbol x})=|\alpha|f({\boldsymbol x})\)</span></li>
 </ul>
-<p>当 $p=2$ 时，$L^2$ 范数称为<strong>欧几里得范数</strong>（Euclidean norm），经常简化表示为 $|\boldsymbol x|$，略去下标 2。平方 $L^2$ 范数也经常用来衡量向量的大小，可以简单的通过点积 ${\boldsymbol x}^\text{T}{\boldsymbol x}$ 计算。</p>
-<p>平方 $L^2$ 范数在数学和计算上都比 $L^2$ 范数本身更方便。例如，平方 $L^2$ 范数对每个元素的导数只取决于对应的元素。</p>
-<p>但在某些情况下，平方 $L^2$ 范数也可能不受欢迎，因为它在原点附近增长得十分缓慢。在某些机器学习应用中，区分恰好是零元素和非零但值很小的元素是很重要的。在这些情况下，我们转而使用在各个位置斜率相同，同时保持简单的数学形式的函数：$L^1$ 范数：
-$$|{\boldsymbol x}|_1=\sum_i|x_i|$$</p>
+<p>当 <span class="math">\(p=2\)</span> 时，<span class="math">\(L^2\)</span> 范数称为<strong>欧几里得范数</strong>（Euclidean norm），经常简化表示为 <span class="math">\(\|\boldsymbol x\|\)</span>，略去下标 2。平方 <span class="math">\(L^2\)</span> 范数也经常用来衡量向量的大小，可以简单的通过点积 <span class="math">\({\boldsymbol x}^\text{T}{\boldsymbol x}\)</span> 计算。</p>
+<p>平方 <span class="math">\(L^2\)</span> 范数在数学和计算上都比 <span class="math">\(L^2\)</span> 范数本身更方便。例如，平方 <span class="math">\(L^2\)</span> 范数对每个元素的导数只取决于对应的元素。</p>
+<p>但在某些情况下，平方 <span class="math">\(L^2\)</span> 范数也可能不受欢迎，因为它在原点附近增长得十分缓慢。在某些机器学习应用中，区分恰好是零元素和非零但值很小的元素是很重要的。在这些情况下，我们转而使用在各个位置斜率相同，同时保持简单的数学形式的函数：<span class="math">\(L^1\)</span> 范数：
+</p>
+<div class="math">$$\|{\boldsymbol x}\|_1=\sum_i|x_i|$$</div>
 <p>另外一个常用的范数是<strong>最大范数</strong>（max norm）：
-$$|{\boldsymbol x}|_{\infty}=\max_i|x_i|$$</p>
+</p>
+<div class="math">$$\|{\boldsymbol x}\|_{\infty}=\max_i|x_i|$$</div>
 <p>有时候我们可能也希望衡量矩阵的大小。在深度学习中，最常见的做法是使用 <strong>弗洛宾尼斯范数</strong>（Frobenius norm）：
-$$|{\boldsymbol A}|<em i_j="i,j">F=\sqrt{\sum</em>A_{i,j}^2}$$
-其类似于向量的 $L^2$ 范数。</p>
+</p>
+<div class="math">$$\|{\boldsymbol A}\|_F=\sqrt{\sum_{i,j}A_{i,j}^2}$$</div>
+<p>
+其类似于向量的 <span class="math">\(L^2\)</span> 范数。</p>
 <h2>2.4 特征分解</h2>
 <p><strong>特征分解</strong>（eigendecomposition）是使用最广泛的矩阵分解之一，它将矩阵分解为一组特征值和特征向量。</p>
-<p>设方阵 ${\boldsymbol A}$ 的特征值为 $\lambda$，特征向量为 ${\boldsymbol v}$，即
-$$\boldsymbol {Av}=\lambda{\boldsymbol v}$$
-假设矩阵 $\boldsymbol A$ 有 $n$ 个线性无关的特征向量 $\left{\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right}$，对应和特征值 $\left{\lambda_1,\cdots,\lambda_n\right}$。取矩阵 $\boldsymbol V=\left[\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right]$，$\boldsymbol\lambda=[\lambda_1,\cdots,\lambda_n]^\text{T}$，则 $\boldsymbol A$ 的特征分解可记作
-$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{-1}$$</p>
+<p>设方阵 <span class="math">\({\boldsymbol A}\)</span> 的特征值为 <span class="math">\(\lambda\)</span>，特征向量为 <span class="math">\({\boldsymbol v}\)</span>，即
+</p>
+<div class="math">$$\boldsymbol {Av}=\lambda{\boldsymbol v}$$</div>
+<p>
+假设矩阵 <span class="math">\(\boldsymbol A\)</span> 有 <span class="math">\(n\)</span> 个线性无关的特征向量 <span class="math">\(\left\{\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right\}\)</span>，对应和特征值 <span class="math">\(\left\{\lambda_1,\cdots,\lambda_n\right\}\)</span>。取矩阵 <span class="math">\(\boldsymbol V=\left[\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right]\)</span>，<span class="math">\(\boldsymbol\lambda=[\lambda_1,\cdots,\lambda_n]^\text{T}\)</span>，则 <span class="math">\(\boldsymbol A\)</span> 的特征分解可记作
+</p>
+<div class="math">$$\boldsymbol A=\boldsymbol V\ \text{diag}(\boldsymbol\lambda){\boldsymbol V}^{-1}$$</div>
 <p>实对称矩阵都可以分解成实特征值和实特征向量：
-$$\boldsymbol A=\boldsymbol {Q\Lambda}{\boldsymbol Q}^{-1}$$
-其中，$\boldsymbol Q$ 是正交矩阵。</p>
+</p>
+<div class="math">$$\boldsymbol A=\boldsymbol {Q\Lambda}{\boldsymbol Q}^{-1}$$</div>
+<p>
+其中，<span class="math">\(\boldsymbol Q\)</span> 是正交矩阵。</p>
 <p>矩阵的特征分解提供了许多有用的信息。例如，矩阵是奇异的，当且仅当含有零特征值。</p>
 <p>考虑下面的二次方程
-$$f(\boldsymbol x)=\boldsymbol x^\text{T}\boldsymbol {Ax}$$
-其中限制 $|\boldsymbol x|_2=1$，则当 $\boldsymbol x$ 等于 $\boldsymbol A$ 的某个特征向量时，$f$ 将返回对应的特征值。在限制条件下，$f$ 的最大值是最大特征值，最小值是最小特征值。证明方法是将任意的 $\boldsymbol x$ 展开为 $\boldsymbol A$ 特征向量的线性组合。</p>
+</p>
+<div class="math">$$f(\boldsymbol x)=\boldsymbol x^\text{T}\boldsymbol {Ax}$$</div>
+<p>
+其中限制 <span class="math">\(\|\boldsymbol x\|_2=1\)</span>，则当 <span class="math">\(\boldsymbol x\)</span> 等于 <span class="math">\(\boldsymbol A\)</span> 的某个特征向量时，<span class="math">\(f\)</span> 将返回对应的特征值。在限制条件下，<span class="math">\(f\)</span> 的最大值是最大特征值，最小值是最小特征值。证明方法是将任意的 <span class="math">\(\boldsymbol x\)</span> 展开为 <span class="math">\(\boldsymbol A\)</span> 特征向量的线性组合。</p>
 <p><strong>正定矩阵</strong>（positive definite）：所有特征值都是正数的矩阵。</p>
 <p><strong>半正定矩阵</strong>（positive semidefinite）：所有特征值都是非负数的矩阵。</p>
 <p><strong>负定矩阵</strong>（negative definite）：所有特征值都是负数的矩阵。</p>
 <p><strong>半负定矩阵</strong>（negative semidefinite）：所有特征值都是非正数的矩阵。</p>
-<p>对半正定矩阵 $\boldsymbol A$，$\forall \boldsymbol x,\ \boldsymbol x^\text{T}\boldsymbol{Ax}\geq0$。</p>
-<p>此外，正定矩阵还保证 $\boldsymbol x^\text{T}\boldsymbol{Ax}=0\Rightarrow\boldsymbol x=\boldsymbol 0$。</p>
+<p>对半正定矩阵 <span class="math">\(\boldsymbol A\)</span>，<span class="math">\(\forall \boldsymbol x,\ \boldsymbol x^\text{T}\boldsymbol{Ax}\geq0\)</span>。</p>
+<p>此外，正定矩阵还保证 <span class="math">\(\boldsymbol x^\text{T}\boldsymbol{Ax}=0\Rightarrow\boldsymbol x=\boldsymbol 0\)</span>。</p>
 <h2>2.5 奇异值分解</h2>
 <p><strong>奇异值分解</strong>（singular value decomposition，SVD）是另一种矩阵分解方法。</p>
-<p>$$\boldsymbol A=\boldsymbol {UD}{\boldsymbol V}^\text{T}$$
-其中，$\boldsymbol A$ 是 $m\times n$ 的矩阵，$\boldsymbol U$ 是 $m\times m$ 的正交矩阵，$\boldsymbol V$ 是 $n\times n$ 的正交矩阵，$\boldsymbol D$ 是 $m\times n$ 的对角矩阵。</p>
-<p>对角矩阵 $\boldsymbol D$ 对角线上的元素称为矩阵 $\boldsymbol A$ 的奇异值（singular value）。矩阵 $\boldsymbol U$ 的列向量称为左奇异向量（left singular vector），它是 $\boldsymbol {AA}^\text{T}$ 的特征向量。矩阵 $\boldsymbol V$ 的列向量称为右奇异向量（right singular vector），它是 $\boldsymbol A^\text{T}\boldsymbol A$ 的特征向量。$\boldsymbol A$ 的非零奇异值是 $\boldsymbol {AA}^\text{T}$ 和 $\boldsymbol A^\text{T}\boldsymbol A$ 特征值的平方根。</p>
+<div class="math">$$\boldsymbol A=\boldsymbol {UD}{\boldsymbol V}^\text{T}$$</div>
+<p>
+其中，<span class="math">\(\boldsymbol A\)</span> 是 <span class="math">\(m\times n\)</span> 的矩阵，<span class="math">\(\boldsymbol U\)</span> 是 <span class="math">\(m\times m\)</span> 的正交矩阵，<span class="math">\(\boldsymbol V\)</span> 是 <span class="math">\(n\times n\)</span> 的正交矩阵，<span class="math">\(\boldsymbol D\)</span> 是 <span class="math">\(m\times n\)</span> 的对角矩阵。</p>
+<p>对角矩阵 <span class="math">\(\boldsymbol D\)</span> 对角线上的元素称为矩阵 <span class="math">\(\boldsymbol A\)</span> 的奇异值（singular value）。矩阵 <span class="math">\(\boldsymbol U\)</span> 的列向量称为左奇异向量（left singular vector），它是 <span class="math">\(\boldsymbol {AA}^\text{T}\)</span> 的特征向量。矩阵 <span class="math">\(\boldsymbol V\)</span> 的列向量称为右奇异向量（right singular vector），它是 <span class="math">\(\boldsymbol A^\text{T}\boldsymbol A\)</span> 的特征向量。<span class="math">\(\boldsymbol A\)</span> 的非零奇异值是 <span class="math">\(\boldsymbol {AA}^\text{T}\)</span> 和 <span class="math">\(\boldsymbol A^\text{T}\boldsymbol A\)</span> 特征值的平方根。</p>
 <p>每个实数矩阵都有奇异值分解。</p>
 <h2>2.6 摩尔－彭若斯伪逆</h2>
-<p>矩阵 $\boldsymbol A$ 的摩尔－彭若斯伪逆（Moore-Penrose pseudoinverse）定义为：
-$$\boldsymbol A^+=\lim_{\alpha\to0^+}\left(\boldsymbol A^\text{T}\boldsymbol A+\alpha \boldsymbol I\right)^{-1}\boldsymbol A^\text{T}$$
+<p>矩阵 <span class="math">\(\boldsymbol A\)</span> 的摩尔－彭若斯伪逆（Moore-Penrose pseudoinverse）定义为：
+</p>
+<div class="math">$$\boldsymbol A^+=\lim_{\alpha\to0^+}\left(\boldsymbol A^\text{T}\boldsymbol A+\alpha \boldsymbol I\right)^{-1}\boldsymbol A^\text{T}$$</div>
+<p>
 一般计算使用下面的公式：
-$$\boldsymbol A^+=\boldsymbol {V}{\boldsymbol D}^+\boldsymbol U^\text{T}$$
-其中，矩阵 $\boldsymbol U$、$\boldsymbol D$ 和 $\boldsymbol V$ 是矩阵 $\boldsymbol A$ 奇异值分解后得到的矩阵。对角矩阵 $\boldsymbol D$ 的伪逆 $\boldsymbol D^+$ 是其非零元素取倒数之后再转置得到的。</p>
+</p>
+<div class="math">$$\boldsymbol A^+=\boldsymbol {V}{\boldsymbol D}^+\boldsymbol U^\text{T}$$</div>
+<p>
+其中，矩阵 <span class="math">\(\boldsymbol U\)</span>、<span class="math">\(\boldsymbol D\)</span> 和 <span class="math">\(\boldsymbol V\)</span> 是矩阵 <span class="math">\(\boldsymbol A\)</span> 奇异值分解后得到的矩阵。对角矩阵 <span class="math">\(\boldsymbol D\)</span> 的伪逆 <span class="math">\(\boldsymbol D^+\)</span> 是其非零元素取倒数之后再转置得到的。</p>
 <p>对于线性方程：
-$$\boldsymbol {Ax}=\boldsymbol y$$
-当矩阵 $\boldsymbol A$ 的列数多于行数时，使用伪逆求解线性方程是众多可能解法中的一种，$\boldsymbol x=\boldsymbol A^+\boldsymbol y$ 是所有可行解中欧几里得范数 $|\boldsymbol x|_2$ 最小的那一个。</p>
-<p>当矩阵 $\boldsymbol A$ 的列数多于行数时，可能没有解，通过伪逆求得的 $\boldsymbol x$ 是使得 $|\boldsymbol {Ax}-\boldsymbol y|_2$ 最小的那一个。</p>
+</p>
+<div class="math">$$\boldsymbol {Ax}=\boldsymbol y$$</div>
+<p>
+当矩阵 <span class="math">\(\boldsymbol A\)</span> 的列数多于行数时，使用伪逆求解线性方程是众多可能解法中的一种，<span class="math">\(\boldsymbol x=\boldsymbol A^+\boldsymbol y\)</span> 是所有可行解中欧几里得范数 <span class="math">\(\|\boldsymbol x\|_2\)</span> 最小的那一个。</p>
+<p>当矩阵 <span class="math">\(\boldsymbol A\)</span> 的列数多于行数时，可能没有解，通过伪逆求得的 <span class="math">\(\boldsymbol x\)</span> 是使得 <span class="math">\(\|\boldsymbol {Ax}-\boldsymbol y\|_2\)</span> 最小的那一个。</p>
 <h2>2.7 迹运算</h2>
 <p>迹运算返回的是矩阵对角元素的和：
-$$\text{Tr}(\boldsymbol A)=\sum_iA_{i,i}$$</p>
+</p>
+<div class="math">$$\text{Tr}(\boldsymbol A)=\sum_iA_{i,i}$$</div>
 <p>利用迹运算可以重写矩阵弗洛宾尼斯范数：
-$$|{\boldsymbol A}|<em i_j="i,j">F=\sqrt{\sum</em>A_{i,j}^2}=\sqrt{\text{Tr}(\boldsymbol {AA}^\text{T})}$$</p>
+</p>
+<div class="math">$$\|{\boldsymbol A}\|_F=\sqrt{\sum_{i,j}A_{i,j}^2}=\sqrt{\text{Tr}(\boldsymbol {AA}^\text{T})}$$</div>
 <p>迹运算性质：</p>
 <ul>
-<li>$\text{Tr}(\boldsymbol A)=\text{Tr}\left(\boldsymbol A^\text{T}\right)$</li>
-<li>$\text{Tr}(\boldsymbol{ABC})=\text{Tr}(\boldsymbol{CAB})=\text{Tr}(\boldsymbol{BCA})$</li>
-<li>$\text{Tr}(a)=a$</li>
+<li><span class="math">\(\text{Tr}(\boldsymbol A)=\text{Tr}\left(\boldsymbol A^\text{T}\right)\)</span></li>
+<li><span class="math">\(\text{Tr}(\boldsymbol{ABC})=\text{Tr}(\boldsymbol{CAB})=\text{Tr}(\boldsymbol{BCA})\)</span></li>
+<li><span class="math">\(\text{Tr}(a)=a\)</span></li>
 </ul>
 <h2>2.8 行列式</h2>
-<p>记作 $\text{det}(\boldsymbol A)$，等于矩阵特征值的乘积。</p>
+<p>记作 <span class="math">\(\text{det}(\boldsymbol A)\)</span>，等于矩阵特征值的乘积。</p>
 <p>行列式的绝对值可以用来衡量矩阵参与矩阵乘法后空间扩大或缩小了多少。如果行列式是 0，那么空间至少沿着某一维完全收缩了，使其失去了所有的体积；如果行列式是 1，那么这个转换保持空间体积不变。</p>
 <h2>2.9 实例：主成分分析</h2>
 <p><strong>主成分分析</strong>（principal components analysis，PCA）是一个简单的机器学习算法。</p>
-<p><strong>问题</strong>：假设在 $\mathbb{R}^n$ 空间中有 $m$ 个点 $\left{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right}$，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。$$</p>
+<p><strong>问题</strong>：假设在 <span class="math">\(\mathbb{R}^n\)</span> 空间中有 <span class="math">\(m\)</span> 个点 <span class="math">\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)</span>，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。$$</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
                 <aside>
                     <hr />
                     <nav class="older">
