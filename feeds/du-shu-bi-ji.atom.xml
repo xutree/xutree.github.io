@@ -310,7 +310,7 @@ L(w) &amp;amp;=&amp;amp; \sum_{x,y}\tilde{P}(x,y)\log P_w(y|x) \\
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\delta=(\delta_1,\delta_2,\cdots,\delta_K)^\text{T}$$&lt;/div&gt;
 &lt;p&gt;
-根据 &lt;a href="{filename}/articles/统计学习方法/6.md"&gt;第六章&lt;/a&gt;的方法，得到关于转移特征 &lt;span class="math"&gt;\(t_k\)&lt;/span&gt; 的更新方程是
+根据 &lt;a href="https://xutree.github.io/pages/2018/11/09/sl-6/"&gt;第六章&lt;/a&gt;的方法，得到关于转移特征 &lt;span class="math"&gt;\(t_k\)&lt;/span&gt; 的更新方程是
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\begin{eqnarray}
 \text{E}_{\tilde{P}}[t_k] &amp;amp;=&amp;amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i) \\
@@ -418,7 +418,7 @@ l=1,2,\cdots,K_2$$&lt;/div&gt;
 (7) 置 &lt;span class="math"&gt;\(k=k+1\)&lt;/span&gt;，转 (3)
 &lt;/strong&gt;&lt;/p&gt;
 &lt;h2&gt;11.5 条件随机场的预测算法&lt;/h2&gt;
-&lt;p&gt;条件随机场的预测问题是给定条件随机场 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 和输入序列（观测序列）&lt;span class="math"&gt;\(x\)&lt;/span&gt;，求条件概率最大的输出序列（标记序列）&lt;span class="math"&gt;\(y^\star\)&lt;/span&gt;，即对观测序列进行标注。条件随机场的预测算法是著名的&lt;a href="{filename}/articles/统计学习方法/10.md"&gt;维特比算法&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;条件随机场的预测问题是给定条件随机场 &lt;span class="math"&gt;\(P(Y|X)\)&lt;/span&gt; 和输入序列（观测序列）&lt;span class="math"&gt;\(x\)&lt;/span&gt;，求条件概率最大的输出序列（标记序列）&lt;span class="math"&gt;\(y^\star\)&lt;/span&gt;，即对观测序列进行标注。条件随机场的预测算法是著名的&lt;a href="https://xutree.github.io/pages/2018/11/19/sl-10/"&gt;维特比算法&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;由条件随机场的简化形式，得
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\begin{eqnarray}
@@ -777,7 +777,7 @@ c. 在观察 &lt;span class="math"&gt;\(O\)&lt;/span&gt; 下由状态 &lt;span c
 &lt;/p&gt;
 &lt;div class="math"&gt;$$P(O|\lambda)=\sum_{I}P(O|I,\lambda)P(I|\lambda)$$&lt;/div&gt;
 &lt;p&gt;
-它的参数学习可以由 &lt;a href="{filename}/articles/统计学习方法/9.md"&gt;EM 算法&lt;/a&gt;实现。&lt;/p&gt;
+它的参数学习可以由 &lt;a href="https://xutree.github.io/pages/2018/11/17/sl-9/"&gt;EM 算法&lt;/a&gt;实现。&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 确定完全数据的对数似然函数&lt;/p&gt;
 &lt;p&gt;所有观测数据写成 &lt;span class="math"&gt;\(O=(o_1,o_2,\cdots,o_T)\)&lt;/span&gt;，所有隐数据写成 &lt;span class="math"&gt;\(I=(i_1,i_2,\cdots,i_T)\)&lt;/span&gt;，完全数据是
 &lt;/p&gt;
@@ -2406,13 +2406,13 @@ y_i\left(w\cdot x_i+b\right) &amp;amp;\geq&amp;amp; 1-\xi_i,\ i=1,2,\cdots,N \\
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第七章 支持向量机（1）——线性可分支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/sl-7_1/" rel="alternate"></link><published>2018-11-11T13:47:48+08:00</published><updated>2018-11-11T17:55:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/sl-7_1/</id><summary type="html">&lt;p&gt;支持向量机（support vector machines，SVM）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于&lt;a href="{filename}/articles/统计学习方法/2.md"&gt;感知机&lt;/a&gt;；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。&lt;/p&gt;
+&lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第七章 支持向量机（1）——线性可分支持向量机</title><link href="https://xutree.github.io/pages/2018/11/11/sl-7_1/" rel="alternate"></link><published>2018-11-11T13:47:48+08:00</published><updated>2018-11-11T17:55:33+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-11:/pages/2018/11/11/sl-7_1/</id><summary type="html">&lt;p&gt;支持向量机（support vector machines，SVM）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于&lt;a href="https://xutree.github.io/pages/2018/11/04/sl-2/"&gt;感知机&lt;/a&gt;；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。&lt;/p&gt;
 &lt;p&gt;支持向量机的学习策略就是间隔最大化，可形式化为一个求解凸二次规划（convex quadratic programming）的问题，也等价于正则化的合页损失函数的最小化问题。支持向量机的学习算法是求解凸二次规划的最优化算法。&lt;/p&gt;
 &lt;p&gt;支持向量机学习方法包含构建由间至繁的模型：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;线性可分支持向量机（linear support vector machine in linearly separable case）：数据线性可分，通过硬间隔最大化（hard margin maximization），学习一个线性分类器&lt;/li&gt;
 &lt;li&gt;线性支持向量机（linear support vector machine）：数据近似线性可分，通过软间隔最大化（soft margin maximization），学习一个线性分类器，又称软间隔支持向量机&lt;/li&gt;
-&lt;li&gt;非线性支持向量机（non-linear …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;支持向量机（support vector machines，SVM）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于&lt;a href="{filename}/articles/统计学习方法/2.md"&gt;感知机&lt;/a&gt;；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。&lt;/p&gt;
+&lt;li&gt;非线性支持向量机（non-linear …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;支持向量机（support vector machines，SVM）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于&lt;a href="https://xutree.github.io/pages/2018/11/04/sl-2/"&gt;感知机&lt;/a&gt;；支持向量机还包括核技巧，这使它成为实质上的非线性分类器。&lt;/p&gt;
 &lt;p&gt;支持向量机的学习策略就是间隔最大化，可形式化为一个求解凸二次规划（convex quadratic programming）的问题，也等价于正则化的合页损失函数的最小化问题。支持向量机的学习算法是求解凸二次规划的最优化算法。&lt;/p&gt;
 &lt;p&gt;支持向量机学习方法包含构建由间至繁的模型：&lt;/p&gt;
 &lt;ul&gt;
