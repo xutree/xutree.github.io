@@ -223,7 +223,7 @@ A_{2,1} &amp;amp; A_{2,2}
 &amp;amp;=&amp;amp; \arg\max_{\boldsymbol c}-2\boldsymbol x^\text{T}\boldsymbol {Dc}+\boldsymbol c^\text{T}\boldsymbol c
 \end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;
-令偏导为 0（参考&lt;a href="{filename/articles/Math/矩阵求导.md}"&gt;矩阵求导&lt;/a&gt;），得
+令偏导为 0（参考&lt;a href="https://xutree.github.io/pages/2018/10/23/矩阵求导/"&gt;矩阵求导&lt;/a&gt;），得
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\nabla_{\boldsymbol c}(-2\boldsymbol x^\text{T}\boldsymbol {Dc}+\boldsymbol c^\text{T}\boldsymbol c)=0 \\
 -2\boldsymbol D^\text{T}\boldsymbol x+2\boldsymbol c=0 \\
