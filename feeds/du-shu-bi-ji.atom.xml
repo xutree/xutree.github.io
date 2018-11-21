@@ -1,5 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-21T08:25:14+08:00</updated><entry><title>深度学习 第一章 引言</title><link href="https://xutree.github.io/pages/2018/11/21/dl-1/" rel="alternate"></link><published>2018-11-21T08:25:14+08:00</published><updated>2018-11-21T08:25:14+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-1/</id><summary type="html">&lt;p&gt;让计算机从经验获取知识，可以避免由人类来给计算机形式化的指定它所需要的所有知识。层次化的概念让计算机构建较简单的概念来学习复杂概念。如果绘制出表示这些概念如何建立在彼此之上的图，我们得到一张“深”（层次很多）的图。基于这个原因，我们称这种方法为 &lt;strong&gt;AI 深度学习&lt;/strong&gt;（deep learning）。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-21T14:02:59+08:00</updated><entry><title>深度学习 第二章 线性代数</title><link href="https://xutree.github.io/pages/2018/11/21/dl-2/" rel="alternate"></link><published>2018-11-21T14:02:59+08:00</published><updated>2018-11-21T14:02:59+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-2/</id><summary type="html">&lt;h2&gt;2.1 标量、向量、矩阵和张量&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;标量&lt;/strong&gt;（scalar）：一个单独的数，用斜体小写字母表示，如 &lt;span class="math"&gt;\(n\in\mathbb{R}\)&lt;/span&gt; 中的 &lt;span class="math"&gt;\(n\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;向量&lt;/strong&gt;（vector）：一列数，用粗斜体小写字母表示
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol x=\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}$$&lt;/div&gt;
+&lt;p&gt;
+&lt;span class="math"&gt;\(\boldsymbol x_{-1}\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 中除 &lt;span class="math"&gt;\(x_1\)&lt;/span&gt; 外的所有元素构成的向量。&lt;span class="math"&gt;\(\boldsymbol x_{-S}\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 中除 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 中指定的索引外的所有元素构成的向量。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;矩阵&lt;/strong&gt;（matrix …&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><content type="html">&lt;h2&gt;2.1 标量、向量、矩阵和张量&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;标量&lt;/strong&gt;（scalar）：一个单独的数，用斜体小写字母表示，如 &lt;span class="math"&gt;\(n\in\mathbb{R}\)&lt;/span&gt; 中的 &lt;span class="math"&gt;\(n\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;向量&lt;/strong&gt;（vector）：一列数，用粗斜体小写字母表示
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol x=\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}$$&lt;/div&gt;
+&lt;p&gt;
+&lt;span class="math"&gt;\(\boldsymbol x_{-1}\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 中除 &lt;span class="math"&gt;\(x_1\)&lt;/span&gt; 外的所有元素构成的向量。&lt;span class="math"&gt;\(\boldsymbol x_{-S}\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 中除 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 中指定的索引外的所有元素构成的向量。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;矩阵&lt;/strong&gt;（matrix）：二位数组，用粗斜体大写字母表示
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol A=\begin{bmatrix}
+A_{1,1} &amp;amp; A_{1,2} \\
+A_{2,1} &amp;amp; A_{2,2}
+\end{bmatrix}$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;张量&lt;/strong&gt;（tensor）：坐标超过两维的数组，用粗体大写字母表示。张量 &lt;span class="math"&gt;\(\bf A\)&lt;/span&gt; 中坐标为 &lt;span class="math"&gt;\((i,j,k)\)&lt;/span&gt; 的元素记为 &lt;span class="math"&gt;\({\bf A}_{i,j,k}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;转置&lt;/strong&gt;（transpose）是矩阵以其主对角线（main diagonal）为轴的镜像。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$({\boldsymbol A}^\text{T})_{i,j}=A_{j,i}$$&lt;/div&gt;
+&lt;p&gt;
+标量的转置等于它本身。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;广播&lt;/strong&gt;（broadcasting）是矩阵和向量采取下面的规则相加
+&lt;/p&gt;
+&lt;div class="math"&gt;$${\boldsymbol C}={\boldsymbol A}+{\boldsymbol b}\Longleftrightarrow C_{i,j}=A_{i,j}+b_j$$&lt;/div&gt;
+&lt;p&gt;
+也就是向量 &lt;span class="math"&gt;\({\boldsymbol b}\)&lt;/span&gt; 和矩阵 &lt;span class="math"&gt;\({\boldsymbol A}\)&lt;/span&gt; 的每一行相加。&lt;/p&gt;
+&lt;h2&gt;2.2 矩阵和向量相乘&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;矩阵相乘&lt;/strong&gt;（matrix product）：要求第一个矩阵的列数等于第二个矩阵的行数。满足分配律、结合律，一般不满足交换律。
+&lt;/p&gt;
+&lt;div class="math"&gt;$${\boldsymbol C}=\boldsymbol {AB}\Longleftrightarrow C_{i,j}=\sum_kA_{i,k}B_{k,j}$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Hadamard 乘积&lt;/strong&gt;：要求两个矩阵形状一样，为对应元素乘积。满足交换律。
+&lt;/p&gt;
+&lt;div class="math"&gt;$${\boldsymbol C}={\boldsymbol A}\odot{\boldsymbol B}\Longleftrightarrow C_{i,j}=A_{i,j}B_{i,j}$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;向量点积&lt;/strong&gt;（vector dot product）：要求两个向量维度相同。满足交换律。
+&lt;/p&gt;
+&lt;div class="math"&gt;$${\boldsymbol z}=\boldsymbol {xy}\Longleftrightarrow z_i=x_iy_i$$&lt;/div&gt;
+&lt;p&gt;
+也可写作矩阵乘积的形式
+&lt;/p&gt;
+&lt;div class="math"&gt;$${\boldsymbol z}={\boldsymbol x}^\text{T}{\boldsymbol y}$$&lt;/div&gt;
+&lt;p&gt;
+和 Hadamard 乘积形式
+&lt;/p&gt;
+&lt;div class="math"&gt;$${\boldsymbol z}={\boldsymbol x}\odot{\boldsymbol y}$$&lt;/div&gt;
+&lt;h2&gt;2.3 范数&lt;/h2&gt;
+&lt;p&gt;有时我们需要衡量一个向量的大小。在机器学习中，我们经常使用&lt;strong&gt;范数&lt;/strong&gt;（norm）来衡量向量的大小。形式上，&lt;span class="math"&gt;\(L^p\)&lt;/span&gt; 范数定义如下：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\|{\boldsymbol x}\|_p=\left(\sum_i|x_i|^p\right)^{\frac{1}{p}}$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(p\in\mathbb{R}\)&lt;/span&gt;，&lt;span class="math"&gt;\(p\geq1\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;更严格的，范数是满足下列性质的任意函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(f({\boldsymbol x})=0\Rightarrow{\boldsymbol x}={\boldsymbol 0}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(f({\boldsymbol x}+{\boldsymbol y})\leq f({\boldsymbol x})+f({\boldsymbol y})\)&lt;/span&gt;（triangle inequality）&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(\forall\alpha\in\mathbb{R},\ f(\alpha{\boldsymbol x})=|\alpha|f({\boldsymbol x})\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当 &lt;span class="math"&gt;\(p=2\)&lt;/span&gt; 时，&lt;span class="math"&gt;\(L^2\)&lt;/span&gt; 范数称为&lt;strong&gt;欧几里得范数&lt;/strong&gt;（Euclidean norm），经常简化表示为 &lt;span class="math"&gt;\(\|\boldsymbol x\|\)&lt;/span&gt;，略去下标 2。平方 &lt;span class="math"&gt;\(L^2\)&lt;/span&gt; 范数也经常用来衡量向量的大小，可以简单的通过点积 &lt;span class="math"&gt;\({\boldsymbol x}^\text{T}{\boldsymbol x}\)&lt;/span&gt; 计算。&lt;/p&gt;
+&lt;p&gt;平方 &lt;span class="math"&gt;\(L^2\)&lt;/span&gt; 范数在数学和计算上都比 &lt;span class="math"&gt;\(L^2\)&lt;/span&gt; 范数本身更方便。例如，平方 &lt;span class="math"&gt;\(L^2\)&lt;/span&gt; 范数对每个元素的导数只取决于对应的元素。&lt;/p&gt;
+&lt;p&gt;但在某些情况下，平方 &lt;span class="math"&gt;\(L^2\)&lt;/span&gt; 范数也可能不受欢迎，因为它在原点附近增长得十分缓慢。在某些机器学习应用中，区分恰好是零元素和非零但值很小的元素是很重要的。在这些情况下，我们转而使用在各个位置斜率相同，同时保持简单的数学形式的函数：&lt;span class="math"&gt;\(L^1\)&lt;/span&gt; 范数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\|{\boldsymbol x}\|_1=\sum_i|x_i|$$&lt;/div&gt;
+&lt;p&gt;另外一个常用的范数是&lt;strong&gt;最大范数&lt;/strong&gt;（max norm）：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\|{\boldsymbol x}\|_{\infty}=\max_i|x_i|$$&lt;/div&gt;
+&lt;p&gt;有时候我们可能也希望衡量矩阵的大小。在深度学习中，最常见的做法是使用 &lt;strong&gt;弗洛宾尼斯范数&lt;/strong&gt;（Frobenius norm）：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\|{\boldsymbol A}\|_F=\sqrt{\sum_{i,j}A_{i,j}^2}$$&lt;/div&gt;
+&lt;p&gt;
+其类似于向量的 &lt;span class="math"&gt;\(L^2\)&lt;/span&gt; 范数。&lt;/p&gt;
+&lt;h2&gt;2.4 特征分解&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;特征分解&lt;/strong&gt;（eigendecomposition）是使用最广泛的矩阵分解之一，它将矩阵分解为一组特征值和特征向量。&lt;/p&gt;
+&lt;p&gt;设方阵 &lt;span class="math"&gt;\({\boldsymbol A}\)&lt;/span&gt; 的特征值为 &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt;，特征向量为 &lt;span class="math"&gt;\({\boldsymbol v}\)&lt;/span&gt;，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol {Av}=\lambda{\boldsymbol v}$$&lt;/div&gt;
+&lt;p&gt;
+假设矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 有 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 个线性无关的特征向量 &lt;span class="math"&gt;\(\left\{\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right\}\)&lt;/span&gt;，对应和特征值 &lt;span class="math"&gt;\(\left\{\lambda_1,\cdots,\lambda_n\right\}\)&lt;/span&gt;。取矩阵 &lt;span class="math"&gt;\(\boldsymbol V=\left[\boldsymbol v^{(1)},\cdots,\boldsymbol v^{(n)}\right]\)&lt;/span&gt;，&lt;span class="math"&gt;\(\boldsymbol\lambda=[\lambda_1,\cdots,\lambda_n]^\text{T}\)&lt;/span&gt;，则 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的特征分解可记作
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol V\text{diag}(\boldsymbol\lambda)\boldsymbol V^{-1}$$&lt;/div&gt;
+&lt;p&gt;实对称矩阵都可以分解成实特征值和实特征向量：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol {Q\Lambda Q}^{-1}$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(\boldsymbol Q\)&lt;/span&gt; 是正交矩阵。&lt;/p&gt;
+&lt;p&gt;矩阵的特征分解提供了许多有用的信息。例如，矩阵是奇异的，当且仅当含有零特征值。&lt;/p&gt;
+&lt;p&gt;考虑下面的二次方程
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(\boldsymbol x)=\boldsymbol x^\text{T}\boldsymbol {Ax}$$&lt;/div&gt;
+&lt;p&gt;
+其中限制 &lt;span class="math"&gt;\(\|\boldsymbol x\|_2=1\)&lt;/span&gt;，则当 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 等于 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的某个特征向量时，&lt;span class="math"&gt;\(f\)&lt;/span&gt; 将返回对应的特征值。在限制条件下，&lt;span class="math"&gt;\(f\)&lt;/span&gt; 的最大值是最大特征值，最小值是最小特征值。证明方法是将任意的 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 展开为 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 特征向量的线性组合。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;正定矩阵&lt;/strong&gt;（positive definite）：所有特征值都是正数的矩阵。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;半正定矩阵&lt;/strong&gt;（positive semidefinite）：所有特征值都是非负数的矩阵。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;负定矩阵&lt;/strong&gt;（negative definite）：所有特征值都是负数的矩阵。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;半负定矩阵&lt;/strong&gt;（negative semidefinite）：所有特征值都是非正数的矩阵。&lt;/p&gt;
+&lt;p&gt;对半正定矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt;，&lt;span class="math"&gt;\(\forall \boldsymbol x,\ \boldsymbol x^\text{T}\boldsymbol{Ax}\geq0\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;此外，正定矩阵还保证 &lt;span class="math"&gt;\(\boldsymbol x^\text{T}\boldsymbol{Ax}=0\Rightarrow\boldsymbol x=\boldsymbol 0\)&lt;/span&gt;。&lt;/p&gt;
+&lt;h2&gt;2.5 奇异值分解&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;奇异值分解&lt;/strong&gt;（singular value decomposition，SVD）是另一种矩阵分解方法。&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol A=\boldsymbol {UDV}^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times n\)&lt;/span&gt; 的矩阵，&lt;span class="math"&gt;\(\boldsymbol U\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times m\)&lt;/span&gt; 的正交矩阵，&lt;span class="math"&gt;\(\boldsymbol V\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(n\times n\)&lt;/span&gt; 的正交矩阵，&lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(m\times n\)&lt;/span&gt; 的对角矩阵。&lt;/p&gt;
+&lt;p&gt;对角矩阵 &lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 对角线上的元素称为矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的奇异值（singular value）。矩阵 &lt;span class="math"&gt;\(\boldsymbol U\)&lt;/span&gt; 的列向量称为左奇异向量（left singular vector），它是 &lt;span class="math"&gt;\(\boldsymbol {AA}^\text{T}\)&lt;/span&gt; 的特征向量。矩阵 &lt;span class="math"&gt;\(\boldsymbol V\)&lt;/span&gt; 的列向量称为右奇异向量（right singular vector），它是 &lt;span class="math"&gt;\(\boldsymbol A^\text{T}\boldsymbol A\)&lt;/span&gt; 的特征向量。&lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的非零奇异值是 &lt;span class="math"&gt;\(\boldsymbol {AA}^\text{T}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\boldsymbol A^\text{T}\boldsymbol A\)&lt;/span&gt; 特征值的平方根。&lt;/p&gt;
+&lt;p&gt;每个实数矩阵都有奇异值分解。&lt;/p&gt;
+&lt;h2&gt;2.6 摩尔－彭若斯伪逆&lt;/h2&gt;
+&lt;p&gt;矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的摩尔－彭若斯伪逆（Moore-Penrose pseudoinverse）定义为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol A^+=\lim_{\alpha\to0^+}\left(\boldsymbol A^\text{T}\boldsymbol A+\alpha \boldsymbol I\right)^{-1}\boldsymbol A^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+一般计算使用下面的公式：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol A^+=\boldsymbol {VD}^+\boldsymbol U^\text{T}$$&lt;/div&gt;
+&lt;p&gt;
+其中，矩阵 &lt;span class="math"&gt;\(\boldsymbol U\)&lt;/span&gt;、&lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\boldsymbol V\)&lt;/span&gt; 是矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 奇异值分解后得到的矩阵。对角矩阵 &lt;span class="math"&gt;\(\boldsymbol D\)&lt;/span&gt; 的伪逆 &lt;span class="math"&gt;\(\boldsymbol D^+\)&lt;/span&gt; 是其非零元素取倒数之后再转置得到的。&lt;/p&gt;
+&lt;p&gt;对于线性方程：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol {Ax}=\boldsymbol y$$&lt;/div&gt;
+&lt;p&gt;
+当矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的列数多于行数时，使用伪逆求解线性方程是众多可能解法中的一种，&lt;span class="math"&gt;\(\boldsymbol x=\boldsymbol A^+\boldsymbol y\)&lt;/span&gt; 是所有可行解中欧几里得范数 &lt;span class="math"&gt;\(\|\boldsymbol x\|_2\)&lt;/span&gt; 最小的那一个。&lt;/p&gt;
+&lt;p&gt;当矩阵 &lt;span class="math"&gt;\(\boldsymbol A\)&lt;/span&gt; 的列数多于行数时，可能没有解，通过伪逆求得的 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 是使得 &lt;span class="math"&gt;\(\|\boldsymbol {Ax}-\boldsymbol y\|_2\)&lt;/span&gt; 最小的那一个。&lt;/p&gt;
+&lt;h2&gt;2.7 迹运算&lt;/h2&gt;
+&lt;p&gt;迹运算返回的是矩阵对角元素的和：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{Tr}(\boldsymbol A)=\sum_iA_{i,i}$$&lt;/div&gt;
+&lt;p&gt;利用迹运算可以重写矩阵弗洛宾尼斯范数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\|{\boldsymbol A}\|_F=\sqrt{\sum_{i,j}A_{i,j}^2}=\sqrt{\text{Tr}(\boldsymbol {AA}^\text{T})}$$&lt;/div&gt;
+&lt;p&gt;迹运算性质：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(\text{Tr}(\boldsymbol A)=\text{Tr}\left(\boldsymbol A^\text{T}\right)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(\text{Tr}(\boldsymbol{ABC})=\text{Tr}(\boldsymbol{CAB})=\text{Tr}(\boldsymbol{BCA})\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(\text{Tr}(a)=a\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2.8 行列式&lt;/h2&gt;
+&lt;p&gt;记作 &lt;span class="math"&gt;\(\text{det}(\boldsymbol A)\)&lt;/span&gt;，等于矩阵特征值的乘积。&lt;/p&gt;
+&lt;p&gt;行列式的绝对值可以用来衡量矩阵参与矩阵乘法后空间扩大或缩小了多少。如果行列式是 0，那么空间至少沿着某一维完全收缩了，使其失去了所有的体积；如果行列式是 1，那么这个转换保持空间体积不变。&lt;/p&gt;
+&lt;h2&gt;2.9 实例：主成分分析&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;主成分分析&lt;/strong&gt;（principal components analysis，PCA）是一个简单的机器学习算法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;问题&lt;/strong&gt;：假设在 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 空间中有 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 个点 &lt;span class="math"&gt;\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)&lt;/span&gt;，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="机器学习"></category><category term="深度学习"></category></entry><entry><title>深度学习 第一章 引言</title><link href="https://xutree.github.io/pages/2018/11/21/dl-1/" rel="alternate"></link><published>2018-11-21T08:25:14+08:00</published><updated>2018-11-21T08:25:14+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-1/</id><summary type="html">&lt;p&gt;让计算机从经验获取知识，可以避免由人类来给计算机形式化的指定它所需要的所有知识。层次化的概念让计算机构建较简单的概念来学习复杂概念。如果绘制出表示这些概念如何建立在彼此之上的图，我们得到一张“深”（层次很多）的图。基于这个原因，我们称这种方法为 &lt;strong&gt;AI 深度学习&lt;/strong&gt;（deep learning）。&lt;/p&gt;
 &lt;p&gt;人工智能的一个关键挑战是如何将非形式化的知识传达给计算机。&lt;/p&gt;
 &lt;p&gt;一些人工智能项目力求将关于世界的知识用形式化的语言进行硬编码（hard-code）。这就是众所周知的知识库（knowledge base）方法。&lt;/p&gt;
 &lt;p&gt;依靠硬编码的知识体系面临严重的缺陷，AI 系统需要具备自己获取知识的能力，即从原始数据中提取模式的能力。这种能力称为&lt;strong&gt;机器学习&lt;/strong&gt;（machine learning）。&lt;/p&gt;
