@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-21T20:09:05+08:00</updated><entry><title>深度学习 第三章 概率与信息论</title><link href="https://xutree.github.io/pages/2018/11/21/dl-3/" rel="alternate"></link><published>2018-11-21T20:09:05+08:00</published><updated>2018-11-21T20:09:05+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-3/</id><summary type="html">&lt;h2&gt;3.1 随机变量&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-22T11:36:17+08:00</updated><entry><title>深度学习 第三章 概率与信息论</title><link href="https://xutree.github.io/pages/2018/11/21/dl-3/" rel="alternate"></link><published>2018-11-21T20:09:05+08:00</published><updated>2018-11-22T11:36:17+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-3/</id><summary type="html">&lt;h2&gt;3.1 随机变量&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;随机变量&lt;/strong&gt;（random variable）是可以随机的取不同值的变量。通常用无格式字体（plain typeface）中的小写字母来表示随机变量本身，而用手写体中的小写字母来表示随机变量能够取到的值。例如，&lt;span class="math"&gt;\(x_1\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(x_2\)&lt;/span&gt; 都是随机变量 x 的可能取值。&lt;/p&gt;
 &lt;h2&gt;3.2 概率分布&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;概率分布&lt;/strong&gt;（probability distribution）用来描述随机变量每一个可能取到的状态的可能性的大小。&lt;/p&gt;
@@ -90,51 +90,175 @@
 &lt;h2&gt;3.6 期望、方差和协方差&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;期望&lt;/strong&gt;（expectation）
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\mathbb{E}_{\text{x}\sim P}\left[x\right]=\sum_xxP(x)\ 或\ \mathbb{E}_{\text{x}\sim p}\left[x\right]=\int_xxP(x)dx$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\mathbb{E}_{\text{x}\sim P}\left[\text{x}\right]=\sum_xxP(x)\ 或\ \mathbb{E}_{\text{x}\sim p}\left[\text{x}\right]=\int_xxP(x)dx$$&lt;/div&gt;
 &lt;p&gt;
 约定 &lt;span class="math"&gt;\(\mathbb{E}[\cdot]\)&lt;/span&gt; 表示对方括号内的所有随机变量的值求平均。如随机变量明确，则可以省略下标。&lt;/p&gt;
 &lt;p&gt;性质：
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\mathbb{E}[a{x}+b{y}]=a\mathbb{E}[{x}]+b\mathbb{E}[{y}]$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\mathbb{E}[a\text{x}+b\text{y}]=a\mathbb{E}[\text{x}]+b\mathbb{E}[\text{y}]$$&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;方差&lt;/strong&gt;（variance）
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\text{Var}\left(x\right)=\mathbb{E}\left[\left(x-\mathbb{E}[x]\right)^2\right]=\mathbb{E}\left[x^2\right]-\left(\mathbb{E}[x]\right)^2$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\text{Var}\left(\text{x}\right)=\mathbb{E}\left[\left(\text{x}-\mathbb{E}[\text{x}]\right)^2\right]=\mathbb{E}\left[\text{x}^2\right]-\left(\mathbb{E}[\text{x}]\right)^2$$&lt;/div&gt;
 &lt;p&gt;
 方差的平方根称为&lt;strong&gt;标准差&lt;/strong&gt;（standard deviation）。&lt;/p&gt;
 &lt;p&gt;性质：
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\text{Var}(x)\geq0 \\
-\text{Var}(x+\text{const})=\text{Var}(x) \\
-\text{Var}(ax)=a^2\text{Var}(x) \\
-\text{Var}(ax+by)=a^2\text{Var}(x)+b^2\text{Var}(y)+2ab\ \text{Cov}(x,y) \\
-\text{Var}(x-y)=\text{Var}(x)+\text{Var}(y)-2\ \text{Cov}(x,y) \\
-\text{Var}\left(\sum_{i=1}^Nx_i\right)=\sum_{i,j=1}^N\text{Cov}(x_i,x_j)=\sum_{i=1}^N\text{Var}(x_i)+\sum_{i\neq j}\text{Cov}(x_i,x_j)$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\text{Var}(\text{x})\geq0 \\
+\text{Var}(\text{x}+\text{const})=\text{Var}(\text{x}) \\
+\text{Var}(a\text{x})=a^2\text{Var}(\text{x}) \\
+\text{Var}(a\text{x}+b\text{y})=a^2\text{Var}(\text{x})+b^2\text{Var}(\text{y})+2ab\ \text{Cov}(\text{x},\text{y}) \\
+\text{Var}(\text{x}-\text{y})=\text{Var}(\text{x})+\text{Var}(\text{y})-2\ \text{Cov}(\text{x},\text{y}) \\
+\text{Var}\left(\sum_{i=1}^N\text{x}_i\right)=\sum_{i,j=1}^N\text{Cov}(\text{x}_i,\text{x}_j)=\sum_{i=1}^N\text{Var}(\text{x}_i)+\sum_{i\neq j}\text{Cov}(\text{x}_i,\text{x}_j)$$&lt;/div&gt;
 &lt;p&gt;
 最后一式为随机向量的方差。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;协方差&lt;/strong&gt;（covariance）在概率论和统计学中用于衡量两个变量的总体误差。而方差是协方差的一种特殊情况，即当两个变量是相同的情况。期望值分别为 &lt;span class="math"&gt;\(\mathbb{E}(x)=\mu\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\mathbb{E}(y)=\nu\)&lt;/span&gt; 的两个具有有限二阶矩的实数随机变量 x 与 y 之间的协方差定义为：
+&lt;p&gt;&lt;strong&gt;协方差&lt;/strong&gt;（covariance）在概率论和统计学中用于衡量两个变量的总体误差。而方差是协方差的一种特殊情况，即当两个变量是相同的情况。期望值分别为 &lt;span class="math"&gt;\(\mathbb{E}(\text{x})=\mu\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\mathbb{E}(y)=\nu\)&lt;/span&gt; 的两个具有有限二阶矩的实数随机变量 x 与 y 之间的协方差定义为：
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\text{Cov}(x,y)=\mathbb{E}\left[(x-\mu)(y-\nu)\right]=\mathbb{E}[x\cdot y]-\mu\nu$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\text{Cov}(\text{x},\text{y})=\mathbb{E}\left[(\text{x}-\mu)(\text{y}-\nu)\right]=\mathbb{E}[\text{x}\cdot y]-\mu\nu$$&lt;/div&gt;
 &lt;p&gt;
 协方差表示的是两个变量的总体的误差，这与只表示一个变量误差的方差不同。 如果两个变量的变化趋势一致，也就是说如果其中一个大于自身的期望值，另外一个也大于自身的期望值，那么两个变量之间的协方差就是正值。 如果两个变量的变化趋势相反，即其中一个大于自身的期望值，另外一个却小于自身的期望值，那么两个变量之间的协方差就是负值。&lt;/p&gt;
 &lt;p&gt;如果 x 与 y 是统计独立的，那么二者之间的协方差就是 0。&lt;/p&gt;
 &lt;p&gt;取决于协方差的&lt;strong&gt;相关性&lt;/strong&gt;（correlation）定义为
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\eta=\frac{\text{cov}(x,y)}{\sqrt{\text{Var}(x)\cdot\text{Var}(y)}}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\eta=\frac{\text{cov}(\text{x},\text{y})}{\sqrt{\text{Var}(\text{x})\cdot\text{Var}(\text{y})}}$$&lt;/div&gt;
 &lt;p&gt;
 更准确地说是线性相关性，是一个衡量线性独立的无量纲数，其取值在 &lt;span class="math"&gt;\([－1,1]\)&lt;/span&gt; 之间。相关性 &lt;span class="math"&gt;\(\eta=1\)&lt;/span&gt; 时称为“完全线性相关”（相关性 &lt;span class="math"&gt;\(\eta=-1\)&lt;/span&gt; 时称为“完全线性负相关”）。&lt;/p&gt;
 &lt;p&gt;相关性为 0（因而协方差也为 0）的两个随机变量又被称为是不相关的，或者更准确地说叫作“线性无关”、“线性不相关”，这仅仅表明 x 与 y 两随机变量之间没有线性相关性，并非表示它们之间一定没有任何内在的（非线性）函数关系。&lt;/p&gt;
 &lt;p&gt;性质：
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\text{Cov}(x,x)=\text{Var}(x) \\
-\text{Cov}(x,y)=\text{Cov}(y,x) \\
-\text{Cov}(ax,by)=ab\ \text{Cov}(x,y) \\
-\text{Cov}\left(\sum_{i=1}^nx_i\sum_{j=1}^my_j\right)=\sum_{i=1}^n\sum_{j=1}^m\text{Cov}(x_i,y_j)$$&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;协方差矩阵&lt;/strong&gt;（covariance matrix）对随机向量 &lt;span class="math"&gt;\(\boldsymbol x\in\mathbb{R}^n\)&lt;/span&gt;，协方差矩阵为
+&lt;div class="math"&gt;$$\text{Cov}(\text{x},\text{x})=\text{Var}(\text{x}) \\
+\text{Cov}(\text{x},\text{y})=\text{Cov}(\text{y},\text{x}) \\
+\text{Cov}(a\text{x},b\text{y})=ab\ \text{Cov}(\text{x},\text{y}) \\
+\text{Cov}\left(\sum_{i=1}^n\text{x}_i\sum_{j=1}^m\text{y}_j\right)=\sum_{i=1}^n\sum_{j=1}^m\text{Cov}(\text{x}_i,\text{y}_j)$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;协方差矩阵&lt;/strong&gt;（covariance matrix）对随机向量 &lt;span class="math"&gt;\({\bf x}\in\mathbb{R}^n\)&lt;/span&gt;，协方差矩阵为
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\text{Cov}(\boldsymbol x)_{i,j}=\text{Cov}(x_i,y_j)$$&lt;/div&gt;
+&lt;div class="math"&gt;$$\text{Cov}({\bf x})_{i,j}=\text{Cov}(\text{x}_i,\text{y}_j)$$&lt;/div&gt;
 &lt;p&gt;
 其对角元是方差。&lt;/p&gt;
 &lt;h2&gt;3.7 常用概率分布&lt;/h2&gt;
+&lt;h3&gt;3.7.1 伯努利分布&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;伯努利分布&lt;/strong&gt;（Bernoulli distribution），又称两点分布或 0-1 分布。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(\text{x}=1)=\phi \\
+P(\text{x}=0)=1-\phi \\
+P(\text{x}=x)=\phi^x(1-\phi)^{1-x} \\
+\text{E}_{\text{x}}[\text{x}]=\phi \\
+\text{Var}_{\text{x}}(\text{x})=\phi(1-\phi)$$&lt;/div&gt;
+&lt;h3&gt;3.7.2 高斯分布&lt;/h3&gt;
+&lt;p&gt;实数上最常用的分布就是&lt;strong&gt;正态分布&lt;/strong&gt;（normal distribution），也称高斯分布（Gaussian distribution）。
+&lt;/p&gt;
+&lt;div class="math"&gt;$${\cal N}(x;\mu,\sigma^2)=\sqrt{\frac{1}{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x-\mu)^2\right) \\
+\mathbb{E}_{\text{x}\sim{\cal N}}[\text{x}]=\mu \\
+\text{Var}_{\text{x}\sim{\cal N}}[\text{x}]=\sigma^2$$&lt;/div&gt;
+&lt;p&gt;
+函数拐点在 &lt;span class="math"&gt;\(x=\mu\pm\sigma\)&lt;/span&gt; 处。&lt;/p&gt;
+&lt;p&gt;当我们由于缺乏关于某个实数上分布的先验知识而不知道该选择怎样的形式时，正态分布是默认较好的选择，有两个原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我们想要建模的很多分布的真实情况是比较接近正态分布的。中心极限定理（central limit theorem）说明很多独立随机变量的和近似服从正态分布&lt;/li&gt;
+&lt;li&gt;在具有相同方差的所有可能的概率分布中，正态分布在实数上具有最大的不确定性。因此，我们可以认为正态分布是对模型加入的先验知识量最少的分布&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;正态分布可以推广到 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 空间，这种情况下称为&lt;strong&gt;多维正态分布&lt;/strong&gt;（multivariate normal distribution）。它的参数是一个正定对称矩阵 &lt;span class="math"&gt;\(\boldsymbol \Sigma\)&lt;/span&gt;（协方差矩阵）：
+&lt;/p&gt;
+&lt;div class="math"&gt;$${\cal N}(\boldsymbol x;\boldsymbol\mu,\boldsymbol\Sigma)=\sqrt{\frac{1}{(2\pi)^n\text{det}(\boldsymbol \Sigma)}}\exp\left(-\frac{1}{2}(\boldsymbol x-\boldsymbol \mu)^\text{T}\boldsymbol\Sigma^{-1}(\boldsymbol x-\boldsymbol \mu)\right)$$&lt;/div&gt;
+&lt;h3&gt;3.7.3 指数分布和 Laplace 分布&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;指数分布&lt;/strong&gt;（exponential distribution）在 &lt;span class="math"&gt;\(x=0\)&lt;/span&gt; 处取得边界点（sharp point）的分布。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p(x;\lambda)=\lambda\boldsymbol 1_{x\geq0}\exp(-\lambda x)$$&lt;/div&gt;
+&lt;p&gt;
+指示函数（indicator function）&lt;span class="math"&gt;\(\boldsymbol 1_{x\geq0}\)&lt;/span&gt; 来使得当 &lt;span class="math"&gt;\(x\)&lt;/span&gt; 取负值时的概率为零。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;拉普拉斯分布&lt;/strong&gt;（Laplace distribution）可以在任意一点 &lt;span class="math"&gt;\(\mu\)&lt;/span&gt; 处设置概率质量的峰值。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{Laplace}(x;\mu,\gamma)=\frac{1}{2\gamma}\exp\left(-\frac{|x-\mu|}{\gamma}\right)$$&lt;/div&gt;
+&lt;h3&gt;3.7.4 Dirac 分布和经验分布&lt;/h3&gt;
+&lt;p&gt;Dirac delta 函数可以用于定义狄拉克分布：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p(x)=\delta(x-\mu)$$&lt;/div&gt;
+&lt;p&gt;Dirac 分布常作为&lt;strong&gt;经验分布&lt;/strong&gt;（empirical distribution）的一个组成部分出现：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\hat{p}(\boldsymbol x)=\frac{1}{m}\sum_{i=1}^m\delta(\boldsymbol x-\boldsymbol x^{(i)})$$&lt;/div&gt;
+&lt;p&gt;
+经验分布将概率密度 &lt;span class="math"&gt;\(\frac{1}{m}\)&lt;/span&gt; 赋给 &lt;span class="math"&gt;\(m\)&lt;/span&gt; 个点 &lt;span class="math"&gt;\(\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\)&lt;/span&gt; 中的每一个，这些点是给定的数据集或者采样的集合。&lt;/p&gt;
+&lt;p&gt;只有在定义连续型随机变量的经验分布时，狄拉克 delta 函数才是必要的。对于离散型随机变量，对于每一个可能的输入，其概率可以简单的设为训练集上那个输入值的&lt;strong&gt;经验频率&lt;/strong&gt;（empirical frequency）。&lt;/p&gt;
+&lt;p&gt;当我们在训练集上训练模型时，可以认为从这个训练集上得到的经验分布指明了采样来源的分布。关于经验分布另外一个重要的观点是，它是训练数据的似然最大的那个概率密度函数。&lt;/p&gt;
+&lt;h3&gt;3.7.5 分布的混合&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;混合分布&lt;/strong&gt;（mixture distribution）是由一些组件（component）分布构成：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(\text{x})=\sum_iP(\text{c}=i)P(\text{x}|\text{c}=i)$$&lt;/div&gt;
+&lt;p&gt;
+这里 &lt;span class="math"&gt;\(P(\text{c})\)&lt;/span&gt; 是各个组件被选中的概率，决定每一次试验样本从哪个组件分布生成。&lt;/p&gt;
+&lt;h2&gt;3.8 常用函数的性质&lt;/h2&gt;
+&lt;h3&gt;3.8.1 逻辑函数&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;逻辑函数&lt;/strong&gt;（logistic function），也被称为 &lt;strong&gt;S 函数&lt;/strong&gt;（sigmoid function），通常用来产生伯努利分布中的参数 &lt;span class="math"&gt;\(\phi\)&lt;/span&gt;，因为它的范围是 &lt;span class="math"&gt;\((0,1)\)&lt;/span&gt;。sigmoid 函数在变量取绝对值非常大的时候会出现饱和（saturate）现象，意味着对输入的微小变化变得不敏感。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\sigma(x)=\frac{1}{1+\text{e}^{-x}}$$&lt;/div&gt;
+&lt;p&gt;
+一些性质：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\sigma(x)=\frac{\text{e}^{x}}{\text{e}^{x}+1} \\
+\frac{d}{dx}\sigma(x)=\sigma(x)\sigma(-x) \\
+1-\sigma(x)=\sigma(-x) \\
+\forall x\in(0,1),\ \sigma^{-1}(x)=\ln\left(\frac{x}{1-x}\right)$$&lt;/div&gt;
+&lt;h3&gt;3.8.2 softplus 函数&lt;/h3&gt;
+&lt;div class="math"&gt;$$\zeta(x)=\ln(1+\text{e}^{x})$$&lt;/div&gt;
+&lt;p&gt;softplus 函数可以用来产生正态分布的 &lt;span class="math"&gt;\(\beta\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt; 参数，因为它的范围是 &lt;span class="math"&gt;\((0,\infty)\)&lt;/span&gt;。softplus 函数名来源于它是另外一个函数的平滑（或“软化”）形式，这个函数是：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$x^+=\max(0,x)$$&lt;/div&gt;
+&lt;p&gt;一些性质：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\zeta(x)=-\ln\sigma(-x) \\
+\frac{d}{dx}\zeta(x)=\sigma(x) \\
+\forall x\geq0,\ \zeta^{-1}(x)=\ln\left(\text{e}^x-1\right) \\
+\zeta(x)=\int_{-\infty}^x\sigma(y)dy \\
+\zeta(x)-\zeta(-x)=x$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;正部函数&lt;/strong&gt;（positive part function）：&lt;span class="math"&gt;\(x^+=\max(0,x)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;负部函数&lt;/strong&gt;（negative part function）：&lt;span class="math"&gt;\(x^-=\max(0,-x)\)&lt;/span&gt;&lt;/p&gt;
+&lt;div class="math"&gt;$$x^+-x^-=x$$&lt;/div&gt;
+&lt;h2&gt;3.9 贝叶斯规则&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;贝叶斯规则&lt;/strong&gt;（Bayes' rule）：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$P(\text{x}|\text{y})=\frac{P(\text{x})P(\text{y}|\text{x})}{P(\text{y})}=\frac{P(\text{x})P(\text{y}|\text{x})}{\sum_xP(\text{y}|x)P(x)}$$&lt;/div&gt;
+&lt;h2&gt;3.10 连续型变量的技术细节&lt;/h2&gt;
+&lt;p&gt;假设有两个随机变量 &lt;span class="math"&gt;\(\bf x\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\bf y\)&lt;/span&gt; 满足 &lt;span class="math"&gt;\(\boldsymbol y=g(\boldsymbol x)\)&lt;/span&gt;，其中 &lt;span class="math"&gt;\(g\)&lt;/span&gt; 是可逆、连续可微的函数。&lt;/p&gt;
+&lt;p&gt;我们需要保持下面的性质：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$|p_y(g(x))dy|=|p_x(x)dx|$$&lt;/div&gt;
+&lt;p&gt;
+即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p_y(y)=p_x(g^{-1}(y))\left\lvert\frac{\partial x}{\partial y}\right\rvert$$&lt;/div&gt;
+&lt;p&gt;
+即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p_x(x)=p_y(g(x))\left\lvert\frac{\partial g(x)}{\partial x}\right\rvert$$&lt;/div&gt;
+&lt;p&gt;
+在高维空间中，微分运算扩展为 &lt;strong&gt;Jacobian 矩阵&lt;/strong&gt;的行列式，矩阵的每个元素为 &lt;span class="math"&gt;\(J_{i,j}=\frac{\partial x_i}{\partial y_j}\)&lt;/span&gt;。因此，对实值向量 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\boldsymbol y\)&lt;/span&gt;：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p_x(\boldsymbol x)=p_y(g(\boldsymbol x))\left\lvert\text{det}\left(\frac{\partial g(\boldsymbol x)}{\partial \boldsymbol x}\right)\right\rvert \\$$&lt;/div&gt;
+&lt;h2&gt;3.11 信息论&lt;/h2&gt;
+&lt;h3&gt;3.11.1 自信息&lt;/h3&gt;
+&lt;p&gt;一个事件 &lt;span class="math"&gt;\(\text{x}=x\)&lt;/span&gt; 的&lt;strong&gt;自信息&lt;/strong&gt;（self-information）为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$I(x)=-\log P(x)$$&lt;/div&gt;
+&lt;p&gt;
+当底数是 e 时，自信息的单位是&lt;strong&gt;奈特&lt;/strong&gt;（nats）。当底数是 2 时，自信息的单位是&lt;strong&gt;比特&lt;/strong&gt;（bit）或&lt;strong&gt;香农&lt;/strong&gt;（shannons）。&lt;/p&gt;
+&lt;h3&gt;3.11.2 香农熵&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;香农熵&lt;/strong&gt;（Shannon entropy）对整个概率分布中的不确定性总量进行量化：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$H(x)=\mathbb{E}_{\text{x}\sim P}[I(x)]=-\mathbb{E}_{\text{x}\sim P}[\log P(x)]$$&lt;/div&gt;
+&lt;p&gt;
+也记作 &lt;span class="math"&gt;\(H(P)\)&lt;/span&gt;。当 x 是连续的，香农熵被称为&lt;strong&gt;微分熵&lt;/strong&gt;（differential entropy）。&lt;/p&gt;
+&lt;h3&gt;3.11.3 相对熵&lt;/h3&gt;
+&lt;p&gt;如果对于同一个随机变量 x 有两个单独的概率分布 &lt;span class="math"&gt;\(P(\text{x})\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Q(\text{x})\)&lt;/span&gt;，可以使用&lt;strong&gt;相对熵&lt;/strong&gt;（relative entropy）来衡量两个分布的差异：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$D_{KL}(P\|Q)=\mathbb{E}_{\text{x}\sim P}\left[\log\frac{P(x)}{Q(x)}\right]=\mathbb{E}_{\text{x}\sim P}[\log P(x)-\log Q(x)]$$&lt;/div&gt;
+&lt;p&gt;
+又称为 &lt;strong&gt;KL 散度&lt;/strong&gt;（Kullback–Leibler divergence，简称KLD），&lt;strong&gt;信息散度&lt;/strong&gt;（information divergence），&lt;strong&gt;信息增益&lt;/strong&gt;（information gain）。&lt;/p&gt;
+&lt;p&gt;KL 散度是非负的。当且仅当分布相同 KL 散度为 0。&lt;/p&gt;
+&lt;p&gt;尽管从直觉上 KL 散度是个度量或距离函数, 但是它实际上并不是一个真正的度量或距离。因为 KL 散度不具有对称性。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;按照惯例，在信息论中，&lt;span class="math"&gt;\(\lim_{x\to0}x\ln x=0\)&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
