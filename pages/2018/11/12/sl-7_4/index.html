@@ -10,16 +10,10 @@
 <meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
     <title>统计学习方法 第七章 支持向量机（4）——序列最小最优化算法  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
-        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
-        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/基础知识.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 基础知识 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/其他.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 其他 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
 </head>
 
 <body>
@@ -32,15 +26,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
-                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
-                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
-                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li ><a href="/index.html">主页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -54,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/12/sl-7_4/"> 统计学习方法 第七章 支持向量机（4）——序列最小最优化算法  </a></h1>
+            <h1><a href="/pages/2018/11/12/sl-7_4/"> 统计学习方法 第七章 支持向量机（4）——序列最小最优化算法  </a></h1>
         </header>
     </div>
 
@@ -88,7 +82,7 @@ W(\alpha_1,\alpha_2) &amp;=&amp; \frac{1}{2}K_{11}\alpha_1^2+\frac{1}{2}K_{22}\a
 \end{eqnarray}$$</div>
 <p>
 其中，<span class="math">\(K_{ij}=K(x_i,x_j)\)</span>，<span class="math">\(\varsigma\)</span> 是常数，并忽略了不含 <span class="math">\(\alpha_{1}\)</span>，<span class="math">\(\alpha_2\)</span> 的常数项。</p>
-<p><img alt="二变量优化问题" src="https://xutree.github.io/images/statistical_learning_7.4.png"></p>
+<p><img alt="二变量优化问题" src="/images/statistical_learning_7.4.png"></p>
 <p>上图中显示了 <span class="math">\(\alpha_{1}\)</span>，<span class="math">\(\alpha_2\)</span> 的取值范围，即位于平行于对角线的线段之上。所以两变量最优化问题实际上为单变量最优化问题，不妨考虑变量 <span class="math">\(\alpha_2\)</span> 的最优化问题。</p>
 <p>假设二次规划问题的初始可行解是 <span class="math">\(\alpha_1^\text{old}\)</span>，<span class="math">\(\alpha_2^\text{old}\)</span>，最优解为 <span class="math">\(\alpha_1^\text{new}\)</span>，<span class="math">\(\alpha_2^\text{new}\)</span>，并且假设在沿着约束方向未经剪辑时 <span class="math">\(\alpha_2\)</span> 的最优解为 <span class="math">\(\alpha_2^\text{new,unc}\)</span>。</p>
 <p>由于 <span class="math">\(\alpha_2^\text{new}\)</span> 需要满足不等式约束 <span class="math">\(0\leq\alpha_2^\text{new}\leq C\)</span>，所以最优值 <span class="math">\(\alpha_2^\text{new}\)</span> 的取值范围必须满足
@@ -324,27 +318,27 @@ y_i\cdot g(x_i)=\begin{cases}
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/12/sl-7_3/">
+                                <a href="/pages/2018/11/12/sl-7_3/">
                                     统计学习方法 第七章 支持向量机（3）——非线性支持向量机
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/11/sl-7_2/">
+                                <a href="/pages/2018/11/11/sl-7_2/">
                                     统计学习方法 第七章 支持向量机（2）——线性支持向量机
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/11/sl-7_1/">
+                                <a href="/pages/2018/11/11/sl-7_1/">
                                     统计学习方法 第七章 支持向量机（1）——线性可分支持向量机
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/10/directional_derivative-gradient/">
+                                <a href="/pages/2018/11/10/directional_derivative-gradient/">
                                     方向导数和梯度
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/">
+                                <a href="/pages/2018/11/10/lagrange_duality/">
                                     拉格朗日对偶性
                                 </a>
                             </li>
@@ -356,27 +350,27 @@ y_i\cdot g(x_i)=\begin{cases}
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/12/sl-8/">
+                                <a href="/pages/2018/11/12/sl-8/">
                                     统计学习方法 第八章 提升方法
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/16/likelihood-function/">
+                                <a href="/pages/2018/11/16/likelihood-function/">
                                     似然函数
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/17/sl-9/">
+                                <a href="/pages/2018/11/17/sl-9/">
                                     统计学习方法 第九章 EM 算法及其推广
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/19/sl-10/">
+                                <a href="/pages/2018/11/19/sl-10/">
                                     统计学习方法 第十章 隐马尔科夫模型
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/19/sl-11/">
+                                <a href="/pages/2018/11/19/sl-11/">
                                     统计学习方法 第十一章 条件随机场
                                 </a>
                             </li>
@@ -418,7 +412,7 @@ y_i\cdot g(x_i)=\begin{cases}
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
                         <li><a href="/tags.html#机器学习-ref">机器学习
-                                <span>18</span>
+                                <span>19</span>
 </a></li>
                         <li><a href="/tags.html#统计学习-ref">统计学习
                                 <span>15</span>

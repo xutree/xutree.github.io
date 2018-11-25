@@ -10,16 +10,10 @@
 <meta name="keywords" content="C++, 读书笔记, " />
     <title>C++ Primer 第十章 泛型算法  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
-        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
-        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/基础知识.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 基础知识 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/其他.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 其他 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
 </head>
 
 <body>
@@ -32,15 +26,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
-                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
-                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
-                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li ><a href="/index.html">主页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -54,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/"> C++ Primer 第十章 泛型算法  </a></h1>
+            <h1><a href="/pages/2018/10/17/C++_Primer_Chapter_10/"> C++ Primer 第十章 泛型算法  </a></h1>
         </header>
     </div>
 
@@ -549,7 +543,7 @@ vector&lt;int&gt; vec(in_iter,eof);  //从迭代器范围构造 vec
 <td align="left">返回从流中读取数据</td>
 </tr>
 <tr>
-<td align="left">in-&gt;mem</td>
+<td align="left">in-&gt;mem　</td>
 <td align="left">与<code>(*in).mem</code>的含义相同</td>
 </tr>
 <tr>
@@ -587,10 +581,10 @@ cout &lt;&lt; accumulatre(in, eof, 0) &lt;&lt; endl;
 </tr>
 <tr>
 <td align="left">out = val</td>
-<td align="left">用 &lt;&lt; 运算符将 val 写入到 out 所绑定的 ostream 中。val 的类型必须与 out 可写的类型兼容</td>
+<td align="left">　用 &lt;&lt; 运算符将 val 写入到 out 所绑定的 ostream 中。val 的类型必须与 out 可写的类型兼容</td>
 </tr>
 <tr>
-<td align="left">*out, ++out, out++</td>
+<td align="left">*out, ++out, out++　</td>
 <td align="left">这些运算符是存在的，但不对 out 做任何事情。每个运算符都返回 out</td>
 </tr>
 </tbody>
@@ -654,7 +648,7 @@ cout &lt;&lt; string(rcomma.base(), line.cend()) &lt;&lt; endl;
 
 
 <p>rcomma 和 rcomma.base() 指向了不同的元素，line.crbegin() 和 line.cend() 也是如此。这些不同保证了元素范围无论是正向处理还是反向出来都是相同的。从技术上讲，普通迭代器与反向迭代器的关系反映了左闭合区间的特征。关键点在于 [line.crbegin(),rcomma) 和 [rcomma.base(),line.cend()) 指向 line 中相同的元素范围。</p>
-<p><img alt="反向迭代器和普通迭代器之间的关系" src="https://xutree.github.io/images/c++10-1.jpg"></p>
+<p><img alt="反向迭代器和普通迭代器之间的关系" src="/images/c++10-1.jpg"></p>
 <h2>泛型算法结构</h2>
 <p>任何算法的最基本的特性是它要求其迭代器提供哪些操作。某些算法，如<code>find</code>，只要求通过迭代器访问元素、递增迭代器以及比较两个迭代器是否相等这些能力。其他一些算法，如<code>sort</code>，还要求读、写和随机访问元素的能力。算法所要求的迭代器操作可以分为5个迭代器类别，如表所示：</p>
 <table>
@@ -794,27 +788,27 @@ remove_copy_if(v1.begin(), v1.end(), back_inserter(v2), [] (int i) { return i % 
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
+                                <a href="/pages/2018/10/16/C++_Primer_Chapter_9/">
                                     C++ Primer 第九章 顺序容器
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
+                                <a href="/pages/2018/10/16/atom快捷键/">
                                     Atom 快捷键
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
+                                <a href="/pages/2018/10/15/perl入门/">
                                     Perl 入门
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/10/数据结构向量/">
+                                <a href="/pages/2018/10/10/数据结构向量/">
                                     数据结构——向量
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
+                                <a href="/pages/2018/10/09/C++_Primer_Chapter_8/">
                                     C++ Primer 第八章 IO 库
                                 </a>
                             </li>
@@ -826,27 +820,27 @@ remove_copy_if(v1.begin(), v1.end(), back_inserter(v2), [] (int i) { return i % 
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_11/">
                                     C++ Primer 第十一章 关联容器
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_12/">
                                     C++ Primer 第十二章 动态内存
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_13/">
                                     C++ Primer 第十三章 拷贝控制
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_14/">
                                     C++ Primer 第十四章 重载运算与类型转换
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_15/">
                                     C++ Primer 第十五章 面向对象程序设计
                                 </a>
                             </li>

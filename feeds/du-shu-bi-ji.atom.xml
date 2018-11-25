@@ -1,14 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-22T11:36:17+08:00</updated><entry><title>深度学习 第三章 概率与信息论</title><link href="https://xutree.github.io/pages/2018/11/21/dl-3/" rel="alternate"></link><published>2018-11-21T20:09:05+08:00</published><updated>2018-11-22T11:36:17+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-3/</id><summary type="html">&lt;h2&gt;3.1 随机变量&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;随机变量&lt;/strong&gt;（random variable）是可以随机的取不同值的变量。通常用无格式字体（plain typeface）中的小写字母来表示随机变量本身，而用手写体中的小写字母来表示随机变量能够取到的值。例如，&lt;span class="math"&gt;\(x_1\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(x_2\)&lt;/span&gt; 都是随机变量 x 的可能取值。&lt;/p&gt;
-&lt;h2&gt;3.2 概率分布&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;概率分布&lt;/strong&gt;（probability distribution）用来描述随机变量每一个可能取到的状态的可能性的大小。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;概率质量函数&lt;/strong&gt;（probability mass function，PMF）离散型变量的概率分布。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;概率密度函数&lt;/strong&gt;（probability density function，PDF）连续型变量的概率分布。&lt;/p&gt;
-&lt;h2&gt;3.3 边缘概率&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;边缘概率分布&lt;/strong&gt;（marginal probability distribution）是一种定义在子集上的概率分布。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>You Know Nothing - 读书笔记</title><link href="https://xutree.github.io/" rel="alternate"></link><link href="https://xutree.github.io/feeds/du-shu-bi-ji.atom.xml" rel="self"></link><id>https://xutree.github.io/</id><updated>2018-11-25T00:20:10+08:00</updated><entry><title>深度学习 第四章 数值计算</title><link href="https://xutree.github.io/pages/2018/11/24/dl-4/" rel="alternate"></link><published>2018-11-24T21:02:36+08:00</published><updated>2018-11-25T00:20:10+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-24:/pages/2018/11/24/dl-4/</id><summary type="html">&lt;h2&gt;4.1 上溢和下溢&lt;/h2&gt;
+&lt;p&gt;数值&lt;strong&gt;上溢&lt;/strong&gt;（overflow）：大量级的数被近似为正无穷或负无穷时发生上溢，进一步运算导致无限值变为非数字。&lt;/p&gt;
+&lt;p&gt;数值&lt;strong&gt;下溢&lt;/strong&gt;（underflow）：接近零的数被四舍五入为0时发生下溢。被零除，取零的对数，进一步运算会变为非数字。&lt;/p&gt;
+&lt;p&gt;必须对上溢和下溢进行数值稳定的一个例子是 softmax 函数。&lt;/p&gt;
+&lt;p&gt;在数学，尤其是概率论和相关领域中，softmax 函数，或称归一化指数函数，是逻辑函数的一种推广。它能将一个含任意实数的 &lt;span class="math"&gt;\(K\)&lt;/span&gt; 维向量 &lt;span class="math"&gt;\(\boldsymbol {z}\)&lt;/span&gt; “压缩”到另一个 &lt;span class="math"&gt;\(K\)&lt;/span&gt; 维实向量 &lt;span class="math"&gt;\(\sigma(\boldsymbol z)\)&lt;/span&gt; 中，使得每一个元素的范围都在 &lt;span class="math"&gt;\((0,1)\)&lt;/span&gt; 之间，并且所有元素的和为 1。该函数的形式通常按下面的式子给出：
 &lt;/p&gt;
-&lt;div class="math"&gt;$$p(x)=\int p …&lt;/div&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+&lt;div class="math"&gt;$$\text{softmax}(\boldsymbol x)_i=\frac …&lt;/div&gt;</summary><content type="html">&lt;h2&gt;4.1 上溢和下溢&lt;/h2&gt;
+&lt;p&gt;数值&lt;strong&gt;上溢&lt;/strong&gt;（overflow）：大量级的数被近似为正无穷或负无穷时发生上溢，进一步运算导致无限值变为非数字。&lt;/p&gt;
+&lt;p&gt;数值&lt;strong&gt;下溢&lt;/strong&gt;（underflow）：接近零的数被四舍五入为0时发生下溢。被零除，取零的对数，进一步运算会变为非数字。&lt;/p&gt;
+&lt;p&gt;必须对上溢和下溢进行数值稳定的一个例子是 softmax 函数。&lt;/p&gt;
+&lt;p&gt;在数学，尤其是概率论和相关领域中，softmax 函数，或称归一化指数函数，是逻辑函数的一种推广。它能将一个含任意实数的 &lt;span class="math"&gt;\(K\)&lt;/span&gt; 维向量 &lt;span class="math"&gt;\(\boldsymbol {z}\)&lt;/span&gt; “压缩”到另一个 &lt;span class="math"&gt;\(K\)&lt;/span&gt; 维实向量 &lt;span class="math"&gt;\(\sigma(\boldsymbol z)\)&lt;/span&gt; 中，使得每一个元素的范围都在 &lt;span class="math"&gt;\((0,1)\)&lt;/span&gt; 之间，并且所有元素的和为 1。该函数的形式通常按下面的式子给出：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\text{softmax}(\boldsymbol x)_i=\frac{\text{e}^{x_i}}{\sum_{j=1}^K\text{e}^{x_j}}$$&lt;/div&gt;
+&lt;p&gt;Softmax 函数实际上是有限项离散概率分布的梯度对数归一化。因此，softmax函数在包括 多项逻辑回归，多项线性判别分析，朴素贝叶斯分类器和人工神经网络等的多种基于概率的多分类问题方法中都有着广泛应用。&lt;/p&gt;
+&lt;p&gt;Softmax 函数可以通过执行下面的替换进行稳定：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol z=\boldsymbol x-\max_{i}x_i$$&lt;/div&gt;
+&lt;p&gt;在实现深度学习算法时，底层库的开发者应该牢记数值问题。&lt;/p&gt;
+&lt;h2&gt;4.2 病态条件&lt;/h2&gt;
+&lt;p&gt;考虑函数 &lt;span class="math"&gt;\(f(\boldsymbol x)=\boldsymbol A^{-1}\boldsymbol x\)&lt;/span&gt;。当 &lt;span class="math"&gt;\(\boldsymbol A\in\mathbb{R}^{n\times n}\)&lt;/span&gt; 具有特征分解时，其条件数为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\max_{i,j}\left\lvert\frac{\lambda_i}{\lambda_j}\right\rvert$$&lt;/div&gt;
+&lt;p&gt;
+是最大和最小特征值的模之比。当条件数很大时，矩阵求逆对输入的误差特别敏感。&lt;/p&gt;
+&lt;h2&gt;4.3 基于导数的优化方法&lt;/h2&gt;
+&lt;h3&gt;4.3.1 梯度、方向导数、Jacobian 和 Hessian 矩阵&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;梯度向量：由多维输入一维输出的一阶导数构成&lt;/li&gt;
+&lt;li&gt;雅克比矩阵：由多维输入多维输出的一阶导数构成&lt;/li&gt;
+&lt;li&gt;海森矩阵：由多维输入一维输出的二阶导数构成&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;4.3.1.1 梯度&lt;/h4&gt;
+&lt;p&gt;在向量微积分中，&lt;strong&gt;标量场&lt;/strong&gt;的&lt;strong&gt;梯度&lt;/strong&gt;（gradient）是一个&lt;strong&gt;向量场&lt;/strong&gt;。标量场中某一点的梯度指向在这点标量场增长最快的方向（当然要比较的话必须固定方向的长度），梯度的绝对值是长度为 1 的方向中函数最大的增加率&lt;/p&gt;
+&lt;p&gt;多维函数的梯度是相对于一个向量求导的导数，记作
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\nabla_{\boldsymbol x}f(\boldsymbol x)$$&lt;/div&gt;
+&lt;p&gt;
+此结果是一个列向量，第 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 个元素是 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 关于 &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; 的偏导数（partial derivation）。&lt;/p&gt;
+&lt;h4&gt;4.3.1.2 方向导数&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;方向导数&lt;/strong&gt;（directional derivation）是函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(\boldsymbol u\)&lt;/span&gt; 方向上的斜率。是函数 &lt;span class="math"&gt;\(f(\boldsymbol x+\alpha\boldsymbol u)\)&lt;/span&gt; 关于 &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; 的导数（在 &lt;span class="math"&gt;\(\alpha=0\)&lt;/span&gt; 时取得），根据链式法则：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+\frac{\partial f(\boldsymbol x+\alpha\boldsymbol u)}{\partial\alpha} &amp;amp;=&amp;amp; \frac{\partial f(\boldsymbol x+\alpha\boldsymbol u)}{\partial(\boldsymbol x+\alpha\boldsymbol u)}\frac{\partial(\boldsymbol x+\alpha\boldsymbol u)}{\partial \alpha} \\
+&amp;amp;=&amp;amp; \nabla_{{\boldsymbol x}^\text{T}}f(\boldsymbol x)\boldsymbol u
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+注意等号右边第一项为标量对向量的导数，需要转置。再利用 &lt;span class="math"&gt;\(\alpha=0\)&lt;/span&gt;，并注意等式左边为标量，对等式两边同时转置，得方向导数为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol u^\text{T}\nabla_{\boldsymbol x}f(\boldsymbol x)$$&lt;/div&gt;
+&lt;p&gt;如果函数 &lt;span class="math"&gt;\(f(\boldsymbol x)\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 处可微，则沿着任意非零向量 &lt;span class="math"&gt;\(\boldsymbol u\)&lt;/span&gt; 的方向导数都存在。对赋范向量空间或内积空间有：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\nabla_{\boldsymbol u}f(\boldsymbol x)=\boldsymbol u\cdot \nabla_{\boldsymbol x}f(\boldsymbol x)=\boldsymbol u^\text{T}\nabla_{\boldsymbol x}f(\boldsymbol x)$$&lt;/div&gt;
+&lt;p&gt;
+其中，&lt;span class="math"&gt;\(\cdot\)&lt;/span&gt; 是内积运算。&lt;/p&gt;
+&lt;h4&gt;4.3.1.3 雅克比矩阵&lt;/h4&gt;
+&lt;p&gt;有时我们需要计算&lt;strong&gt;输入和输出都是向量&lt;/strong&gt;的函数的所有偏导数。包含所有这样的偏导数的矩阵被称为&lt;strong&gt;雅可比矩阵&lt;/strong&gt;（Jacobian matrix）。&lt;/p&gt;
+&lt;p&gt;具体来说，对于函数 &lt;span class="math"&gt;\(f:\mathbb{R}^m\to\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(f\)&lt;/span&gt; 的雅克比矩阵 &lt;span class="math"&gt;\(\boldsymbol J\in\mathbb{R}^{n\times m}\)&lt;/span&gt; 定义为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$J_{i,j}=\frac{\partial}{\partial x_j}f(\boldsymbol x)_i$$&lt;/div&gt;
+&lt;p&gt;
+即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol J=\begin{bmatrix}
+\frac{\partial f(\boldsymbol x)_1}{\partial x_1} &amp;amp; \frac{\partial f(\boldsymbol x)_1}{\partial x_2} &amp;amp; \cdots &amp;amp; \frac{\partial f(\boldsymbol x)_1}{\partial x_m} \\
+\frac{\partial f(\boldsymbol x)_2}{\partial x_1} &amp;amp; \frac{\partial f(\boldsymbol x)_2}{\partial x_2} &amp;amp; \cdots &amp;amp; \frac{\partial f(\boldsymbol x)_2}{\partial x_m} \\
+\vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \\
+\frac{\partial f(\boldsymbol x)_n}{\partial x_1} &amp;amp; \frac{\partial f(\boldsymbol x)_n}{\partial x_2} &amp;amp; \cdots &amp;amp; \frac{\partial f(\boldsymbol x)_n}{\partial x_m} \\
+\end{bmatrix}
+=\begin{bmatrix}
+\left(\nabla_{\boldsymbol x}f(\boldsymbol x)_1\right)^\text{T} \\
+\left(\nabla_{\boldsymbol x}f(\boldsymbol x)_2\right)^\text{T} \\
+\vdots \\
+\left(\nabla_{\boldsymbol x}f(\boldsymbol x)_n\right)^\text{T}
+\end{bmatrix}$$&lt;/div&gt;
+&lt;p&gt;
+它的每一行都是由相应的函数的梯度向量的转置构成的。当目标函数为标量函数时，Jacobi 矩阵就是梯度向量。雅克比矩阵也记为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$J_f(x_1,x_2,\cdots,x_m)\ \ 或\ \  \frac{\partial (f(\boldsymbol x)_1,f(\boldsymbol x)_2,\cdots,f(\boldsymbol x_n)}{\partial (x_1,x_2,\cdots,x_m)}$$&lt;/div&gt;
+&lt;p&gt;如果 &lt;span class="math"&gt;\(\boldsymbol x_0\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(\mathbb{R}^m\)&lt;/span&gt; 中的一点，&lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(\boldsymbol x_0\)&lt;/span&gt; 点可微分，根据数学分析，&lt;span class="math"&gt;\(J_{f}(\boldsymbol x_0)\)&lt;/span&gt; 是在这点的导数。在此情况下，&lt;span class="math"&gt;\(J_{f}(\boldsymbol x_0)\)&lt;/span&gt; 这个线性映射即 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在点 &lt;span class="math"&gt;\(\boldsymbol x_0\)&lt;/span&gt; 附近的&lt;strong&gt;最优线性逼近&lt;/strong&gt;，也就是说当 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 足够靠近点 &lt;span class="math"&gt;\(\boldsymbol x_0\)&lt;/span&gt; 时，我们有
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(\boldsymbol x)=f(\boldsymbol x_0)+J_f(\boldsymbol x_0)(\boldsymbol x-\boldsymbol x_0)$$&lt;/div&gt;
+&lt;p&gt;如果 &lt;span class="math"&gt;\(m=n\)&lt;/span&gt;，那么 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是从 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维空间到 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 维空间的函数，且它的雅可比矩阵是一个方块矩阵。于是我们可以取它的行列式，称为&lt;strong&gt;雅可比行列式&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;在某个给定点的雅可比行列式提供了 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在接近该点时的表现的重要信息。例如，如果连续可微函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 点的雅可比行列式不是零，那么它在该点附近具有反函数。这称为&lt;strong&gt;反函数定理&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;更进一步，如果 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 点的雅可比行列式是正数，则 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 点的取向不变；如果是负数，则 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 的取向相反。而从雅可比行列式的绝对值，就可以知道函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 点的缩放因子；这就是它出现在换元积分法中的原因。&lt;/p&gt;
+&lt;h4&gt;4.3.1.4 海森矩阵&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;海森矩阵&lt;/strong&gt;（Hessian matrix）是一个&lt;strong&gt;多变量实值函数&lt;/strong&gt;的二阶偏导数组成的方块矩阵。假如有一实函数 &lt;span class="math"&gt;\(f(\boldsymbol x)\)&lt;/span&gt;，如果 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 所有的二阶偏导数都存在，那么 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 的海森矩阵的第 &lt;span class="math"&gt;\(ij\)&lt;/span&gt; 项即：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$H(f)(\boldsymbol x)_{ij}=\frac{\partial^2}{\partial x_i\partial x_j}f(\boldsymbol x)$$&lt;/div&gt;
+&lt;p&gt;
+即
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol H(f)=\begin{bmatrix}
+\frac{\partial^2 f}{\partial x_1^2} &amp;amp; \frac{\partial^2 f}{\partial x_1\partial x_2} &amp;amp; \cdots &amp;amp; \frac{\partial^2 f}{\partial x_1\partial x_m} \\
+\frac{\partial^2 f}{\partial x_2\partial x_1} &amp;amp; \frac{\partial^2 f}{\partial x_2^2} &amp;amp; \cdots &amp;amp; \frac{\partial^2 f}{\partial x_2\partial x_m} \\
+\vdots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \\
+\frac{\partial^2 f}{\partial x_m\partial x_1} &amp;amp; \frac{\partial^2 f}{\partial x_m\partial x_2} &amp;amp; \cdots &amp;amp; \frac{\partial^2 f}{\partial x_m^2} \\
+\end{bmatrix}=\boldsymbol J_{\nabla_f(\boldsymbol x)}(\boldsymbol x)$$&lt;/div&gt;
+&lt;p&gt;海森矩阵的混合偏导数是海森矩阵非主对角线上的元素。假如他们是连续的，那么求导顺序没有区别，即
+&lt;/p&gt;
+&lt;div class="math"&gt;$${\frac  {\partial }{\partial x_1}}\left({\frac  {\partial f}{\partial x_2}}\right)={\frac  {\partial }{\partial x_2}}\left({\frac  {\partial f}{\partial x_1}}\right)$$&lt;/div&gt;
+&lt;p&gt;
+上式也可写为
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f_{x_1x_2}=f_{x_2x_1}$$&lt;/div&gt;
+&lt;p&gt;
+也就是说，如果 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 函数在区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 内的每个二阶导数都是连续函数，那么 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 的海森矩阵在 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 区域内为对称矩阵。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二阶导数测试&lt;/strong&gt;（second derivation test）：当函数 &lt;span class="math"&gt;\(f:\mathbb{R}^n\to\mathbb{R}\)&lt;/span&gt; 二阶连续可导时，Hessian 矩阵 &lt;span class="math"&gt;\(\boldsymbol H\)&lt;/span&gt; 在临界点 &lt;span class="math"&gt;\(\boldsymbol x_{0}\)&lt;/span&gt; (即，所有一阶偏导数都为零)上是一个 &lt;span class="math"&gt;\(n\times n\)&lt;/span&gt; 阶的对称矩阵。计算在 临界点 &lt;span class="math"&gt;\(\boldsymbol x_{0}\)&lt;/span&gt; 的海森矩阵：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当 &lt;span class="math"&gt;\(\boldsymbol H\)&lt;/span&gt; 是正定矩阵时（所有特征值都是正的），临界点 &lt;span class="math"&gt;\(x_{0}\)&lt;/span&gt; 是一个局部的极小值&lt;/li&gt;
+&lt;li&gt;当 &lt;span class="math"&gt;\(\boldsymbol H\)&lt;/span&gt; 是负定矩阵时（所有特征值都是正的），临界点 &lt;span class="math"&gt;\(x_{0}\)&lt;/span&gt; 是一个局部的极大值&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(\boldsymbol H=0\)&lt;/span&gt;，需要更高阶的导数来帮助判断&lt;/li&gt;
+&lt;li&gt;在其余情况下，临界点 &lt;span class="math"&gt;\(x_{0}\)&lt;/span&gt; 不是局部极值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实值函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在特定方向 &lt;span class="math"&gt;\(\boldsymbol d\)&lt;/span&gt; 上的二阶导数为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\nabla_{\boldsymbol d}(\nabla_{\boldsymbol d}f)=\nabla_{\boldsymbol d}(\boldsymbol d^\text{T}\nabla f)=\nabla(\boldsymbol d^\text{T}\nabla f)\boldsymbol d=\boldsymbol d^\text{T}\nabla(\nabla f)\boldsymbol d=\boldsymbol d^\text{T}\boldsymbol {Hd}$$&lt;/div&gt;
+&lt;p&gt;
+当 &lt;span class="math"&gt;\(\boldsymbol d\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(\boldsymbol H\)&lt;/span&gt; 的一个特征向量时，这个方向的二阶导数就是对应的特征值。对于其他的方向 &lt;span class="math"&gt;\(\boldsymbol d\)&lt;/span&gt;，方向二阶导数是所有特征值的加权平均，权重在 0 和 1 之间。最大特征值确定最大二阶导数，最小特征确定最下二阶导数。&lt;/p&gt;
+&lt;h3&gt;4.3.2 梯度下降法&lt;/h3&gt;
+&lt;p&gt;我们经常最小化具有多维输入的函数：&lt;span class="math"&gt;\(f:\mathbb{R}^n\to\mathbb{R}\)&lt;/span&gt;。为了使“最小化”的概念有意义，输出必须是一维的（标量）。&lt;/p&gt;
+&lt;p&gt;为最小化 &lt;span class="math"&gt;\(f\)&lt;/span&gt;，我们希望找到使 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 下降得最快的方向。计算方向导数：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\min_{\boldsymbol u,\boldsymbol u^\text{T}\boldsymbol u=1}\boldsymbol u^\text{T}\nabla_{\boldsymbol x}f(\boldsymbol x) \\
+=\min_{\boldsymbol u,\boldsymbol u^\text{T}\boldsymbol u=1}\|\boldsymbol u\|_2\|\nabla_{\boldsymbol x}f(\boldsymbol x)\|_2\cos\theta \\
+=\min_{\boldsymbol u}\cos\theta$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(\boldsymbol u\)&lt;/span&gt; 与梯度的夹角。这表明当 &lt;span class="math"&gt;\(\boldsymbol u\)&lt;/span&gt; 与梯度方向相反时，函数下降最快。即梯度向量指向上坡，负梯度向量指向下坡。我们在负梯度方向上移动可以减小 &lt;span class="math"&gt;\(f\)&lt;/span&gt;，这被称为&lt;strong&gt;最速下降法&lt;/strong&gt;（method of steepest descent）或&lt;strong&gt;梯度下降&lt;/strong&gt;（gradient descent）。&lt;/p&gt;
+&lt;p&gt;最速下降建议新的点为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol x'=\boldsymbol x-\epsilon\nabla_{\boldsymbol x}f(\boldsymbol x)$$&lt;/div&gt;
+&lt;p&gt;
+其中 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt; 为&lt;strong&gt;学习率&lt;/strong&gt;（learning rate），是一个确定步长大小的正标量。我们可以通过几种不同的方式选择 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt;。普遍的方式是选择一个小常数。有时我们通过计算，选择使方向导数消失的步长。还有一种方法是根据几个 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt; 计算 &lt;span class="math"&gt;\(f(\boldsymbol x-\epsilon\nabla_{\boldsymbol x}f(\boldsymbol x))\)&lt;/span&gt;，并选择其中能产生最小目标函数值的 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt;。这种策略称为线搜索。&lt;/p&gt;
+&lt;p&gt;我们可以通过（方向）二阶导数预期一个梯度下降步骤能表现得多好。函数 &lt;span class="math"&gt;\(f(\boldsymbol x)\)&lt;/span&gt; 在当前点 &lt;span class="math"&gt;\(\boldsymbol x^{(0)}\)&lt;/span&gt; 的二阶泰勒近似为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{eqnarray}
+f(\boldsymbol x) &amp;amp;\approx&amp;amp; f(\boldsymbol x^{(0)})+(\boldsymbol x-\boldsymbol x^{(0)})^\text{T}\nabla_{\boldsymbol x}f(\boldsymbol x^{(0)}) \\
+&amp;amp;+&amp;amp; \frac{1}{2}(\boldsymbol x-\boldsymbol x^{(0)})^\text{T}\boldsymbol H(f)(\boldsymbol x^{(0)})(\boldsymbol x-\boldsymbol x^{(0)})
+\end{eqnarray}$$&lt;/div&gt;
+&lt;p&gt;
+如果我们使用学习率 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt;，那么新的点 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 将会是 &lt;span class="math"&gt;\(\boldsymbol x^{(0)}-\epsilon\nabla_{\boldsymbol x}f(\boldsymbol x^{(0)})\)&lt;/span&gt;，带入上式，令 &lt;span class="math"&gt;\(\boldsymbol g=\nabla_{\boldsymbol x}f(\boldsymbol x^{(0)})\)&lt;/span&gt;，&lt;span class="math"&gt;\(\boldsymbol H=\boldsymbol H(f)(\boldsymbol x^{(0)})\)&lt;/span&gt; 得：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(\boldsymbol x^{(0)}-\epsilon\boldsymbol g) \approx f(\boldsymbol x^{(0)})-\epsilon\boldsymbol g^\text{T}\boldsymbol g+\frac{1}{2}\epsilon^2\boldsymbol g^\text{T}\boldsymbol H\boldsymbol g$$&lt;/div&gt;
+&lt;p&gt;
+上式是关于 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt; 的二次函数，所以，当 &lt;span class="math"&gt;\(\boldsymbol g^\text{T}\boldsymbol H\boldsymbol g\)&lt;/span&gt; 为零或负时，增加 &lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt; 将永远使得 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 下降；当 &lt;span class="math"&gt;\(\boldsymbol g^\text{T}\boldsymbol H\boldsymbol g\)&lt;/span&gt; 为正时，则使近似泰勒级数下降最多的最优步长为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\epsilon^\ast=\frac{\boldsymbol g^\text{T}\boldsymbol g}{\boldsymbol g^\text{T}\boldsymbol H\boldsymbol g}$$&lt;/div&gt;
+&lt;p&gt;
+最坏的情况下，&lt;span class="math"&gt;\(\boldsymbol d\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(\boldsymbol H\)&lt;/span&gt; 最大特征值 &lt;span class="math"&gt;\(\lambda_{\max}\)&lt;/span&gt; 对应的特征向量对齐，则最优步长是 &lt;span class="math"&gt;\(\frac{1}{\lambda_\max}\)&lt;/span&gt;。当我们要最小化的函数能用二次函数很好的近似的情况下，海森矩阵的特征值决定了学习率的量级。&lt;/p&gt;
+&lt;p&gt;最速下降在梯度的每一个元素为零时收敛（或在实践中，近似为零）。在某些情况下，我们也许能够避免运行该迭代算法，并通过解方程 &lt;span class="math"&gt;\(\nabla_{\boldsymbol x}f(\boldsymbol x)=0\)&lt;/span&gt; 直接跳到临界点。&lt;/p&gt;
+&lt;p&gt;虽然梯度下降被限制在连续空间中的优化问题，但不断向更好的情况移动一小步的一般概念可以推广到离散空间。递增带有离散参数的目标函数称为&lt;strong&gt;爬山&lt;/strong&gt;（hill climbing）算法。&lt;/p&gt;
+&lt;h3&gt;4.3.3 牛顿法&lt;/h3&gt;
+&lt;p&gt;
+梯度下降法利用函数一阶导数的信息，在局部位置用一阶方程（一维对应直线，二维对应平面，高维对应超平面）拟合函数，然后沿着拟合函数函数值减小方向下降。&lt;/p&gt;
+&lt;p&gt;牛顿法则利用函数一阶和二阶导数的信息，在局部位置用二阶方程（一维对应二次曲线，二维对应二次曲面，高维对应超二次曲面）拟合函数，然后沿着拟合函数函数值减小方向下降。&lt;/p&gt;
+&lt;p&gt;梯度下降法和牛顿法相比，两者都是迭代求解，不过梯度下降法是梯度求解，而牛顿法是用二阶的海森矩阵的逆矩阵求解。相对而言，使用牛顿法收敛更快（迭代更少次数）。但是每次迭代的时间比梯度下降法长。&lt;/p&gt;
+&lt;p&gt;目标函数 &lt;span class="math"&gt;\(f(\boldsymbol x)\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(\boldsymbol x^{(0)}\)&lt;/span&gt; 处的二阶泰勒展开式为：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f(\boldsymbol x+\boldsymbol x^{(0)})=f(\boldsymbol x^{(0)})+\boldsymbol x^\text{T}\nabla_{\boldsymbol x}f(\boldsymbol x^{(0)})+\frac{1}{2}\boldsymbol x^\text{T}\boldsymbol H(f)(\boldsymbol x^{(0)})\boldsymbol x$$&lt;/div&gt;
+&lt;p&gt;
+当 &lt;span class="math"&gt;\(\boldsymbol x^{(0)}\)&lt;/span&gt; 固定时，&lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 取多少可以使 &lt;span class="math"&gt;\(f(\boldsymbol {x+x}^{(0)})\)&lt;/span&gt; 最小呢，由于上式是 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 的二次函数，对 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 求偏导得临界点：
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\boldsymbol x^\ast=\boldsymbol x^{(0)}-\boldsymbol H(f)(\boldsymbol x^{(0)})^{-1}\nabla_{\boldsymbol x}f(\boldsymbol x^{(0)})$$&lt;/div&gt;
+&lt;p&gt;
+如果 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是一个正定二次函数，牛顿法只要使用上式一次就可以跳到函数的最小点。如果 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 不是一个真正的二次但能在局部近似为正定二次，牛顿法则需要多次迭代应用上式。&lt;/p&gt;
+&lt;p&gt;仅使用梯度信息的优化算法称为&lt;strong&gt;一阶优化算法&lt;/strong&gt;（first-order optimization algorithms），如梯度下降。使用 Hessian 矩阵的优化算法称为&lt;strong&gt;二阶优化算法&lt;/strong&gt;（second-order optimization algorithms），如牛顿法。&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
         linebreak = "false";
@@ -62,7 +218,16 @@
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><content type="html">&lt;h2&gt;3.1 随机变量&lt;/h2&gt;
+&lt;/script&gt;</content><category term="机器学习"></category><category term="深度学习"></category></entry><entry><title>深度学习 第三章 概率与信息论</title><link href="https://xutree.github.io/pages/2018/11/21/dl-3/" rel="alternate"></link><published>2018-11-21T20:09:05+08:00</published><updated>2018-11-22T11:36:17+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-21:/pages/2018/11/21/dl-3/</id><summary type="html">&lt;h2&gt;3.1 随机变量&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;随机变量&lt;/strong&gt;（random variable）是可以随机的取不同值的变量。通常用无格式字体（plain typeface）中的小写字母来表示随机变量本身，而用手写体中的小写字母来表示随机变量能够取到的值。例如，&lt;span class="math"&gt;\(x_1\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(x_2\)&lt;/span&gt; 都是随机变量 x 的可能取值。&lt;/p&gt;
+&lt;h2&gt;3.2 概率分布&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;概率分布&lt;/strong&gt;（probability distribution）用来描述随机变量每一个可能取到的状态的可能性的大小。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;概率质量函数&lt;/strong&gt;（probability mass function，PMF）离散型变量的概率分布。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;概率密度函数&lt;/strong&gt;（probability density function，PDF）连续型变量的概率分布。&lt;/p&gt;
+&lt;h2&gt;3.3 边缘概率&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;边缘概率分布&lt;/strong&gt;（marginal probability distribution）是一种定义在子集上的概率分布。
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p(x)=\int p …&lt;/div&gt;</summary><content type="html">&lt;h2&gt;3.1 随机变量&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;随机变量&lt;/strong&gt;（random variable）是可以随机的取不同值的变量。通常用无格式字体（plain typeface）中的小写字母来表示随机变量本身，而用手写体中的小写字母来表示随机变量能够取到的值。例如，&lt;span class="math"&gt;\(x_1\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(x_2\)&lt;/span&gt; 都是随机变量 x 的可能取值。&lt;/p&gt;
 &lt;h2&gt;3.2 概率分布&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;概率分布&lt;/strong&gt;（probability distribution）用来描述随机变量每一个可能取到的状态的可能性的大小。&lt;/p&gt;
@@ -325,61 +490,7 @@ x_n
 \end{bmatrix}$$&lt;/div&gt;
 &lt;p&gt;
 &lt;span class="math"&gt;\(\boldsymbol x_{-1}\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 中除 &lt;span class="math"&gt;\(x_1\)&lt;/span&gt; 外的所有元素构成的向量。&lt;span class="math"&gt;\(\boldsymbol x_{-S}\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(\boldsymbol x\)&lt;/span&gt; 中除 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 中指定的索引外的所有元素构成的向量。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;矩阵&lt;/strong&gt;（matrix …&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;h2&gt;2.1 标量、向量、矩阵和张量&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;矩阵&lt;/strong&gt;（matrix …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;2.1 标量、向量、矩阵和张量&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;标量&lt;/strong&gt;（scalar）：一个单独的数，用斜体小写字母表示，如 &lt;span class="math"&gt;\(n\in\mathbb{R}\)&lt;/span&gt; 中的 &lt;span class="math"&gt;\(n\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;向量&lt;/strong&gt;（vector）：一列数，用粗斜体小写字母表示
 &lt;/p&gt;
@@ -645,61 +756,7 @@ d^\ast &amp;amp;=&amp;amp;\arg\min_{\boldsymbol d}\left\|\boldsymbol X-\boldsymb
 &lt;h2&gt;11.1 概率无向图模型&lt;/h2&gt;
 &lt;p&gt;概率无向图模型（probabilistic undirected graphical model），又称为马尔科夫随机场（Markov random file），是一个可以由无向图表示的联合概率分布。&lt;/p&gt;
 &lt;h3&gt;11.1.1 模型定义&lt;/h3&gt;
-&lt;p&gt;图是由结点及连接结点的边组成的集合。结点和边分别记作 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{e}\)&lt;/span&gt; ，结点和边的集合分别记作 &lt;span class="math"&gt;\(\textsf{V}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{E}\)&lt;/span&gt; ，图记作 &lt;span class="math"&gt;\(\textsf{G …&lt;/span&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;条件随机场（conditional random field，CRF）是给定一组输入随机变量条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。&lt;/p&gt;
+&lt;p&gt;图是由结点及连接结点的边组成的集合。结点和边分别记作 &lt;span class="math"&gt;\(\textsf{v}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{e}\)&lt;/span&gt; ，结点和边的集合分别记作 &lt;span class="math"&gt;\(\textsf{V}\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(\textsf{E}\)&lt;/span&gt; ，图记作 &lt;span class="math"&gt;\(\textsf{G …&lt;/span&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;条件随机场（conditional random field，CRF）是给定一组输入随机变量条件下另一组输出随机变量的条件概率模型，其特点是假设输出随机变量构成马尔科夫随机场。&lt;/p&gt;
 &lt;p&gt;条件随机场可以用于不同的预测问题，本节仅讨论它在标注问题的应用，因此主要讲述线性链（linear chain）条件随机场。这时，问题变成了由输入序列对输出序列预测的判别模型，形式为对数线性模型，其学习方法通常是极大似然估计或正则化的极大似然估计。&lt;/p&gt;
 &lt;h2&gt;11.1 概率无向图模型&lt;/h2&gt;
 &lt;p&gt;概率无向图模型（probabilistic undirected graphical model），又称为马尔科夫随机场（Markov random file），是一个可以由无向图表示的联合概率分布。&lt;/p&gt;
@@ -1187,61 +1244,7 @@ y_n^\star=\arg\max_{1\leq j\leq m}\delta_n(j)$$&lt;/div&gt;
 &lt;p&gt;隐马尔科夫模型由初始概率分布、状态转移概率分布以及观测概率分布确定。隐马尔科夫模型的形式定义如下：&lt;/p&gt;
 &lt;p&gt;设 &lt;span class="math"&gt;\(Q\)&lt;/span&gt; 是所有可能的状态的集合，&lt;span class="math"&gt;\(V\)&lt;/span&gt; 是所有可能的观测的集合
 &lt;/p&gt;
-&lt;div class="math"&gt;$$Q=\{q_1,q_2,\cdots,q_N\},\ V=\{v_1,v_2 …&lt;/div&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;隐马尔科夫模型（hidden Markov model，HMM）是可用于标注问题的统计学模型，描述由隐藏的马尔科夫链随机生成观测序列的过程，属于生成模型。隐马尔科夫模型在语音识别、自然语言处理、生物信息、模式识别等领域有着广泛的应用。&lt;/p&gt;
+&lt;div class="math"&gt;$$Q=\{q_1,q_2,\cdots,q_N\},\ V=\{v_1,v_2 …&lt;/div&gt;</summary><content type="html">&lt;p&gt;隐马尔科夫模型（hidden Markov model，HMM）是可用于标注问题的统计学模型，描述由隐藏的马尔科夫链随机生成观测序列的过程，属于生成模型。隐马尔科夫模型在语音识别、自然语言处理、生物信息、模式识别等领域有着广泛的应用。&lt;/p&gt;
 &lt;h2&gt;10.1 隐马尔科夫模型的基本概念&lt;/h2&gt;
 &lt;h3&gt;10.1.1 隐马尔科夫模型的定义&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;
@@ -1605,61 +1608,7 @@ i_T^\star=\arg\max_{1\leq i\leq N}[\delta_T(i)]$$&lt;/div&gt;
 &lt;h2&gt;9.1 EM 算法的引入&lt;/h2&gt;
 &lt;p&gt;概率模型有时既含有观测变量（observable variable），又含有隐变量或潜在变量（latent variable）。如果概率模型的变量都是观测变量，那么给定数据，可以直接用极大似然估计法，或贝叶斯估计法估计模型参数。但是，当模型含有隐变量时，就不能简单的使用这些估计方法。EM 算法就是含有隐变量的概率模型参数的极大似然估计法，或极大后验概率估计法。&lt;/p&gt;
 &lt;h3&gt;9.1.1 EM 算法&lt;/h3&gt;
-&lt;p&gt;一般的，用 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 表示观测随机变量的数据，&lt;span class="math"&gt;\(Z …&lt;/span&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;EM 算法是一种迭代算法，用于含有隐变量（hidden varibale）的概率模型参数的极大似然估计，或极大后验概率估计。EM 算法每次的迭代分两步：E 步，求期望（expectation）；M 步，求极大（maximization）。所以这一算法被称为期望极大算法（expectation maximization）。&lt;/p&gt;
+&lt;p&gt;一般的，用 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 表示观测随机变量的数据，&lt;span class="math"&gt;\(Z …&lt;/span&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;EM 算法是一种迭代算法，用于含有隐变量（hidden varibale）的概率模型参数的极大似然估计，或极大后验概率估计。EM 算法每次的迭代分两步：E 步，求期望（expectation）；M 步，求极大（maximization）。所以这一算法被称为期望极大算法（expectation maximization）。&lt;/p&gt;
 &lt;h2&gt;9.1 EM 算法的引入&lt;/h2&gt;
 &lt;p&gt;概率模型有时既含有观测变量（observable variable），又含有隐变量或潜在变量（latent variable）。如果概率模型的变量都是观测变量，那么给定数据，可以直接用极大似然估计法，或贝叶斯估计法估计模型参数。但是，当模型含有隐变量时，就不能简单的使用这些估计方法。EM 算法就是含有隐变量的概率模型参数的极大似然估计法，或极大后验概率估计法。&lt;/p&gt;
 &lt;h3&gt;9.1.1 EM 算法&lt;/h3&gt;
@@ -2235,61 +2184,7 @@ f_{m-1}(x) &amp;amp;=&amp;amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 &lt;p&gt;序列最小优化算法（Sequential minimal optimization, SMO）是一种用于解决支持向量机训练过程中所产生优化问题的算法。SMO 由微软研究院的约翰·普莱特于 1998 年发明，目前被广泛使用于 SVM 的训练过程中，并在通行的 SVM 库 LIBSVM 中得到实现。1998 年，SMO 算法发表在 SVM 研究领域内引起了轰动，因为先前可用的 SVM 训练方法必须使用复杂的方法，并需要昂贵的第三方二次规划工具。而 SMO 算法较好地避免了这一问题。&lt;/p&gt;
 &lt;p&gt;SMO 算法主要用于解决如下凸二次规划的对偶问题
 &lt;/p&gt;
-&lt;div class="math"&gt;$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1 …&lt;/div&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;h2&gt;7.4 序列最小最优化算法&lt;/h2&gt;
+&lt;div class="math"&gt;$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1 …&lt;/div&gt;</summary><content type="html">&lt;h2&gt;7.4 序列最小最优化算法&lt;/h2&gt;
 &lt;p&gt;序列最小优化算法（Sequential minimal optimization, SMO）是一种用于解决支持向量机训练过程中所产生优化问题的算法。SMO 由微软研究院的约翰·普莱特于 1998 年发明，目前被广泛使用于 SVM 的训练过程中，并在通行的 SVM 库 LIBSVM 中得到实现。1998 年，SMO 算法发表在 SVM 研究领域内引起了轰动，因为先前可用的 SVM 训练方法必须使用复杂的方法，并需要昂贵的第三方二次规划工具。而 SMO 算法较好地避免了这一问题。&lt;/p&gt;
 &lt;p&gt;SMO 算法主要用于解决如下凸二次规划的对偶问题
 &lt;/p&gt;
@@ -2556,61 +2451,7 @@ y_i\cdot g(x_i)=\begin{cases}
 &lt;p&gt;核技巧（kernel trick）应用到支持向量机，其基本思想就是通过一个非线性变换将输入空间（欧式空间 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 或离散空间）对应于一个特征空间（希尔伯特空间 &lt;span class="math"&gt;\({\cal H}\)&lt;/span&gt;。在数学里，希尔伯特空间 Hilbert space，即完备的内积空间，也就是说一个带有内积的完备向量空间。希尔伯特空间是有限维欧几里得空间的一个推广，使之不局限于实数的情形和有限的维数，但又不失完备性），使得在输入空间中的超曲面模型对应于特征空间中的超平面模型（支持向量机）。&lt;/p&gt;
 &lt;h4&gt;核函数的定义&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;
-定义 7 …&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;h2&gt;7.3 非线性支持向量机与核函数&lt;/h2&gt;
+定义 7 …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;h2&gt;7.3 非线性支持向量机与核函数&lt;/h2&gt;
 &lt;p&gt;对解线性分类问题，线性分类支持向量机是一种非常有效的方法。但是，有时分类问题是非线性的，这时可以使用非线性支持向量机。&lt;/p&gt;
 &lt;h3&gt;7.3.1 核技巧&lt;/h3&gt;
 &lt;h4&gt;非线性分类问题&lt;/h4&gt;
@@ -2773,61 +2614,7 @@ y_i\cdot g(x_i)=\begin{cases}
 &lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
 &lt;p&gt;
 其中 &lt;span class="math"&gt;\(x_i\in{\cal X}=\mathbb{R}^n\)&lt;/span&gt;，&lt;span class="math"&gt;\(y_i\in{\cal Y}=\{+1,-1\}\)&lt;/span&gt;，&lt;span class="math"&gt;\(i=1,2,\cdots,N\)&lt;/span&gt;。再假设训练数据集不是线性可分的。通常情况是，训练数据中有一些特异点（outlier），将这些特异点除去后，剩下大部分的样本点组成的集合是线性可分的。&lt;/p&gt;
-&lt;p&gt;线性不可分意味着某些样本点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 不能满足函数间隔大于等于 1 的约束条件，为了解决这个问题，可以对每个样本点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 引进一个松弛变量 &lt;span class="math"&gt;\(\xi_i …&lt;/span&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;h2&gt;7.2 线性支持向量机&lt;/h2&gt;
+&lt;p&gt;线性不可分意味着某些样本点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 不能满足函数间隔大于等于 1 的约束条件，为了解决这个问题，可以对每个样本点 &lt;span class="math"&gt;\((x_i,y_i)\)&lt;/span&gt; 引进一个松弛变量 &lt;span class="math"&gt;\(\xi_i …&lt;/span&gt;&lt;/p&gt;</summary><content type="html">&lt;h2&gt;7.2 线性支持向量机&lt;/h2&gt;
 &lt;p&gt;假设给定一个特征空间上的训练数据集
 &lt;/p&gt;
 &lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
@@ -3318,61 +3105,7 @@ b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$&lt;/div&gt;
 定义 6.1（逻辑分布）设 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 是连续随机变量，&lt;span class="math"&gt;\(X\)&lt;/span&gt; 服从逻辑分布是指 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 具有下列分布函数和密度函数：
 &lt;div class="math"&gt;$$\begin{eqnarray}
 F(x) &amp;amp;=&amp;amp; P(X\leq x)=\frac{1}{1+\text{e}^{-(x-\mu)/\gamma}} \\
-f(x) &amp;amp;=&amp;amp; F'(x)=\frac …&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;逻辑回归（logistic regression）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。&lt;/p&gt;
+f(x) &amp;amp;=&amp;amp; F'(x)=\frac …&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;逻辑回归（logistic regression）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。&lt;/p&gt;
 &lt;p&gt;逻辑回归模型和最大熵模型都属于对数线性模型。&lt;/p&gt;
 &lt;h2&gt;6.1 逻辑回归模型&lt;/h2&gt;
 &lt;h3&gt;6.1.1 逻辑分布&lt;/h3&gt;
@@ -3850,61 +3583,7 @@ $$&lt;/div&gt;
 &lt;/p&gt;
 &lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$&lt;/div&gt;
 &lt;p&gt;
-其中输入实例 …&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;决策树（decision tree）是一种基本的分类与回归方法。其主要优点是模型具有可读性，分类速度快。决策树学习通常包括三个步骤：特征选择、决策树的生成和决策树的修剪。&lt;/p&gt;
+其中输入实例 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;决策树（decision tree）是一种基本的分类与回归方法。其主要优点是模型具有可读性，分类速度快。决策树学习通常包括三个步骤：特征选择、决策树的生成和决策树的修剪。&lt;/p&gt;
 &lt;h2&gt;5.1 决策树模型与学习&lt;/h2&gt;
 &lt;h3&gt;5.1.1 决策树模型&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;
@@ -4271,61 +3950,7 @@ g(t) &amp;amp;=&amp;amp; \frac{C(t)-C(T_t)}{|T_t|-1} \\
 &lt;/p&gt;
 &lt;div class="math"&gt;$$y\in{\cal Y}=\{c_1,c_2,\cdots,c_K\}$$&lt;/div&gt;
 &lt;p&gt;
-&lt;span class="math"&gt;\(X\)&lt;/span&gt; 是定义在输入空间 &lt;span class="math"&gt;\({\cal X}\)&lt;/span&gt; 上的随机变量，&lt;span class="math"&gt;\(Y\)&lt;/span&gt; 是定义在输出空间 &lt;span class="math"&gt;\({\cal Y}\)&lt;/span&gt; 上的随机变量，&lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 的联合概率分布 …&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;朴素贝叶斯（naive Bayes）法是基于贝叶斯定理与特征条件独立假设的分类方法。朴素贝叶斯法实现简单，学习和预测效率都很高，是一种常用的方法。&lt;/p&gt;
+&lt;span class="math"&gt;\(X\)&lt;/span&gt; 是定义在输入空间 &lt;span class="math"&gt;\({\cal X}\)&lt;/span&gt; 上的随机变量，&lt;span class="math"&gt;\(Y\)&lt;/span&gt; 是定义在输出空间 &lt;span class="math"&gt;\({\cal Y}\)&lt;/span&gt; 上的随机变量，&lt;span class="math"&gt;\(P(X,Y)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(Y\)&lt;/span&gt; 的联合概率分布 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;朴素贝叶斯（naive Bayes）法是基于贝叶斯定理与特征条件独立假设的分类方法。朴素贝叶斯法实现简单，学习和预测效率都很高，是一种常用的方法。&lt;/p&gt;
 &lt;h2&gt;4.1 朴素贝叶斯法的学习与分类&lt;/h2&gt;
 &lt;h3&gt;4.1.1 基本方法&lt;/h3&gt;
 &lt;p&gt;设输入特征向量
@@ -4519,61 +4144,7 @@ P_\lambda(X^{(j)}=a_{jl}|Y=c_k) &amp;amp;\geq&amp;amp; 0 \\
 &lt;h2&gt;3.1 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻算法&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;算法 3.1 （&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法）&lt;br&gt;
 输入：训练数据集
-&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2 …&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法（&lt;span class="math"&gt;\(k\)&lt;/span&gt;-nearest neighbor，&lt;span class="math"&gt;\(k\)&lt;/span&gt;-NN）是一种基本分类与回归方法。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的输入为实例的特征向量，输出为实例的类别，可以取多类。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法假设给定一个训练集数据，其中的实例类别已定。分类时，对新的实例，根据其 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个最近邻的训练实例的类别，通过多数表决等方式进行预测。因此，&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法不具有显式的学习过程。&lt;/p&gt;
+&lt;div class="math"&gt;$$T=\{(x_1,y_1),(x_2,y_2 …&lt;/div&gt;&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法（&lt;span class="math"&gt;\(k\)&lt;/span&gt;-nearest neighbor，&lt;span class="math"&gt;\(k\)&lt;/span&gt;-NN）是一种基本分类与回归方法。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的输入为实例的特征向量，输出为实例的类别，可以取多类。&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法假设给定一个训练集数据，其中的实例类别已定。分类时，对新的实例，根据其 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 个最近邻的训练实例的类别，通过多数表决等方式进行预测。因此，&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法不具有显式的学习过程。&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法实际上利用训练数据集对特征向量空间进行划分，并作为其分类的模型。&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(k\)&lt;/span&gt; 值得选择、距离度量以及分类决策规则是 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻法的三个基本要素。&lt;/p&gt;
 &lt;h2&gt;3.1 &lt;span class="math"&gt;\(k\)&lt;/span&gt; 近邻算法&lt;/h2&gt;
@@ -4700,61 +4271,7 @@ P_\lambda(X^{(j)}=a_{jl}|Y=c_k) &amp;amp;\geq&amp;amp; 0 \\
 }
 &lt;/script&gt;</content><category term="统计学习"></category><category term="机器学习"></category></entry><entry><title>统计学习方法 第二章 感知机</title><link href="https://xutree.github.io/pages/2018/11/04/sl-2/" rel="alternate"></link><published>2018-11-04T21:04:02+08:00</published><updated>2018-11-07T15:34:59+08:00</updated><author><name>Shu</name></author><id>tag:xutree.github.io,2018-11-04:/pages/2018/11/04/sl-2/</id><summary type="html">&lt;p&gt;感知机（perceptron）是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别，取 +1 和 -1 二值。感知机对应于输入空间（特征空间）中将实例划分为正负类别的分离超平面，属于判别模型。&lt;/p&gt;
 &lt;h2&gt;2.1 感知机模型&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义 2.1（感知机）假设输入空间（特征空间）是 &lt;span class="math"&gt;\({\cal X}\subseteq\mathbb{R}^n\)&lt;/span&gt;，输出空间是 &lt;span class="math"&gt;\({\cal Y}=\{+1,-1\}\)&lt;/span&gt;。输入 &lt;span class="math"&gt;\(x\in{\cal X}\)&lt;/span&gt; 表示实例的特征向量，对应于输入空间（特征空间）的点；输出 &lt;span class="math"&gt;\(y\in{\cal Y}\)&lt;/span&gt; 表示实例的类别 …&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;感知机（perceptron）是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别，取 +1 和 -1 二值。感知机对应于输入空间（特征空间）中将实例划分为正负类别的分离超平面，属于判别模型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义 2.1（感知机）假设输入空间（特征空间）是 &lt;span class="math"&gt;\({\cal X}\subseteq\mathbb{R}^n\)&lt;/span&gt;，输出空间是 &lt;span class="math"&gt;\({\cal Y}=\{+1,-1\}\)&lt;/span&gt;。输入 &lt;span class="math"&gt;\(x\in{\cal X}\)&lt;/span&gt; 表示实例的特征向量，对应于输入空间（特征空间）的点；输出 &lt;span class="math"&gt;\(y\in{\cal Y}\)&lt;/span&gt; 表示实例的类别 …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;感知机（perceptron）是二分类的线性分类模型，其输入是实例的特征向量，输出为实例的类别，取 +1 和 -1 二值。感知机对应于输入空间（特征空间）中将实例划分为正负类别的分离超平面，属于判别模型。&lt;/p&gt;
 &lt;h2&gt;2.1 感知机模型&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;定义 2.1（感知机）假设输入空间（特征空间）是 &lt;span class="math"&gt;\({\cal X}\subseteq\mathbb{R}^n\)&lt;/span&gt;，输出空间是 &lt;span class="math"&gt;\({\cal Y}=\{+1,-1\}\)&lt;/span&gt;。输入 &lt;span class="math"&gt;\(x\in{\cal X}\)&lt;/span&gt; 表示实例的特征向量，对应于输入空间（特征空间）的点；输出 &lt;span class="math"&gt;\(y\in{\cal Y}\)&lt;/span&gt; 表示实例的类别。由输入空间到输出空间的如下函数：
 &lt;div class="math"&gt;$$f(x)=\text{sign}(w\cdot x+b)$$&lt;/div&gt;
@@ -5384,61 +4901,7 @@ F_1=\frac{2TP}{2TP+FP+FN}$$&lt;/div&gt;
                 &lt;span class="n"&gt;max_left&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
                 &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="n"&gt;temp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
                 &lt;span class="c1"&gt;//向后累加的循环&lt;/span&gt;
-                &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;寻找数组中和最大的非空连续子数组。&lt;/p&gt;
+                &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;寻找数组中和最大的非空连续子数组。&lt;/p&gt;
 &lt;h2&gt;暴力求解&lt;/h2&gt;
 &lt;p&gt;先找出从第1个元素开始的最大子数组，而后再从第2个元素开始找出从第2个元素开始的最大子数组，依次类推，比较得出最大的子数组。&lt;/p&gt;
 &lt;p&gt;时间复杂度 &lt;span class="math"&gt;\(O(n^2)\)&lt;/span&gt;。&lt;/p&gt;
@@ -5624,61 +5087,7 @@ F_1=\frac{2TP}{2TP+FP+FN}$$&lt;/div&gt;
         for (int i = 1; i &amp;lt; len; i++) {
                 int key = arr[i];
                 int j;
-                for (j = i - 1; j &amp;gt;= 0 &amp;amp;&amp;amp; key &amp;lt; arr[j]; j-- …&lt;/pre&gt;&lt;/div&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;h2&gt;插入排序&lt;/h2&gt;
+                for (j = i - 1; j &amp;gt;= 0 &amp;amp;&amp;amp; key &amp;lt; arr[j]; j-- …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;插入排序&lt;/h2&gt;
 &lt;p&gt;插入排序（英语：Insertion Sort）是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用 in-place 排序（即只需用到 &lt;span class="math"&gt;\(O(1)\)&lt;/span&gt; 的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;void insertion_sort(int arr[], int len) {
         for (int i = 1; i &amp;lt; len; i++) {
@@ -9549,7 +8958,7 @@ vector&amp;lt;int&amp;gt; vec(in_iter,eof);  //从迭代器范围构造 vec
 &lt;td align="left"&gt;返回从流中读取数据&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align="left"&gt;in-&amp;gt;mem&lt;/td&gt;
+&lt;td align="left"&gt;in-&amp;gt;mem　&lt;/td&gt;
 &lt;td align="left"&gt;与&lt;code&gt;(*in).mem&lt;/code&gt;的含义相同&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -9587,10 +8996,10 @@ cout &amp;lt;&amp;lt; accumulatre(in, eof, 0) &amp;lt;&amp;lt; endl;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;out = val&lt;/td&gt;
-&lt;td align="left"&gt;用 &amp;lt;&amp;lt; 运算符将 val 写入到 out 所绑定的 ostream 中。val 的类型必须与 out 可写的类型兼容&lt;/td&gt;
+&lt;td align="left"&gt;　用 &amp;lt;&amp;lt; 运算符将 val 写入到 out 所绑定的 ostream 中。val 的类型必须与 out 可写的类型兼容&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align="left"&gt;*out, ++out, out++&lt;/td&gt;
+&lt;td align="left"&gt;*out, ++out, out++　&lt;/td&gt;
 &lt;td align="left"&gt;这些运算符是存在的，但不对 out 做任何事情。每个运算符都返回 out&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
@@ -10208,7 +9617,7 @@ remove_copy_if(v1.begin(), v1.end(), back_inserter(v2), [] (int i) { return i % 
 &lt;td align="left"&gt;返回指向链表首元素之前并不存在的元素的迭代器，此迭代器不能解引用&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align="left"&gt;lst.cbefore_begin()&lt;/td&gt;
+&lt;td align="left"&gt;lst.cbefore_begin()　&lt;/td&gt;
 &lt;td align="left"&gt;cbefore_begin() 返回一个 const_iterator&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -10228,8 +9637,8 @@ remove_copy_if(v1.begin(), v1.end(), back_inserter(v2), [] (int i) { return i % 
 &lt;td align="left"&gt;在迭代器 p 之后的位置插入花括号列表&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align="left"&gt;emplace_after(p,args)&lt;/td&gt;
-&lt;td align="left"&gt;使用 args 在 p 指定的位置之后构造一个元素，返回一个指向这个新元素的迭代器。若 p 为尾后迭代器，则函数的行为未定义&lt;/td&gt;
+&lt;td align="left"&gt;emplace_after(p,args)　&lt;/td&gt;
+&lt;td align="left"&gt;　使用 args 在 p 指定的位置之后构造一个元素，返回一个指向这个新元素的迭代器。若 p 为尾后迭代器，则函数的行为未定义&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="left"&gt;lst.erase_after(p)&lt;/td&gt;

@@ -8,61 +8,7 @@
 &lt;div class="math"&gt;$$\text{E}[X_A]=\text{Pr}\{A\}$$&lt;/div&gt;
 &lt;p&gt;就是说，指示器随机变量的期望等于它所指示事件发生的概率，指示器随机变量在分析重复随机试验时很有用。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;例题1&lt;/strong&gt;：连续抛硬币 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 次，求正面出现次数的期望。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解答&lt;/strong&gt;：设指示器随机变量 &lt;span class="math"&gt;\(X_i\)&lt;/span&gt; 对应第 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 次抛硬币时正面朝上的事件。设随机变量 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 次抛硬币中出现正面的总次数 …&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;指示器随机变量为概率和期望之间的转换提供了一个便利的方法。给定一个样本空间 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 和一个事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt;，那么事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 对应的&lt;strong&gt;指示器随机变量&lt;/strong&gt; &lt;span class="math"&gt;\(I\{A\}\)&lt;/span&gt; 定义为：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解答&lt;/strong&gt;：设指示器随机变量 &lt;span class="math"&gt;\(X_i\)&lt;/span&gt; 对应第 &lt;span class="math"&gt;\(i\)&lt;/span&gt; 次抛硬币时正面朝上的事件。设随机变量 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 表示 &lt;span class="math"&gt;\(n\)&lt;/span&gt; 次抛硬币中出现正面的总次数 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;指示器随机变量为概率和期望之间的转换提供了一个便利的方法。给定一个样本空间 &lt;span class="math"&gt;\(S\)&lt;/span&gt; 和一个事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt;，那么事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 对应的&lt;strong&gt;指示器随机变量&lt;/strong&gt; &lt;span class="math"&gt;\(I\{A\}\)&lt;/span&gt; 定义为：&lt;/p&gt;
 &lt;div class="math"&gt;$$\text{I}\{A\}=\cases{
 1  &amp;amp; 如果 A 发生 \\
 0 &amp;amp; 如果 A 不发生

@@ -10,16 +10,10 @@
 <meta name="keywords" content="C++, 读书笔记, " />
     <title>C++ Primer 第十六章 模板与泛型编程  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
-        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
-        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/基础知识.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 基础知识 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/其他.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 其他 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
 </head>
 
 <body>
@@ -32,15 +26,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
-                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
-                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
-                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li ><a href="/index.html">主页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -54,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/"> C++ Primer 第十六章 模板与泛型编程  </a></h1>
+            <h1><a href="/pages/2018/10/21/C++_Primer_Chapter_16/"> C++ Primer 第十六章 模板与泛型编程  </a></h1>
         </header>
     </div>
 
@@ -520,7 +514,7 @@ auto fcn(It beg, It end) -&gt;
 </pre></div>
 
 
-<p><img alt="标准类型转换模板" src="https://xutree.github.io/images/c++16-1.jpg"></p>
+<p><img alt="标准类型转换模板" src="/images/c++16-1.jpg"></p>
 <h3>函数指针和实参推断</h3>
 <p>使用函数模板初始化一个函数指针或为一个函数指针赋值时，编译器使用指针的类型来推断模板实参。如果不能从函数指针类型确定模板实参，则产生错误。</p>
 <div class="highlight"><pre><span></span>template &lt;typename T&gt; int compare(const T&amp;, const T&amp;);
@@ -534,9 +528,9 @@ func(compare&lt;int&gt;);
 
 
 <h3>模板实参推断和引用</h3>
-<p><img alt="模板实参推断和引用" src="https://xutree.github.io/images/c++16-2.jpg"></p>
-<p><img alt="模板实参推断和引用" src="https://xutree.github.io/images/c++16-3.jpg"></p>
-<p><img alt="模板实参推断和引用" src="https://xutree.github.io/images/c++16-4.jpg"></p>
+<p><img alt="模板实参推断和引用" src="/images/c++16-2.jpg"></p>
+<p><img alt="模板实参推断和引用" src="/images/c++16-3.jpg"></p>
+<p><img alt="模板实参推断和引用" src="/images/c++16-4.jpg"></p>
 <h4>从左值引用函数参数推断类型</h4>
 <p><code>template &lt;typename T&gt; void f(T &amp;p)</code>：实参必须是一个左值。如果实参是<code>const</code>的，则 T 将被推断为<code>const</code>类型。</p>
 <p><code>template &lt;typename T&gt; void f(const T &amp;p)</code>：实参可以是任意类型(包括右值在内)，即使实参是<code>const</code>的，T 的推断类型也不会是一个<code>const</code>类型。</p>
@@ -725,7 +719,7 @@ ostream&amp; print(ostream &amp;os, const T &amp;t, const Args&amp;... rest)
 
 
 <p>给定 print(cout, i, s, 42)，其调用过程如下：</p>
-<p><img alt="编写可变参数函数模板" src="https://xutree.github.io/images/c++16-5.jpg"></p>
+<p><img alt="编写可变参数函数模板" src="/images/c++16-5.jpg"></p>
 <p>对于最后一次递归调用 print(cout, 42)，两个 print 版本都是可行的。但是因为非可变参数模板比可变参数模板更特例化，因此编译器选择非可变参数版本。另外，定义可变参数版本的 print 时，非可变参数版本的声明必须在作用域中，否则，可变参数版本会无限递归。</p>
 <h3>包扩展</h3>
 <p>当扩展一个包时，可以提供用于每个扩展元素的模式。扩展一个包就是将它分解为构成的元素，对每个元素应用模式，获得扩展后的列表。通过在模式右边放一个省略号（...）来触发扩展操作。</p>
@@ -859,27 +853,27 @@ fi.Bar();              // 使用特例化版本的 Foo&lt;int&gt;::Bar()
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_15/">
                                     C++ Primer 第十五章 面向对象程序设计
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_14/">
                                     C++ Primer 第十四章 重载运算与类型转换
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_13/">
                                     C++ Primer 第十三章 拷贝控制
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_12/">
                                     C++ Primer 第十二章 动态内存
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_11/">
                                     C++ Primer 第十一章 关联容器
                                 </a>
                             </li>
@@ -891,27 +885,27 @@ fi.Bar();              // 使用特例化版本的 Foo&lt;int&gt;::Bar()
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">
+                                <a href="/pages/2018/10/21/C++_Primer_Chapter_17/">
                                     C++ Primer 第十七章 标准库特殊设施
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/23/矩阵求导/">
+                                <a href="/pages/2018/10/23/矩阵求导/">
                                     矩阵微积分
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">
+                                <a href="/pages/2018/10/26/sort/">
                                     排序算法
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">
+                                <a href="/pages/2018/10/27/find_maximum_subarray/">
                                     最大子数组问题
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/28/指示器随机变量/">
+                                <a href="/pages/2018/10/28/指示器随机变量/">
                                     指示器随机变量
                                 </a>
                             </li>

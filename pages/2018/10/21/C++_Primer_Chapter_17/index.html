@@ -10,16 +10,10 @@
 <meta name="keywords" content="C++, 读书笔记, " />
     <title>C++ Primer 第十七章 标准库特殊设施  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
-        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
-        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/基础知识.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 基础知识 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/其他.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 其他 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
 </head>
 
 <body>
@@ -32,15 +26,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
-                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
-                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
-                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li ><a href="/index.html">主页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -54,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/"> C++ Primer 第十七章 标准库特殊设施  </a></h1>
+            <h1><a href="/pages/2018/10/21/C++_Primer_Chapter_17/"> C++ Primer 第十七章 标准库特殊设施  </a></h1>
         </header>
     </div>
 
@@ -65,7 +59,7 @@
                 <h2>tuple 类型</h2>
 <p>当我们希望将一些数据组合成单一对象，但又不想麻烦地定义一个新数据结构来表示这些数据时，可以使用<code>tuple</code>类型。与<code>pair</code>类似，但<code>tuple</code>可以有任意数量的成员。它的一个常见用途就是从一个函数返回多个值。<code>tuple</code>定义在同名的头文件中。</p>
 <p>支持的操作：</p>
-<p><img alt="tuple支持的操作" src="https://xutree.github.io/images/c++17-1.jpg"></p>
+<p><img alt="tuple支持的操作" src="/images/c++17-1.jpg"></p>
 <p>要访问一个<code>tuple</code>的成员，使用<code>get</code>标准库模板。为了使用<code>get</code>，我们必须指定一个显式模板参数，它指明我们想要访问第几个成员。这个显式模板参数必须是一个整型常量表达式，从0开始计数，返回指定成员的引用。</p>
 <div class="highlight"><pre><span></span>auto book = get&lt;0&gt;(item);  // 返回 item 的第一个成员
 get&lt;0&gt;(item) *= 0.8;       // 修改书的单价
@@ -85,13 +79,13 @@ tuple_element&lt;1, trans&gt;::type cnt = get&lt;1&gt;(item);
 <h2>bitset 类型</h2>
 <p><code>bitset</code>类，可以方便地将整型运算对象当作二进制位集合处理，并且能够处理超过最长整型类型大小的位集合。<code>bitset</code>定义在同名的头文件中。</p>
 <p>支持的操作：</p>
-<p><img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-2.jpg"></p>
+<p><img alt="bitset支持的操作" src="/images/c++17-2.jpg"></p>
 <p><strong>使用字符串初始化<code>bitset</code>时，下标最小的字符对应<code>bitset</code>中的高位。</strong></p>
 <div class="highlight"><pre><span></span>bitset&lt;32&gt; bitvec4(&quot;1100&quot;);   // 2、3两位为1，剩余位为0
 </pre></div>
 
 
-<p><img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-3.jpg"></p>
+<p><img alt="bitset支持的操作" src="/images/c++17-3.jpg"></p>
 <h2>正则表达式</h2>
 <p>RE 库定义在头文件<code>regex</code>中。</p>
 <table>
@@ -143,27 +137,27 @@ tuple_element&lt;1, trans&gt;::type cnt = get&lt;1&gt;(item);
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">
+                                <a href="/pages/2018/10/21/C++_Primer_Chapter_16/">
                                     C++ Primer 第十六章 模板与泛型编程
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_15/">
                                     C++ Primer 第十五章 面向对象程序设计
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_14/">
                                     C++ Primer 第十四章 重载运算与类型转换
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_13/">
                                     C++ Primer 第十三章 拷贝控制
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_12/">
                                     C++ Primer 第十二章 动态内存
                                 </a>
                             </li>
@@ -175,27 +169,27 @@ tuple_element&lt;1, trans&gt;::type cnt = get&lt;1&gt;(item);
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/23/矩阵求导/">
+                                <a href="/pages/2018/10/23/矩阵求导/">
                                     矩阵微积分
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">
+                                <a href="/pages/2018/10/26/sort/">
                                     排序算法
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">
+                                <a href="/pages/2018/10/27/find_maximum_subarray/">
                                     最大子数组问题
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/28/指示器随机变量/">
+                                <a href="/pages/2018/10/28/指示器随机变量/">
                                     指示器随机变量
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/04/sl-1/">
+                                <a href="/pages/2018/11/04/sl-1/">
                                     统计学习方法 第一章 统计学习方法概论
                                 </a>
                             </li>

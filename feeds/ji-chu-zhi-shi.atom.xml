@@ -6,61 +6,7 @@
 &lt;p&gt;&lt;span class="math"&gt;\(\blacksquare\)&lt;/span&gt; 离散概率分布&lt;/p&gt;
 &lt;p&gt;设 &lt;span class="math"&gt;\(X\)&lt;/span&gt; 是离散随机变量，概率质量函数 &lt;span class="math"&gt;\(p\)&lt;/span&gt; 依赖于参数 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;。那么函数
 &lt;/p&gt;
-&lt;div class="math"&gt;$${\cal L}(\theta|x)=p_\theta(x …&lt;/div&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;h2&gt;似然函数&lt;/h2&gt;
+&lt;div class="math"&gt;$${\cal L}(\theta|x)=p_\theta(x …&lt;/div&gt;</summary><content type="html">&lt;h2&gt;似然函数&lt;/h2&gt;
 &lt;p&gt;在数理统计学中，似然函数（likelihood function）是一种关于统计模型中的&lt;strong&gt;参数&lt;/strong&gt;的函数，表示模型参数中的似然性。似然函数在统计推断中有重大作用，如在最大似然估计和费希尔信息之中的应用等等。“似然性”与“或然性”或“概率”意思相近，都是指某种事件发生的可能性，但是在统计学中，“似然性”和“概率”（或然性）又有明确的区分。概率用于在已知一些参数的情况下，预测接下来的观测所得到的结果，而似然性则是用于在已知某些观测所得到的结果时，对有关事物的性质的参数进行估计。&lt;/p&gt;
 &lt;h3&gt;定义&lt;/h3&gt;
 &lt;p&gt;对于离散和连续概率分布，似然函数总是被定义为参数 &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; 的函数。&lt;/p&gt;
@@ -135,61 +81,7 @@
 &lt;p&gt;&lt;strong&gt;
 定义 1.1（方向导数）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是定义于 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中某区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的函数，点 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt;，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 为一给定的非零向量，&lt;span class="math"&gt;\(P\)&lt;/span&gt; 为一动点，向量 &lt;span class="math"&gt;\(\vec{P_0P}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向始终一致。如果极限
 &lt;div class="math"&gt;$$\lim_{\|P_0P\|\to0}\frac{f(P)-f(P_0}{\|\vec{P_0P}\|}$$&lt;/div&gt;
-存在，则称此极限为函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0 …&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;h2&gt;1. 方向导数&lt;/h2&gt;
+存在，则称此极限为函数 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 在 &lt;span class="math"&gt;\(P_0 …&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1. 方向导数&lt;/h2&gt;
 &lt;p&gt;多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;
 定义 1.1（方向导数）设 &lt;span class="math"&gt;\(f\)&lt;/span&gt; 是定义于 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 中某区域 &lt;span class="math"&gt;\(D\)&lt;/span&gt; 上的函数，点 &lt;span class="math"&gt;\(P_0\in D\)&lt;/span&gt;，&lt;span class="math"&gt;\(l\)&lt;/span&gt; 为一给定的非零向量，&lt;span class="math"&gt;\(P\)&lt;/span&gt; 为一动点，向量 &lt;span class="math"&gt;\(\vec{P_0P}\)&lt;/span&gt; 与 &lt;span class="math"&gt;\(l\)&lt;/span&gt; 的方向始终一致。如果极限
@@ -321,61 +213,7 @@ h_j(x) &amp;amp;=&amp;amp; 0,j=1,2,\cdots,l
 \end{eqnarray}$$&lt;/div&gt;
 &lt;p&gt;
 称此优化约束问题为原始最优化问题或原始问题。&lt;/p&gt;
-&lt;p&gt;首先 …&lt;/p&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;h2&gt;1. 原始问题&lt;/h2&gt;
+&lt;p&gt;首先 …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1. 原始问题&lt;/h2&gt;
 &lt;p&gt;假设 &lt;span class="math"&gt;\(f(x)\)&lt;/span&gt;，&lt;span class="math"&gt;\(c_i(x)\)&lt;/span&gt;，&lt;span class="math"&gt;\(h_j(x)\)&lt;/span&gt; 是定义在 &lt;span class="math"&gt;\(\mathbb{R}^n\)&lt;/span&gt; 上的连续可微函数。考虑约束最优化问题：
 &lt;/p&gt;
 &lt;div class="math"&gt;$$\min_{x\in\mathbb{R}^n}f(x) \\
@@ -511,61 +349,7 @@ h_j(x^\star)=0,j=1,2,\cdots,l$$&lt;/div&gt;
 &lt;p&gt;在贝叶斯定理中，每个名词都有约定俗成的名称：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;span class="math"&gt;\(P(A|B)\)&lt;/span&gt; 是已知 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 发生后 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 的条件概率，也由于得自 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 的取值而被称作 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 的后验概率&lt;/li&gt;
-&lt;li&gt;&lt;span class="math"&gt;\(P(A)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 的先验概率（或边缘概率），之所以称为"先验"是因为它不考虑任何 …&lt;/li&gt;&lt;/ul&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;贝叶斯定理是关于随机事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 的条件概率的一则定理。
+&lt;li&gt;&lt;span class="math"&gt;\(P(A)\)&lt;/span&gt; 是 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 的先验概率（或边缘概率），之所以称为"先验"是因为它不考虑任何 …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;贝叶斯定理是关于随机事件 &lt;span class="math"&gt;\(A\)&lt;/span&gt; 和 &lt;span class="math"&gt;\(B\)&lt;/span&gt; 的条件概率的一则定理。
 &lt;/p&gt;
 &lt;div class="math"&gt;$$P(A|B)=\frac{P(A)\times P(B|A)}{P(B)}$$&lt;/div&gt;
 &lt;p&gt;
@@ -677,61 +461,7 @@ h_j(x^\star)=0,j=1,2,\cdots,l$$&lt;/div&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align="center"&gt;向量&lt;/td&gt;
-&lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac …&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</summary><content type="html">&lt;p&gt;矩阵求导，本质是多元函数求导，仅仅是把函数的⾃变量以及求导的结果排列成了矩阵的形式，⽅便表达与计算。类似地，复合函数的求导法则本质上也是多元函数求导的链式法则，只是将结果整理成了矩阵的形式。从原理上讲，可以对矩阵的每个分量逐元素地求导，得到最终结果；但是这样做太繁琐，极其容易出错，因此推导并记住⼀些常⽤的结论在实践中是⾮常必要的。&lt;/p&gt;
+&lt;td align="center"&gt;&lt;span class="math"&gt;\(\frac …&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">&lt;p&gt;矩阵求导，本质是多元函数求导，仅仅是把函数的⾃变量以及求导的结果排列成了矩阵的形式，⽅便表达与计算。类似地，复合函数的求导法则本质上也是多元函数求导的链式法则，只是将结果整理成了矩阵的形式。从原理上讲，可以对矩阵的每个分量逐元素地求导，得到最终结果；但是这样做太繁琐，极其容易出错，因此推导并记住⼀些常⽤的结论在实践中是⾮常必要的。&lt;/p&gt;
 &lt;p&gt;不同的矩阵求导方法采取不同的导数排列方法，以便于所求导数可以方便后续计算。主要存在两种符号约定。&lt;/p&gt;
 &lt;h2&gt;1. 概述&lt;/h2&gt;
 &lt;p&gt;矩阵微积分的自变量可以是标量，向量，或者是一个矩阵，因变量也可以是上述的三者之一。每一种不同的自变量和因变量的组合都有不同的一套运算规则。&lt;/p&gt;

@@ -10,16 +10,10 @@
 <meta name="keywords" content="C++, 读书笔记, " />
     <title>C++ Primer 第九章 顺序容器  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
-        <link href="https://xutree.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - Full Atom Feed" />
-        <link href="https://xutree.github.io/feeds/读书笔记.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 读书笔记 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/基础知识.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 基础知识 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/教程.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 教程 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/其他.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 其他 Category Atom Feed" />
-        <link href="https://xutree.github.io/feeds/趣闻.atom.xml" type="application/atom+xml" rel="alternate" title="You Know Nothing - 趣闻 Category Atom Feed" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
 </head>
 
 <body>
@@ -32,15 +26,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
-                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
-                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
-                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li ><a href="/index.html">主页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -54,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/"> C++ Primer 第九章 顺序容器  </a></h1>
+            <h1><a href="/pages/2018/10/16/C++_Primer_Chapter_9/"> C++ Primer 第九章 顺序容器  </a></h1>
         </header>
     </div>
 
@@ -447,7 +441,7 @@
 <td align="left">返回指向链表首元素之前并不存在的元素的迭代器，此迭代器不能解引用</td>
 </tr>
 <tr>
-<td align="left">lst.cbefore_begin()</td>
+<td align="left">lst.cbefore_begin()　</td>
 <td align="left">cbefore_begin() 返回一个 const_iterator</td>
 </tr>
 <tr>
@@ -467,8 +461,8 @@
 <td align="left">在迭代器 p 之后的位置插入花括号列表</td>
 </tr>
 <tr>
-<td align="left">emplace_after(p,args)</td>
-<td align="left">使用 args 在 p 指定的位置之后构造一个元素，返回一个指向这个新元素的迭代器。若 p 为尾后迭代器，则函数的行为未定义</td>
+<td align="left">emplace_after(p,args)　</td>
+<td align="left">　使用 args 在 p 指定的位置之后构造一个元素，返回一个指向这个新元素的迭代器。若 p 为尾后迭代器，则函数的行为未定义</td>
 </tr>
 <tr>
 <td align="left">lst.erase_after(p)</td>
@@ -564,16 +558,16 @@
 <h3>substr 操作</h3>
 <p><code>s.substr(pos, n)</code>返回一个<code>string</code>，包含 s 中从 pos 开始的 n 个字符的拷贝。pos 的默认值是0，n 的默认值是 s.size()-pos，即拷贝从 pos 开始的所有字符。如果开始位置超出<code>string</code>的大小，抛出 out_of_range 异常，不管 n 值为多少，最多拷贝到<code>string</code>的末尾。</p>
 <h3>其他修改 string 的操作</h3>
-<p><img alt="修改 string 的操作" src="https://xutree.github.io/images/c++9-1.jpg"></p>
-<p><img alt="repalce 和 insert参数类型" src="https://xutree.github.io/images/c++9-2.jpg"></p>
+<p><img alt="修改 string 的操作" src="/images/c++9-1.jpg"></p>
+<p><img alt="repalce 和 insert参数类型" src="/images/c++9-2.jpg"></p>
 <h3>string 搜索操作</h3>
 <p><code>string</code>类提供了6个不同的搜索函数，每个函数有4个重载版本。每个搜索操作都返回<code>string::size_type</code>值，表示匹配发生的下标。如果搜索失败，则返回<code>string::npos</code>的<code>static</code>成员。标准库将<code>string::npos</code>定义成一个<code>const string::size_type</code>，并初始化为-1。由于 npos 是一个无符号数，此初始值意味着 npos 等于任何<code>string</code>最大的可能大小。</p>
-<p><img alt="string 搜索操作" src="https://xutree.github.io/images/c++9-3.jpg"></p>
-<p><img alt="string 搜索操作参数" src="https://xutree.github.io/images/c++9-4.jpg"></p>
+<p><img alt="string 搜索操作" src="/images/c++9-3.jpg"></p>
+<p><img alt="string 搜索操作参数" src="/images/c++9-4.jpg"></p>
 <h3>compare 函数</h3>
-<p><img alt="compare 函数" src="https://xutree.github.io/images/c++9-5.jpg"></p>
+<p><img alt="compare 函数" src="/images/c++9-5.jpg"></p>
 <h3>数值转换</h3>
-<p><img alt="string 数值转换" src="https://xutree.github.io/images/c++9-6.jpg"></p>
+<p><img alt="string 数值转换" src="/images/c++9-6.jpg"></p>
 <div class="highlight"><pre><span></span>string s2 = &quot;pi = 3.14&quot;;
 d = stod(s2.substr(s2.find_first_of(&quot;+-.0123456789&quot;)));
 </pre></div>
@@ -743,27 +737,27 @@ while (!intStack.empty()) { //栈中有值就继续循环
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
+                                <a href="/pages/2018/10/16/atom快捷键/">
                                     Atom 快捷键
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
+                                <a href="/pages/2018/10/15/perl入门/">
                                     Perl 入门
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/10/数据结构向量/">
+                                <a href="/pages/2018/10/10/数据结构向量/">
                                     数据结构——向量
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
+                                <a href="/pages/2018/10/09/C++_Primer_Chapter_8/">
                                     C++ Primer 第八章 IO 库
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
+                                <a href="/pages/2018/10/09/C++_Primer_Chapter_7/">
                                     C++ Primer 第七章 类
                                 </a>
                             </li>
@@ -775,27 +769,27 @@ while (!intStack.empty()) { //栈中有值就继续循环
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_10/">
                                     C++ Primer 第十章 泛型算法
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_11/">
                                     C++ Primer 第十一章 关联容器
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_12/">
                                     C++ Primer 第十二章 动态内存
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_13/">
                                     C++ Primer 第十三章 拷贝控制
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_14/">
                                     C++ Primer 第十四章 重载运算与类型转换
                                 </a>
                             </li>

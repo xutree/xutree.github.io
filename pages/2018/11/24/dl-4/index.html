@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="机器学习, 深度学习, 读书笔记, " />
+    <title>深度学习 第四章 数值计算  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="/index.html">主页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="/pages/2018/11/24/dl-4/"> 深度学习 第四章 数值计算  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <h2>4.1 上溢和下溢</h2>
+<p>数值<strong>上溢</strong>（overflow）：大量级的数被近似为正无穷或负无穷时发生上溢，进一步运算导致无限值变为非数字。</p>
+<p>数值<strong>下溢</strong>（underflow）：接近零的数被四舍五入为0时发生下溢。被零除，取零的对数，进一步运算会变为非数字。</p>
+<p>必须对上溢和下溢进行数值稳定的一个例子是 softmax 函数。</p>
+<p>在数学，尤其是概率论和相关领域中，softmax 函数，或称归一化指数函数，是逻辑函数的一种推广。它能将一个含任意实数的 <span class="math">\(K\)</span> 维向量 <span class="math">\(\boldsymbol {z}\)</span> “压缩”到另一个 <span class="math">\(K\)</span> 维实向量 <span class="math">\(\sigma(\boldsymbol z)\)</span> 中，使得每一个元素的范围都在 <span class="math">\((0,1)\)</span> 之间，并且所有元素的和为 1。该函数的形式通常按下面的式子给出：
+</p>
+<div class="math">$$\text{softmax}(\boldsymbol x)_i=\frac{\text{e}^{x_i}}{\sum_{j=1}^K\text{e}^{x_j}}$$</div>
+<p>Softmax 函数实际上是有限项离散概率分布的梯度对数归一化。因此，softmax函数在包括 多项逻辑回归，多项线性判别分析，朴素贝叶斯分类器和人工神经网络等的多种基于概率的多分类问题方法中都有着广泛应用。</p>
+<p>Softmax 函数可以通过执行下面的替换进行稳定：
+</p>
+<div class="math">$$\boldsymbol z=\boldsymbol x-\max_{i}x_i$$</div>
+<p>在实现深度学习算法时，底层库的开发者应该牢记数值问题。</p>
+<h2>4.2 病态条件</h2>
+<p>考虑函数 <span class="math">\(f(\boldsymbol x)=\boldsymbol A^{-1}\boldsymbol x\)</span>。当 <span class="math">\(\boldsymbol A\in\mathbb{R}^{n\times n}\)</span> 具有特征分解时，其条件数为：
+</p>
+<div class="math">$$\max_{i,j}\left\lvert\frac{\lambda_i}{\lambda_j}\right\rvert$$</div>
+<p>
+是最大和最小特征值的模之比。当条件数很大时，矩阵求逆对输入的误差特别敏感。</p>
+<h2>4.3 基于导数的优化方法</h2>
+<h3>4.3.1 梯度、方向导数、Jacobian 和 Hessian 矩阵</h3>
+<ul>
+<li>梯度向量：由多维输入一维输出的一阶导数构成</li>
+<li>雅克比矩阵：由多维输入多维输出的一阶导数构成</li>
+<li>海森矩阵：由多维输入一维输出的二阶导数构成</li>
+</ul>
+<h4>4.3.1.1 梯度</h4>
+<p>在向量微积分中，<strong>标量场</strong>的<strong>梯度</strong>（gradient）是一个<strong>向量场</strong>。标量场中某一点的梯度指向在这点标量场增长最快的方向（当然要比较的话必须固定方向的长度），梯度的绝对值是长度为 1 的方向中函数最大的增加率</p>
+<p>多维函数的梯度是相对于一个向量求导的导数，记作
+</p>
+<div class="math">$$\nabla_{\boldsymbol x}f(\boldsymbol x)$$</div>
+<p>
+此结果是一个列向量，第 <span class="math">\(i\)</span> 个元素是 <span class="math">\(f\)</span> 关于 <span class="math">\(x_i\)</span> 的偏导数（partial derivation）。</p>
+<h4>4.3.1.2 方向导数</h4>
+<p><strong>方向导数</strong>（directional derivation）是函数 <span class="math">\(f\)</span> 在 <span class="math">\(\boldsymbol u\)</span> 方向上的斜率。是函数 <span class="math">\(f(\boldsymbol x+\alpha\boldsymbol u)\)</span> 关于 <span class="math">\(\alpha\)</span> 的导数（在 <span class="math">\(\alpha=0\)</span> 时取得），根据链式法则：
+</p>
+<div class="math">$$\begin{eqnarray}
+\frac{\partial f(\boldsymbol x+\alpha\boldsymbol u)}{\partial\alpha} &amp;=&amp; \frac{\partial f(\boldsymbol x+\alpha\boldsymbol u)}{\partial(\boldsymbol x+\alpha\boldsymbol u)}\frac{\partial(\boldsymbol x+\alpha\boldsymbol u)}{\partial \alpha} \\
+&amp;=&amp; \nabla_{{\boldsymbol x}^\text{T}}f(\boldsymbol x)\boldsymbol u
+\end{eqnarray}$$</div>
+<p>
+注意等号右边第一项为标量对向量的导数，需要转置。再利用 <span class="math">\(\alpha=0\)</span>，并注意等式左边为标量，对等式两边同时转置，得方向导数为：
+</p>
+<div class="math">$$\boldsymbol u^\text{T}\nabla_{\boldsymbol x}f(\boldsymbol x)$$</div>
+<p>如果函数 <span class="math">\(f(\boldsymbol x)\)</span> 在点 <span class="math">\(\boldsymbol x\)</span> 处可微，则沿着任意非零向量 <span class="math">\(\boldsymbol u\)</span> 的方向导数都存在。对赋范向量空间或内积空间有：
+</p>
+<div class="math">$$\nabla_{\boldsymbol u}f(\boldsymbol x)=\boldsymbol u\cdot \nabla_{\boldsymbol x}f(\boldsymbol x)=\boldsymbol u^\text{T}\nabla_{\boldsymbol x}f(\boldsymbol x)$$</div>
+<p>
+其中，<span class="math">\(\cdot\)</span> 是内积运算。</p>
+<h4>4.3.1.3 雅克比矩阵</h4>
+<p>有时我们需要计算<strong>输入和输出都是向量</strong>的函数的所有偏导数。包含所有这样的偏导数的矩阵被称为<strong>雅可比矩阵</strong>（Jacobian matrix）。</p>
+<p>具体来说，对于函数 <span class="math">\(f:\mathbb{R}^m\to\mathbb{R}^n\)</span>，<span class="math">\(f\)</span> 的雅克比矩阵 <span class="math">\(\boldsymbol J\in\mathbb{R}^{n\times m}\)</span> 定义为：
+</p>
+<div class="math">$$J_{i,j}=\frac{\partial}{\partial x_j}f(\boldsymbol x)_i$$</div>
+<p>
+即
+</p>
+<div class="math">$$\boldsymbol J=\begin{bmatrix}
+\frac{\partial f(\boldsymbol x)_1}{\partial x_1} &amp; \frac{\partial f(\boldsymbol x)_1}{\partial x_2} &amp; \cdots &amp; \frac{\partial f(\boldsymbol x)_1}{\partial x_m} \\
+\frac{\partial f(\boldsymbol x)_2}{\partial x_1} &amp; \frac{\partial f(\boldsymbol x)_2}{\partial x_2} &amp; \cdots &amp; \frac{\partial f(\boldsymbol x)_2}{\partial x_m} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial f(\boldsymbol x)_n}{\partial x_1} &amp; \frac{\partial f(\boldsymbol x)_n}{\partial x_2} &amp; \cdots &amp; \frac{\partial f(\boldsymbol x)_n}{\partial x_m} \\
+\end{bmatrix}
+=\begin{bmatrix}
+\left(\nabla_{\boldsymbol x}f(\boldsymbol x)_1\right)^\text{T} \\
+\left(\nabla_{\boldsymbol x}f(\boldsymbol x)_2\right)^\text{T} \\
+\vdots \\
+\left(\nabla_{\boldsymbol x}f(\boldsymbol x)_n\right)^\text{T}
+\end{bmatrix}$$</div>
+<p>
+它的每一行都是由相应的函数的梯度向量的转置构成的。当目标函数为标量函数时，Jacobi 矩阵就是梯度向量。雅克比矩阵也记为：
+</p>
+<div class="math">$$J_f(x_1,x_2,\cdots,x_m)\ \ 或\ \  \frac{\partial (f(\boldsymbol x)_1,f(\boldsymbol x)_2,\cdots,f(\boldsymbol x_n)}{\partial (x_1,x_2,\cdots,x_m)}$$</div>
+<p>如果 <span class="math">\(\boldsymbol x_0\)</span> 是 <span class="math">\(\mathbb{R}^m\)</span> 中的一点，<span class="math">\(f\)</span> 在 <span class="math">\(\boldsymbol x_0\)</span> 点可微分，根据数学分析，<span class="math">\(J_{f}(\boldsymbol x_0)\)</span> 是在这点的导数。在此情况下，<span class="math">\(J_{f}(\boldsymbol x_0)\)</span> 这个线性映射即 <span class="math">\(f\)</span> 在点 <span class="math">\(\boldsymbol x_0\)</span> 附近的<strong>最优线性逼近</strong>，也就是说当 <span class="math">\(\boldsymbol x\)</span> 足够靠近点 <span class="math">\(\boldsymbol x_0\)</span> 时，我们有
+</p>
+<div class="math">$$f(\boldsymbol x)=f(\boldsymbol x_0)+J_f(\boldsymbol x_0)(\boldsymbol x-\boldsymbol x_0)$$</div>
+<p>如果 <span class="math">\(m=n\)</span>，那么 <span class="math">\(f\)</span> 是从 <span class="math">\(n\)</span> 维空间到 <span class="math">\(n\)</span> 维空间的函数，且它的雅可比矩阵是一个方块矩阵。于是我们可以取它的行列式，称为<strong>雅可比行列式</strong>。</p>
+<p>在某个给定点的雅可比行列式提供了 <span class="math">\(f\)</span> 在接近该点时的表现的重要信息。例如，如果连续可微函数 <span class="math">\(f\)</span> 在 <span class="math">\(\boldsymbol x\)</span> 点的雅可比行列式不是零，那么它在该点附近具有反函数。这称为<strong>反函数定理</strong>。</p>
+<p>更进一步，如果 <span class="math">\(\boldsymbol x\)</span> 点的雅可比行列式是正数，则 <span class="math">\(f\)</span> 在 <span class="math">\(\boldsymbol x\)</span> 点的取向不变；如果是负数，则 <span class="math">\(f\)</span> 的取向相反。而从雅可比行列式的绝对值，就可以知道函数 <span class="math">\(f\)</span> 在 <span class="math">\(\boldsymbol x\)</span> 点的缩放因子；这就是它出现在换元积分法中的原因。</p>
+<h4>4.3.1.4 海森矩阵</h4>
+<p><strong>海森矩阵</strong>（Hessian matrix）是一个<strong>多变量实值函数</strong>的二阶偏导数组成的方块矩阵。假如有一实函数 <span class="math">\(f(\boldsymbol x)\)</span>，如果 <span class="math">\(f\)</span> 所有的二阶偏导数都存在，那么 <span class="math">\(f\)</span> 的海森矩阵的第 <span class="math">\(ij\)</span> 项即：
+</p>
+<div class="math">$$H(f)(\boldsymbol x)_{ij}=\frac{\partial^2}{\partial x_i\partial x_j}f(\boldsymbol x)$$</div>
+<p>
+即
+</p>
+<div class="math">$$\boldsymbol H(f)=\begin{bmatrix}
+\frac{\partial^2 f}{\partial x_1^2} &amp; \frac{\partial^2 f}{\partial x_1\partial x_2} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_1\partial x_m} \\
+\frac{\partial^2 f}{\partial x_2\partial x_1} &amp; \frac{\partial^2 f}{\partial x_2^2} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_2\partial x_m} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial^2 f}{\partial x_m\partial x_1} &amp; \frac{\partial^2 f}{\partial x_m\partial x_2} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_m^2} \\
+\end{bmatrix}=\boldsymbol J_{\nabla_f(\boldsymbol x)}(\boldsymbol x)$$</div>
+<p>海森矩阵的混合偏导数是海森矩阵非主对角线上的元素。假如他们是连续的，那么求导顺序没有区别，即
+</p>
+<div class="math">$${\frac  {\partial }{\partial x_1}}\left({\frac  {\partial f}{\partial x_2}}\right)={\frac  {\partial }{\partial x_2}}\left({\frac  {\partial f}{\partial x_1}}\right)$$</div>
+<p>
+上式也可写为
+</p>
+<div class="math">$$f_{x_1x_2}=f_{x_2x_1}$$</div>
+<p>
+也就是说，如果 <span class="math">\(f\)</span> 函数在区域 <span class="math">\(D\)</span> 内的每个二阶导数都是连续函数，那么 <span class="math">\(f\)</span> 的海森矩阵在 <span class="math">\(D\)</span> 区域内为对称矩阵。</p>
+<p><strong>二阶导数测试</strong>（second derivation test）：当函数 <span class="math">\(f:\mathbb{R}^n\to\mathbb{R}\)</span> 二阶连续可导时，Hessian 矩阵 <span class="math">\(\boldsymbol H\)</span> 在临界点 <span class="math">\(\boldsymbol x_{0}\)</span> (即，所有一阶偏导数都为零)上是一个 <span class="math">\(n\times n\)</span> 阶的对称矩阵。计算在 临界点 <span class="math">\(\boldsymbol x_{0}\)</span> 的海森矩阵：</p>
+<ul>
+<li>当 <span class="math">\(\boldsymbol H\)</span> 是正定矩阵时（所有特征值都是正的），临界点 <span class="math">\(x_{0}\)</span> 是一个局部的极小值</li>
+<li>当 <span class="math">\(\boldsymbol H\)</span> 是负定矩阵时（所有特征值都是正的），临界点 <span class="math">\(x_{0}\)</span> 是一个局部的极大值</li>
+<li><span class="math">\(\boldsymbol H=0\)</span>，需要更高阶的导数来帮助判断</li>
+<li>在其余情况下，临界点 <span class="math">\(x_{0}\)</span> 不是局部极值</li>
+</ul>
+<p>实值函数 <span class="math">\(f\)</span> 在特定方向 <span class="math">\(\boldsymbol d\)</span> 上的二阶导数为：
+</p>
+<div class="math">$$\nabla_{\boldsymbol d}(\nabla_{\boldsymbol d}f)=\nabla_{\boldsymbol d}(\boldsymbol d^\text{T}\nabla f)=\nabla(\boldsymbol d^\text{T}\nabla f)\boldsymbol d=\boldsymbol d^\text{T}\nabla(\nabla f)\boldsymbol d=\boldsymbol d^\text{T}\boldsymbol {Hd}$$</div>
+<p>
+当 <span class="math">\(\boldsymbol d\)</span> 是 <span class="math">\(\boldsymbol H\)</span> 的一个特征向量时，这个方向的二阶导数就是对应的特征值。对于其他的方向 <span class="math">\(\boldsymbol d\)</span>，方向二阶导数是所有特征值的加权平均，权重在 0 和 1 之间。最大特征值确定最大二阶导数，最小特征确定最下二阶导数。</p>
+<h3>4.3.2 梯度下降法</h3>
+<p>我们经常最小化具有多维输入的函数：<span class="math">\(f:\mathbb{R}^n\to\mathbb{R}\)</span>。为了使“最小化”的概念有意义，输出必须是一维的（标量）。</p>
+<p>为最小化 <span class="math">\(f\)</span>，我们希望找到使 <span class="math">\(f\)</span> 下降得最快的方向。计算方向导数：
+</p>
+<div class="math">$$\min_{\boldsymbol u,\boldsymbol u^\text{T}\boldsymbol u=1}\boldsymbol u^\text{T}\nabla_{\boldsymbol x}f(\boldsymbol x) \\
+=\min_{\boldsymbol u,\boldsymbol u^\text{T}\boldsymbol u=1}\|\boldsymbol u\|_2\|\nabla_{\boldsymbol x}f(\boldsymbol x)\|_2\cos\theta \\
+=\min_{\boldsymbol u}\cos\theta$$</div>
+<p>
+其中 <span class="math">\(\theta\)</span> 是 <span class="math">\(\boldsymbol u\)</span> 与梯度的夹角。这表明当 <span class="math">\(\boldsymbol u\)</span> 与梯度方向相反时，函数下降最快。即梯度向量指向上坡，负梯度向量指向下坡。我们在负梯度方向上移动可以减小 <span class="math">\(f\)</span>，这被称为<strong>最速下降法</strong>（method of steepest descent）或<strong>梯度下降</strong>（gradient descent）。</p>
+<p>最速下降建议新的点为：
+</p>
+<div class="math">$$\boldsymbol x'=\boldsymbol x-\epsilon\nabla_{\boldsymbol x}f(\boldsymbol x)$$</div>
+<p>
+其中 <span class="math">\(\epsilon\)</span> 为<strong>学习率</strong>（learning rate），是一个确定步长大小的正标量。我们可以通过几种不同的方式选择 <span class="math">\(\epsilon\)</span>。普遍的方式是选择一个小常数。有时我们通过计算，选择使方向导数消失的步长。还有一种方法是根据几个 <span class="math">\(\epsilon\)</span> 计算 <span class="math">\(f(\boldsymbol x-\epsilon\nabla_{\boldsymbol x}f(\boldsymbol x))\)</span>，并选择其中能产生最小目标函数值的 <span class="math">\(\epsilon\)</span>。这种策略称为线搜索。</p>
+<p>我们可以通过（方向）二阶导数预期一个梯度下降步骤能表现得多好。函数 <span class="math">\(f(\boldsymbol x)\)</span> 在当前点 <span class="math">\(\boldsymbol x^{(0)}\)</span> 的二阶泰勒近似为：
+</p>
+<div class="math">$$\begin{eqnarray}
+f(\boldsymbol x) &amp;\approx&amp; f(\boldsymbol x^{(0)})+(\boldsymbol x-\boldsymbol x^{(0)})^\text{T}\nabla_{\boldsymbol x}f(\boldsymbol x^{(0)}) \\
+&amp;+&amp; \frac{1}{2}(\boldsymbol x-\boldsymbol x^{(0)})^\text{T}\boldsymbol H(f)(\boldsymbol x^{(0)})(\boldsymbol x-\boldsymbol x^{(0)})
+\end{eqnarray}$$</div>
+<p>
+如果我们使用学习率 <span class="math">\(\epsilon\)</span>，那么新的点 <span class="math">\(\boldsymbol x\)</span> 将会是 <span class="math">\(\boldsymbol x^{(0)}-\epsilon\nabla_{\boldsymbol x}f(\boldsymbol x^{(0)})\)</span>，带入上式，令 <span class="math">\(\boldsymbol g=\nabla_{\boldsymbol x}f(\boldsymbol x^{(0)})\)</span>，<span class="math">\(\boldsymbol H=\boldsymbol H(f)(\boldsymbol x^{(0)})\)</span> 得：
+</p>
+<div class="math">$$f(\boldsymbol x^{(0)}-\epsilon\boldsymbol g) \approx f(\boldsymbol x^{(0)})-\epsilon\boldsymbol g^\text{T}\boldsymbol g+\frac{1}{2}\epsilon^2\boldsymbol g^\text{T}\boldsymbol H\boldsymbol g$$</div>
+<p>
+上式是关于 <span class="math">\(\epsilon\)</span> 的二次函数，所以，当 <span class="math">\(\boldsymbol g^\text{T}\boldsymbol H\boldsymbol g\)</span> 为零或负时，增加 <span class="math">\(\epsilon\)</span> 将永远使得 <span class="math">\(f\)</span> 下降；当 <span class="math">\(\boldsymbol g^\text{T}\boldsymbol H\boldsymbol g\)</span> 为正时，则使近似泰勒级数下降最多的最优步长为：
+</p>
+<div class="math">$$\epsilon^\ast=\frac{\boldsymbol g^\text{T}\boldsymbol g}{\boldsymbol g^\text{T}\boldsymbol H\boldsymbol g}$$</div>
+<p>
+最坏的情况下，<span class="math">\(\boldsymbol d\)</span> 与 <span class="math">\(\boldsymbol H\)</span> 最大特征值 <span class="math">\(\lambda_{\max}\)</span> 对应的特征向量对齐，则最优步长是 <span class="math">\(\frac{1}{\lambda_\max}\)</span>。当我们要最小化的函数能用二次函数很好的近似的情况下，海森矩阵的特征值决定了学习率的量级。</p>
+<p>最速下降在梯度的每一个元素为零时收敛（或在实践中，近似为零）。在某些情况下，我们也许能够避免运行该迭代算法，并通过解方程 <span class="math">\(\nabla_{\boldsymbol x}f(\boldsymbol x)=0\)</span> 直接跳到临界点。</p>
+<p>虽然梯度下降被限制在连续空间中的优化问题，但不断向更好的情况移动一小步的一般概念可以推广到离散空间。递增带有离散参数的目标函数称为<strong>爬山</strong>（hill climbing）算法。</p>
+<h3>4.3.3 牛顿法</h3>
+<p>
+梯度下降法利用函数一阶导数的信息，在局部位置用一阶方程（一维对应直线，二维对应平面，高维对应超平面）拟合函数，然后沿着拟合函数函数值减小方向下降。</p>
+<p>牛顿法则利用函数一阶和二阶导数的信息，在局部位置用二阶方程（一维对应二次曲线，二维对应二次曲面，高维对应超二次曲面）拟合函数，然后沿着拟合函数函数值减小方向下降。</p>
+<p>梯度下降法和牛顿法相比，两者都是迭代求解，不过梯度下降法是梯度求解，而牛顿法是用二阶的海森矩阵的逆矩阵求解。相对而言，使用牛顿法收敛更快（迭代更少次数）。但是每次迭代的时间比梯度下降法长。</p>
+<p>目标函数 <span class="math">\(f(\boldsymbol x)\)</span> 在 <span class="math">\(\boldsymbol x^{(0)}\)</span> 处的二阶泰勒展开式为：
+</p>
+<div class="math">$$f(\boldsymbol x+\boldsymbol x^{(0)})=f(\boldsymbol x^{(0)})+\boldsymbol x^\text{T}\nabla_{\boldsymbol x}f(\boldsymbol x^{(0)})+\frac{1}{2}\boldsymbol x^\text{T}\boldsymbol H(f)(\boldsymbol x^{(0)})\boldsymbol x$$</div>
+<p>
+当 <span class="math">\(\boldsymbol x^{(0)}\)</span> 固定时，<span class="math">\(\boldsymbol x\)</span> 取多少可以使 <span class="math">\(f(\boldsymbol {x+x}^{(0)})\)</span> 最小呢，由于上式是 <span class="math">\(\boldsymbol x\)</span> 的二次函数，对 <span class="math">\(\boldsymbol x\)</span> 求偏导得临界点：
+</p>
+<div class="math">$$\boldsymbol x^\ast=\boldsymbol x^{(0)}-\boldsymbol H(f)(\boldsymbol x^{(0)})^{-1}\nabla_{\boldsymbol x}f(\boldsymbol x^{(0)})$$</div>
+<p>
+如果 <span class="math">\(f\)</span> 是一个正定二次函数，牛顿法只要使用上式一次就可以跳到函数的最小点。如果 <span class="math">\(f\)</span> 不是一个真正的二次但能在局部近似为正定二次，牛顿法则需要多次迭代应用上式。</p>
+<p>仅使用梯度信息的优化算法称为<strong>一阶优化算法</strong>（first-order optimization algorithms），如梯度下降。使用 Hessian 矩阵的优化算法称为<strong>二阶优化算法</strong>（second-order optimization algorithms），如牛顿法。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="/pages/2018/11/21/dl-3/">
+                                    深度学习 第三章 概率与信息论
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pages/2018/11/21/dl-2/">
+                                    深度学习 第二章 线性代数
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pages/2018/11/21/dl-1/">
+                                    深度学习 第一章 引言
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pages/2018/11/20/sl-12/">
+                                    统计学习方法 第十二章 统计学习方法总结
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pages/2018/11/19/sl-11/">
+                                    统计学习方法 第十一章 条件随机场
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-11-24T21:02:36+08:00">2018-11-24 21:02:36</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-11-25 00:20:10</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#机器学习-ref">机器学习
+                                <span>19</span>
+</a></li>
+                        <li><a href="/tags.html#深度学习-ref">深度学习
+                                <span>4</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
