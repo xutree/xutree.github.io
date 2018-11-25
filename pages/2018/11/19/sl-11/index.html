@@ -10,10 +10,10 @@
 <meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
     <title>统计学习方法 第十一章 条件随机场  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
 </head>
 
 <body>
@@ -26,15 +26,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="/index.html">主页</a></li>
-                            <li ><a href="/categories.html">分类</a></li>
-                            <li ><a href="/tags.html">标签</a></li>
-                            <li ><a href="/archives.html">归档</a></li>
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="/pages/2018/11/19/sl-11/"> 统计学习方法 第十一章 条件随机场  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/19/sl-11/"> 统计学习方法 第十一章 条件随机场  </a></h1>
         </header>
     </div>
 
@@ -75,11 +75,11 @@
 <div class="math">$$P(Y_\textsf{v}|Y_\textsf{W})=P(Y_\textsf{v}|Y_\textsf{W},Y_\textsf{O})$$</div>
 <p>
 下图表示了局部马尔科夫性。</p>
-<p><img alt="局部马尔科夫性" src="/images/statistical_learning_11.1.png"></p>
+<p><img alt="局部马尔科夫性" src="https://xutree.github.io/images/statistical_learning_11.1.png"></p>
 <p><strong>全局马尔科夫性</strong>：设结点集合 <span class="math">\(\textsf{A}\)</span>，<span class="math">\(\textsf{B}\)</span> 是在无向图 <span class="math">\(\textsf{G}\)</span> 中被结点集合 <span class="math">\(\textsf{C}\)</span> 分开的任意结点集合，如图所示。结点集合 <span class="math">\(\textsf{A}\)</span>，<span class="math">\(\textsf{B}\)</span> 和 <span class="math">\(\textsf{C}\)</span> 所对应的随机变量组分别是 <span class="math">\(Y_\textsf{A}\)</span>，<span class="math">\(Y_\textsf{B}\)</span> 和 <span class="math">\(Y_\textsf{C}\)</span>。全局马尔科夫性是指给定随机变量组 <span class="math">\(Y_\textsf{C}\)</span> 条件下随机变量组 <span class="math">\(Y_\textsf{A}\)</span> 和 <span class="math">\(Y_\textsf{B}\)</span> 是条件独立的，即
 </p>
 <div class="math">$$P(Y_\textsf{A},Y_\textsf{B}|Y_\textsf{C})=P(Y_\textsf{A}|Y_\textsf{C})P(Y_\textsf{B}|Y_\textsf{C})$$</div>
-<p><img alt="全局马尔科夫性" src="/images/statistical_learning_11.2.png"></p>
+<p><img alt="全局马尔科夫性" src="https://xutree.github.io/images/statistical_learning_11.2.png"></p>
 <p>上述成对的、局部的、全局的马尔科夫性定义是等价的。</p>
 <p><strong>
 定义 11.1（概率无向图模型）设有联合概率分布 <span class="math">\(P(Y)\)</span>，由无向图 <span class="math">\(\textsf{G}=(\textsf{V},\textsf{E})\)</span> 表示，在图 <span class="math">\(\textsf{G}\)</span> 中，结点表示随机变量，边表示随机变量之间的依赖关系。如果联合概率分布 <span class="math">\(P(Y)\)</span> 满足成对、局部或全局马尔科夫性，就称此联合概率分布为概率无向图模型或马尔科夫随机场。
@@ -91,7 +91,7 @@
 定义 11.2（团与最大团）无向图 <span class="math">\(\textsf{G}\)</span> 中任何两个结点均有边连接的结点子集称为团（clique)。若 <span class="math">\(\textsf{C}\)</span> 是无向图 <span class="math">\(\textsf{G}\)</span> 的一个团，并且不能再加进任何一个 <span class="math">\(\textsf{G}\)</span> 的结点使其成为一个更大的团，则称此 <span class="math">\(\textsf{C}\)</span> 为最大团（maximal clique)。
 </strong></p>
 <p>下图表示由 4 个结点组成的无向图。图中由 2 个结点组成的团有 5 个：<span class="math">\(\{\textsf{Y}_1,\textsf{Y}_2\}\)</span>，<span class="math">\(\{\textsf{Y}_2,\textsf{Y}_3\}\)</span>，<span class="math">\(\{\textsf{Y}_3,\textsf{Y}_4\}\)</span> 和 <span class="math">\(\{\textsf{Y}_4,\textsf{Y}_2\}\)</span>，<span class="math">\(\{\textsf{Y}_1,\textsf{Y}_3\}\)</span> 。有 2 个最大团：<span class="math">\(\{\textsf{Y}_1,\textsf{Y}_2,\textsf{Y}_3\}\)</span> 和 <span class="math">\(\{\textsf{Y}_2,\textsf{Y}_3,\textsf{Y}_4\}\)</span>。</p>
-<p><img alt="团和最大团" src="/images/statistical_learning_11.3.png"></p>
+<p><img alt="团和最大团" src="https://xutree.github.io/images/statistical_learning_11.3.png"></p>
 <p>将概率无向图模型的联合概率分布表示为其最大团上的随机变量的函数的乘积形式的操作，称为概率无向图模型的因子分解（factorization）。</p>
 <p>给定概率无向图模型，设无向图为 <span class="math">\(\textsf{G}\)</span>，<span class="math">\(\textsf{C}\)</span> 为 <span class="math">\(\textsf{G}\)</span> 上的最大团，<span class="math">\(Y_\textsf{C}\)</span>表示 <span class="math">\(\textsf{C}\)</span> 对应的随机变量。那么概率无向图模型的联合概率分布 <span class="math">\(P(Y)\)</span> 可分解为图中所有最大团 <span class="math">\(\textsf{C}\)</span> 上的函数 <span class="math">\(\Psi_{\textsf{C}}(Y_{\textsf{C}})\)</span> 的乘积形式
 </p>
@@ -127,7 +127,7 @@ Z=\sum_{\textsf{Y}}\prod_\textsf{C}\Psi_{\textsf{C}}(Y_{\textsf{C}})$$</div>
 <div class="math">$$\textsf{G}=(\textsf{V}=\{1,2,\cdots,n\},\textsf{E}=\{(i,i+1)\}),\ i=1,2,\cdots,i-1$$</div>
 <p>
 在此情况下，<span class="math">\(X=(X_1,X_2,\cdots,X_n)\)</span>，<span class="math">\(Y=(Y_1,Y_2,\cdots,Y_n)\)</span>，最大团是相邻两个节点的集合。线性链条件随机场有下面的定义</p>
-<p><img alt="线性链条件随机场" src="/images/statistical_learning_11.4.png"></p>
+<p><img alt="线性链条件随机场" src="https://xutree.github.io/images/statistical_learning_11.4.png"></p>
 <p><strong>
 定义 11.4（线性链条件随机场）设 <span class="math">\(X=(X_1,X_2,\cdots,X_n)\)</span>，<span class="math">\(Y=(Y_1,Y_2,\cdots,Y_n)\)</span> 均为线性链表示的随机变量序列，若在给定随机变量序列 <span class="math">\(X\)</span> 的条件下，随机变量序列 <span class="math">\(Y\)</span> 的条件概率分布 <span class="math">\(P(Y|X)\)</span> 构成条件随机场，即满足马尔可夫性
 <div class="math">$$P(Y_i|X,Y_1,\cdots,Y_{i−1},Y_{i+1},\cdots,Y_n)=P(Y_i|X,Y_{i−1},Y_{i+1})$$</div>
@@ -196,7 +196,7 @@ W_i(y_{i-1},y_i|x)&amp;= \sum_{k=1}^Kw_kf_k(y_{i-1},y_i,x,i) \end{aligned}$$</di
 <div class="math">$$\begin{aligned} M_i(y_{i-1} ,y_i|x) &amp;= \exp\left(\sum_k\lambda_kf_k(y_{i-1},y_i,x,i)\right) \\ &amp;=\exp\left( \sum_k\lambda_kt_k(y_{i-1},y_i,x,i) + \sum_l\mu_l s_l(y_i,x,i) \right) \end{aligned}$$</div>
 <p>
 举例来说，当 <span class="math">\(m=3\)</span> 时，除了 <span class="math">\(i=1\)</span> 或者 <span class="math">\(i=n-1\)</span>，每个矩阵 <span class="math">\(M_i(x)\in\mathbb{R}^{3\times 3}\)</span>，如下图所示</p>
-<p><img alt="条件随机场的矩阵形式" src="/images/statistical_learning_11.5.png"></p>
+<p><img alt="条件随机场的矩阵形式" src="https://xutree.github.io/images/statistical_learning_11.5.png"></p>
 <p>矩阵的形式类似于隐马尔科夫中的转移矩阵，代表了状态之间转移的概率，其形式是这样的
 </p>
 <div class="math">$$M_1(x)=\begin{bmatrix}
@@ -306,7 +306,7 @@ L(w) &amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\log P_w(y|x) \\
 </p>
 <div class="math">$$\delta=(\delta_1,\delta_2,\cdots,\delta_K)^\text{T}$$</div>
 <p>
-根据 <a href="/pages/2018/11/09/sl-6/">第六章</a>的方法，得到关于转移特征 <span class="math">\(t_k\)</span> 的更新方程是
+根据 <a href="https://xutree.github.io/articles/统计学习方法/sl-6.md">第六章</a>的方法，得到关于转移特征 <span class="math">\(t_k\)</span> 的更新方程是
 </p>
 <div class="math">$$\begin{eqnarray}
 \text{E}_{\tilde{P}}[t_k] &amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^{n+1}t_k(y_{i-1},y_i,x,i) \\
@@ -414,7 +414,7 @@ l=1,2,\cdots,K_2$$</div>
 (7) 置 <span class="math">\(k=k+1\)</span>，转 (3)
 </strong></p>
 <h2>11.5 条件随机场的预测算法</h2>
-<p>条件随机场的预测问题是给定条件随机场 <span class="math">\(P(Y|X)\)</span> 和输入序列（观测序列）<span class="math">\(x\)</span>，求条件概率最大的输出序列（标记序列）<span class="math">\(y^\star\)</span>，即对观测序列进行标注。条件随机场的预测算法是著名的<a href="/pages/2018/11/19/sl-10/">维特比算法</a>。</p>
+<p>条件随机场的预测问题是给定条件随机场 <span class="math">\(P(Y|X)\)</span> 和输入序列（观测序列）<span class="math">\(x\)</span>，求条件概率最大的输出序列（标记序列）<span class="math">\(y^\star\)</span>，即对观测序列进行标注。条件随机场的预测算法是著名的<a href="https://xutree.github.io/articles/统计学习方法/sl-10.md">维特比算法</a>。</p>
 <p>由条件随机场的简化形式，得
 </p>
 <div class="math">$$\begin{eqnarray}
@@ -544,27 +544,27 @@ y_n^\star=\arg\max_{1\leq j\leq m}\delta_n(j)$$</div>
                         </h1>
                         <ul>
                             <li>
-                                <a href="/pages/2018/11/19/sl-10/">
+                                <a href="https://xutree.github.io/pages/2018/11/19/sl-10/">
                                     统计学习方法 第十章 隐马尔科夫模型
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/11/17/sl-9/">
+                                <a href="https://xutree.github.io/pages/2018/11/17/sl-9/">
                                     统计学习方法 第九章 EM 算法及其推广
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/11/16/likelihood-function/">
+                                <a href="https://xutree.github.io/pages/2018/11/16/likelihood-function/">
                                     似然函数
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/11/12/sl-8/">
+                                <a href="https://xutree.github.io/pages/2018/11/12/sl-8/">
                                     统计学习方法 第八章 提升方法
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/11/12/sl-7_4/">
+                                <a href="https://xutree.github.io/pages/2018/11/12/sl-7_4/">
                                     统计学习方法 第七章 支持向量机（4）——序列最小最优化算法
                                 </a>
                             </li>
@@ -576,27 +576,27 @@ y_n^\star=\arg\max_{1\leq j\leq m}\delta_n(j)$$</div>
                         </h1>
                         <ul>
                             <li>
-                                <a href="/pages/2018/11/20/sl-12/">
+                                <a href="https://xutree.github.io/pages/2018/11/20/sl-12/">
                                     统计学习方法 第十二章 统计学习方法总结
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/11/21/dl-1/">
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">
                                     深度学习 第一章 引言
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/11/21/dl-2/">
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">
                                     深度学习 第二章 线性代数
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/11/21/dl-3/">
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">
                                     深度学习 第三章 概率与信息论
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/11/24/dl-4/">
+                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">
                                     深度学习 第四章 数值计算
                                 </a>
                             </li>
