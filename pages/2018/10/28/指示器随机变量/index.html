@@ -56,7 +56,7 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>指示器随机变量为概率和期望之间的转换提供了一个便利的方法。给定一个样本空间 <span class="math">\(S\)</span> 和一个事件 <span class="math">\(A\)</span>，那么事件 <span class="math">\(A\)</span> 对应的<strong>指示器随机变量</strong> <span class="math">\(I\{A\}\)</span>&nbsp;定义为：</p>
+                <p>指示器随机变量为概率和期望之间的转换提供了一个便利的方法。给定一个样本空间 <span class="math">\(S\)</span> 和一个事件 <span class="math">\(A\)</span>，那么事件 <span class="math">\(A\)</span> 对应的<strong>指示器随机变量</strong> <span class="math">\(I\{A\}\)</span> 定义为：</p>
 <div class="math">$$\text{I}\{A\}=\cases{
 1  &amp; 如果 A 发生 \\
 0 &amp; 如果 A 不发生
@@ -64,13 +64,13 @@
 <p>指示器随机变量有如下性质：</p>
 <div class="math">$$\text{E}[X_A]=\text{Pr}\{A\}$$</div>
 <p>就是说，指示器随机变量的期望等于它所指示事件发生的概率，指示器随机变量在分析重复随机试验时很有用。</p>
-<p><strong>例题1</strong>：连续抛硬币 <span class="math">\(n\)</span>&nbsp;次，求正面出现次数的期望。</p>
-<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_i\)</span> 对应第 <span class="math">\(i\)</span> 次抛硬币时正面朝上的事件。设随机变量 <span class="math">\(X\)</span> 表示 <span class="math">\(n\)</span>&nbsp;次抛硬币中出现正面的总次数，则：</p>
+<p><strong>例题1</strong>：连续抛硬币 <span class="math">\(n\)</span> 次，求正面出现次数的期望。</p>
+<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_i\)</span> 对应第 <span class="math">\(i\)</span> 次抛硬币时正面朝上的事件。设随机变量 <span class="math">\(X\)</span> 表示 <span class="math">\(n\)</span> 次抛硬币中出现正面的总次数，则：</p>
 <div class="math">$$X=\sum_{i=1}^nX_i$$</div>
 <p>对上式取期望：</p>
 <div class="math">$$\text{E}[X]=\text{E}\left[\sum_{i=1}^nX_i\right]=\sum_{i=1}^n\text{E}[X_i]=\sum_{i=1}^n1/2=n/2$$</div>
 <p><strong>例题2</strong>：雇佣问题。计算雇佣一个新的办公助理的期望次数。</p>
-<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_i\)</span> 对应第 <span class="math">\(i\)</span> 个应聘者被雇用的事件。设随机变量 <span class="math">\(X\)</span> 表示&nbsp;雇用一个新办公助理的次数，则：</p>
+<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_i\)</span> 对应第 <span class="math">\(i\)</span> 个应聘者被雇用的事件。设随机变量 <span class="math">\(X\)</span> 表示 雇用一个新办公助理的次数，则：</p>
 <div class="math">$$X_i=\text{I}\{应聘者\ i\ 被雇用\}=\cases{
 1  &amp; 如果应聘者 i 被雇用 \\
 0 &amp; 如果应聘者 i 不被雇用
@@ -81,8 +81,8 @@
 <div class="math">$$\text{E}[X_i]=\frac{\text{A}_{n-1}^{n-1}}{\text{A}_n^n}=\frac{1}{n}$$</div>
 <p>故：</p>
 <div class="math">$$\text{E}[X]=\text{E}\left[\sum_{i=1}^nX_i\right]=\sum_{i=1}^n\text{E}[X_i]=\sum_{i=1}^n1/i=\ln n+O(1)$$</div>
-<p><strong>例题3</strong>：<span class="math">\(n\)</span>&nbsp;位顾客，他们每个人给餐厅核对帽子的服务生一顶帽子。服务生以随机顺序将帽子归还给顾客，求拿到自己帽子的客户的期望数。</p>
-<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_i\)</span> 对应第 <span class="math">\(i\)</span> 个顾客拿到自己帽子的事件。设随机变量 <span class="math">\(X\)</span>&nbsp;表示拿到自己帽子的客户的期望数，则：</p>
+<p><strong>例题3</strong>：<span class="math">\(n\)</span> 位顾客，他们每个人给餐厅核对帽子的服务生一顶帽子。服务生以随机顺序将帽子归还给顾客，求拿到自己帽子的客户的期望数。</p>
+<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_i\)</span> 对应第 <span class="math">\(i\)</span> 个顾客拿到自己帽子的事件。设随机变量 <span class="math">\(X\)</span> 表示拿到自己帽子的客户的期望数，则：</p>
 <div class="math">$$X_i=\text{I}\{第\ i\ 个顾客拿到自己的帽子\}=\cases{
 1  &amp; 如果第 i 个顾客拿到自己的帽子 \\
 0 &amp; 如果第 i 个顾客没有拿到自己的帽子
@@ -92,23 +92,23 @@
 <p>容易得到：</p>
 <p>故：</p>
 <div class="math">$$\text{E}[X]=\text{E}\left[\sum_{i=1}^nX_i\right]=\sum_{i=1}^n\text{E}[X_i]=\sum_{i=1}^n1/n=1$$</div>
-<p><strong>例题4</strong>：设 <span class="math">\(A[1\dots n]\)</span> 是由 <span class="math">\(n\)</span> 个不同数构成的数列。如果 <span class="math">\(i&lt;j\)</span> 且 <span class="math">\(A[i]&gt;A[j]\)</span>，则称 <span class="math">\((i,j)\)</span> 对为 <span class="math">\(A\)</span> 的一个逆序对。假设 <span class="math">\(A\)</span> 的元素构成 <span class="math">\(&lt;1,2,\dots,n&gt;\)</span>&nbsp;上的一个均匀分布。求其中逆序对数目的期望。</p>
-<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_{ij}\)</span> 对应 <span class="math">\((i,j)\)</span>&nbsp;为逆序对的事件。则：</p>
+<p><strong>例题4</strong>：设 <span class="math">\(A[1\dots n]\)</span> 是由 <span class="math">\(n\)</span> 个不同数构成的数列。如果 <span class="math">\(i&lt;j\)</span> 且 <span class="math">\(A[i]&gt;A[j]\)</span>，则称 <span class="math">\((i,j)\)</span> 对为 <span class="math">\(A\)</span> 的一个逆序对。假设 <span class="math">\(A\)</span> 的元素构成 <span class="math">\(&lt;1,2,\dots,n&gt;\)</span> 上的一个均匀分布。求其中逆序对数目的期望。</p>
+<p><strong>解答</strong>：设指示器随机变量 <span class="math">\(X_{ij}\)</span> 对应 <span class="math">\((i,j)\)</span> 为逆序对的事件。则：</p>
 <div class="math">$$X_{ij}=\text{I}\{A[i]&gt;A[j], \text{for}\ 1\leq i&lt;j\leq n\}$$</div>
 <p>容易得到：</p>
 <div class="math">$$\text{E}[X_{ij}]=\text{Pr}\{X_{ij}=1\}=1/2$$</div>
-<p>设随机变量 <span class="math">\(X\)</span>&nbsp;表示逆序对总数目，则：</p>
+<p>设随机变量 <span class="math">\(X\)</span> 表示逆序对总数目，则：</p>
 <div class="math">$$X=\sum_{i=1}^{n-1}\sum_{j=i+1}^nX_{ij}$$</div>
 <p>故：</p>
 <div class="math">$$\text{E}[X]=\text{E}\left[\sum_{i=1}^{n-1}\sum_{j=i+1}^nX_{ij}\right]=\sum_{i=1}^{n-1}\sum_{j=i+1}^n\text{E}[X_{ij}]=\sum_{i=1}^{n-1}\sum_{j=i+1}^n1/2\\=\frac{1}{2}\text{C}_n^2=\frac{n(n-1)}{4}$$</div>
-<p><strong>例题5</strong>：一个骰子，6面，1个面是 1， 2个面是2， 3个面是3，&nbsp;问平均掷多少次能使1,2,3都至少出现一次？</p>
+<p><strong>例题5</strong>：一个骰子，6面，1个面是 1， 2个面是2， 3个面是3， 问平均掷多少次能使1,2,3都至少出现一次？</p>
 <p><strong>解答</strong>：</p>
 <p>设指示器随机变量 <span class="math">\(X_{i}\)</span>，对应“前i次掷骰子，1，2，3没能都至少出现一次”的事件，其值为1表示“前n次掷骰子，1，2，3没能都至少出现一次”的事件，其值为0表示这个事件没有发生，即“前n次掷骰子，1，2，3各至少出现一次”。</p>
-<p>设随机变量 <span class="math">\(X\)</span>&nbsp;表示1，2，3刚好全部出现过需要的投掷次数。</p>
+<p>设随机变量 <span class="math">\(X\)</span> 表示1，2，3刚好全部出现过需要的投掷次数。</p>
 <div class="math">$$X=\sum_0^{\infty}X_i$$</div>
-<p>说明一下，等式两边都是随机变量，假设对于某个随机实例（例如，这里指一次具体的投掷序列），其对应事件是：“投了 <span class="math">\(K\)</span> 次恰好1，2，3都出现了”，于是等式左边显然等于 <span class="math">\(K\)</span>；而等式右边，对于 <span class="math">\(n &lt; K\)</span>，由于这些项的对应定义事件发生了（即1，2，3没能出现），所以他们的实例值是1，而对于 <span class="math">\(n\geq K\)</span>，则由于对应定义事件都没发生，实例值为0，可见这个和也是 <span class="math">\(K\)</span>。故两侧相等。（为了达到这个相等关系，可以看出需要把 <span class="math">\(X_0\)</span>&nbsp;包含在内的必要性）。</p>
+<p>说明一下，等式两边都是随机变量，假设对于某个随机实例（例如，这里指一次具体的投掷序列），其对应事件是：“投了 <span class="math">\(K\)</span> 次恰好1，2，3都出现了”，于是等式左边显然等于 <span class="math">\(K\)</span>；而等式右边，对于 <span class="math">\(n &lt; K\)</span>，由于这些项的对应定义事件发生了（即1，2，3没能出现），所以他们的实例值是1，而对于 <span class="math">\(n\geq K\)</span>，则由于对应定义事件都没发生，实例值为0，可见这个和也是 <span class="math">\(K\)</span>。故两侧相等。（为了达到这个相等关系，可以看出需要把 <span class="math">\(X_0\)</span> 包含在内的必要性）。</p>
 <p>值得注意的是，对 <span class="math">\(n &lt; 3\)</span>，<span class="math">\(X_n\)</span> 显然恒为1。而对于 <span class="math">\(n\geq 3\)</span>，这些随机变量不是独立的。他们的相关性是不容易求出的，唯一容易知道的是，当序列中一个项为0时，其后的项均为0。好在对于这题我们不需要担忧这个相关性。</p>
-<p>下面求 <span class="math">\(\text{E}[X_i]\)</span>，由于 <span class="math">\(X_i\)</span> 考虑的是 <span class="math">\(i\)</span> 次投掷三者没有全部出现，于是就是其中两者出现或仅一者出现。假设单次投掷1，2和3出现的概率分别为：<span class="math">\(p1\)</span>，<span class="math">\(p2\)</span> 和 <span class="math">\(p3\)</span>。于是 <span class="math">\((p1+p2)^i\)</span> 表示 <span class="math">\(i\)</span> 次投掷只出现1或2的概率，这其中包括了出现全1和全2的情形，于是求 <span class="math">\(\text{Pr}\{X_{i}=1\}\)</span>&nbsp;可由这样的项求和并剔除重复计算的单面值情形：</p>
+<p>下面求 <span class="math">\(\text{E}[X_i]\)</span>，由于 <span class="math">\(X_i\)</span> 考虑的是 <span class="math">\(i\)</span> 次投掷三者没有全部出现，于是就是其中两者出现或仅一者出现。假设单次投掷1，2和3出现的概率分别为：<span class="math">\(p1\)</span>，<span class="math">\(p2\)</span> 和 <span class="math">\(p3\)</span>。于是 <span class="math">\((p1+p2)^i\)</span> 表示 <span class="math">\(i\)</span> 次投掷只出现1或2的概率，这其中包括了出现全1和全2的情形，于是求 <span class="math">\(\text{Pr}\{X_{i}=1\}\)</span> 可由这样的项求和并剔除重复计算的单面值情形：</p>
 <div class="math">$$\text{Pr}\{X_{i}=1\}=\cases{
 (p1+p2)^i+(p1+p3)^i+(p2+p3)^i-p1^i-p2^i-p3^i &amp; i&gt;0\\
 0 &amp; i=0}$$</div>
@@ -195,12 +195,12 @@
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">
-                                    C++ Primer 第十七章&nbsp;标准库特殊设施
+                                    C++ Primer 第十七章 标准库特殊设施
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">
-                                    C++ Primer 第十六章&nbsp;模板与泛型编程
+                                    C++ Primer 第十六章 模板与泛型编程
                                 </a>
                             </li>
                         </ul>
@@ -212,17 +212,17 @@
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/04/sl-1/">
-                                    统计学习方法 第一章&nbsp;统计学习方法概论
+                                    统计学习方法 第一章 统计学习方法概论
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/04/sl-2/">
-                                    统计学习方法 第二章&nbsp;感知机
+                                    统计学习方法 第二章 感知机
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/04/sl-3/">
-                                    统计学习方法 第三章 k&nbsp;近邻法
+                                    统计学习方法 第三章 k 近邻法
                                 </a>
                             </li>
                             <li>
@@ -232,7 +232,7 @@
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/07/sl-4/">
-                                    统计学习方法 第四章&nbsp;朴素贝叶斯法
+                                    统计学习方法 第四章 朴素贝叶斯法
                                 </a>
                             </li>
                         </ul>

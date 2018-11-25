@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="C++, 读书笔记, " />
-    <title>C++ Primer 第三章&nbsp;字符串、向量和数组  · You Know Nothing
+    <title>C++ Primer 第三章 字符串、向量和数组  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/"> C++ Primer 第三章&nbsp;字符串、向量和数组  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/"> C++ Primer 第三章 字符串、向量和数组  </a></h1>
         </header>
     </div>
 
@@ -61,7 +61,7 @@
 <p>数组和其他内置类型一样，实现与硬件密切相关，在灵活性上稍显不足。</p>
 <p>命名空间<code>using</code>声明：<code>using namespace::name;</code>例如：<code>using std::cin;</code>。</p>
 <p>头文件不应包含<code>using</code>声明，防止名字冲突。</p>
-<h2>标准库类型&nbsp;string</h2>
+<h2>标准库类型 string</h2>
 <h3>头文件和声明</h3>
 <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 <span class="n">using</span> <span class="n">std</span><span class="o">::</span><span class="kr">string</span><span class="p">;</span>
@@ -76,7 +76,7 @@ string s4(10, &#39;c&#39;); //s4的内容是cccccccccc
 </pre></div>
 
 
-<h3>string&nbsp;对象上的操作</h3>
+<h3>string 对象上的操作</h3>
 <table>
 <thead>
 <tr>
@@ -131,7 +131,7 @@ string s4(10, &#39;c&#39;); //s4的内容是cccccccccc
 </tr>
 </tbody>
 </table>
-<h3>读取未知数量的 string&nbsp;对象</h3>
+<h3>读取未知数量的 string 对象</h3>
 <div class="highlight"><pre><span></span>int main()
 {
     string word;
@@ -143,7 +143,7 @@ string s4(10, &#39;c&#39;); //s4的内容是cccccccccc
 
 
 <p>直到遇到结束标记或者非法输入才会停止</p>
-<h3>使用 getline&nbsp;读取一整行</h3>
+<h3>使用 getline 读取一整行</h3>
 <div class="highlight"><pre><span></span>int main()
 {
     string line;
@@ -155,11 +155,11 @@ string s4(10, &#39;c&#39;); //s4的内容是cccccccccc
 
 
 <p><code>getline</code>函数的参数是一个输入流和一个<code>string</code>对象，<code>getline</code>从给定的输入流中读入内容，直到遇到换行符为止（注意换行符也被读进来了），然后把所读的内容存入<code>string</code>对象中（注意不存换行符）。如果输入一开始就是换行符，那么所得的结果是个空<code>string</code>。</p>
-<h3>string::size_type&nbsp;类型</h3>
+<h3>string::size_type 类型</h3>
 <p>是一个无符号类型的值。如果一个表达式中已经有<code>size</code>函数就不要再使用<code>int</code>了，这样可以避免混用<code>int</code>和<code>unsigned</code>可能带来的问题。</p>
 <p><code>string</code>对象可以和字符字符串字面值相加，只要保证 + 号两侧的运算对象至少有一个<code>string</code>对象即可。</p>
 <p>由于某些历史原因，也为了和 C 兼容，所以 C++ 中的字符串字面值并不是标准库<code>string</code>类型。</p>
-<h3>处理 string&nbsp;对象里的字符</h3>
+<h3>处理 string 对象里的字符</h3>
 <p>包含在<code>cctype</code>头文件中：</p>
 <table>
 <thead>
@@ -224,13 +224,13 @@ string s4(10, &#39;c&#39;); //s4的内容是cccccccccc
 </tbody>
 </table>
 <p>C++ 标准库除了定义 C++ 语言特有的功能外，也兼容了 C 语言的标准库。C 语言的头文件形如 name.h，C++ 则将这些文件命名为 cname。因此<code>cctype</code>头文件和<code>ctype.h</code> 头文件的内容是一样的，只不过从命名规范上来讲更符合 C++ 语言的要求。特别地，在名为 cname 的头文件中定义的名字从属于命名空间<code>std</code>。</p>
-<h3>范围&nbsp;for</h3>
+<h3>范围 for</h3>
 <div class="highlight"><pre><span></span>for (declaration: expression)
         statement
 </pre></div>
 
 
-<p>expression 是一个对象，用于表示一个序列；declaration 负责定义一个变量，该变量将被用于访问序列中的基础元素，每次迭代，declaration 部分的变量会被初始化为 expression&nbsp;部分的下一个元素值。</p>
+<p>expression 是一个对象，用于表示一个序列；declaration 负责定义一个变量，该变量将被用于访问序列中的基础元素，每次迭代，declaration 部分的变量会被初始化为 expression 部分的下一个元素值。</p>
 <p>使用范围for输出</p>
 <div class="highlight"><pre><span></span>string str(&quot;some string&quot;);
         for (auto c : str)
@@ -246,9 +246,9 @@ cout &lt;&lt; s &lt;&lt; endl;
 </pre></div>
 
 
-<h3>下标运算符 [&nbsp;]</h3>
+<h3>下标运算符 [ ]</h3>
 <p>[ ]接收的输入参数是<code>string:size_type</code>类型的值，这个参数表示要访问的字符的位置，返回值是该位置上字符的引用。<code>string</code>对象的下标必须大于等于0而小于<code>s.size()</code>。</p>
-<h2>标准库类型&nbsp;vector</h2>
+<h2>标准库类型 vector</h2>
 <p><code>vector</code>表示对象的集合，其中所有对象的类型都相同，也常被称作容器，是一种类模板</p>
 <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="n">using</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="p">;</span>
@@ -327,7 +327,7 @@ for (int i = 0; i != 100; ++i)
 </tr>
 </tbody>
 </table>
-<h3>vector 的&nbsp;size_type</h3>
+<h3>vector 的 size_type</h3>
 <div class="highlight"><pre><span></span>vector&lt;int&gt;::size_type      //正确
 vector::size_type           //错误
 </pre></div>
@@ -362,7 +362,7 @@ vector::size_type           //错误
 <td>令 iter 指向容器中的下一个元素</td>
 </tr>
 <tr>
-<td>&#8212;iter</td>
+<td>--iter</td>
 <td>令 iter 指向容器中的上一个元素</td>
 </tr>
 <tr>
@@ -411,7 +411,7 @@ int *(&amp;arry)[10] = ptrs;    //arry 是引用，引用一个含有10个整型
 <h3>访问数组元素</h3>
 <p>数组的索引从0开始。</p>
 <p>在使用数组下标的时候，通常将其定义为<code>size_t</code>类型。<code>size_t</code>是一种机器相关的无符号类型，它被设计的足够大以便能表示内存中任意对象的大小。</p>
-<p>在 cstddef 头文件中定义了<code>size_t</code>类型，这个文件是 C 标准库 stddef.h 头文件的 C++&nbsp;版本。</p>
+<p>在 cstddef 头文件中定义了<code>size_t</code>类型，这个文件是 C 标准库 stddef.h 头文件的 C++ 版本。</p>
 <p>使用数组的时候编译器一般会把它转换成指针。</p>
 <p>通常情况下，使用取地址符来获取指向某个对象的指针，取地址符可以用于任何对象。数组的元素也是对象，对数组使用下标运算符得到该数组指定位置的元素，对数组元素应用取地址符就能得到指向该元素的指针。</p>
 <p>数组还有一个特性：在很多时候用到数组名字的地方，编译器都会自动地将其替换为一个指向数组首元素的指针</p>
@@ -440,17 +440,17 @@ int *last = end(ia);
 </pre></div>
 
 
-<p><code>begin</code>函数返回指向 ia 首元素的指针，<code>end</code>函数返回指向 ia 尾元素下一位置的指针，这两个函数定义在 iterator&nbsp;头文件中</p>
-<p>两个指针相减结果的类型是一种名为<code>ptrdiff_t</code>的类型，和<code>size_t</code>一样，它也是定义在 cstddef&nbsp;头文件中的机器相关的类型。因为差值可能是负值，所以它是一种带符号类型。</p>
+<p><code>begin</code>函数返回指向 ia 首元素的指针，<code>end</code>函数返回指向 ia 尾元素下一位置的指针，这两个函数定义在 iterator 头文件中</p>
+<p>两个指针相减结果的类型是一种名为<code>ptrdiff_t</code>的类型，和<code>size_t</code>一样，它也是定义在 cstddef 头文件中的机器相关的类型。因为差值可能是负值，所以它是一种带符号类型。</p>
 <p>内置的下标运算符所用的索引值不是无符号类型，这一点和<code>vector</code>和<code>string</code>不一样</p>
 <div class="highlight"><pre><span></span>int *p = &amp;ia[2];
 int k = p[-2];      //k 是 ia[0] 那个元素
 </pre></div>
 
 
-<h3>C&nbsp;风格字符串</h3>
+<h3>C 风格字符串</h3>
 <p>按此习惯书写的字符串存放在字符数组中并以空字符结束。</p>
-<p>C 语言标准库提供了一组函数用于操作 C 风格字符串，它们定义在 cstring 头文件中，cstring 是 C 语言头文件 string.h 的 C++&nbsp;版本。</p>
+<p>C 语言标准库提供了一组函数用于操作 C 风格字符串，它们定义在 cstring 头文件中，cstring 是 C 语言头文件 string.h 的 C++ 版本。</p>
 <h3>与旧代码的接口</h3>
 <p>任何出现字符串字面值的地方都可以用空字符结尾的字符数组来代替。不能用string对象直接初始化指向字符的指针，为了完成该功能，string专门提供了一个名为c_str的成员函数</p>
 <div class="highlight"><pre><span></span>char *str = s;      //错误，不能用 string 对象初始化 char*
@@ -458,15 +458,15 @@ const char *str = s.c_str();    //正确
 </pre></div>
 
 
-<p>我们无法保证 c_str 函数返回的数组一直有效，事实上，如果后续的操作改变了 s&nbsp;的值就可能让之前返回的数组失去效用</p>
+<p>我们无法保证 c_str 函数返回的数组一直有效，事实上，如果后续的操作改变了 s 的值就可能让之前返回的数组失去效用</p>
 <p>使用数组初始化<code>vector</code>对象</p>
 <div class="highlight"><pre><span></span>int int_arr[] = {0, 1, 2, 3, 4, 5};
 vector&lt;int&gt; ivec(begin(int_arr),end(int_arr));
 </pre></div>
 
 
-<p>现代的 C++ 程序员应当尽量使用<code>vector</code>和迭代器，避免使用内置的数组和指针，应该尽量使用<code>string</code>，避免使用 C&nbsp;风格的基于数组的字符串。</p>
-<p>多维数组：要使用范围 for&nbsp;语句处理多维数组，除了最内层的循环外，其他所有循环的控制变量都应该是引用类型。</p>
+<p>现代的 C++ 程序员应当尽量使用<code>vector</code>和迭代器，避免使用内置的数组和指针，应该尽量使用<code>string</code>，避免使用 C 风格的基于数组的字符串。</p>
+<p>多维数组：要使用范围 for 语句处理多维数组，除了最内层的循环外，其他所有循环的控制变量都应该是引用类型。</p>
 <p>缓冲区溢出：主要原因是试图通过一个越界的索引访问容器内容。</p>
 <p><code>difference_type</code>：由<code>string</code>和<code>vector</code>定义的一种带符号整数类型，表示两个迭代器之间的距离。</p>
                 <aside>
@@ -478,27 +478,27 @@ vector&lt;int&gt; ivec(begin(int_arr),end(int_arr));
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/">
-                                    C++ Primer 第二章&nbsp;变量和基本类型
+                                    C++ Primer 第二章 变量和基本类型
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
-                                    利用 Mac stat&nbsp;添加文件创建时间、最后修改时间
+                                    利用 Mac stat 添加文件创建时间、最后修改时间
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/">
-                                    C++ Primer 第一章&nbsp;开始
+                                    C++ Primer 第一章 开始
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">
-                                    <span class="caps">HTML</span>&nbsp;入门
+                                    HTML 入门
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/">
-                                    <span class="caps">X3DOM</span>&nbsp;图像和视频纹理
+                                    X3DOM 图像和视频纹理
                                 </a>
                             </li>
                         </ul>
@@ -510,27 +510,27 @@ vector&lt;int&gt; ivec(begin(int_arr),end(int_arr));
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/">
-                                    C++ Primer 第四章&nbsp;表达式
+                                    C++ Primer 第四章 表达式
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/07/css_overview/">
-                                    <span class="caps">CSS</span>&nbsp;入门
+                                    CSS 入门
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/">
-                                    Linux&nbsp;中的扩展和引用
+                                    Linux 中的扩展和引用
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/">
-                                    几个奇葩的 Linux&nbsp;命令
+                                    几个奇葩的 Linux 命令
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
-                                    C++ Primer 第五章&nbsp;语句
+                                    C++ Primer 第五章 语句
                                 </a>
                             </li>
                         </ul>

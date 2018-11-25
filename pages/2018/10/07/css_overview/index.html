@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="CSS, 教程, " />
-    <title><span class="caps">CSS</span>&nbsp;入门  · You Know Nothing
+    <title>CSS 入门  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/07/css_overview/"> <span class="caps">CSS</span>&nbsp;入门  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/07/css_overview/"> CSS 入门  </a></h1>
         </header>
     </div>
 
@@ -56,18 +56,18 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <h2>什么是 <span class="caps">CSS</span></h2>
-<p><span class="caps">CSS</span>（<strong>C</strong> ascading <strong>S</strong> tyle <strong>S</strong>&nbsp;heets），即层叠样式表。</p>
-<p>层叠是指 <span class="caps">CSS</span> 将一种样式应用于另一种样式的方式。样式表控制 Web&nbsp;文档的外观。</p>
-<h2>为什么使用 <span class="caps">CSS</span></h2>
+                <h2>什么是 CSS</h2>
+<p>CSS（<strong>C</strong> ascading <strong>S</strong> tyle <strong>S</strong> heets），即层叠样式表。</p>
+<p>层叠是指 CSS 将一种样式应用于另一种样式的方式。样式表控制 Web 文档的外观。</p>
+<h2>为什么使用 CSS</h2>
 <ul>
-<li><span class="caps">CSS</span> 允许你将特定样式应用于特定 <span class="caps">HTML</span>&nbsp;元素</li>
-<li><span class="caps">CSS</span>&nbsp;的主要好处是它允许您将样式与内容分开</li>
-<li>仅使用 <span class="caps">HTML</span>，所有样式和格式都在同一个地方，随着页面的增长，这变得相当难以维护</li>
+<li>CSS 允许你将特定样式应用于特定 HTML 元素</li>
+<li>CSS 的主要好处是它允许您将样式与内容分开</li>
+<li>仅使用 HTML，所有样式和格式都在同一个地方，随着页面的增长，这变得相当难以维护</li>
 </ul>
-<h2><span class="caps">CSS</span>&nbsp;三种形式</h2>
-<h3>内联 <span class="caps">CSS</span>：inline <span class="caps">CSS</span></h3>
-<p>使用内联样式是插入样式表的方法之一。&nbsp;使用内联样式，将独特的样式应用于单个元素。</p>
+<h2>CSS 三种形式</h2>
+<h3>内联 CSS：inline CSS</h3>
+<p>使用内联样式是插入样式表的方法之一。 使用内联样式，将独特的样式应用于单个元素。</p>
 <p>要使用内联样式，请将style属性添加到相关标记。</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;p</span> <span class="na">style=</span><span class="s">&quot;color:white; background-color:gray;&quot;</span><span class="nt">&gt;</span>
     This is an example of inline styling.
@@ -75,8 +75,8 @@
 </pre></div>
 
 
-<h3>嵌入式/内部 <span class="caps">CSS</span>：Embedded/Internal <span class="caps">CSS</span></h3>
-<p>内部样式在 <span class="caps">HTML</span> 页面的<code>head</code>部分内的<code>&lt;style&gt;</code>元素中定义。</p>
+<h3>嵌入式/内部 CSS：Embedded/Internal CSS</h3>
+<p>内部样式在 HTML 页面的<code>head</code>部分内的<code>&lt;style&gt;</code>元素中定义。</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;html&gt;</span>
    <span class="nt">&lt;head&gt;</span>
       <span class="nt">&lt;style&gt;</span>
@@ -94,9 +94,9 @@
 </pre></div>
 
 
-<h3>外部 <span class="caps">CSS</span>：External <span class="caps">CSS</span></h3>
-<p>使用此方法，所有样式规则都包含在单个文本文件中，该文件以 .css&nbsp;扩展名保存。</p>
-<p>然后使用<code>&lt;link&gt;</code>标记在 <span class="caps">HTML</span> 中引用此 <span class="caps">CSS</span> 文件。<code>&lt;link&gt;</code>元素位于<code>head</code>部分内部。</p>
+<h3>外部 CSS：External CSS</h3>
+<p>使用此方法，所有样式规则都包含在单个文本文件中，该文件以 .css 扩展名保存。</p>
+<p>然后使用<code>&lt;link&gt;</code>标记在 HTML 中引用此 CSS 文件。<code>&lt;link&gt;</code>元素位于<code>head</code>部分内部。</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;head&gt;</span>
    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;example.css&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/head&gt;</span>
@@ -108,12 +108,12 @@
 </pre></div>
 
 
-<h2><span class="caps">CSS</span>&nbsp;语法</h2>
-<p><span class="caps">CSS</span> 由浏览器解释的样式规则组成，然后应用于文档中的相应元素。样式规则有三个部分：<code>selector</code>，<code>property</code>和<code>value</code>。</p>
+<h2>CSS 语法</h2>
+<p>CSS 由浏览器解释的样式规则组成，然后应用于文档中的相应元素。样式规则有三个部分：<code>selector</code>，<code>property</code>和<code>value</code>。</p>
 <p>例如，标题颜色可以定义为：<code>h1 { color: orange; }</code></p>
-<p>选择器指向要设置样式的HTML元素。声明块包含一个或多个声明，以分号分隔。每个声明都包含一个属性名称和一个以冒号分隔的值。<span class="caps">CSS</span>&nbsp;声明始终以分号结尾，声明组由大括号括起。</p>
+<p>选择器指向要设置样式的HTML元素。声明块包含一个或多个声明，以分号分隔。每个声明都包含一个属性名称和一个以冒号分隔的值。CSS 声明始终以分号结尾，声明组由大括号括起。</p>
 <h3>类型选择器</h3>
-<p>最常见且易于理解的选择器是类型选择器。&nbsp;此选择器针对页面上的元素类型。</p>
+<p>最常见且易于理解的选择器是类型选择器。 此选择器针对页面上的元素类型。</p>
 <p>例如，要定位页面上的所有段落：</p>
 <div class="highlight"><pre><span></span><span class="nt">p</span> <span class="p">{</span>
    <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
@@ -122,9 +122,9 @@
 </pre></div>
 
 
-<h3>id 和 clss&nbsp;选择器</h3>
-<p>id 选择器允许您设置具有 id 属性的 <span class="caps">HTML</span> 元素的样式，而不管它们在文档树中的位置如何。 以下是 id&nbsp;选择器的示例：</p>
-<p><span class="caps">HTML</span>&nbsp;文件：</p>
+<h3>id 和 clss 选择器</h3>
+<p>id 选择器允许您设置具有 id 属性的 HTML 元素的样式，而不管它们在文档树中的位置如何。 以下是 id 选择器的示例：</p>
+<p>HTML 文件：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;intro&quot;</span><span class="nt">&gt;</span>
    <span class="nt">&lt;p&gt;</span> This paragraph is in the intro section.<span class="nt">&lt;/p&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
@@ -132,7 +132,7 @@
 </pre></div>
 
 
-<p><span class="caps">CSS</span>&nbsp;文件:</p>
+<p>CSS 文件:</p>
 <div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">intro</span> <span class="p">{</span>
    <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
    <span class="k">background-color</span><span class="p">:</span> <span class="kc">gray</span><span class="p">;</span>
@@ -140,10 +140,10 @@
 </pre></div>
 
 
-<p>要选择具有特定 id 的元素，请使用井号 <strong>#</strong> 字符，然后使用元素的 id&nbsp;跟随它。</p>
-<p>类选择器以类似的方式工作。 主要区别在于 id&nbsp;每页只能应用一次，而类可以根据需要在页面上多次使用。</p>
-<p>在下面的示例中，具有“first”类的两个段落都将受到 <span class="caps">CSS</span>&nbsp;的影响：</p>
-<p><span class="caps">HTML</span>&nbsp;文件：</p>
+<p>要选择具有特定 id 的元素，请使用井号 <strong>#</strong> 字符，然后使用元素的 id 跟随它。</p>
+<p>类选择器以类似的方式工作。 主要区别在于 id 每页只能应用一次，而类可以根据需要在页面上多次使用。</p>
+<p>在下面的示例中，具有“first”类的两个段落都将受到 CSS 的影响：</p>
+<p>HTML 文件：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;div&gt;</span>
    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;first&quot;</span><span class="nt">&gt;</span>This is a paragraph<span class="nt">&lt;/p&gt;</span>
    <span class="nt">&lt;p&gt;</span> This is the second paragraph. <span class="nt">&lt;/p&gt;</span>
@@ -153,16 +153,16 @@
 </pre></div>
 
 
-<p><span class="caps">CSS</span>&nbsp;文件：</p>
+<p>CSS 文件：</p>
 <div class="highlight"><pre><span></span><span class="na">.first</span> <span class="err">{</span><span class="no">font-size</span><span class="p">:</span> <span class="mi">200</span><span class="err">%</span><span class="c">;}</span>
 </pre></div>
 
 
-<p>要选择具有特定类的元素，请使用句点 <strong>.</strong> 字符，后跟类的名称。不要用数字开始一个类或 id&nbsp;名称。</p>
+<p>要选择具有特定类的元素，请使用句点 <strong>.</strong> 字符，后跟类的名称。不要用数字开始一个类或 id 名称。</p>
 <h3>后代选择器</h3>
-<p>这些选择器用于选择作为另一个元素的后代的元素。&nbsp;选择级别时，您可以根据需要选择多个级别。</p>
+<p>这些选择器用于选择作为另一个元素的后代的元素。 选择级别时，您可以根据需要选择多个级别。</p>
 <p>例如，要仅定位“intro”部分第一段中的 &lt;em> 元素：</p>
-<p><span class="caps">HTML</span>&nbsp;文件：</p>
+<p>HTML 文件：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;intro&quot;</span><span class="nt">&gt;</span>
    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;first&quot;</span><span class="nt">&gt;</span>This is a <span class="nt">&lt;em&gt;</span> paragraph.<span class="nt">&lt;/em&gt;&lt;/p&gt;</span>
    <span class="nt">&lt;p&gt;</span> This is the second paragraph. <span class="nt">&lt;/p&gt;</span>
@@ -172,7 +172,7 @@
 </pre></div>
 
 
-<p><span class="caps">CSS</span>&nbsp;文件：</p>
+<p>CSS 文件：</p>
 <div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">intro</span> <span class="p">.</span><span class="nc">first</span> <span class="nt">em</span> <span class="p">{</span>
    <span class="k">color</span><span class="p">:</span> <span class="kc">pink</span><span class="p">;</span>
    <span class="k">background-color</span><span class="p">:</span><span class="kc">gray</span><span class="p">;</span>
@@ -190,7 +190,7 @@
 <li>浏览器的默认样式</li>
 <li>用户指定的样式</li>
 </ul>
-<p>继承是指属性在页面中流动的方式。&nbsp;除非另有定义，否则子元素通常会采用父元素的特征。</p>
+<p>继承是指属性在页面中流动的方式。 除非另有定义，否则子元素通常会采用父元素的特征。</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -200,27 +200,27 @@
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/">
-                                    C++ Primer 第四章&nbsp;表达式
+                                    C++ Primer 第四章 表达式
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/">
-                                    C++ Primer 第三章&nbsp;字符串、向量和数组
+                                    C++ Primer 第三章 字符串、向量和数组
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/">
-                                    C++ Primer 第二章&nbsp;变量和基本类型
+                                    C++ Primer 第二章 变量和基本类型
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
-                                    利用 Mac stat&nbsp;添加文件创建时间、最后修改时间
+                                    利用 Mac stat 添加文件创建时间、最后修改时间
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/">
-                                    C++ Primer 第一章&nbsp;开始
+                                    C++ Primer 第一章 开始
                                 </a>
                             </li>
                         </ul>
@@ -232,17 +232,17 @@
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/">
-                                    Linux&nbsp;中的扩展和引用
+                                    Linux 中的扩展和引用
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/">
-                                    几个奇葩的 Linux&nbsp;命令
+                                    几个奇葩的 Linux 命令
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
-                                    C++ Primer 第五章&nbsp;语句
+                                    C++ Primer 第五章 语句
                                 </a>
                             </li>
                             <li>
@@ -252,7 +252,7 @@
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/">
-                                    C++ Primer 第六章&nbsp;函数
+                                    C++ Primer 第六章 函数
                                 </a>
                             </li>
                         </ul>

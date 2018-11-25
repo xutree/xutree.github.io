@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="C++, 读书笔记, " />
-    <title>C++ Primer 第十七章&nbsp;标准库特殊设施  · You Know Nothing
+    <title>C++ Primer 第十七章 标准库特殊设施  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/"> C++ Primer 第十七章&nbsp;标准库特殊设施  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/"> C++ Primer 第十七章 标准库特殊设施  </a></h1>
         </header>
     </div>
 
@@ -56,7 +56,7 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <h2>tuple&nbsp;类型</h2>
+                <h2>tuple 类型</h2>
 <p>当我们希望将一些数据组合成单一对象，但又不想麻烦地定义一个新数据结构来表示这些数据时，可以使用<code>tuple</code>类型。与<code>pair</code>类似，但<code>tuple</code>可以有任意数量的成员。它的一个常见用途就是从一个函数返回多个值。<code>tuple</code>定义在同名的头文件中。</p>
 <p>支持的操作：</p>
 <p><img alt="tuple支持的操作" src="https://xutree.github.io/images/c++17-1.jpg"></p>
@@ -76,7 +76,7 @@ tuple_element&lt;1, trans&gt;::type cnt = get&lt;1&gt;(item);
 
 
 <p>只有两个<code>tuple</code>具有相同数量的成员，且每对成员使用<code>==</code>或<code>&lt;</code>是合法时，才能比较两个<code>tuple</code>。另外，由于<code>tuple</code>定义了<code>&lt;</code>和<code>==</code>运算符，可以将<code>tuple</code>序列传递给算法，并且可以在无序容器中将<code>tuple</code>作为关键字类型。</p>
-<h2>bitset&nbsp;类型</h2>
+<h2>bitset 类型</h2>
 <p><code>bitset</code>类，可以方便地将整型运算对象当作二进制位集合处理，并且能够处理超过最长整型类型大小的位集合。<code>bitset</code>定义在同名的头文件中。</p>
 <p>支持的操作：</p>
 <p><img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-2.jpg"></p>
@@ -87,7 +87,7 @@ tuple_element&lt;1, trans&gt;::type cnt = get&lt;1&gt;(item);
 
 <p><img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-3.jpg"></p>
 <h2>正则表达式</h2>
-<p><span class="caps">RE</span> 库定义在头文件<code>regex</code>中。</p>
+<p>RE 库定义在头文件<code>regex</code>中。</p>
 <table>
 <thead>
 <tr>
@@ -128,7 +128,7 @@ tuple_element&lt;1, trans&gt;::type cnt = get&lt;1&gt;(item);
 </table>
 <p><code>regex_search</code>和<code>regex_search</code>的参数如下，这些操作都返回<code>bool</code>，指出是否找到匹配：</p>
 <p><code>(seq, m, r, mft)</code>或<code>(seq, r, mft)</code>：在字符序列 seq 中查找 regex 对象 r 中的正则表达式。seq 可以是一个<code>string</code>、表示范围的一对迭代器以及一个指向空字符结尾的字符数组的指针。m 是一个<code>match</code>对象，用来保存匹配结果的相关细节。m 和 seq 必须具有兼容的类型。mft 是一个可选的<code>regex_constants::match_flag_type</code>值，它们会影响匹配过程。</p>
-<p>待续&#8230;</p>
+<p>待续...</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -138,27 +138,27 @@ tuple_element&lt;1, trans&gt;::type cnt = get&lt;1&gt;(item);
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">
-                                    C++ Primer 第十六章&nbsp;模板与泛型编程
+                                    C++ Primer 第十六章 模板与泛型编程
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">
-                                    C++ Primer 第十五章&nbsp;面向对象程序设计
+                                    C++ Primer 第十五章 面向对象程序设计
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
-                                    C++ Primer 第十四章&nbsp;重载运算与类型转换
+                                    C++ Primer 第十四章 重载运算与类型转换
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">
-                                    C++ Primer 第十三章&nbsp;拷贝控制
+                                    C++ Primer 第十三章 拷贝控制
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
-                                    C++ Primer 第十二章&nbsp;动态内存
+                                    C++ Primer 第十二章 动态内存
                                 </a>
                             </li>
                         </ul>
@@ -190,7 +190,7 @@ tuple_element&lt;1, trans&gt;::type cnt = get&lt;1&gt;(item);
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/04/sl-1/">
-                                    统计学习方法 第一章&nbsp;统计学习方法概论
+                                    统计学习方法 第一章 统计学习方法概论
                                 </a>
                             </li>
                         </ul>

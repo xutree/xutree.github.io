@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="C++, 读书笔记, " />
-    <title>C++ Primer 第七章&nbsp;类  · You Know Nothing
+    <title>C++ Primer 第七章 类  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/"> C++ Primer 第七章&nbsp;类  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/"> C++ Primer 第七章 类  </a></h1>
         </header>
     </div>
 
@@ -62,7 +62,7 @@
 <h2>类的定义</h2>
 <p>定义在类内部的函数时隐式<code>inline</code>的。</p>
 <p><code>this</code>是一个常量指针。</p>
-<h3>const&nbsp;成员函数</h3>
+<h3>const 成员函数</h3>
 <p>通过在紧随参数列表之后添加<code>const</code>，可以定义<code>const</code>成员函数。<code>const</code>的作用是修改隐式<code>this</code>指针的类型。</p>
 <p>默认情况下，<code>this</code>指针的类型是指向类类型非常量版本的常量指针（顶层常量）。这意味着我们不能把<code>this</code>绑定到一个常量对象上。</p>
 <p>常量对象，以及常量对象的引用或者指针都只能调用常量成员函数。</p>
@@ -91,7 +91,7 @@
 <li>如果存在类内的初始值，用它来初始化成员</li>
 <li>否则，执行默认初始化</li>
 </ul>
-<p>在 C++ 11中，如果我们需要默认的行为，那么可以通过在参数列表后面写上 <strong>= default</strong> 来要求编译器生成构造函数。如果 <strong>= default</strong>&nbsp;出现在类的内部，则默认构造函数是内联的；如果它出现在外部，则该成员默认情况下不是内联的。</p>
+<p>在 C++ 11中，如果我们需要默认的行为，那么可以通过在参数列表后面写上 <strong>= default</strong> 来要求编译器生成构造函数。如果 <strong>= default</strong> 出现在类的内部，则默认构造函数是内联的；如果它出现在外部，则该成员默认情况下不是内联的。</p>
 <h4>构造函数初始值列表</h4>
 <p>构造函数初始值列表：<code>Sales_data(const std::string &amp;s) : bookNo(s) { }</code></p>
 <p>如果成员是<code>const</code>或者引用的话，必须将其初始化。类似的，当成员属于某种类类型且该类类型没有定义默认构造函数时，也必须将这个成员初始化。</p>
@@ -115,8 +115,8 @@
 
 <p>受委托的构造函数先执行。</p>
 <h2>访问控制与封装</h2>
-<p>定义在 <strong>public</strong> 说明符之后的成员在整个程序内可被访问，<strong>public</strong>&nbsp;成员定义类的接口。</p>
-<p>定义在 <strong>private</strong>&nbsp;说明符之后的成员可以被类的成员函数访问，但是不能被使用该类的代码访问。</p>
+<p>定义在 <strong>public</strong> 说明符之后的成员在整个程序内可被访问，<strong>public</strong> 成员定义类的接口。</p>
+<p>定义在 <strong>private</strong> 说明符之后的成员可以被类的成员函数访问，但是不能被使用该类的代码访问。</p>
 <p><code>class</code>和<code>struct</code>定义类唯一的区别就是默认的访问权限。</p>
 <h3>友元</h3>
 <p>通过友元，类可以允许其他类或者函数访问它的<strong>非公有成员</strong>。</p>
@@ -129,7 +129,7 @@
 <p>类可以自定义某种类型在类中的别名。要注意，用来定义类型的成员必须先定义后使用。</p>
 <h3>可变数据成员</h3>
 <p>有时我们希望能够修改类的某个数据成员，即使是在一个<code>const</code>成员函数内。通过关键字<code>mutable</code>可以达到这种效果。一个可变数据成员永远不会是<code>const</code>，即使它是<code>const</code>对象的成员。</p>
-<h3>返回 *this&nbsp;的成员函数</h3>
+<h3>返回 *this 的成员函数</h3>
 <p>一个<code>const</code>成员函数如果以引用的方式返回*this，那么它的返回类型将是常量引用。</p>
 <p>基于<code>const</code>的重载：</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Screen</span> <span class="p">{</span>
@@ -148,7 +148,7 @@
 
 
 <h3>类类型</h3>
-<p>声明方法：<code>Sales_data item1;</code>或<code>class Sales_data item1;</code>后一种从 C&nbsp;语言继承而来。</p>
+<p>声明方法：<code>Sales_data item1;</code>或<code>class Sales_data item1;</code>后一种从 C 语言继承而来。</p>
 <p>类的声明：前向声明，在类声明之后定义之前，类是一个不完全类型。</p>
 <p>不完全类型只能在非常有限的情景下使用：定义指向这种类型的引用或指针，也可以声明（但是不能定义）以不完全类型作为参数或者返回类型的函数。</p>
 <p>直到类被定义之后数据成员才可以被声明成这种类类型。然而，当一个类的名字出现后，它被认为是声明过了（但尚未定义），因此允许包含指向它自身类型的引用或者指针（有没有想到链表结构）。</p>
@@ -212,7 +212,7 @@
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/">
-                                    C++ Primer 第六章&nbsp;函数
+                                    C++ Primer 第六章 函数
                                 </a>
                             </li>
                             <li>
@@ -222,17 +222,17 @@
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
-                                    C++ Primer 第五章&nbsp;语句
+                                    C++ Primer 第五章 语句
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/">
-                                    几个奇葩的 Linux&nbsp;命令
+                                    几个奇葩的 Linux 命令
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/">
-                                    Linux&nbsp;中的扩展和引用
+                                    Linux 中的扩展和引用
                                 </a>
                             </li>
                         </ul>
@@ -244,7 +244,7 @@
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
-                                    C++ Primer 第八章 <span class="caps">IO</span>&nbsp;库
+                                    C++ Primer 第八章 IO 库
                                 </a>
                             </li>
                             <li>
@@ -254,17 +254,17 @@
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
-                                    Perl&nbsp;入门
+                                    Perl 入门
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
-                                    Atom&nbsp;快捷键
+                                    Atom 快捷键
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
-                                    C++ Primer 第九章&nbsp;顺序容器
+                                    C++ Primer 第九章 顺序容器
                                 </a>
                             </li>
                         </ul>

@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="Linux, 教程, " />
-    <title>Linux&nbsp;中的扩展和引用  · You Know Nothing
+    <title>Linux 中的扩展和引用  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/"> Linux&nbsp;中的扩展和引用  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/"> Linux 中的扩展和引用  </a></h1>
         </header>
     </div>
 
@@ -57,7 +57,7 @@
             <div class="span8 offset2 article-content">
 
                 <h2>扩展</h2>
-<p>当我们每次在命令行按下<code>Enter</code>键时，bash&nbsp;会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。</p>
+<p>当我们每次在命令行按下<code>Enter</code>键时，bash 会在执行命令之前对文本进行多重处理。产生这个结果的处理过程称为扩展（expansion）。</p>
 <p>一个 🌰 :<code>echo *</code>会将当前目录下所有的非隐藏文件名打印出来。</p>
 <h3>单词分隔</h3>
 <p>单词分隔会先查找是否存在空格、制表符以及换行，然后把它们作为单词的界定符（delimiter）。所以下面的命令后面跟着4个不同的参数：</p>
@@ -67,7 +67,7 @@ this is a test
 
 
 <h3>路径名扩展</h3>
-<p>通过使用通配符来实现扩展的机制称为路径名扩展（pathname&nbsp;expansion）。</p>
+<p>通过使用通配符来实现扩展的机制称为路径名扩展（pathname expansion）。</p>
 <h3>波浪线扩展（~）</h3>
 <p>如果把它用在一个单词的开头，那么它将被扩展为指定用户的主目录名；如果没有指定用户名，则扩展为当前用户的主目录：</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ ech ~
@@ -81,7 +81,7 @@ this is a test
 
 
 <h3>算术扩展</h3>
-<p>shell 支持通过扩展来运行算术表达式。这允许我们把 shell&nbsp;提示符当做计算器来使用：</p>
+<p>shell 支持通过扩展来运行算术表达式。这允许我们把 shell 提示符当做计算器来使用：</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $((2+2))
 4
 </pre></div>
@@ -162,7 +162,7 @@ this is a test
 </tr>
 </tbody>
 </table>
-<p>🌰&nbsp;：</p>
+<p>🌰 ：</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ echo $((0xff))
 255
 [me@linuxbox ~]$ echo $((3#11))
@@ -185,10 +185,10 @@ Front-A-Back Front-B-Back Front-C-Back
 
 
 <h3>参数扩展</h3>
-<p>shell&nbsp;提供了多种参数扩展的形式。</p>
+<p>shell 提供了多种参数扩展的形式。</p>
 <h4>基本参数</h4>
-<p>参数扩展的最简单形式体现在平时对变量的使用中。举例来说，<code>$a</code>扩展后成为变量 a 所包含的内容，无论 a&nbsp;包含什么。</p>
-<p>简单参数可以被括号包围，如<code>${a}</code>，当变量相邻与其他文本时，必须使用括号，否则可能让 shell&nbsp;混淆。</p>
+<p>参数扩展的最简单形式体现在平时对变量的使用中。举例来说，<code>$a</code>扩展后成为变量 a 所包含的内容，无论 a 包含什么。</p>
+<p>简单参数可以被括号包围，如<code>${a}</code>，当变量相邻与其他文本时，必须使用括号，否则可能让 shell 混淆。</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ a=&quot;foo&quot;
 [me@linuxbox ~]$ echo &quot;<span class="nv">$a_file</span>&quot;
 
@@ -197,11 +197,11 @@ foo_file
 </pre></div>
 
 
-<p>因为不存在 a_file 变量，所以 shell&nbsp;输出空。</p>
+<p>因为不存在 a_file 变量，所以 shell 输出空。</p>
 <p>同样，对于大于9的位置参数可以通过给相应数字加上括号来访问，例如访问第11个位置参数：<code>${11}</code></p>
 <h4>空变量扩展的管理</h4>
 <p>有的参数扩展用于处理不存在的变量和空变量。这些参数扩展在处理缺失的位置参数和给参数赋默认值时很有用。</p>
-<p><code>${parameter:-word}</code>：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值。如果 parameter 非空，则扩展为 parameter&nbsp;的值。</p>
+<p><code>${parameter:-word}</code>：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值。如果 parameter 非空，则扩展为 parameter 的值。</p>
 <div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">foo</span><span class="o">=</span>
 <span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="p">{</span><span class="nn">foo</span><span class="p">:</span><span class="s s-Atom">-</span><span class="s2">&quot;substitute value if unset&quot;</span><span class="p">}</span>
 <span class="s s-Atom">substitute</span> <span class="s s-Atom">value</span> <span class="s s-Atom">if</span> <span class="s s-Atom">unset</span>
@@ -214,7 +214,7 @@ foo_file
 </pre></div>
 
 
-<p><code>${parameter:=word}</code>：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值；此外，word 的值也将赋给 parameter。如果 parameter 非空，则扩展为 parameter&nbsp;的值。注意：位置参数和其他特殊参数不能以这种方式赋值。</p>
+<p><code>${parameter:=word}</code>：如果 parameter 未被设定或者是空参数，则其扩展为 word 的值；此外，word 的值也将赋给 parameter。如果 parameter 非空，则扩展为 parameter 的值。注意：位置参数和其他特殊参数不能以这种方式赋值。</p>
 <div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">foo</span><span class="o">=</span>
 <span class="p">[</span><span class="s s-Atom">me@linuxbox</span> <span class="s s-Atom">~</span><span class="p">]</span><span class="err">$</span> <span class="s s-Atom">echo</span> <span class="err">$</span><span class="p">{</span><span class="nn">foo</span><span class="p">:</span><span class="s s-Atom">=</span><span class="s2">&quot;deafult value if unset&quot;</span><span class="p">}</span>
 <span class="s s-Atom">deafult</span> <span class="s s-Atom">value</span> <span class="s s-Atom">if</span> <span class="s s-Atom">unset</span>
@@ -228,7 +228,7 @@ foo_file
 </pre></div>
 
 
-<p><code>${parameter:？word}</code>：如果 parameter 未被设定或者是空参数，这样扩展会致使脚本出错而退出，并且 word 的内容输出到标准错误。如果 parameter 非空，则扩展为 parameter&nbsp;的值。</p>
+<p><code>${parameter:？word}</code>：如果 parameter 未被设定或者是空参数，这样扩展会致使脚本出错而退出，并且 word 的内容输出到标准错误。如果 parameter 非空，则扩展为 parameter 的值。</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="err">?</span><span class="s2">&quot;parameter is empty&quot;</span><span class="cp">}</span>
 bash: foo: parameter is empty
@@ -242,7 +242,7 @@ bar
 </pre></div>
 
 
-<p><code>${parameter:+word}</code>：如果 parameter 未被设定或者是空参数，则不产生任何扩展。若 parameter 非空，word 的值将取代 parameter 的值产生扩展；然而，parameter&nbsp;的值并不发生变化。</p>
+<p><code>${parameter:+word}</code>：如果 parameter 未被设定或者是空参数，则不产生任何扩展。若 parameter 非空，word 的值将取代 parameter 的值产生扩展；然而，parameter 的值并不发生变化。</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="o">+</span><span class="s2">&quot;substitute value if unset&quot;</span><span class="cp">}</span>
 [me@linuxbox ~]$ foo=bar
@@ -255,22 +255,22 @@ bar
 
 
 <h4>返回变量名的扩展</h4>
-<p>shell&nbsp;具有返回变量名的扩展。这种功能在相当特殊的情况下才会使用。</p>
+<p>shell 具有返回变量名的扩展。这种功能在相当特殊的情况下才会使用。</p>
 <div class="highlight"><pre><span></span><span class="cp">${</span><span class="err">!</span><span class="n">prefix</span><span class="o">*</span><span class="cp">}</span>
 <span class="cp">${</span><span class="err">!</span><span class="n">prefix</span><span class="err">@</span><span class="cp">}</span>
 </pre></div>
 
 
-<p>该扩展返回当前以 prefix 开通的变量名。根据 bash&nbsp;文档，这两种形式的扩展形式执行的效果一模一样。</p>
+<p>该扩展返回当前以 prefix 开通的变量名。根据 bash 文档，这两种形式的扩展形式执行的效果一模一样。</p>
 <h4>字符串操作</h4>
-<p><code>${#parameter}</code>：扩展为 parameter 内包含的字符串的长度。如果 parameter 是 “@” 或&nbsp;“*”，那么扩展的结果就是位置参数的个数。</p>
+<p><code>${#parameter}</code>：扩展为 parameter 内包含的字符串的长度。如果 parameter 是 “@” 或 “*”，那么扩展的结果就是位置参数的个数。</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
 [me@linuxbox ~]$ echo &quot;&#39;<span class="nv">$foo</span>&#39; is <span class="cp">${</span><span class="c1">#foo</span><span class="cp">}</span> characters long.&quot;
 &#39;This string is long.&#39; is 20 characters long.
 </pre></div>
 
 
-<p><code>{parameter:offset}</code>和<code>{parameter:offset:length}</code>：这个扩展提取一部分字符串。扩展以 offset 字符开始，直到字符串末尾，除非 length&nbsp;特别指定它。</p>
+<p><code>{parameter:offset}</code>和<code>{parameter:offset:length}</code>：这个扩展提取一部分字符串。扩展以 offset 字符开始，直到字符串末尾，除非 length 特别指定它。</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span><span class="mi">5</span><span class="cp">}</span>
 string is long.
@@ -279,7 +279,7 @@ string
 </pre></div>
 
 
-<p>如果 offset 为负，默认表示从字符串末尾开始。<strong>注意，负值前必须有一个空格</strong>，以防和<code>${parameter:-word}</code>扩展混淆。length&nbsp;不能小于0。</p>
+<p>如果 offset 为负，默认表示从字符串末尾开始。<strong>注意，负值前必须有一个空格</strong>，以防和<code>${parameter:-word}</code>扩展混淆。length 不能小于0。</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=&quot;This string is long.&quot;
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="cp">}</span>
 long.
@@ -288,8 +288,8 @@ lo
 </pre></div>
 
 
-<p>如果参数是 “@”，扩展的结果则是从 offset 开始，length&nbsp;为位置参数。</p>
-<p><code>${parameter#pattern}</code>和<code>${parameter##pattern}</code>：pattern 是一个通配符模式，“#” 去除最短匹配，”##”&nbsp;去除最长匹配。</p>
+<p>如果参数是 “@”，扩展的结果则是从 offset 开始，length 为位置参数。</p>
+<p><code>${parameter#pattern}</code>和<code>${parameter##pattern}</code>：pattern 是一个通配符模式，“#” 去除最短匹配，”##” 去除最长匹配。</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=file.txt.zip
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="c1">#*.</span><span class="cp">}</span>
 txt.zip
@@ -298,7 +298,7 @@ zip
 </pre></div>
 
 
-<p><code>${parameter%pattern}</code>和<code>${parameter%%pattern}</code>：从尾部去除。pattern 是一个通配符模式，“%” 去除最短匹配，”%%”&nbsp;去除最长匹配。</p>
+<p><code>${parameter%pattern}</code>和<code>${parameter%%pattern}</code>：从尾部去除。pattern 是一个通配符模式，“%” 去除最短匹配，”%%” 去除最长匹配。</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ foo=file.txt.zip
 [me@linuxbox ~]$ echo <span class="cp">${</span><span class="n">foo</span><span class="o">%*.</span><span class="cp">}</span>
 file.txt
@@ -331,7 +331,7 @@ JPG.jpg
 </pre></div>
 
 
-<p>在早期的 shell 程序中，存在命令替换的另一种语法，bash&nbsp;也支持这种格式。它用反引号代替美元符号和括号：</p>
+<p>在早期的 shell 程序中，存在命令替换的另一种语法，bash 也支持这种格式。它用反引号代替美元符号和括号：</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ ls -l `which cp`
 -rwxr-xr-x  1 root  wheel  29008 10 26  2017 /bin/cp
 </pre></div>
@@ -340,7 +340,7 @@ JPG.jpg
 <h2>引用</h2>
 <p>引用主要用于控制扩展。</p>
 <h3>双引号</h3>
-<p>如果把文本放在双引号中，那么 shell 使用的所有特殊字符都被看成普通字符，除了 “$（美元符号）”，“\（反斜杠）”，“`（反引号）”&nbsp;除外。</p>
+<p>如果把文本放在双引号中，那么 shell 使用的所有特殊字符都被看成普通字符，除了 “$（美元符号）”，“\（反斜杠）”，“`（反引号）” 除外。</p>
 <p>单词分隔、路径名扩展、波浪线扩展、花括号扩展都失效。</p>
 <p>参数扩展、算术扩展、命令替换仍然有效。</p>
 <p>使用双引号可以阻止单词分隔，这可以用来处理包含空白的文件名。</p>
@@ -348,8 +348,8 @@ JPG.jpg
 <p>抑制所有扩展。</p>
 <h3>转义字符</h3>
 <p>转义字符通常用在双引号中用来有选择性的阻止扩展。</p>
-<h2>关于反斜杠转义字符（backslash escape&nbsp;sequence）</h2>
-<p>反斜杠除了作为转义字符外，也是一种表示法的一部分。<span class="caps">ASCII</span>&nbsp;码表的前32个字符用来向电传打字类设备传送命令。</p>
+<h2>关于反斜杠转义字符（backslash escape sequence）</h2>
+<p>反斜杠除了作为转义字符外，也是一种表示法的一部分。ASCII 码表的前32个字符用来向电传打字类设备传送命令。</p>
 <table>
 <thead>
 <tr>
@@ -368,7 +368,7 @@ JPG.jpg
 </tr>
 <tr>
 <td align="left">\n</td>
-<td align="left">新的一行（在类 <span class="caps">UNIX</span> 系统中，产生的是换行效果</td>
+<td align="left">新的一行（在类 UNIX 系统中，产生的是换行效果</td>
 </tr>
 <tr>
 <td align="left">\r</td>
@@ -380,7 +380,7 @@ JPG.jpg
 </tr>
 </tbody>
 </table>
-<p>在<code>echo</code>命令中带上 -e 选项，就能够解释转义字符序列，也可以将其放在&nbsp;“$&#8221;”中。下面的例子，实现一个简单的倒计时计时器：</p>
+<p>在<code>echo</code>命令中带上 -e 选项，就能够解释转义字符序列，也可以将其放在 “$''”中。下面的例子，实现一个简单的倒计时计时器：</p>
 <div class="highlight"><pre><span></span>[me@linuxbox ~]$ sleep 10; echo -e &quot;Time&#39;s up\a&quot;
 </pre></div>
 
@@ -397,27 +397,27 @@ JPG.jpg
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/07/css_overview/">
-                                    <span class="caps">CSS</span>&nbsp;入门
+                                    CSS 入门
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/">
-                                    C++ Primer 第四章&nbsp;表达式
+                                    C++ Primer 第四章 表达式
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/">
-                                    C++ Primer 第三章&nbsp;字符串、向量和数组
+                                    C++ Primer 第三章 字符串、向量和数组
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/">
-                                    C++ Primer 第二章&nbsp;变量和基本类型
+                                    C++ Primer 第二章 变量和基本类型
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
-                                    利用 Mac stat&nbsp;添加文件创建时间、最后修改时间
+                                    利用 Mac stat 添加文件创建时间、最后修改时间
                                 </a>
                             </li>
                         </ul>
@@ -429,12 +429,12 @@ JPG.jpg
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/">
-                                    几个奇葩的 Linux&nbsp;命令
+                                    几个奇葩的 Linux 命令
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
-                                    C++ Primer 第五章&nbsp;语句
+                                    C++ Primer 第五章 语句
                                 </a>
                             </li>
                             <li>
@@ -444,12 +444,12 @@ JPG.jpg
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/">
-                                    C++ Primer 第六章&nbsp;函数
+                                    C++ Primer 第六章 函数
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
-                                    C++ Primer 第七章&nbsp;类
+                                    C++ Primer 第七章 类
                                 </a>
                             </li>
                         </ul>

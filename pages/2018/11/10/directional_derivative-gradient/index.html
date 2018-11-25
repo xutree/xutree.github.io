@@ -56,8 +56,8 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <h2>1.&nbsp;方向导数</h2>
-<p>多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional&nbsp;derivative）则表示多元函数沿着某一方向的变化率。</p>
+                <h2>1. 方向导数</h2>
+<p>多元函数的偏导数反映了函数值沿着坐标轴方向的变化率，方向导数（directional derivative）则表示多元函数沿着某一方向的变化率。</p>
 <p><strong>
 定义 1.1（方向导数）设 <span class="math">\(f\)</span> 是定义于 <span class="math">\(\mathbb{R}^n\)</span> 中某区域 <span class="math">\(D\)</span> 上的函数，点 <span class="math">\(P_0\in D\)</span>，<span class="math">\(l\)</span> 为一给定的非零向量，<span class="math">\(P\)</span> 为一动点，向量 <span class="math">\(\vec{P_0P}\)</span> 与 <span class="math">\(l\)</span> 的方向始终一致。如果极限
 <div class="math">$$\lim_{\|P_0P\|\to0}\frac{f(P)-f(P_0}{\|\vec{P_0P}\|}$$</div>
@@ -68,13 +68,13 @@
 <div class="math">$$l_0=(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n)$$</div>
 称
 <div class="math">$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$</div>
-为向量 <span class="math">\(l\)</span>&nbsp;的方向余弦。
+为向量 <span class="math">\(l\)</span> 的方向余弦。
 </strong></p>
 <p><strong>
 定理 1.1（方向导数计算公式）若函数 <span class="math">\(f\)</span> 在点 <span class="math">\(P_0\)</span> 处可微，向量 <span class="math">\(l\)</span> 的方向余弦为 <span class="math">\(\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n\)</span>，则函数 <span class="math">\(f\)</span> 在点 <span class="math">\(P_0\)</span> 处沿 <span class="math">\(l\)</span> 方向的方向导数存在，且
 <div class="math">$$\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$</div>
 </strong></p>
-<p>证：因为 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\)</span> 处可微，向量 <span class="math">\(\vec{P_0P}=(\Delta x_1,\Delta x_2,\cdots,\Delta x_n)\)</span> 与 <span class="math">\(l\)</span>&nbsp;同向，故
+<p>证：因为 <span class="math">\(f\)</span> 在 <span class="math">\(P_0\)</span> 处可微，向量 <span class="math">\(\vec{P_0P}=(\Delta x_1,\Delta x_2,\cdots,\Delta x_n)\)</span> 与 <span class="math">\(l\)</span> 同向，故
 </p>
 <div class="math">$$f(P)-f(P_0)=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\Delta x_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\Delta x_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\Delta x_n+o(\|\vec{P_0P}\|)$$</div>
 <p>
@@ -83,21 +83,22 @@
 <div class="math">$$\lim_{\|\vec{P_0P}\|\to0}\frac{f(P)-f(P_0)}{\|\vec{P_0P}\|}=\lim_{\|\vec{P_0P}\|\to0}\left[\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\frac{\Delta x_1}{\|\vec{P_0P}\|}+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\frac{\Delta x_2}{\|\vec{P_0P}\|}+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\frac{\Delta x_n}{\|\vec{P_0P}\|}+\frac{o(\|\vec{P_0P}\|)}{\|\vec{P_0P}\|}\right] \\
 =\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$</div>
 <p>
-因为 <span class="math">\(\frac{\partial f}{\partial l}\bigg\rvert_{P_0}\)</span>&nbsp;存在，所以
+因为 <span class="math">\(\frac{\partial f}{\partial l}\bigg\rvert_{P_0}\)</span> 存在，所以
 </p>
 <div class="math">$$\frac{\partial f}{\partial l}\bigg\rvert_{P_0}=\frac{\partial f}{\partial x_1}\bigg\rvert_{P_0}\cos\alpha_1+\frac{\partial f}{\partial x_2}\bigg\rvert_{P_0}\cos\alpha_2+\cdots+\frac{\partial f}{\partial x_n}\bigg\rvert_{P_0}\cos\alpha_n$$</div>
-<p>注意：一个函数即使在某一点处连续，可偏导，且沿所有方向的方向导&nbsp;数都存在，也不一定在该点可微。所以定义中的可微条件是必须的。</p>
-<h2>2.&nbsp;梯度</h2>
-<p>设函数 <span class="math">\(f\)</span> 定义于 <span class="math">\(\mathbb{R}^n\)</span> 的区域 <span class="math">\(D\)</span> 上，或者说 <span class="math">\(f\)</span> 是区域 <span class="math">\(D\)</span> 上的一个数量场。我们的问题是在点 <span class="math">\(P\in D\)</span> 处 <span class="math">\(f\)</span>&nbsp;的方向导数沿哪个方向取得最大值，即沿哪个方向数量场的变化率最大？这就是梯度（gradient）问题。</p>
-<p>如果向量 <span class="math">\(l\)</span>&nbsp;的方向余弦为
+<p>注意：一个函数即使在某一点处连续，可偏导，且沿所有方向的方向导
+数都存在，也不一定在该点可微。所以定义中的可微条件是必须的。</p>
+<h2>2. 梯度</h2>
+<p>设函数 <span class="math">\(f\)</span> 定义于 <span class="math">\(\mathbb{R}^n\)</span> 的区域 <span class="math">\(D\)</span> 上，或者说 <span class="math">\(f\)</span> 是区域 <span class="math">\(D\)</span> 上的一个数量场。我们的问题是在点 <span class="math">\(P\in D\)</span> 处 <span class="math">\(f\)</span> 的方向导数沿哪个方向取得最大值，即沿哪个方向数量场的变化率最大？这就是梯度（gradient）问题。</p>
+<p>如果向量 <span class="math">\(l\)</span> 的方向余弦为
 </p>
 <div class="math">$$\cos\alpha_1,\cos\alpha_2,\cdots,\cos\alpha_n$$</div>
 <p>
-那么 <span class="math">\(f\)</span> 在点 <span class="math">\(P\)</span> 处沿 <span class="math">\(l\)</span>&nbsp;方向的方向导数为
+那么 <span class="math">\(f\)</span> 在点 <span class="math">\(P\)</span> 处沿 <span class="math">\(l\)</span> 方向的方向导数为
 </p>
 <div class="math">$$\frac{\partial f}{\partial l}=\frac{\partial f}{\partial x_1}\cos\alpha_1+\cdots+\frac{\partial f}{\partial x_n}\cos\alpha_n$$</div>
 <p>
-记 <span class="math">\(n\)</span>&nbsp;维向量
+记 <span class="math">\(n\)</span> 维向量
 </p>
 <div class="math">$$\boldsymbol{g}=\left(\frac{\partial f}{\partial x_1},\cdots,\frac{\partial f}{\partial x_n}\right)$$</div>
 <p>
@@ -113,7 +114,7 @@
 </p>
 <div class="math">$$\left|\frac{\partial f}{\partial l}\right|=|(\boldsymbol{g},\boldsymbol{l_0})|\leq\|\boldsymbol{g}\|\|\boldsymbol{l_0}\|=\|\boldsymbol{g}\|$$</div>
 <p>
-当且仅当 <span class="math">\(\boldsymbol{g}\)</span> 与 <span class="math">\(\boldsymbol{l_0}\)</span>&nbsp;同向时，等号成立。而且
+当且仅当 <span class="math">\(\boldsymbol{g}\)</span> 与 <span class="math">\(\boldsymbol{l_0}\)</span> 同向时，等号成立。而且
 </p>
 <div class="math">$$\max\frac{\partial f}{\partial l}=\|\boldsymbol{g}\|=\left[\sum_{i=1}^n\left(\frac{\partial f}{\partial x_i}\right)^2\right]^{\frac{1}{2}}$$</div>
 <p><strong>
@@ -191,17 +192,17 @@
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/09/sl-6/">
-                                    统计学习方法 第六章&nbsp;逻辑回归与最大熵模型
+                                    统计学习方法 第六章 逻辑回归与最大熵模型
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/07/sl-5/">
-                                    统计学习方法 第五章&nbsp;决策树
+                                    统计学习方法 第五章 决策树
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/07/sl-4/">
-                                    统计学习方法 第四章&nbsp;朴素贝叶斯法
+                                    统计学习方法 第四章 朴素贝叶斯法
                                 </a>
                             </li>
                             <li>
@@ -218,27 +219,27 @@
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/11/sl-7_1/">
-                                    统计学习方法 第七章&nbsp;支持向量机（1）——线性可分支持向量机
+                                    统计学习方法 第七章 支持向量机（1）——线性可分支持向量机
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/11/sl-7_2/">
-                                    统计学习方法 第七章&nbsp;支持向量机（2）——线性支持向量机
+                                    统计学习方法 第七章 支持向量机（2）——线性支持向量机
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/12/sl-7_3/">
-                                    统计学习方法 第七章&nbsp;支持向量机（3）——非线性支持向量机
+                                    统计学习方法 第七章 支持向量机（3）——非线性支持向量机
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/12/sl-7_4/">
-                                    统计学习方法 第七章&nbsp;支持向量机（4）——序列最小最优化算法
+                                    统计学习方法 第七章 支持向量机（4）——序列最小最优化算法
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/12/sl-8/">
-                                    统计学习方法 第八章&nbsp;提升方法
+                                    统计学习方法 第八章 提升方法
                                 </a>
                             </li>
                         </ul>

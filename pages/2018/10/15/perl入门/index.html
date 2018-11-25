@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="Perl, 教程, " />
-    <title>Perl&nbsp;入门  · You Know Nothing
+    <title>Perl 入门  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/15/perl入门/"> Perl&nbsp;入门  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/15/perl入门/"> Perl 入门  </a></h1>
         </header>
     </div>
 
@@ -56,21 +56,21 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>Perl 是 Practical Extraction and Report Language 的缩写，可翻译为&nbsp;&#8220;实用报表提取语言&#8221;。</p>
-<p>Perl&nbsp;是高级、通用、直译式、动态的程序语言。</p>
-<p>Perl 最初的设计者为拉里·沃尔（Larry&nbsp;Wall），于1987年12月18日发表。</p>
-<p>Perl 借用了 C、sed、awk、shell&nbsp;脚本以及很多其他编程语言的特性。</p>
-<p>Perl 最重要的特性是 Perl&nbsp;内部集成了正则表达式的功能，以及巨大的第三方代码库CPAN。</p>
-<p>以下代码为使用 Perl 输出 &#8220;Hello&nbsp;World！&#8221;：</p>
+                <p>Perl 是 Practical Extraction and Report Language 的缩写，可翻译为 "实用报表提取语言"。</p>
+<p>Perl 是高级、通用、直译式、动态的程序语言。</p>
+<p>Perl 最初的设计者为拉里·沃尔（Larry Wall），于1987年12月18日发表。</p>
+<p>Perl 借用了 C、sed、awk、shell 脚本以及很多其他编程语言的特性。</p>
+<p>Perl 最重要的特性是 Perl 内部集成了正则表达式的功能，以及巨大的第三方代码库CPAN。</p>
+<p>以下代码为使用 Perl 输出 "Hello World！"：</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/perl</span>
 <span class="k">print</span> <span class="s">&quot;Hello, World!\n&quot;</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
-<p>Perl 语言的应用范围很广，除 <span class="caps">CGI</span> 以外，Perl 被用于图形编程、系统管理、网络编程、金融、生物以及其他领域。由于其灵活性，Perl&nbsp;被称为脚本语言中的瑞士军刀。</p>
-<p>Perl 与脚本语言一样，Perl 不需要编译器和链接器来运行代码，你要做的只是写出程序并告诉 Perl 来运行而已。这意味着 Perl&nbsp;对于小的编程问题的快速解决方案和为大型事件创建原型来测试潜在的解决方案是十分理想的。</p>
-<h2>运行&nbsp;Perl</h2>
+<p>Perl 语言的应用范围很广，除 CGI 以外，Perl 被用于图形编程、系统管理、网络编程、金融、生物以及其他领域。由于其灵活性，Perl 被称为脚本语言中的瑞士军刀。</p>
+<p>Perl 与脚本语言一样，Perl 不需要编译器和链接器来运行代码，你要做的只是写出程序并告诉 Perl 来运行而已。这意味着 Perl 对于小的编程问题的快速解决方案和为大型事件创建原型来测试潜在的解决方案是十分理想的。</p>
+<h2>运行 Perl</h2>
 <h3>交互式</h3>
 <div class="highlight"><pre><span></span>$perl  -e &lt;perl code&gt;           # Unix/Linux
 C:&gt;perl -e &lt;perl code&gt;          # Windows/DOS
@@ -91,7 +91,7 @@ C:&gt;perl -e &lt;perl code&gt;          # Windows/DOS
 </tr>
 <tr>
 <td align="left">-Idirectory</td>
-<td align="left">指定 @<span class="caps">INC</span>/#include 目录</td>
+<td align="left">指定 @INC/#include 目录</td>
 </tr>
 <tr>
 <td align="left">-T</td>
@@ -133,12 +133,12 @@ C:&gt;perl script.pl         # Windows/DOS
 </pre></div>
 
 
-<h2>Perl&nbsp;基础语法</h2>
+<h2>Perl 基础语法</h2>
 <h3>语句</h3>
-<p>Perl 程序有声明与语句组成，程序自上而下执行，包含了循环，条件控制，每个语句以分号 (<strong>;</strong>) 结束。Perl&nbsp;语言没有严格的格式规范，你可以根据自己喜欢的风格来缩进。</p>
+<p>Perl 程序有声明与语句组成，程序自上而下执行，包含了循环，条件控制，每个语句以分号 (<strong>;</strong>) 结束。Perl 语言没有严格的格式规范，你可以根据自己喜欢的风格来缩进。</p>
 <h3>注释</h3>
-<p>perl 注释的方法为在语句的开头用字符&nbsp;#。</p>
-<p>perl 也支持多行注释，最常用的方法是使用 <span class="caps">POD</span>(Plain Old Documentations)&nbsp;来进行多行注释。方法如下:</p>
+<p>perl 注释的方法为在语句的开头用字符 #。</p>
+<p>perl 也支持多行注释，最常用的方法是使用 POD(Plain Old Documentations) 来进行多行注释。方法如下:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -164,18 +164,18 @@ C:&gt;perl script.pl         # Windows/DOS
 </td></tr></table>
 
 <ul>
-<li>=pod、&nbsp;=cut只能在行首</li>
+<li>=pod、 =cut只能在行首</li>
 <li>以=开头，以=cut结尾</li>
 <li>=后面要紧接一个字符，=cut后面可以不用</li>
 </ul>
 <h3>空白</h3>
-<p>Perl&nbsp;解释器不会关心有多少个空白。但是如果空格和分行出现在字符串内，他会原样输出。</p>
+<p>Perl 解释器不会关心有多少个空白。但是如果空格和分行出现在字符串内，他会原样输出。</p>
 <h3>引号</h3>
-<p>Perl 双引号和单引号的区别:&nbsp;双引号可以正常解析一些转义字符与变量，而单引号无法解析会原样输出。</p>
-<h3>Here&nbsp;文档</h3>
+<p>Perl 双引号和单引号的区别: 双引号可以正常解析一些转义字符与变量，而单引号无法解析会原样输出。</p>
+<h3>Here 文档</h3>
 <ul>
 <li>必须后接分号，否则编译通不过</li>
-<li><span class="caps">END</span>&nbsp;可以用任意其它字符代替，只需保证结束标识与开始标识一致</li>
+<li>END 可以用任意其它字符代替，只需保证结束标识与开始标识一致</li>
 <li>结束标识必须顶格独自占一行(即必须从行首开始，前后不能衔接任何空白和字符)</li>
 <li>开始标识可以不带引号号或带单双引号，不带引号与带双引号效果一致，解释内嵌的变量和转义符号，带单引号则不解释内嵌的变量和转义符号</li>
 <li>当内容需要内嵌引号（单引号或双引号）时，不需要加转义符，本身对单双引号转义</li>
@@ -222,26 +222,26 @@ C:&gt;perl script.pl         # Windows/DOS
 </pre></div>
 
 
-<h2>Perl&nbsp;数据类型</h2>
-<p>Perl 是一种弱类型语言，所以变量不需要指定类型，Perl&nbsp;解释器会根据上下文自动选择匹配类型。</p>
-<p>Perl&nbsp;有三个基本的数据类型：标量、数组、哈希。</p>
+<h2>Perl 数据类型</h2>
+<p>Perl 是一种弱类型语言，所以变量不需要指定类型，Perl 解释器会根据上下文自动选择匹配类型。</p>
+<p>Perl 有三个基本的数据类型：标量、数组、哈希。</p>
 <h3>标量</h3>
-<p>标量是 Perl&nbsp;语言中最简单的一种数据类型。这种数据类型的变量可以是数字，字符串，浮点数，不作严格的区分。在使用时在变量的名字前面加上一个&#8221;$&#8221;,表示是标量。</p>
+<p>标量是 Perl 语言中最简单的一种数据类型。这种数据类型的变量可以是数字，字符串，浮点数，不作严格的区分。在使用时在变量的名字前面加上一个"$",表示是标量。</p>
 <h3>数组</h3>
-<p>数组变量以字符&#8221;@&#8221;开头，索引从0开始。</p>
+<p>数组变量以字符"@"开头，索引从0开始。</p>
 <h3>哈希</h3>
-<p>哈希是一个无序的 key/value&nbsp;对集合。可以使用键作为下标获取值。哈希变量以字符&#8221;%&#8221;开头。</p>
+<p>哈希是一个无序的 key/value 对集合。可以使用键作为下标获取值。哈希变量以字符"%"开头。</p>
 <h2>数字字面量</h2>
 <h3>整型</h3>
-<p>Perl&nbsp;实际上把整数存在你的计算机中的浮点寄存器中，所以实际上被当作浮点数看待。</p>
+<p>Perl 实际上把整数存在你的计算机中的浮点寄存器中，所以实际上被当作浮点数看待。</p>
 <p>在多数计算机中，浮点寄存器可以存贮约16位数字，长于此的被丢弃。整数实为浮点数的特例。</p>
 <p>8进制和16进制数：8进制以0开始，16进制以0x开始。</p>
 <h3>浮点数</h3>
-<p>浮点数数据如：11.4 、 -0.3 、.3 、 3. 、 54.1e+02 、&nbsp;5.41e03</p>
+<p>浮点数数据如：11.4 、 -0.3 、.3 、 3. 、 54.1e+02 、 5.41e03</p>
 <p>浮点寄存器通常不能精确地存贮浮点数，从而产生误差，在运算和比较中要特别注意。指数的范围通常为-309到+308。</p>
 <h3>字符串</h3>
-<p>Perl 中的字符串使用一个标量来表示，定义方式和 c 很像，但是在 Perl&nbsp;里面字符串不是用0来表示结束的。</p>
-<p>Perl 双引号和单引号的区别:&nbsp;双引号可以正常解析一些转义字符与变量，而单引号无法解析会原样输出。但是用单引号定义可以使用多行文本。</p>
+<p>Perl 中的字符串使用一个标量来表示，定义方式和 c 很像，但是在 Perl 里面字符串不是用0来表示结束的。</p>
+<p>Perl 双引号和单引号的区别: 双引号可以正常解析一些转义字符与变量，而单引号无法解析会原样输出。但是用单引号定义可以使用多行文本。</p>
 <h2>转义字符</h2>
 <table>
 <thead>
@@ -252,15 +252,15 @@ C:&gt;perl script.pl         # Windows/DOS
 </thead>
 <tbody>
 <tr>
-<td align="left">&#92;</td>
+<td align="left">\\</td>
 <td align="left">反斜线</td>
 </tr>
 <tr>
-<td align="left">&#39;</td>
+<td align="left">\'</td>
 <td align="left">单引号</td>
 </tr>
 <tr>
-<td align="left">&#34;</td>
+<td align="left">\"</td>
 <td align="left">双引号</td>
 </tr>
 <tr>
@@ -329,18 +329,18 @@ C:&gt;perl script.pl         # Windows/DOS
 </tr>
 </tbody>
 </table>
-<h2>Perl&nbsp;变量</h2>
-<p>标量 <span class="math">\( 开始， 如\)</span>a $b&nbsp;是两个标量。</p>
-<p>数组 @ 开始 ， 如 \@a \@b&nbsp;是两个数组。</p>
-<p>哈希 % 开始 ， %a %b&nbsp;是两个哈希。</p>
-<p>Perl 为每个变量类型设置了独立的命令空间，所以不同类型的变量可以使用相同的名称，你不用担心会发生冲突。例如 $foo 和 \@foo&nbsp;是两个不同的变量。</p>
+<h2>Perl 变量</h2>
+<p>标量 <span class="math">\( 开始， 如\)</span>a $b 是两个标量。</p>
+<p>数组 @ 开始 ， 如 \@a \@b 是两个数组。</p>
+<p>哈希 % 开始 ， %a %b 是两个哈希。</p>
+<p>Perl 为每个变量类型设置了独立的命令空间，所以不同类型的变量可以使用相同的名称，你不用担心会发生冲突。例如 $foo 和 \@foo 是两个不同的变量。</p>
 <p>变量不需要显式声明类型，在变量赋值后，解释器会自动分配匹配的类型空间。</p>
-<h3>Perl&nbsp;标量</h3>
+<h3>Perl 标量</h3>
 <p>标量是一个简单的数据单元。</p>
 <p>标量可以是一个整数，浮点数，字符，字符串，段落或者一个完整的网页。</p>
 <h4>特殊字符</h4>
-<p>以下我们将演示 Perl 中特殊字符的应用，如 __FILE__, __LINE__, 和 __PACKAGE__&nbsp;分别表示当前执行脚本的文件名，行号，包名。</p>
-<p>注意： <strong> 是两条下划线，__FILE</strong>&nbsp;前后各两条下划线。</p>
+<p>以下我们将演示 Perl 中特殊字符的应用，如 __FILE__, __LINE__, 和 __PACKAGE__ 分别表示当前执行脚本的文件名，行号，包名。</p>
+<p>注意： <strong> 是两条下划线，__FILE</strong> 前后各两条下划线。</p>
 <p>这些特殊字符是单独的标记，不能写在字符串中，例如：</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -367,7 +367,7 @@ __FILE__ __LINE__ __PACKAGE__
 </pre></div>
 
 
-<h4>v&nbsp;字符串</h4>
+<h4>v 字符串</h4>
 <p>用于十六进制：</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -397,8 +397,8 @@ martin = Martin
 
 
 <h3>数组</h3>
-<p>Perl&nbsp;数组一个是存储标量值的列表变量，变量可以是不同类型。</p>
-<p>数组变量以 \@ 开头。访问数组元素使用 $ + 变量名称 + [索引值]&nbsp;格式来读取。</p>
+<p>Perl 数组一个是存储标量值的列表变量，变量可以是不同类型。</p>
+<p>数组变量以 \@ 开头。访问数组元素使用 $ + 变量名称 + [索引值] 格式来读取。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -468,17 +468,17 @@ martin = Martin
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
-                                    C++ Primer 第八章 <span class="caps">IO</span>&nbsp;库
+                                    C++ Primer 第八章 IO 库
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
-                                    C++ Primer 第七章&nbsp;类
+                                    C++ Primer 第七章 类
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/">
-                                    C++ Primer 第六章&nbsp;函数
+                                    C++ Primer 第六章 函数
                                 </a>
                             </li>
                             <li>
@@ -495,27 +495,27 @@ martin = Martin
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
-                                    Atom&nbsp;快捷键
+                                    Atom 快捷键
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
-                                    C++ Primer 第九章&nbsp;顺序容器
+                                    C++ Primer 第九章 顺序容器
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/">
-                                    C++ Primer 第十章&nbsp;泛型算法
+                                    C++ Primer 第十章 泛型算法
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
-                                    C++ Primer 第十一章&nbsp;关联容器
+                                    C++ Primer 第十一章 关联容器
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
-                                    C++ Primer 第十二章&nbsp;动态内存
+                                    C++ Primer 第十二章 动态内存
                                 </a>
                             </li>
                         </ul>

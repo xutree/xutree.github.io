@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="机器学习, 深度学习, 读书笔记, " />
-    <title>深度学习 第三章&nbsp;概率与信息论  · You Know Nothing
+    <title>深度学习 第三章 概率与信息论  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/21/dl-3/"> 深度学习 第三章&nbsp;概率与信息论  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/21/dl-3/"> 深度学习 第三章 概率与信息论  </a></h1>
         </header>
     </div>
 
@@ -56,37 +56,37 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <h2>3.1&nbsp;随机变量</h2>
-<p><strong>随机变量</strong>（random variable）是可以随机的取不同值的变量。通常用无格式字体（plain typeface）中的小写字母来表示随机变量本身，而用手写体中的小写字母来表示随机变量能够取到的值。例如，<span class="math">\(x_1\)</span> 和 <span class="math">\(x_2\)</span> 都是随机变量 x&nbsp;的可能取值。</p>
-<h2>3.2&nbsp;概率分布</h2>
-<p><strong>概率分布</strong>（probability&nbsp;distribution）用来描述随机变量每一个可能取到的状态的可能性的大小。</p>
-<p><strong>概率质量函数</strong>（probability mass function，<span class="caps">PMF</span>）离散型变量的概率分布。</p>
-<p><strong>概率密度函数</strong>（probability density function，<span class="caps">PDF</span>）连续型变量的概率分布。</p>
-<h2>3.3&nbsp;边缘概率</h2>
-<p><strong>边缘概率分布</strong>（marginal probability&nbsp;distribution）是一种定义在子集上的概率分布。
+                <h2>3.1 随机变量</h2>
+<p><strong>随机变量</strong>（random variable）是可以随机的取不同值的变量。通常用无格式字体（plain typeface）中的小写字母来表示随机变量本身，而用手写体中的小写字母来表示随机变量能够取到的值。例如，<span class="math">\(x_1\)</span> 和 <span class="math">\(x_2\)</span> 都是随机变量 x 的可能取值。</p>
+<h2>3.2 概率分布</h2>
+<p><strong>概率分布</strong>（probability distribution）用来描述随机变量每一个可能取到的状态的可能性的大小。</p>
+<p><strong>概率质量函数</strong>（probability mass function，PMF）离散型变量的概率分布。</p>
+<p><strong>概率密度函数</strong>（probability density function，PDF）连续型变量的概率分布。</p>
+<h2>3.3 边缘概率</h2>
+<p><strong>边缘概率分布</strong>（marginal probability distribution）是一种定义在子集上的概率分布。
 </p>
 <div class="math">$$p(x)=\int p(x,y)dy$$</div>
-<h2>3.4&nbsp;条件概率</h2>
-<p><strong>条件概率</strong>（conditional&nbsp;probability）就是事件在另外一个事件已经发生条件下的发生概率。
+<h2>3.4 条件概率</h2>
+<p><strong>条件概率</strong>（conditional probability）就是事件在另外一个事件已经发生条件下的发生概率。
 </p>
 <div class="math">$$P(\text{y}=y|\text{x}=x)=\frac{P(\text{y}=y,\text{x}=x)}{P(\text{x}=x)}$$</div>
-<h2>3.5&nbsp;独立性和条件独立性</h2>
+<h2>3.5 独立性和条件独立性</h2>
 <p><strong>独立性</strong>（independent）
 </p>
 <div class="math">$$\forall x\in\text{x},y\in\text{y} \\ p(\text{x}=x,\text{y}=y)=p(\text{x}=x)p(\text{y}=y)$$</div>
 <p>
 记为 x<span class="math">\(\perp\)</span>y。</p>
-<p><strong>条件独立</strong>（conditionally&nbsp;independent）
+<p><strong>条件独立</strong>（conditionally independent）
 </p>
 <div class="math">$$\forall x\in\text{x},y\in\text{y},z\in\text{z} \\ p(\text{x}=x,\text{y}=y|\text{z}=z)=p(\text{x}=x|\text{z}=z)p(\text{y}=y|\text{z}=z)$$</div>
 <p>
-记为 x<span class="math">\(\perp\)</span>y <span class="math">\(\mid\)</span>&nbsp;z。</p>
-<h2>3.6&nbsp;期望、方差和协方差</h2>
+记为 x<span class="math">\(\perp\)</span>y <span class="math">\(\mid\)</span> z。</p>
+<h2>3.6 期望、方差和协方差</h2>
 <p><strong>期望</strong>（expectation）
 </p>
 <div class="math">$$\mathbb{E}_{\text{x}\sim P}\left[\text{x}\right]=\sum_xxP(x)\ 或\ \mathbb{E}_{\text{x}\sim p}\left[\text{x}\right]=\int_xxP(x)dx$$</div>
 <p>
-约定 <span class="math">\(\mathbb{E}[\cdot]\)</span>&nbsp;表示对方括号内的所有随机变量的值求平均。如随机变量明确，则可以省略下标。</p>
+约定 <span class="math">\(\mathbb{E}[\cdot]\)</span> 表示对方括号内的所有随机变量的值求平均。如随机变量明确，则可以省略下标。</p>
 <p>性质：
 </p>
 <div class="math">$$\mathbb{E}[a\text{x}+b\text{y}]=a\mathbb{E}[\text{x}]+b\mathbb{E}[\text{y}]$$</div>
@@ -94,7 +94,7 @@
 </p>
 <div class="math">$$\text{Var}\left(\text{x}\right)=\mathbb{E}\left[\left(\text{x}-\mathbb{E}[\text{x}]\right)^2\right]=\mathbb{E}\left[\text{x}^2\right]-\left(\mathbb{E}[\text{x}]\right)^2$$</div>
 <p>
-方差的平方根称为<strong>标准差</strong>（standard&nbsp;deviation）。</p>
+方差的平方根称为<strong>标准差</strong>（standard deviation）。</p>
 <p>性质：
 </p>
 <div class="math">$$\text{Var}(\text{x})\geq0 \\
@@ -105,18 +105,18 @@
 \text{Var}\left(\sum_{i=1}^N\text{x}_i\right)=\sum_{i,j=1}^N\text{Cov}(\text{x}_i,\text{x}_j)=\sum_{i=1}^N\text{Var}(\text{x}_i)+\sum_{i\neq j}\text{Cov}(\text{x}_i,\text{x}_j)$$</div>
 <p>
 最后一式为随机向量的方差。</p>
-<p><strong>协方差</strong>（covariance）在概率论和统计学中用于衡量两个变量的总体误差。而方差是协方差的一种特殊情况，即当两个变量是相同的情况。期望值分别为 <span class="math">\(\mathbb{E}(\text{x})=\mu\)</span> 和 <span class="math">\(\mathbb{E}(y)=\nu\)</span> 的两个具有有限二阶矩的实数随机变量 x 与 y&nbsp;之间的协方差定义为：
+<p><strong>协方差</strong>（covariance）在概率论和统计学中用于衡量两个变量的总体误差。而方差是协方差的一种特殊情况，即当两个变量是相同的情况。期望值分别为 <span class="math">\(\mathbb{E}(\text{x})=\mu\)</span> 和 <span class="math">\(\mathbb{E}(y)=\nu\)</span> 的两个具有有限二阶矩的实数随机变量 x 与 y 之间的协方差定义为：
 </p>
 <div class="math">$$\text{Cov}(\text{x},\text{y})=\mathbb{E}\left[(\text{x}-\mu)(\text{y}-\nu)\right]=\mathbb{E}[\text{x}\cdot y]-\mu\nu$$</div>
 <p>
-协方差表示的是两个变量的总体的误差，这与只表示一个变量误差的方差不同。 如果两个变量的变化趋势一致，也就是说如果其中一个大于自身的期望值，另外一个也大于自身的期望值，那么两个变量之间的协方差就是正值。&nbsp;如果两个变量的变化趋势相反，即其中一个大于自身的期望值，另外一个却小于自身的期望值，那么两个变量之间的协方差就是负值。</p>
-<p>如果 x 与 y 是统计独立的，那么二者之间的协方差就是&nbsp;0。</p>
+协方差表示的是两个变量的总体的误差，这与只表示一个变量误差的方差不同。 如果两个变量的变化趋势一致，也就是说如果其中一个大于自身的期望值，另外一个也大于自身的期望值，那么两个变量之间的协方差就是正值。 如果两个变量的变化趋势相反，即其中一个大于自身的期望值，另外一个却小于自身的期望值，那么两个变量之间的协方差就是负值。</p>
+<p>如果 x 与 y 是统计独立的，那么二者之间的协方差就是 0。</p>
 <p>取决于协方差的<strong>相关性</strong>（correlation）定义为
 </p>
 <div class="math">$$\eta=\frac{\text{cov}(\text{x},\text{y})}{\sqrt{\text{Var}(\text{x})\cdot\text{Var}(\text{y})}}$$</div>
 <p>
-更准确地说是线性相关性，是一个衡量线性独立的无量纲数，其取值在 <span class="math">\([－1,1]\)</span> 之间。相关性 <span class="math">\(\eta=1\)</span> 时称为“完全线性相关”（相关性 <span class="math">\(\eta=-1\)</span>&nbsp;时称为“完全线性负相关”）。</p>
-<p>相关性为 0（因而协方差也为 0）的两个随机变量又被称为是不相关的，或者更准确地说叫作“线性无关”、“线性不相关”，这仅仅表明 x 与 y&nbsp;两随机变量之间没有线性相关性，并非表示它们之间一定没有任何内在的（非线性）函数关系。</p>
+更准确地说是线性相关性，是一个衡量线性独立的无量纲数，其取值在 <span class="math">\([－1,1]\)</span> 之间。相关性 <span class="math">\(\eta=1\)</span> 时称为“完全线性相关”（相关性 <span class="math">\(\eta=-1\)</span> 时称为“完全线性负相关”）。</p>
+<p>相关性为 0（因而协方差也为 0）的两个随机变量又被称为是不相关的，或者更准确地说叫作“线性无关”、“线性不相关”，这仅仅表明 x 与 y 两随机变量之间没有线性相关性，并非表示它们之间一定没有任何内在的（非线性）函数关系。</p>
 <p>性质：
 </p>
 <div class="math">$$\text{Cov}(\text{x},\text{x})=\text{Var}(\text{x}) \\
@@ -128,60 +128,60 @@
 <div class="math">$$\text{Cov}({\bf x})_{i,j}=\text{Cov}(\text{x}_i,\text{y}_j)$$</div>
 <p>
 其对角元是方差。</p>
-<h2>3.7&nbsp;常用概率分布</h2>
-<h3>3.7.1&nbsp;伯努利分布</h3>
-<p><strong>伯努利分布</strong>（Bernoulli distribution），又称两点分布或 0-1&nbsp;分布。
+<h2>3.7 常用概率分布</h2>
+<h3>3.7.1 伯努利分布</h3>
+<p><strong>伯努利分布</strong>（Bernoulli distribution），又称两点分布或 0-1 分布。
 </p>
 <div class="math">$$P(\text{x}=1)=\phi \\
 P(\text{x}=0)=1-\phi \\
 P(\text{x}=x)=\phi^x(1-\phi)^{1-x} \\
 \text{E}_{\text{x}}[\text{x}]=\phi \\
 \text{Var}_{\text{x}}(\text{x})=\phi(1-\phi)$$</div>
-<h3>3.7.2&nbsp;高斯分布</h3>
-<p>实数上最常用的分布就是<strong>正态分布</strong>（normal distribution），也称高斯分布（Gaussian&nbsp;distribution）。
+<h3>3.7.2 高斯分布</h3>
+<p>实数上最常用的分布就是<strong>正态分布</strong>（normal distribution），也称高斯分布（Gaussian distribution）。
 </p>
 <div class="math">$${\cal N}(x;\mu,\sigma^2)=\sqrt{\frac{1}{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x-\mu)^2\right) \\
 \mathbb{E}_{\text{x}\sim{\cal N}}[\text{x}]=\mu \\
 \text{Var}_{\text{x}\sim{\cal N}}[\text{x}]=\sigma^2$$</div>
 <p>
-函数拐点在 <span class="math">\(x=\mu\pm\sigma\)</span>&nbsp;处。</p>
+函数拐点在 <span class="math">\(x=\mu\pm\sigma\)</span> 处。</p>
 <p>当我们由于缺乏关于某个实数上分布的先验知识而不知道该选择怎样的形式时，正态分布是默认较好的选择，有两个原因：</p>
 <ul>
-<li>我们想要建模的很多分布的真实情况是比较接近正态分布的。中心极限定理（central limit&nbsp;theorem）说明很多独立随机变量的和近似服从正态分布</li>
+<li>我们想要建模的很多分布的真实情况是比较接近正态分布的。中心极限定理（central limit theorem）说明很多独立随机变量的和近似服从正态分布</li>
 <li>在具有相同方差的所有可能的概率分布中，正态分布在实数上具有最大的不确定性。因此，我们可以认为正态分布是对模型加入的先验知识量最少的分布</li>
 </ul>
 <p>正态分布可以推广到 <span class="math">\(\mathbb{R}^n\)</span> 空间，这种情况下称为<strong>多维正态分布</strong>（multivariate normal distribution）。它的参数是一个正定对称矩阵 <span class="math">\(\boldsymbol \Sigma\)</span>（协方差矩阵）：
 </p>
 <div class="math">$${\cal N}(\boldsymbol x;\boldsymbol\mu,\boldsymbol\Sigma)=\sqrt{\frac{1}{(2\pi)^n\text{det}(\boldsymbol \Sigma)}}\exp\left(-\frac{1}{2}(\boldsymbol x-\boldsymbol \mu)^\text{T}\boldsymbol\Sigma^{-1}(\boldsymbol x-\boldsymbol \mu)\right)$$</div>
-<h3>3.7.3 指数分布和 Laplace&nbsp;分布</h3>
-<p><strong>指数分布</strong>（exponential distribution）在 <span class="math">\(x=0\)</span> 处取得边界点（sharp&nbsp;point）的分布。
+<h3>3.7.3 指数分布和 Laplace 分布</h3>
+<p><strong>指数分布</strong>（exponential distribution）在 <span class="math">\(x=0\)</span> 处取得边界点（sharp point）的分布。
 </p>
 <div class="math">$$p(x;\lambda)=\lambda\boldsymbol 1_{x\geq0}\exp(-\lambda x)$$</div>
 <p>
-指示函数（indicator function）<span class="math">\(\boldsymbol 1_{x\geq0}\)</span> 来使得当 <span class="math">\(x\)</span>&nbsp;取负值时的概率为零。</p>
-<p><strong>拉普拉斯分布</strong>（Laplace distribution）可以在任意一点 <span class="math">\(\mu\)</span>&nbsp;处设置概率质量的峰值。
+指示函数（indicator function）<span class="math">\(\boldsymbol 1_{x\geq0}\)</span> 来使得当 <span class="math">\(x\)</span> 取负值时的概率为零。</p>
+<p><strong>拉普拉斯分布</strong>（Laplace distribution）可以在任意一点 <span class="math">\(\mu\)</span> 处设置概率质量的峰值。
 </p>
 <div class="math">$$\text{Laplace}(x;\mu,\gamma)=\frac{1}{2\gamma}\exp\left(-\frac{|x-\mu|}{\gamma}\right)$$</div>
-<h3>3.7.4 Dirac&nbsp;分布和经验分布</h3>
-<p>Dirac delta&nbsp;函数可以用于定义狄拉克分布：
+<h3>3.7.4 Dirac 分布和经验分布</h3>
+<p>Dirac delta 函数可以用于定义狄拉克分布：
 </p>
 <div class="math">$$p(x)=\delta(x-\mu)$$</div>
-<p>Dirac 分布常作为<strong>经验分布</strong>（empirical&nbsp;distribution）的一个组成部分出现：
+<p>Dirac 分布常作为<strong>经验分布</strong>（empirical distribution）的一个组成部分出现：
 </p>
 <div class="math">$$\hat{p}(\boldsymbol x)=\frac{1}{m}\sum_{i=1}^m\delta(\boldsymbol x-\boldsymbol x^{(i)})$$</div>
 <p>
-经验分布将概率密度 <span class="math">\(\frac{1}{m}\)</span> 赋给 <span class="math">\(m\)</span> 个点 <span class="math">\(\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\)</span>&nbsp;中的每一个，这些点是给定的数据集或者采样的集合。</p>
-<p>只有在定义连续型随机变量的经验分布时，狄拉克 delta 函数才是必要的。对于离散型随机变量，对于每一个可能的输入，其概率可以简单的设为训练集上那个输入值的<strong>经验频率</strong>（empirical&nbsp;frequency）。</p>
+经验分布将概率密度 <span class="math">\(\frac{1}{m}\)</span> 赋给 <span class="math">\(m\)</span> 个点 <span class="math">\(\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\)</span> 中的每一个，这些点是给定的数据集或者采样的集合。</p>
+<p>只有在定义连续型随机变量的经验分布时，狄拉克 delta 函数才是必要的。对于离散型随机变量，对于每一个可能的输入，其概率可以简单的设为训练集上那个输入值的<strong>经验频率</strong>（empirical frequency）。</p>
 <p>当我们在训练集上训练模型时，可以认为从这个训练集上得到的经验分布指明了采样来源的分布。关于经验分布另外一个重要的观点是，它是训练数据的似然最大的那个概率密度函数。</p>
-<h3>3.7.5&nbsp;分布的混合</h3>
-<p><strong>混合分布</strong>（mixture&nbsp;distribution）是由一些组件（component）分布构成：
+<h3>3.7.5 分布的混合</h3>
+<p><strong>混合分布</strong>（mixture distribution）是由一些组件（component）分布构成：
 </p>
 <div class="math">$$P(\text{x})=\sum_iP(\text{c}=i)P(\text{x}|\text{c}=i)$$</div>
 <p>
-这里 <span class="math">\(P(\text{c})\)</span>&nbsp;是各个组件被选中的概率，决定每一次试验样本从哪个组件分布生成。</p>
-<h2>3.8&nbsp;常用函数的性质</h2>
-<h3>3.8.1&nbsp;逻辑函数</h3>
-<p><strong>逻辑函数</strong>（logistic function），也被称为 <strong>S 函数</strong>（sigmoid function），通常用来产生伯努利分布中的参数 <span class="math">\(\phi\)</span>，因为它的范围是 <span class="math">\((0,1)\)</span>。sigmoid&nbsp;函数在变量取绝对值非常大的时候会出现饱和（saturate）现象，意味着对输入的微小变化变得不敏感。
+这里 <span class="math">\(P(\text{c})\)</span> 是各个组件被选中的概率，决定每一次试验样本从哪个组件分布生成。</p>
+<h2>3.8 常用函数的性质</h2>
+<h3>3.8.1 逻辑函数</h3>
+<p><strong>逻辑函数</strong>（logistic function），也被称为 <strong>S 函数</strong>（sigmoid function），通常用来产生伯努利分布中的参数 <span class="math">\(\phi\)</span>，因为它的范围是 <span class="math">\((0,1)\)</span>。sigmoid 函数在变量取绝对值非常大的时候会出现饱和（saturate）现象，意味着对输入的微小变化变得不敏感。
 </p>
 <div class="math">$$\sigma(x)=\frac{1}{1+\text{e}^{-x}}$$</div>
 <p>
@@ -191,9 +191,9 @@ P(\text{x}=x)=\phi^x(1-\phi)^{1-x} \\
 \frac{d}{dx}\sigma(x)=\sigma(x)\sigma(-x) \\
 1-\sigma(x)=\sigma(-x) \\
 \forall x\in(0,1),\ \sigma^{-1}(x)=\ln\left(\frac{x}{1-x}\right)$$</div>
-<h3>3.8.2 softplus&nbsp;函数</h3>
+<h3>3.8.2 softplus 函数</h3>
 <div class="math">$$\zeta(x)=\ln(1+\text{e}^{x})$$</div>
-<p>softplus 函数可以用来产生正态分布的 <span class="math">\(\beta\)</span> 和 <span class="math">\(\sigma\)</span> 参数，因为它的范围是 <span class="math">\((0,\infty)\)</span>。softplus&nbsp;函数名来源于它是另外一个函数的平滑（或“软化”）形式，这个函数是：
+<p>softplus 函数可以用来产生正态分布的 <span class="math">\(\beta\)</span> 和 <span class="math">\(\sigma\)</span> 参数，因为它的范围是 <span class="math">\((0,\infty)\)</span>。softplus 函数名来源于它是另外一个函数的平滑（或“软化”）形式，这个函数是：
 </p>
 <div class="math">$$x^+=\max(0,x)$$</div>
 <p>一些性质：
@@ -206,12 +206,12 @@ P(\text{x}=x)=\phi^x(1-\phi)^{1-x} \\
 <p><strong>正部函数</strong>（positive part function）：<span class="math">\(x^+=\max(0,x)\)</span></p>
 <p><strong>负部函数</strong>（negative part function）：<span class="math">\(x^-=\max(0,-x)\)</span></p>
 <div class="math">$$x^+-x^-=x$$</div>
-<h2>3.9&nbsp;贝叶斯规则</h2>
-<p><strong>贝叶斯规则</strong>（Bayes&#8217;&nbsp;rule）：
+<h2>3.9 贝叶斯规则</h2>
+<p><strong>贝叶斯规则</strong>（Bayes' rule）：
 </p>
 <div class="math">$$P(\text{x}|\text{y})=\frac{P(\text{x})P(\text{y}|\text{x})}{P(\text{y})}=\frac{P(\text{x})P(\text{y}|\text{x})}{\sum_xP(\text{y}|x)P(x)}$$</div>
-<h2>3.10&nbsp;连续型变量的技术细节</h2>
-<p>假设有两个随机变量 <span class="math">\(\bf x\)</span> 和 <span class="math">\(\bf y\)</span> 满足 <span class="math">\(\boldsymbol y=g(\boldsymbol x)\)</span>，其中 <span class="math">\(g\)</span>&nbsp;是可逆、连续可微的函数。</p>
+<h2>3.10 连续型变量的技术细节</h2>
+<p>假设有两个随机变量 <span class="math">\(\bf x\)</span> 和 <span class="math">\(\bf y\)</span> 满足 <span class="math">\(\boldsymbol y=g(\boldsymbol x)\)</span>，其中 <span class="math">\(g\)</span> 是可逆、连续可微的函数。</p>
 <p>我们需要保持下面的性质：
 </p>
 <div class="math">$$|p_y(g(x))dy|=|p_x(x)dx|$$</div>
@@ -227,29 +227,29 @@ P(\text{x}=x)=\phi^x(1-\phi)^{1-x} \\
 在高维空间中，微分运算扩展为 <strong>Jacobian 矩阵</strong>的行列式，矩阵的每个元素为 <span class="math">\(J_{i,j}=\frac{\partial x_i}{\partial y_j}\)</span>。因此，对实值向量 <span class="math">\(\boldsymbol x\)</span> 和 <span class="math">\(\boldsymbol y\)</span>：
 </p>
 <div class="math">$$p_x(\boldsymbol x)=p_y(g(\boldsymbol x))\left\lvert\text{det}\left(\frac{\partial g(\boldsymbol x)}{\partial \boldsymbol x}\right)\right\rvert \\$$</div>
-<h2>3.11&nbsp;信息论</h2>
-<h3>3.11.1&nbsp;自信息</h3>
+<h2>3.11 信息论</h2>
+<h3>3.11.1 自信息</h3>
 <p>一个事件 <span class="math">\(\text{x}=x\)</span> 的<strong>自信息</strong>（self-information）为
 </p>
 <div class="math">$$I(x)=-\log P(x)$$</div>
 <p>
 当底数是 e 时，自信息的单位是<strong>奈特</strong>（nats）。当底数是 2 时，自信息的单位是<strong>比特</strong>（bit）或<strong>香农</strong>（shannons）。</p>
-<h3>3.11.2&nbsp;香农熵</h3>
-<p><strong>香农熵</strong>（Shannon&nbsp;entropy）对整个概率分布中的不确定性总量进行量化：
+<h3>3.11.2 香农熵</h3>
+<p><strong>香农熵</strong>（Shannon entropy）对整个概率分布中的不确定性总量进行量化：
 </p>
 <div class="math">$$H(x)=\mathbb{E}_{\text{x}\sim P}[I(x)]=-\mathbb{E}_{\text{x}\sim P}[\log P(x)]$$</div>
 <p>
-也记作 <span class="math">\(H(P)\)</span>。当 x 是连续的，香农熵被称为<strong>微分熵</strong>（differential&nbsp;entropy）。</p>
-<h3>3.11.3&nbsp;相对熵</h3>
-<p>如果对于同一个随机变量 x 有两个单独的概率分布 <span class="math">\(P(\text{x})\)</span> 和 <span class="math">\(Q(\text{x})\)</span>，可以使用<strong>相对熵</strong>（relative&nbsp;entropy）来衡量两个分布的差异：
+也记作 <span class="math">\(H(P)\)</span>。当 x 是连续的，香农熵被称为<strong>微分熵</strong>（differential entropy）。</p>
+<h3>3.11.3 相对熵</h3>
+<p>如果对于同一个随机变量 x 有两个单独的概率分布 <span class="math">\(P(\text{x})\)</span> 和 <span class="math">\(Q(\text{x})\)</span>，可以使用<strong>相对熵</strong>（relative entropy）来衡量两个分布的差异：
 </p>
 <div class="math">$$D_{KL}(P\|Q)=\mathbb{E}_{\text{x}\sim P}\left[\log\frac{P(x)}{Q(x)}\right]=\mathbb{E}_{\text{x}\sim P}[\log P(x)-\log Q(x)]$$</div>
 <p>
-又称为 <strong><span class="caps">KL</span> 散度</strong>（Kullback–Leibler divergence，简称KLD），<strong>信息散度</strong>（information divergence），<strong>信息增益</strong>（information&nbsp;gain）。</p>
-<p><span class="caps">KL</span> 散度是非负的。当且仅当分布相同 <span class="caps">KL</span> 散度为&nbsp;0。</p>
-<p>尽管从直觉上 <span class="caps">KL</span> 散度是个度量或距离函数, 但是它实际上并不是一个真正的度量或距离。因为 <span class="caps">KL</span>&nbsp;散度不具有对称性。</p>
+又称为 <strong>KL 散度</strong>（Kullback–Leibler divergence，简称KLD），<strong>信息散度</strong>（information divergence），<strong>信息增益</strong>（information gain）。</p>
+<p>KL 散度是非负的。当且仅当分布相同 KL 散度为 0。</p>
+<p>尽管从直觉上 KL 散度是个度量或距离函数, 但是它实际上并不是一个真正的度量或距离。因为 KL 散度不具有对称性。</p>
 <blockquote>
-<p>按照惯例，在信息论中，<span class="math">\(\lim_{x\to0}x\ln&nbsp;x=0\)</span></p>
+<p>按照惯例，在信息论中，<span class="math">\(\lim_{x\to0}x\ln x=0\)</span></p>
 </blockquote>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -315,27 +315,27 @@ P(\text{x}=x)=\phi^x(1-\phi)^{1-x} \\
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">
-                                    深度学习 第二章&nbsp;线性代数
+                                    深度学习 第二章 线性代数
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">
-                                    深度学习 第一章&nbsp;引言
+                                    深度学习 第一章 引言
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/20/sl-12/">
-                                    统计学习方法 第十二章&nbsp;统计学习方法总结
+                                    统计学习方法 第十二章 统计学习方法总结
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/19/sl-11/">
-                                    统计学习方法 第十一章&nbsp;条件随机场
+                                    统计学习方法 第十一章 条件随机场
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/19/sl-10/">
-                                    统计学习方法 第十章&nbsp;隐马尔科夫模型
+                                    统计学习方法 第十章 隐马尔科夫模型
                                 </a>
                             </li>
                         </ul>
@@ -347,7 +347,7 @@ P(\text{x}=x)=\phi^x(1-\phi)^{1-x} \\
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">
-                                    深度学习 第四章&nbsp;数值计算
+                                    深度学习 第四章 数值计算
                                 </a>
                             </li>
                         </ul>
