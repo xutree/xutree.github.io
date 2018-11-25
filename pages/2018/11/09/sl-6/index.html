@@ -453,7 +453,7 @@ $$</div>
 其中
 </p>
 <div class="math">$$\frac{\partial f(w)}{\partial w_i}=\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)-\text{E}_{\tilde{P}}(f_i),i=1,2,\cdots,n$$</div>
-<p><strong>
+<p>**
 算法 6.2（最大熵模型学习的 BFGS）算法<br>
 输入：特征函数 <span class="math">\(f_1,f_2,\cdots,f_n\)</span>；经验分布 <span class="math">\(\tilde{P}(x,y)\)</span>，目标函数 <span class="math">\(f(w)\)</span>，梯度 <span class="math">\(g(w)=\nabla f(w)\)</span>，精度要求 <span class="math">\(\epsilon\)</span><br>
 输出：最优化参数值 <span class="math">\(w^\star\)</span>；最优模型 <span class="math">\(P_{w^\star}(y|x)\)</span><br>
@@ -461,14 +461,21 @@ $$</div>
 (2) 计算 <span class="math">\(g_k=g(w^{(k)})\)</span>，若 <span class="math">\(\|g_k\|&lt;\epsilon\)</span>，则停止计算，得 <span class="math">\(w^\star=w^{(k)}\)</span>；否则，转到 (3)<br>
 (3) 由 <span class="math">\({\bf B_k}p_k=-g_k\)</span> 求出 <span class="math">\(p_k\)</span><br>
 (4) 一维搜索：求 <span class="math">\(\lambda_k\)</span> 使得
+</p>
 <div class="math">$$f(w^{(k)}+\lambda_kp_k)=\min_{\lambda\geq0}f(w^{(k)}+\lambda p_k)$$</div>
+<p>
 (5) 置 <span class="math">\(w^{(k+1)}=w^{(k)}+\lambda_k p_k\)</span><br>
-(6) 计算 <span class="math">\(g_{k+1}=g(w^{(k+1)})\)</span>，若 <span class="math">\(\|g_{k+1}\|&lt;\epsilon\)</span>，则停止计算，得 <span class="math">\(w^\star=w^{(k+1)}\)</span>；否则，按照下式求出 <span class="math">\({\bf B_{k+1}}\)</span>
-<div class="math">$${\bf B_{k+1}}={\bf B_k}+\frac{y_ky_k^\text{T}}{y_k^\text{T}\delta_k}-\frac{{\bf B_k}\delta_k\delta_k^\text{T}{\bf B_k}}{\delta_k^\text{T}{\bf B_k}\delta_k}$$</div>
-其中，
+(6) 计算 <span class="math">\(g_{k+1}=g(w^{(k+1)})\)</span>，若 <span class="math">\(\|g_{k+1}\|&lt;\epsilon\)</span>，则停止计算，得 <span class="math">\(w^\star=w^{(k+1)}\)</span>；否则，按照下式求出 <span class="math">\({\bf B_{k+1}}\)</span></p>
+<div class="highlight"><pre><span></span>$${\bf B_{k+1}}={\bf B_k}+\frac{y_ky_k^\text{T}}{y_k^\text{T}\delta_k}-\frac{{\bf B_k}\delta_k\delta_k^\text{T}{\bf B_k}}{\delta_k^\text{T}{\bf B_k}\delta_k}$$
+</pre></div>
+
+
+<p>其中，
+</p>
 <div class="math">$$y_k=g_{k+1}-g_k,\delta_k=w^{(k+1)}-w^{(k)}$$</div>
+<p>
 (7) 置 <span class="math">\(k=k+1\)</span>，转到 (3)
-</strong></p>
+**</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
