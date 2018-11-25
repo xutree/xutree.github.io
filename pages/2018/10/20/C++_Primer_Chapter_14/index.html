@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="C++, 读书笔记, " />
-    <title>C++ Primer 第十四章 重载运算与类型转换  · You Know Nothing
+    <title>C++ Primer 第十四章&nbsp;重载运算与类型转换  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/"> C++ Primer 第十四章 重载运算与类型转换  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/"> C++ Primer 第十四章&nbsp;重载运算与类型转换  </a></h1>
         </header>
     </div>
 
@@ -80,13 +80,13 @@ data1.operator+(data2); //等成员运算符函数的等价调用
 <h3>选择作为成员或者非成员</h3>
 <p>当定义重载的运算符时，必须首先决定是将其声明为类的成员函数还是声明为一个普通的非成员函数。在某些时候我们别无选择，因为有的运算符必须作为成员；另一个情况下，运算符作为普通函数比作为成员更好。下面的准则有助于选择：</p>
 <ul>
-<li>赋值(=)、下标([ ])、调用( () )和成员访问箭头(-&gt;)运算符必须是成员</li>
+<li>赋值(=)、下标([ ])、调用( ()&nbsp;)和成员访问箭头(-&gt;)运算符必须是成员</li>
 <li>复合赋值运算符一般来说应该是成员，但并非必须，这一点与赋值运算符略有不同</li>
 <li>改变对象状态的运算符或者与给定类型密切相关的运算符，如递增、递减和解引用运算符，通常应该是成员</li>
 <li>具有对称性的运算符可能转换任意一端的运算对象，例如算术、相等性、关系和位运算符等，因此它们通常应该是普通的非成员函数</li>
 </ul>
 <h2>输入和输出运算符</h2>
-<h3>重载输出运算符 &lt;&lt;</h3>
+<h3>重载输出运算符&nbsp;&lt;&lt;</h3>
 <p>通常，输出运算符的第一个形参是一个非常量<code>ostream</code>对象的引用。之所以<code>ostream</code>是非常量是因为向流写入内容会改变其状态；而该形参是引用是因为我们无法直接复制一个<code>ostream</code>对象。</p>
 <p>第二个形参一般来说是一个常量的引用，该常量是我们想要打印的类类型。第二个形参是引用的原因是我们希望避免复制实参；而之所以该形参可以是常量是因为(通常情况下)打印对象不会改变对象的内容。</p>
 <p>为了与其他输出运算符保持一致，<code>operator&lt;&lt;</code>一般要返回它的<code>ostream</code>形参。</p>
@@ -108,7 +108,7 @@ data &lt;&lt; cout;    //如果 operator&lt;&lt; 是 Sales_data 的成员
 
 
 <p>假设输入输出运算符是某个类的成员，则它们也必须是<code>istream</code>或<code>ostream</code>的成员。然而，这两个类属于标准库，并且我们无法给标准库中的类添加任何成员。因此，我们必须将其定义成非成员函数。当然，<code>IO</code>运算符通常需要读写类的非公有数据成员，所以<code>IO</code>运算符一般被声明为友元。</p>
-<h3>重载输入运算符 &gt;&gt;</h3>
+<h3>重载输入运算符&nbsp;&gt;&gt;</h3>
 <p>通常，输入运算符的第一个形参是运算符将要读取的流的引用，第二个形参是将要读入到的(非常量)对象的引用。该运算符通常会返回某个给定流的引用。第二个形参之所以是个非常量是因为输入运算符的目的就是将数据读入到这个对象中。</p>
 <p>Sales_data的输入运算符：</p>
 <div class="highlight"><pre><span></span>istream &amp;operator&gt;&gt;(istream &amp;is, Sales_data &amp;item)
@@ -155,7 +155,7 @@ bool operator!=(const Sales_data &amp;lhs, const Sales_data &amp;rhs)
 <h3>关系运算符</h3>
 <p>定义了相等运算符的类也常常(但不总是)包含关系运算符。特别是，因为关联容器和一些算法要用到小于运算符，所以定义<code>operator&lt;</code>会比较有用。</p>
 <h2>赋值运算符</h2>
-<p>我们可以重载赋值运算符。不论形参 的类型是什么，赋值运算符都必须定义为成员函数。</p>
+<p>我们可以重载赋值运算符。不论形参&nbsp;的类型是什么，赋值运算符都必须定义为成员函数。</p>
 <h3>复合赋值运算符</h3>
 <p>复合赋值运算符不非得是类的成员，不过我们还是倾向于把包括复合赋值在内的所有赋值运算都定义在类的内部。</p>
 <div class="highlight"><pre><span></span>//作为成员的二元运算符：左侧运算对象绑定到隐式地 this 指针
@@ -175,7 +175,7 @@ Sales_data&amp; Sales_data::operator+=(const Sales_data &amp;rhs)
 <p>为了与下标的原始定义兼容，下标运算符通常以所访问元素的引用作为返回值，这样做的好处是下标可以出现在赋值运算符的任意一端。</p>
 <p>如果一个类包含下标运算符，则它通常会定义两个版本：一个返回普通引用，另一个是类的常量成员并且返回常量引用。</p>
 <h2>递增和递减运算符</h2>
-<p>C++ 语言并不要求递增和递减运算符必须的类的成员，但是因为它们改变的正好是所操作对象的状态，所以建议将其设定为成员函数。</p>
+<p>C++&nbsp;语言并不要求递增和递减运算符必须的类的成员，但是因为它们改变的正好是所操作对象的状态，所以建议将其设定为成员函数。</p>
 <p>定义递增和递减运算符的应该同时定义前置后后置版本。这些运算符通常应该被定义成类的成员。</p>
 <h3>定义前置递增/递减运算符</h3>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">StrBlobPtr</span><span class="p">{</span>
@@ -258,9 +258,9 @@ p.operator++();     //调用前置版本的 operator++
 </pre></div>
 
 
-<p>解引用运算符首先检测 curr 是否仍在作用范围内，如果是，则返回 curr 所指元素的一个引用。箭头运算符不执行任何自己的操作，而是调用解引用运算符并返回解引用结果元素的地址。</p>
+<p>解引用运算符首先检测 curr 是否仍在作用范围内，如果是，则返回 curr&nbsp;所指元素的一个引用。箭头运算符不执行任何自己的操作，而是调用解引用运算符并返回解引用结果元素的地址。</p>
 <p>箭头运算符必须是类的成员，解引用运算符通常也是类的成员，尽管并非必须如此。</p>
-<p>值得注意的是，我们将这两个运算符定义成了<code>const</code>成员，这是因为与递增和递减运算符不一样，获取一个元素并不会改变 StrBlobPtr 对象的状态。</p>
+<p>值得注意的是，我们将这两个运算符定义成了<code>const</code>成员，这是因为与递增和递减运算符不一样，获取一个元素并不会改变 StrBlobPtr&nbsp;对象的状态。</p>
 <h2>函数调用运算符</h2>
 <p>如果类重载了函数调用运算符，则我们可以像使用函数一样使用该类的对象。</p>
 <p>举个🌰 ，下面这个名为 absInt 的<code>struct</code>含有一个调用运算符，该运算符负责返回其参数的绝对值：</p>
@@ -272,7 +272,7 @@ p.operator++();     //调用前置版本的 operator++
 </pre></div>
 
 
-<p>我们使用调用运算符的方式是令一个 absInt 对象作用于一个实参列表，这一过程看起来非常像调用函数的过程：</p>
+<p>我们使用调用运算符的方式是令一个 absInt&nbsp;对象作用于一个实参列表，这一过程看起来非常像调用函数的过程：</p>
 <div class="highlight"><pre><span></span>int i = -42;
 absInt absObj;  //含有函数调用运算符的对象
 int ui = absObj(i); //将 i 传递给 absObj.operator()
@@ -280,7 +280,7 @@ int ui = absObj(i); //将 i 传递给 absObj.operator()
 
 
 <p>函数调用运算符必须是成员函数。一个类可以定义多个不同版本的调用运算符，相互之间应该在参数数量或类型上有所区别。
-如果定义了调用运算符，则该类的对象称为函数对象（function object）。</p>
+如果定义了调用运算符，则该类的对象称为函数对象（function&nbsp;object）。</p>
 <h3>含有状态的函数对象类</h3>
 <p>和其他类一样，函数对象除了<code>operator()</code>之外也可以包含其他成员。函数对象类通常含有一些数据成员，这些成员被用于定制调用运算符中的操作。</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">PrintString</span><span class="p">{</span>
@@ -294,7 +294,7 @@ int ui = absObj(i); //将 i 传递给 absObj.operator()
 </pre></div>
 
 
-<p>当定义 PrintString 的对象时，对于分隔符及输出流即可以使用默认值也可以提供自己的值：</p>
+<p>当定义 PrintString&nbsp;的对象时，对于分隔符及输出流即可以使用默认值也可以提供自己的值：</p>
 <div class="highlight"><pre><span></span>PrintString printer;    //使用默认值，打印到 cout
 printer(s); //在 cout 中打印 s，后面跟一个空格
 PrintString errors(cerr, &#39;\n&#39;);
@@ -308,7 +308,7 @@ for_each(vs.begin(), vs.end(), PrintString(cerr, &#39;\n&#39;));
 </pre></div>
 
 
-<h3>lambda 是函数对象</h3>
+<h3>lambda&nbsp;是函数对象</h3>
 <p>当我们编写了一个<code>lambda</code>后，编译器将该表达式翻译成一个未命名类的未命名对象。在<code>lambda</code>表达式产生的类中含有一个重载的函数调用运算符。</p>
 <div class="highlight"><pre><span></span><span class="nx">stable_sort</span><span class="p">(</span><span class="nx">words</span><span class="p">.</span><span class="nx">begin</span><span class="p">(),</span> <span class="nx">words</span><span class="p">.</span><span class="nx">end</span><span class="p">(),</span>
             <span class="p">[](</span><span class="kr">const</span> <span class="kt">string</span> <span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="kr">const</span> <span class="o">&amp;</span><span class="nx">b</span><span class="p">)</span>
@@ -324,7 +324,7 @@ for_each(vs.begin(), vs.end(), PrintString(cerr, &#39;\n&#39;));
 
 <p>产生的类只有一个函数调用运算符成员它负责接受两个<code>string</code>并比较他们的长度，它的形参列表和函数体与lambda表达式完全一样。</p>
 <p>默认情况下<code>lambda</code>不能改变它捕获的变量。因此在默认情况下，由<code>lambda</code>产生的类当中的函数调用运算符是一个<code>const</code>成员函数。如果<code>lambda</code>被声明为可变的，则调用运算符就不是<code>const</code>的了。</p>
-<h4>表示 lambda 及相应捕获行为的类</h4>
+<h4>表示 lambda&nbsp;及相应捕获行为的类</h4>
 <p>当一个<code>lambda</code>表达式通过引用捕获变量时，将有程序负责确保<code>lambda</code>执行时引用所引的对象确实存在。因此编译器可以直接使用该引用而无须在<code>lambda</code>产生的类中将其存储为数据成员。</p>
 <p>相反，通过值捕获的变量被拷贝到<code>lambda</code>中。因此，这种<code>lambda</code>产生的类必须为每个值捕获的变量建立对应的数据成员，同时创建构造函数，令其使用捕获的变量的值来初始化数据成员。</p>
 <p><code>lambda</code>表达式产生的类不含默认构造函数、赋值构造函数及默认析构函数，它是否含有默认的拷贝/移动构造函数则通常要视捕获的数据成员类型而定。</p>
@@ -347,13 +347,13 @@ sort(nameTable.begin(), nameTable.end(), less&lt;string *&gt;()); //正确
 </pre></div>
 
 
-<h3>可调用对象和 function</h3>
-<p>C++ 语言中的几种可调用对象：</p>
+<h3>可调用对象和&nbsp;function</h3>
+<p>C++&nbsp;语言中的几种可调用对象：</p>
 <ul>
 <li>函数</li>
 <li>函数指针</li>
-<li>lambda 表达式</li>
-<li>bind 创建的对象</li>
+<li>lambda&nbsp;表达式</li>
+<li>bind&nbsp;创建的对象</li>
 <li>重载了函数调用运算符的类</li>
 </ul>
 <p>与其他对象一样，可调用的对象也有类型。例如，每个<code>lambda</code>有它自己唯一的（未命名）的类型；函数及函数指针的类型则由其返回值类型和实参类型决定。</p>
@@ -380,7 +380,7 @@ binops.insert({&quot;%&quot;,mod});   //错误，mod 不是一个函数指针
 </pre></div>
 
 
-<h3>标准库 function 类型</h3>
+<h3>标准库 function&nbsp;类型</h3>
 <p>我们可以使用一个名为<code>function</code>的新标准库类型解决上述问题，它定义在<code>functional</code>头文件中，支持的操作如下：</p>
 <p><img alt="标准库function类型" src="https://xutree.github.io/images/c++14-3.jpg"></p>
 <div class="highlight"><pre><span></span>map&lt;string, function&lt;int(int, int)&gt;&gt; binops = {
@@ -392,7 +392,7 @@ binops.insert({&quot;%&quot;,mod});   //错误，mod 不是一个函数指针
 </pre></div>
 
 
-<h4>重载的函数与 function</h4>
+<h4>重载的函数与&nbsp;function</h4>
 <p>我们不能（直接）将重载函数的名字存入<code>function</code>类型的对象中：</p>
 <div class="highlight"><pre><span></span>int add(int i, int j) { return i + j; }
 Sales_data add(const Sales_data&amp;, const Sales_data&amp;);
@@ -414,7 +414,7 @@ binops.insert({&quot;+&quot;,fp});
 
 <h2>重载、类型转换与运算符</h2>
 <h3>类型转换运算符</h3>
-<p>类型转换运算符（conversion operator）是类的一种特殊成员函数，它负责将一个类类型的值转换成其他类型。一般形式：</p>
+<p>类型转换运算符（conversion&nbsp;operator）是类的一种特殊成员函数，它负责将一个类类型的值转换成其他类型。一般形式：</p>
 <div class="highlight"><pre><span></span>operator type() const;
 </pre></div>
 
@@ -462,7 +462,7 @@ cin &lt;&lt; i;
 
 <p>该程序试图将输出运算符作用在输入流。因为<code>istream</code>本身没有定义<code>&lt;&lt;</code>，所以本来这段代码应该产生错误。然而，该代码能使用<code>istream</code>的<code>bool</code>类型转换运算符将<code>cin</code>转换成<code>bool</code>，而这个<code>bool</code>值会接着被提升成<code>int</code>并用作内置的左移运算符的左侧运算对象。这样一来，提升后的<code>bool</code>值（1或0）最终会被左移42个位置。这一结果显然与我们的预期大相径庭。</p>
 <h4>显示的类型转换运算符</h4>
-<p>为了防止这样的异常情况发生，C++ 11新标准引入了显示的类型转换运算符（explicit conversion operator）：</p>
+<p>为了防止这样的异常情况发生，C++ 11新标准引入了显示的类型转换运算符（explicit conversion&nbsp;operator）：</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">SmallInt</span> <span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//编译器不会自动执行这一类型转换</span>
@@ -486,8 +486,8 @@ static_cast&lt;int&gt;(si) + 3;   //正确：显式地请求类型转换
 <li>逻辑非运算符(<code>!</code>)、逻辑或(<code>||</code>)、逻辑与(<code>&amp;&amp;</code>)的运算对象</li>
 <li>条件表达式(<code>? :</code>)的条件表达式</li>
 </ul>
-<h4>转换为 bool</h4>
-<p>在标准库的早期版本中，<code>IO</code>类型定义了向<code>void*</code>的转换规则，以避免上面提到的问题。但 C++ 11新标准通过显示的类型转换运算符实现同样的目的。</p>
+<h4>转换为&nbsp;bool</h4>
+<p>在标准库的早期版本中，<code>IO</code>类型定义了向<code>void*</code>的转换规则，以避免上面提到的问题。但 C++&nbsp;11新标准通过显示的类型转换运算符实现同样的目的。</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -497,27 +497,27 @@ static_cast&lt;int&gt;(si) + 3;   //正确：显式地请求类型转换
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">
-                                    C++ Primer 第十三章 拷贝控制
+                                    C++ Primer 第十三章&nbsp;拷贝控制
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
-                                    C++ Primer 第十二章 动态内存
+                                    C++ Primer 第十二章&nbsp;动态内存
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
-                                    C++ Primer 第十一章 关联容器
+                                    C++ Primer 第十一章&nbsp;关联容器
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/">
-                                    C++ Primer 第十章 泛型算法
+                                    C++ Primer 第十章&nbsp;泛型算法
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
-                                    C++ Primer 第九章 顺序容器
+                                    C++ Primer 第九章&nbsp;顺序容器
                                 </a>
                             </li>
                         </ul>
@@ -529,17 +529,17 @@ static_cast&lt;int&gt;(si) + 3;   //正确：显式地请求类型转换
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">
-                                    C++ Primer 第十五章 面向对象程序设计
+                                    C++ Primer 第十五章&nbsp;面向对象程序设计
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">
-                                    C++ Primer 第十六章 模板与泛型编程
+                                    C++ Primer 第十六章&nbsp;模板与泛型编程
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">
-                                    C++ Primer 第十七章 标准库特殊设施
+                                    C++ Primer 第十七章&nbsp;标准库特殊设施
                                 </a>
                             </li>
                             <li>

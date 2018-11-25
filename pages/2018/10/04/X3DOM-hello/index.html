@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="X3DOM, 教程, " />
-    <title>Hello，X3DOM！  · You Know Nothing
+    <title>Hello，<span class="caps">X3DOM</span>！  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/04/X3DOM-hello/"> Hello，X3DOM！  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/04/X3DOM-hello/"> Hello，<span class="caps">X3DOM</span>！  </a></h1>
         </header>
     </div>
 
@@ -56,7 +56,7 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>本教程将教会你怎么配置和运行你的第一个 X3DOM 应用。你只需要一个相容于 WebGL 的浏览器和一个文本编辑器。整个 X3DOM 应用是常规网页的一部分，并且编写方式也与HTML很相似，所以如果你的编辑器支持HTML或者XML的语法高亮那将更好，像<a href="http://www.jetbrains.com/webstorm/">WebStorm</a>这种 Web 编程 IDE 也是可以的。如果你手头有一个网页浏览器和一个文本编辑器，并且你知道怎么在浏览器中打开网页(参考<a href="https://doc.x3dom.org/gettingStarted/index.html">这里</a>)，那么你可以开始你的第一个 X3DOM 应用了。</p>
+                <p>本教程将教会你怎么配置和运行你的第一个 <span class="caps">X3DOM</span> 应用。你只需要一个相容于 WebGL 的浏览器和一个文本编辑器。整个 <span class="caps">X3DOM</span> 应用是常规网页的一部分，并且编写方式也与HTML很相似，所以如果你的编辑器支持HTML或者XML的语法高亮那将更好，像<a href="http://www.jetbrains.com/webstorm/">WebStorm</a>这种 Web 编程 <span class="caps">IDE</span> 也是可以的。如果你手头有一个网页浏览器和一个文本编辑器，并且你知道怎么在浏览器中打开网页(参考<a href="https://doc.x3dom.org/gettingStarted/index.html">这里</a>)，那么你可以开始你的第一个 <span class="caps">X3DOM</span>&nbsp;应用了。</p>
 <p>首先，创建一个新文件 <em>HelloX3DOM.html</em>。然后将下面的内容复制粘贴进这个空文件：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;html&gt;</span>
     <span class="nt">&lt;head&gt;</span>
@@ -74,8 +74,8 @@
 </pre></div>
 
 
-<p>如果你在浏览器中打开这个文件，你会看到一个包含一个文本信息的常规HTML页面。你可能已经注意到，我们已经在我们的网页中添加了一些 X3DOM 元素，因为我们已经包含 X3DOM 作为一个 JaveScript 库，还包含了 X3DOM CSS 文件，用于规则的显示 X3DOM 元素。在上面的 HTML 代码中，我们通过 <em>script</em> 和 <em>link</em> 标签是用了 <em>development</em> 版本的 X3DOM。</p>
-<p>让我们继续添加一些 3D 内容。首先，我们需要一个 <em>x3d</em> 元素，用来描述 X3DOM 内容在哪个 <em>scene</em> 显示。和 HTML 元素 <em>p</em>、<em>div</em> 类似，<em>x3d</em> 在 HTML 里定义了一个矩形范围。整个 X3DOM 的 3D 内容用 <em>scene</em> 描述，所以我们在 <em>x3d</em> 标签里添加一个 <em>scene</em> 标签。这种结构是来自于X3D标准。一个 <em>scene</em> 可以包含很多不同的 <em>node</em>，例如，<em>lights</em>、<em>groups</em>、<em>viewpoint</em> 和 <em>objects</em>。在第一个例子里，我们通过 <em>shape</em> 简单地定义一个3D物体。我们用 <em>box</em> 定义这个物体的几何形状。现在，你可以将下面的代码添加在你的 HTML 文件闭合 <em>p</em> 标签之后：</p>
+<p>如果你在浏览器中打开这个文件，你会看到一个包含一个文本信息的常规HTML页面。你可能已经注意到，我们已经在我们的网页中添加了一些 <span class="caps">X3DOM</span> 元素，因为我们已经包含 <span class="caps">X3DOM</span> 作为一个 JaveScript 库，还包含了 <span class="caps">X3DOM</span> <span class="caps">CSS</span> 文件，用于规则的显示 <span class="caps">X3DOM</span> 元素。在上面的 <span class="caps">HTML</span> 代码中，我们通过 <em>script</em> 和 <em>link</em> 标签是用了 <em>development</em> 版本的 <span class="caps">X3DOM</span>。</p>
+<p>让我们继续添加一些 3D 内容。首先，我们需要一个 <em>x3d</em> 元素，用来描述 <span class="caps">X3DOM</span> 内容在哪个 <em>scene</em> 显示。和 <span class="caps">HTML</span> 元素 <em>p</em>、<em>div</em> 类似，<em>x3d</em> 在 <span class="caps">HTML</span> 里定义了一个矩形范围。整个 <span class="caps">X3DOM</span> 的 3D 内容用 <em>scene</em> 描述，所以我们在 <em>x3d</em> 标签里添加一个 <em>scene</em> 标签。这种结构是来自于X3D标准。一个 <em>scene</em> 可以包含很多不同的 <em>node</em>，例如，<em>lights</em>、<em>groups</em>、<em>viewpoint</em> 和 <em>objects</em>。在第一个例子里，我们通过 <em>shape</em> 简单地定义一个3D物体。我们用 <em>box</em> 定义这个物体的几何形状。现在，你可以将下面的代码添加在你的 <span class="caps">HTML</span> 文件闭合 <em>p</em>&nbsp;标签之后：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;x3d</span> <span class="na">width=</span><span class="s">&#39;600px&#39;</span> <span class="na">height=</span><span class="s">&#39;400px&#39;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;scene&gt;</span>
     <span class="nt">&lt;shape&gt;</span>
@@ -88,7 +88,7 @@
 
 <p>如果你现在在浏览器中打开这个文件，会像下面这样：</p>
 <p><img alt="图1    注意box标签没有颜色，所以无法在图中看到" src="https://xutree.github.io/images/fig1.png"></p>
-<p>由于 <em>box</em> 目前没有颜色，所以无法看到它，为了看到它我们需要声明 <em>material</em>，X3DOM 基于 X3D 标准选择了一个白色的 <em>material</em>，由于网页的背景也是白色的，所以我们看不到它。为了改变 <em>material</em> 的颜色，我们首先需要在 <em>shape</em> 中插入 <em>appearance</em>。在 <em>appearance</em> 里面，我们就可以插入 <em>material</em>，利用 <em>material</em> 的 <em>diffuseColor</em> 我们可以定义 <em>material</em> 的颜色，我们现在将它定义为 RGB 颜色的红色：</p>
+<p>由于 <em>box</em> 目前没有颜色，所以无法看到它，为了看到它我们需要声明 <em>material</em>，<span class="caps">X3DOM</span> 基于 <span class="caps">X3D</span> 标准选择了一个白色的 <em>material</em>，由于网页的背景也是白色的，所以我们看不到它。为了改变 <em>material</em> 的颜色，我们首先需要在 <em>shape</em> 中插入 <em>appearance</em>。在 <em>appearance</em> 里面，我们就可以插入 <em>material</em>，利用 <em>material</em> 的 <em>diffuseColor</em> 我们可以定义 <em>material</em> 的颜色，我们现在将它定义为 <span class="caps">RGB</span>&nbsp;颜色的红色：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;shape&gt;</span>
     <span class="nt">&lt;appearance&gt;</span>
     <span class="nt">&lt;material</span> <span class="na">diffuseColor=</span><span class="s">&#39;1 0 0&#39;</span><span class="nt">&gt;&lt;/material&gt;</span>
@@ -101,7 +101,7 @@
 <p>现在，在你的浏览器中，网页将变成：</p>
 <p><img alt="图2    现在 *box* 具有红色的 *material*" src="https://xutree.github.io/images/fig2.png"></p>
 <p>现在，你可以利用鼠标进行交互了。按住鼠标左键并移动鼠标，你可以旋转视角，按住鼠标右键并移动鼠标，你可以放大和缩小。</p>
-<p>我们继续在这个 <em>scene</em> 中添加两个物体：一个蓝色的球体和一个绿色的圆锥。这和我们添加 <em>box</em> 类似，但是，在 <em>sphere</em> 和 <em>cone</em> 节点处，我们需要移动球和圆锥以避免他们相互重叠，因为所有的 3D 物体都默认不进行任何的坐标转换，也就是说它们会重叠在一起。像X3D和其他的图像相关标准(例如，OpenGL)一样，X3DOM 的坐标系统 Y 轴指向上，X 轴指向右，Z 轴指向外：</p>
+<p>我们继续在这个 <em>scene</em> 中添加两个物体：一个蓝色的球体和一个绿色的圆锥。这和我们添加 <em>box</em> 类似，但是，在 <em>sphere</em> 和 <em>cone</em> 节点处，我们需要移动球和圆锥以避免他们相互重叠，因为所有的 3D 物体都默认不进行任何的坐标转换，也就是说它们会重叠在一起。像X3D和其他的图像相关标准(例如，OpenGL)一样，<span class="caps">X3DOM</span> 的坐标系统 Y 轴指向上，X 轴指向右，Z&nbsp;轴指向外：</p>
 <p><img alt="图3  X3DOM的坐标系统" src="https://xutree.github.io/images/fig3.png"></p>
 <p>在添加绿色圆锥之前，我们将坐标往左移动3个单位；在添加蓝色球之前，我们将坐标往右移动3个单位。如下所示：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;shape&gt;</span>
@@ -131,7 +131,7 @@
 
 <p>现在，在你的浏览器中，你将看到如下内容：</p>
 <p><img alt="图4 三个物体" src="https://xutree.github.io/images/fig4.png"></p>
-<p>如果你在浏览器中看到了上图的结果，恭喜你！你刚刚使用了一系列的 X3D <em>node</em> 创建了你的第一个 X3DOM <em>scene</em>。</p>
+<p>如果你在浏览器中看到了上图的结果，恭喜你！你刚刚使用了一系列的 <span class="caps">X3D</span> <em>node</em> 创建了你的第一个 <span class="caps">X3DOM</span> <em>scene</em>。</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -141,12 +141,12 @@
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/04/X3DOM第一课/">
-                                    X3DOM 第一课
+                                    <span class="caps">X3DOM</span>&nbsp;第一课
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/04/在mac上安装Pelican/">
-                                    安装 Pelican
+                                    安装&nbsp;Pelican
                                 </a>
                             </li>
                         </ul>
@@ -158,27 +158,27 @@
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/">
-                                    X3DOM，HTML，CSS 和 JavaScript
+                                    <span class="caps">X3DOM</span>，<span class="caps">HTML</span>，<span class="caps">CSS</span> 和&nbsp;JavaScript
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/">
-                                    X3DOM 图像和视频纹理
+                                    <span class="caps">X3DOM</span>&nbsp;图像和视频纹理
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">
-                                    HTML 入门
+                                    <span class="caps">HTML</span>&nbsp;入门
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/">
-                                    C++ Primer 第一章 开始
+                                    C++ Primer 第一章&nbsp;开始
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
-                                    利用 Mac stat 添加文件创建时间、最后修改时间
+                                    利用 Mac stat&nbsp;添加文件创建时间、最后修改时间
                                 </a>
                             </li>
                         </ul>

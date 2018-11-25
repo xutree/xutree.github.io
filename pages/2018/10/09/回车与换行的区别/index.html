@@ -59,18 +59,18 @@
                 <p>转载自：<a href="https://www.pythontab.com/html/2017/linuxkaiyuan_0115/1116.html">这里</a></p>
 <p>关于换行和回车其实平时我们不太在意，所以关于两者的区别也不太清楚，在平时开发时可能会遇到一些文件处理的问题，放到不同的操作系统上出现各种坑。那么回车和换行到底有哪些区别呢？今天咱们就来总结一下。</p>
 <h2>由来</h2>
-<p>在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的机械打字机，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。</p>
+<p>在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model&nbsp;33）的机械打字机，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。</p>
 <p>于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界，不卷动滚筒；另一个叫做“换行”，告诉打字机把滚筒卷一格，不改变水平位置。</p>
 <p>这就是“换行”和“回车”的由来。</p>
 <h2>使用</h2>
 <p>后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。</p>
-<p>回车<code>\r</code>本义是光标重新回到本行开头，r 的英文 return，控制字符可以写成<code>CR</code>，即 Carriage Return。</p>
-<p>换行<code>\n</code>本义是光标往下一行（不一定到下一行行首），n 的英文 newline，控制字符可以写成<code>LF</code>，即 Line Feed。</p>
+<p>回车<code>\r</code>本义是光标重新回到本行开头，r 的英文 return，控制字符可以写成<code>CR</code>，即 Carriage&nbsp;Return。</p>
+<p>换行<code>\n</code>本义是光标往下一行（不一定到下一行行首），n 的英文 newline，控制字符可以写成<code>LF</code>，即 Line&nbsp;Feed。</p>
 <table>
 <thead>
 <tr>
 <th align="left">符号</th>
-<th align="left">ASCII 码</th>
+<th align="left"><span class="caps">ASCII</span> 码</th>
 <th align="left">意义</th>
 </tr>
 </thead>
@@ -78,27 +78,27 @@
 <tr>
 <td align="left">\n</td>
 <td align="left">10</td>
-<td align="left">换行 LF</td>
+<td align="left">换行 <span class="caps">LF</span></td>
 </tr>
 <tr>
 <td align="left">\r</td>
 <td align="left">13</td>
-<td align="left">回车 CR</td>
+<td align="left">回车 <span class="caps">CR</span></td>
 </tr>
 </tbody>
 </table>
-<p>在不同的操作系统这几个字符表现不同，比如在 WIN 系统下，这两个字符就是表现的本义，在 UNIX 类系统，换行<code>\n</code>就表现为光标下一行并回到行首，在 MAC 上，<code>\r</code>就表现为回到本行开头并往下一行，至于<code>ENTER</code>键的定义是与操作系统有关的。通常用的<code>Enter</code>是两个加起来。</p>
+<p>在不同的操作系统这几个字符表现不同，比如在 <span class="caps">WIN</span> 系统下，这两个字符就是表现的本义，在 <span class="caps">UNIX</span> 类系统，换行<code>\n</code>就表现为光标下一行并回到行首，在 <span class="caps">MAC</span> 上，<code>\r</code>就表现为回到本行开头并往下一行，至于<code>ENTER</code>键的定义是与操作系统有关的。通常用的<code>Enter</code>是两个加起来。</p>
 <p>不同操作系统下的含义：</p>
 <ul>
-<li><code>\n</code>：UNIX 系统行末结束符</li>
-<li><code>\n\r</code>：window 系统行末结束符</li>
-<li><code>\r</code>：MAC OS 系统行末结束符</li>
+<li><code>\n</code>：<span class="caps">UNIX</span>&nbsp;系统行末结束符</li>
+<li><code>\n\r</code>：window&nbsp;系统行末结束符</li>
+<li><code>\r</code>：<span class="caps">MAC</span> <span class="caps">OS</span>&nbsp;系统行末结束符</li>
 </ul>
 <p>我们经常遇到的一个问题就是，Unix/Mac 系统下的文件在 Windows 里打开的话，所有文字会变成一行；而 Windows 里的文件在 Unix/Mac 下打开的话，在每行的结尾可能会多出一个<code>^M</code>符号。</p>
 <h2>软回车和硬回车</h2>
 <p>硬回车就是普通我们按回车产生的，它在换行的同时也起着段落分隔的作用。</p>
-<p>软回车是用<code>Shift + Enter</code>产生的，它换行，但是并不换段，即前后两段文字在 Word 中属于同一“段”。在应用格式时你会体会到这一点。</p>
-<p>软回车能使前后两行的行间距大幅度缩小，因为它不是段落标记，要和法定的段落标记——硬回车区别出来。硬回车的 html 代码是<code>&lt;p&gt;..&lt;/p&gt;</code>，段落的内容就夹在里面，而软回车的代码很精悍：<code>&lt;br&gt;</code>。网页的文字如果复制到 word 中，则硬回车变为弯曲的箭头，软回车变为向下的箭头。</p>
+<p>软回车是用<code>Shift + Enter</code>产生的，它换行，但是并不换段，即前后两段文字在 Word&nbsp;中属于同一“段”。在应用格式时你会体会到这一点。</p>
+<p>软回车能使前后两行的行间距大幅度缩小，因为它不是段落标记，要和法定的段落标记——硬回车区别出来。硬回车的 html 代码是<code>&lt;p&gt;..&lt;/p&gt;</code>，段落的内容就夹在里面，而软回车的代码很精悍：<code>&lt;br&gt;</code>。网页的文字如果复制到 word&nbsp;中，则硬回车变为弯曲的箭头，软回车变为向下的箭头。</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -108,27 +108,27 @@
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
-                                    C++ Primer 第五章 语句
+                                    C++ Primer 第五章&nbsp;语句
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/">
-                                    几个奇葩的 Linux 命令
+                                    几个奇葩的 Linux&nbsp;命令
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/">
-                                    Linux 中的扩展和引用
+                                    Linux&nbsp;中的扩展和引用
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/07/css_overview/">
-                                    CSS 入门
+                                    <span class="caps">CSS</span>&nbsp;入门
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/">
-                                    C++ Primer 第四章 表达式
+                                    C++ Primer 第四章&nbsp;表达式
                                 </a>
                             </li>
                         </ul>
@@ -140,17 +140,17 @@
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/">
-                                    C++ Primer 第六章 函数
+                                    C++ Primer 第六章&nbsp;函数
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
-                                    C++ Primer 第七章 类
+                                    C++ Primer 第七章&nbsp;类
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
-                                    C++ Primer 第八章 IO 库
+                                    C++ Primer 第八章 <span class="caps">IO</span>&nbsp;库
                                 </a>
                             </li>
                             <li>
@@ -160,7 +160,7 @@
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
-                                    Perl 入门
+                                    Perl&nbsp;入门
                                 </a>
                             </li>
                         </ul>

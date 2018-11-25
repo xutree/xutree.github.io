@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="X3DOM, 教程, " />
-    <title>X3DOM，HTML，CSS 和 JavaScript  · You Know Nothing
+    <title><span class="caps">X3DOM</span>，<span class="caps">HTML</span>，<span class="caps">CSS</span> 和&nbsp;JavaScript  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/"> X3DOM，HTML，CSS 和 JavaScript  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/"> <span class="caps">X3DOM</span>，<span class="caps">HTML</span>，<span class="caps">CSS</span> 和&nbsp;JavaScript  </a></h1>
         </header>
     </div>
 
@@ -56,16 +56,16 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>本节，你将学习关于 X3DOM, HTML 和 CSS的更多知识，以及怎么利用 HTML 和 CSS 技术构建出强大的 3D 应用。在本节最后，你讲学习怎么在你的应用中使用 JavaScript。我们将继续使用前一节的例子。拷贝 HelloX3DOM.html 文件并重命名为 HTMLEventsCSS.html。</p>
-<h2>X3DOM 和 CSS</h2>
-<p>我们首先来看下怎么通过 CSS 操控 X3DOM 元素。你可能已经注意到，在 HelloX3DOM.html 中，3D 内容位于一个被黑色边界包围的白色区域中。X3DOM 有一个单独的 css 文件，自从版本1.3以后，名字一直为 x3dom.css，在这个文件中可以找到关于 X3DOM 元素的所有 css 定义以及 debug 信息。假设你的页面使用灰色和橙色作为主要颜色。你可以通过许多方式改变 X3DOM 默认的 CSS 属性：</p>
+                <p>本节，你将学习关于 <span class="caps">X3DOM</span>, <span class="caps">HTML</span> 和 CSS的更多知识，以及怎么利用 <span class="caps">HTML</span> 和 <span class="caps">CSS</span> 技术构建出强大的 3D 应用。在本节最后，你讲学习怎么在你的应用中使用 JavaScript。我们将继续使用前一节的例子。拷贝 HelloX3DOM.html 文件并重命名为&nbsp;HTMLEventsCSS.html。</p>
+<h2><span class="caps">X3DOM</span> 和 <span class="caps">CSS</span></h2>
+<p>我们首先来看下怎么通过 <span class="caps">CSS</span> 操控 <span class="caps">X3DOM</span> 元素。你可能已经注意到，在 HelloX3DOM.html 中，3D 内容位于一个被黑色边界包围的白色区域中。<span class="caps">X3DOM</span> 有一个单独的 css 文件，自从版本1.3以后，名字一直为 x3dom.css，在这个文件中可以找到关于 <span class="caps">X3DOM</span> 元素的所有 css 定义以及 debug 信息。假设你的页面使用灰色和橙色作为主要颜色。你可以通过许多方式改变 <span class="caps">X3DOM</span> 默认的 <span class="caps">CSS</span>&nbsp;属性：</p>
 <ul>
-<li>在 x3dom.css 后包含你自己的 CSS 文件(External Style Sheet)</li>
+<li>在 x3dom.css 后包含你自己的 <span class="caps">CSS</span> 文件(External Style&nbsp;Sheet)</li>
 <li>在 x3dom.css 之后，利用 <em>style</em> 标签定制 css(Internal
-Style Sheet)</li>
-<li>直接操纵相关元素的 <em>style</em> 属性(Inline Styles)</li>
+Style&nbsp;Sheet)</li>
+<li>直接操纵相关元素的 <em>style</em> 属性(Inline&nbsp;Styles)</li>
 </ul>
-<p>关于 CSS 有很多网上教程，例如<a href="http://www.w3schools.com/css/css_howto.asp">这里</a>。我们现在利用第二种方法改变 css，通常不推荐第三种方法。为了定制 x3d 代表的 X3DOM 边界，在你的 HTML 文件头部 x3dom.css 之后插入 <em>style</em> 标签：</p>
+<p>关于 <span class="caps">CSS</span> 有很多网上教程，例如<a href="http://www.w3schools.com/css/css_howto.asp">这里</a>。我们现在利用第二种方法改变 css，通常不推荐第三种方法。为了定制 x3d 代表的 <span class="caps">X3DOM</span> 边界，在你的 <span class="caps">HTML</span> 文件头部 x3dom.css 之后插入 <em>style</em>&nbsp;标签：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;html&gt;</span>
     <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;title&gt;</span>My first X3DOM page<span class="nt">&lt;/title&gt;</span>
@@ -92,7 +92,7 @@ Style Sheet)</li>
 </pre></div>
 
 
-<p>现在，X3DOM 的边界颜色已经改变了。假设你的网页已经有了橙色和灰色风格，使用 <em>pattern.png</em> 作为背景(背景图片在<a href="https://doc.x3dom.org/tutorials/basics/htmlCSS/pattern.png">这里</a>)。那么完整的 <em>style sheet</em> 如下所示：</p>
+<p>现在，<span class="caps">X3DOM</span> 的边界颜色已经改变了。假设你的网页已经有了橙色和灰色风格，使用 <em>pattern.png</em> 作为背景(背景图片在<a href="https://doc.x3dom.org/tutorials/basics/htmlCSS/pattern.png">这里</a>)。那么完整的 <em>style sheet</em>&nbsp;如下所示：</p>
 <div class="highlight"><pre><span></span><span class="nt">x3d</span>
 <span class="p">{</span>
     <span class="k">border</span><span class="p">:</span><span class="mi">2</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">darkorange</span><span class="p">;</span>
@@ -114,7 +114,7 @@ Style Sheet)</li>
 
 <p>现在你的网页看起来如下所示：</p>
 <p><img alt="图1  默认情况下，X3DOM使用与网页相同的背景" src="https://xutree.github.io/images/fig5.png"></p>
-<p>从图中可以看出，X3DOM 使用与网页相同的背景。这是一个很重要的行为：你的 X3DOM <em>scene</em> 是在 HTML 之上进行渲染的。让我们设置 <em>x3d</em> 元素为半透明背景：</p>
+<p>从图中可以看出，<span class="caps">X3DOM</span> 使用与网页相同的背景。这是一个很重要的行为：你的 <span class="caps">X3DOM</span> <em>scene</em> 是在 <span class="caps">HTML</span> 之上进行渲染的。让我们设置 <em>x3d</em>&nbsp;元素为半透明背景：</p>
 <div class="highlight"><pre><span></span><span class="nt">x3d</span>
 <span class="p">{</span>
     <span class="k">border</span><span class="p">:</span><span class="mi">2</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">darkorange</span><span class="p">;</span>
@@ -125,8 +125,8 @@ Style Sheet)</li>
 
 <p>现在结果看起来如下所示：</p>
 <p><img alt="图2  具有半透明背景的X3DOM" src="https://xutree.github.io/images/fig6.png"></p>
-<h2>X3DOM, HTML 事件和 JavaScript</h2>
-<p>使用 HTML 和 JavaScript，你可以使用大量有用的回调函数来操纵大多数 DOM 元素。X3DOM 为 <em>node</em> 提供了相似的函数。例如，当我们点击红色立方体的时候，可以弹出一个文本信息，在 <em>shape</em> 里插入一个 <em>onclick</em> 函数就可以实现这个功能：</p>
+<h2><span class="caps">X3DOM</span>, <span class="caps">HTML</span> 事件和&nbsp;JavaScript</h2>
+<p>使用 <span class="caps">HTML</span> 和 JavaScript，你可以使用大量有用的回调函数来操纵大多数 <span class="caps">DOM</span> 元素。<span class="caps">X3DOM</span> 为 <em>node</em> 提供了相似的函数。例如，当我们点击红色立方体的时候，可以弹出一个文本信息，在 <em>shape</em> 里插入一个 <em>onclick</em>&nbsp;函数就可以实现这个功能：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;shape</span> <span class="na">onclick=</span><span class="s">&quot;alert(&#39;Hello, click!&#39;);&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;appearance&gt;</span>
     <span class="nt">&lt;material</span> <span class="na">diffuseColor=</span><span class="s">&#39;1 0 0&#39;</span><span class="nt">&gt;&lt;/material&gt;</span>
@@ -136,8 +136,8 @@ Style Sheet)</li>
 </pre></div>
 
 
-<p>目前，你可以对 X3DOM 使用 <em>onmousemove</em>，<em>onmousedown</em>， <em>onmouseup</em>，<em>onmouseover</em> 和 <em>onmouseout</em> 事件。你不仅可以在 <em>shape</em> 节点插入事件，也可以在组节点，例如 <em>transform</em> 插入事件。这样你就可以使用一个回调函数捕捉多个节点的事件。</p>
-<p>你可以在每个 DOM 元素上使用 JavaScript，所以你可以随心所欲的操纵 <em>node</em>。你已经知道怎么使用 <em>onclick</em> 事件，让我们尝试当点击时，改变立方体的颜色。如果你从没使用过 JavaScript，这个<a href="http://www.w3schools.com/js/default.asp">网站</a>或许可以帮助你。</p>
+<p>目前，你可以对 <span class="caps">X3DOM</span> 使用 <em>onmousemove</em>，<em>onmousedown</em>， <em>onmouseup</em>，<em>onmouseover</em> 和 <em>onmouseout</em> 事件。你不仅可以在 <em>shape</em> 节点插入事件，也可以在组节点，例如 <em>transform</em>&nbsp;插入事件。这样你就可以使用一个回调函数捕捉多个节点的事件。</p>
+<p>你可以在每个 <span class="caps">DOM</span> 元素上使用 JavaScript，所以你可以随心所欲的操纵 <em>node</em>。你已经知道怎么使用 <em>onclick</em> 事件，让我们尝试当点击时，改变立方体的颜色。如果你从没使用过 JavaScript，这个<a href="http://www.w3schools.com/js/default.asp">网站</a>或许可以帮助你。</p>
 <p>首先，给你想操纵的节点一个 <em>id</em>：</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;shape</span> <span class="na">onclick=</span><span class="s">&quot;alert(&#39;Hello, click!&#39;);&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;appearance&gt;</span>
@@ -165,8 +165,8 @@ Style Sheet)</li>
 </pre></div>
 
 
-<h2>下一步：自动创建 (X)HTML</h2>
-<p>如果你有大量的模型数据，你想把这些数据分配到不同的页面上。那么自动生成实际的页面而不是手动编写代码将更加有趣。你可以使用自动化工具，例如 XSLT，允许你直接将 X3DOM 文件转化为 XHTML 网页。<a href="http://www.web3d.org/x3d/stylesheets/X3dToXhtmlStylesheetExamples.zip">这里</a>是一个例子。</p>
+<h2>下一步：自动创建 (X)<span class="caps">HTML</span></h2>
+<p>如果你有大量的模型数据，你想把这些数据分配到不同的页面上。那么自动生成实际的页面而不是手动编写代码将更加有趣。你可以使用自动化工具，例如 <span class="caps">XSLT</span>，允许你直接将 <span class="caps">X3DOM</span> 文件转化为 <span class="caps">XHTML</span> 网页。<a href="http://www.web3d.org/x3d/stylesheets/X3dToXhtmlStylesheetExamples.zip">这里</a>是一个例子。</p>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -176,17 +176,17 @@ Style Sheet)</li>
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/04/X3DOM-hello/">
-                                    Hello，X3DOM！
+                                    Hello，<span class="caps">X3DOM</span>！
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/04/X3DOM第一课/">
-                                    X3DOM 第一课
+                                    <span class="caps">X3DOM</span>&nbsp;第一课
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/04/在mac上安装Pelican/">
-                                    安装 Pelican
+                                    安装&nbsp;Pelican
                                 </a>
                             </li>
                         </ul>
@@ -198,27 +198,27 @@ Style Sheet)</li>
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/">
-                                    X3DOM 图像和视频纹理
+                                    <span class="caps">X3DOM</span>&nbsp;图像和视频纹理
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">
-                                    HTML 入门
+                                    <span class="caps">HTML</span>&nbsp;入门
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/">
-                                    C++ Primer 第一章 开始
+                                    C++ Primer 第一章&nbsp;开始
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
-                                    利用 Mac stat 添加文件创建时间、最后修改时间
+                                    利用 Mac stat&nbsp;添加文件创建时间、最后修改时间
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/">
-                                    C++ Primer 第二章 变量和基本类型
+                                    C++ Primer 第二章&nbsp;变量和基本类型
                                 </a>
                             </li>
                         </ul>

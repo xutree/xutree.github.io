@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
-    <title>统计学习方法 第八章 提升方法  · You Know Nothing
+    <title>统计学习方法 第八章&nbsp;提升方法  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/12/sl-8/"> 统计学习方法 第八章 提升方法  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/11/12/sl-8/"> 统计学习方法 第八章&nbsp;提升方法  </a></h1>
         </header>
     </div>
 
@@ -57,16 +57,16 @@
             <div class="span8 offset2 article-content">
 
                 <p>提升（boosting）方法是一种常用的统计学习方法，应用广泛且有效。在分类问题中，它通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。</p>
-<h2>8.1 提升方法 AdaBoost 算法</h2>
-<h3>8.1.1 提升方法的基本思想</h3>
-<p>提升方法是一种可以用来减小监督式学习中偏差的机器学习元算法。面对的问题是迈可·肯斯（Michael Kearns）提出的：一组“弱学习者”的集合能否生成一个“强学习者”？弱学习者一般是指一个分类器，它的结果只比随机分类好一点点；强学习者指分类器的结果非常接近真值。</p>
+<h2>8.1 提升方法 AdaBoost&nbsp;算法</h2>
+<h3>8.1.1&nbsp;提升方法的基本思想</h3>
+<p>提升方法是一种可以用来减小监督式学习中偏差的机器学习元算法。面对的问题是迈可·肯斯（Michael&nbsp;Kearns）提出的：一组“弱学习者”的集合能否生成一个“强学习者”？弱学习者一般是指一个分类器，它的结果只比随机分类好一点点；强学习者指分类器的结果非常接近真值。</p>
 <p>大多数的提升方法都是改变训练数据的概率分布（训练数据的权值分布），针对不同的训练数据分布调用弱学习算法学习一系列弱分类器。这样对于提升方法来说，有两个问题需要回答：</p>
 <ul>
 <li>在每一轮如何改变训练数据的权值或概率分布</li>
 <li>如何将弱分类器组合为一个强分类器</li>
 </ul>
-<p>关于第一个问题，AdaBoost 的做法是，提高那些被前一轮分类器错误分类样本的权值，而降低那些被正确分类样本的权值。至于第二个问题，即弱分类器的组合，AdaBoost 采取加权多数表决的方法，具体的加大分类误差率小的弱分类器的权值，使其在表决中起较大的作用。</p>
-<h3>8.1.2 AdaBoost 算法</h3>
+<p>关于第一个问题，AdaBoost 的做法是，提高那些被前一轮分类器错误分类样本的权值，而降低那些被正确分类样本的权值。至于第二个问题，即弱分类器的组合，AdaBoost&nbsp;采取加权多数表决的方法，具体的加大分类误差率小的弱分类器的权值，使其在表决中起较大的作用。</p>
+<h3>8.1.2 AdaBoost&nbsp;算法</h3>
 <p><strong>
 算法 8.1（AdaBoost）<br>
 输入：训练数据集
@@ -94,7 +94,7 @@ w_{m+1,i}=\frac{w_{mi}}{Z_m}\exp(-\alpha_my_iG_m(x_i)),\ i=1,2,\cdots,N$$</div>
 得到最终分类器
 <div class="math">$$G(x)=\text{sign}(f(x))=\text{sign}\left(\sum_{m=1}^M\alpha_mG_m(x)\right)$$</div>
 </strong></p>
-<p><span class="math">\(\alpha_m\)</span> 表示 <span class="math">\(G_m(x)\)</span> 在最终分类器中的重要性。当 <span class="math">\(e_m\leq\frac{1}{2}\)</span> 时，<span class="math">\(\alpha_m\geq0\)</span>，并且 <span class="math">\(\alpha_m\)</span> 随着 <span class="math">\(e_m\)</span> 的减小而增大。</p>
+<p><span class="math">\(\alpha_m\)</span> 表示 <span class="math">\(G_m(x)\)</span> 在最终分类器中的重要性。当 <span class="math">\(e_m\leq\frac{1}{2}\)</span> 时，<span class="math">\(\alpha_m\geq0\)</span>，并且 <span class="math">\(\alpha_m\)</span> 随着 <span class="math">\(e_m\)</span>&nbsp;的减小而增大。</p>
 <p>更新数据的权值方案也可以写为
 </p>
 <div class="math">$$w_{m+1,i}=\begin{cases}
@@ -105,7 +105,7 @@ w_{m+1,i}=\frac{w_{mi}}{Z_m}\exp(-\alpha_my_iG_m(x_i)),\ i=1,2,\cdots,N$$</div>
 显然，正确分类样本的权值在缩小，错误分类样本的权值在增大，误分类样本的权值被放大
 </p>
 <div class="math">$$\text{e}^{2\alpha_m}=\frac{1-e_m}{e_m}$$</div>
-<h2>8.2 AdaBoost  算法的训练误差分析</h2>
+<h2>8.2 AdaBoost&nbsp;算法的训练误差分析</h2>
 <p><strong>
 定理 8.1（AdaBoost 的训练误差界）AdaBoost 算法最终分类器的训练误差界为
 <div class="math">$$\frac{1}{N}\sum_{i=1}^N\mathbb{I}\left(G(x_i)\neq y_i\right)\leq\frac{1}{N}\sum_{i=1}^N\exp(-y_if(x_i))=\prod_{m=1}^MZ_m$$</div>
@@ -131,7 +131,7 @@ Z_m=\sum_{i=1}^{N}w_{mi}\exp\left(-\alpha_my_iG_m(x_i)\right)$$</div>
 &amp;=&amp; \cdots \\
 &amp;=&amp; \prod_{m=1}^MZ_m
 \end{eqnarray}$$</div>
-<p>这一定理说明，可以在每一轮选取适当的 <span class="math">\(G_m\)</span> 使得 <span class="math">\(Z_m\)</span> 最小，从而使训练误差下降最快。</p>
+<p>这一定理说明，可以在每一轮选取适当的 <span class="math">\(G_m\)</span> 使得 <span class="math">\(Z_m\)</span>&nbsp;最小，从而使训练误差下降最快。</p>
 <p><strong>
 定理 8.2（二类分类问题 AdaBoost 的训练误差界）
 <div class="math">$$\prod_{m=1}^MZ_m=\prod_{m=1}^M\left[2\sqrt{e_m(1-e_m)}\right]=\prod_{m=1}^M\sqrt{(1-4\gamma_m^2)}\leq\exp\left(-2\sum_{m=1}^M\gamma_m^2\right)$$</div>
@@ -146,7 +146,7 @@ Z_m &amp;=&amp; \sum_{i=1}^Nw_{mi}\exp(-\alpha_my_iG_m(x_i)) \\
 &amp;=&amp; 2\sqrt{e_m(1-e_m)}=\sqrt{1-4\gamma_m^2}
 \end{eqnarray}$$</div>
 <p>
-后半部分证明可以由 <span class="math">\(\text{e}^x\)</span> 和 <span class="math">\(\sqrt{1-x}\)</span> 在点 <span class="math">\(x=0\)</span> 的泰勒展开式推出不等式
+后半部分证明可以由 <span class="math">\(\text{e}^x\)</span> 和 <span class="math">\(\sqrt{1-x}\)</span> 在点 <span class="math">\(x=0\)</span>&nbsp;的泰勒展开式推出不等式
 </p>
 <div class="math">$$\sqrt{1-4\gamma_m^2}\leq\exp(-2\gamma_m^2)$$</div>
 <p>
@@ -155,19 +155,19 @@ Z_m &amp;=&amp; \sum_{i=1}^Nw_{mi}\exp(-\alpha_my_iG_m(x_i)) \\
 推论 8.1 如果存在 <span class="math">\(\gamma&gt;0\)</span>，对所有的 <span class="math">\(m\)</span> 有 <span class="math">\(\gamma_m\geq\gamma\)</span>，则
 <div class="math">$$\frac{1}{N}\sum_{i=1}^N\mathbb{I}\left(G(x_i)\neq y_i\right)\leq\exp(-2M\gamma^2)$$</div>
 </strong>
-这表明在此条件下，AdaBoost 训练误差关于训练次数 <span class="math">\(M\)</span> 以指数速率下降。</p>
-<h2>8.3 AdaBoost 算法的解释</h2>
-<p>AdaBoost 算法还有另外一个解释，即可以认为 AdaBoost 算法是模型为加法模型，损失函数为指数函数，学习算法为前向分步算法时的二类分类学习方法。</p>
-<h3>8.3.1 前向分步算法</h3>
-<p>考虑加法模型（additive model）
+这表明在此条件下，AdaBoost 训练误差关于训练次数 <span class="math">\(M\)</span>&nbsp;以指数速率下降。</p>
+<h2>8.3 AdaBoost&nbsp;算法的解释</h2>
+<p>AdaBoost 算法还有另外一个解释，即可以认为 AdaBoost&nbsp;算法是模型为加法模型，损失函数为指数函数，学习算法为前向分步算法时的二类分类学习方法。</p>
+<h3>8.3.1&nbsp;前向分步算法</h3>
+<p>考虑加法模型（additive&nbsp;model）
 </p>
 <div class="math">$$f(x)=\sum_{m=1}^M\beta_mb(x;\gamma_m)$$</div>
 <p>
-其中，<span class="math">\(b\left(x;\gamma_{m}\right)\)</span> 为基函数，<span class="math">\(\beta_{m}\)</span> 为基函数系数，<span class="math">\(\gamma_{m}\)</span> 为基函数参数。</p>
-<p>在给定训练数据及损失函数 <span class="math">\(L\left(y,f\left(x\right)\right)\)</span> 的条件下，学习加法模型 <span class="math">\(f\left(x\right)\)</span> 成为经验风险极小化问题
+其中，<span class="math">\(b\left(x;\gamma_{m}\right)\)</span> 为基函数，<span class="math">\(\beta_{m}\)</span> 为基函数系数，<span class="math">\(\gamma_{m}\)</span>&nbsp;为基函数参数。</p>
+<p>在给定训练数据及损失函数 <span class="math">\(L\left(y,f\left(x\right)\right)\)</span> 的条件下，学习加法模型 <span class="math">\(f\left(x\right)\)</span>&nbsp;成为经验风险极小化问题
 </p>
 <div class="math">$$\begin{align*} \\ &amp; \min_{\beta_{m},\gamma_{m}} \sum_{i=1}^{N} L \left( y_{i}, \sum_{m=1}^{M} \beta_{m} b\left(x_{i};\gamma_{m}\right) \right) \end{align*}$$</div>
-<p>通常这是一个复杂的优化问题。前向分步算法（forward stagewise algorithm）求解这一问题的想法是：因为学习是加法模型，如果能够从前向后，每一步只学习一个基函数及其系数，逐步逼近优化目标函数式，那么就可以简化优化的复杂度。具体的，每步只需优化如下损失函数
+<p>通常这是一个复杂的优化问题。前向分步算法（forward stagewise&nbsp;algorithm）求解这一问题的想法是：因为学习是加法模型，如果能够从前向后，每一步只学习一个基函数及其系数，逐步逼近优化目标函数式，那么就可以简化优化的复杂度。具体的，每步只需优化如下损失函数
 </p>
 <div class="math">$$\begin{align*} \\ &amp; \min_{\beta,\gamma} \sum_{i=1}^{N} L \left( y_{i}, \beta b\left(x_{i};\gamma\right) \right) \end{align*}$$</div>
 <p><strong>
@@ -186,19 +186,19 @@ Z_m &amp;=&amp; \sum_{i=1}^Nw_{mi}\exp(-\alpha_my_iG_m(x_i)) \\
 (3) 得到加法模型
 <div class="math">$$\begin{align*} \\ &amp; f \left( x \right) = f_{M} \left( x \right) = \sum_{m=1}^{M} \beta_{m} b \left( x; \gamma_{m} \right) \end{align*}$$</div>
 </strong></p>
-<h3>8.3.2 前向分布算法与 AdaBoost</h3>
+<h3>8.3.2 前向分布算法与&nbsp;AdaBoost</h3>
 <p><strong>
-定理 8.3 AdaBoost 算法是前向分布加法算法的特例。这时模型是由基本分类器组成的加法模型，损失函数是指数函数。
+定理 8.3 AdaBoost&nbsp;算法是前向分布加法算法的特例。这时模型是由基本分类器组成的加法模型，损失函数是指数函数。
 </strong></p>
-<p><strong>证明</strong>：加法模型等价于 AdaBoost 的最终分类器
+<p><strong>证明</strong>：加法模型等价于 AdaBoost&nbsp;的最终分类器
 </p>
 <div class="math">$$f(x)=\sum_{m=1}^{M}\alpha_{m}G_{m}(x)$$</div>
 <p>
-由基本分类器 <span class="math">\(G_{m}(x)\)</span> 及其系数 <span class="math">\(\alpha_{m}\)</span> 组成，<span class="math">\(m=1,2,\cdots,M\)</span>。前向分布算法逐一学习基本函数，这一过程与 AdaBoost 算法逐一学习基本分类器的过程一致。下面证明前向分布算法的损失函数是指数损失函数（exponential loss function）
+由基本分类器 <span class="math">\(G_{m}(x)\)</span> 及其系数 <span class="math">\(\alpha_{m}\)</span> 组成，<span class="math">\(m=1,2,\cdots,M\)</span>。前向分布算法逐一学习基本函数，这一过程与 AdaBoost 算法逐一学习基本分类器的过程一致。下面证明前向分布算法的损失函数是指数损失函数（exponential loss&nbsp;function）
 </p>
 <div class="math">$$L(y,f(x))=exp[-yf(x)]$$</div>
 <p>
-时，其学习的具体操作等价于 AdaBoost 算法学习的具体操作。</p>
+时，其学习的具体操作等价于 AdaBoost&nbsp;算法学习的具体操作。</p>
 <p>假设经过 <span class="math">\(m-1\)</span> 轮迭代前向分布算法已经得到 <span class="math">\(f_{m-1}(x)\)</span>：
 </p>
 <div class="math">$$\begin{eqnarray}
@@ -210,7 +210,7 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 </p>
 <div class="math">$$f_{m}(x)=f_{m-1}(x)+\alpha_{m}G_{m}(x)$$</div>
 <p>
-目标是使前向算法得到的 <span class="math">\(\alpha_{m}\)</span> 和 <span class="math">\(G_{m}\)</span> 使 <span class="math">\(f_{m}(x)\)</span> 在训练数据集 <span class="math">\(T\)</span> 上的指数损失最小，即：
+目标是使前向算法得到的 <span class="math">\(\alpha_{m}\)</span> 和 <span class="math">\(G_{m}\)</span> 使 <span class="math">\(f_{m}(x)\)</span> 在训练数据集 <span class="math">\(T\)</span>&nbsp;上的指数损失最小，即：
 </p>
 <div class="math">$$\left(\alpha_{m},G_{m}(x)\right)=\arg\underset{\alpha,G}{\min}\sum_{i=1}^{N}\exp\left[-y_{i}(f_{m-1}(x_{i})+\alpha G(x_{i}))\right]$$</div>
 <p>
@@ -231,14 +231,14 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 &amp;=&amp; \text{e}^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}+(\text{e}^{\alpha}-\text{e}^{-\alpha})\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))
 \end{eqnarray}$$</div>
 <p>
-所以最小化 <span class="math">\(G(x)\)</span> 由下式得到：
+所以最小化 <span class="math">\(G(x)\)</span>&nbsp;由下式得到：
 </p>
 <div class="math">$$G_{m}^{\star}(x)=\arg\underset{G}{\min}\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))$$</div>
 <p>之后我们求解 <span class="math">\(\alpha_{m}^{\star}\)</span>：
 </p>
 <div class="math">$$\sum_{i=1}^{N}\overline{w}_{mi}\exp[-y_{i}\alpha G(x_{i})]=\sum_{y_{i}=G_{m}(x_{i})}\overline{w}_{mi}\text{e}^{-\alpha}+\sum_{y_{i}\neq G_{m}(x_{i})}\overline{w}_{mi}\text{e}^{\alpha}\\
 =\text{e}^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}+(\text{e}^{\alpha}-\text{e}^{-\alpha})\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))$$</div>
-<p>对 <span class="math">\(\alpha\)</span> 求导：
+<p>对 <span class="math">\(\alpha\)</span>&nbsp;求导：
 </p>
 <div class="math">$$\frac{\partial }{\partial \alpha}\left(\text{e}^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}+(\text{e}^{\alpha}-\text{e}^{-\alpha})\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))\right)\\
 =-\text{e}^{-\alpha}\sum_{i=1}^{N}\overline{w}_{mi}+(\text{e}^{\alpha}+\text{e}^{-\alpha})\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))=0$$</div>
@@ -248,10 +248,10 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 <div class="math">$$\frac{\text{e}^{\alpha}+\text{e}^{-\alpha}}{\text{e}^{-\alpha}}=\frac {\sum_{i=1}^{N}\overline{w}_{mi}}{\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))} \\
 \alpha_{m}^{\star}=\frac{1}{2}\log\frac{1-e_{m}}{e_{m}}$$</div>
 <p>
-其中 <span class="math">\(e_{m}\)</span> 是分类错误率：
+其中 <span class="math">\(e_{m}\)</span>&nbsp;是分类错误率：
 </p>
 <div class="math">$$e_{m}=\frac {\sum_{i=1}^{N}\overline{w}_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))}{\sum_{i=1}^{N}\overline{w}_{mi}}=\sum_{i=1}^{N}w_{mi}\mathbb{I}(y_{i}\neq G(x_{i}))$$</div>
-<p>这里的 <span class="math">\(\alpha_{m}^{\star}\)</span> 与 AdaBoost 算法的 <span class="math">\(\alpha_{m}\)</span> 完全一致。</p>
+<p>这里的 <span class="math">\(\alpha_{m}^{\star}\)</span> 与 AdaBoost 算法的 <span class="math">\(\alpha_{m}\)</span>&nbsp;完全一致。</p>
 <p>再看一下每一轮的权值更新，由：
 </p>
 <div class="math">$$f_{m}(x)=f_{m-1}(x)+\alpha_{m}G_{m}(x)$$</div>
@@ -264,23 +264,23 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 </p>
 <div class="math">$$\overline{w}_{m+1,i}=\overline{w}_{m,i}\exp[-y_{i}\alpha_{m}G_{m}(x)]$$</div>
 <p>
-这与 AdaBoost 算法的样本权值的更新，只相差规范会因子，因此等价。</p>
-<h2>8.4 提升树</h2>
+这与 AdaBoost&nbsp;算法的样本权值的更新，只相差规范会因子，因此等价。</p>
+<h2>8.4&nbsp;提升树</h2>
 <p>提升树是以分类或回归树为基本分类器的提升方法。提升树被认为是统计学习中性能最好的方法之一。</p>
-<h3>8.4.1 提升树模型</h3>
-<p>提升方法实际采用加法模型（即基函数的线性组合）与前向分布算法。以决策树为基函数的提升方法称为提升树（boosting tree）。对分类问题决策树是二叉分类树，对回归问题决策树是二叉回归树。只有一个条件的基本分类器可以看做是由一个根结点直接连接两个叶结点简单决策树，即所谓的决策树桩（decision stump）。提升树模型可以表示为决策树的加法模型：
+<h3>8.4.1&nbsp;提升树模型</h3>
+<p>提升方法实际采用加法模型（即基函数的线性组合）与前向分布算法。以决策树为基函数的提升方法称为提升树（boosting tree）。对分类问题决策树是二叉分类树，对回归问题决策树是二叉回归树。只有一个条件的基本分类器可以看做是由一个根结点直接连接两个叶结点简单决策树，即所谓的决策树桩（decision&nbsp;stump）。提升树模型可以表示为决策树的加法模型：
 </p>
 <div class="math">$$f_{M}(x)=\sum_{m=1}^{M}T(x;\Theta_{m})$$</div>
 <p>
-其中，<span class="math">\(T(x;\Theta_{m})\)</span> 表示决策树；<span class="math">\(\Theta_{m}\)</span> 为决策树的参数；<span class="math">\(M\)</span> 为树的个数。提升树中树之间没有权重，或者说它们的权重都是一样的，树之间是独立的，训练样本之间也没有权重的概念，这是提升树和随机森林、AdaBoost 之间的区别。</p>
-<h3>8.4.2 提升树算法</h3>
-<p>提升树算法采用前向分步算法。首先确定初始提升树 <span class="math">\(f_{0}(x)=0\)</span>，第 <span class="math">\(m\)</span> 步的模型是：
+其中，<span class="math">\(T(x;\Theta_{m})\)</span> 表示决策树；<span class="math">\(\Theta_{m}\)</span> 为决策树的参数；<span class="math">\(M\)</span> 为树的个数。提升树中树之间没有权重，或者说它们的权重都是一样的，树之间是独立的，训练样本之间也没有权重的概念，这是提升树和随机森林、AdaBoost&nbsp;之间的区别。</p>
+<h3>8.4.2&nbsp;提升树算法</h3>
+<p>提升树算法采用前向分步算法。首先确定初始提升树 <span class="math">\(f_{0}(x)=0\)</span>，第 <span class="math">\(m\)</span>&nbsp;步的模型是：
 </p>
 <div class="math">$$f_{m}(x)=f_{m-1}(x)+T(x;\Theta_{m})$$</div>
 <p>其中，<span class="math">\(f_{m-1}(x)\)</span> 为当前模型，通过经验风险最小化确定下一决策树的参数 <span class="math">\(\Theta_{m}\)</span>：
 </p>
 <div class="math">$$\hat {\Theta}_{m}=\arg\underset{\Theta_{m}}{\min}\sum_{i=1}^{N}L(y_{i},f_{m-1}(x_{i})+T(x_{i};\Theta_{m})$$</div>
-<p>不同问题的提升树有不同的学习算法，其主要区别在于使用的损失函数不同。包含用平凡误差损失函数的回归问题，用指数损失函数的分类问题，以及用一般损失函数的一般决策问题。对于二分类问题，提升树只需将 Adaboost 算法的基本分类器限制为二分类即可，可以说这时的提升树算法是 Adaboost 算法的特殊情况。下面主要讨论下回归问题。</p>
+<p>不同问题的提升树有不同的学习算法，其主要区别在于使用的损失函数不同。包含用平凡误差损失函数的回归问题，用指数损失函数的分类问题，以及用一般损失函数的一般决策问题。对于二分类问题，提升树只需将 Adaboost 算法的基本分类器限制为二分类即可，可以说这时的提升树算法是 Adaboost&nbsp;算法的特殊情况。下面主要讨论下回归问题。</p>
 <p>已知训练数据集
 </p>
 <div class="math">$$\begin{align*} \\&amp; T = \left\{ \left( x_{1}, y_{1} \right), \left( x_{2}, y_{2} \right), \cdots, \left( x_{N}, y_{N} \right) \right\} \end{align*} \\ $$</div>
@@ -294,7 +294,7 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 </p>
 <div class="math">$$\varTheta = \left\{ \left(R_{1}, c_{1}\right),\left(R_{2}, c_{2}\right),\cdots,\left(R_{J}, c_{J}\right) \right\}$$</div>
 <p>
-表示树的区域划分和各区域上的常数。<span class="math">\(J\)</span> 是回归树的复杂度即叶结点个数。</p>
+表示树的区域划分和各区域上的常数。<span class="math">\(J\)</span>&nbsp;是回归树的复杂度即叶结点个数。</p>
 <p>回归提升树使用前向分布算法
 </p>
 <div class="math">$$\begin{align*} \\&amp; f_{0}=0 \\ &amp; f_{m}\left(x\right) = f_{m-1}\left(x\right) + T \left(x; \varTheta_{m}\right),\ m=1,2,\cdots,M\\ &amp; f_{M} = \sum_{m=1}^{M} T \left(x; \varTheta_{m}\right) \end{align*} \\$$</div>
@@ -302,12 +302,12 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 </p>
 <div class="math">$$\begin{align*} \\&amp; \hat \varTheta_{m} = \arg \min_{\varTheta_{m}} \sum_{i=1}^{N} L \left( y_{i}, f_{m-1}\left(x_{i}\right) + T \left( x_{i}; \varTheta_{m} \right) \right) \end{align*} \\ $$</div>
 <p>
-得到第 <span class="math">\(m\)</span> 棵树的参数 <span class="math">\(\hat \varTheta_{m}\)</span></p>
+得到第 <span class="math">\(m\)</span> 棵树的参数 <span class="math">\(\hat&nbsp;\varTheta_{m}\)</span></p>
 <p>当采用平方误差损失函数
 </p>
 <div class="math">$$\begin{align*} \\&amp; L \left( y, f_{m-1}\left(x\right)+T\left(x;\varTheta_{m}\right)\right) \\ &amp; = \left[y-f_{m-1}\left(x\right)-T\left(x;\varTheta_{m}\right)\right]^{2} \\ &amp; = \left[r-T\left(x;\varTheta_{m}\right)\right]^{2}\end{align*} \\ $$</div>
 <p>
-其中，<span class="math">\(r=y-f_{m-1}\left(x\right)\)</span> 是当前模型拟合数据的残差。</p>
+其中，<span class="math">\(r=y-f_{m-1}\left(x\right)\)</span>&nbsp;是当前模型拟合数据的残差。</p>
 <p><strong>
 算法 8.3（回归问题的提升树方法）<br>
 输入：训练数据集
@@ -323,8 +323,8 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
 (3) 得到回归提升树
 <div class="math">$$\begin{align*} \\ &amp; f_{M} \left( x \right) = \sum_{m=1}^{M} T \left(x;\varTheta_{m}\right) \end{align*}$$</div>
 </strong></p>
-<h3>8.4.3 梯度提升</h3>
-<p>提升树用加法模型与前向分布算法实现学习的优化过程。当损失函数是平方损失函数时，每一步优化是很简单的，但是对一般损失函数而言，往往每一步优化并不那么容易。因此Freidman提过了梯度提升（gradient boosting）。这是利用最速下降法的近似方法，其关键是利用损失函数的负梯度在当前模型的值：
+<h3>8.4.3&nbsp;梯度提升</h3>
+<p>提升树用加法模型与前向分布算法实现学习的优化过程。当损失函数是平方损失函数时，每一步优化是很简单的，但是对一般损失函数而言，往往每一步优化并不那么容易。因此Freidman提过了梯度提升（gradient&nbsp;boosting）。这是利用最速下降法的近似方法，其关键是利用损失函数的负梯度在当前模型的值：
 </p>
 <div class="math">$$-\left [ \frac{\partial L(y_{i},f(x_{i}))}{\partial f(x_{i})} \right]_{f(x)=f_{m-1}(x)}$$</div>
 <p>
@@ -411,22 +411,22 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/12/sl-7_4/">
-                                    统计学习方法 第七章 支持向量机（4）——序列最小最优化算法
+                                    统计学习方法 第七章&nbsp;支持向量机（4）——序列最小最优化算法
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/12/sl-7_3/">
-                                    统计学习方法 第七章 支持向量机（3）——非线性支持向量机
+                                    统计学习方法 第七章&nbsp;支持向量机（3）——非线性支持向量机
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/11/sl-7_2/">
-                                    统计学习方法 第七章 支持向量机（2）——线性支持向量机
+                                    统计学习方法 第七章&nbsp;支持向量机（2）——线性支持向量机
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/11/sl-7_1/">
-                                    统计学习方法 第七章 支持向量机（1）——线性可分支持向量机
+                                    统计学习方法 第七章&nbsp;支持向量机（1）——线性可分支持向量机
                                 </a>
                             </li>
                             <li>
@@ -448,22 +448,22 @@ f_{m-1}(x) &amp;=&amp; f_{m-2}(x)+\alpha_{m-1}G_{m-1}(x) \\
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/17/sl-9/">
-                                    统计学习方法 第九章 EM 算法及其推广
+                                    统计学习方法 第九章 <span class="caps">EM</span>&nbsp;算法及其推广
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/19/sl-10/">
-                                    统计学习方法 第十章 隐马尔科夫模型
+                                    统计学习方法 第十章&nbsp;隐马尔科夫模型
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/19/sl-11/">
-                                    统计学习方法 第十一章 条件随机场
+                                    统计学习方法 第十一章&nbsp;条件随机场
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/20/sl-12/">
-                                    统计学习方法 第十二章 统计学习方法总结
+                                    统计学习方法 第十二章&nbsp;统计学习方法总结
                                 </a>
                             </li>
                         </ul>

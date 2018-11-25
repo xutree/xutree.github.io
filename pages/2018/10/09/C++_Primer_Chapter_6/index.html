@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="C++, 读书笔记, " />
-    <title>C++ Primer 第六章 函数  · You Know Nothing
+    <title>C++ Primer 第六章&nbsp;函数  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/"> C++ Primer 第六章 函数  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/"> C++ Primer 第六章&nbsp;函数  </a></h1>
         </header>
     </div>
 
@@ -64,8 +64,8 @@
 <p>局部静态对象：在程序执行路径第一次经过对象定义语句时初始化，并且直到程序终止才销毁。如果没有显示初始化，则执行值初始化，内置类型的局部静态变量初始化为0。</p>
 <h2>参数传递</h2>
 <p>值传递和引用传递。</p>
-<p>当某种类型不支持拷贝操作时，函数只能通过引用形参访问该类型的对象。如 IO 类型。</p>
-<h3>const 形参和实参</h3>
+<p>当某种类型不支持拷贝操作时，函数只能通过引用形参访问该类型的对象。如 <span class="caps">IO</span>&nbsp;类型。</p>
+<h3>const&nbsp;形参和实参</h3>
 <p>如果函数无须改变引用形参的值，最好将其声明为常量引用。</p>
 <p>此外，使用引用而非常量引用也会极大地限制函数所能接受的实参类型。例如，我们不能把<code>const</code>对象、字面值或者需要类型转换的对象传递给普通的引用形参，这种绝不像看起来那么简单，它可能造成出人意料的后果。考虑如下函数：</p>
 <div class="highlight"><pre><span></span><span class="nt">string</span><span class="p">::</span><span class="nd">size_type</span> <span class="nt">find_char</span><span class="o">(</span><span class="nt">string</span> <span class="o">&amp;</span><span class="nt">s</span><span class="o">,</span> <span class="nt">char</span> <span class="nt">c</span><span class="o">,</span> <span class="nt">string</span><span class="p">::</span><span class="nd">size_type</span> <span class="o">&amp;</span><span class="nt">occurs</span><span class="o">);</span>
@@ -77,7 +77,7 @@
 </pre></div>
 
 
-<p>还有一个更难察觉的问题。假如其它函数（正确的）将它们的形参定义成常量引用，那么上述的 find_char 函数无法在此类函数中正常使用。例如</p>
+<p>还有一个更难察觉的问题。假如其它函数（正确的）将它们的形参定义成常量引用，那么上述的 find_char&nbsp;函数无法在此类函数中正常使用。例如</p>
 <div class="highlight"><pre><span></span><span class="nt">bool</span> <span class="nt">is_sentence</span><span class="o">(</span><span class="nt">const</span> <span class="nt">string</span> <span class="o">&amp;</span><span class="nt">s</span><span class="o">)</span>
 <span class="p">{</span>
         <span class="n">string</span><span class="p">:</span><span class="o">:</span><span class="n">size_type</span> <span class="n">ctr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -86,7 +86,7 @@
 </pre></div>
 
 
-<p>正确的修改思路是改正 find_char 函数的形参。如果实在不能修改 find_char，就在 is_sentence 内部定义一个<code>string</code>类型的变量，令其为 s 的副本，然后把这个对象传递给 find_char。</p>
+<p>正确的修改思路是改正 find_char 函数的形参。如果实在不能修改 find_char，就在 is_sentence 内部定义一个<code>string</code>类型的变量，令其为 s 的副本，然后把这个对象传递给&nbsp;find_char。</p>
 <p>用实参初始化形参时，会忽略顶层<code>const</code>。也就是说，当形参是顶层<code>const</code>时，传给它常量对象或者非常量对象都是可以的。</p>
 <p>可以使用一个非常量初始化一个底层<code>const</code>对象，但反过来不行。</p>
 <h3>数组形参</h3>
@@ -99,10 +99,10 @@ void print(const int[10]);
 </pre></div>
 
 
-<p>尽管表现形式不同，但是上面的三个函数是等价的：每个函数的唯一形参都是<code>const int*</code>类型的。如果我们传给 print 函数的是一个数组，则实参自动的转换成指向数组首元素的指针，数组的大小对函数的调用没有影响。</p>
+<p>尽管表现形式不同，但是上面的三个函数是等价的：每个函数的唯一形参都是<code>const int*</code>类型的。如果我们传给 print&nbsp;函数的是一个数组，则实参自动的转换成指向数组首元素的指针，数组的大小对函数的调用没有影响。</p>
 <p>因为数组是以指针的形式传递给函数的，所以一开始函数并不知道数组的确切尺寸，调用者应该为此提供一些额外的信息：</p>
 <ul>
-<li>使用标记指定数组长度：让数组本身包含一个结束标记，例如 C 风格字符串</li>
+<li>使用标记指定数组长度：让数组本身包含一个结束标记，例如 C&nbsp;风格字符串</li>
 <li>使用标准库规范，<code>begin()</code>和<code>end()</code>函数</li>
 <li>显示传递一个表示数组大小的形参</li>
 </ul>
@@ -120,29 +120,29 @@ void print(const int[10]);
 </pre></div>
 
 
-<p>第二个形参 argv 是一个数组，它的元素是指向 C 风格字符串的指针；第一个形参 argc 表示数组中字符串的数量。因为第二个形参是数组，所以 main 函数也可以定义成：</p>
+<p>第二个形参 argv 是一个数组，它的元素是指向 C 风格字符串的指针；第一个形参 argc 表示数组中字符串的数量。因为第二个形参是数组，所以 main&nbsp;函数也可以定义成：</p>
 <div class="highlight"><pre><span></span>int main(int argc, char **argv) { ... }
 </pre></div>
 
 
-<p>当实参传给 main 函数之后，argv 的第一个元素指向程序的名字或者一个空字符串，接下来的元素依次传递命令行提供的实参，最后一个指针之后的元素值保证为0。</p>
+<p>当实参传给 main 函数之后，argv&nbsp;的第一个元素指向程序的名字或者一个空字符串，接下来的元素依次传递命令行提供的实参，最后一个指针之后的元素值保证为0。</p>
 <h3>含有可变形参的函数</h3>
-<p>为了编写能够处理不同数量实参的函数，C++11 新标准提供了两种主要的方法：</p>
+<p>为了编写能够处理不同数量实参的函数，C++11&nbsp;新标准提供了两种主要的方法：</p>
 <ul>
 <li>如果所有实参类型相同，可以传递一个名为<code>initializer_list</code>的标准库类型</li>
 <li>如果实参的类型不同，可以编写可变参数模板</li>
 </ul>
-<p>C++ 还有一种特殊的形参类型（即省略号），可以用它传递可变数量的实参，不过需要注意的是，这种功能一般只用于与 C 函数交互的接口程序</p>
-<h4>initializer_list 形参</h4>
+<p>C++ 还有一种特殊的形参类型（即省略号），可以用它传递可变数量的实参，不过需要注意的是，这种功能一般只用于与 C&nbsp;函数交互的接口程序</p>
+<h4>initializer_list&nbsp;形参</h4>
 <p><code>initializer_list</code>类型定义在同名的头文件中。</p>
 <p><code>initializer_list</code>是一种类型模板，提供的操作如下：</p>
-<p><code>initializer_list &lt;T&gt; lst;</code>默认初始化；T 类型元素的空列表。</p>
-<p><code>initializer_list &lt;T&gt; lst{a,b,c...};</code>lst 的元素数量和初始值一样多；lst 的元素是对应初始值的副本；列表中的元素是 const。</p>
+<p><code>initializer_list &lt;T&gt; lst;</code>默认初始化；T&nbsp;类型元素的空列表。</p>
+<p><code>initializer_list &lt;T&gt; lst{a,b,c...};</code>lst 的元素数量和初始值一样多；lst 的元素是对应初始值的副本；列表中的元素是&nbsp;const。</p>
 <p><code>lst2(lst);</code>拷贝或赋值一个<code>initializer_list</code>对象不会拷贝列表中的元素；拷贝后，原始列表和副本共享元素。</p>
 <p><code>lst2 = lst;</code>等价于<code>lst2(lst)</code>。</p>
 <p><code>lst.size();</code>列表中的元素数量。</p>
-<p><code>lst.begin();</code>返回指向 lst 中首元素的指针。</p>
-<p><code>lst.end();</code>返回指向 lst 中尾元素下一位置的指针。</p>
+<p><code>lst.begin();</code>返回指向 lst&nbsp;中首元素的指针。</p>
+<p><code>lst.end();</code>返回指向 lst&nbsp;中尾元素下一位置的指针。</p>
 <p><code>initializer_list</code>和<code>vector</code>一样，也是类型模板，定义<code>initializer_list</code>对象时，必须说明列表中所含对象的类型。和<code>vector</code>不一样的是，<code>initializer_list</code>对象中的元素永远是常量值。</p>
 <p>如果想向<code>initializer_list</code>形参中传递一个值的序列，则必须把序列放在一对花括号内：</p>
 <div class="highlight"><pre><span></span>//expected和actual是string对象
@@ -154,19 +154,19 @@ else
 
 
 <h4>省略符形参</h4>
-<p>省略符形参是为了便于 C++ 程序访问某些特殊的 C 代码而设置的，这些代码使用了名为 varargs 的 C 标准库功能。通常，省略符形参不应用于其他目的。你的 C 编译器文档会描述如何使用 varargs。</p>
+<p>省略符形参是为了便于 C++ 程序访问某些特殊的 C 代码而设置的，这些代码使用了名为 varargs 的 C 标准库功能。通常，省略符形参不应用于其他目的。你的 C 编译器文档会描述如何使用&nbsp;varargs。</p>
 <p>省略符形参只能出现在形参列表的最后一个位置，无外乎两种形式，在第一种形式中，形参声明后面的逗号是可选的：</p>
 <div class="highlight"><pre><span></span>void foo(parm_list,...);
 void foo(...);
 </pre></div>
 
 
-<h2>返回类型和 return 语句</h2>
+<h2>返回类型和 return&nbsp;语句</h2>
 <p>返回<code>void</code>的函数不要求非得有<code>return</code>语句，以为这类函数的最后一句会隐式的执行<code>return</code>。</p>
 <p>返回的值用于初始化调用点的一个临时量，该临时量就是函数调用的结果。</p>
 <p>不要返回局部对象的引用或指针。</p>
 <p>调用一个返回引用的函数得到左值，其他返回类型得到右值。</p>
-<p>C++ 11新标准规定，函数可以返回花括号包围的值的列表，类似于其他返回结果，此处的列表也用来对表示函数返回的临时量进行初始化。如果列表为空，临时量执行值初始化。如果函数返回的是内置类型，则花括号包围的列表最多包含一个值，且该值所占空间不应该大于目标类型的空间。如果返回的是类类型，由类本身定义初始值如何使用。</p>
+<p>C++&nbsp;11新标准规定，函数可以返回花括号包围的值的列表，类似于其他返回结果，此处的列表也用来对表示函数返回的临时量进行初始化。如果列表为空，临时量执行值初始化。如果函数返回的是内置类型，则花括号包围的列表最多包含一个值，且该值所占空间不应该大于目标类型的空间。如果返回的是类类型，由类本身定义初始值如何使用。</p>
 <p>如果控制语句到达了 main 函数的结尾处而且没有<code>return</code>语句，编译器会隐式的插入一条返回0的<code>return</code>语句。</p>
 <p>cstdlib 头文件定义了两个预处理变量表示成功与失败：<code>EXIT_SUCCESS</code>，<code>EXIT_FAILURE</code>。</p>
 <p><code>int (*func(int i))[10];</code>func 是一个函数指针，指向：接受一个<code>int</code>参数，返回值是包含10个<code>int</code>数组的地址的函数。也可以利用尾置返回类型（C++ 11）写为：<code>auto func(int i) -&gt; int(*)[10];</code></p>
@@ -181,9 +181,9 @@ decltype(odd) *arrPtr(int i)
 </pre></div>
 
 
-<p>arrPtr 使用关键字<code>decltype</code>表示它的返回类型是个指针，并且该指针所指的对象与 odd 的类型一致。因为 odd 是数组，所以 arrPtr 返回一个指向含有5个整数的数组的指针。有一个地方需要注意，<code>decltype</code>并不负责把数组类型转换成对应的指针，所以<code>decltype</code>的结果是个数组，要想表示 arrPtr 返回指针还必须在函数声明时加一个 * 符号。</p>
+<p>arrPtr 使用关键字<code>decltype</code>表示它的返回类型是个指针，并且该指针所指的对象与 odd 的类型一致。因为 odd 是数组，所以 arrPtr 返回一个指向含有5个整数的数组的指针。有一个地方需要注意，<code>decltype</code>并不负责把数组类型转换成对应的指针，所以<code>decltype</code>的结果是个数组，要想表示 arrPtr 返回指针还必须在函数声明时加一个 *&nbsp;符号。</p>
 <h2>函数重载</h2>
-<h3>顶层 const</h3>
+<h3>顶层&nbsp;const</h3>
 <p>顶层<code>const</code>不影响传入函数的对象。一个用于顶层<code>const</code>的形参无法和一个没有顶层<code>const</code>的形参区分开，无法重载：</p>
 <div class="highlight"><pre><span></span>Record lookup(Phone);
 Record lookup(const Phone);
@@ -193,7 +193,7 @@ Record lookup(Phone* const);
 </pre></div>
 
 
-<h3>底层 const</h3>
+<h3>底层&nbsp;const</h3>
 <p>底层<code>const</code>可以实现重载。当我们传递一个非常量对象或者指向非常量对象的指针时，编译器会优先选用非常量的版本：</p>
 <div class="highlight"><pre><span></span>Record lookup(Account&amp;);
 Record lookup(const Account&amp;);
@@ -245,7 +245,7 @@ void f()
 
 <h3>内联函数</h3>
 <p>以空间换时间。在函数返回类型前面加上关键字<code>inline</code>。内联说明只是向编译器发出一个请求，编译器可以选择忽略这个请求。</p>
-<h3>constexpr 函数</h3>
+<h3>constexpr&nbsp;函数</h3>
 <p>能用于常量表达式的函数。函数的返回类型及所有的形参类型都得是字面值类型。函数体中必须有且只有一条<code>return</code>语句。</p>
 <div class="highlight"><pre><span></span>constexpr int new_sz() { return 42; }
 constexpr int foo = new_sz();
@@ -258,11 +258,11 @@ constexpr int foo = new_sz();
 <p>把内联函数和<code>constexpr</code>函数放在头文件内。</p>
 <p>和其它函数不一样，内联函数和<code>constexpr</code>函数可以在程序中多次定义，但是多个定义必须完全一致。</p>
 <h3>调试帮助</h3>
-<h4>assert 预处理宏</h4>
+<h4>assert&nbsp;预处理宏</h4>
 <p>所谓预处理宏其实是一个预处理变量，它的行为有点类似于内联函数。<code>assert</code>宏使用一个表达式作为它的条件：<code>assert(expr);</code></p>
 <p>首先对 expr 求值，如果表达式为假，<code>assert</code>输出信息并终止程序的执行。如果表达式为真，<code>assert</code>什么也不做。</p>
 <p><code>assert</code>定义在cassert头文件中，<code>assert</code>宏常用于检查“不能发生”的条件。</p>
-<h4>NDEBUG 预处理变量</h4>
+<h4><span class="caps">NDEBUG</span>&nbsp;预处理变量</h4>
 <p><code>assert</code>的行为依赖于<code>NDEBUG</code>预处理变量的状态。如果定义了<code>NDEBUG</code>，<code>assert</code>什么都不做，默认情况下没有定义<code>NDEBUG</code>，<code>assert</code>将执行运行时检查。我们可以使用一个<code>#define</code>语句定义<code>NDEBUG</code>，从而关闭调试状态。同时，很多编译器都提供了一个命令行选项使我们可以定义预处理变量：</p>
 <div class="highlight"><pre><span></span>$ CC -D NDEBUG main.C <span class="c1">#use /D with the Mocrosoft compiler.</span>
 </pre></div>
@@ -313,22 +313,22 @@ void test(bool (*pf)(const string &amp;, const string &amp;));
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
-                                    C++ Primer 第五章 语句
+                                    C++ Primer 第五章&nbsp;语句
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/">
-                                    几个奇葩的 Linux 命令
+                                    几个奇葩的 Linux&nbsp;命令
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/">
-                                    Linux 中的扩展和引用
+                                    Linux&nbsp;中的扩展和引用
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/07/css_overview/">
-                                    CSS 入门
+                                    <span class="caps">CSS</span>&nbsp;入门
                                 </a>
                             </li>
                         </ul>
@@ -340,12 +340,12 @@ void test(bool (*pf)(const string &amp;, const string &amp;));
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
-                                    C++ Primer 第七章 类
+                                    C++ Primer 第七章&nbsp;类
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
-                                    C++ Primer 第八章 IO 库
+                                    C++ Primer 第八章 <span class="caps">IO</span>&nbsp;库
                                 </a>
                             </li>
                             <li>
@@ -355,12 +355,12 @@ void test(bool (*pf)(const string &amp;, const string &amp;));
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
-                                    Perl 入门
+                                    Perl&nbsp;入门
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
-                                    Atom 快捷键
+                                    Atom&nbsp;快捷键
                                 </a>
                             </li>
                         </ul>

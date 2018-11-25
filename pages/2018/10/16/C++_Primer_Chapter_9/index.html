@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="C++, 读书笔记, " />
-    <title>C++ Primer 第九章 顺序容器  · You Know Nothing
+    <title>C++ Primer 第九章&nbsp;顺序容器  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/"> C++ Primer 第九章 顺序容器  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/"> C++ Primer 第九章&nbsp;顺序容器  </a></h1>
         </header>
     </div>
 
@@ -56,7 +56,7 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>一个容器就是一些特定类型对象的集合。顺序容器（sequential container）为程序员提供了控制元素存储和访问顺序的能力。这种顺序不依赖于元素的值，而是与元素加入容器时的位置相对应。</p>
+                <p>一个容器就是一些特定类型对象的集合。顺序容器（sequential&nbsp;container）为程序员提供了控制元素存储和访问顺序的能力。这种顺序不依赖于元素的值，而是与元素加入容器时的位置相对应。</p>
 <h2>顺序容器概述</h2>
 <table>
 <thead>
@@ -180,7 +180,7 @@
 </tbody>
 </table>
 <p>只有顺序容器（不包括<code>array</code>的构造函数才能接受大小参数）。如果元素类型没有默认构造函数，除了大小参数外，还需要显式指定元素初始值。<code>array</code>支持拷贝和赋值（内置数组不行）。</p>
-<h3>赋值与 swap</h3>
+<h3>赋值与&nbsp;swap</h3>
 <table>
 <thead>
 <tr>
@@ -313,8 +313,8 @@
 </tbody>
 </table>
 <p>这些操作会改变容器大小，<code>array</code>不支持。</p>
-<p><code>forward_list</code>有自己版本的 insert 和 emplace。<code>forward_list</code>不支持 push_back 和 emplace_back。</p>
-<p><code>vector</code>和<code>string</code>不支持push_front 和 emplace_front。</p>
+<p><code>forward_list</code>有自己版本的 insert 和 emplace。<code>forward_list</code>不支持 push_back 和&nbsp;emplace_back。</p>
+<p><code>vector</code>和<code>string</code>不支持push_front 和&nbsp;emplace_front。</p>
 <p><code>emplace</code>函数会在容器管理的内存空间中直接创建对象，而<code>push</code>函数会创建一个局部临时变量，并将其压入容器中。传递给<code>emplace</code>的参数必须与元素类型的构造函数相匹配。</p>
 <h3>访问元素</h3>
 <table>
@@ -376,7 +376,7 @@
 </tbody>
 </table>
 <p>这些操作会改变容器大小，<code>array</code>不支持。</p>
-<p><code>forward_list</code>有自己版本的 erase。<code>forward_list</code>不支持 pop_back。</p>
+<p><code>forward_list</code>有自己版本的 erase。<code>forward_list</code>不支持&nbsp;pop_back。</p>
 <p><code>vector</code>和<code>string</code>不支持pop_front。</p>
 <p>删除元素的成员函数并不检查其参数。在删除元素前，程序员必须确保它们是存在的。</p>
 <h3>迭代器</h3>
@@ -425,7 +425,7 @@
 </tbody>
 </table>
 <p>注：<code>forward_list</code>不支持</p>
-<h3>特殊的 forward_list 操作</h3>
+<h3>特殊的 forward_list&nbsp;操作</h3>
 <p>为了理解<code>forward_list</code>为什么有特殊版本的添加和删除操作，考虑当我们从一个单向链表中删除一个元素时会发生什么。当添加或删除一个元素时，删除或添加的元素之前的那个元素的后继会发生变化。为了添加或删除一个元素，我们需要访问其前驱，以便改变前驱改变前驱的链接。但是，<code>forward_list</code>是单向链表。在一个单向链表中，没有简单的方法来获取一个元素的前驱，出于这个原因，在一个<code>forward_list</code>中添加或删除元素的操作是通过改变给定元素之后的元素来完成的。这样，我们总是可以访问到被添加或删除元素所影响的元素。</p>
 <p>由于这些操作与其他容器上的操作有实现方式不同，<code>forward_list</code>并未定义<code>insert</code>、<code>emplace</code>和<code>erase</code>，而是定义了名为<code>insert_after</code>、<code>emplace_after</code>和<code>erase_after</code>的操作。为了支持这些操作，<code>forward_list</code>也定义了<code>before_begin</code>,它返回一个首前迭代器。这个迭代器允许我们在链表首元素之前并不存在的元素“之后”添加或删除元素（亦即在链表首元素之前添加删除元素）。</p>
 <table>
@@ -530,8 +530,8 @@
 </ul>
 <p><code>vector</code>或<code>string</code>：被删除元素之前的都有效</p>
 <p>当我们删除元素时，尾后迭代器总是会失效（除了删除<code>deque</code>首元素外），所以不要保存<code>end</code>返回的迭代器。</p>
-<h2>额外的 string 操作</h2>
-<h3>构造 string 的其他方法</h3>
+<h2>额外的 string&nbsp;操作</h2>
+<h3>构造 string&nbsp;的其他方法</h3>
 <table>
 <thead>
 <tr>
@@ -555,16 +555,16 @@
 </tbody>
 </table>
 <p>这些构造函数接受一个<code>string</code>或<code>const char*</code>参数。从<code>const char*</code>拷贝时，指针指向的数组必须以空字符结尾，如果还传递了一个计数值，数组就不必以空字符结尾。</p>
-<h3>substr 操作</h3>
+<h3>substr&nbsp;操作</h3>
 <p><code>s.substr(pos, n)</code>返回一个<code>string</code>，包含 s 中从 pos 开始的 n 个字符的拷贝。pos 的默认值是0，n 的默认值是 s.size()-pos，即拷贝从 pos 开始的所有字符。如果开始位置超出<code>string</code>的大小，抛出 out_of_range 异常，不管 n 值为多少，最多拷贝到<code>string</code>的末尾。</p>
-<h3>其他修改 string 的操作</h3>
+<h3>其他修改 string&nbsp;的操作</h3>
 <p><img alt="修改 string 的操作" src="https://xutree.github.io/images/c++9-1.jpg"></p>
 <p><img alt="repalce 和 insert参数类型" src="https://xutree.github.io/images/c++9-2.jpg"></p>
-<h3>string 搜索操作</h3>
+<h3>string&nbsp;搜索操作</h3>
 <p><code>string</code>类提供了6个不同的搜索函数，每个函数有4个重载版本。每个搜索操作都返回<code>string::size_type</code>值，表示匹配发生的下标。如果搜索失败，则返回<code>string::npos</code>的<code>static</code>成员。标准库将<code>string::npos</code>定义成一个<code>const string::size_type</code>，并初始化为-1。由于 npos 是一个无符号数，此初始值意味着 npos 等于任何<code>string</code>最大的可能大小。</p>
 <p><img alt="string 搜索操作" src="https://xutree.github.io/images/c++9-3.jpg"></p>
 <p><img alt="string 搜索操作参数" src="https://xutree.github.io/images/c++9-4.jpg"></p>
-<h3>compare 函数</h3>
+<h3>compare&nbsp;函数</h3>
 <p><img alt="compare 函数" src="https://xutree.github.io/images/c++9-5.jpg"></p>
 <h3>数值转换</h3>
 <p><img alt="string 数值转换" src="https://xutree.github.io/images/c++9-6.jpg"></p>
@@ -694,7 +694,7 @@ while (!intStack.empty()) { //栈中有值就继续循环
 </table>
 <p>每个容器适配器都基于底层容器类型的操作定义了自己的特殊操作，我们只能使用适配器操作，而不能使用底层容器类型的操作。</p>
 <h3>队列适配器</h3>
-<p><code>queue</code>和<code>priority_queue</code>定义在头文件 queue 中。操作方法如下：</p>
+<p><code>queue</code>和<code>priority_queue</code>定义在头文件 queue&nbsp;中。操作方法如下：</p>
 <table>
 <thead>
 <tr>
@@ -738,12 +738,12 @@ while (!intStack.empty()) { //栈中有值就继续循环
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
-                                    Atom 快捷键
+                                    Atom&nbsp;快捷键
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
-                                    Perl 入门
+                                    Perl&nbsp;入门
                                 </a>
                             </li>
                             <li>
@@ -753,12 +753,12 @@ while (!intStack.empty()) { //栈中有值就继续循环
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
-                                    C++ Primer 第八章 IO 库
+                                    C++ Primer 第八章 <span class="caps">IO</span>&nbsp;库
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
-                                    C++ Primer 第七章 类
+                                    C++ Primer 第七章&nbsp;类
                                 </a>
                             </li>
                         </ul>
@@ -770,27 +770,27 @@ while (!intStack.empty()) { //栈中有值就继续循环
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/">
-                                    C++ Primer 第十章 泛型算法
+                                    C++ Primer 第十章&nbsp;泛型算法
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
-                                    C++ Primer 第十一章 关联容器
+                                    C++ Primer 第十一章&nbsp;关联容器
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
-                                    C++ Primer 第十二章 动态内存
+                                    C++ Primer 第十二章&nbsp;动态内存
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">
-                                    C++ Primer 第十三章 拷贝控制
+                                    C++ Primer 第十三章&nbsp;拷贝控制
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
-                                    C++ Primer 第十四章 重载运算与类型转换
+                                    C++ Primer 第十四章&nbsp;重载运算与类型转换
                                 </a>
                             </li>
                         </ul>

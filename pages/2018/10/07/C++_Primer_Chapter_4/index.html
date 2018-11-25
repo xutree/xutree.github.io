@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="C++, 读书笔记, " />
-    <title>C++ Primer 第四章 表达式  · You Know Nothing
+    <title>C++ Primer 第四章&nbsp;表达式  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/"> C++ Primer 第四章 表达式  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/"> C++ Primer 第四章&nbsp;表达式  </a></h1>
         </header>
     </div>
 
@@ -69,7 +69,7 @@
 </ul>
 <h2>求值顺序</h2>
 <p>优先级规定了运算对象的组合方式，但是没有说明运算对象按照什么顺序求值。对于那些没有指定执行顺序的运算符来说，如果表达式指向并修改了同一个对象，将会引发错误并产生未定义的行为。</p>
-<p>例如，下面的输出表达式是未定义的，我们无法推测编译器是先求 ++i 还是先输出：</p>
+<p>例如，下面的输出表达式是未定义的，我们无法推测编译器是先求 ++i&nbsp;还是先输出：</p>
 <div class="highlight"><pre><span></span>int i = 0;
 cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; ++i &lt;&lt; endl;    //未定义的
 </pre></div>
@@ -78,10 +78,10 @@ cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; ++i &lt;&lt; endl;    //未定�
 <p>有4种运算符明确规定了运算对象的求值顺序。&amp;&amp;、||、?:、和逗号（，）运算符。</p>
 <p>对于f()+g()*h()+j()的表达式：</p>
 <ul>
-<li>优先级规定，g() 的返回值和 h() 的返回值相乘</li>
-<li>结合律规定，f() 的返回值先与 g() 和 h() 的乘积相加，所得结果再与 j() 的返回值相加</li>
+<li>优先级规定，g() 的返回值和 h()&nbsp;的返回值相乘</li>
+<li>结合律规定，f() 的返回值先与 g() 和 h() 的乘积相加，所得结果再与 j()&nbsp;的返回值相加</li>
 <li>对于这些函数的调用顺序没有明确规定</li>
-<li>如果 f、g、h 和 j 是无关函数，它们既不会改变同一对象的状态也不执行 IO 任务，那么函数的调用顺序不受限制。反之，如果其中某几个函数影响同一对象，则它是一条错误的表达式，将产生未定义的行为</li>
+<li>如果 f、g、h 和 j 是无关函数，它们既不会改变同一对象的状态也不执行 <span class="caps">IO</span>&nbsp;任务，那么函数的调用顺序不受限制。反之，如果其中某几个函数影响同一对象，则它是一条错误的表达式，将产生未定义的行为</li>
 </ul>
 <h2>算术运算符</h2>
 <p>+(正号)、-(负号)、*(乘)、/(除),%(求余)，+(加)、-(减)</p>
@@ -94,8 +94,8 @@ bool b2 = -b;   //b2 是 true
 </pre></div>
 
 
-<p>对大多数运算符来说，布尔类型的运算对象将被提升为<code>int</code>类型。如上，b 参与运算时被提升成整数值1，对它求负-1，转换为布尔值将其作为 b2 的初始值。</p>
-<p>在除法运算中，如果两个运算对象的符号相同则商为正，否则商为负。C++ 语言的早期版本允许结果为负值的商向上或向下取整，C++11 新标准则规定商一律向0取整（即直接切除小数部分）。</p>
+<p>对大多数运算符来说，布尔类型的运算对象将被提升为<code>int</code>类型。如上，b 参与运算时被提升成整数值1，对它求负-1，转换为布尔值将其作为 b2&nbsp;的初始值。</p>
+<p>在除法运算中，如果两个运算对象的符号相同则商为正，否则商为负。C++ 语言的早期版本允许结果为负值的商向上或向下取整，C++11&nbsp;新标准则规定商一律向0取整（即直接切除小数部分）。</p>
 <h2>逻辑和关系运算符</h2>
 <p>运算对象和求值结果都是右值；短路求值；进行比较运算符时，除非比较的对象是布尔类型，否则不要使用布尔字面值<code>true</code>和<code>false</code>作为运算对象</p>
 <h2>赋值运算符</h2>
@@ -103,13 +103,13 @@ bool b2 = -b;   //b2 是 true
 <li>赋值运算符的左侧运算对象必须是一个可修改的左值</li>
 <li>赋值运算的结果是它的左侧运算对象，并且是一个左值，结果的类型就是左侧运算对象的类型</li>
 <li>如果赋值运算符的左右两个运算对象类型不同，则右侧运算对象将转换成左侧运算对象的类型</li>
-<li>赋值运算满足右结合律：ival = jval = 0；</li>
+<li>赋值运算满足右结合律：ival = jval =&nbsp;0；</li>
 </ul>
-<h2>++ 和 -- 运算符</h2>
+<h2>++ 和 &#8212;&nbsp;运算符</h2>
 <ul>
 <li>前置版本将对象本身作为左值返回，后置版本则将对象原始值的副本作为右值返回</li>
 <li>建议：除非必须，否则不用递增递减算符的后置版本</li>
-<li>后置递增运算符的优先级高于解引用运算符，因此 *pbeg++ 等价于 *(pbeg++)，pbeg++ 把 pbeg 的值加1，然后返回 pbeg 的初始值的副本作为其求值结果</li>
+<li>后置递增运算符的优先级高于解引用运算符，因此 *pbeg++ 等价于 *(pbeg++)，pbeg++ 把 pbeg 的值加1，然后返回 pbeg&nbsp;的初始值的副本作为其求值结果</li>
 </ul>
 <h2>成员访问运算符</h2>
 <ul>
@@ -145,7 +145,7 @@ sizeof expr
 <p>对于<code>sizeof *p</code>：</p>
 <ul>
 <li>因为<code>sizeof</code>满足右结合律并且与 * 的运算符的优先级一样，所以表达式按照从右到左的顺序结合，等价于：<code>sizeof (*p)</code></li>
-<li>其次，因为<code>sizeof</code>不实际求运算对象的值，所以即使 p 是一个无效（即未初始化）的指针也不会有什么影响</li>
+<li>其次，因为<code>sizeof</code>不实际求运算对象的值，所以即使 p&nbsp;是一个无效（即未初始化）的指针也不会有什么影响</li>
 <li>在<code>sizeof</code>的运算对象中解引用一个无效的指针仍然是一种安全的行为，因为指针实际上并没有被真正使用</li>
 <li><code>sizeof</code>运算符的结果部分地依赖于其作用的类型：<ul>
 <li>对<code>char</code>或者类型为<code>char</code>的表达式执行<code>sizeof</code>运算，结果得1</li>
@@ -214,7 +214,7 @@ char *pc = reinterpret_cast&lt;char*&gt;(ip);
 </pre></div>
 
 
-<p>我们必须牢记 pc 所指的真实对象是一个 int 而非字符，如果把 pc 当成普通的字符指针使用就可能在运行时发生错误。</p>
+<p>我们必须牢记 pc 所指的真实对象是一个 int 而非字符，如果把 pc&nbsp;当成普通的字符指针使用就可能在运行时发生错误。</p>
 <div class="highlight"><pre><span></span>string str(pc);     //可能导致异常的运行时行为
 </pre></div>
 
@@ -222,7 +222,7 @@ char *pc = reinterpret_cast&lt;char*&gt;(ip);
 <p><code>reinterpret_cast</code>本质上依赖于机器。要想安全地使用<code>reinterpret_cast</code>必须对涉及的类型和编译器实现转换的过程都非常了解。</p>
 <p>强制类型转换干扰了正常的类型检查，因此强烈建议避免使用强制类型转换。</p>
 <h3>旧式的强制类型转换</h3>
-<p>在早期版本的 C++ 语言中，显示地进行强制类型转换包含两种形式：</p>
+<p>在早期版本的 C++&nbsp;语言中，显示地进行强制类型转换包含两种形式：</p>
 <div class="highlight"><pre><span></span>type (expr);    //函数形式的强制类型转换
 (type) expr;    //C 语言风格的强制类型转换
 </pre></div>
@@ -243,27 +243,27 @@ char *pc = reinterpret_cast&lt;char*&gt;(ip);
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/">
-                                    C++ Primer 第三章 字符串、向量和数组
+                                    C++ Primer 第三章&nbsp;字符串、向量和数组
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/">
-                                    C++ Primer 第二章 变量和基本类型
+                                    C++ Primer 第二章&nbsp;变量和基本类型
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
-                                    利用 Mac stat 添加文件创建时间、最后修改时间
+                                    利用 Mac stat&nbsp;添加文件创建时间、最后修改时间
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/">
-                                    C++ Primer 第一章 开始
+                                    C++ Primer 第一章&nbsp;开始
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/05/html-overview/">
-                                    HTML 入门
+                                    <span class="caps">HTML</span>&nbsp;入门
                                 </a>
                             </li>
                         </ul>
@@ -275,22 +275,22 @@ char *pc = reinterpret_cast&lt;char*&gt;(ip);
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/07/css_overview/">
-                                    CSS 入门
+                                    <span class="caps">CSS</span>&nbsp;入门
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/">
-                                    Linux 中的扩展和引用
+                                    Linux&nbsp;中的扩展和引用
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/">
-                                    几个奇葩的 Linux 命令
+                                    几个奇葩的 Linux&nbsp;命令
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
-                                    C++ Primer 第五章 语句
+                                    C++ Primer 第五章&nbsp;语句
                                 </a>
                             </li>
                             <li>

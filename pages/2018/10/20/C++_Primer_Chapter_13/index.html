@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="C++, 读书笔记, " />
-    <title>C++ Primer 第十三章 拷贝控制  · You Know Nothing
+    <title>C++ Primer 第十三章&nbsp;拷贝控制  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/"> C++ Primer 第十三章 拷贝控制  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/"> C++ Primer 第十三章&nbsp;拷贝控制  </a></h1>
         </header>
     </div>
 
@@ -56,11 +56,11 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>当定义一个类时，我们显示地或隐式地指定在此类型的对象拷贝、移动、赋值和销毁时做什么。一个类通过定义五种特殊的成员函数来控制这些操作，包括：拷贝构造函数（copy constructor）、拷贝赋值运算符（copy-assignment operator）、移动构造函数（move constructor）、移动赋值运算符（move-assignment operator）和析构函数（destructor）。</p>
+                <p>当定义一个类时，我们显示地或隐式地指定在此类型的对象拷贝、移动、赋值和销毁时做什么。一个类通过定义五种特殊的成员函数来控制这些操作，包括：拷贝构造函数（copy constructor）、拷贝赋值运算符（copy-assignment operator）、移动构造函数（move constructor）、移动赋值运算符（move-assignment&nbsp;operator）和析构函数（destructor）。</p>
 <p>拷贝和移动构造函数定义了当用同类型的另一个对象初始化本对象时做什么。</p>
 <p>拷贝和移动赋值运算符定义了将一个对象赋予同类型的另一个对象时做什么。</p>
 <p>析构函数定义了当此类型对象销毁时做什么。</p>
-<p>我们称这些操作为拷贝控制操作（copy control）。</p>
+<p>我们称这些操作为拷贝控制操作（copy&nbsp;control）。</p>
 <h2>拷贝、赋值和销毁</h2>
 <h3>拷贝构造函数</h3>
 <p>如果一个构造函数的第一个参数是自身类类型的引用，且任何额外参数都有默认值，则此构造函数是拷贝构造函数。</p>
@@ -74,9 +74,9 @@
 
 
 <p>拷贝构造函数的第一个参数必须是一个引用类型，虽然我们可以定义一个接受非<code>const</code>引用的拷贝构造函数，但此参数几乎总是一个<code>const</code>引用。拷贝构造函数在几种情况下都会被隐式地使用。因此，拷贝构造函数通常不应该是<code>explicit</code>的。</p>
-<h4>合成拷贝构造函数（synthesized copy constructor）</h4>
+<h4>合成拷贝构造函数（synthesized copy&nbsp;constructor）</h4>
 <p>如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。与合成默认构造函数不同，即使我们定义了其他构造函数，编译器也会为我们合成一个拷贝构造函数。</p>
-<p>每个成员的类型决定了它如何拷贝：对类类型成员，会使用其拷贝构造函数来拷贝；内置类型的成员则直接拷贝。Sales_data 类的合成拷贝构造函数等价于：</p>
+<p>每个成员的类型决定了它如何拷贝：对类类型成员，会使用其拷贝构造函数来拷贝；内置类型的成员则直接拷贝。Sales_data&nbsp;类的合成拷贝构造函数等价于：</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Slaes_data</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//其他成员和构造函数的定义，如前</span>
@@ -96,7 +96,7 @@
 </pre></div>
 
 
-<h4>拷贝初始化（copy initialization）</h4>
+<h4>拷贝初始化（copy&nbsp;initialization）</h4>
 <div class="highlight"><pre><span></span>string dots(10,&#39;.&#39;);    //直接初始化
 string s(dots);     //直接初始化
 string s2 = dots;   //拷贝初始化
@@ -138,7 +138,7 @@ f(vector&lt;int&gt;(10)); //正确：从一个 int 直接构造一个临时的 v
 </pre></div>
 
 
-<p>但是，即使编译器略过拷贝/移动构造函数，但在这个程序点上，拷贝/移动构造函数必须是存在并且是可访问的（例如，不能是 private 的）。</p>
+<p>但是，即使编译器略过拷贝/移动构造函数，但在这个程序点上，拷贝/移动构造函数必须是存在并且是可访问的（例如，不能是 private&nbsp;的）。</p>
 <h3>拷贝赋值运算符</h3>
 <p>与控制其对象如何初始化一样，类也可以控制其对象如何赋值：</p>
 <div class="highlight"><pre><span></span>Sales_data trans, accum;
@@ -213,8 +213,8 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 <li>对于动态分配的对象，当对指向它的指针应用<code>delete</code>运算符时被销毁</li>
 <li>对于临时对象，当创建它的完整表达式结束时被销毁</li>
 </ul>
-<h4>合成析构函数（synthesized destructor）</h4>
-<p>当一个类未定义自己的析构函数时，编译器会为他定义一个合成析构函数。例如，下面的代码等价于 Sales_data 的合成析构函数：</p>
+<h4>合成析构函数（synthesized&nbsp;destructor）</h4>
+<p>当一个类未定义自己的析构函数时，编译器会为他定义一个合成析构函数。例如，下面的代码等价于 Sales_data&nbsp;的合成析构函数：</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Sales_data</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//成员会被自动销毁，除此之外不需要做其他事情</span>
@@ -224,7 +224,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 </pre></div>
 
 
-<p>在（空）析构函数体执行完毕后，成员会被自动销毁。特别的，<code>string</code>的析构函数会被调用，它将释放 bookNo 成员所用的内存。认识到析构函数本身并不直接销毁成员是非常重要的。成员是在析构函数体之后隐含的析构阶段中被销毁的。在整个对象销毁过程中，析构函数体是作为成员销毁步骤之外的另一部分而进行的。</p>
+<p>在（空）析构函数体执行完毕后，成员会被自动销毁。特别的，<code>string</code>的析构函数会被调用，它将释放 bookNo&nbsp;成员所用的内存。认识到析构函数本身并不直接销毁成员是非常重要的。成员是在析构函数体之后隐含的析构阶段中被销毁的。在整个对象销毁过程中，析构函数体是作为成员销毁步骤之外的另一部分而进行的。</p>
 <h3>三/五法则</h3>
 <p>如前所述，有三个基本操作可以控制类的拷贝操作：拷贝构造函数、拷贝赋值运算符和析构函数。而且，在新标准下，一个类还可以定义一个移动构造函数和一个移动赋值运算符。</p>
 <h4>需要析构函数的类也需要拷贝和赋值操作</h4>
@@ -232,7 +232,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 <p>如果类在构造函数中分配动态内存。合成析构函数不会<code>delete</code>一个指针数据成员。因此，此类需要定义一个析构函数来释放构造函数分配的内存。</p>
 <h4>需要拷贝操作的类也需要赋值操作，反之亦然</h4>
 <p>虽然很多类需要定义所有(或是不需要定义任何)拷贝控制成员，但某些类所要完成的工作，只需要拷贝或赋值操作，不需要析构函数。第二个基本原则：如果一个类需要一个拷贝构造函数，几乎可以肯定它也需要一个拷贝赋值运算符。反之亦然。</p>
-<h3>使用 =default</h3>
+<h3>使用&nbsp;=default</h3>
 <p>我们可以通过将拷贝控制成员定义为=default来显示地要求编译器生成合成的版本：</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Sales_data</span><span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
@@ -251,10 +251,10 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 <p><strong>我们只能对具有合成版本的成员函数使用<code>=default</code>(即，默认构造函数或拷贝控制成员)。</strong></p>
 <h3>阻止拷贝</h3>
 <p>大多数类应该定义默认构造函数、拷贝构造函数和拷贝赋值运算符，无论是隐式地还是显示地。</p>
-<p>但是，在某些情况下，定义类时必须采用某种机制阻止拷贝或赋值。例如，<code>iostream</code>类阻止了拷贝，以避免多个对象写入或读取相同的 IO 缓冲。</p>
+<p>但是，在某些情况下，定义类时必须采用某种机制阻止拷贝或赋值。例如，<code>iostream</code>类阻止了拷贝，以避免多个对象写入或读取相同的 <span class="caps">IO</span>&nbsp;缓冲。</p>
 <p>为了阻止拷贝，看起来可能应该不定义拷贝控制成员。但是，这种策略是无效的：如果我们的类未定义这些操作，编译器为它生成合成的版本。</p>
 <h4>定义删除的函数</h4>
-<p>在新标准下，我们可以通过将拷贝构造函数和拷贝赋值运算符定义为删除的函数（deleted function）来阻止拷贝。删除的函数是这样一种函数：我们虽然声明了它们但不能以任何方式使用它们：</p>
+<p>在新标准下，我们可以通过将拷贝构造函数和拷贝赋值运算符定义为删除的函数（deleted&nbsp;function）来阻止拷贝。删除的函数是这样一种函数：我们虽然声明了它们但不能以任何方式使用它们：</p>
 <div class="highlight"><pre><span></span>struct NoCopy{
     NoCopy() = default; //使用合成的默认构造函数
     NoCopy(const NoCopy&amp;) = delete; //阻止拷贝
@@ -274,7 +274,7 @@ Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)
 <p>值得注意的是，我们不能删除析构函数。如果析构函数被删除，就无法销毁此类型的的对象了。对于析构函数已删除的类型，不能定义该类型的变量或释放指向该类型动态分配对象的指针，但是可以动态分配这种类型的对象（然而动态分配后不能释放）。</p>
 <h4>合成的拷贝控制成员可能是删除的</h4>
 <p>如果一个类有数据成员不能默认构造、拷贝、复制或销毁，则对应的成员函数将被定义为删除的。</p>
-<h4>private 拷贝控制</h4>
+<h4>private&nbsp;拷贝控制</h4>
 <p>在新标准发布之前，类是通过将其拷贝构造函数和拷贝赋值运算符声明为<code>private</code>的来阻止拷贝：</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">PrivateCopy</span><span class="p">{</span>
     <span class="c1">//无访问说明符；接下来的成员默认为 private 的</span>
@@ -364,7 +364,7 @@ HasPtr h3(h1);
 </pre></div>
 
 
-<p>HasPtr 是一个行为像指针的类，新创建的 h1的引用计数为1，创建 h2，用 h1 初始化 h2，会递增 h1 的引用计数值，此时 h2 保存了 h1 中的引用计数，在创建 h3 的时候，递增了 h1 的引用计数值，而且我们必须做的是要更新 h2 中的引用计数值，此时无法更新 h2 中的引用计数值。因此，我们需要将引用计数保存在动态内存中，这样原对象和其他副本对象都会指向相同的计数器，这样就可以自动更新引用计数在每个共享对象中的状态。</p>
+<p>HasPtr 是一个行为像指针的类，新创建的 h1的引用计数为1，创建 h2，用 h1 初始化 h2，会递增 h1 的引用计数值，此时 h2 保存了 h1 中的引用计数，在创建 h3 的时候，递增了 h1 的引用计数值，而且我们必须做的是要更新 h2 中的引用计数值，此时无法更新 h2&nbsp;中的引用计数值。因此，我们需要将引用计数保存在动态内存中，这样原对象和其他副本对象都会指向相同的计数器，这样就可以自动更新引用计数在每个共享对象中的状态。</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">HasPtr</span> <span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="c1">//构造函数分配新的 string 和新的计数器，将计数器置为1</span>
@@ -418,7 +418,7 @@ v2.ps = temp;   //将保存的 v1.ps 中原来的指针赋予 v2.ps
 </pre></div>
 
 
-<h3>编写我们自己的 swap 函数</h3>
+<h3>编写我们自己的 swap&nbsp;函数</h3>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">HasPtr</span> <span class="p">{</span>
     <span class="nx">friend</span> <span class="k">void</span> <span class="nx">swap</span> <span class="p">(</span><span class="nx">HasPtr</span><span class="o">&amp;</span><span class="p">,</span> <span class="nx">HasPtr</span><span class="o">&amp;</span><span class="p">);</span>
     <span class="c1">//其他成员定义</span>
@@ -434,11 +434,11 @@ v2.ps = temp;   //将保存的 v1.ps 中原来的指针赋予 v2.ps
 
 <p>我们首先将<code>swap</code>定义为<code>friend</code>以便能访问 HasPtr 的（private的）数据成员。由于<code>swap</code>的存在就是为了优化代码，我们将其声明为<code>inline</code>函数。</p>
 <p>与拷贝控制成员不同，<code>swap</code>并不是必要的。但是，对于分配了资源的类，定义<code>swap</code>可能是一种很重要的优化手段。</p>
-<h3>swap 函数应该调用 swap，而不是 std::swap</h3>
+<h3>swap 函数应该调用 swap，而不是&nbsp;std::swap</h3>
 <p>在<code>swap</code>函数中，使用了<code>using std::swap</code>，如果这个类有自己的<code>swap</code>函数，匹配程度会高于标准库<code>swap</code>，会优先使用类自己的<code>swap</code>，如果没有，则使用标准库的<code>swap</code>。</p>
 <p><code>swap</code>里交换类的指针和<code>int</code>成员，并不会发生递归循环，HasPtr 的数据成员是内置类型的，这时候会调用标准库版本的<code>swap</code>。</p>
-<h3>在赋值运算符中使用 swap</h3>
-<p>定义<code>swap</code>的类通常用<code>swap</code>来定义它们的赋值运算符。这些运算符使用了一种名为拷贝并交换（copy and swap）的技术。这种技术将左侧运算对象与右侧运算对象的一个副本进行交换：</p>
+<h3>在赋值运算符中使用&nbsp;swap</h3>
+<p>定义<code>swap</code>的类通常用<code>swap</code>来定义它们的赋值运算符。这些运算符使用了一种名为拷贝并交换（copy and&nbsp;swap）的技术。这种技术将左侧运算对象与右侧运算对象的一个副本进行交换：</p>
 <div class="highlight"><pre><span></span>//注意 rhs 是按值传递的，意味着 HasPtr 的拷贝构造函数将
 //右侧运算对象中的 string 拷贝到 rhs
 HasPtr&amp; HasPtr::operator=(HasPtr rhs)
@@ -451,7 +451,7 @@ HasPtr&amp; HasPtr::operator=(HasPtr rhs)
 
 
 <p>在进行 HasPtr 类的赋值运算中，先将右侧对象拷贝到拷贝赋值运算符函数里，然后交换左侧对象的指针和右侧对象的指针，交换后，右侧对象赋值给了左侧对象，左侧对象相应的<code>string</code>指针也指向了右侧对象副本的对应成员，而右侧对象的<code>string</code>指针则指向了左侧对象的相应成员。在这个函数结束后，右侧对象的副本被销毁，于是原来左侧对象的资源被释放，而左侧对象现在保存的是右侧对象的成员。</p>
-<p>拷贝并交换的操作，和之前的拷贝赋值运算符的实现原理是相同的， 在改变左侧对象之前拷贝右侧对象。保证了这样的操作异常的安全。</p>
+<p>拷贝并交换的操作，和之前的拷贝赋值运算符的实现原理是相同的，&nbsp;在改变左侧对象之前拷贝右侧对象。保证了这样的操作异常的安全。</p>
 <h2>对象移动</h2>
 <p>新标准的一个最主要的特性是可以移动而非拷贝对象的能力。在某些情况下对象拷贝后就立即被销毁了。在这些情况下，移动而非拷贝对象会大幅度提升性能。</p>
 <p>使用移动而不是拷贝的另一个原因源于<code>IO</code>类或<code>unique_ptr</code>这样的类。这些类都包括不能被共享的资源。因此，这些类型的对象不能拷贝但可以移动。</p>
@@ -488,21 +488,21 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 
 <p>其实有了右值表示临时对象这一观察结果，变量是左值这一特性并不令人惊讶。毕竟，变量是持久的，直至离开作用域时才被销毁。</p>
 <p><strong>变量是左值，因此我们不能将一个右值引用直接绑定到一个变量上，即使这个变量是右值引用类型也不行。</strong></p>
-<h4>标准库 move 函数</h4>
+<h4>标准库 move&nbsp;函数</h4>
 <p>虽然不能将一个右值引用直接绑定到一个左值上，但我们可以显示地将一个左值转换为对应的右值引用类型。我们还可以通过调用一个名为<code>move</code>的新标准库函数来获得绑定到左值上的右值引用。<code>move</code>定义在头文件<code>utility</code>中。</p>
 <div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">inclue</span> <span class="o">&lt;</span><span class="nt">utility</span><span class="o">&gt;</span>
 <span class="nt">int</span> <span class="o">&amp;&amp;</span><span class="nt">rr3</span> <span class="o">=</span> <span class="nt">std</span><span class="p">::</span><span class="nd">move</span><span class="o">(</span><span class="nt">rr1</span><span class="o">);</span>   <span class="o">//</span><span class="nt">ok</span>
 </pre></div>
 
 
-<p><code>move</code>调用告诉编译器：我们有一个左值，但我们希望像一个右值一样处理它。我们必须认识到，调用<code>move</code>就意味承诺：除了对 rr1 赋值或销毁它外，我们将不再使用它。</p>
+<p><code>move</code>调用告诉编译器：我们有一个左值，但我们希望像一个右值一样处理它。我们必须认识到，调用<code>move</code>就意味承诺：除了对 rr1&nbsp;赋值或销毁它外，我们将不再使用它。</p>
 <p><strong>我们可以销毁一个移后源对象，也可以赋予它新值，但不能使用一个移后源对象的值。</strong></p>
 <p>对<code>move</code>我们不提供<code>using</code>声明。我们直接调用<code>std::move</code>而不是<code>move</code>。这样可以避免潜在的名字冲突。</p>
 <h3>移动构造函数和移动赋值运算符</h3>
 <p>类似<code>string</code>类（及其他标准库类），如果我们自己的类也同时支持移动和拷贝，那么也能从中受益。这两个成员类似对应的拷贝操作，但它们从给定对象“窃取”资源而不是拷贝资源。</p>
 <p>类似拷贝构造函数，移动构造函数的第一个参数是该类类型的一个引用。不同于拷贝构造函数的是，这个引用参数在移动构造函数中是一个右值引用。与拷贝构造函数一样，任何额外的参数都必须有默认实参。</p>
 <p>除了完成资源移动，移动构造函数还必须确保移后源对象处于这样一个状态——销毁它是无害的。</p>
-<p>作为一个例子，我们为 StrVec 类定义移动构造函数，实现从一个 StrVec 到另一个 StrVec 的元素移动而非拷贝：</p>
+<p>作为一个例子，我们为 StrVec 类定义移动构造函数，实现从一个 StrVec 到另一个 StrVec&nbsp;的元素移动而非拷贝：</p>
 <div class="highlight"><pre><span></span>StrVec::StrVec(StrVec &amp;&amp;s) noexcept //移动操作不应抛出任何异常
 //c成员初始化器接管s中的资源
   ：elements(s.elements), first_free(s.first_free), cap(s.cap)
@@ -551,7 +551,7 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 <h4>更新的三/五法则</h4>
 <p>一般来说，如果一个类定义了任何一个拷贝操作，它就应该定义所有五个操作。</p>
 <h4>移动迭代器</h4>
-<p>新标准库中定义了一种移动迭代器（move iterator）适配器。一个移动迭代器通过改变给定迭代器的解引用运算符的行为来适配此迭代器。一般来说，一个迭代器的解引用运算符返回一个指向元素的左值。与其他迭代器不同，移动迭代器的解引用运算符生成一个右值引用。</p>
+<p>新标准库中定义了一种移动迭代器（move&nbsp;iterator）适配器。一个移动迭代器通过改变给定迭代器的解引用运算符的行为来适配此迭代器。一般来说，一个迭代器的解引用运算符返回一个指向元素的左值。与其他迭代器不同，移动迭代器的解引用运算符生成一个右值引用。</p>
 <p>我们通过调用标准库的<code>make_move_iterator</code>函数将一个普通迭代器转换为一个移动迭代器。此函数接受一个迭代器参数，返回一个移动迭代器。</p>
 <p>原迭代器的所有其他操作在移动迭代器中都照常工作。由于移动迭代器支持正常的迭代器操作，我们可以将一对移动迭代器传递给算法。特别地，可以将移动迭代器传递给<code>uninitialized_copy</code>：</p>
 <div class="highlight"><pre><span></span>void StrVec::reallocate()
@@ -610,27 +610,27 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
-                                    C++ Primer 第十二章 动态内存
+                                    C++ Primer 第十二章&nbsp;动态内存
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
-                                    C++ Primer 第十一章 关联容器
+                                    C++ Primer 第十一章&nbsp;关联容器
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/">
-                                    C++ Primer 第十章 泛型算法
+                                    C++ Primer 第十章&nbsp;泛型算法
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
-                                    C++ Primer 第九章 顺序容器
+                                    C++ Primer 第九章&nbsp;顺序容器
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
-                                    Atom 快捷键
+                                    Atom&nbsp;快捷键
                                 </a>
                             </li>
                         </ul>
@@ -642,22 +642,22 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
-                                    C++ Primer 第十四章 重载运算与类型转换
+                                    C++ Primer 第十四章&nbsp;重载运算与类型转换
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">
-                                    C++ Primer 第十五章 面向对象程序设计
+                                    C++ Primer 第十五章&nbsp;面向对象程序设计
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">
-                                    C++ Primer 第十六章 模板与泛型编程
+                                    C++ Primer 第十六章&nbsp;模板与泛型编程
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">
-                                    C++ Primer 第十七章 标准库特殊设施
+                                    C++ Primer 第十七章&nbsp;标准库特殊设施
                                 </a>
                             </li>
                             <li>

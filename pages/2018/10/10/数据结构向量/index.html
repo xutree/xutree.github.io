@@ -58,10 +58,10 @@
 
                 <p>数据结构大致可分为：线性结构、半线性结构和非线性结构。线性结构中最基本的称为序列（sequence），根据其中数据项的逻辑次序与其物理存储地址的对应关系不同，又可分为向量（vector）和列表（list）。</p>
 <h2>从数组到向量</h2>
-<p>数组：集合 S 由 n 个元素组成，且各元素之间具有一个线性次序，则可以将它们存放于起始地址 A，物理位置连续的一段存储空间。记为：</p>
+<p>数组：集合 S 由 n 个元素组成，且各元素之间具有一个线性次序，则可以将它们存放于起始地址&nbsp;A，物理位置连续的一段存储空间。记为：</p>
 <p><code>A[0,n) = { A[0], A[1], ..., A[n-1] }</code></p>
 <p>将它们存放于起始地址 A，若每个元素占用 s 个单位的空间，则元素 A[i] 的物理地址为：<code>A + i * s</code>，所以被称作线性数组。</p>
-<p>向量：<code>V[0,n) = { v[0], v[1], ..., v[n-1] }</code>是线性数组的一种抽象和泛化，由具有线性次序的一组元素构成的集合，其中的元素由秩区分。各元素秩互异，且均为 [0, n) 内的整数。采用“寻秩访问”。经过抽象，不限定同一向量中元素都属于同一数据类型，故而不保证它们之间可以相互比较大小。</p>
+<p>向量：<code>V[0,n) = { v[0], v[1], ..., v[n-1] }</code>是线性数组的一种抽象和泛化，由具有线性次序的一组元素构成的集合，其中的元素由秩区分。各元素秩互异，且均为 [0, n)&nbsp;内的整数。采用“寻秩访问”。经过抽象，不限定同一向量中元素都属于同一数据类型，故而不保证它们之间可以相互比较大小。</p>
 <h2>接口</h2>
 <p>作为一种抽象数据类型，向量对象应支持如下操作接口：</p>
 <table>
@@ -135,7 +135,7 @@
 </tr>
 </tbody>
 </table>
-<h2>Vector 模板类</h2>
+<h2>Vector&nbsp;模板类</h2>
 <div class="highlight"><pre><span></span>typedef int Rank;   //秩
 #define DEFAULT_CAPACITY 3  //默认的初始容量（实际应用中可设置为更大）
 
@@ -195,7 +195,7 @@ public:
 
 
 <h2>构造与析构</h2>
-<p>约定：向量中秩为 r 的元素，对应于内部数组中的 _elem[r]，其物理地址为：_elem + r</p>
+<p>约定：向量中秩为 r 的元素，对应于内部数组中的 _elem[r]，其物理地址为：_elem +&nbsp;r</p>
 <h3>默认构造函数</h3>
 <p>整个默认构造过程顺序进行，没有任何迭代，故忽略用于分配数组空间的时间，需要常数时间。</p>
 <h3>基于复制的构造函数</h3>
@@ -208,7 +208,7 @@ public:
 </pre></div>
 
 
-<p>需要 <em>O</em>(_size) 时间。</p>
+<p>需要 <em>O</em>(_size)&nbsp;时间。</p>
 <p>需要强调的是，由于向量内部含有动态分配的空间，默认的“=”运算符不足以支持向量之间的直接赋值。故要重建“=”：</p>
 <div class="highlight"><pre><span></span>template &lt;typename T&gt; Vector&lt;T&gt;&amp; Vector&lt;T&gt;::operator=(Vector&lt;T&gt; const&amp; V) {
     if( _elem ) delet [] _elem;
@@ -249,7 +249,7 @@ public:
 <p>就单次扩容或缩容操作而言，所需时间的确会高达 <em>O</em>(n)，因此在对单次操作的执行速度及其敏感的应用场合以上策略并不适用，其中缩容操作甚至可以完全不予考虑。</p>
 <h2>常规向量</h2>
 <h3>直接引用元素</h3>
-<p>与数组直接通过下标访问元素的形式相比，向量 ADT（abstract data type）所设置的<code>get()</code>和<code>put()</code>接口都显得不甚自然。</p>
+<p>与数组直接通过下标访问元素的形式相比，向量 <span class="caps">ADT</span>（abstract data type）所设置的<code>get()</code>和<code>put()</code>接口都显得不甚自然。</p>
 <div class="highlight"><pre><span></span>template &lt;typename T&gt; T&amp; Vector&lt;T&gt;::operator[](Rank r) const
 { return _elem[r]; }    //assert: 0 &lt;= r &lt; _size
 </pre></div>
@@ -265,7 +265,7 @@ public:
 
 
 <p>从理论上讲，上述算法可以枚举出同一向量所有可能的排列，而且能够保证生成各种排列的概率均等。</p>
-<p>为便于对各种向量算法的测试与比较，不妨将上述算法封装到向量 ADT 中，并对外提供向量的置乱接口操作：</p>
+<p>为便于对各种向量算法的测试与比较，不妨将上述算法封装到向量 <span class="caps">ADT</span>&nbsp;中，并对外提供向量的置乱接口操作：</p>
 <div class="highlight"><pre><span></span>template &lt;typename T&gt; void Vector&lt;T&gt;::unsort(Rank lo, Rank hi) {
     T* V = _elem + lo;
     for(Rank i =hi -lo; i &gt; 0; i--)
@@ -286,7 +286,7 @@ template &lt;typename T&gt; static bool eq(T&amp; a, T&amp; b) { return a == b; 
 <p>在一些复杂的数据结构中，内部元素本身的类型可能就是指向其他对象的指针，从而外部更多关注的，往往是其所指向对象的大小如直接比较指针，则结果毫无意义，故上面的代码分别出了了指针和引用的情况。</p>
 <h3>无序查找</h3>
 <h4>判等器</h4>
-<p><code>Vector</code>模板中的<code>find</code>接口的语义为“查找与数据对象 e 相等的元素”。这暗示向量元素可以通过相互“比对”判断是否相等。这类仅支持比对，但未必支持比较的向量，称为无序向量（unsorted vector）。</p>
+<p><code>Vector</code>模板中的<code>find</code>接口的语义为“查找与数据对象 e 相等的元素”。这暗示向量元素可以通过相互“比对”判断是否相等。这类仅支持比对，但未必支持比较的向量，称为无序向量（unsorted&nbsp;vector）。</p>
 <h4>顺序查找</h4>
 <p>由于<code>find</code>函数查找相等的最大秩元素，故从后往前比对：</p>
 <div class="highlight"><pre><span></span>template &lt;typename T&gt; Rank Vector&lt;T&gt;::find(T const&amp; e, Rank lo, Rank hi) const {
@@ -296,7 +296,7 @@ template &lt;typename T&gt; static bool eq(T&amp; a, T&amp; b) { return a == b; 
 </pre></div>
 
 
-<p>最坏情况：<em>O</em>(n)；最好情况：<em>O</em>(1)。为输入敏感（input sensitive）算法。</p>
+<p>最坏情况：<em>O</em>(n)；最好情况：<em>O</em>(1)。为输入敏感（input&nbsp;sensitive）算法。</p>
 <h3>插入</h3>
 <div class="highlight"><pre><span></span>//assert: 0 &lt;= r &lt;= size
 template &lt;typename T&gt; Rank Vector&lt;T&gt;::insert(Rank r, T const&amp; e) {
@@ -351,17 +351,17 @@ template &lt;typename T&gt; int Vector&lt;T&gt;::remove(Rank lo, Rank hi) {
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
-                                    C++ Primer 第八章 IO 库
+                                    C++ Primer 第八章 <span class="caps">IO</span>&nbsp;库
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
-                                    C++ Primer 第七章 类
+                                    C++ Primer 第七章&nbsp;类
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/">
-                                    C++ Primer 第六章 函数
+                                    C++ Primer 第六章&nbsp;函数
                                 </a>
                             </li>
                             <li>
@@ -371,7 +371,7 @@ template &lt;typename T&gt; int Vector&lt;T&gt;::remove(Rank lo, Rank hi) {
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
-                                    C++ Primer 第五章 语句
+                                    C++ Primer 第五章&nbsp;语句
                                 </a>
                             </li>
                         </ul>
@@ -383,27 +383,27 @@ template &lt;typename T&gt; int Vector&lt;T&gt;::remove(Rank lo, Rank hi) {
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
-                                    Perl 入门
+                                    Perl&nbsp;入门
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
-                                    Atom 快捷键
+                                    Atom&nbsp;快捷键
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
-                                    C++ Primer 第九章 顺序容器
+                                    C++ Primer 第九章&nbsp;顺序容器
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/">
-                                    C++ Primer 第十章 泛型算法
+                                    C++ Primer 第十章&nbsp;泛型算法
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
-                                    C++ Primer 第十一章 关联容器
+                                    C++ Primer 第十一章&nbsp;关联容器
                                 </a>
                             </li>
                         </ul>

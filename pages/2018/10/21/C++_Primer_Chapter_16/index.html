@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="C++, 读书笔记, " />
-    <title>C++ Primer 第十六章 模板与泛型编程  · You Know Nothing
+    <title>C++ Primer 第十六章&nbsp;模板与泛型编程  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/"> C++ Primer 第十六章 模板与泛型编程  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/"> C++ Primer 第十六章&nbsp;模板与泛型编程  </a></h1>
         </header>
     </div>
 
@@ -56,12 +56,12 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <p>面向对象编程（OOP）和泛型编程都能处理在编写程序时不知道类型的情况。不同之处是：OOP能处理类型在程序运行之前都未知的情况；而在泛型编程中，在编译时就能获知类型了。</p>
-<p>容器、迭代器和算法都是泛型编程的例子。模板是 C++ 中泛型编程的基础。一个模板就是一个创建类或函数的蓝图或者说公式。</p>
+                <p>面向对象编程（<span class="caps">OOP</span>）和泛型编程都能处理在编写程序时不知道类型的情况。不同之处是：OOP能处理类型在程序运行之前都未知的情况；而在泛型编程中，在编译时就能获知类型了。</p>
+<p>容器、迭代器和算法都是泛型编程的例子。模板是 C++&nbsp;中泛型编程的基础。一个模板就是一个创建类或函数的蓝图或者说公式。</p>
 <h2>定义模板</h2>
 <h3>函数模板</h3>
 <p>模板的定义以关键字<code>template</code>开始，后面跟一个模板参数列表，用<code>&lt;&gt;</code>括起来。</p>
-<p>模板有类型参数（type parameter）和非类型参数（nontype parameter）之分。</p>
+<p>模板有类型参数（type parameter）和非类型参数（nontype&nbsp;parameter）之分。</p>
 <h4>类型参数</h4>
 <p>我们可以将类型参数看作类型说明符，就像内置类型或类类型说明符一样使用。</p>
 <p>类型参数可以用来指定返回类型或函数的参数类型，以及在函数体内用于变量声明或类型转换。</p>
@@ -88,7 +88,7 @@ int compare(const cahr (&amp;p1)[3], const cahr (&amp;p2)[4])
 
 
 <p>也可以是一个指向对象或函数类型的指针或（左值）引用。绑定到指针或引用非类型参数的实参必须具有静态的生存期。</p>
-<h4>inline 和 constexpr 的函数模板</h4>
+<h4>inline 和 constexpr&nbsp;的函数模板</h4>
 <p>函数模板可以声明为<code>inline</code>或<code>constexpr</code>的，如同非模板函数一样。<code>inline</code>或<code>constexpr</code>说明符放在模板参数列表之后，返回类型之前：</p>
 <div class="highlight"><pre><span></span>//正确，inline 说明符跟在模板参数列表之后
 template &lt;typename T&gt; inline T min(const T&amp;, const T&amp;);
@@ -111,7 +111,7 @@ inline template &lt;typename T&gt; T min(const T&amp;, const T&amp;);
 <p>第二个阶段是编译器遇到模板使用时。对于函数模板调用，会检查实参数目是否正确和参数类型是否匹配。对于类模板，则只检查模板实参数目是否正确。</p>
 <p>第三个阶段是模板实例化时，只有这个阶段才能发现类型相关的错误。依赖于编译器如何管理实例化，这类错误可能在链接时才报告。</p>
 <h3>类模板</h3>
-<p>类模板（class template）是用来生成类的蓝图的。与函数模板的不同之处是，编译器不能为类模板推断模板参数类型。使用时，必须显式提供模板实参。</p>
+<p>类模板（class&nbsp;template）是用来生成类的蓝图的。与函数模板的不同之处是，编译器不能为类模板推断模板参数类型。使用时，必须显式提供模板实参。</p>
 <h4>定义类模板</h4>
 <p>在类模板（及其成员）的定义中，我们将模板参数当做替身，代替使用模板时用户需要提供的类型或值：</p>
 <div class="highlight"><pre><span></span><span class="nx">template</span> <span class="o">&lt;</span><span class="nx">typename</span> <span class="nx">T</span><span class="o">&gt;</span>
@@ -142,13 +142,13 @@ inline template &lt;typename T&gt; T min(const T&amp;, const T&amp;);
 
 
 <h4>实例化模板</h4>
-<p>当使用一个类模板时，我们必须提供额外信息。我们现在知道这些额外信息是显式模板实参（explicit template argument）列表，它们被绑定到模板参数。例如：</p>
+<p>当使用一个类模板时，我们必须提供额外信息。我们现在知道这些额外信息是显式模板实参（explicit template&nbsp;argument）列表，它们被绑定到模板参数。例如：</p>
 <div class="highlight"><pre><span></span>Bolb&lt;int&gt; ia;   //空 Bolb&lt;int&gt;
 Bolb&lt;int&gt; ia2 = {0,1,2,3,4};    //有5个元素的 Bolb&lt;int&gt;
 </pre></div>
 
 
-<p>一个类模板的每个实例都形成一个独立的类。Bolb<string> 与任何其他 Bolb 类型没有关联，也不会对任何其他 Bolb 类型的成员有特殊访问权限。</p>
+<p>一个类模板的每个实例都形成一个独立的类。Bolb<string> 与任何其他 Bolb 类型没有关联，也不会对任何其他 Bolb&nbsp;类型的成员有特殊访问权限。</p>
 <h4>类模板的成员函数</h4>
 <p>我们既可以在类模板内部，也可以在外部为其定义成员函数。定义在类模板之外的成员函数必须以关键字<code>template</code>开始，后接类模板参数列表。</p>
 <p>默认情况下，一个类模板的成员函数只有当程序用到它时才进行实例化。这一特性使得即使某种类型不能完全符合模板操作的要求，仍然能用该类型实例化类，但相应操作无法使用！</p>
@@ -220,7 +220,7 @@ BlobPtr&lt;T&gt; BlobPtr&lt;T&gt;::operator++(int)
 </pre></div>
 
 
-<p>令模板自己的类型参数成为友元。在 C++11 新标准中，我们可以将模板类型参数声明为友元：</p>
+<p>令模板自己的类型参数成为友元。在 C++11&nbsp;新标准中，我们可以将模板类型参数声明为友元：</p>
 <div class="highlight"><pre><span></span><span class="nx">template</span> <span class="o">&lt;</span><span class="nx">typename</span> <span class="nx">Type</span><span class="o">&gt;</span>
 <span class="kr">class</span> <span class="nx">Bar</span> <span class="p">{</span>
     <span class="nx">friend</span> <span class="nx">Type</span><span class="p">;</span>    <span class="c1">//将访问权限授予用来实例化 Bar 的类型</span>
@@ -233,7 +233,7 @@ BlobPtr&lt;T&gt; BlobPtr&lt;T&gt;::operator++(int)
 <h4>模板类型别名</h4>
 <p>类模板的一个实例定义了一个类型，与任何其他类类型一样，我们可以定义一个<code>typedef</code>来引用实例化的类：<code>typedef Blob&lt;string&gt; StrBlob;</code></p>
 <p>由于模板不是一个类型，我们不能定义一个<code>typedef</code>引用一个模板。即，无法定义一个<code>typedef</code>引用 Blob<T>。</p>
-<p>但是，C++11 新标准允许我们为类模板定义一个类型别名：</p>
+<p>但是，C++11&nbsp;新标准允许我们为类模板定义一个类型别名：</p>
 <div class="highlight"><pre><span></span>template &lt;typename T&gt;
 using twin = pair&lt;T,T&gt;;
 twin&lt;string&gt; authors;   //autohors 是一个 pair&lt;string,string&gt;
@@ -249,8 +249,8 @@ partNo&lt;Student&gt; kids;   //kids 是一个 pair&lt;Student, unsigned&gt;
 </pre></div>
 
 
-<h4>类模板的 static 成员</h4>
-<p>对于类模板 Foo 中的<code>static</code>成员 ctr，对于任意给定类型 X，都有一个 Foo::ctr 成员。所有 Foo 类型的对象共享相同的 ctr 成员：</p>
+<h4>类模板的 static&nbsp;成员</h4>
+<p>对于类模板 Foo 中的<code>static</code>成员 ctr，对于任意给定类型 X，都有一个 Foo::ctr 成员。所有 Foo 类型的对象共享相同的 ctr&nbsp;成员：</p>
 <div class="highlight"><pre><span></span><span class="nt">template</span> <span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">T</span><span class="o">&gt;</span> <span class="nt">class</span> <span class="nt">Foo</span> <span class="p">{</span>
 <span class="n">public</span><span class="p">:</span>
    <span class="kc">static</span> <span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="nf">count</span><span class="p">()</span> <span class="err">{</span> <span class="n">return</span> <span class="n">ctr</span><span class="p">;</span> <span class="p">}</span>
@@ -273,7 +273,7 @@ partNo&lt;Student&gt; kids;   //kids 是一个 pair&lt;Student, unsigned&gt;
 
 
 <h3>模板参数</h3>
-<p>一个模板参数的名字也没有什么内在含义，我们通常将类型参数命名为 T，但实际上我们可以使用任何名字。</p>
+<p>一个模板参数的名字也没有什么内在含义，我们通常将类型参数命名为&nbsp;T，但实际上我们可以使用任何名字。</p>
 <p>模板参数名的可用范围是在其声明之后，至模板声明或定义结束之前。模板参数会隐藏外层作用域中声明的相同名字，但是在模板内不能重用模板参数名。</p>
 <div class="highlight"><pre><span></span>typedef double A;
 template &lt;typename A, typename B&gt; void f(A a, B b)
@@ -291,8 +291,8 @@ template &lt;typename A, typename B&gt; void f(A a, B b)
 
 <h4>使用类的类型成员</h4>
 <p>假定 T 是一个模板类型参数，当编译器遇到类似 T::mem 这样的代码时，它不知道 mem 是一个类型成员还是一个<code>static</code>数据成员，直至实例化时才会知道。</p>
-<p>但是为了处理模板，编译器必须知道名字是否表示一个类型。例如：<code>T::size_type * p;</code>。编译器需要知道我们是在定义一个名为 p 的变量还是将一个名为 size_type 的<code>static</code>数据成员与名为 p 的变量相乘。</p>
-<p>默认情况，C++ 语言假定通过作用域运算符访问的名字不是类型。因此，如果我们希望使用一个模板类型参数的类型成员，就必须显式告诉编译器该名字是一个类型。</p>
+<p>但是为了处理模板，编译器必须知道名字是否表示一个类型。例如：<code>T::size_type * p;</code>。编译器需要知道我们是在定义一个名为 p 的变量还是将一个名为 size_type 的<code>static</code>数据成员与名为 p&nbsp;的变量相乘。</p>
+<p>默认情况，C++&nbsp;语言假定通过作用域运算符访问的名字不是类型。因此，如果我们希望使用一个模板类型参数的类型成员，就必须显式告诉编译器该名字是一个类型。</p>
 <p>我们通过使用关键字<code>typename</code>来实现这一点：</p>
 <div class="highlight"><pre><span></span><span class="nt">template</span> <span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">T</span><span class="o">&gt;</span>
 <span class="nt">typename</span> <span class="nt">T</span><span class="p">::</span><span class="nd">value_type</span> <span class="nt">top</span><span class="o">(</span><span class="nt">const</span> <span class="nt">T</span><span class="o">&amp;</span> <span class="nt">c</span><span class="o">)</span>
@@ -306,7 +306,7 @@ template &lt;typename A, typename B&gt; void f(A a, B b)
 
 
 <h4>默认模板实参</h4>
-<p>在新标准中，我们可以为函数和类模板提供默认实参。而更早的 C++ 标准只允许为类模板提供默认实参。</p>
+<p>在新标准中，我们可以为函数和类模板提供默认实参。而更早的 C++&nbsp;标准只允许为类模板提供默认实参。</p>
 <div class="highlight"><pre><span></span>//compare有一个默认模板实参 less&lt;T&gt; 和一个默认函数实参 F()
 template &lt;typename T, typename F = less&lt;T&gt;&gt;
 int compare(const T &amp;v1, const T &amp;b2, F f = F())
@@ -320,7 +320,7 @@ int compare(const T &amp;v1, const T &amp;b2, F f = F())
 
 <p>如果一个类模板为其所有模板参数都提供了模板实参，且我们希望使用这些默认实参，就必须在模板名之后跟一个空尖括号对。</p>
 <h3>成员模板</h3>
-<p>一个类可以包含本身是模板的成员函数。这种成员被称为成员模板（member template）。成员模板不能是虚函数（Member template functions cannot be declared virtual.Current compiler technology experts to be able to determine the size of a class’s virtual function table when the class is parsed.Allowing virtual member template functions woule require knowing all calls to such member functions everywhere in the program ahead of time.This is not feasible,especially for multi-file projects.）</p>
+<p>一个类可以包含本身是模板的成员函数。这种成员被称为成员模板（member template）。成员模板不能是虚函数（Member template functions cannot be declared virtual.Current compiler technology experts to be able to determine the size of a class’s virtual function table when the class is parsed.Allowing virtual member template functions woule require knowing all calls to such member functions everywhere in the program ahead of time.This is not feasible,especially for multi-file&nbsp;projects.）</p>
 <h4>普通（非模板）类的成员模板</h4>
 <p>我们定义一个类，类似<code>unique_ptr</code>所使用的默认删除器类型：</p>
 <div class="highlight"><pre><span></span><span class="c1">//函数对象类，对给定指针执行 delete</span>
@@ -347,7 +347,7 @@ DebugDelete()(ip);
 
 
 <h4>类模板的成员模板</h4>
-<p>在此情况下，类和成员各有自己的独立的模板参数。例如，我们将 Blob 类定义一个构造函数，它接受两个迭代器，表示要拷贝的元素范围，我们希望支持不同类型序列的迭代器：</p>
+<p>在此情况下，类和成员各有自己的独立的模板参数。例如，我们将 Blob&nbsp;类定义一个构造函数，它接受两个迭代器，表示要拷贝的元素范围，我们希望支持不同类型序列的迭代器：</p>
 <div class="highlight"><pre><span></span><span class="nx">template</span> <span class="o">&lt;</span><span class="nx">typename</span> <span class="nx">T</span><span class="o">&gt;</span>
 <span class="kr">class</span> <span class="nx">Blob</span> <span class="p">{</span>
     <span class="nx">template</span> <span class="o">&lt;</span><span class="nx">typename</span> <span class="nx">It</span><span class="o">&gt;</span> <span class="nx">Blob</span><span class="p">(</span><span class="nx">It</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">It</span> <span class="nx">e</span><span class="p">);</span>
@@ -376,14 +376,14 @@ Blob&lt;int&gt; a1(begin(ia), end(ia));
 
 <h3>控制实例化</h3>
 <p>模板被使用时才会进行实例化，这意味着，当两个或多个独立编译的源文件使用了相同的模板，并提供了相同的模板参数时，每个文件中就都会有该模板的一个实例。</p>
-<p>相同的实例可能出现在多个对象文件中，在多个文件中实例化相同模板的额外开销可能非常大。在新标准中，我们可以通过显示实例化（explicit instantiation）来避免这种开销。</p>
+<p>相同的实例可能出现在多个对象文件中，在多个文件中实例化相同模板的额外开销可能非常大。在新标准中，我们可以通过显示实例化（explicit&nbsp;instantiation）来避免这种开销。</p>
 <p>形式：</p>
 <div class="highlight"><pre><span></span>extern template declaration;        //实例化声明
 template declaration;        //实例化定义
 </pre></div>
 
 
-<p>declaration 是一个类或函数声明，其中所有模板参数已被替换为模板实参，例如：</p>
+<p>declaration&nbsp;是一个类或函数声明，其中所有模板参数已被替换为模板实参，例如：</p>
 <div class="highlight"><pre><span></span>//实例化声明与定义
 extern template class Blob&lt;string&gt;; //声明
 template int compare(const int&amp;, const int&amp;);   //定义
@@ -422,7 +422,7 @@ template class Blob&lt;string&gt;;
 <p>由于删除器类型是<code>unique_ptr</code>的一部分，因此删除器成员的类型在编译时是知道的，从而删除器可以直接保存在<code>unique_ptr</code>对象中。</p>
 <p>总结：通过在编译时绑定删除器，<code>unique_ptr</code>避免了间接调用删除器的运行时开销。通过在运行时绑定删除器，<code>shared_ptr</code>使用户重载删除器更为方便。</p>
 <h2>模板实参推断</h2>
-<p>我们已经看到，对于函数模板，编译器利用调用中的函数实参来确定其模板实参。从函数实参来确定模板实参的过程被称为模板实参推断（template argument deduction）。</p>
+<p>我们已经看到，对于函数模板，编译器利用调用中的函数实参来确定其模板实参。从函数实参来确定模板实参的过程被称为模板实参推断（template argument&nbsp;deduction）。</p>
 <h3>类型转换与模板类型参数</h3>
 <p>只有很有限的几种类型转换会自动地应用于模板实参，编译器通常不是对实参进行类型转换，而是生成一个新的模板实例：</p>
 <ul>
@@ -473,7 +473,7 @@ T1 sum(T2, T3);
 </pre></div>
 
 
-<p>本例中，没有任何函数实参的类型可用来推断 T1 的类型。每次调用 sum 时调用者都必须为 T1 提供一个显式模板实参（explicit template argument）。如下：</p>
+<p>本例中，没有任何函数实参的类型可用来推断 T1 的类型。每次调用 sum 时调用者都必须为 T1 提供一个显式模板实参（explicit template&nbsp;argument）。如下：</p>
 <div class="highlight"><pre><span></span>//T1 是显示指定的，T2 和 T3 是从函数实参类型推断而来的
 auto val3 = sum&lt;long long&gt;(i, lng); //long long sum(int, long)
 </pre></div>
@@ -535,7 +535,7 @@ func(compare&lt;int&gt;);
 <p><code>template &lt;typename T&gt; void f(T &amp;p)</code>：实参必须是一个左值。如果实参是<code>const</code>的，则 T 将被推断为<code>const</code>类型。</p>
 <p><code>template &lt;typename T&gt; void f(const T &amp;p)</code>：实参可以是任意类型(包括右值在内)，即使实参是<code>const</code>的，T 的推断类型也不会是一个<code>const</code>类型。</p>
 <h4>从右值引用函数参数推断类型</h4>
-<p>传递的实参为右值。推断出的 T 的类型是该右值实参的类型。</p>
+<p>传递的实参为右值。推断出的 T&nbsp;的类型是该右值实参的类型。</p>
 <p>传递的实参为左值。此时得到的模板参数和函数参数都是左值引用。</p>
 <p>对于接受右值引用参数的模板函数，当分别传递右值和左值实参时，模板参数类型可能是普通类型，也可能是引用类型。有时这可能会造成意想不到的结果。解决这种问题的办法是，使用基于函数参数的模板重载，来将实参分别为右值或左值时的情况分离开来：</p>
 <div class="highlight"><pre><span></span>template &lt;typename T&gt; void f3(T&amp;&amp;)
@@ -551,7 +551,7 @@ template &lt;typename T&gt; void f(const T&amp;);    // 绑定到左值和 const
 </pre></div>
 
 
-<h3>理解 std::move</h3>
+<h3>理解&nbsp;std::move</h3>
 <p>由于<code>move</code>本质上可以接受任何类型的实参，因此我们不会惊讶于它是一个函数模板。</p>
 <p>标准库是这样定义<code>move</code>的：</p>
 <div class="highlight"><pre><span></span>//在返回类型和类型转换中也要用到 typename
@@ -582,7 +582,7 @@ flip1(f, j, 42)  // j 的值不会改变
 </pre></div>
 
 
-<p>如果一个函数参数是指向模板类型参数的右值引用（如 T&amp;&amp;），它对应的实参的<code>const</code>属性和左值/右值属性将得到保持。使用这种方案改写上面的 flip1 函数。</p>
+<p>如果一个函数参数是指向模板类型参数的右值引用（如 T&amp;&amp;），它对应的实参的<code>const</code>属性和左值/右值属性将得到保持。使用这种方案改写上面的 flip1&nbsp;函数。</p>
 <div class="highlight"><pre><span></span>// 该模板将两个额外参数逆序传递给指定的可调用对象
 template&lt;typename F, typename T1, typename T2&gt;
    void flip2(F f, T1 &amp;&amp;t1, T2 &amp;&amp;t2)
@@ -599,7 +599,7 @@ flip1(g, i, 42)  // 错误，g 中接收到的 “42” 是左值
 </pre></div>
 
 
-<p>当我们试图通过 flip2 调用 g，则参数 t2 将被传递给 g 的右值引用参数（即使我们传递一个右值给 filp2，也会被拷贝到 t2）。函数参数是左值表达式，不能用于实例化右值。</p>
+<p>当我们试图通过 flip2 调用 g，则参数 t2 将被传递给 g 的右值引用参数（即使我们传递一个右值给 filp2，也会被拷贝到&nbsp;t2）。函数参数是左值表达式，不能用于实例化右值。</p>
 <p>当用于一个指向模板参数类型的右值引用函数（T&amp;&amp;）时，<code>forward</code>会保持实参类型的所有细节。与<code>move</code>不同，<code>forward</code>必须通过显式模板实参来调用。<code>forward</code>也定义在<code>utility</code>头文件中。下面使用<code>forward</code>重写翻转函数：</p>
 <div class="highlight"><pre><span></span><span class="nt">template</span><span class="o">&lt;</span><span class="nt">typename</span> <span class="nt">F</span><span class="o">,</span> <span class="nt">typename</span> <span class="nt">T1</span><span class="o">,</span> <span class="nt">typename</span> <span class="nt">T2</span><span class="o">&gt;</span>
 <span class="nt">void</span> <span class="nt">flip3</span><span class="o">(</span><span class="nt">F</span> <span class="nt">f</span><span class="o">,</span> <span class="nt">T1</span> <span class="o">&amp;&amp;</span><span class="nt">t1</span><span class="o">,</span> <span class="nt">T2</span> <span class="o">&amp;&amp;</span><span class="nt">t2</span><span class="o">)</span>
@@ -677,7 +677,7 @@ string debug_rep(char *p)
 
 
 <h2>可变参数模板</h2>
-<p>一个可变参数模板（variadic template）就是一个接受可变数目参数的模板函数或模板类。可变数目的参数被称为参数包（parameter packet）。存在两种参数包：模板参数包，函数参数包。</p>
+<p>一个可变参数模板（variadic template）就是一个接受可变数目参数的模板函数或模板类。可变数目的参数被称为参数包（parameter&nbsp;packet）。存在两种参数包：模板参数包，函数参数包。</p>
 <p>在一个模板参数列表中，<code>class...</code>或<code>typename...</code>指出，接下来的参数表是零个或多个类型的列表；一个类型名后面跟一个省略号表示零个或多个给定类型的非类型参数的列表。在函数参数列表中，如果一个参数的类型是一个模板参数包，则此参数也是一个函数参数包。</p>
 <div class="highlight"><pre><span></span>// Args 是一个模板参数包； rest 是一个函数参数包
 // Args 表示零个或多个模板类型参数
@@ -718,11 +718,11 @@ ostream&amp; print(ostream &amp;os, const T &amp;t, const Args&amp;... rest)
 </pre></div>
 
 
-<p>给定 print(cout, i, s, 42)，其调用过程如下：</p>
+<p>给定 print(cout, i, s,&nbsp;42)，其调用过程如下：</p>
 <p><img alt="编写可变参数函数模板" src="https://xutree.github.io/images/c++16-5.jpg"></p>
-<p>对于最后一次递归调用 print(cout, 42)，两个 print 版本都是可行的。但是因为非可变参数模板比可变参数模板更特例化，因此编译器选择非可变参数版本。另外，定义可变参数版本的 print 时，非可变参数版本的声明必须在作用域中，否则，可变参数版本会无限递归。</p>
+<p>对于最后一次递归调用 print(cout, 42)，两个 print 版本都是可行的。但是因为非可变参数模板比可变参数模板更特例化，因此编译器选择非可变参数版本。另外，定义可变参数版本的 print&nbsp;时，非可变参数版本的声明必须在作用域中，否则，可变参数版本会无限递归。</p>
 <h3>包扩展</h3>
-<p>当扩展一个包时，可以提供用于每个扩展元素的模式。扩展一个包就是将它分解为构成的元素，对每个元素应用模式，获得扩展后的列表。通过在模式右边放一个省略号（...）来触发扩展操作。</p>
+<p>当扩展一个包时，可以提供用于每个扩展元素的模式。扩展一个包就是将它分解为构成的元素，对每个元素应用模式，获得扩展后的列表。通过在模式右边放一个省略号（&#8230;）来触发扩展操作。</p>
 <div class="highlight"><pre><span></span>template&lt;typename T, typename... Args&gt;
 ostream&amp; print(ostream &amp;os, const T &amp;t, const Args&amp;... rest)  // 扩展 Args
 {
@@ -737,7 +737,7 @@ print(ostream &amp;, const int&amp;, const string&amp;, const int&amp;);
 </pre></div>
 
 
-<p>print 中的函数参数包扩展仅仅将包扩展为其构成元素，还可以进行更复杂的扩展模式。比如，对其每个实参调用之前出现过的  debug_rep：</p>
+<p>print 中的函数参数包扩展仅仅将包扩展为其构成元素，还可以进行更复杂的扩展模式。比如，对其每个实参调用之前出现过的&nbsp;debug_rep：</p>
 <div class="highlight"><pre><span></span>template&lt;typename... Args&gt;
 ostream&amp; errorMsg(ostream &amp;os, const Args&amp;... rest)
 {
@@ -753,7 +753,7 @@ ostream&amp; errorMsg(ostream &amp;os, const Args&amp;... rest)
 
 <p>扩展中的模式会独立地应用于包中的每个元素。</p>
 <h3>转发参数包</h3>
-<p>可变参数函数通常将它们的参数转发给其他函数，这种函数具有与容器中的<code>emplace_back</code>函数一样的形式。work 调用中的扩展既扩展了模板参数包也扩展了函数参数包：</p>
+<p>可变参数函数通常将它们的参数转发给其他函数，这种函数具有与容器中的<code>emplace_back</code>函数一样的形式。work&nbsp;调用中的扩展既扩展了模板参数包也扩展了函数参数包：</p>
 <div class="highlight"><pre><span></span><span class="o">//</span> <span class="nt">fun</span> <span class="nt">有零个或多个参数</span><span class="err">，</span><span class="nt">每个参数都是一个模板参数类型的右值引用</span>
 <span class="nt">template</span><span class="o">&lt;</span><span class="nt">typename</span><span class="o">...</span> <span class="nt">Args</span><span class="o">&gt;</span>
 <span class="nt">void</span> <span class="nt">fun</span><span class="o">(</span><span class="nt">Args</span><span class="o">&amp;&amp;...</span> <span class="nt">args</span><span class="o">)</span>  <span class="o">//</span> <span class="nt">将</span> <span class="nt">Args</span> <span class="nt">扩展为一个右值引用的列表</span>
@@ -854,27 +854,27 @@ fi.Bar();              // 使用特例化版本的 Foo&lt;int&gt;::Bar()
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">
-                                    C++ Primer 第十五章 面向对象程序设计
+                                    C++ Primer 第十五章&nbsp;面向对象程序设计
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
-                                    C++ Primer 第十四章 重载运算与类型转换
+                                    C++ Primer 第十四章&nbsp;重载运算与类型转换
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">
-                                    C++ Primer 第十三章 拷贝控制
+                                    C++ Primer 第十三章&nbsp;拷贝控制
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
-                                    C++ Primer 第十二章 动态内存
+                                    C++ Primer 第十二章&nbsp;动态内存
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
-                                    C++ Primer 第十一章 关联容器
+                                    C++ Primer 第十一章&nbsp;关联容器
                                 </a>
                             </li>
                         </ul>
@@ -886,7 +886,7 @@ fi.Bar();              // 使用特例化版本的 Foo&lt;int&gt;::Bar()
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">
-                                    C++ Primer 第十七章 标准库特殊设施
+                                    C++ Primer 第十七章&nbsp;标准库特殊设施
                                 </a>
                             </li>
                             <li>

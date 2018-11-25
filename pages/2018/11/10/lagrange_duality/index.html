@@ -56,8 +56,8 @@
         <!--  -->
             <div class="span8 offset2 article-content">
 
-                <h2>1. 原始问题</h2>
-<p>假设 <span class="math">\(f(x)\)</span>，<span class="math">\(c_i(x)\)</span>，<span class="math">\(h_j(x)\)</span> 是定义在 <span class="math">\(\mathbb{R}^n\)</span> 上的连续可微函数。考虑约束最优化问题：
+                <h2>1.&nbsp;原始问题</h2>
+<p>假设 <span class="math">\(f(x)\)</span>，<span class="math">\(c_i(x)\)</span>，<span class="math">\(h_j(x)\)</span> 是定义在 <span class="math">\(\mathbb{R}^n\)</span>&nbsp;上的连续可微函数。考虑约束最优化问题：
 </p>
 <div class="math">$$\min_{x\in\mathbb{R}^n}f(x) \\
 \text{s.t.}\ \ \ \ \
@@ -71,11 +71,11 @@ h_j(x) &amp;=&amp; 0,j=1,2,\cdots,l
 </p>
 <div class="math">$$L(x,\alpha,\beta)=f(x)+\sum_{i=1}^k\alpha_ic_i(x)+\sum_{j=1}^l\beta_jh_j(x)$$</div>
 <p>
-这里，<span class="math">\(x=\left(x^{(1)},x^{(2)},\cdots,x^{(n)}\right)^\text{T}\in\mathbb{R}^n\)</span>，<span class="math">\(\alpha_i\)</span>，<span class="math">\(\beta_j\)</span> 是拉格朗日乘子，<span class="math">\(\alpha_i\geq0\)</span>，考虑 <span class="math">\(x\)</span> 的函数：
+这里，<span class="math">\(x=\left(x^{(1)},x^{(2)},\cdots,x^{(n)}\right)^\text{T}\in\mathbb{R}^n\)</span>，<span class="math">\(\alpha_i\)</span>，<span class="math">\(\beta_j\)</span> 是拉格朗日乘子，<span class="math">\(\alpha_i\geq0\)</span>，考虑 <span class="math">\(x\)</span>&nbsp;的函数：
 </p>
 <div class="math">$$\theta_P(x)=\max_{\alpha,\beta:\alpha\geq0}L(x,\alpha,\beta)$$</div>
 <p>
-这里，下标 <span class="math">\(P\)</span> 表示原始问题。</p>
+这里，下标 <span class="math">\(P\)</span>&nbsp;表示原始问题。</p>
 <p>易知：
 </p>
 <div class="math">$$\theta_P(x)=\begin{cases}
@@ -93,7 +93,7 @@ f(x), &amp; x\ 满足原始问题约束 \\
 <div class="math">$$p^{\star}=\min_x\theta_P(x)$$</div>
 <p>
 称为原始问题的值。</p>
-<h2>2. 对偶问题</h2>
+<h2>2.&nbsp;对偶问题</h2>
 <p>定义
 </p>
 <div class="math">$$\theta_D(\alpha,\beta)=\min_xL(x,\alpha,\beta)$$</div>
@@ -113,7 +113,7 @@ f(x), &amp; x\ 满足原始问题约束 \\
 <div class="math">$$d^\star=\max_{\alpha,\beta:\alpha_i\geq0}\theta_D(\alpha,\beta)$$</div>
 <p>
 称为对偶问题的值。</p>
-<h2>3. 原始问题和对偶问题的关系</h2>
+<h2>3.&nbsp;原始问题和对偶问题的关系</h2>
 <blockquote>
 <p><strong>定理 1</strong> 若原始问题和对偶问题都有最优值，则
 <div class="math">$$d^\star=\max_{\alpha,\beta:\alpha_i\geq0}\min_xL(x,\alpha,\beta)\leq\min_x\max_{\alpha,\beta:\alpha_i\geq0}L(x,\alpha,\beta)=p^\star$$</div>
@@ -122,7 +122,7 @@ f(x), &amp; x\ 满足原始问题约束 \\
 <p><strong>定理 2</strong> 考虑原始问题和对偶问题。假设函数 <span class="math">\(f(x)\)</span> 和 <span class="math">\(c_i(x)\)</span> 是凸函数，<span class="math">\(h_j(x)\)</span> 是仿射函数；并且假设不等式约束 <span class="math">\(c_i(x)\)</span> 是严格可行的，即存在 <span class="math">\(x\)</span>，对所有 <span class="math">\(i\)</span>，有 <span class="math">\(c_i&lt;0\)</span>，则存在 <span class="math">\(x^\star\)</span>，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span>，使 <span class="math">\(x^\star\)</span> 是原始问题的解，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span> 是对偶问题的解，并且
 <div class="math">$$p^\star=d^\star=L(x^\star,\alpha^\star,\beta^\star)$$</div>
 </p>
-<p><strong>定理 3</strong> 对原始问题和对偶问题，假设函数 <span class="math">\(f(x)\)</span> 和 <span class="math">\(c_i(x)\)</span> 是凸函数，<span class="math">\(h_j(x)\)</span> 是仿射函数，并且假设不等式约束 <span class="math">\(c_i(x)\)</span> 是严格可行的，则 <span class="math">\(x^\star\)</span>，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span> 分别是原始问题和对偶问题的解的充要条件是 <span class="math">\(x^\star\)</span>，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span> 满足下面的 Karush-Kuhn-Tucker（KKT）条件
+<p><strong>定理 3</strong> 对原始问题和对偶问题，假设函数 <span class="math">\(f(x)\)</span> 和 <span class="math">\(c_i(x)\)</span> 是凸函数，<span class="math">\(h_j(x)\)</span> 是仿射函数，并且假设不等式约束 <span class="math">\(c_i(x)\)</span> 是严格可行的，则 <span class="math">\(x^\star\)</span>，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span> 分别是原始问题和对偶问题的解的充要条件是 <span class="math">\(x^\star\)</span>，<span class="math">\(\alpha^\star\)</span>，<span class="math">\(\beta^\star\)</span> 满足下面的 Karush-Kuhn-Tucker（<span class="caps">KKT</span>）条件
 <div class="math">$$\nabla_xL(x^\star,\alpha^\star,\beta^\star)=0 \\
 \alpha_i^\star c_i(x^\star)=0,i=1,2,\cdots,k \\
 c_i(x^\star)\leq0,i=1,2,\cdots,k \\
@@ -194,17 +194,17 @@ h_j(x^\star)=0,j=1,2,\cdots,l$$</div>
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/09/sl-6/">
-                                    统计学习方法 第六章 逻辑回归与最大熵模型
+                                    统计学习方法 第六章&nbsp;逻辑回归与最大熵模型
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/07/sl-5/">
-                                    统计学习方法 第五章 决策树
+                                    统计学习方法 第五章&nbsp;决策树
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/07/sl-4/">
-                                    统计学习方法 第四章 朴素贝叶斯法
+                                    统计学习方法 第四章&nbsp;朴素贝叶斯法
                                 </a>
                             </li>
                             <li>
@@ -214,7 +214,7 @@ h_j(x^\star)=0,j=1,2,\cdots,l$$</div>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/04/sl-3/">
-                                    统计学习方法 第三章 k 近邻法
+                                    统计学习方法 第三章 k&nbsp;近邻法
                                 </a>
                             </li>
                         </ul>
@@ -231,22 +231,22 @@ h_j(x^\star)=0,j=1,2,\cdots,l$$</div>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/11/sl-7_1/">
-                                    统计学习方法 第七章 支持向量机（1）——线性可分支持向量机
+                                    统计学习方法 第七章&nbsp;支持向量机（1）——线性可分支持向量机
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/11/sl-7_2/">
-                                    统计学习方法 第七章 支持向量机（2）——线性支持向量机
+                                    统计学习方法 第七章&nbsp;支持向量机（2）——线性支持向量机
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/12/sl-7_3/">
-                                    统计学习方法 第七章 支持向量机（3）——非线性支持向量机
+                                    统计学习方法 第七章&nbsp;支持向量机（3）——非线性支持向量机
                                 </a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/12/sl-7_4/">
-                                    统计学习方法 第七章 支持向量机（4）——序列最小最优化算法
+                                    统计学习方法 第七章&nbsp;支持向量机（4）——序列最小最优化算法
                                 </a>
                             </li>
                         </ul>
