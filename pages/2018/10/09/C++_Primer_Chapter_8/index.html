@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="C++, 读书笔记, " />
+    <title>C++ Primer 第八章 <span class="caps">IO</span>&nbsp;库  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/"> C++ Primer 第八章 <span class="caps">IO</span>&nbsp;库  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <h2><span class="caps">IO</span>&nbsp;类</h2>
+<p><code>iostream</code>头文件：</p>
+<p><code>istream</code>,<code>wistream</code>,<code>ostream</code>,<code>wostream</code>,<code>iostream</code>,<code>wiostream</code>类型。</p>
+<p><code>fstream</code>头文件：</p>
+<p><code>ifstream</code>,<code>wifstream</code>,<code>ofstream</code>,<code>wofstream</code>,<code>fstream</code>,<code>wfstream</code>类型。</p>
+<p><code>sstream</code>头文件：</p>
+<p><code>istringstream</code>,<code>wistringstream</code>,<code>ostringstream</code>,<code>wostringstream</code>,<code>stringstream</code>,<code>wstringstream</code>类型。</p>
+<p>宽字符版本的类型和函数的名字以一个“w”开始。</p>
+<p><span class="caps">IO</span> 对象无拷贝和赋值。进行 <span class="caps">IO</span> 操作的函数通常以引用方式传递和返回值。读写一个 <span class="caps">IO</span> 对象会改变其状态，因此传递和返回的引用不能是<code>const</code>的。</p>
+<h3>条件状态</h3>
+<p>下表中 <em>strm</em> 是一种 <span class="caps">IO</span>&nbsp;类型：</p>
+<table>
+<thead>
+<tr>
+<th align="left">状态</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><em>strm</em>::iostate</td>
+<td align="left">iostate 是一种机器相关的类型，提供了表达条件状态的完整功能</td>
+</tr>
+<tr>
+<td align="left"><em>strm</em>::badbit</td>
+<td align="left">流已崩溃</td>
+</tr>
+<tr>
+<td align="left"><em>strm</em>::failbit</td>
+<td align="left"><span class="caps">IO</span> 操作失败了</td>
+</tr>
+<tr>
+<td align="left"><em>strm</em>::eofbit</td>
+<td align="left">流到达了文件结束</td>
+</tr>
+<tr>
+<td align="left"><em>strm</em>::goodbit</td>
+<td align="left">流未处于错误状态，此值保证为0</td>
+</tr>
+<tr>
+<td align="left">s.eof()</td>
+<td align="left">若流 s 的 eofbit 置位，返回 true</td>
+</tr>
+<tr>
+<td align="left">s.fail()</td>
+<td align="left">若流 s 的 failbit 或 badbit 置位，返回 true</td>
+</tr>
+<tr>
+<td align="left">s.bad()</td>
+<td align="left">若流 s 的 badbit 置位，返回 true</td>
+</tr>
+<tr>
+<td align="left">s.good()</td>
+<td align="left">若流 s 处于有效状态，返回 true</td>
+</tr>
+<tr>
+<td align="left">s.clear()</td>
+<td align="left">将流 s 所以状态位复位，将流的状态设为有效，返回 void</td>
+</tr>
+<tr>
+<td align="left">s.clear(flags)</td>
+<td align="left">根据 flags 复位，flags 类型为 <em>strm</em>::iostate，返回 void</td>
+</tr>
+<tr>
+<td align="left">s.setstate(flags)</td>
+<td align="left">根据 flags 置位，flags 类型为 <em>strm</em>::iostate，返回 void</td>
+</tr>
+<tr>
+<td align="left">s.rdstate()</td>
+<td align="left">返回流 s 的当前条件状态，返回值类型为 <em>strm</em>::iostate</td>
+</tr>
+</tbody>
+</table>
+<p><code>badbit</code>表示系统级错误，如不可恢复的读写错误，一旦被置位，流就无法再使用了。</p>
+<p><code>failbit</code>表示可恢复的错误，例如期望读取数值却读到一个字符等错误。这种问题通常是可以修正的，流还可以继续使用。</p>
+<p>如果到达文件结尾，<code>eofbit</code>和<code>failbit</code>都会被置位。</p>
+<p><code>goodbit</code>值为0，表示流未发生错误。</p>
+<p>如果<code>badbit</code>、<code>failbit</code>和<code>eofbit</code>任一个被置位，则检测流状态的条件会失败。</p>
+<p><code>good()</code>函数在所有错误位均未置位的情况下返回<code>true</code>。</p>
+<p>我们将流当做条件使用的代码等价于<code>!fail()</code>。</p>
+<h3>管理条件状态</h3>
+<div class="highlight"><pre><span></span>// 记住 cin 的当前状态
+auto old_state = cin.rdstate(); // 记住 cin 的当前状态
+cin.clean();  // 使 cin 有效
+process_input(cin); // 使用 cin
+cin.setstate(old_state);  // 将 cin 置为原有状态
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>// 复位 failbit 和 badbit，保持其他标志位布标
+cin.clear(cin.rdstate() &amp; ~cin.failbit &amp; ~cin.badbit);
+</pre></div>
+
+
+<h3>管理输出缓冲</h3>
+<p>每个输出流都管理一个缓冲区，用来保存程序读写的数据。</p>
+<p>导致缓冲刷新（即，数据真正写到输出设备或文件）的原因有很多：</p>
+<ul>
+<li>程序正常结束，作为<code>main</code>函数的<code>return</code>操作的一部分，缓冲刷新被执行</li>
+<li>缓冲区满</li>
+<li>使用操纵符<code>endl</code>（插入换行）、<code>ends</code>（插入空字符）、<code>flush</code>（什么都不插入）显式刷新</li>
+<li>在每个输出操作之后，可以用操纵符<code>unitbuf</code>设置流的内部状态，来情况缓冲区。默认情况下，对<code>cerr</code>是设置<code>unitbuf</code>的，因此<code>cerr</code>的内容都是立即刷新的</li>
+<li>一个输出流可以关联到另一个流。当读写被关联的流时，关联到的流的缓冲区会被刷新。默认情况下，<code>cin</code>和<code>cerr</code>都关联到<code>cout</code>。因此读<code>cin</code>或者写<code>cerr</code>都会导致<code>cout</code>的缓冲区被刷新</li>
+</ul>
+<h3>unitbuf&nbsp;操纵符</h3>
+<p>如果想在每次输出操作后都刷新缓冲区，可以使用<code>unitbuf</code>操纵符。它告诉流在接下来的每次写操作之后都执行一次<code>flush</code>刷新。<code>nounitbuf</code>操纵符则重置流，使其恢复使用正常的系统管理的缓冲区刷新机制：</p>
+<div class="highlight"><pre><span></span>cout &lt;&lt; unitbuf;    // 所有输出操作后都会立即刷新缓冲区
+// 任何输出都会立即刷新，无缓冲
+cout &lt;&lt; nounitbuf;    // 回到正常的缓冲方式
+</pre></div>
+
+
+<h3>关联输入和输出流</h3>
+<p><code>tie()</code>有两个重载的版本：</p>
+<ul>
+<li>不带参数的版本返回指向输出流的指针。如果本对象当前关联到一个输出流，则返回的就是指向这个流的指针，如果对象未关联到流，则返回空指针</li>
+<li>第二个版本接受一个指向<code>ostream</code>的指针，将自己关联到此<code>ostream</code></li>
+</ul>
+<p>每个流同时最多关联到一个流，但多个流可以同时关联到同一个<code>ostream</code></p>
+<h2>文件输入输出</h2>
+<h3>fstream&nbsp;特有的操作</h3>
+<p>下表中的 <em>fstream</em> 是头文件 fstream&nbsp;中定义的一个类型：</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><em>fstream</em> fstrm;</td>
+<td align="left">创建一个未绑定的文件流</td>
+</tr>
+<tr>
+<td align="left"><em>fstream</em> fstrm(s);</td>
+<td align="left">创建一个 <em>fstream</em>，并打开名为 s 的文件。s 可以是 string 类型或者指向 C 风格字符串的指针。这些构造函数都是<code>explicit</code>的。默认的文件模式 mode 依赖于 <em>fstream</em> 的类型</td>
+</tr>
+<tr>
+<td align="left"><em>fstream</em> fstrm(s, mode);</td>
+<td align="left">按 mode 打开文件</td>
+</tr>
+<tr>
+<td align="left">fstrm.open(s)</td>
+<td align="left">打开名为 s 的文件并与 fstrm 绑定。s 可以是 string 类型或者指向 C 风格字符串的指针。默认的文件模式 mode 依赖于 <em>fstream</em> 的类型。返回<code>void</code></td>
+</tr>
+<tr>
+<td align="left">fstrm.close()</td>
+<td align="left">关闭与 fstrm 绑定的文件。返回<code>void</code></td>
+</tr>
+<tr>
+<td align="left">fstrm.is_open()</td>
+<td align="left">返回一个布尔值，指出与 fstrm 关联的文件是否打开成功且尚未关闭</td>
+</tr>
+</tbody>
+</table>
+<p>如果调用<code>open()</code>失败，<code>failbit</code>会被置位，条件会为假：<code>if(open(file))</code>可用于判定。</p>
+<p>对一个已经打开的文件流调用<code>open()</code>会失败，并且<code>failbit</code>会被置位。为了将文件流关联到另一个文件，必须先关闭已经关联的文件。</p>
+<p>当一个<code>fstream</code>对象被销毁时，<code>close</code>会自动被调用。</p>
+<h3>文件模式</h3>
+<table>
+<thead>
+<tr>
+<th align="left">文件模式</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">in</td>
+<td align="left">只读</td>
+</tr>
+<tr>
+<td align="left">out</td>
+<td align="left">只写（会清空已有数据）</td>
+</tr>
+<tr>
+<td align="left">app</td>
+<td align="left">每次写操作前均定位到文件末尾</td>
+</tr>
+<tr>
+<td align="left">ate</td>
+<td align="left">打开文件后立即定位到文件末尾</td>
+</tr>
+<tr>
+<td align="left">trunc</td>
+<td align="left">截断文件</td>
+</tr>
+<tr>
+<td align="left">binary</td>
+<td align="left">以二进制方式进行 <span class="caps">IO</span></td>
+</tr>
+</tbody>
+</table>
+<p><code>ifstream</code>默认<code>in</code>模式；<code>ofstream</code>默认<code>out</code>模式；<code>fstream</code>默认<code>in</code>和<code>out</code>模式打开。</p>
+<h2>string&nbsp;流</h2>
+<h3>fstream&nbsp;特有的操作</h3>
+<p>下表中的 <em>sstream</em> 是头文件 sstream&nbsp;中定义的一个类型：</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><em>sstream</em> strm;</td>
+<td align="left">创建一个未绑定的 stringstream 对象</td>
+</tr>
+<tr>
+<td align="left"><em>sstream</em> strm(s);</td>
+<td align="left">strm 是一个 sstream 对象，保存 string s 的一个拷贝。此构造函数时<code>explicit</code>的</td>
+</tr>
+<tr>
+<td align="left">strm.str()</td>
+<td align="left">返回 strm 所保存的 string 的拷贝</td>
+</tr>
+<tr>
+<td align="left">strm.str(s)</td>
+<td align="left">将 string s 拷贝到 strm 中，返回 void</td>
+</tr>
+</tbody>
+</table>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
+                                    C++ Primer 第七章&nbsp;类
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/">
+                                    C++ Primer 第六章&nbsp;函数
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/回车与换行的区别/">
+                                    回车与换行的区别
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
+                                    C++ Primer 第五章&nbsp;语句
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/">
+                                    几个奇葩的 Linux&nbsp;命令
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="newer">
+                        <h1>
+                            <font color="#771515"><em>NEWER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/10/数据结构向量/">
+                                    数据结构——向量
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
+                                    Perl&nbsp;入门
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
+                                    Atom&nbsp;快捷键
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
+                                    C++ Primer 第九章&nbsp;顺序容器
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/">
+                                    C++ Primer 第十章&nbsp;泛型算法
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Gitalk 评论 start  -->
+
+                    <!-- Link Gitalk 的支持文件  -->
+                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                    <div id="gitalk-container"></div>
+                    <script type="text/javascript">
+                        var dateTime = Date.now();
+                        var timestamp = Math.floor(dateTime / 1000);
+                        var gitalk = new Gitalk({
+
+                            // gitalk的主要参数
+                            clientID: '93f43349e9fd3154bfad',
+                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
+                            repo: 'xutree.github.io',
+                            owner: 'xutree',
+                            admin: ['xutree'],
+                            id: String(timestamp)
+
+                        });
+                        gitalk.render('gitalk-container');
+                    </script> -->
+                    <!-- Gitalk end -->
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-10-09T22:19:51+08:00">2018-10-09 22:19:51</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-10-09 22:19:51</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#C++-ref">C++
+                                <span>17</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
