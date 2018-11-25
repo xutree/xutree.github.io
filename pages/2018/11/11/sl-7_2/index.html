@@ -54,9 +54,25 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#72">7.2 线性支持向量机</a><ul>
+<li><a href="#722">7.2.2 学习的对偶算法</a></li>
+<li><a href="#723">7.2.3 支持向量</a></li>
+<li><a href="#724">7.2.4 合页损失函数</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <h2>7.2 线性支持向量机</h2>
+                
+<h2 id="72">7.2 线性支持向量机</h2>
 <p>假设给定一个特征空间上的训练数据集
 </p>
 <div class="math">$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
@@ -93,7 +109,7 @@ y_i\left(w\cdot x_i+b\right) &amp;\geq&amp; 1-\xi_i,\ i=1,2,\cdots,N \\
 <div class="math">$$f(x)=\text{sign}(w^\star\cdot x+b^\star)$$</div>
 称为线性支持向量机。
 </strong></p>
-<h3>7.2.2 学习的对偶算法</h3>
+<h3 id="722">7.2.2 学习的对偶算法</h3>
 <p>定义<a href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/">拉格朗日函数</a>：
 </p>
 <div class="math">$$L(w,b,\xi,\alpha,\mu)=\frac{1}{2}\|w\|^2+C\sum_{i=1}^N\xi_i-\sum_{i=1}^N\alpha_iy_i(w\cdot x_i+b) \\
@@ -157,16 +173,16 @@ b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$</div>
 <p>
 分类决策函数只依赖于输入 <span class="math">\(x\)</span> 和训练样本输入的内积。上式称为线性支持向量机的对偶形式。</p>
 <p><strong>
-算法 7.3（线性支持向量机学习算法）<br>
-输入：线性可分训练数据集 <span class="math">\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)</span>，其中 <span class="math">\(x_i\in{\cal X}=\mathbb{R}^n\)</span>，<span class="math">\(y_i\in{\cal Y}=\{+1,-1\}\)</span>，<span class="math">\(i=1,2,\cdots,N\)</span><br>
-输出：分离超平面和分类决策函数<br>
+算法 7.3（线性支持向量机学习算法）<br/>
+输入：线性可分训练数据集 <span class="math">\(T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}\)</span>，其中 <span class="math">\(x_i\in{\cal X}=\mathbb{R}^n\)</span>，<span class="math">\(y_i\in{\cal Y}=\{+1,-1\}\)</span>，<span class="math">\(i=1,2,\cdots,N\)</span><br/>
+输出：分离超平面和分类决策函数<br/>
 (1) 选择惩罚参数 <span class="math">\(C&gt;0\)</span>，构造并求解约束最优化问题
 <div class="math">$$\min_{\alpha} \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)-\sum_{i=1}^N\alpha_i \\
 \text{s.t.}\ \ \ \ \begin{eqnarray}
 \sum_{i=1}^N\alpha_iy_i &amp;=&amp; 0 \\
 0\leq\alpha_i\leq C,\ i &amp;=&amp; 1,2,\cdots,N
 \end{eqnarray}$$</div>
-求得最优解 <span class="math">\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)</span><br>
+求得最优解 <span class="math">\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)</span><br/>
 (2) 计算
 <div class="math">$$w^\star=\sum_{i=1}^N\alpha_i^\star y_ix_i$$</div>
 并选择 <span class="math">\(\alpha^\star\)</span> 的一个分量满足 <span class="math">\(0&lt;\alpha_i^\star&lt;C\)</span>，计算
@@ -176,7 +192,7 @@ b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$</div>
 分类决策函数
 <div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star\right)$$</div>
 </strong></p>
-<h3>7.2.3 支持向量</h3>
+<h3 id="723">7.2.3 支持向量</h3>
 <p>{filename}
 在线性不可分的情况下，将对偶问题的解
 </p>
@@ -192,7 +208,7 @@ b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$</div>
 <li>若 <span class="math">\(\alpha_i^\star=C\)</span> 且 <span class="math">\(\xi_i=1\)</span>，则支持向量 <span class="math">\(x_i\)</span> 在分离超平面上</li>
 <li>若 <span class="math">\(\alpha_i^\star=C\)</span> 且 <span class="math">\(\xi_i&gt;1\)</span>，则分类错误，支持向量 <span class="math">\(x_i\)</span> 位于分离超平面误分类一侧</li>
 </ul>
-<h3>7.2.4 合页损失函数</h3>
+<h3 id="724">7.2.4 合页损失函数</h3>
 <p>线性支持向量机学习还有另外一种解释，就是最小化以下目标函数：
 </p>
 <div class="math">$$\sum_{i=1}^N[1-y_i(w\cdot x_i+b)]_++\lambda\|w\|^2$$</div>
@@ -219,7 +235,7 @@ y_i\left(w\cdot x_i+b\right) &amp;\geq&amp; 1-\xi_i,\ i=1,2,\cdots,N \\
 <div class="math">$$\min_{w,b}\sum_{i=1}^N[1-y_i(w\cdot x_i+b)]_++\lambda\|w\|^2$$</div>
 </strong></p>
 <p>下图中绘制了合页损失函数。图中还画出了 0-1 损失函数，可以认为 0-1 损失函数是二类分类问题的真正的损失函数，而合页损失函数是 0-1 损失函数的上界。由于 0-1 损失函数不是连续可导的，直接优化由其构成的目标函数比较困难，可以认为线性支持向量机是优化由 0-1 损失函数的上界（合页损失函数）构成的目标函数，这时的上界损失函数又称为代理损失函数（surrogate loss function）。</p>
-<p><img alt="合页损失函数" src="https://xutree.github.io/images/statistical_learning_7.6.png"></p>
+<p><img alt="合页损失函数" src="https://xutree.github.io/images/statistical_learning_7.6.png"/></p>
 <p>相比于感知机损失函数，合页损失函数不仅要求正确分类，而且确信度足够高时损失才为 0，也就是说，合页损失函数对学习有更高的要求。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",

@@ -54,11 +54,32 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#41">4.1 朴素贝叶斯法的学习与分类</a><ul>
+<li><a href="#411">4.1.1 基本方法</a></li>
+<li><a href="#412">4.1.2 后验概率最大化的含义</a></li>
+</ul>
+</li>
+<li><a href="#42">4.2 朴素贝叶斯法的参数估计</a><ul>
+<li><a href="#421">4.2.1 极大似然估计</a></li>
+<li><a href="#422">4.2.2 学习与分类算法</a></li>
+<li><a href="#423">4.2.3 贝叶斯估计</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p>朴素贝叶斯（naive Bayes）法是基于贝叶斯定理与特征条件独立假设的分类方法。朴素贝叶斯法实现简单，学习和预测效率都很高，是一种常用的方法。</p>
-<h2>4.1 朴素贝叶斯法的学习与分类</h2>
-<h3>4.1.1 基本方法</h3>
+                
+<p>朴素贝叶斯（naive Bayes）法是基于贝叶斯定理与特征条件独立假设的分类方法。朴素贝叶斯法实现简单，学习和预测效率都很高，是一种常用的方法。</p>
+<h2 id="41">4.1 朴素贝叶斯法的学习与分类</h2>
+<h3 id="411">4.1.1 基本方法</h3>
 <p>设输入特征向量
 </p>
 <div class="math">$$x\in{\cal X}\subseteq\mathbb{R}^n$$</div>
@@ -106,7 +127,7 @@ P(X=x|Y=c_k) &amp;=&amp; P(X^{(1)}=x^{(1)},\cdots,X^{(n)}=x^{(n)})|Y=c_k)\\
 注意到上式中分母对所有 <span class="math">\(c_k\)</span> 都为 <span class="math">\(P(X=x)\)</span>，所以
 </p>
 <div class="math">$$y=f(x)=\arg\max_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$$</div>
-<h3>4.1.2 后验概率最大化的含义</h3>
+<h3 id="412">4.1.2 后验概率最大化的含义</h3>
 <p>朴素贝叶斯法将实例分类到后验概率最大的类中，这等价于期望风险最小化。假设 0-1 损失函数
 </p>
 <div class="math">$$L(Y,f(X))=\begin{cases}1,&amp;Y\neq f(X)\\0,&amp; Y=f(X)\end{cases}$$</div>
@@ -132,8 +153,8 @@ R_\text{exp}(f) &amp;=&amp; \text{E}[L(Y,f(X))]=\int_{{\cal X}\times{\cal Y}}L(y
 <div class="math">$$f(x)=\arg\max_{c_k}P(c_k|X=x)$$</div>
 <p>
 即朴素贝叶斯法采用的原理。</p>
-<h2>4.2 朴素贝叶斯法的参数估计</h2>
-<h3>4.2.1 极大似然估计</h3>
+<h2 id="42">4.2 朴素贝叶斯法的参数估计</h2>
+<h3 id="421">4.2.1 极大似然估计</h3>
 <p>对于
 </p>
 <div class="math">$$y=f(x)=\arg\max_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$$</div>
@@ -147,10 +168,10 @@ R_\text{exp}(f) &amp;=&amp; \text{E}[L(Y,f(X))]=\int_{{\cal X}\times{\cal Y}}L(y
 </p>
 <div class="math">$$P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^N\mathbb{I}(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^N\mathbb{I}(y_i=c_k)}\\
 j=1,2,\cdots,n; l=1,2,\cdots,S_j; k=1,2,\cdots,K$$</div>
-<h3>4.2.2 学习与分类算法</h3>
+<h3 id="422">4.2.2 学习与分类算法</h3>
 <p><strong>
-算法 4.1 朴素贝叶斯法（naive Bayes algorithm）<br>
-输入：<br>
+算法 4.1 朴素贝叶斯法（naive Bayes algorithm）<br/>
+输入：<br/>
 (a) 训练数据集
 <div class="math">$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
 其中
@@ -158,8 +179,8 @@ j=1,2,\cdots,n; l=1,2,\cdots,S_j; k=1,2,\cdots,K$$</div>
 <span class="math">\(x_i^{(j)}\)</span> 是第 <span class="math">\(i\)</span> 个样本的第 <span class="math">\(j\)</span> 个特征，且
 <div class="math">$$x_i^{(j)}\in\{a_{j1},a_{j2},\cdots,a_{jS_j}\}$$</div>
 <div class="math">$$y_i\in\{c_1,c_2,\cdots,c_K\}$$</div>
-(b) 实例 <span class="math">\(x\)</span><br>
-输出：实例 <span class="math">\(x\)</span> 的分类<br>
+(b) 实例 <span class="math">\(x\)</span><br/>
+输出：实例 <span class="math">\(x\)</span> 的分类<br/>
 (1) 计算先验概率及条件概率
 <div class="math">$$\begin{eqnarray}
 P(Y=c_k) &amp;=&amp; \frac{\sum_{i=1}^N\mathbb{I}(y_i=c_k)}{N} \\
@@ -171,7 +192,7 @@ j=1,2,\cdots,n; l=1,2,\cdots,S_j; k=1,2,\cdots,K$$</div>
 (3) 确定实例 <span class="math">\(x\)</span> 的类
 <div class="math">$$y=f(x)=\arg\max_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$$</div>
 </strong></p>
-<h3>4.2.3 贝叶斯估计</h3>
+<h3 id="423">4.2.3 贝叶斯估计</h3>
 <p>用极大似然估计可能会出现所要估计的概率值为 0 的情况。这时会影响到后验概率的计算结果，使分类产生偏差。解决这一问题的方法是采用贝叶斯估计。</p>
 <p>先验概率的贝叶斯估计是
 </p>

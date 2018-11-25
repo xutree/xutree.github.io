@@ -54,26 +54,47 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#91-em">9.1 EM 算法的引入</a><ul>
+<li><a href="#911-em">9.1.1 EM 算法</a></li>
+<li><a href="#912-em">9.1.2 EM 算法的推导</a></li>
+</ul>
+</li>
+<li><a href="#92-em">9.2 EM 算法的收敛性</a></li>
+<li><a href="#93-em">9.3 EM 算法在高斯混合模型学习中的应用</a><ul>
+<li><a href="#931">9.3.1 高斯混合模型</a></li>
+<li><a href="#932-em">9.3.2 高斯混合模型参数估计的 EM 算法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p>EM 算法是一种迭代算法，用于含有隐变量（hidden varibale）的概率模型参数的极大似然估计，或极大后验概率估计。EM 算法每次的迭代分两步：E 步，求期望（expectation）；M 步，求极大（maximization）。所以这一算法被称为期望极大算法（expectation maximization）。</p>
-<h2>9.1 EM 算法的引入</h2>
+                
+<p>EM 算法是一种迭代算法，用于含有隐变量（hidden varibale）的概率模型参数的极大似然估计，或极大后验概率估计。EM 算法每次的迭代分两步：E 步，求期望（expectation）；M 步，求极大（maximization）。所以这一算法被称为期望极大算法（expectation maximization）。</p>
+<h2 id="91-em">9.1 EM 算法的引入</h2>
 <p>概率模型有时既含有观测变量（observable variable），又含有隐变量或潜在变量（latent variable）。如果概率模型的变量都是观测变量，那么给定数据，可以直接用极大似然估计法，或贝叶斯估计法估计模型参数。但是，当模型含有隐变量时，就不能简单的使用这些估计方法。EM 算法就是含有隐变量的概率模型参数的极大似然估计法，或极大后验概率估计法。</p>
-<h3>9.1.1 EM 算法</h3>
+<h3 id="911-em">9.1.1 EM 算法</h3>
 <p>一般的，用 <span class="math">\(Y\)</span> 表示观测随机变量的数据，<span class="math">\(Z\)</span> 表示隐随机变量的数据。<span class="math">\(Y\)</span> 和 <span class="math">\(Z\)</span> 连在一起称为完全数据（complete-data），观测数据 <span class="math">\(Y\)</span> 又称为不完全数据（incomplete-data）。假设给定观测数据 <span class="math">\(Y\)</span>，其概率分布是 <span class="math">\(P(Y|\theta)\)</span>，其中 <span class="math">\(\Theta\)</span> 是需要估计的模型参数，那么不完全数据了 <span class="math">\(Y\)</span> 的似然函数是 <span class="math">\(P(Y|\theta)\)</span>，对数似然函数是 <span class="math">\(L(\theta)=\log P(Y|\theta)\)</span>；假设 <span class="math">\(Y\)</span> 和 <span class="math">\(Z\)</span> 的联合概率分布是 <span class="math">\(P(Y,Z|\theta)\)</span>，那么完全数据的对数似然函数是 <span class="math">\(\log P(Y,Z|\theta)\)</span>。</p>
 <p>EM 算法通过迭代求 <span class="math">\(L(\theta)=\log P(Y|\theta)\)</span> 的极大似然估计。</p>
 <p><strong>
-算法 9.1（EM 算法）<br>
-输入：观测变量数据 <span class="math">\(Y\)</span>，隐变量数据 <span class="math">\(Z\)</span>，联合分布 <span class="math">\(P(Y,Z|\theta)\)</span>，条件分布 <span class="math">\(P(Z|Y,\theta)\)</span><br>
-输出：模型参数 <span class="math">\(\theta\)</span><br>
-(1) 选择参数的初值 <span class="math">\(\theta^{(0)}\)</span>，开始迭代<br>
+算法 9.1（EM 算法）<br/>
+输入：观测变量数据 <span class="math">\(Y\)</span>，隐变量数据 <span class="math">\(Z\)</span>，联合分布 <span class="math">\(P(Y,Z|\theta)\)</span>，条件分布 <span class="math">\(P(Z|Y,\theta)\)</span><br/>
+输出：模型参数 <span class="math">\(\theta\)</span><br/>
+(1) 选择参数的初值 <span class="math">\(\theta^{(0)}\)</span>，开始迭代<br/>
 (2) E 步：记 <span class="math">\(\theta^{(i)}\)</span> 为第 <span class="math">\(i\)</span> 次迭代参数 <span class="math">\(\theta\)</span> 的估计值。在第 <span class="math">\(i+1\)</span> 次迭代的 E 步，计算
 <div class="math">$$\begin{eqnarray}
 Q\left(\theta,\theta^{(i)}\right) &amp;=&amp; \text{E}_Z\left[\log P(Y,Z|\theta)|Y,\theta^{(i)}\right] \\
 &amp;=&amp; \sum_{Z}\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})
 \end{eqnarray}$$</div>
-这里，<span class="math">\(P(Z|Y,\theta^{(i)})\)</span> 是在给定观测数据 <span class="math">\(Y\)</span> 和当前的参数估计 <span class="math">\(\theta^{(i)}\)</span> 下隐变量数据 <span class="math">\(Z\)</span> 的条件概率分布<br>
-(3) M 步：求极大，更新 <span class="math">\(\theta\)</span><br>
+这里，<span class="math">\(P(Z|Y,\theta^{(i)})\)</span> 是在给定观测数据 <span class="math">\(Y\)</span> 和当前的参数估计 <span class="math">\(\theta^{(i)}\)</span> 下隐变量数据 <span class="math">\(Z\)</span> 的条件概率分布<br/>
+(3) M 步：求极大，更新 <span class="math">\(\theta\)</span><br/>
 <div class="math">$$\theta^{(i+1)}=\arg\max_{\theta}Q\left(\theta,\theta^{(i)}\right)$$</div>
 (4) 重复 (2)，(3)，直到收敛
 </strong></p>
@@ -91,7 +112,7 @@ Q\left(\theta,\theta^{(i)}\right) &amp;=&amp; \text{E}_Z\left[\log P(Y,Z|\theta)
 <div class="math">$$\left\|Q\left(\theta^{(i+1)},\theta^{(i)}\right)-Q\left(\theta^{(i)},\theta^{(i)}\right)\right\|&lt;\epsilon_2$$</div>
 <p>
 则迭代停止。</p>
-<h3>9.1.2 EM 算法的推导</h3>
+<h3 id="912-em">9.1.2 EM 算法的推导</h3>
 <p>首先
 </p>
 <div class="math">$$\begin{eqnarray}
@@ -121,20 +142,20 @@ L\left(\theta\right)-L(\theta^{(i)}) &amp;=&amp; \log\left(\sum_ZP(Y|Z,\theta)P(
 &amp;=&amp; \arg\max_\theta Q(\theta,\theta^{(i)})
 \end{eqnarray}$$</div>
 <p>EM 算法不能保证全局最优。</p>
-<h2>9.2 EM 算法的收敛性</h2>
+<h2 id="92-em">9.2 EM 算法的收敛性</h2>
 <p><strong>
 定理 9.1 设 <span class="math">\(P(Y|\theta)\)</span> 为观测数据的似然函数，<span class="math">\(\theta^{(i)}\)</span> 为 EM 算法得到的参数估计序列，<span class="math">\(P(Y|\theta^{(i)})\)</span> 为对应的似然函数序列，则 <span class="math">\(P(Y|\theta^{(i)})\)</span> 是单调递增的，即
 <div class="math">$$P(Y|\theta^{(i+1)})\geq P(Y|\theta^{(i)})$$</div>
 </strong></p>
 <p><strong>
-定理 9.2 设 <span class="math">\(L(\theta)=\log P(Y|\theta)\)</span> 为观测数据的对数似然函数，<span class="math">\(\theta^{(i)}\)</span> 为 EM 算法得到的参数估计序列，<span class="math">\(L(\theta^{(i)})\)</span> 为对应的对数似然函数序列。<br>
-(1) 如果 <span class="math">\(P(Y|\theta)\)</span> 有界，则 <span class="math">\(L(\theta^{(i)})=\log P(Y|\theta^{(i)})\)</span> 收敛到某一值 <span class="math">\(L^\star\)</span><br>
+定理 9.2 设 <span class="math">\(L(\theta)=\log P(Y|\theta)\)</span> 为观测数据的对数似然函数，<span class="math">\(\theta^{(i)}\)</span> 为 EM 算法得到的参数估计序列，<span class="math">\(L(\theta^{(i)})\)</span> 为对应的对数似然函数序列。<br/>
+(1) 如果 <span class="math">\(P(Y|\theta)\)</span> 有界，则 <span class="math">\(L(\theta^{(i)})=\log P(Y|\theta^{(i)})\)</span> 收敛到某一值 <span class="math">\(L^\star\)</span><br/>
 (2) 在函数 <span class="math">\(Q(\theta,\theta')\)</span> 与 <span class="math">\(L(\theta)\)</span> 满足一定条件下，由 EM 算法得到的参数估计序列 <span class="math">\(\theta^{(i)}\)</span> 的收敛值 <span class="math">\(\theta^\star\)</span> 是 <span class="math">\(L(\theta)\)</span> 的稳定点
 </strong></p>
 <p>在应用中，初始值的选择很重要，常用的办法是选取几个不同的初值进行迭代，然后对得到的各个估计值加以比较，从中选择最好的。</p>
-<h2>9.3 EM 算法在高斯混合模型学习中的应用</h2>
+<h2 id="93-em">9.3 EM 算法在高斯混合模型学习中的应用</h2>
 <p>EM 算法的一个重要应用是高斯混合模型的参数估计。高斯混合模型应用广泛，在许多情况下，EM 算法是学习高斯混合模型（Gaussian misture model）的有效方法。</p>
-<h3>9.3.1 高斯混合模型</h3>
+<h3 id="931">9.3.1 高斯混合模型</h3>
 <p><strong>
 定义 9.2（高斯混合模型）高斯混合模型是指具有如下形式的概率分布模型：
 <div class="math">$$P(y|\theta)=\sum_{k=1}^K\alpha_k\phi(y|\theta_k)$$</div>
@@ -143,7 +164,7 @@ L\left(\theta\right)-L(\theta^{(i)}) &amp;=&amp; \log\left(\sum_ZP(Y|Z,\theta)P(
 称为第 <span class="math">\(k\)</span> 个分模型。
 </strong></p>
 <p>一般混合模式可以由任意概率分布密度函数代替高斯分布密度。</p>
-<h3>9.3.2 高斯混合模型参数估计的 EM 算法</h3>
+<h3 id="932-em">9.3.2 高斯混合模型参数估计的 EM 算法</h3>
 <p>假设观测数据 <span class="math">\(y_1,y_2,\cdots,y_N\)</span> 由高斯混合模型生成
 </p>
 <div class="math">$$P(y|\theta)=\sum_{k=1}^K\alpha_k\phi(y|\theta_k)$$</div>
@@ -207,10 +228,10 @@ Q\left(\theta,\theta^{(i)}\right) &amp;=&amp; \text{E}\left[\log P(y,\gamma|\the
 \hat{\alpha}_k\equiv\frac{\partial Q}{\partial \alpha_k}=\frac{n_k}{N}=\frac{\sum_{j=1}^N\hat{\gamma}_{jk}}{N} \\
 k=1,2,\cdots,K$$</div>
 <p><strong>
-算法 9.2（高斯混合模型参数估计的 EM 算法）<br>
-输入：观测数据 <span class="math">\(y_1,y_2,\cdots,y_N\)</span>，高斯混合模型<br>
-输出：高斯混合模型参数<br>
-(1) 取参数的初始值开始迭代<br>
+算法 9.2（高斯混合模型参数估计的 EM 算法）<br/>
+输入：观测数据 <span class="math">\(y_1,y_2,\cdots,y_N\)</span>，高斯混合模型<br/>
+输出：高斯混合模型参数<br/>
+(1) 取参数的初始值开始迭代<br/>
 (2) E 步：根据当前模型参数，计算分模型 <span class="math">\(k\)</span> 对观测数据 <span class="math">\(y_j\)</span> 的响应度
 <div class="math">$$\hat{\gamma}_{jk}=\frac{\alpha_k\phi(y_j|\theta_k)}{\sum_{k=1}^K\alpha_k\phi(y_j|\theta_k)},\ j=1,2,\cdots,N;\ k=1,2,\cdots,K$$</div>
 (3) M 步：计算新一轮迭代的模型参数

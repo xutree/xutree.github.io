@@ -54,11 +54,38 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1">1. 概述</a></li>
+<li><a href="#2">2. 分子布局下的求导</a><ul>
+<li><a href="#21">2.1 向量对标量求导</a></li>
+<li><a href="#22">2.2 标量对向量求导</a></li>
+<li><a href="#23">2.3 向量对向量的求导</a></li>
+<li><a href="#25">2.5 矩阵对标量求导</a></li>
+<li><a href="#26">2.6 标量对矩阵求导</a></li>
+<li><a href="#27">2.7 其他矩阵求导</a></li>
+</ul>
+</li>
+<li><a href="#3">3. 标量对矩阵求导计算方法</a><ul>
+<li><a href="#31">3.1 全微分公式</a></li>
+<li><a href="#32">3.2 微分法则</a></li>
+<li><a href="#33">3.3 其他公式</a></li>
+<li><a href="#34">3.4 求导方法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p>矩阵求导，本质是多元函数求导，仅仅是把函数的⾃变量以及求导的结果排列成了矩阵的形式，⽅便表达与计算。类似地，复合函数的求导法则本质上也是多元函数求导的链式法则，只是将结果整理成了矩阵的形式。从原理上讲，可以对矩阵的每个分量逐元素地求导，得到最终结果；但是这样做太繁琐，极其容易出错，因此推导并记住⼀些常⽤的结论在实践中是⾮常必要的。</p>
+                
+<p>矩阵求导，本质是多元函数求导，仅仅是把函数的⾃变量以及求导的结果排列成了矩阵的形式，⽅便表达与计算。类似地，复合函数的求导法则本质上也是多元函数求导的链式法则，只是将结果整理成了矩阵的形式。从原理上讲，可以对矩阵的每个分量逐元素地求导，得到最终结果；但是这样做太繁琐，极其容易出错，因此推导并记住⼀些常⽤的结论在实践中是⾮常必要的。</p>
 <p>不同的矩阵求导方法采取不同的导数排列方法，以便于所求导数可以方便后续计算。主要存在两种符号约定。</p>
-<h2>1. 概述</h2>
+<h2 id="1">1. 概述</h2>
 <p>矩阵微积分的自变量可以是标量，向量，或者是一个矩阵，因变量也可以是上述的三者之一。每一种不同的自变量和因变量的组合都有不同的一套运算规则。</p>
 <table>
 <thead>
@@ -93,8 +120,8 @@
 <p>向量和标量可以看作矩阵的特殊形式。表中用粗体小写字母代表向量，粗体大写字母代表矩阵。</p>
 <p>上表中空白的部分求导结果维度太高，而且没有统一的符号约定。</p>
 <p>以下说明采用“分子布局”。</p>
-<h2>2. 分子布局下的求导</h2>
-<h3>2.1 向量对标量求导</h3>
+<h2 id="2">2. 分子布局下的求导</h2>
+<h3 id="21">2.1 向量对标量求导</h3>
 <div class="math">$${\boldsymbol y}=\begin{bmatrix}
 y_{1}\\
 y_{2}\\
@@ -108,7 +135,7 @@ y_{m}
 \frac{\partial y_m}{\partial x}\\
 \end{bmatrix}$$</div>
 <p>在向量微积分中，向量 <span class="math">\({\boldsymbol y}\)</span> 相对于标量 <span class="math">\(x\)</span> 的导数被称为向量 <span class="math">\({\boldsymbol y}\)</span> 的切向量。</p>
-<h3>2.2 标量对向量求导</h3>
+<h3 id="22">2.2 标量对向量求导</h3>
 <div class="math">$${\boldsymbol x} =
 \begin{bmatrix}
 x_1 \\
@@ -124,7 +151,7 @@ x_n \\
 \frac{\partial y}{\partial x_n}
 \right]$$</div>
 <p>这是标量函数 <span class="math">\(f({\boldsymbol x})\)</span> 梯度的转置。</p>
-<h3>2.3 向量对向量的求导</h3>
+<h3 id="23">2.3 向量对向量的求导</h3>
 <div class="math">$${\boldsymbol y} =
 \begin{bmatrix}
 y_1 \\
@@ -146,7 +173,7 @@ x_n \\
 \frac{\partial y_m}{\partial x_1} &amp; \frac{\partial y_m}{\partial x_2} &amp; \cdots &amp; \frac{\partial y_m}{\partial x_n}\\
 \end{bmatrix}$$</div>
 <p>此即雅可比矩阵。</p>
-<h3>2.5 矩阵对标量求导</h3>
+<h3 id="25">2.5 矩阵对标量求导</h3>
 <div class="math">$$\frac{\partial {\bf Y}}{\partial x} =
 \begin{bmatrix}
 \frac{\partial y_{11}}{\partial x} &amp; \frac{\partial y_{12}}{\partial x} &amp; \cdots &amp; \frac{\partial y_{1n}}{\partial x}\\
@@ -155,7 +182,7 @@ x_n \\
 \frac{\partial y_{m1}}{\partial x} &amp; \frac{\partial y_{m2}}{\partial x} &amp; \cdots &amp; \frac{\partial y_{mn}}{\partial x}\\
 \end{bmatrix}$$</div>
 <p>称为切矩阵。</p>
-<h3>2.6 标量对矩阵求导</h3>
+<h3 id="26">2.6 标量对矩阵求导</h3>
 <div class="math">$$\frac{\partial y}{\partial {\bf X}} =
 \begin{bmatrix}
 \frac{\partial y}{\partial x_{11}} &amp; \frac{\partial y}{\partial x_{21}} &amp; \cdots &amp; \frac{\partial y}{\partial x_{p1}}\\
@@ -165,15 +192,15 @@ x_n \\
 \end{bmatrix}$$</div>
 <p>矩阵标量 <span class="math">\(f({\bf X})\)</span> 在矩阵 <span class="math">\({\bf Y}\)</span> 方向上的方向导数为：</p>
 <div class="math">$$\nabla_{\bf Y} f = \operatorname{tr} \left(\frac{\partial f}{\partial {\bf X}} {\bf Y}\right)$$</div>
-<h3>2.7 其他矩阵求导</h3>
+<h3 id="27">2.7 其他矩阵求导</h3>
 <p>对于向量对矩阵求导，矩阵对向量求导，矩阵对矩阵求导。它们没有统一的符号，也没有统一的应用。</p>
 <p>与向量相关的两种矩阵导数，可以被看作是一个只有一列的矩阵和另一个矩阵导数的特例。下面只考虑如何写出一个矩阵对另一个矩阵求导的导数结果。</p>
-<h2>3. 标量对矩阵求导计算方法</h2>
-<h3>3.1 全微分公式</h3>
+<h2 id="3">3. 标量对矩阵求导计算方法</h2>
+<h3 id="31">3.1 全微分公式</h3>
 <p>
 对于实值函数对矩阵求导，我们可以写出：</p>
 <div class="math">$$df=\sum_{i=1}^m\sum_{j=1}^n\frac{\partial f}{\partial x_{ij}}dx_{ij}=\text{tr}\left(\left(\frac{\partial f}{\partial x}\right)^\text{T}dx\right)$$</div>
-<h3>3.2 微分法则</h3>
+<h3 id="32">3.2 微分法则</h3>
 <ul>
 <li>加减：<span class="math">\(d({\bf X}\pm{\bf Y})=d{\bf X}\pm d{\bf Y}\)</span></li>
 <li>乘法：<span class="math">\(d({\bf XY})=(d{\bf X}){\bf Y}+{\bf X}(d{\bf Y})\)</span></li>
@@ -184,7 +211,7 @@ x_n \\
 <li>逐元素乘：<span class="math">\(d({\bf X}\odot{\bf Y})=d{\bf X}\odot{\bf Y}+{\bf X}\odot d{\bf Y}\)</span>，<span class="math">\(\odot\)</span> 表示尺寸相同的矩阵逐元素相乘</li>
 <li>逐元素函数：<span class="math">\(dw({\bf X})=w'({\bf X})\odot d{\bf X}\)</span>，<span class="math">\(w({\bf X})\)</span> 是逐元素标量运算，<span class="math">\(w'({\bf X})\)</span>是逐元素求导</li>
 </ul>
-<h3>3.3 其他公式</h3>
+<h3 id="33">3.3 其他公式</h3>
 <ul>
 <li><span class="math">\(\text{tr}(a)=a\)</span>，<span class="math">\(a\)</span> 为标量</li>
 <li><span class="math">\(\text{tr}({\bf A}^\text{T})=\text{tr}({\bf A})\)</span></li>
@@ -192,7 +219,7 @@ x_n \\
 <li><span class="math">\(\text{tr}({\bf AB})=\text{tr}({\bf BA})\)</span></li>
 <li><span class="math">\(\text{tr}\left({\bf A}^{\text{T}}({\bf B}\odot{\bf C})\right)=\text{tr}\left(({\bf A}\odot {\bf B})^{\text{T}}{\bf C}\right)\)</span></li>
 </ul>
-<h3>3.4 求导方法</h3>
+<h3 id="34">3.4 求导方法</h3>
 <p>若标量函数 <span class="math">\(f\)</span> 是矩阵<span class="math">\({\bf X}\)</span> 经加减乘法、行列式、逆、逐元素函数等运算构成，则使用相应的运算法则对 <span class="math">\(f\)</span> 求微分，再使用迹变换给 <span class="math">\(df\)</span> 套上迹并将其它项交换至 <span class="math">\(d{\bf X}\)</span> 左侧，即能得到导数。</p>
 <p><strong>例题1</strong>：<span class="math">\(f={\boldsymbol a}^{\text{T}}{\bf X}{\boldsymbol b}\)</span>，求：<span class="math">\(\frac{\partial f}{\partial {\bf X}}\)</span>。其中 <span class="math">\({\boldsymbol a}\)</span> 是 <span class="math">\(m\times 1\)</span> 列向量，<span class="math">\({\bf X}\)</span> 是 <span class="math">\(m\times n\)</span> 矩阵，<span class="math">\({\boldsymbol b}\)</span> 是 <span class="math">\(n\times 1\)</span> 列向量，<span class="math">\(f\)</span> 是标量。</p>
 <p><strong>解答</strong>：</p>

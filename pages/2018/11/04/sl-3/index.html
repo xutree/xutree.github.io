@@ -54,13 +54,35 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#31-k">3.1 \(k\) 近邻算法</a></li>
+<li><a href="#32-k">3.2 \(k\) 近邻模型</a><ul>
+<li><a href="#321">3.2.1 距离度量</a></li>
+<li><a href="#322-k">3.2.2 \(k\) 值的选择</a></li>
+<li><a href="#323">3.2.3 分类决策规则</a></li>
+</ul>
+</li>
+<li><a href="#33-k-kd">3.3 \(k\) 近邻法的实现：\(kd\) 树</a><ul>
+<li><a href="#331-kd">3.3.1 构造 \(kd\) 树</a></li>
+<li><a href="#332-kd">3.3.2 搜索 \(kd\) 树</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p><span class="math">\(k\)</span> 近邻法（<span class="math">\(k\)</span>-nearest neighbor，<span class="math">\(k\)</span>-NN）是一种基本分类与回归方法。<span class="math">\(k\)</span> 近邻法的输入为实例的特征向量，输出为实例的类别，可以取多类。<span class="math">\(k\)</span> 近邻法假设给定一个训练集数据，其中的实例类别已定。分类时，对新的实例，根据其 <span class="math">\(k\)</span> 个最近邻的训练实例的类别，通过多数表决等方式进行预测。因此，<span class="math">\(k\)</span> 近邻法不具有显式的学习过程。</p>
+                
+<p><span class="math">\(k\)</span> 近邻法（<span class="math">\(k\)</span>-nearest neighbor，<span class="math">\(k\)</span>-NN）是一种基本分类与回归方法。<span class="math">\(k\)</span> 近邻法的输入为实例的特征向量，输出为实例的类别，可以取多类。<span class="math">\(k\)</span> 近邻法假设给定一个训练集数据，其中的实例类别已定。分类时，对新的实例，根据其 <span class="math">\(k\)</span> 个最近邻的训练实例的类别，通过多数表决等方式进行预测。因此，<span class="math">\(k\)</span> 近邻法不具有显式的学习过程。</p>
 <p><span class="math">\(k\)</span> 近邻法实际上利用训练数据集对特征向量空间进行划分，并作为其分类的模型。</p>
 <p><span class="math">\(k\)</span> 值得选择、距离度量以及分类决策规则是 <span class="math">\(k\)</span> 近邻法的三个基本要素。</p>
-<h2>3.1 <span class="math">\(k\)</span> 近邻算法</h2>
-<p><strong>算法 3.1 （<span class="math">\(k\)</span> 近邻法）<br>
+<h2 id="31-k">3.1 <span class="math">\(k\)</span> 近邻算法</h2>
+<p><strong>算法 3.1 （<span class="math">\(k\)</span> 近邻法）<br/>
 输入：训练数据集
 <div class="math">$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
 其中
@@ -68,27 +90,27 @@
 为实例的特征空间，
 <div class="math">$$y_i\in{\cal Y}=\{c_1,c_2,\cdots,c_K\}$$</div>
 为实例的类别；
-实例特征向量 <span class="math">\(x\)</span><br>
-输出：实例 <span class="math">\(x\)</span> 所属的类 <span class="math">\(y\)</span><br>
-(1) 根据给定的距离度量，在训练集 <span class="math">\(T\)</span> 中找出与 <span class="math">\(x\)</span> 最邻近的 <span class="math">\(k\)</span> 个点，涵盖这 <span class="math">\(k\)</span> 个点的 <span class="math">\(x\)</span> 的邻域记作 <span class="math">\(N_k(x)\)</span><br>
+实例特征向量 <span class="math">\(x\)</span><br/>
+输出：实例 <span class="math">\(x\)</span> 所属的类 <span class="math">\(y\)</span><br/>
+(1) 根据给定的距离度量，在训练集 <span class="math">\(T\)</span> 中找出与 <span class="math">\(x\)</span> 最邻近的 <span class="math">\(k\)</span> 个点，涵盖这 <span class="math">\(k\)</span> 个点的 <span class="math">\(x\)</span> 的邻域记作 <span class="math">\(N_k(x)\)</span><br/>
 (2) 在 <span class="math">\(N_k(x)\)</span>  中根据分类决策规则（如多数表决）决定 <span class="math">\(x\)</span> 的类别 <span class="math">\(y\)</span>
 <div class="math">$$y=\arg\max_{c_j}\sum_{x_i\in N_k(x)}\mathbb{I}(y_i=c_j),i=1,2,\cdots,N; j=1,2,\cdots,K$$</div>
 式中，<span class="math">\(\mathbb{I}\)</span> 为指示函数</strong></p>
 <p><span class="math">\(k\)</span> 近邻法的特殊情况是 <span class="math">\(k=1\)</span> 的情形，称为最近邻算法。对于输入的实例点（特征向量）<span class="math">\(x\)</span>，最邻近法将数据集中与 <span class="math">\(x\)</span> 最邻近点的类作为 <span class="math">\(x\)</span> 的类。</p>
-<h2>3.2 <span class="math">\(k\)</span> 近邻模型</h2>
+<h2 id="32-k">3.2 <span class="math">\(k\)</span> 近邻模型</h2>
 <p><span class="math">\(k\)</span> 近邻法使用的模型实际上对应于特征空间的划分。模型由三个基本要素——距离度量，<span class="math">\(k\)</span> 值得选取和分类决策规则决定。</p>
-<h3>3.2.1 距离度量</h3>
+<h3 id="321">3.2.1 距离度量</h3>
 <p>特征空间中两个实例点的距离是两个实例点相似程度的反应。<span class="math">\(k\)</span> 近邻模型的特征空间一般是 <span class="math">\(n\)</span> 维实数向量空间 <span class="math">\(\mathbb{R}^n\)</span>。使用的距离是欧氏距离，也可以使用其他距离，例如更一般的 <span class="math">\(L_p\)</span> 距离或 Minkowski 距离。</p>
 <p>设特征空间 <span class="math">\({\cal X}\)</span> 是 <span class="math">\(n\)</span> 维实数向量空间 <span class="math">\(\mathbb{R}^n\)</span>，<span class="math">\(x_i,x_j\in{\cal X}\)</span>，<span class="math">\(x_i=\left(x_i^{(1)},x_i^{(2)},\cdots,x_i^{(n)}\right)^\text{T}\)</span>，<span class="math">\(x_j=\left(x_j^{(1)},x_j^{(2)},\cdots,x_j^{(n)}\right)^\text{T}\)</span>，<span class="math">\(x_i,x_j\)</span> 的 <span class="math">\(L_p\)</span> 距离定义为
 </p>
 <div class="math">$$L_p(x_i,x_j)=\left(\sum_{l=1}^n\left|x_i^{(l)}-x_j^{(l)}\right|^p\right)^\frac{1}{p}$$</div>
-<h3>3.2.2 <span class="math">\(k\)</span> 值的选择</h3>
+<h3 id="322-k">3.2.2 <span class="math">\(k\)</span> 值的选择</h3>
 <p><span class="math">\(k\)</span> 值得选择会对 <span class="math">\(k\)</span> 近邻法的结果产生重大影响。</p>
 <p>如果选择较小的 <span class="math">\(k\)</span> 值，就相当于用较小的邻域中的训练实例进行预测。“学习”的近似误差（approximation error）会减小，只有与输入实例较近的（相似的）训练实例才会对预测结果起作用。但缺点是“学习”的估计误差（estimation error）会增大，预测结果会对近邻的实例点非常敏感。如果邻近的实例点恰巧是噪声点，预测就会出错。换句话说，<span class="math">\(k\)</span> 值得减小就意味着整体模型变的复杂，容易发生过拟合。</p>
 <p>如果 <span class="math">\(k\)</span> 值选择过大，就相当于用较大邻域中的训练实例进行预测。其优点是可以减小学习的估计误差，但缺点是学习的近似误差会增大。这时与输入实例较远的（不相似的）训练实例也会对预测起作用，使预测发生错误。<span class="math">\(k\)</span> 值的增大意味着整体的模型变得简单。</p>
 <p>如果 <span class="math">\(k=N\)</span>，那么无论输入的实例是什么，都将简单的预测它属于在训练实例中最多的类，这时，模型过于简单，是不可取的。</p>
 <p>在应用中，<span class="math">\(k\)</span> 值一般取一个比较小的数值，通常采用交叉验证法来选取最优的 <span class="math">\(k\)</span> 值。</p>
-<h3>3.2.3 分类决策规则</h3>
+<h3 id="323">3.2.3 分类决策规则</h3>
 <p><span class="math">\(k\)</span> 近邻法中的分类决策规则往往是多数表决，即由输入实例的 <span class="math">\(k\)</span> 个邻近的训练实例中的多数类决定输入实例的类。</p>
 <p>多数表决规则（majority voting rule）有如下解释：如果分类的损失函数是 0-1 损失函数，分类函数为
 </p>
@@ -103,17 +125,17 @@
 <div class="math">$$\frac{1}{k}\sum_{x_i\in N_k(x)}\mathbb{I}(y_i\neq c_j)=1-\frac{1}{k}\sum_{x_i\in N_k(x)}\mathbb{I}(y_i= c_j)$$</div>
 <p>
 要使误分类率最小即经验风险最小，就要使 <span class="math">\(\sum_{x_i\in N_k(x)}\mathbb{I}(y_i= c_j)\)</span> 最大，所以多数表决规则等价于经验风险最小化。</p>
-<h2>3.3 <span class="math">\(k\)</span> 近邻法的实现：<span class="math">\(kd\)</span> 树</h2>
+<h2 id="33-k-kd">3.3 <span class="math">\(k\)</span> 近邻法的实现：<span class="math">\(kd\)</span> 树</h2>
 <p>为了对训练数据进行快速 <span class="math">\(k\)</span> 近邻搜索，我可以采取 <span class="math">\(kd\)</span> 树方法（此 <span class="math">\(k\)</span> 是计算机科学中的叫法）。</p>
 <p><span class="math">\(kd\)</span> 树是每个节点都为 <span class="math">\(k\)</span> 维点的二叉树。所有非叶子节点可以视作用一个超平面把空间分割成两个半空间。节点左边的子树代表在超平面左边的点，节点右边的子树代表在超平面右边的点。选择超平面的方法如下：每个节点都与k维中垂直于超平面的那一维有关。因此，如果选择按照x轴划分，所有 <span class="math">\(x\)</span> 值小于指定值的节点都会出现在左子树，所有 <span class="math">\(x\)</span> 值大于指定值的节点都会出现在右子树。这样，超平面可以用该x值来确定，其法线为 <span class="math">\(x\)</span> 轴的单位向量。</p>
-<h3>3.3.1 构造 <span class="math">\(kd\)</span> 树</h3>
+<h3 id="331-kd">3.3.1 构造 <span class="math">\(kd\)</span> 树</h3>
 <p>有很多种方法可以选择轴垂直分割面（axis-aligned splitting planes），所以有很多种创建 <span class="math">\(kd\)</span> 树的方法。 最典型的方法如下：</p>
 <ul>
 <li>随着树的深度轮流选择轴当作分割面。（例如：在三维空间中根节点是 <span class="math">\(x\)</span> 轴垂直分割面，其子节点皆为 <span class="math">\(y\)</span> 轴垂直分割面，其孙节点皆为 <span class="math">\(z\)</span> 轴垂直分割面，其曾孙节点则皆为 <span class="math">\(x\)</span> 轴垂直分割面，依此类推）</li>
 <li>点由垂直分割面之轴座标的中位数区分并放入子树</li>
 </ul>
 <p>这个方法产生一个平衡的 <span class="math">\(kd\)</span> 树。每个叶节点的高度都十分接近。然而，平衡的树不一定对每个应用都是最佳的。</p>
-<h3>3.3.2 搜索 <span class="math">\(kd\)</span> 树</h3>
+<h3 id="332-kd">3.3.2 搜索 <span class="math">\(kd\)</span> 树</h3>
 <p>最邻近搜索用来找出在树中与输入点最接近的点。</p>
 <p><span class="math">\(kd\)</span> 树最邻近搜索的过程如下：</p>
 <ul>

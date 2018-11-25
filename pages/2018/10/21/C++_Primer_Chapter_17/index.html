@@ -54,18 +54,29 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#171-tuple">17.1 tuple 类型</a></li>
+<li><a href="#172-bitset">17.2 bitset 类型</a></li>
+<li><a href="#173">17.3 正则表达式</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <h2>tuple 类型</h2>
+                
+<h2 id="171-tuple">17.1 tuple 类型</h2>
 <p>当我们希望将一些数据组合成单一对象，但又不想麻烦地定义一个新数据结构来表示这些数据时，可以使用<code>tuple</code>类型。与<code>pair</code>类似，但<code>tuple</code>可以有任意数量的成员。它的一个常见用途就是从一个函数返回多个值。<code>tuple</code>定义在同名的头文件中。</p>
 <p>支持的操作：</p>
-<p><img alt="tuple支持的操作" src="https://xutree.github.io/images/c++17-1.jpg"></p>
+<p><img alt="tuple支持的操作" src="https://xutree.github.io/images/c++17-1.jpg"/></p>
 <p>要访问一个<code>tuple</code>的成员，使用<code>get</code>标准库模板。为了使用<code>get</code>，我们必须指定一个显式模板参数，它指明我们想要访问第几个成员。这个显式模板参数必须是一个整型常量表达式，从0开始计数，返回指定成员的引用。</p>
 <div class="highlight"><pre><span></span>auto book = get&lt;0&gt;(item);  // 返回 item 的第一个成员
 get&lt;0&gt;(item) *= 0.8;       // 修改书的单价
 </pre></div>
-
-
 <p>借助辅助类模板<code>tuple_size</code>和<code>tuple_element</code>，可以查询<code>tuple</code>成员的数量和类型。不过使用这两个类，必须知道 <code>tuple</code>对象的类型，这可以通过<code>decltype</code>很简单地得到：</p>
 <div class="highlight"><pre><span></span>typedef decltype(item) trans;
 // 返回 trans 类型对象中成员的数量
@@ -73,20 +84,16 @@ size_t sz = tuple_size&lt;trans&gt;::value;  // 返回 3
 // cnt 的类型与 item 中第二个成员相同，是一个 int
 tuple_element&lt;1, trans&gt;::type cnt = get&lt;1&gt;(item);
 </pre></div>
-
-
 <p>只有两个<code>tuple</code>具有相同数量的成员，且每对成员使用<code>==</code>或<code>&lt;</code>是合法时，才能比较两个<code>tuple</code>。另外，由于<code>tuple</code>定义了<code>&lt;</code>和<code>==</code>运算符，可以将<code>tuple</code>序列传递给算法，并且可以在无序容器中将<code>tuple</code>作为关键字类型。</p>
-<h2>bitset 类型</h2>
+<h2 id="172-bitset">17.2 bitset 类型</h2>
 <p><code>bitset</code>类，可以方便地将整型运算对象当作二进制位集合处理，并且能够处理超过最长整型类型大小的位集合。<code>bitset</code>定义在同名的头文件中。</p>
 <p>支持的操作：</p>
-<p><img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-2.jpg"></p>
+<p><img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-2.jpg"/></p>
 <p><strong>使用字符串初始化<code>bitset</code>时，下标最小的字符对应<code>bitset</code>中的高位。</strong></p>
-<div class="highlight"><pre><span></span>bitset&lt;32&gt; bitvec4(&quot;1100&quot;);   // 2、3两位为1，剩余位为0
+<div class="highlight"><pre><span></span>bitset&lt;32&gt; bitvec4("1100");   // 2、3两位为1，剩余位为0
 </pre></div>
-
-
-<p><img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-3.jpg"></p>
-<h2>正则表达式</h2>
+<p><img alt="bitset支持的操作" src="https://xutree.github.io/images/c++17-3.jpg"/></p>
+<h2 id="173">17.3 正则表达式</h2>
 <p>RE 库定义在头文件<code>regex</code>中。</p>
 <table>
 <thead>

@@ -54,32 +54,42 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1">1. 图像</a></li>
+<li><a href="#2">2. 视频</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p>本章你将知道哪些图像类型和视频格式可以用作 X3DOM 的纹理，以及纹理的特性和限制。</p>
+                
+<p>本章你将知道哪些图像类型和视频格式可以用作 X3DOM 的纹理，以及纹理的特性和限制。</p>
 <p>你可以使用 <a href="http://en.wikipedia.org/wiki/Portable_Network_Graphics"><em>PNG</em></a>，<a href="http://en.wikipedia.org/wiki/Jpeg"><em>LPEG</em></a> 或者 <a href="https://en.wikipedia.org/wiki/Gif"><em>GIF</em></a> 来编码你的静态纹理数据。<em>JPG</em> 图像需要的内存少但是存在压缩损失而且没有 <em>alpha</em> 通道。<em>PNG</em> 图像属于无损压缩并且有 <em>alpha</em> 通道，<em>GIF</em> 也是无损压缩并且有 <em>alpha</em> 通道。一般来讲：如果你不需要 <em>alpha</em> 通道并且图像中不包含硬边界(例如：文本)，使用 <em>JPG</em>，否则使用 <em>PNG</em>。你应该避免使用 <em>GIF</em>。</p>
-<h2>图像</h2>
+<h2 id="1">1. 图像</h2>
 <p>利用 <em>ImageTexture</em> 节点把图像作为纹理：</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;x3d</span> <span class="na">width=</span><span class="s">&#39;500px&#39;</span> <span class="na">height=</span><span class="s">&#39;400px&#39;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;x3d</span> <span class="na">width=</span><span class="s">'500px'</span> <span class="na">height=</span><span class="s">'400px'</span><span class="nt">&gt;</span>
 <span class="nt">&lt;scene&gt;</span>
     <span class="nt">&lt;shape&gt;</span>
     <span class="nt">&lt;appearance&gt;</span>
-    <span class="nt">&lt;ImageTexture</span> <span class="na">url=</span><span class="s">&quot;myTexture.png&quot;</span><span class="nt">&gt;&lt;ImageTexture/&gt;</span>
+    <span class="nt">&lt;ImageTexture</span> <span class="na">url=</span><span class="s">"myTexture.png"</span><span class="nt">&gt;&lt;ImageTexture/&gt;</span>
     <span class="nt">&lt;/appearance&gt;</span>
     <span class="nt">&lt;box&gt;</span> <span class="nt">&lt;/box&gt;</span>
     <span class="nt">&lt;/shape&gt;</span>
 <span class="nt">&lt;/scene&gt;</span>
 <span class="nt">&lt;/x3d&gt;</span>
 </pre></div>
-
-
-<h2>视频</h2>
+<h2 id="2">2. 视频</h2>
 <p>利用 <em>MovieTexture</em> 节点可以把视频作为纹理。但是目前还没有哪一种视频格式支持所有的用户。可以使用 X3DOM 格式<a href="https://x3dom.org/x3dom/example/x3dom_video.xhtml">示例</a>来确定你的浏览器支持的格式。目前最好的解决方法是将你的视频编码成 <em>MP4</em> 和 <em>OGV</em> 格式并在 <em>MovieTexture</em> 节点中提供这两个选项：</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;x3d</span> <span class="na">width=</span><span class="s">&#39;500px&#39;</span> <span class="na">height=</span><span class="s">&#39;400px&#39;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;x3d</span> <span class="na">width=</span><span class="s">'500px'</span> <span class="na">height=</span><span class="s">'400px'</span><span class="nt">&gt;</span>
 <span class="nt">&lt;scene&gt;</span>
     <span class="nt">&lt;shape&gt;</span>
     <span class="nt">&lt;appearance&gt;</span>
-    <span class="nt">&lt;MovieTexture</span> <span class="na">url=</span><span class="s">&#39;”foo.mp4″,”foo.ogv”&#39;</span><span class="nt">&gt;&lt;MovieTexture/&gt;</span>
+    <span class="nt">&lt;MovieTexture</span> <span class="na">url=</span><span class="s">'”foo.mp4″,”foo.ogv”'</span><span class="nt">&gt;&lt;MovieTexture/&gt;</span>
     <span class="nt">&lt;/appearance&gt;</span>
     <span class="nt">&lt;box&gt;</span> <span class="nt">&lt;/box&gt;</span>
     <span class="nt">&lt;/shape&gt;</span>

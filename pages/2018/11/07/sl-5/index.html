@@ -54,15 +54,55 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#51">5.1 决策树模型与学习</a><ul>
+<li><a href="#511">5.1.1 决策树模型</a></li>
+<li><a href="#512">5.1.2 决策树学习</a></li>
+</ul>
+</li>
+<li><a href="#52">5.2 特征选择</a><ul>
+<li><a href="#521">5.2.1 特征选择的问题</a></li>
+<li><a href="#522">5.2.2 信息增益</a></li>
+<li><a href="#523">5.2.3 信息增益比</a></li>
+</ul>
+</li>
+<li><a href="#53">5.3 决策树的生成</a><ul>
+<li><a href="#531-id3">5.3.1 ID3 算法</a></li>
+<li><a href="#532-c45">5.3.2 C4.5 的生成算法</a></li>
+</ul>
+</li>
+<li><a href="#54">5.4 决策树的剪枝</a></li>
+<li><a href="#55-crat">5.5 CRAT 算法</a><ul>
+<li><a href="#551-cart">5.5.1 CART 生成</a><ul>
+<li><a href="#_1">回归树的生成</a></li>
+<li><a href="#_2">分类树的生成</a></li>
+</ul>
+</li>
+<li><a href="#552-cart">5.5.2 CART 剪枝</a><ul>
+<li><a href="#_3">剪枝，形成一个子树序列</a></li>
+<li><a href="#t_alpha">在剪枝得到的子树序列中通过交叉验证选取最优子树 \(T_\alpha\)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p>决策树（decision tree）是一种基本的分类与回归方法。其主要优点是模型具有可读性，分类速度快。决策树学习通常包括三个步骤：特征选择、决策树的生成和决策树的修剪。</p>
-<h2>5.1 决策树模型与学习</h2>
-<h3>5.1.1 决策树模型</h3>
+                
+<p>决策树（decision tree）是一种基本的分类与回归方法。其主要优点是模型具有可读性，分类速度快。决策树学习通常包括三个步骤：特征选择、决策树的生成和决策树的修剪。</p>
+<h2 id="51">5.1 决策树模型与学习</h2>
+<h3 id="511">5.1.1 决策树模型</h3>
 <p><strong>
 定义 5.1 （决策树）分类决策树模型是一种描述对实例进行分类的树形结构。决策树由节点（node）和有向边（directed edge）组成。节点有两种类型：内部节点（internal node）和叶节点（leaf node）。内部节点表示一个特征或属性，叶节点表示一个类。
 </strong></p>
-<h3>5.1.2 决策树学习</h3>
+<h3 id="512">5.1.2 决策树学习</h3>
 <p>假设给定训练数据集
 </p>
 <div class="math">$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
@@ -80,10 +120,10 @@
 <p>决策树学习本质上是从训练数据集中归纳出一组分类规则。与训练集不相矛盾的决策树可能有多个也可能一个也没有，我们需要的是一个与训练集矛盾较小的决策树，同时具有很好的泛化能力。</p>
 <p>决策树学习的损失函数通常是正则化的极大似然函数。决策树学习的策略是以损失函数为目标函数的最小化。</p>
 <p>当损失函数确定以后，学习问题变成在损失函数意义下选择最有决策树的问题，因为从所有可能的决策树中选取最优决策树是 NP 完全问题，所以现实中决策树学习算法通常采用启发式方法，近似求解这一最优化问题。这样得到的决策树是次最优（sub-optimal）的。</p>
-<h2>5.2 特征选择</h2>
-<h3>5.2.1 特征选择的问题</h3>
+<h2 id="52">5.2 特征选择</h2>
+<h3 id="521">5.2.1 特征选择的问题</h3>
 <p>特征选择在于选取对训练数据具有分类能力的特征。这样就可以提高决策树学习的效率。如果利用一个特征进行分类的结果与随机分类的结果没有很大差别，则称这个特征是没有分类能力的。通常特征选取的准则是信息增益或信息增益比。</p>
-<h3>5.2.2 信息增益</h3>
+<h3 id="522">5.2.2 信息增益</h3>
 <p>为了便于说明，首先给出熵与条件熵的定义。</p>
 <p>熵（entropy）是表示随机变量不确定性的度量。</p>
 <p>设 <span class="math">\(X\)</span> 是一个离散随机变量，其概率分布为
@@ -114,17 +154,17 @@
 <p>根据信息增益准则的特征选择方法是：对训练数据集（或子集）<span class="math">\(D\)</span>，计算其每个特征的信息增益，选择信息增益最大的特征。</p>
 <p>设训练数据集为 <span class="math">\(D\)</span>，<span class="math">\(|D|\)</span> 表示其样本容量。设有 <span class="math">\(K\)</span> 个类 <span class="math">\(C_k\)</span>，<span class="math">\(k=1,2\cdots,K\)</span>，<span class="math">\(|C_k|\)</span> 为属于类 <span class="math">\(C_k\)</span> 的样本个数。设特征 <span class="math">\(A\)</span> 有 <span class="math">\(n\)</span> 个不同的取值 ，根据特征 <span class="math">\(A\)</span> 的取值将 <span class="math">\(D\)</span> 划分为 <span class="math">\(n\)</span> 个子集，<span class="math">\(|D_i|\)</span> 为 <span class="math">\(D_i\)</span> 的样本个数。记子集 <span class="math">\(D_i\)</span> 中属于类 <span class="math">\(C_k\)</span> 的样本的集合为 <span class="math">\(D_{ik}\)</span>，<span class="math">\(|D_{ik}|\)</span> 为 <span class="math">\(D_{ik}\)</span> 的样本个数，于是信息增益的算法如下</p>
 <p><strong>
-算法 5.1 （信息增益的算法）<br>
-输入：训练数据集 <span class="math">\(D\)</span> 和特征 <span class="math">\(A\)</span><br>
-输出：特征 <span class="math">\(A\)</span> 对训练数据集 <span class="math">\(D\)</span> 的信息增益 <span class="math">\(g(D,A)\)</span><br>
-(1) 计算数据集 <span class="math">\(D\)</span> 的经验熵 <span class="math">\(H(D)\)</span><br>
+算法 5.1 （信息增益的算法）<br/>
+输入：训练数据集 <span class="math">\(D\)</span> 和特征 <span class="math">\(A\)</span><br/>
+输出：特征 <span class="math">\(A\)</span> 对训练数据集 <span class="math">\(D\)</span> 的信息增益 <span class="math">\(g(D,A)\)</span><br/>
+(1) 计算数据集 <span class="math">\(D\)</span> 的经验熵 <span class="math">\(H(D)\)</span><br/>
 <div class="math">$$H(D)=-\sum_{k=1}^K\frac{|C_k|}{|D|}\log_2\frac{|C_k|}{|D|}$$</div>
-(2) 计算特征 <span class="math">\(A\)</span> 对数据集 <span class="math">\(D\)</span> 的经验条件熵 <span class="math">\(H(D|A)\)</span><br>
+(2) 计算特征 <span class="math">\(A\)</span> 对数据集 <span class="math">\(D\)</span> 的经验条件熵 <span class="math">\(H(D|A)\)</span><br/>
 <div class="math">$$H(D|A)=\sum_{i=1}^n\frac{|D_i|}{|D|}H(D_i)=-\sum_{i=1}^n\frac{|D_i|}{|D|}\sum_{k=1}^K\frac{|D_{ik}|}{|D_i|}\log_2\frac{|D_{ik}|}{|D_i|}$$</div>
 (3) 计算信息增益
 <div class="math">$$g(D,A)=H(D)-H(D|A)$$</div>
 </strong></p>
-<h3>5.2.3 信息增益比</h3>
+<h3 id="523">5.2.3 信息增益比</h3>
 <p>以信息增益作为划分训练集的特征，存在偏向于选择取值较多的特征的问题。使用信息增益比（information gain ratio）可以对这一问题进行校正。这是特征选择的另一准则。</p>
 <p>首先说明下为何信息增益会偏向选择取值较多的特性：假设特征 <span class="math">\(A\)</span> 有 <span class="math">\(N\)</span> 个不同取值（意味着每一个样本的特征 <span class="math">\(A\)</span> 都有一个不同的值），则易知 <span class="math">\(H(D|A)=0\)</span>，故一定会选取这个特性，但是这个特性（例如仅仅是不同训练数据的标号）可能对分类无用。</p>
 <p><strong>
@@ -134,24 +174,24 @@
 <div class="math">$$H_A(D)=-\sum_{i=1}^n\frac{|D_i|}{|D|}\log_2\frac{|D_i|}{|D|}$$</div>
 <span class="math">\(n\)</span> 是特征 <span class="math">\(A\)</span> 取值的个数。
 </strong></p>
-<h2>5.3 决策树的生成</h2>
-<h3>5.3.1 ID3 算法</h3>
+<h2 id="53">5.3 决策树的生成</h2>
+<h3 id="531-id3">5.3.1 ID3 算法</h3>
 <p>ID3 算法的核心是在决策树各个节点上应用信息增益准则选择特征，递归的构建决策树，直到所有特征的信息增益均很小或没有特征可以选择为止。</p>
 <p><strong>
-算法 5.2 （ID3 算法）<br>
-输入：训练数据集 <span class="math">\(D\)</span>，特征集 <span class="math">\(A\)</span>，阈值 <span class="math">\(\epsilon\)</span><br>
-输出：决策树 <span class="math">\(T\)</span><br>
-(1) 若 <span class="math">\(D\)</span> 中所有实例属于同一类 <span class="math">\(C_k\)</span>，则 <span class="math">\(T\)</span> 为单节点树，并将类 <span class="math">\(C_k\)</span> 作为该节点的类标记，返回 <span class="math">\(T\)</span><br>
-(2) 若 <span class="math">\(A=\varnothing\)</span>，则 <span class="math">\(T\)</span> 为单节点树，并将 <span class="math">\(D\)</span> 中实例数最大的类 <span class="math">\(C_k\)</span> 作为该节点的类标记，返回 <span class="math">\(T\)</span><br>
-(3) 否则，按算法 5.1 计算 <span class="math">\(A\)</span> 中哥特征对 <span class="math">\(D\)</span> 的信息增益，选择信息增益最大的特征 <span class="math">\(A_g\)</span><br>
-(4) 如果 <span class="math">\(A_g\)</span> 的信息增益小于阈值 <span class="math">\(\epsilon\)</span>，则置 <span class="math">\(T\)</span> 为单节点树，并将 <span class="math">\(D\)</span> 中实例数最大的类 <span class="math">\(C_k\)</span> 作为该节点的类标记，返回 <span class="math">\(T\)</span><br>
-(5) 否则，对 <span class="math">\(A_g\)</span> 的每一个可能值 <span class="math">\(a_i\)</span>，依 <span class="math">\(A_g=a_i\)</span> 将 <span class="math">\(D\)</span> 分割为若干非空子集 <span class="math">\(D_i\)</span>，将 <span class="math">\(D_i\)</span> 中实例数最大的类作为标记，构建子节点，由节点及其子节点构成数 <span class="math">\(T\)</span>，返回 <span class="math">\(T\)</span><br>
+算法 5.2 （ID3 算法）<br/>
+输入：训练数据集 <span class="math">\(D\)</span>，特征集 <span class="math">\(A\)</span>，阈值 <span class="math">\(\epsilon\)</span><br/>
+输出：决策树 <span class="math">\(T\)</span><br/>
+(1) 若 <span class="math">\(D\)</span> 中所有实例属于同一类 <span class="math">\(C_k\)</span>，则 <span class="math">\(T\)</span> 为单节点树，并将类 <span class="math">\(C_k\)</span> 作为该节点的类标记，返回 <span class="math">\(T\)</span><br/>
+(2) 若 <span class="math">\(A=\varnothing\)</span>，则 <span class="math">\(T\)</span> 为单节点树，并将 <span class="math">\(D\)</span> 中实例数最大的类 <span class="math">\(C_k\)</span> 作为该节点的类标记，返回 <span class="math">\(T\)</span><br/>
+(3) 否则，按算法 5.1 计算 <span class="math">\(A\)</span> 中哥特征对 <span class="math">\(D\)</span> 的信息增益，选择信息增益最大的特征 <span class="math">\(A_g\)</span><br/>
+(4) 如果 <span class="math">\(A_g\)</span> 的信息增益小于阈值 <span class="math">\(\epsilon\)</span>，则置 <span class="math">\(T\)</span> 为单节点树，并将 <span class="math">\(D\)</span> 中实例数最大的类 <span class="math">\(C_k\)</span> 作为该节点的类标记，返回 <span class="math">\(T\)</span><br/>
+(5) 否则，对 <span class="math">\(A_g\)</span> 的每一个可能值 <span class="math">\(a_i\)</span>，依 <span class="math">\(A_g=a_i\)</span> 将 <span class="math">\(D\)</span> 分割为若干非空子集 <span class="math">\(D_i\)</span>，将 <span class="math">\(D_i\)</span> 中实例数最大的类作为标记，构建子节点，由节点及其子节点构成数 <span class="math">\(T\)</span>，返回 <span class="math">\(T\)</span><br/>
 (6) 对第 <span class="math">\(i\)</span> 个子节点，以 <span class="math">\(D_i\)</span> 为训练集，以 <span class="math">\(A-\{A_g\}\)</span> 为特征集递归的调用步骤 (1)~(5)，得到子树 <span class="math">\(T_i\)</span>，返回 <span class="math">\(T_i\)</span>
 </strong></p>
 <p>ID3 算法只有树的生成。所以该算法生成的树容易产生过拟合。</p>
-<h3>5.3.2 C4.5 的生成算法</h3>
+<h3 id="532-c45">5.3.2 C4.5 的生成算法</h3>
 <p>C4.5 算法与 ID3 算法相似，C4.5 算法对 ID3 算法进行了改进，用信息增益比选择特征。其他步骤相同。</p>
-<h2>5.4 决策树的剪枝</h2>
+<h2 id="54">5.4 决策树的剪枝</h2>
 <p>决策树生成算法递归的产生决策树，直到不能继续下去为止。这样产生的树往往对训练数据的分类很准确，但对未知的测试数据的分类却没有那么准确，即出现过拟合现象。</p>
 <p>过拟合产生的原因是学习时过多的考虑如何提高对训练数据的正确分类，从而构建出过于复杂的决策树。</p>
 <p>解决这个问题的办法是对已生成的决策树进行简化——剪枝（pruning）。也就是从生成的决策树上剪掉一些子树或者叶节点。</p>
@@ -177,17 +217,17 @@
 <p>决策树生成学习局部的模型，而决策树剪枝学习整体的模型。</p>
 <p>上式中定义的损失函数的极小化等价于正则化的极大似然估计。所以，利用损失函数最小原则进行剪枝就是用正则化的最大似然估计进行模型选择。</p>
 <p><strong>
-算法 5.4 （树的剪枝算法）<br>
-输入：生成算法产生的整个树 <span class="math">\(T\)</span>，参数 <span class="math">\(\alpha\)</span><br>
-输出：修剪后的子树 <span class="math">\(T_\alpha\)</span><br>
-(1) 计算每个节点的经验熵<br>
+算法 5.4 （树的剪枝算法）<br/>
+输入：生成算法产生的整个树 <span class="math">\(T\)</span>，参数 <span class="math">\(\alpha\)</span><br/>
+输出：修剪后的子树 <span class="math">\(T_\alpha\)</span><br/>
+(1) 计算每个节点的经验熵<br/>
 (2) 递归的从树的叶节点向上回缩：设一组叶节点回缩到其父节点之前与之后的整体树分别为 <span class="math">\(T_B\)</span> 和 <span class="math">\(T_A\)</span>，其对应的损失函数分别是 <span class="math">\(C_\alpha(T_B)\)</span> 和 <span class="math">\(C_\alpha(T_A)\)</span>，如果
 <div class="math">$$C_\alpha(T_A)\leq C_\alpha(T_B)$$</div>
-则进行剪枝，即将父节点变为新的叶节点<br>
+则进行剪枝，即将父节点变为新的叶节点<br/>
 (3) 返回 (2)，直至不能继续为止，得到损失函数最小的子树 <span class="math">\(T_\alpha\)</span>
 </strong></p>
 <p>因为步骤 (2) 中只考虑两个树的损失函数的差，其计算可以在局部进行，所以可以用动态规划算法实现。</p>
-<h2>5.5 CRAT 算法</h2>
+<h2 id="55-crat">5.5 CRAT 算法</h2>
 <p>分类与回归树（classification and regression tree）模型是应用广泛的决策树学习方法，既可以用于分类也可以用于回归。</p>
 <p>CART 是在给定输入随机变量 <span class="math">\(X\)</span> 条件下输出随机变量 <span class="math">\(Y\)</span> 的条件概率分布的学习方法。CART 假设决策树是二叉树，内部节点特征的取值为“是”和“否”。左分的取值是“是”，右分支的取值是“否”。</p>
 <p>CRAT 算法由以下两步组成：</p>
@@ -195,9 +235,9 @@
 <li>决策树生成：基于训练数据集生成决策树，生成的决策树要尽量大</li>
 <li>决策树剪枝：用验证数据集对已生成的树进行剪枝并选择最优子树，这时用损失函数最小作为剪枝的标准</li>
 </ul>
-<h3>5.5.1 CART 生成</h3>
+<h3 id="551-cart">5.5.1 CART 生成</h3>
 <p>决策树的生成就是递归的构建二叉决策树的过程，对回归树用平方误差最小化准则，对分类树用基尼指数（Gini index）最小化准则，进行特征选择，生成二叉树。</p>
-<h4>回归树的生成</h4>
+<h4 id="_1">回归树的生成</h4>
 <p>假设 <span class="math">\(X\)</span> 和 <span class="math">\(Y\)</span> 分别为输入和输出变量，并且 <span class="math">\(Y\)</span> 是连续变量，给定训练数据集
 </p>
 <div class="math">$$D=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
@@ -229,24 +269,24 @@ R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
 <p>
 历遍所有输入变量，找到最优的切分变量 <span class="math">\(j\)</span>，构成一个对 <span class="math">\((j,s)\)</span>。依次将输入空间划分为两个区域。接着，对每个区域重复上述划分过程，直到满足停止条件为止。这种方法生成的回归树通常称为最小二乘回归树（least squares regression tree）。</p>
 <p><strong>
-算法 5.5 （最小二乘回归树生成算法）<br>
-输入：训练数据集 <span class="math">\(D\)</span><br>
-输出：回归树 <span class="math">\(f(x)\)</span><br>
-在训练数据集所在的输入空间中，递归的将每个区域划分为两个子区域并决定每个子区域的输出值，构建二叉决策树<br>
+算法 5.5 （最小二乘回归树生成算法）<br/>
+输入：训练数据集 <span class="math">\(D\)</span><br/>
+输出：回归树 <span class="math">\(f(x)\)</span><br/>
+在训练数据集所在的输入空间中，递归的将每个区域划分为两个子区域并决定每个子区域的输出值，构建二叉决策树<br/>
 (1) 选择最优切分变量 <span class="math">\(j\)</span> 和切分点 <span class="math">\(s\)</span>，求解
 <div class="math">$$\min_{j,s}\left[\min_{c_1}\sum_{x_i\in R_1(j,s)}(y_i-c_1)^2+\min_{c_2}\sum_{x_i\in R_2(j,s)}(y_i-c_2)^2\right]$$</div>
-遍历 <span class="math">\(j\)</span>，对固定的切分变量 <span class="math">\(j\)</span> 扫描切分点 <span class="math">\(s\)</span>，选择使上式最小的对 <span class="math">\((j,s)\)</span><br>
+遍历 <span class="math">\(j\)</span>，对固定的切分变量 <span class="math">\(j\)</span> 扫描切分点 <span class="math">\(s\)</span>，选择使上式最小的对 <span class="math">\((j,s)\)</span><br/>
 (2) 用选定的对 <span class="math">\((j,s)\)</span> 划分区域并决定相应的输出值
 <div class="math">$$\begin{eqnarray}
 R_1(j,s) &amp;=&amp; \{x|x^{(j)}\leq s\} \\
 R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
 \end{eqnarray}\\
 \hat{c}_m=\frac{1}{N_m}\sum_{x_i\in R_m(j,s)}y_i,x\in R_m,m=1,2$$</div>
-(3) 继续对两个子区域调用步骤 (1)，(2)，直到满足停止条件<br>
+(3) 继续对两个子区域调用步骤 (1)，(2)，直到满足停止条件<br/>
 (4) 将输入空间划分为 <span class="math">\(M\)</span> 个区域 <span class="math">\(R_1,R_2,\cdots,R_M\)</span>，生成决策树
 <div class="math">$$f(x)=\sum_{m=1}^M\hat{c}_m\mathbb{I}(x\in R_m)$$</div>
 </strong></p>
-<h4>分类树的生成</h4>
+<h4 id="_2">分类树的生成</h4>
 <p>分类树用基尼指数选择最优特征，同时决定该特征的最优二值切分点。</p>
 <p><strong>
 定义 5.4 （基尼指数）分类问题中，假设有 <span class="math">\(K\)</span> 个类，样本点属于第 <span class="math">\(k\)</span> 类的概率为 <span class="math">\(p_k\)</span>，则概率分布的基尼指数定义为
@@ -270,17 +310,17 @@ R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
 基尼指数 <span class="math">\(\text{Gini}(D)\)</span> 表示集合 <span class="math">\(D\)</span> 的不确定性，基尼指数 <span class="math">\(\text{Gini}(D,A)\)</span> 表示经 <span class="math">\(A=a\)</span> 分割后集合 <span class="math">\(D\)</span> 的不确定性。基尼指数数值越大，样本集合的不确定性也就越大，这一点与熵类似。
 
 <strong>
-算法 5.6 （CART 生成算法）<br>
-输入：训练数据集 <span class="math">\(D\)</span>，停止计算的条件<br>
-输出：CART 决策树<br>
-根据训练数据集，从根节点开始，递归的对每个节点进行以下操作，构建二叉决策树：<br>
-(1) 设节点的训练数据集为 <span class="math">\(D\)</span>，计算现有特征对该数据集的基尼指数。此时，对每一个特征 <span class="math">\(A\)</span>，对其可能取的每个值 <span class="math">\(a\)</span>，根据样本点对 <span class="math">\(A=a\)</span> 的测试为“是”或“否”将 <span class="math">\(D\)</span> 分割为两部分，计算 <span class="math">\(A=a\)</span> 时的基尼指数<br>
-(2) 在所有可能的特征 <span class="math">\(A\)</span> 以及它们所有可能的切分点 <span class="math">\(a\)</span> 中，选择基尼指数最小的特征及其对应的切分点作为最优特征和最优切分点。依最优特征和最优切分点，从现节点生成两个子节点，将训练数据集依特征分配到两个子节点去<br>
-(3) 对两个子节点递归的调用 (1)、(2)，直至满足停止条件<br>
+算法 5.6 （CART 生成算法）<br/>
+输入：训练数据集 <span class="math">\(D\)</span>，停止计算的条件<br/>
+输出：CART 决策树<br/>
+根据训练数据集，从根节点开始，递归的对每个节点进行以下操作，构建二叉决策树：<br/>
+(1) 设节点的训练数据集为 <span class="math">\(D\)</span>，计算现有特征对该数据集的基尼指数。此时，对每一个特征 <span class="math">\(A\)</span>，对其可能取的每个值 <span class="math">\(a\)</span>，根据样本点对 <span class="math">\(A=a\)</span> 的测试为“是”或“否”将 <span class="math">\(D\)</span> 分割为两部分，计算 <span class="math">\(A=a\)</span> 时的基尼指数<br/>
+(2) 在所有可能的特征 <span class="math">\(A\)</span> 以及它们所有可能的切分点 <span class="math">\(a\)</span> 中，选择基尼指数最小的特征及其对应的切分点作为最优特征和最优切分点。依最优特征和最优切分点，从现节点生成两个子节点，将训练数据集依特征分配到两个子节点去<br/>
+(3) 对两个子节点递归的调用 (1)、(2)，直至满足停止条件<br/>
 (4) 生成 CART 决策树
 </strong></p>
 <p>算法停止的条件是节点中的样本个数少于预定阈值，或样本集的基尼指数小于预定阈值（样本基本属于同一类），或者没有更多特征。</p>
-<h3>5.5.2 CART 剪枝</h3>
+<h3 id="552-cart">5.5.2 CART 剪枝</h3>
 <p>CART 剪枝算法从“完全生长”的决策树的底端剪去一些子树，使决策树变小（模型变简单），从而能够对未知数据有更准确的预测。</p>
 <p>CART 剪枝算法由两步组成：</p>
 <ul>
@@ -289,7 +329,7 @@ R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
 </li>
 <li>通过交叉验证法在独立的验证数据集上对子树序列进行测试，从中选择最优子树</li>
 </ul>
-<h4>剪枝，形成一个子树序列</h4>
+<h4 id="_3">剪枝，形成一个子树序列</h4>
 <p>在剪枝过程中，计算子树的损失函数：
 </p>
 <div class="math">$$C_\alpha(T)=C(T)+\alpha|T|$$</div>
@@ -339,23 +379,23 @@ R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
 <p>
 它表示剪枝后整体损失函数减少的程度。在 <span class="math">\(T_0\)</span> 中剪去 <span class="math">\(g(t)\)</span> 最小的 <span class="math">\(T_t\)</span>（这里我们是要得到一系列的 <span class="math">\(\alpha\)</span> 区间，所以是剪去最小的），将得到的子树作为 <span class="math">\(T_1\)</span>，同时将最小的 <span class="math">\(g(t)\)</span> 设为 <span class="math">\(\alpha_1\)</span>。<span class="math">\(T_1\)</span> 为区间 <span class="math">\([\alpha_1,\alpha_2)\)</span> 的最优子树。</p>
 <p>如此剪枝下去，直到得到根节点。在这一过程中，不断的增加 <span class="math">\(\alpha\)</span> 的值，产生新的区间。</p>
-<h4>在剪枝得到的子树序列中通过交叉验证选取最优子树 <span class="math">\(T_\alpha\)</span></h4>
+<h4 id="t_alpha">在剪枝得到的子树序列中通过交叉验证选取最优子树 <span class="math">\(T_\alpha\)</span></h4>
 <p>具体的，利用独立的验证数据集，测试子树序列中各棵子树的平方误差或基尼指数。平方误差或基尼指数小的决策树被认为是最优的决策树。</p>
 <p><strong>
-算法 5.7 （CART 剪枝算法）<br>
-输入：CART 算法生成的决策树 <span class="math">\(T_0\)</span><br>
-输出：最优决策树 <span class="math">\(T_\alpha\)</span><br>
-(1) 设 <span class="math">\(k=0,T=T_0\)</span><br>
+算法 5.7 （CART 剪枝算法）<br/>
+输入：CART 算法生成的决策树 <span class="math">\(T_0\)</span><br/>
+输出：最优决策树 <span class="math">\(T_\alpha\)</span><br/>
+(1) 设 <span class="math">\(k=0,T=T_0\)</span><br/>
 (2) 设 <span class="math">\(\alpha=+\infty\)</span>
 (3) 自下而上的对各个内部节点 <span class="math">\(t\)</span> 计算 <span class="math">\(C(T_t)\)</span>，<span class="math">\(|T_t|\)</span> 以及
 <div class="math">$$\begin{eqnarray}
 g(t) &amp;=&amp; \frac{C(t)-C(T_t)}{|T_t|-1} \\
 \alpha &amp;=&amp; \min(\alpha,g(t))
 \end{eqnarray}$$</div>
-这里，<span class="math">\(T_t\)</span> 表示以 <span class="math">\(t\)</span> 为根节点的子树，<span class="math">\(C(T_t)\)</span> 是对训练数据的预测误差，<span class="math">\(|T_t|\)</span> 是 <span class="math">\(T_t\)</span> 的叶节点个数<br>
-(4) 对 <span class="math">\(g(t)=\alpha\)</span> 的内部节点 <span class="math">\(t\)</span> 进行剪枝，并对叶节点 <span class="math">\(t\)</span> 以多数表决法决定其类，得到树 <span class="math">\(T\)</span><br>
-(5) 设 <span class="math">\(k=k+1.\alpha_k=\alpha,T_k=T\)</span><br>
-(6) 如果 <span class="math">\(T_k\)</span> 不是由根节点及两个叶节点构成的树，则返回到步骤 (3)；否则，令 <span class="math">\(T_k=T_n\)</span><br>
+这里，<span class="math">\(T_t\)</span> 表示以 <span class="math">\(t\)</span> 为根节点的子树，<span class="math">\(C(T_t)\)</span> 是对训练数据的预测误差，<span class="math">\(|T_t|\)</span> 是 <span class="math">\(T_t\)</span> 的叶节点个数<br/>
+(4) 对 <span class="math">\(g(t)=\alpha\)</span> 的内部节点 <span class="math">\(t\)</span> 进行剪枝，并对叶节点 <span class="math">\(t\)</span> 以多数表决法决定其类，得到树 <span class="math">\(T\)</span><br/>
+(5) 设 <span class="math">\(k=k+1.\alpha_k=\alpha,T_k=T\)</span><br/>
+(6) 如果 <span class="math">\(T_k\)</span> 不是由根节点及两个叶节点构成的树，则返回到步骤 (3)；否则，令 <span class="math">\(T_k=T_n\)</span><br/>
 (7) 采用交叉验证法在子树序列 <span class="math">\(T_0,T_1,\cdots,T_n\)</span> 中选择最优子树 <span class="math">\(T_\alpha\)</span>
 </strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {

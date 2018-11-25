@@ -54,11 +54,44 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#101">10.1 隐马尔科夫模型的基本概念</a><ul>
+<li><a href="#1011">10.1.1 隐马尔科夫模型的定义</a></li>
+<li><a href="#1012">10.1.2 观测序列的生成过程</a></li>
+<li><a href="#1013-3">10.1.3 隐马尔科夫模型的 3 个基本问题</a></li>
+</ul>
+</li>
+<li><a href="#102">10.2 概率计算算法</a><ul>
+<li><a href="#1021">10.2.1 前向算法</a></li>
+<li><a href="#1022">10.2.2 后向算法</a></li>
+<li><a href="#1023">10.2.3 一些概率与期望值的计算</a></li>
+</ul>
+</li>
+<li><a href="#103">10.3 学习算法</a><ul>
+<li><a href="#1031">10.3.1 监督学习方法</a></li>
+<li><a href="#1032-baum-welch">10.3.2 Baum-Welch 算法</a></li>
+<li><a href="#1033-baum-welch">10.3.3 Baum-Welch 模型参数估计公式</a></li>
+</ul>
+</li>
+<li><a href="#104">10.4 预测算法</a><ul>
+<li><a href="#1041">10.4.1 近似算法</a></li>
+<li><a href="#1042">10.4.2 维特比算法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p>隐马尔科夫模型（hidden Markov model，HMM）是可用于标注问题的统计学模型，描述由隐藏的马尔科夫链随机生成观测序列的过程，属于生成模型。隐马尔科夫模型在语音识别、自然语言处理、生物信息、模式识别等领域有着广泛的应用。</p>
-<h2>10.1 隐马尔科夫模型的基本概念</h2>
-<h3>10.1.1 隐马尔科夫模型的定义</h3>
+                
+<p>隐马尔科夫模型（hidden Markov model，HMM）是可用于标注问题的统计学模型，描述由隐藏的马尔科夫链随机生成观测序列的过程，属于生成模型。隐马尔科夫模型在语音识别、自然语言处理、生物信息、模式识别等领域有着广泛的应用。</p>
+<h2 id="101">10.1 隐马尔科夫模型的基本概念</h2>
+<h3 id="1011">10.1.1 隐马尔科夫模型的定义</h3>
 <p><strong>
 定义 10.1（隐马尔科夫模型的定义）隐马尔科夫模型是关于时序的概率模型，描述由一个隐藏的马尔科夫链随机生成不可观测的状态随机序列，再由各个状态生成一个观测而产生观测随机序列的过程。隐藏的马尔科夫链随机生成的状态的序列称为状态序列（state sequence）；每个状态生成一个观测，由此产生的观测随机序列称为观测序列（observation sequence）。序列的每一个位置又可以看作是一个时刻
 </strong></p>
@@ -112,35 +145,35 @@ b. 观测独立性假设
 </p>
 <div class="math">$$P(o_t|i_T,o_T,i_{T-1},o_{T-1},\cdots,i_{t+1},o_{t+1},i_t,i_{t-1},o_{t-1},\cdots,i_1,o_1)=P(o_t|i_t)$$</div>
 <p>隐马尔科夫模型可以用于标注问题，这时状态对应着标记。标注问题是给定观测的序列预测其对应的标记序列。可以假设标注问题的数据是由隐马尔科夫模型生成的。这样我们可以利用隐马尔科夫模型的学习与预测算法进行标注。</p>
-<h3>10.1.2 观测序列的生成过程</h3>
+<h3 id="1012">10.1.2 观测序列的生成过程</h3>
 <p><strong>
-算法 10.1（观测序列的生成)<br>
-输入：隐马尔科夫模型 <span class="math">\(\lambda=(A,B,\pi)\)</span>，观测序列长度 <span class="math">\(T\)</span><br>
-输出：观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span><br>
-(1) 按照初始状态分布 <span class="math">\(\pi\)</span> 产生状态 <span class="math">\(i_1\)</span><br>
-(2) 令 <span class="math">\(t=1\)</span><br>
-(3) 按照状态 <span class="math">\(i_t\)</span> 的观测概率分布 <span class="math">\(b_{i_t}(k)\)</span> 生成 <span class="math">\(o_t\)</span><br>
-(4) 按照状态 <span class="math">\(i_t\)</span> 的状态转移概率分布 <span class="math">\(\{a_{i_ti_{t+1}}\}\)</span> 产生状态 <span class="math">\(i_{t+1}\)</span>，<span class="math">\(i_{t+1}=1,2,\cdots,,N\)</span><br>
+算法 10.1（观测序列的生成)<br/>
+输入：隐马尔科夫模型 <span class="math">\(\lambda=(A,B,\pi)\)</span>，观测序列长度 <span class="math">\(T\)</span><br/>
+输出：观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span><br/>
+(1) 按照初始状态分布 <span class="math">\(\pi\)</span> 产生状态 <span class="math">\(i_1\)</span><br/>
+(2) 令 <span class="math">\(t=1\)</span><br/>
+(3) 按照状态 <span class="math">\(i_t\)</span> 的观测概率分布 <span class="math">\(b_{i_t}(k)\)</span> 生成 <span class="math">\(o_t\)</span><br/>
+(4) 按照状态 <span class="math">\(i_t\)</span> 的状态转移概率分布 <span class="math">\(\{a_{i_ti_{t+1}}\}\)</span> 产生状态 <span class="math">\(i_{t+1}\)</span>，<span class="math">\(i_{t+1}=1,2,\cdots,,N\)</span><br/>
 (5) 令 <span class="math">\(t=t+1\)</span>；如果 <span class="math">\(t&lt;T\)</span>，转 (3)；否则，终止
 </strong></p>
-<h3>10.1.3 隐马尔科夫模型的 3 个基本问题</h3>
+<h3 id="1013-3">10.1.3 隐马尔科夫模型的 3 个基本问题</h3>
 <p><span class="math">\(\blacksquare\)</span> 概率计算问题</p>
 <p>给定模型 <span class="math">\(\lambda=(A,B,\pi)\)</span> 和观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span>，计算在模型 <span class="math">\(\lambda\)</span> 下观测序列 <span class="math">\(O\)</span> 出现的概率 <span class="math">\(P(O|\lambda)\)</span> 。</p>
 <p><span class="math">\(\blacksquare\)</span> 学习问题</p>
 <p>已知观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span>，估计模型参数 <span class="math">\(\lambda=(A,B,\pi)\)</span>，使得在该模型下观测序列 <span class="math">\(P(O|\lambda)\)</span> 最大。即用极大似然估计的方法估计参数。</p>
 <p><span class="math">\(\blacksquare\)</span> 预测问题</p>
 <p>也称为解码（decoding）问题。已知模型 <span class="math">\(\lambda=(A,B,\pi)\)</span> 和观测序列 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span>，求对给定观测序列条件概率 <span class="math">\(P(I|O)\)</span> 最大的状态序列 <span class="math">\(I=(i_1,i_2,\cdots,i_T)\)</span>。即给定观测序列，求最可能的对应的状态序列。</p>
-<h2>10.2 概率计算算法</h2>
-<h3>10.2.1 前向算法</h3>
+<h2 id="102">10.2 概率计算算法</h2>
+<h3 id="1021">10.2.1 前向算法</h3>
 <p><strong>
 定义 10.2（前向概率）给定隐马尔科夫模型 <span class="math">\(\lambda\)</span>，定义到时刻 <span class="math">\(t\)</span> 部分观测序列为 <span class="math">\(o_1,o_2,\cdots,o_t\)</span> 且状态为 <span class="math">\(q_i\)</span> 的概率为前向概率，记作
 <div class="math">$$\alpha_i(t)=P(o_1,o_2,\cdots,o_t,t_i=q_i|\lambda)$$</div>
 可以递推地求得前向概率 <span class="math">\(\alpha_t(i)\)</span> 及观测序列概率 <span class="math">\(P(O|\lambda)\)</span>。
 </strong></p>
 <p><strong>
-算法 10.2（观测序列概率的前向算法）<br>
-输入：隐马尔科夫模型 <span class="math">\(\lambda\)</span>，观测序列 <span class="math">\(O\)</span><br>
-输出：观测序列概率 <span class="math">\(P(O|\lambda)\)</span> <br>
+算法 10.2（观测序列概率的前向算法）<br/>
+输入：隐马尔科夫模型 <span class="math">\(\lambda\)</span>，观测序列 <span class="math">\(O\)</span><br/>
+输出：观测序列概率 <span class="math">\(P(O|\lambda)\)</span> <br/>
 (1) 初值
 <div class="math">$$\alpha_1(i)=\pi_ib_i(o_1),\ i=1,2,\cdots,N$$</div>
 (2) 递推
@@ -149,16 +182,16 @@ b. 观测独立性假设
 <div class="math">$$P(O|\lambda)=\sum_{i=1}^N\alpha_T(i)$$</div>
 </strong></p>
 <p>利用前向概率计算 <span class="math">\(P(O|\lambda)\)</span> 的计算量是 <span class="math">\(O(N^2T)\)</span> 阶的，而不是直接计算的 <span class="math">\(O(TN^T)\)</span> 阶。</p>
-<h3>10.2.2 后向算法</h3>
+<h3 id="1022">10.2.2 后向算法</h3>
 <p><strong>
 定义 10.3（后向概率）给定隐马尔科夫模型 <span class="math">\(\lambda\)</span>，定义在时刻 <span class="math">\(t\)</span> 状态为 <span class="math">\(q_i\)</span> 的条件下，从 <span class="math">\(t+1\)</span> 到 <span class="math">\(T\)</span> 的部分观测序列为 <span class="math">\(o_{t+1},o_{t+2},\cdots,o_T\)</span> 的概率为后向概率，记作
 <div class="math">$$\beta_t(i)=P(o_{t+1},o_{t+2},\cdots,o_{T}|i_t=q_i,\lambda)$$</div>
 可以用递推的方法求得后向概率以及观测序列概率 <span class="math">\(P(O|\lambda)\)</span>。
 </strong></p>
 <p><strong>
-算法 10.3（观测序列概率的后向算法）<br>
-输入：隐马尔科夫模型 <span class="math">\(\lambda\)</span>，观测序列 <span class="math">\(O\)</span><br>
-输出：观测序列概率 <span class="math">\(P(O|\lambda)\)</span><br>
+算法 10.3（观测序列概率的后向算法）<br/>
+输入：隐马尔科夫模型 <span class="math">\(\lambda\)</span>，观测序列 <span class="math">\(O\)</span><br/>
+输出：观测序列概率 <span class="math">\(P(O|\lambda)\)</span><br/>
 (1)
 <div class="math">$$\beta_T(i)=1,\ i=1,2,\cdots,N$$</div>
 (2) 对 <span class="math">\(t=T-1,T-2,\cdots,1\)</span>
@@ -174,7 +207,7 @@ b. 观测独立性假设
 <p>根据定义，我们可得如下等式
 </p>
 <div class="math">$$\alpha_t(i)\beta_t(i)=P(i_t=q_i,O|\lambda)$$</div>
-<h3>10.2.3 一些概率与期望值的计算</h3>
+<h3 id="1023">10.2.3 一些概率与期望值的计算</h3>
 <p><span class="math">\(\blacksquare\)</span> 给定模型 <span class="math">\(\lambda\)</span> 和观测 <span class="math">\(O\)</span>，在时刻 <span class="math">\(t\)</span> 处于状态 <span class="math">\(q_i\)</span> 概率</p>
 <p>记
 </p>
@@ -207,9 +240,9 @@ b. 在观测 <span class="math">\(O\)</span> 下由状态 <span class="math">\(i
 c. 在观察 <span class="math">\(O\)</span> 下由状态 <span class="math">\(i\)</span> 转移到状态 <span class="math">\(j\)</span> 的期望值
 </p>
 <div class="math">$$\sum_{t=1}^{T-1}\xi_t(i,j)$$</div>
-<h2>10.3 学习算法</h2>
+<h2 id="103">10.3 学习算法</h2>
 <p>隐马尔科夫模型的学习，根据训练数据是否包括观测序列和对应的状态序列还是只有观测序列，可以分别由监督学习与非监督学习实现。</p>
-<h3>10.3.1 监督学习方法</h3>
+<h3 id="1031">10.3.1 监督学习方法</h3>
 <p>假设已给训练数据包含 <span class="math">\(S\)</span> 个长度相同的观测序列和对应的状态序列
 </p>
 <div class="math">$$\{(O_1,I_1),(O_2,I_2),\cdots,(O_S,I_S)\}$$</div>
@@ -225,7 +258,7 @@ c. 在观察 <span class="math">\(O\)</span> 下由状态 <span class="math">\(i
 <div class="math">$$\hat{b}_j(k)=\frac{B_{jk}}{\sum_{k=1}^MB_{jk}},\ j=1,2,\cdots,N;\ k=1,2,\cdots,M$$</div>
 <p><span class="math">\(\blacksquare\)</span> 初始状态概率 <span class="math">\(\pi_i\)</span> 的估计 <span class="math">\(\hat{\pi}_i\)</span> 为 <span class="math">\(S\)</span> 个样本中初始状态为 <span class="math">\(q_i\)</span> 的频率</p>
 <p>由于监督学习需要使用训练数据，而人工标注训练数据往往代价很高，有时就会利用非监督学习的方法。</p>
-<h3>10.3.2 Baum-Welch 算法</h3>
+<h3 id="1032-baum-welch">10.3.2 Baum-Welch 算法</h3>
 <p>假设给定训练数据只包含 <span class="math">\(S\)</span> 个长度为 <span class="math">\(T\)</span> 的观测序列 <span class="math">\(\{O_1,O_2,\cdots,O_S\}\)</span> 而没有对应的状态序列，目标是学习隐马尔科夫模型的参数。</p>
 <p>我们将观测序列数据看做观测数据 <span class="math">\(O\)</span>，状态序列数据看做不可观测的隐数据 <span class="math">\(I\)</span>，那么隐马尔科夫模型实际上是一个含有隐变量的概率模型
 </p>
@@ -290,7 +323,7 @@ Q(\lambda,\bar{\lambda}) &amp;=&amp; \sum_I\log\pi_{i_1}P(O,I|\bar{\lambda}) \\
 注意约束条件 <span class="math">\(\sum_{k=1}^Mb_{j}(k)=1\)</span>，注意，只有在 <span class="math">\(o_t=v_k\)</span> 时，<span class="math">\(b_j(o_t)\)</span> 对 <span class="math">\(b_j(k)\)</span> 的偏导才不是 0，利用拉格朗日乘子法求出
 </p>
 <div class="math">$$b_j(k)=\frac{\sum_{t=1}^TP(O,i_t=q_j|\bar{\lambda})\mathbb{I}(o_t=v_k)}{\sum_{t=1}^TP(O,i_t=q_j|\bar{\lambda})}$$</div>
-<h3>10.3.3 Baum-Welch 模型参数估计公式</h3>
+<h3 id="1033-baum-welch">10.3.3 Baum-Welch 模型参数估计公式</h3>
 <p>结合 10.2 节，得到
 </p>
 <div class="math">$$
@@ -299,12 +332,12 @@ b_j(k)=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)} \\
 \pi_i=\gamma_1(i)
 $$</div>
 <p><strong>
-算法 10.4（Baum-Welch 算法）<br>
-输入：观测数据 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span><br>
-输出：隐马尔科夫模型参数<br>
-(1) 初始化<br>
-对 <span class="math">\(n=0\)</span>，选取 <span class="math">\(a_{ij}^{(0)}\)</span>，<span class="math">\(b_j(k)^{(0)}\)</span>，<span class="math">\(\pi_i^{(0)}\)</span>，得到模型 <span class="math">\(\lambda^{(0)}=\left(A^{(0)},B^{(0)},\pi^{(0)}\right)\)</span><br>
-(2) 递推。对 <span class="math">\(n=1,2,\cdots,\)</span><br>
+算法 10.4（Baum-Welch 算法）<br/>
+输入：观测数据 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span><br/>
+输出：隐马尔科夫模型参数<br/>
+(1) 初始化<br/>
+对 <span class="math">\(n=0\)</span>，选取 <span class="math">\(a_{ij}^{(0)}\)</span>，<span class="math">\(b_j(k)^{(0)}\)</span>，<span class="math">\(\pi_i^{(0)}\)</span>，得到模型 <span class="math">\(\lambda^{(0)}=\left(A^{(0)},B^{(0)},\pi^{(0)}\right)\)</span><br/>
+(2) 递推。对 <span class="math">\(n=1,2,\cdots,\)</span><br/>
 <div class="math">$$a_{ij}^{(n+1)}=\frac{\sum_{t=1}^{T-1}\xi_t(i,j)}{\sum_{t=1}^{T-1}\gamma_t(i)} \\
 b_j(k)^{(n+1)}=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)} \\
 \pi_i^{(n+1)}=\gamma_1(i)$$</div>
@@ -313,8 +346,8 @@ b_j(k)^{(n+1)}=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)} \
 \xi_t(i,j)=\frac{\alpha_t(i)a_{ij}b_j(o_{t+1})\beta_{t+1}(j)}{\sum_{i=1}^N\sum_{j=1}^N\alpha_t(i)a_{ij}b_j(o_{t+1})\beta_{t+1}(j)}$$</div>
 (3) 终止。得到模型参数 <span class="math">\(\lambda^{(n+1)}=\left(A^{(n+1)},B^{(n+1)},\pi^{(n+1)}\right)\)</span>
 </strong></p>
-<h2>10.4 预测算法</h2>
-<h3>10.4.1 近似算法</h3>
+<h2 id="104">10.4 预测算法</h2>
+<h3 id="1041">10.4.1 近似算法</h3>
 <p>近似算法的思想是，在每个时刻 <span class="math">\(t\)</span> 选择在该时刻最有可能出现的状态 <span class="math">\(i_t^\star\)</span>，从而得到一个状态序列 <span class="math">\(I^\star=(i_1^\star,i_2^\star,\cdots,i_T^\star)\)</span>，并将它作为预测的结果。</p>
 <p>给定隐马尔科夫模型和观测序列，在时刻 <span class="math">\(t\)</span> 处于状态 <span class="math">\(q_i\)</span> 的概率 <span class="math">\(\gamma_t(i)\)</span> 是
 </p>
@@ -326,7 +359,7 @@ b_j(k)^{(n+1)}=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)} \
 <p>
 从而得到状态序列 <span class="math">\(I^\star=(i_1^\star,i_2^\star,\cdots,i_T^\star)\)</span></p>
 <p>近似算法的优点是计算简单，其缺点是不能保证预测的状态序列整体是最有可能的状态序列，因为预测的状态序列可能有实际不发生的部分。事实上，上述方法得到的状态序列中有可能存在转移概率为 0 的相邻状态。尽管如此，近似算法仍然是有用的。</p>
-<h3>10.4.2 维特比算法</h3>
+<h3 id="1042">10.4.2 维特比算法</h3>
 <p>维特比算法实际上用动态规划隐马尔可夫模型预测问题，即，用动态规划（dynamic programming）求概率最大路径(最优路径)。这时一条路径对应着一个状态序列。</p>
 <p>根据动态规划原理，最优路径具有这样的特征：如果最优路径在时刻 <span class="math">\(t\)</span> 通过节点 <span class="math">\(i_t^\star\)</span>，那么这一路径中“从节点 <span class="math">\(i_1^\star\)</span> 到终点 <span class="math">\(i_T^\star\)</span> 的部分路径”对于“从节点 <span class="math">\(i_1^\star\)</span> 到终点 <span class="math">\(i_T^\star\)</span> 的所有可能的部分路径”来说必须是最优的。</p>
 <p>根据这一原理，我们只需从时刻 <span class="math">\(t=1\)</span> 开始，递推的计算在时刻 <span class="math">\(t\)</span> 状态为 <span class="math">\(i\)</span> 的各条部分路径的最大概率，直至得到时刻 <span class="math">\(t=T\)</span> 时状态为 <span class="math">\(i\)</span> 的各条路径的最大概率。时刻 <span class="math">\(t=T\)</span> 的最大概率即为最优路径的概率 <span class="math">\(P^\star\)</span>，最优路径的终点 <span class="math">\(i_T^\star\)</span> 也就同时得到了。</p>
@@ -346,10 +379,10 @@ b_j(k)^{(n+1)}=\frac{\sum_{t=1,o_t=v_k}^T\gamma_t(j)}{\sum_{t=1}^T\gamma_t(j)} \
 </p>
 <div class="math">$$\psi_t(i)=\arg\max_{1\leq j\leq N}[\delta_{t-1}(j)a_{ji}],\ i=1,2,\cdots,N$$</div>
 <p><strong>
-算法 10.5（维特比算法）<br>
-输入：模型 <span class="math">\(\lambda=(A,B,\pi)\)</span> 和观测 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span><br>
-输出：最优路径 <span class="math">\(I^\star=(i_1^\star,i_2^\star,\cdots,i_T^\star)\)</span><br>
-(1) 初始化<br>
+算法 10.5（维特比算法）<br/>
+输入：模型 <span class="math">\(\lambda=(A,B,\pi)\)</span> 和观测 <span class="math">\(O=(o_1,o_2,\cdots,o_T)\)</span><br/>
+输出：最优路径 <span class="math">\(I^\star=(i_1^\star,i_2^\star,\cdots,i_T^\star)\)</span><br/>
+(1) 初始化<br/>
 <div class="math">$$\delta_1(i)=\pi_ib_i(o_1),\ i=1,2,\cdots,N \\
 \psi_1(i)=0,\ i=1,2,\cdots,N$$</div>
 (2) 递推，对 <span class="math">\(t=2,3,\cdots,T\)</span>

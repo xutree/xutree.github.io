@@ -54,9 +54,28 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#21">2.1 标量、向量、矩阵和张量</a></li>
+<li><a href="#22">2.2 矩阵和向量相乘</a></li>
+<li><a href="#23">2.3 范数</a></li>
+<li><a href="#24">2.4 特征分解</a></li>
+<li><a href="#25">2.5 奇异值分解</a></li>
+<li><a href="#26-">2.6 摩尔－彭若斯伪逆</a></li>
+<li><a href="#27">2.7 迹运算</a></li>
+<li><a href="#28">2.8 行列式</a></li>
+<li><a href="#29">2.9 实例：主成分分析</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <h2>2.1 标量、向量、矩阵和张量</h2>
+                
+<h2 id="21">2.1 标量、向量、矩阵和张量</h2>
 <p><strong>标量</strong>（scalar）：一个单独的数，用斜体小写字母表示，如 <span class="math">\(n\in\mathbb{R}\)</span> 中的 <span class="math">\(n\)</span></p>
 <p><strong>向量</strong>（vector）：一列数，用粗斜体小写字母表示
 </p>
@@ -85,7 +104,7 @@ A_{2,1} &amp; A_{2,2}
 <div class="math">$${\boldsymbol C}={\boldsymbol A}+{\boldsymbol b}\Longleftrightarrow C_{i,j}=A_{i,j}+b_j$$</div>
 <p>
 也就是向量 <span class="math">\({\boldsymbol b}\)</span> 和矩阵 <span class="math">\({\boldsymbol A}\)</span> 的每一行相加。</p>
-<h2>2.2 矩阵和向量相乘</h2>
+<h2 id="22">2.2 矩阵和向量相乘</h2>
 <p><strong>矩阵相乘</strong>（matrix product）：要求第一个矩阵的列数等于第二个矩阵的行数。满足分配律、结合律，一般不满足交换律。
 </p>
 <div class="math">$${\boldsymbol C}=\boldsymbol {AB}\Longleftrightarrow C_{i,j}=\sum_kA_{i,k}B_{k,j}$$</div>
@@ -103,7 +122,7 @@ A_{2,1} &amp; A_{2,2}
 和 Hadamard 乘积形式
 </p>
 <div class="math">$${\boldsymbol z}={\boldsymbol x}\odot{\boldsymbol y}$$</div>
-<h2>2.3 范数</h2>
+<h2 id="23">2.3 范数</h2>
 <p>有时我们需要衡量一个向量的大小。在机器学习中，我们经常使用<strong>范数</strong>（norm）来衡量向量的大小。形式上，<span class="math">\(L^p\)</span> 范数定义如下：
 </p>
 <div class="math">$$\|{\boldsymbol x}\|_p=\left(\sum_i|x_i|^p\right)^{\frac{1}{p}}$$</div>
@@ -128,7 +147,7 @@ A_{2,1} &amp; A_{2,2}
 <div class="math">$$\|{\boldsymbol A}\|_F=\sqrt{\sum_{i,j}A_{i,j}^2}$$</div>
 <p>
 其类似于向量的 <span class="math">\(L^2\)</span> 范数。</p>
-<h2>2.4 特征分解</h2>
+<h2 id="24">2.4 特征分解</h2>
 <p><strong>特征分解</strong>（eigendecomposition）是使用最广泛的矩阵分解之一，它将矩阵分解为一组特征值和特征向量。</p>
 <p>设方阵 <span class="math">\({\boldsymbol A}\)</span> 的特征值为 <span class="math">\(\lambda\)</span>，特征向量为 <span class="math">\({\boldsymbol v}\)</span>，即
 </p>
@@ -154,14 +173,14 @@ A_{2,1} &amp; A_{2,2}
 <p><strong>半负定矩阵</strong>（negative semidefinite）：所有特征值都是非正数的矩阵。</p>
 <p>对半正定矩阵 <span class="math">\(\boldsymbol A\)</span>，<span class="math">\(\forall \boldsymbol x,\ \boldsymbol x^\text{T}\boldsymbol{Ax}\geq0\)</span>。</p>
 <p>此外，正定矩阵还保证 <span class="math">\(\boldsymbol x^\text{T}\boldsymbol{Ax}=0\Rightarrow\boldsymbol x=\boldsymbol 0\)</span>。</p>
-<h2>2.5 奇异值分解</h2>
+<h2 id="25">2.5 奇异值分解</h2>
 <p><strong>奇异值分解</strong>（singular value decomposition，SVD）是另一种矩阵分解方法。</p>
 <div class="math">$$\boldsymbol A=\boldsymbol {UD}{\boldsymbol V}^\text{T}$$</div>
 <p>
 其中，<span class="math">\(\boldsymbol A\)</span> 是 <span class="math">\(m\times n\)</span> 的矩阵，<span class="math">\(\boldsymbol U\)</span> 是 <span class="math">\(m\times m\)</span> 的正交矩阵，<span class="math">\(\boldsymbol V\)</span> 是 <span class="math">\(n\times n\)</span> 的正交矩阵，<span class="math">\(\boldsymbol D\)</span> 是 <span class="math">\(m\times n\)</span> 的对角矩阵。</p>
 <p>对角矩阵 <span class="math">\(\boldsymbol D\)</span> 对角线上的元素称为矩阵 <span class="math">\(\boldsymbol A\)</span> 的奇异值（singular value）。矩阵 <span class="math">\(\boldsymbol U\)</span> 的列向量称为左奇异向量（left singular vector），它是 <span class="math">\(\boldsymbol {AA}^\text{T}\)</span> 的特征向量。矩阵 <span class="math">\(\boldsymbol V\)</span> 的列向量称为右奇异向量（right singular vector），它是 <span class="math">\(\boldsymbol A^\text{T}\boldsymbol A\)</span> 的特征向量。<span class="math">\(\boldsymbol A\)</span> 的非零奇异值是 <span class="math">\(\boldsymbol {AA}^\text{T}\)</span> 和 <span class="math">\(\boldsymbol A^\text{T}\boldsymbol A\)</span> 特征值的平方根。</p>
 <p>每个实数矩阵都有奇异值分解。</p>
-<h2>2.6 摩尔－彭若斯伪逆</h2>
+<h2 id="26-">2.6 摩尔－彭若斯伪逆</h2>
 <p>矩阵 <span class="math">\(\boldsymbol A\)</span> 的摩尔－彭若斯伪逆（Moore-Penrose pseudoinverse）定义为：
 </p>
 <div class="math">$$\boldsymbol A^+=\lim_{\alpha\to0^+}\left(\boldsymbol A^\text{T}\boldsymbol A+\alpha \boldsymbol I\right)^{-1}\boldsymbol A^\text{T}$$</div>
@@ -177,7 +196,7 @@ A_{2,1} &amp; A_{2,2}
 <p>
 当矩阵 <span class="math">\(\boldsymbol A\)</span> 的列数多于行数时，使用伪逆求解线性方程是众多可能解法中的一种，<span class="math">\(\boldsymbol x=\boldsymbol A^+\boldsymbol y\)</span> 是所有可行解中欧几里得范数 <span class="math">\(\|\boldsymbol x\|_2\)</span> 最小的那一个。</p>
 <p>当矩阵 <span class="math">\(\boldsymbol A\)</span> 的列数多于行数时，可能没有解，通过伪逆求得的 <span class="math">\(\boldsymbol x\)</span> 是使得 <span class="math">\(\|\boldsymbol {Ax}-\boldsymbol y\|_2\)</span> 最小的那一个。</p>
-<h2>2.7 迹运算</h2>
+<h2 id="27">2.7 迹运算</h2>
 <p>迹运算返回的是矩阵对角元素的和：
 </p>
 <div class="math">$$\text{Tr}(\boldsymbol A)=\sum_iA_{i,i}$$</div>
@@ -190,10 +209,10 @@ A_{2,1} &amp; A_{2,2}
 <li><span class="math">\(\text{Tr}(\boldsymbol{ABC})=\text{Tr}(\boldsymbol{CAB})=\text{Tr}(\boldsymbol{BCA})\)</span></li>
 <li><span class="math">\(\text{Tr}(a)=a\)</span></li>
 </ul>
-<h2>2.8 行列式</h2>
+<h2 id="28">2.8 行列式</h2>
 <p>记作 <span class="math">\(\text{det}(\boldsymbol A)\)</span>，等于矩阵特征值的乘积。</p>
 <p>行列式的绝对值可以用来衡量矩阵参与矩阵乘法后空间扩大或缩小了多少。如果行列式是 0，那么空间至少沿着某一维完全收缩了，使其失去了所有的体积；如果行列式是 1，那么这个转换保持空间体积不变。</p>
-<h2>2.9 实例：主成分分析</h2>
+<h2 id="29">2.9 实例：主成分分析</h2>
 <p><strong>主成分分析</strong>（principal components analysis，PCA）是一个简单的机器学习算法。</p>
 <p><strong>问题</strong>：假设在 <span class="math">\(\mathbb{R}^n\)</span> 空间中有 <span class="math">\(m\)</span> 个点 <span class="math">\(\left\{\boldsymbol x^{(1)},\cdots,\boldsymbol x^{(m)}\right\}\)</span>，我们希望对这些点进行有损压缩。有损压缩表示我们使用更少的内存，但损失一些精度去存储这些点。我们希望损失的精度尽可能少。</p>
 <p><strong>分析</strong>：编码这些点的一种方式是用低维表示。对于每个点 <span class="math">\(\boldsymbol x^{(i)}\in\mathbb{R}^n\)</span>，会有一个编码向量 <span class="math">\(\boldsymbol c^{(i)}\in\mathbb{R}^l\)</span>。如果 <span class="math">\(l&lt;n\)</span>，那么我们便达到目的。</p>

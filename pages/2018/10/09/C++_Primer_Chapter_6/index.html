@@ -54,42 +54,79 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#61">6.1 函数基础</a></li>
+<li><a href="#62">6.2 参数传递</a><ul>
+<li><a href="#621-const">6.2.1 const 形参和实参</a></li>
+<li><a href="#622">6.2.2 数组形参</a></li>
+<li><a href="#623-main">6.2.3 main：处理命令行选项</a></li>
+<li><a href="#624">6.2.4 含有可变形参的函数</a><ul>
+<li><a href="#6241-initializer_list">6.2.4.1 initializer_list 形参</a></li>
+<li><a href="#6242">6.2.4.2 省略符形参</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#63-return">6.3 返回类型和 return 语句</a></li>
+<li><a href="#64">6.4 函数重载</a><ul>
+<li><a href="#641-const">6.4.1 顶层 const</a></li>
+<li><a href="#642-const">6.4.2 底层 const</a></li>
+<li><a href="#643-const_cast">6.4.3 const_cast和重载</a></li>
+<li><a href="#644">6.4.4 作用域与重载</a></li>
+</ul>
+</li>
+<li><a href="#65">6.5 特殊用于语言特性</a><ul>
+<li><a href="#651">6.5.1 默认实参</a></li>
+<li><a href="#652">6.5.2 内联函数</a></li>
+<li><a href="#653-constexpr">6.5.3 constexpr 函数</a></li>
+<li><a href="#654">6.5.4 调试帮助</a><ul>
+<li><a href="#6541-assert">6.5.4.1 assert 预处理宏</a></li>
+<li><a href="#6542-ndebug">6.5.4.2 NDEBUG 预处理变量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#66">6.6 函数匹配</a></li>
+<li><a href="#67">6.7 函数指针</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p>函数是一个命名了的代码块。</p>
-<h2>函数基础</h2>
+                
+<p>函数是一个命名了的代码块。</p>
+<h2 id="61">6.1 函数基础</h2>
 <p>为了与 C 语言兼容，可以使用关键字<code>void</code>表示函数没有形参。</p>
 <p>函数的返回值不能是数组或者函数类型，但可以返回指向数组和函数的指针。</p>
 <p>自动对象：只存在于块执行期间的对象。当块的执行结束后，块中创建的自动对象的值就变成未定义的了。</p>
 <p>局部静态对象：在程序执行路径第一次经过对象定义语句时初始化，并且直到程序终止才销毁。如果没有显示初始化，则执行值初始化，内置类型的局部静态变量初始化为0。</p>
-<h2>参数传递</h2>
+<h2 id="62">6.2 参数传递</h2>
 <p>值传递和引用传递。</p>
 <p>当某种类型不支持拷贝操作时，函数只能通过引用形参访问该类型的对象。如 IO 类型。</p>
-<h3>const 形参和实参</h3>
+<h3 id="621-const">6.2.1 const 形参和实参</h3>
 <p>如果函数无须改变引用形参的值，最好将其声明为常量引用。</p>
 <p>此外，使用引用而非常量引用也会极大地限制函数所能接受的实参类型。例如，我们不能把<code>const</code>对象、字面值或者需要类型转换的对象传递给普通的引用形参，这种绝不像看起来那么简单，它可能造成出人意料的后果。考虑如下函数：</p>
 <div class="highlight"><pre><span></span><span class="nt">string</span><span class="p">::</span><span class="nd">size_type</span> <span class="nt">find_char</span><span class="o">(</span><span class="nt">string</span> <span class="o">&amp;</span><span class="nt">s</span><span class="o">,</span> <span class="nt">char</span> <span class="nt">c</span><span class="o">,</span> <span class="nt">string</span><span class="p">::</span><span class="nd">size_type</span> <span class="o">&amp;</span><span class="nt">occurs</span><span class="o">);</span>
 </pre></div>
-
-
 <p>则只能将 find_char 函数用于<code>string</code>对象。类似下面的调用将在编译时发生错误：</p>
-<div class="highlight"><pre><span></span>find_char(&quot;Hello World&quot;, &#39;o&#39;, ctr);
+<div class="highlight"><pre><span></span>find_char("Hello World", 'o', ctr);
 </pre></div>
-
-
 <p>还有一个更难察觉的问题。假如其它函数（正确的）将它们的形参定义成常量引用，那么上述的 find_char 函数无法在此类函数中正常使用。例如</p>
 <div class="highlight"><pre><span></span><span class="nt">bool</span> <span class="nt">is_sentence</span><span class="o">(</span><span class="nt">const</span> <span class="nt">string</span> <span class="o">&amp;</span><span class="nt">s</span><span class="o">)</span>
 <span class="p">{</span>
         <span class="n">string</span><span class="p">:</span><span class="o">:</span><span class="n">size_type</span> <span class="n">ctr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="err">return</span> <span class="err">find_char(s,</span> <span class="err">&#39;.&#39;,</span> <span class="err">ctr)</span> <span class="err">==</span> <span class="err">s.size()</span> <span class="err">-</span> <span class="err">1</span> <span class="err">&amp;&amp;</span> <span class="err">ctr</span> <span class="err">==</span> <span class="err">1</span><span class="p">;</span>
+        <span class="err">return</span> <span class="err">find_char(s,</span> <span class="err">'.',</span> <span class="err">ctr)</span> <span class="err">==</span> <span class="err">s.size()</span> <span class="err">-</span> <span class="err">1</span> <span class="err">&amp;&amp;</span> <span class="err">ctr</span> <span class="err">==</span> <span class="err">1</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
-
-
 <p>正确的修改思路是改正 find_char 函数的形参。如果实在不能修改 find_char，就在 is_sentence 内部定义一个<code>string</code>类型的变量，令其为 s 的副本，然后把这个对象传递给 find_char。</p>
 <p>用实参初始化形参时，会忽略顶层<code>const</code>。也就是说，当形参是顶层<code>const</code>时，传给它常量对象或者非常量对象都是可以的。</p>
 <p>可以使用一个非常量初始化一个底层<code>const</code>对象，但反过来不行。</p>
-<h3>数组形参</h3>
+<h3 id="622">6.2.2 数组形参</h3>
 <p>数组的两个性质：不允许拷贝数组；使用数组时会将其转换成指针。</p>
 <p>当我们为函数传递一个数组时，实际上传递的是指向数组首元素的指针。</p>
 <p>尽管不能以值传递的方式传递数组，但是我们可以把形参写成类似数组的形式：</p>
@@ -97,8 +134,6 @@
 void print(const int[]);
 void print(const int[10]);
 </pre></div>
-
-
 <p>尽管表现形式不同，但是上面的三个函数是等价的：每个函数的唯一形参都是<code>const int*</code>类型的。如果我们传给 print 函数的是一个数组，则实参自动的转换成指向数组首元素的指针，数组的大小对函数的调用没有影响。</p>
 <p>因为数组是以指针的形式传递给函数的，所以一开始函数并不知道数组的确切尺寸，调用者应该为此提供一些额外的信息：</p>
 <ul>
@@ -113,27 +148,21 @@ void print(const int[10]);
                 cout &lt;&lt; elem &lt;&lt; endl;
 }
 </pre></div>
-
-
-<h3>main：处理命令行选项</h3>
+<h3 id="623-main">6.2.3 main：处理命令行选项</h3>
 <div class="highlight"><pre><span></span>int main(int argc, char *argv[]) { ... }
 </pre></div>
-
-
 <p>第二个形参 argv 是一个数组，它的元素是指向 C 风格字符串的指针；第一个形参 argc 表示数组中字符串的数量。因为第二个形参是数组，所以 main 函数也可以定义成：</p>
 <div class="highlight"><pre><span></span>int main(int argc, char **argv) { ... }
 </pre></div>
-
-
 <p>当实参传给 main 函数之后，argv 的第一个元素指向程序的名字或者一个空字符串，接下来的元素依次传递命令行提供的实参，最后一个指针之后的元素值保证为0。</p>
-<h3>含有可变形参的函数</h3>
+<h3 id="624">6.2.4 含有可变形参的函数</h3>
 <p>为了编写能够处理不同数量实参的函数，C++11 新标准提供了两种主要的方法：</p>
 <ul>
 <li>如果所有实参类型相同，可以传递一个名为<code>initializer_list</code>的标准库类型</li>
 <li>如果实参的类型不同，可以编写可变参数模板</li>
 </ul>
 <p>C++ 还有一种特殊的形参类型（即省略号），可以用它传递可变数量的实参，不过需要注意的是，这种功能一般只用于与 C 函数交互的接口程序</p>
-<h4>initializer_list 形参</h4>
+<h4 id="6241-initializer_list">6.2.4.1 initializer_list 形参</h4>
 <p><code>initializer_list</code>类型定义在同名的头文件中。</p>
 <p><code>initializer_list</code>是一种类型模板，提供的操作如下：</p>
 <p><code>initializer_list &lt;T&gt; lst;</code>默认初始化；T 类型元素的空列表。</p>
@@ -147,21 +176,17 @@ void print(const int[10]);
 <p>如果想向<code>initializer_list</code>形参中传递一个值的序列，则必须把序列放在一对花括号内：</p>
 <div class="highlight"><pre><span></span>//expected和actual是string对象
 if (expected != actual)
-        error_msg({&quot;functionX&quot;, expected, actual});
+        error_msg({"functionX", expected, actual});
 else
-        error_msg({&quot;functionX&quot;, &quot;okay&quot;});
+        error_msg({"functionX", "okay"});
 </pre></div>
-
-
-<h4>省略符形参</h4>
+<h4 id="6242">6.2.4.2 省略符形参</h4>
 <p>省略符形参是为了便于 C++ 程序访问某些特殊的 C 代码而设置的，这些代码使用了名为 varargs 的 C 标准库功能。通常，省略符形参不应用于其他目的。你的 C 编译器文档会描述如何使用 varargs。</p>
 <p>省略符形参只能出现在形参列表的最后一个位置，无外乎两种形式，在第一种形式中，形参声明后面的逗号是可选的：</p>
 <div class="highlight"><pre><span></span>void foo(parm_list,...);
 void foo(...);
 </pre></div>
-
-
-<h2>返回类型和 return 语句</h2>
+<h2 id="63-return">6.3 返回类型和 return 语句</h2>
 <p>返回<code>void</code>的函数不要求非得有<code>return</code>语句，以为这类函数的最后一句会隐式的执行<code>return</code>。</p>
 <p>返回的值用于初始化调用点的一个临时量，该临时量就是函数调用的结果。</p>
 <p>不要返回局部对象的引用或指针。</p>
@@ -179,11 +204,9 @@ decltype(odd) *arrPtr(int i)
         return (i % 2) ? &amp;odd : &amp;even;
 }
 </pre></div>
-
-
 <p>arrPtr 使用关键字<code>decltype</code>表示它的返回类型是个指针，并且该指针所指的对象与 odd 的类型一致。因为 odd 是数组，所以 arrPtr 返回一个指向含有5个整数的数组的指针。有一个地方需要注意，<code>decltype</code>并不负责把数组类型转换成对应的指针，所以<code>decltype</code>的结果是个数组，要想表示 arrPtr 返回指针还必须在函数声明时加一个 * 符号。</p>
-<h2>函数重载</h2>
-<h3>顶层 const</h3>
+<h2 id="64">6.4 函数重载</h2>
+<h3 id="641-const">6.4.1 顶层 const</h3>
 <p>顶层<code>const</code>不影响传入函数的对象。一个用于顶层<code>const</code>的形参无法和一个没有顶层<code>const</code>的形参区分开，无法重载：</p>
 <div class="highlight"><pre><span></span>Record lookup(Phone);
 Record lookup(const Phone);
@@ -191,9 +214,7 @@ Record lookup(const Phone);
 Record lookup(Phone*);
 Record lookup(Phone* const);
 </pre></div>
-
-
-<h3>底层 const</h3>
+<h3 id="642-const">6.4.2 底层 const</h3>
 <p>底层<code>const</code>可以实现重载。当我们传递一个非常量对象或者指向非常量对象的指针时，编译器会优先选用非常量的版本：</p>
 <div class="highlight"><pre><span></span>Record lookup(Account&amp;);
 Record lookup(const Account&amp;);
@@ -201,9 +222,7 @@ Record lookup(const Account&amp;);
 Record lookup(Account*);
 Record lookup(const Account*);
 </pre></div>
-
-
-<h3>const_cast和重载</h3>
+<h3 id="643-const_cast">6.4.3 const_cast和重载</h3>
 <div class="highlight"><pre><span></span>//函数1
 const string &amp;shorterString(const string &amp;s1, const strinf &amp;s2)
 {
@@ -217,57 +236,49 @@ string &amp;shorterString(string &amp;s1, string &amp;s2)
         return const_cast&lt;string&amp;&gt;(r);
 }
 </pre></div>
-
-
 <p>函数1的参数和返回类型都是<code>const string</code>的引用。我们当然可以对两个非常量的<code>string</code>实参调用这个函数，但返回的结果仍然是<code>const string</code>的引用。</p>
-<h3>作用域与重载</h3>
+<h3 id="644">6.4.4 作用域与重载</h3>
 <p>编译器首先在当前作用域寻找函数，一旦找到，就会忽略掉外层作用域中的同名实体，剩下的工作就是检查函数调用是否有效了。</p>
 <p>在C++语言中，名字查找发生在类型检查之前。</p>
-<h2>特殊用于语言特性</h2>
-<h3>默认实参</h3>
+<h2 id="65">6.5 特殊用于语言特性</h2>
+<h3 id="651">6.5.1 默认实参</h3>
 <p>一旦一个形参被赋予了默认值，它后面的所有形参都必须有默认值。</p>
 <p>在给定的作用域中，一个形参只能被赋予一次默认实参。</p>
 <p>局部变量不能作为默认实参。</p>
 <p>用作函数实参的名字在函数声明所在的作用域内解析，而这些名字的求值过程发生在函数调用时：</p>
 <div class="highlight"><pre><span></span>sz wd = 80;
-char def = &#39;&#39;;
+char def = '';
 sz ht();
 string screen(sz = ht(), sz = wd, char = def);
 
 void f()
 {
-    def = &#39;*&#39;;  //改变默认实参的值
+    def = '*';  //改变默认实参的值
     sz wd = 100;    //隐藏了外层定义的wd，但是没有改变默认值
-    window = screen();  //调用 screen(ht(), 80, &#39;*&#39;)
+    window = screen();  //调用 screen(ht(), 80, '*')
 }
 </pre></div>
-
-
-<h3>内联函数</h3>
+<h3 id="652">6.5.2 内联函数</h3>
 <p>以空间换时间。在函数返回类型前面加上关键字<code>inline</code>。内联说明只是向编译器发出一个请求，编译器可以选择忽略这个请求。</p>
-<h3>constexpr 函数</h3>
+<h3 id="653-constexpr">6.5.3 constexpr 函数</h3>
 <p>能用于常量表达式的函数。函数的返回类型及所有的形参类型都得是字面值类型。函数体中必须有且只有一条<code>return</code>语句。</p>
 <div class="highlight"><pre><span></span>constexpr int new_sz() { return 42; }
 constexpr int foo = new_sz();
 </pre></div>
-
-
 <p>编译器在程序编译时验证 new_sz 函数的返回类型。执行初始化任务时，编译器把对<code>constexpr</code>函数的调用替换成其结果值。为了能在编译过程中随时展开，<code>constexpr</code>函数被隐式指定为内联函数。</p>
 <p><code>constexpr</code>函数体内也可以包含其他语句，只要这些语句在运行时不执行任何操作就行，例如，空语句、类型别名及<code>using</code>声明。</p>
 <p><code>constexpr</code>函数不一定返回常量表达式，当把这类函数用在需要常量表达式的上下文中时，会出错。</p>
 <p>把内联函数和<code>constexpr</code>函数放在头文件内。</p>
 <p>和其它函数不一样，内联函数和<code>constexpr</code>函数可以在程序中多次定义，但是多个定义必须完全一致。</p>
-<h3>调试帮助</h3>
-<h4>assert 预处理宏</h4>
+<h3 id="654">6.5.4 调试帮助</h3>
+<h4 id="6541-assert">6.5.4.1 assert 预处理宏</h4>
 <p>所谓预处理宏其实是一个预处理变量，它的行为有点类似于内联函数。<code>assert</code>宏使用一个表达式作为它的条件：<code>assert(expr);</code></p>
 <p>首先对 expr 求值，如果表达式为假，<code>assert</code>输出信息并终止程序的执行。如果表达式为真，<code>assert</code>什么也不做。</p>
 <p><code>assert</code>定义在cassert头文件中，<code>assert</code>宏常用于检查“不能发生”的条件。</p>
-<h4>NDEBUG 预处理变量</h4>
+<h4 id="6542-ndebug">6.5.4.2 NDEBUG 预处理变量</h4>
 <p><code>assert</code>的行为依赖于<code>NDEBUG</code>预处理变量的状态。如果定义了<code>NDEBUG</code>，<code>assert</code>什么都不做，默认情况下没有定义<code>NDEBUG</code>，<code>assert</code>将执行运行时检查。我们可以使用一个<code>#define</code>语句定义<code>NDEBUG</code>，从而关闭调试状态。同时，很多编译器都提供了一个命令行选项使我们可以定义预处理变量：</p>
 <div class="highlight"><pre><span></span>$ CC -D NDEBUG main.C <span class="c1">#use /D with the Mocrosoft compiler.</span>
 </pre></div>
-
-
 <p>除了使用<code>assert</code>外，也可以使用<code>NDEBUG</code>编写自己的条件调试代码。如果<code>NDEBUG</code>未定义，将执行<code>#ifndef</code>和<code>#endif</code>之间的代码；如果定义了<code>NDEBUG</code>，这些代码将被忽略掉。</p>
 <p>编译器为每个函数都定义了<code>__func__</code>，它是一个<code>const char</code>局部静态数组，用于存放函数的名字，除了 C++ 编译器定义的<code>__func__</code>之外，预处理器还定义了另外4个对于程序调试很有用的名字：</p>
 <ul>
@@ -276,17 +287,15 @@ constexpr int foo = new_sz();
 <li><code>__TIME__</code> 存放文件编译时间的字符串字面值</li>
 <li><code>__DATE__</code> 存放文件编译日期的字符串字面值</li>
 </ul>
-<h2>函数匹配</h2>
+<h2 id="66">6.6 函数匹配</h2>
 <p>候选函数：函数匹配的第一步是选定本次调用对应的重载函数集。</p>
 <p>可行函数：形参数量与本次提供的实参数量相等（默认形参可以少于）；每个实参的类型与对应的形参相同，或者可以转换成形参的类型。</p>
 <p>寻找最佳匹配（如果有的话）：该函数每个实参的匹配都不劣于其他可行函数需要的匹配；至少有一个实参的匹配优于其他可行函数提供的匹配。</p>
 <p>如果没找到可行函数：编译器报告无匹配函数的错误；如果最佳匹配不唯一，编译器报告二义性错误。</p>
-<h2>函数指针</h2>
+<h2 id="67">6.7 函数指针</h2>
 <p>要声明一个函数指针，只需要用指针替换函数名：</p>
 <div class="highlight"><pre><span></span>bool (*pf)(const string &amp;, const string &amp;); //未初始化，pf 两端括号必不可少
 </pre></div>
-
-
 <p>当把函数名作为一个值使用时，该函数自动转换为指针，也就是说取地址符是可选的。同样，我们可以直接用函数指针调用函数，解引用符也是可选的。</p>
 <p>不同类型的函数指针之前不存在转换规则。</p>
 <p>函数指针没有指向任何一个函数：将函数指针赋为0或者 <code>nullptr</code>。</p>
@@ -296,8 +305,6 @@ void test(bool pf(const string &amp;, const string &amp;));
 //等价的定义
 void test(bool (*pf)(const string &amp;, const string &amp;));
 </pre></div>
-
-
 <p>如果函数返回指向函数的指针，那么必须显示的将返回类型指定为指针。</p>
                 <aside>
                     <hr />

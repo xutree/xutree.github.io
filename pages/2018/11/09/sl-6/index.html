@@ -54,12 +54,41 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#61">6.1 逻辑回归模型</a><ul>
+<li><a href="#611">6.1.1 逻辑分布</a></li>
+<li><a href="#612">6.1.2 二项逻辑回归模型</a></li>
+<li><a href="#613">6.1.3 模型参数估计</a></li>
+<li><a href="#614">6.1.4 多项逻辑回归</a></li>
+</ul>
+</li>
+<li><a href="#62">6.2 最大熵模型</a><ul>
+<li><a href="#621">6.2.1 最大熵原理</a></li>
+<li><a href="#622">6.2.2 最大熵模型的定义</a></li>
+<li><a href="#623">6.2.3 最大熵模型的学习</a></li>
+<li><a href="#624">6.2.4 极大似然估计</a></li>
+</ul>
+</li>
+<li><a href="#63">6.3 模型学习的最优化算法</a><ul>
+<li><a href="#631">6.3.1 改进的迭代尺度法</a></li>
+<li><a href="#632">6.3.2 拟牛顿法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p>逻辑回归（logistic regression）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。</p>
+                
+<p>逻辑回归（logistic regression）是统计学习中的经典分类方法。最大熵是概率模型学习的一个准则，将其推广到分类问题得到最大熵模型（maximum entropy model）。</p>
 <p>逻辑回归模型和最大熵模型都属于对数线性模型。</p>
-<h2>6.1 逻辑回归模型</h2>
-<h3>6.1.1 逻辑分布</h3>
+<h2 id="61">6.1 逻辑回归模型</h2>
+<h3 id="611">6.1.1 逻辑分布</h3>
 <p><strong>
 定义 6.1（逻辑分布）设 <span class="math">\(X\)</span> 是连续随机变量，<span class="math">\(X\)</span> 服从逻辑分布是指 <span class="math">\(X\)</span> 具有下列分布函数和密度函数：
 <div class="math">$$\begin{eqnarray}
@@ -71,9 +100,9 @@ f(x) &amp;=&amp; F'(x)=\frac{\text{e}^{-(x-\mu)/\gamma}}{\gamma(1+\text{e}^{-(x-
 <p>下图中绘制了对于不用 <span class="math">\(\gamma\)</span> 逻辑分布函数和概率密度函数。分布函数是一条 S 形曲线（sigmoid curve）。该曲线以点 <span class="math">\(\left(\mu,\frac{1}{2}\right)\)</span> 为中心对称，即满足
 </p>
 <div class="math">$$F(-x+\mu)+F(x+\mu)=1$$</div>
-<p><img alt="逻辑分布" src="https://xutree.github.io/images/statistical_learning_6.1.png"></p>
+<p><img alt="逻辑分布" src="https://xutree.github.io/images/statistical_learning_6.1.png"/></p>
 <p>曲线在中心附近增长速度较快，在两端增长速度较慢。</p>
-<h3>6.1.2 二项逻辑回归模型</h3>
+<h3 id="612">6.1.2 二项逻辑回归模型</h3>
 <p>二项逻辑回归模型（binomial logistic regression model）是一种分类模型，由条件概率 <span class="math">\(P(Y|X)\)</span> 表示，形式为参数化的逻辑分布。这里，随机变量 <span class="math">\(X\)</span> 取值为实数，随机变量 <span class="math">\(Y\)</span> 取值为 1 或 0，我们通过监督学习的方法来估计模型参数。</p>
 <p><strong>
 定义 6.2 （逻辑回归模型）二项逻辑回归模型是如下的条件概率分布：
@@ -108,7 +137,7 @@ P(Y=0|x) &amp;=&amp; \frac{1}{1+\exp(w\cdot x)}
 <div class="math">$$P(Y=1|x)=\frac{\exp(w\cdot x)}{1+\exp(w\cdot x)}$$</div>
 <p>
 上面的分布实际上是逻辑分布。这是，线性函数的值越接近 <span class="math">\(+\infty\)</span>，概率值就越接近 1；线性函数的值越接近 <span class="math">\(-\infty\)</span>，概率在就越接近 0。这样的模型就是逻辑回归模型。</p>
-<h3>6.1.3 模型参数估计</h3>
+<h3 id="613">6.1.3 模型参数估计</h3>
 <p>逻辑回归模型学习时，对于给定的训练数据集
 </p>
 <div class="math">$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
@@ -137,7 +166,7 @@ L(w) &amp;=&amp; \sum_{i=1}^N\left[y_i\log\pi(x_i)+(1-y_i)\log(1-\pi(x_i))\right
 </p>
 <div class="math">$$P(Y=1|x)=\frac{\exp(\hat{w}\cdot x)}{1+\exp(\hat{w}\cdot x)} \\
 P(Y=0|x)=\frac{1}{1+\exp(\hat{w}\cdot x)}$$</div>
-<h3>6.1.4 多项逻辑回归</h3>
+<h3 id="614">6.1.4 多项逻辑回归</h3>
 <p>可以将二项回归模型推广到多项逻辑回归模型（multi-nominal logistic regression model），用于多类分类。</p>
 <p>假设离散型随机变量 <span class="math">\(Y\)</span> 的取值集合是 <span class="math">\(\{1,2,\cdots,K\}\)</span>，那么多项逻辑回归模型是
 </p>
@@ -146,9 +175,9 @@ P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}\exp(w_k\cdot x)}$$</div>
 <p>
 这里，<span class="math">\(x\in\mathbb{R}^{n+1}\)</span>，<span class="math">\(w_k\in\mathbb{R}^{n+1}\)</span>
 二项逻辑回归的参数估计法也可以推广到多项逻辑回归。</p>
-<h2>6.2 最大熵模型</h2>
+<h2 id="62">6.2 最大熵模型</h2>
 <p>最大熵模型（maximum entropy model）由最大熵原理推导实现。</p>
-<h3>6.2.1 最大熵原理</h3>
+<h3 id="621">6.2.1 最大熵原理</h3>
 <p>最大熵原理是概率模型学习的一个准则。最大熵原理认为：学习概率模型时，在所有可能的概率模型（分布）中，熵最大的模型时最好的模型。</p>
 <p>通常用约束条件来确定概率模型的集合，所以，最大熵原理也可以表述为在满足约束条件的模型集合中选取熵最大的模型。</p>
 <p>假设离散随机变量 <span class="math">\(X\)</span> 的概率分布是 <span class="math">\(P(X)\)</span>，则其熵是
@@ -160,7 +189,7 @@ P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}\exp(w_k\cdot x)}$$</div>
 <div class="math">$$0\leq H(P)\leq\log |X|$$</div>
 <p>
 式中，<span class="math">\(|X|\)</span> 是 <span class="math">\(X\)</span> 取值个数，当且仅当 <span class="math">\(X\)</span> 的分布是均匀分布时右边的等号成立。也就是说，当 <span class="math">\(X\)</span> 服从均匀分布时，熵最大。</p>
-<h3>6.2.2 最大熵模型的定义</h3>
+<h3 id="622">6.2.2 最大熵模型的定义</h3>
 <p>最大熵原理是统计学习的一般原理，将它应用到分类得到最大熵模型。</p>
 <p>假设分类模型是一个条件概率分布 <span class="math">\(P(Y|X)\)</span>，给定一个训练数据集
 </p>
@@ -203,7 +232,7 @@ P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}\exp(w_k\cdot x)}$$</div>
 <div class="math">$$H(P)=-\sum_{x,y}\tilde{P}(x)P(y|x)\log P(y|x)$$</div>
 则模型集合 <span class="math">\({\cal C}\)</span> 中条件熵 <span class="math">\(H(P)\)</span> 最大的模型称为最大熵模型。式中的对数为自然对数。
 </strong></p>
-<h3>6.2.3 最大熵模型的学习</h3>
+<h3 id="623">6.2.3 最大熵模型的学习</h3>
 <p>最大熵模型的学习过程就是求解最大熵模型的过程。最大熵模型的学习可以形式化为约束最优化问题。</p>
 <p>对于给定的训练数据集
 </p>
@@ -283,7 +312,7 @@ P(y|x) &amp;=&amp; \exp\left(\sum_{i=1}^nw_if_i(x,y)+w_0-1\right) \\
 故最终的最大熵模型是
 </p>
 <div class="math">$$P^\star=P_{w^\star}=P_{w^\star}(y|x)$$</div>
-<h3>6.2.4 极大似然估计</h3>
+<h3 id="624">6.2.4 极大似然估计</h3>
 <p>从最大熵模型学习中可以看出，最大熵模型是由下面两个式子表示的条件概率分布：
 </p>
 <div class="math">$$P_w(y|x)=\frac{1}{Z_w(x)}\exp\left(\sum_{i=1}^nw_if_i(x,y)\right) \\
@@ -341,8 +370,8 @@ Z_w(x)=\sum_y\exp\left(\sum_{i=1}^nw_if_i(x,y)\right)$$</div>
 <p>
 这里，<span class="math">\(x\in\mathbb{R}^n\)</span> 为输入，<span class="math">\(y\in\{1,2,\cdots,K\}\)</span> 为输出，<span class="math">\(w\in\mathbb{R}^n\)</span> 为权值向量，<span class="math">\(f_i(x,y)\)</span>，<span class="math">\(i=1,2,\cdots,n\)</span> 为任意实值特征函数。</p>
 <p>最大熵模型与逻辑回归模型有着类似的形式，它们又称为对数线性模型（log linear model）。模型学习就是在给定的训练数据条件下对模型进行极大似然估计或正则化的极大似然估计。</p>
-<h2>6.3 模型学习的最优化算法</h2>
-<h3>6.3.1 改进的迭代尺度法</h3>
+<h2 id="63">6.3 模型学习的最优化算法</h2>
+<h3 id="631">6.3.1 改进的迭代尺度法</h3>
 <p>改进的迭代尺度法（improved iterative scaling，IIS）是一种最大熵模型学习的最优化算法。</p>
 <p>已知最大熵模型：
 </p>
@@ -419,16 +448,16 @@ B(\delta|w) &amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^n\delta_if_i(x,y)+1 \
 <p>
 于是，依次对 <span class="math">\(\delta_i\)</span> 求解上述方程就可以求出 <span class="math">\(\delta\)</span>。</p>
 <p><strong>
-算法 6.1（改进的迭代尺度算法 IIS）<br>
-输入：特征函数 <span class="math">\(f_1,f_2,\cdots,f_n\)</span>；经验分布函数 <span class="math">\(\tilde{P}(X,Y)\)</span>，模型 <span class="math">\(P_w(y|x)\)</span><br>
-输出：最优参数值 <span class="math">\(w_i^\star\)</span>；最优模型 <span class="math">\(P_{w^\star}\)</span><br>
-(1) 对所有 <span class="math">\(i\in\{1,2,\cdots,n\}\)</span>，取初值 <span class="math">\(w_i=0\)</span><br>
-(2) 对每一 <span class="math">\(i\in\{1,2,\cdots,n\}\)</span>：<br>
+算法 6.1（改进的迭代尺度算法 IIS）<br/>
+输入：特征函数 <span class="math">\(f_1,f_2,\cdots,f_n\)</span>；经验分布函数 <span class="math">\(\tilde{P}(X,Y)\)</span>，模型 <span class="math">\(P_w(y|x)\)</span><br/>
+输出：最优参数值 <span class="math">\(w_i^\star\)</span>；最优模型 <span class="math">\(P_{w^\star}\)</span><br/>
+(1) 对所有 <span class="math">\(i\in\{1,2,\cdots,n\}\)</span>，取初值 <span class="math">\(w_i=0\)</span><br/>
+(2) 对每一 <span class="math">\(i\in\{1,2,\cdots,n\}\)</span>：<br/>
 (2.a) 令 <span class="math">\(\delta_i\)</span> 是方程
 <div class="math">$$\sum_x\tilde{P}(x)\sum_yP_w(y|x)f_i(x,y)\exp\left(\delta_if^\sharp(x,y)\right)=\text{E}_{\tilde{P}}(f_i)$$</div>
 的解，这里
-<div class="math">$$f^\sharp(x,y)=\sum_{i=1}^nf_i(x,y)$$</div><br>
-(2.b) 更新：<span class="math">\(w_i\leftarrow w_i+\delta_i\)</span><br>
+<div class="math">$$f^\sharp(x,y)=\sum_{i=1}^nf_i(x,y)$$</div><br/>
+(2.b) 更新：<span class="math">\(w_i\leftarrow w_i+\delta_i\)</span><br/>
 (3) 如果不是所有 <span class="math">\(w_i\)</span> 都收敛，重复步骤 (2)
 </strong></p>
 <p>这一算法关键步骤是 (2.a)，如果 <span class="math">\(f^\sharp(x,y)\)</span> 是常数，即对任意的 <span class="math">\(x\)</span>，<span class="math">\(y\)</span>，有 <span class="math">\(f^\sharp(x,y)=M\)</span>，那么 <span class="math">\(\delta_i\)</span> 可以显示的表示为
@@ -436,7 +465,7 @@ B(\delta|w) &amp;=&amp; \sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^n\delta_if_i(x,y)+1 \
 <div class="math">$$\delta_i=\frac{1}{M}\log\frac{\text{E}_\tilde{P}(f_i)}{\text{E}_P(f_i)}$$</div>
 <p>
 如果 <span class="math">\(f^\sharp(x,y)\)</span> 不是常数，就必须数值计算求 <span class="math">\(\delta_i\)</span>，简单有效的方法是牛顿法，由于方程有单根，因此牛顿法恒收敛，且收敛速度很快。</p>
-<h3>6.3.2 拟牛顿法</h3>
+<h3 id="632">6.3.2 拟牛顿法</h3>
 <p>最大熵模型学习还可以应用牛顿法或拟牛顿法。</p>
 <p>对于最大熵模型
 </p>
@@ -454,15 +483,15 @@ $$</div>
 </p>
 <div class="math">$$\frac{\partial f(w)}{\partial w_i}=\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)-\text{E}_{\tilde{P}}(f_i),i=1,2,\cdots,n$$</div>
 <p><strong>
-算法 6.2（最大熵模型学习的 BFGS）算法<br>
-输入：特征函数 <span class="math">\(f_1,f_2,\cdots,f_n\)</span>；经验分布 <span class="math">\(\tilde{P}(x,y)\)</span>，目标函数 <span class="math">\(f(w)\)</span>，梯度 <span class="math">\(g(w)=\nabla f(w)\)</span>，精度要求 <span class="math">\(\epsilon\)</span><br>
-输出：最优化参数值 <span class="math">\(w^\star\)</span>；最优模型 <span class="math">\(P_{w^\star}(y|x)\)</span><br>
-(1) 选定初始点 <span class="math">\(w^{(0)}\)</span>，取 <span class="math">\({\bf B_0}\)</span> 为正定对称矩阵，置 <span class="math">\(k=0\)</span><br>
-(2) 计算 <span class="math">\(g_k=g(w^{(k)})\)</span>，若 <span class="math">\(\|g_k\|&lt;\epsilon\)</span>，则停止计算，得 <span class="math">\(w^\star=w^{(k)}\)</span>；否则，转到 (3)<br>
-(3) 由 <span class="math">\({\bf B_k}p_k=-g_k\)</span> 求出 <span class="math">\(p_k\)</span><br>
+算法 6.2（最大熵模型学习的 BFGS）算法<br/>
+输入：特征函数 <span class="math">\(f_1,f_2,\cdots,f_n\)</span>；经验分布 <span class="math">\(\tilde{P}(x,y)\)</span>，目标函数 <span class="math">\(f(w)\)</span>，梯度 <span class="math">\(g(w)=\nabla f(w)\)</span>，精度要求 <span class="math">\(\epsilon\)</span><br/>
+输出：最优化参数值 <span class="math">\(w^\star\)</span>；最优模型 <span class="math">\(P_{w^\star}(y|x)\)</span><br/>
+(1) 选定初始点 <span class="math">\(w^{(0)}\)</span>，取 <span class="math">\({\bf B_0}\)</span> 为正定对称矩阵，置 <span class="math">\(k=0\)</span><br/>
+(2) 计算 <span class="math">\(g_k=g(w^{(k)})\)</span>，若 <span class="math">\(\|g_k\|&lt;\epsilon\)</span>，则停止计算，得 <span class="math">\(w^\star=w^{(k)}\)</span>；否则，转到 (3)<br/>
+(3) 由 <span class="math">\({\bf B_k}p_k=-g_k\)</span> 求出 <span class="math">\(p_k\)</span><br/>
 (4) 一维搜索：求 <span class="math">\(\lambda_k\)</span> 使得
 <div class="math">$$f(w^{(k)}+\lambda_kp_k)=\min_{\lambda\geq0}f(w^{(k)}+\lambda p_k)$$</div>
-(5) 置 <span class="math">\(w^{(k+1)}=w^{(k)}+\lambda_k p_k\)</span><br>
+(5) 置 <span class="math">\(w^{(k+1)}=w^{(k)}+\lambda_k p_k\)</span><br/>
 (6) 计算 <span class="math">\(g_{k+1}=g(w^{(k+1)})\)</span>，若 <span class="math">\(\|g_{k+1}\|&lt;\epsilon\)</span>，则停止计算，得 <span class="math">\(w^\star=w^{(k+1)}\)</span>；否则，按照下式求出 <span class="math">\({\bf B_{k+1}}\)</span>
 <div class="math">$${\bf B_{k+1}}={\bf B_k}+\frac{y_ky_k^\text{T}}{y_k^\text{T}\delta_k}-\frac{{\bf B_k}\delta_k\delta_k^\text{T}{\bf B_k}}{\delta_k^\text{T}{\bf B_k}\delta_k}$$</div>
 其中，

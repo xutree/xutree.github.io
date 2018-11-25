@@ -54,27 +54,36 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1-pelican">1. 安装 Pelican</a></li>
+<li><a href="#2-packages">2. 可选的 Packages</a></li>
+<li><a href="#3">3. 更新</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <h2>安装 Pelican</h2>
+                
+<h2 id="1-pelican">1. 安装 Pelican</h2>
 <p><a href="https://blog.getpelican.com/">Pelican</a>目前支持最好的是 Python 2.7 和 3.3+，早期版本的 Python 已经不支持了。有许多不同的方法可以安装 Pelican，最简单的方法是使用 pip，在终端输入：</p>
 <div class="highlight"><pre><span></span>    pip install pelican
 </pre></div>
-
-
 <p>上面是最简单的方法，官方更为推荐的方法是利用 <a href="http://www.virtualenv.org/">virtualenv</a> 为 Pelican 建立一个虚拟环境。假设你已经安装好了 virtualenv，下面打开终端，开始为 Pelican 新建一个虚拟环境：</p>
 <div class="highlight"><pre><span></span>    virtualenv ~/virtualenv/pelican
     cd ~/virtualenv/pelican
     source bin/activate
 </pre></div>
-
-
 <p>当虚拟环境被创建并激活以后，然后利用<code>pip install pelican</code>安装 Pelican。</p>
 <p>当 Pelican 安装好以后，你可以在终端输入<code>pelican --help</code>查看使用选项。</p>
-<h2>可选的 Packages</h2>
+<h2 id="2-packages">2. 可选的 Packages</h2>
 <p>如果你计划用 <a href="http://pypi.python.org/pypi/Markdown">Markdown</a> 来书写你的网页的话，你需要安装 Markdown：<code>pip install Markdown</code></p>
 <p>通过设置 Pelican 的 pelicanconf.py 文件，你可以对生成的 HTML 文件启用增强语法。但是首先你需要安装 <a href="https://pypi.org/project/typogrify/">Typogrify</a>：<code>pip install typorify</code></p>
-<h2>更新</h2>
+<h2 id="3">3. 更新</h2>
 <p>更新到最新的稳定版本，使用：
 <code>pip install --upgrade pelican</code></p>
                 <aside>
