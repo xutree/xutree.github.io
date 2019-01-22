@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content=", 教程, " />
+    <title>为 Torch 安装特定版本的 libpng  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2019/01/22/Torch_libpng/"> 为 Torch 安装特定版本的 libpng  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <p>为了跑别人的程序，遇到了下面的问题</p>
+<div class="highlight"><pre><span></span>libpng warning: Application built with libpng-1.4.12 but running with 1.6.35
+</pre></div>
+
+
+<p>利用 <code>brew info libpng</code> 查询本机安装版本，输出如下</p>
+<div class="highlight"><pre><span></span>/usr/local/Cellar/libpng/1.6.29 (26 files, 1.2MB)
+  Poured from bottle on 2017-06-25 at 21:23:18
+/usr/local/Cellar/libpng/1.6.31 (26 files, 1.2MB)
+  Poured from bottle on 2017-08-22 at 12:35:00
+/usr/local/Cellar/libpng/1.6.34 (26 files, 1.2MB)
+  Poured from bottle on 2017-12-04 at 23:07:49
+/usr/local/Cellar/libpng/1.6.35 (26 files, 1.2MB)
+  Poured from bottle on 2018-10-07 at 17:36:58
+</pre></div>
+
+
+<p>用下面代码查看了 brew 中 libpng 的 commit 信息</p>
+<div class="highlight"><pre><span></span>cd $(brew --repository)/Library/Taps/homebrew/homebrew-core
+git log master --  Formula/libpng.rb
+</pre></div>
+
+
+<p>发现并没有版本 1.4.12，于是自己编译</p>
+<div class="highlight"><pre><span></span>cd /usr/local/src
+curl --remote-name --location http://download.sourceforge.net/libpng/libpng-1.4.12.tar.gz
+tar -xzvf libpng-1.4.12.tar.gz
+cd libpng-1.4.12
+./configure --prefix=/usr/local/Cellar/libpng/1.4.12
+make
+make install
+</pre></div>
+
+
+<p>上面的 prefix 我设置为 brew 安装 libpng 的位置。安装好以后执行</p>
+<div class="highlight"><pre><span></span>brew switch libpng 1.4.12
+</pre></div>
+
+
+<p>切换到 1.4.12 版本。还有最后一步工作，之前 Torch 是 luarocks 使用 libpng-1.6.35 编译，现在要重新编译</p>
+<div class="highlight"><pre><span></span>luarocks remove image
+luarocks install image
+</pre></div>
+
+
+<p>参考：</p>
+<ul>
+<li><a href="https://github.com/torch/image/issues/137">https://github.com/torch/image/issues/137</a></li>
+<li><a href="https://mac-dev-env.patrickbougie.com/libpng/">https://mac-dev-env.patrickbougie.com/libpng/</a></li>
+<li><a href="https://stackoverflow.com/questions/3987683/homebrew-install-specific-version-of-formula">https://stackoverflow.com/questions/3987683/homebrew-install-specific-version-of-formula</a></li>
+</ul>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/12/07/dl-5/">
+                                    深度学习 第五章 机器学习基础
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">
+                                    深度学习 第四章 数值计算
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">
+                                    深度学习 第三章 概率与信息论
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">
+                                    深度学习 第二章 线性代数
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">
+                                    深度学习 第一章 引言
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2019-01-22T14:23:05+08:00">2019-01-22 14:23:05</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-01-22 14:37:18</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#教程-ref">教程</a>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>

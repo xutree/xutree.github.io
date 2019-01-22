@@ -5,44 +5,58 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/</loc>
-<lastmod>2018-11-26T14:59:25-00:00</lastmod>
+<lastmod>2019-01-22T14:57:40-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/archives.html</loc>
-<lastmod>2018-11-26T14:59:25-00:00</lastmod>
+<lastmod>2019-01-22T14:57:40-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/tags.html</loc>
-<lastmod>2018-11-26T14:59:25-00:00</lastmod>
+<lastmod>2019-01-22T14:57:40-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/categories.html</loc>
-<lastmod>2018-11-26T14:59:25-00:00</lastmod>
+<lastmod>2019-01-22T14:57:40-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/search.html</loc>
-<lastmod>2018-11-26T14:59:25-00:00</lastmod>
+<lastmod>2019-01-22T14:57:40-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/404.html</loc>
-<lastmod>2018-11-26T14:59:25-00:00</lastmod>
+<lastmod>2019-01-22T14:57:40-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://xutree.github.io/pages/2019/01/22/Torch_libpng/</loc>
+<lastmod>2019-01-22T14:37:18+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>https://xutree.github.io/pages/2018/12/07/dl-5/</loc>
+<lastmod>2018-12-07T23:11:40+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -453,7 +467,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/category/du-shu-bi-ji.html</loc>
-<lastmod>2018-11-25T16:08:25+08:06</lastmod>
+<lastmod>2018-12-07T23:11:40+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -467,7 +481,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/category/jiao-cheng.html</loc>
-<lastmod>2018-10-16T15:55:00+08:06</lastmod>
+<lastmod>2019-01-22T14:37:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -488,14 +502,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/tag/ji-qi-xue-xi.html</loc>
-<lastmod>2018-11-25T16:08:25+08:06</lastmod>
+<lastmod>2018-12-07T23:11:40+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/tag/shen-du-xue-xi.html</loc>
-<lastmod>2018-11-25T16:08:25+08:06</lastmod>
+<lastmod>2018-12-07T23:11:40+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -607,7 +621,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/author/shu.html</loc>
-<lastmod>2018-11-25T16:08:25+08:06</lastmod>
+<lastmod>2019-01-22T14:37:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

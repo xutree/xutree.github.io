@@ -8,7 +8,7 @@
     <meta name="copyright" content="Shu" />
 
 <meta name="keywords" content="机器学习, 深度学习, 读书笔记, " />
-    <title>深度学习 第一章 引言  · You Know Nothing
+    <title>深度学习 第五章 机器学习基础  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,22 +48,105 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/11/21/dl-1/"> 深度学习 第一章 引言  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/12/07/dl-5/"> 深度学习 第五章 机器学习基础  </a></h1>
         </header>
     </div>
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#51">5.1 学习算法</a><ul>
+<li><a href="#511-t">5.1.1 任务 \(T\)</a></li>
+<li><a href="#512-p">5.1.2 性能度量 \(P\)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p>让计算机从经验获取知识，可以避免由人类来给计算机形式化的指定它所需要的所有知识。层次化的概念让计算机构建较简单的概念来学习复杂概念。如果绘制出表示这些概念如何建立在彼此之上的图，我们得到一张“深”（层次很多）的图。基于这个原因，我们称这种方法为 <strong>AI 深度学习</strong>（deep learning）。</p>
-<p>人工智能的一个关键挑战是如何将非形式化的知识传达给计算机。</p>
-<p>一些人工智能项目力求将关于世界的知识用形式化的语言进行硬编码（hard-code）。这就是众所周知的知识库（knowledge base）方法。</p>
-<p>依靠硬编码的知识体系面临严重的缺陷，AI 系统需要具备自己获取知识的能力，即从原始数据中提取模式的能力。这种能力称为<strong>机器学习</strong>（machine learning）。</p>
-<p>许多人工智能任务都可以通过以下方式解决：先提取一个合适的特征集，然后将这些特征提供给简单的机器学习算法。然而，对许多任务来说，我们很难知道应该提取哪些特征。解决这个问题的途径之一是使用机器学习来发掘表示本身，而不仅仅是把表示映射到输出。这种方法称之为<strong>表示学习</strong>（representation learning）。</p>
-<p>表示学习算法的典型例子是<strong>自编码器</strong>（autoencoder）。自编码器由一个<strong>编码器</strong>（encoder）函数和一个<strong>解码器</strong>（decoder）函数组合而成。</p>
-<p>显然，从原始数据中提取高层次、抽象的特征是非常困难的。许多诸如说话口音这样的<strong>变差因素</strong>（factors of vatiation），只能通过对数据进行复杂的、接近人类水平的理解来辨识。这几乎与获得原问题的表示一样困难，因此，乍一看，表示学习似乎并不能帮助我们。</p>
-<p><strong>深度学习</strong>（deep learning）通过其他较简单的表示来表达复杂表示，解决了表达学习中的核心问题。</p>
+                
+<p>大部分机器学习算法都有超参数（必须在学习算法外设定），我们将探讨如何使用额外的数据设置超参数。机器学习本质上属于应用统计学，更多地关注与如何用计算机统计地估计复杂函数，不太关注为这些函数提供置信区间，因此我们会探讨两种统计学的主要方法：频率派估计和贝叶斯推断。大多数深度学习算法都是基于被称为随机梯度下降得算法求解的。</p>
+<h2 id="51">5.1 学习算法</h2>
+<p>Mitchell 对“学习”提供了一个简洁的定义：“对于某类任务 <span class="math">\(T\)</span> 和性能度量 <span class="math">\(P\)</span>，一个计算机程序被认为可以从经验 <span class="math">\(E\)</span> 中学习是指，通过经验 <span class="math">\(E\)</span> 改进后，它在任务 <span class="math">\(T\)</span> 上由性能度量 <span class="math">\(P\)</span> 衡量的性能有所提升。”</p>
+<h3 id="511-t">5.1.1 任务 <span class="math">\(T\)</span></h3>
+<p>通常机器学习任务定义为机器学习系统应该如何处理<strong>样本</strong>（example）。样本是指我们从某些希望机器学习系统处理的对象或事件中收集到的已经量化的<strong>特征</strong>（feature）的集合。</p>
+<p>我们通常会将样本表示成一个向量 <span class="math">\(\boldsymbol x\in\mathbb{R}^n\)</span>，其中向量的每一个元素 <span class="math">\(x_i\)</span> 是一个特征。</p>
+<p>机器学习可以解决很多类型的任务。一些非常常见的机器学习任务列举如下：</p>
+<ul>
+<li>分类</li>
+<li>输入缺失分类</li>
+<li>回归</li>
+<li>转录</li>
+<li>机器翻译</li>
+<li>结构化输出</li>
+<li>异常检测</li>
+<li>合成和采样</li>
+<li>缺失值填补</li>
+<li>去噪</li>
+<li>密度估计或概率质量函数估计</li>
+</ul>
+<h3 id="512-p">5.1.2 性能度量 <span class="math">\(P\)</span></h3>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
                 <aside>
                     <hr />
                     <nav class="related">
@@ -72,9 +155,6 @@
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/12/07/dl-5/">深度学习 第五章 机器学习基础</a>
-                            </li>
-                            <li>
                                 <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">深度学习 第四章 数值计算</a>
                             </li>
                             <li>
@@ -82,6 +162,9 @@
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">深度学习 第二章 线性代数</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">深度学习 第一章 引言</a>
                             </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2018/11/20/sl-12/">统计学习方法 第十二章 统计学习方法总结</a>
@@ -94,28 +177,28 @@
                         </h1>
                         <ul>
                             <li>
+                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">
+                                    深度学习 第四章 数值计算
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">
+                                    深度学习 第三章 概率与信息论
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">
+                                    深度学习 第二章 线性代数
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">
+                                    深度学习 第一章 引言
+                                </a>
+                            </li>
+                            <li>
                                 <a href="https://xutree.github.io/pages/2018/11/20/sl-12/">
                                     统计学习方法 第十二章 统计学习方法总结
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/19/sl-11/">
-                                    统计学习方法 第十一章 条件随机场
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/19/sl-10/">
-                                    统计学习方法 第十章 隐马尔科夫模型
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/17/sl-9/">
-                                    统计学习方法 第九章 EM 算法及其推广
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/16/likelihood-function/">
-                                    似然函数
                                 </a>
                             </li>
                         </ul>
@@ -125,26 +208,6 @@
                             <font color="#771515"><em>NEWER</em></font>
                         </h1>
                         <ul>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">
-                                    深度学习 第二章 线性代数
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">
-                                    深度学习 第三章 概率与信息论
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">
-                                    深度学习 第四章 数值计算
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/12/07/dl-5/">
-                                    深度学习 第五章 机器学习基础
-                                </a>
-                            </li>
                             <li>
                                 <a href="https://xutree.github.io/pages/2019/01/22/Torch_libpng/">
                                     为 Torch 安装特定版本的 libpng
@@ -180,9 +243,7 @@
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-11-21T08:25:14+08:00">2018-11-21 08:25:14</time>
-                    <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-21 08:25:14</div>
+                    <time pubdate="pubdate" datetime="2018-12-07T23:11:40.170005+08:00">2018-12-07 23:11:40</time>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
