@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="剑指offer, 面试, 算法, 读书笔记, " />
+    <title>剑指offer  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2019/02/19/1/"> 剑指offer  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1">1. 二维数组中的查找</a></li>
+<li><a href="#2">2. 替换空格</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
+
+                
+<h2 id="1">1. 二维数组中的查找</h2>
+<p>在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="nx">Find</span><span class="p">(</span><span class="kr">int</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 注意 size 是成员函数，要加括号</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// 为空，返回</span>
+        <span class="kr">int</span> <span class="nx">row</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+        <span class="kr">int</span> <span class="nx">col</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">size</span><span class="p">();</span>
+        <span class="c1">// 从右上角开始查找</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">m</span> <span class="o">&amp;&amp;</span> <span class="nx">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">==</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">j</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：如我们从右上角的数据开始出发，比他小的数必定在它的左侧，就往左找；比他大的数必定在它的下侧，就往下找。</p>
+<h2 id="2">2. 替换空格</h2>
+<p>请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">replaceSpace</span><span class="p">(</span><span class="kr">char</span> <span class="o">*</span><span class="nx">str</span><span class="p">,</span><span class="kr">int</span> <span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 先统计总共有多少空格</span>
+        <span class="kr">int</span> <span class="nx">count_space</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">' '</span><span class="p">)</span> <span class="nx">count_space</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kr">int</span> <span class="nx">new_length</span> <span class="o">=</span> <span class="nx">length</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">count_space</span><span class="p">;</span>
+        <span class="c1">// 从后开始移位</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">new_length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">j</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">' '</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">str</span><span class="p">[</span><span class="nx">j</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'0'</span><span class="p">;</span>
+                <span class="nx">str</span><span class="p">[</span><span class="nx">j</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'2'</span><span class="p">;</span>
+                <span class="nx">str</span><span class="p">[</span><span class="nx">j</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'%'</span><span class="p">;</span>
+                <span class="nx">i</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">str</span><span class="p">[</span><span class="nx">j</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="o">--</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// 字符串结束标志</span>
+        <span class="nx">str</span><span class="p">[</span><span class="nx">new_length</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'\0'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：从后往前移位可避免重复移位。</p>
+                <aside>
+                    <hr />
+                    <nav class="related">
+                        <h1>
+                            <font color="#771515"><em>RELATED</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">最大子数组问题</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">排序算法</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/01/22/Torch_libpng/">
+                                    为 Torch 安装特定版本的 libpng
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/12/07/dl-5/">
+                                    深度学习 第五章 机器学习基础
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">
+                                    深度学习 第四章 数值计算
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">
+                                    深度学习 第三章 概率与信息论
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">
+                                    深度学习 第二章 线性代数
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2019-02-19T15:32:21+08:00">2019-02-19 15:32:21</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-02-19 15:32:21</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#剑指offer-ref">剑指offer
+                                <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#面试-ref">面试
+                                <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#算法-ref">算法
+                                <span>3</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
