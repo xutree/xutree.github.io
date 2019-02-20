@@ -65,6 +65,12 @@
 <li><a href="#4">4. 重建二叉树</a></li>
 <li><a href="#5">5. 用两个栈实现队列</a></li>
 <li><a href="#6">6. 旋转数组的最小数字</a></li>
+<li><a href="#7">7. 斐波那契数列</a></li>
+<li><a href="#8">8. 跳台阶</a></li>
+<li><a href="#9">9. 变态跳台阶</a></li>
+<li><a href="#10">10. 矩形覆盖</a></li>
+<li><a href="#11-1">11. 二进制中 1 的个数</a></li>
+<li><a href="#12">12. 数值的正数次方</a></li>
 </ul>
 </div>
             </nav>
@@ -273,7 +279,7 @@
 <li>出队时，判断 s2 是否为空，如不为空，则直接弹出顶元素；如为空，则将 s1 的元素逐个“倒入” s2，把最后一个元素弹出并出队。这个思路，避免了反复“倒”栈，仅在需要时才“倒”一次。</li>
 </ul>
 <h2 id="6">6. 旋转数组的最小数字</h2>
-<p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p>
+<p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组 {3,4,5,1,2} 为 {1,2,3,4,5} 的一个旋转，该数组的最小值为 1。 NOTE：给出的所有元素都大于 0，若数组大小为 0，请返回 0。</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="kr">int</span> <span class="nx">minNumberInRotateArray</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">rotateArray</span><span class="p">)</span> <span class="p">{</span>
@@ -334,6 +340,183 @@
 <p>特例：开始时就 <code>rotateArray[low] &lt; rotateArray[high]</code>，那么循环不会执行.如果数组旋转后仍然有序，即 <code>rotateArray[low] &lt; rotateArray[high]</code> 如果把排序数组前面 0 个元素搬到后面，也就是说其实没有旋转。那么第 0 个元素就是最小的元素，因此我们将 mid 初始化为 0。</p>
 <p>如果 <code>rotateArray[low] = rotateArray[high]</code></p>
 <p>测试用例: [2, 3, 4, 2, 2, 2, 2]，此时 <code>rotateArray[low] rotateArray[mid] rotateArray[high]</code> 三者相等，无法确定中间元素是属于前面还是后面的递增子数组，只能顺序查找。</p>
+<h2 id="7">7. 斐波那契数列</h2>
+<p>大家都知道斐波那契数列，现在要求输入一个整数 <span class="math">\(n\)</span>，请你输出斐波那契数列的第 <span class="math">\(n\)</span> 项（从 0 开始，第 0 项为 0），<span class="math">\(n \leq 39\)</span>。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">Fibonacci</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">n</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kr">int</span> <span class="nx">f1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">f2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span> <span class="o">=</span> <span class="nx">f1</span> <span class="o">+</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f1</span> <span class="o">=</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f2</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：不可递归，会超时，需展开。</p>
+<h2 id="8">8. 跳台阶</h2>
+<p>一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级。求该青蛙跳上一个 <span class="math">\(n\)</span> 级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">jumpFloor</span><span class="p">(</span><span class="kr">int</span> <span class="kt">number</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="kt">number</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="kt">number</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">f1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">f2</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="kt">number</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span> <span class="o">=</span> <span class="nx">f1</span> <span class="o">+</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f1</span> <span class="o">=</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f2</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：<span class="math">\(f(n)=f(n-1)+f(n-2)\)</span></p>
+<h2 id="9">9. 变态跳台阶</h2>
+<p>一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级...它也可以跳上 <span class="math">\(n\)</span> 级。求该青蛙跳上一个 <span class="math">\(n\)</span> 级的台阶总共有多少种跳法。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">jumpFloorII</span><span class="p">(</span><span class="kr">int</span> <span class="kt">number</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="kt">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：<span class="math">\(f(n)=f(n-1)+f(n-2)+\cdots+f(1)=2f(n-1)\)</span>
+</p>
+<div class="math">$$f(n)=\begin{cases}
+1, &amp; n=0 \\
+1, &amp; n=1 \\
+2f(n-1), &amp; n\geq 2
+\end{cases}$$</div>
+<h2 id="10">10. 矩形覆盖</h2>
+<p>我们可以用 <span class="math">\(2\times1\)</span> 的小矩形横着或者竖着去覆盖更大的矩形。请问用 <span class="math">\(n\)</span> 个 <span class="math">\(2\times1\)</span> 的小矩形无重叠地覆盖一个 <span class="math">\(2\times n\)</span> 的大矩形，总共有多少种方法？</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">rectCover</span><span class="p">(</span><span class="kr">int</span> <span class="kt">number</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="kt">number</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="kt">number</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">f1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">f2</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="kt">number</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span> <span class="o">=</span> <span class="nx">f1</span> <span class="o">+</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f1</span> <span class="o">=</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f2</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：<span class="math">\(f(n)=f(n-1)+f(n-2)\)</span></p>
+<h2 id="11-1">11. 二进制中 1 的个数</h2>
+<p>输入一个整数，输出该数二进制表示中 1 的个数。其中负数用补码表示。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+     <span class="kr">int</span>  <span class="nx">NumberOf1</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kr">int</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+         <span class="k">while</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+             <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+             <span class="nx">n</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+         <span class="p">}</span>
+         <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+     <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>逻辑右移与算术右移</strong>：比如一个有符号位的 8 位二进制数 11001101，逻辑右移就不管符号位，如果移一位就变成 01100110。算术右移要管符号位，右移一位变成 10100110。</p>
+<ul>
+<li>逻辑左移=算数左移，右边统一添 0</li>
+<li>逻辑右移，左边统一添 0</li>
+<li>算数右移，左边添加的数和符号有关</li>
+</ul>
+<p>因此如果输入负数，那么我们的算法简单的判断是不是 0 来终结，岂不是要死循环。</p>
+<p><strong>避免负数移位的死循环</strong>：为了负数时候避免死循环，我们可以不右移数字 <span class="math">\(n\)</span>，转而去移动测试位。</p>
+<p>那么思考我们的循环结束条件，flag 一直左移（乘以 2），当超出表示标识范围的时候，我们就可以终止了，但是这样子的话，最高位的符号位没有测试，因此要单独测试，同时由于会溢出，我们的 flag 需要用 long 来标识。</p>
+<p><strong>整数中有几个 1 就循环几次 --- lowbit 优化</strong>：把一个整数 <span class="math">\(n\)</span> 减去 1，再和原来的整数做与运算，会把该整数最右边一个 1 变成 0，那么该整数有多少个 1，就会进行多少次与运算。</p>
+<h2 id="12">12. 数值的正数次方</h2>
+<p>给定一个 <code>double</code> 类型的浮点数 <code>base</code> 和 <code>int</code> 类型的整数 <code>exponent</code>。求 <code>base</code> 的 <code>exponent</code> 次方。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">double</span> <span class="nx">Power</span><span class="p">(</span><span class="kr">double</span> <span class="nx">base</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">exponent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">double</span> <span class="nx">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">curr</span> <span class="o">=</span> <span class="nx">base</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">n</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">exponent</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">n</span> <span class="o">=</span> <span class="nx">exponent</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">exponent</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 由于精度原因，double 类型的变量不能用等号判断两个数是否相等</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">base</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mf">0.000001</span> <span class="o">&amp;&amp;</span> <span class="nx">base</span> <span class="o">&lt;</span> <span class="mf">0.000001</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 抛出异常</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nx">runtime_error</span><span class="p">(</span><span class="s2">"分母不能为0"</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">n</span> <span class="o">=</span> <span class="o">-</span> <span class="nx">exponent</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">n</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">((</span><span class="nx">n</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="nx">res</span> <span class="o">*=</span> <span class="nx">curr</span><span class="p">;</span>
+            <span class="nx">curr</span> <span class="o">*=</span> <span class="nx">curr</span><span class="p">;</span>
+            <span class="nx">n</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">exponent</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">res</span> <span class="o">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="nx">res</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
                 <aside>
                     <hr />
                     <nav class="related">
@@ -391,6 +574,11 @@
                                     数据结构——树
                                 </a>
                             </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/02/20/bianma/">
+                                    原码, 反码, 补码
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                     <!-- Gitalk 评论 start  -->
@@ -423,7 +611,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2019-02-19T15:32:21+08:00">2019-02-19 15:32:21</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2019-02-20 17:14:54</div>
+                    <div class="last_updated">2019-02-20 23:31:34</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
