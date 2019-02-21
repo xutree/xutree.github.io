@@ -71,6 +71,13 @@
 <li><a href="#10">10. 矩形覆盖</a></li>
 <li><a href="#11-1">11. 二进制中 1 的个数</a></li>
 <li><a href="#12">12. 数值的正数次方</a></li>
+<li><a href="#13">13. 调整数组顺序使奇数位于偶数前面</a></li>
+<li><a href="#14-k">14. 链表中倒数第 \(k\) 个结点</a></li>
+<li><a href="#15">15. 反转链表</a></li>
+<li><a href="#16">16. 合并两个排序的链表</a></li>
+<li><a href="#17">17. 树的子结构</a></li>
+<li><a href="#18">18. 二叉树的镜像</a></li>
+<li><a href="#19">19. 顺序打印矩阵</a></li>
 </ul>
 </div>
             </nav>
@@ -434,7 +441,7 @@
 <p>那么思考我们的循环结束条件，flag 一直左移（乘以 2），当超出表示标识范围的时候，我们就可以终止了，但是这样子的话，最高位的符号位没有测试，因此要单独测试，同时由于会溢出，我们的 flag 需要用 long 来标识。</p>
 <p><strong>整数中有几个 1 就循环几次 --- lowbit 优化</strong>：把一个整数 <span class="math">\(n\)</span> 减去 1，再和原来的整数做与运算，会把该整数最右边一个 1 变成 0，那么该整数有多少个 1，就会进行多少次与运算。</p>
 <h2 id="12">12. 数值的正数次方</h2>
-<p>给定一个 <code>double</code> 类型的浮点数 <code>base</code> 和 <code>int</code> 类型的整数 <code>exponent</code>。求 <code>base</code> 的 <code>exponent</code> 次方。</p>
+<p>给定一个 <code>double</code> 类型的浮点数 <code>base</code> 和 <code>int</code> 类型的整数 <code>exponent</code>。求 <code>base</code> 的 <code>exponent</code> 次方。</p>
 <div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
 <span class="kr">public</span><span class="o">:</span>
     <span class="kr">double</span> <span class="nx">Power</span><span class="p">(</span><span class="kr">double</span> <span class="nx">base</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">exponent</span><span class="p">)</span> <span class="p">{</span>
@@ -462,6 +469,221 @@
     <span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
+<h2 id="13">13. 调整数组顺序使奇数位于偶数前面</h2>
+<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">reOrderArray</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">temp</span><span class="p">;</span>
+        <span class="nx">auto</span> <span class="nx">ib1</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+        <span class="c1">//  删除元素，尾后迭代器失效</span>
+        <span class="k">for</span> <span class="p">(;</span> <span class="nx">ib1</span> <span class="o">!=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="nx">ib1</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">temp</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="o">*</span><span class="nx">ib1</span><span class="p">);</span>
+                <span class="nx">array</span><span class="p">.</span><span class="nx">erase</span><span class="p">(</span><span class="nx">ib1</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">ib1</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="cm">/*</span>
+<span class="cm">        Summary:</span>
+<span class="cm">           1. For observing the elements, use the following syntax:</span>
+<span class="cm">                 for (const auto&amp; elem : container)    // capture by const reference</span>
+<span class="cm">           2. If the objects are cheap to copy (like ints, doubles, etc.),</span>
+<span class="cm">           it's possible to use a slightly simplified form:</span>
+<span class="cm">                 for (auto elem : container)    // capture by value</span>
+<span class="cm">           3. For modifying the elements in place, use:</span>
+<span class="cm">                 for (auto&amp; elem : container)    // capture by (non-const) reference</span>
+<span class="cm">           4. If the container uses "proxy iterators" (like std::vector&lt;bool&gt;), use:</span>
+<span class="cm">                 for (auto&amp;&amp; elem : container)    // capture by &amp;&amp;</span>
+<span class="cm">           5. Of course, if there is a need to make a local copy of the element inside the loop body,</span>
+<span class="cm">           capturing by value (for (auto elem : container)) is a good choice.</span>
+<span class="cm">        */</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">auto</span> <span class="nx">elem</span> : <span class="kt">temp</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">array</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">elem</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="14-k">14. 链表中倒数第 <span class="math">\(k\)</span> 个结点</h2>
+<p>输入一个链表，输出该链表中倒数第 <span class="math">\(k\)</span> 个结点。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct ListNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct ListNode *next;</span>
+<span class="cm">    ListNode(int x) :</span>
+<span class="cm">            val(x), next(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">FindKthToTail</span><span class="p">(</span><span class="nx">ListNode</span><span class="o">*</span> <span class="nx">pListHead</span><span class="p">,</span> <span class="nx">unsigned</span> <span class="kr">int</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pListHead</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">left</span> <span class="o">=</span> <span class="nx">pListHead</span><span class="p">,</span> <span class="o">*</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
+        <span class="nx">unsigned</span> <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">k</span> <span class="o">&amp;&amp;</span> <span class="nx">right</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">right</span> <span class="o">=</span> <span class="nx">right</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// 注意条件</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">k</span> <span class="o">&amp;&amp;</span> <span class="nx">right</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="c1">// 注意条件</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">right</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">right</span> <span class="o">=</span> <span class="nx">right</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="nx">left</span> <span class="o">=</span> <span class="nx">left</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">left</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：双指针法</p>
+<h2 id="15">15. 反转链表</h2>
+<p>输入一个链表，反转链表后，输出新链表的表头。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct ListNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct ListNode *next;</span>
+<span class="cm">    ListNode(int x) :</span>
+<span class="cm">            val(x), next(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">ReverseList</span><span class="p">(</span><span class="nx">ListNode</span><span class="o">*</span> <span class="nx">pHead</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pHead</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="nx">ListNode</span> <span class="o">*</span><span class="nx">pPrev</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">,</span> <span class="o">*</span><span class="nx">pNext</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">,</span> <span class="o">*</span><span class="nx">pNode</span> <span class="o">=</span> <span class="nx">pHead</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">pNode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">pNext</span> <span class="o">=</span> <span class="nx">pNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="nx">pNode</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">pPrev</span><span class="p">;</span>
+            <span class="nx">pPrev</span> <span class="o">=</span> <span class="nx">pNode</span><span class="p">;</span>
+            <span class="nx">pNode</span> <span class="o">=</span> <span class="nx">pNext</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">pPrev</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="16">16. 合并两个排序的链表</h2>
+<p>输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct ListNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct ListNode *next;</span>
+<span class="cm">    ListNode(int x) :</span>
+<span class="cm">            val(x), next(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">Merge</span><span class="p">(</span><span class="nx">ListNode</span><span class="o">*</span> <span class="nx">pHead1</span><span class="p">,</span> <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">pHead2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pHead1</span> <span class="o">==</span> <span class="nx">NULL</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">pHead2</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">pHead2</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">pHead1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">ListNode</span> <span class="o">*</span><span class="nx">phead1</span> <span class="o">=</span> <span class="nx">pHead1</span><span class="p">;</span>
+        <span class="nx">ListNode</span> <span class="o">*</span><span class="nx">phead2</span> <span class="o">=</span> <span class="nx">pHead2</span><span class="p">;</span>
+        <span class="c1">//  先生成头结点</span>
+        <span class="nx">ListNode</span> <span class="o">*</span><span class="nx">head</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">phead1</span><span class="o">-&gt;</span><span class="nx">val</span> <span class="o">&lt;</span> <span class="nx">phead2</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">head</span> <span class="o">=</span> <span class="nx">phead1</span><span class="p">;</span>
+            <span class="nx">phead1</span> <span class="o">=</span> <span class="nx">phead1</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">head</span> <span class="o">=</span> <span class="nx">phead2</span><span class="p">;</span>
+            <span class="nx">phead2</span> <span class="o">=</span> <span class="nx">phead2</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">//  遍历两个链表，另用一个指针以保存头指针</span>
+        <span class="nx">ListNode</span> <span class="o">*</span><span class="nx">curr</span> <span class="o">=</span> <span class="nx">head</span><span class="p">;</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="nx">phead1</span> <span class="o">&amp;&amp;</span> <span class="nx">phead2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">phead1</span><span class="o">-&gt;</span><span class="nx">val</span> <span class="o">&gt;</span> <span class="nx">phead2</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">phead2</span><span class="p">;</span>
+                <span class="nx">curr</span> <span class="o">=</span> <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+                <span class="nx">phead2</span> <span class="o">=</span> <span class="nx">phead2</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">phead1</span><span class="p">;</span>
+                <span class="nx">curr</span> <span class="o">=</span> <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+                <span class="nx">phead1</span> <span class="o">=</span> <span class="nx">phead1</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// 直接附加上去</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">phead1</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">phead2</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">phead1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">head</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="17">17. 树的子结构</h2>
+<p>输入两棵二叉树 <span class="math">\(A\)</span>，<span class="math">\(B\)</span>，判断 <span class="math">\(B\)</span> 是不是 <span class="math">\(A\)</span> 的子结构。（ps：我们约定空树不是任意一个树的子结构）。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="nx">HasSubtree</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot1</span><span class="p">,</span> <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">bool</span> <span class="nx">res</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="c1">// 判断非空</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot1</span> <span class="o">!=</span> <span class="nx">NULL</span> <span class="o">&amp;&amp;</span> <span class="nx">pRoot2</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">val</span> <span class="o">==</span> <span class="nx">pRoot2</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span> <span class="o">=</span> <span class="nx">DoesTree1HaveTree2</span><span class="p">(</span><span class="nx">pRoot1</span><span class="p">,</span> <span class="nx">pRoot2</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span> <span class="o">=</span> <span class="nx">HasSubtree</span><span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">pRoot2</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span> <span class="o">=</span> <span class="nx">HasSubtree</span><span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">,</span> <span class="nx">pRoot2</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">bool</span> <span class="nx">DoesTree1HaveTree2</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot1</span><span class="p">,</span> <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot2</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot1</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">val</span> <span class="o">!=</span> <span class="nx">pRoot2</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">DoesTree1HaveTree2</span><span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">pRoot2</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+            <span class="nx">DoesTree1HaveTree2</span><span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">,</span> <span class="nx">pRoot2</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="18">18. 二叉树的镜像</h2>
+<p>操作给定的二叉树，将其变换为源二叉树的镜像。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">Mirror</span><span class="p">(</span><span class="nx">TreeNode</span> <span class="o">*</span><span class="nx">pRoot</span><span class="p">)</span> <span class="p">{</span>
+       <span class="k">if</span><span class="p">(</span><span class="nx">pRoot</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">swap</span><span class="p">(</span><span class="nx">pRoot</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">pRoot</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">);</span>
+        <span class="nx">Mirror</span><span class="p">(</span><span class="nx">pRoot</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">);</span>
+        <span class="nx">Mirror</span><span class="p">(</span><span class="nx">pRoot</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="19">19. 顺序打印矩阵</h2>
+<p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -611,7 +833,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2019-02-19T15:32:21+08:00">2019-02-19 15:32:21</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2019-02-20 23:31:34</div>
+                    <div class="last_updated">2019-02-21 16:37:04</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
