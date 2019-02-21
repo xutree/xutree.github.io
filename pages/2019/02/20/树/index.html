@@ -67,6 +67,28 @@
 <li><a href="#2-binary-tree">2. 二叉树（binary tree）</a><ul>
 <li><a href="#21">2.1 实现</a></li>
 <li><a href="#22-expression-tree">2.2 表达式树（expression tree）</a></li>
+<li><a href="#23">2.3 二叉树的遍历</a><ul>
+<li><a href="#231">2.3.1 前序遍历</a><ul>
+<li><a href="#_1">递归实现</a></li>
+<li><a href="#_2">非递归实现</a></li>
+</ul>
+</li>
+<li><a href="#232">2.3.2 中序遍历</a><ul>
+<li><a href="#_3">递归实现</a></li>
+</ul>
+</li>
+<li><a href="#_4">非递归实现</a></li>
+<li><a href="#233">2.3.3 后序遍历</a><ul>
+<li><a href="#_5">递归实现</a></li>
+<li><a href="#_6">非递归实现</a></li>
+</ul>
+</li>
+<li><a href="#234">2.3.4 层次遍历</a><ul>
+<li><a href="#_7">双指针法</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#3-adt">3. 查找树 ADT——二叉查找树</a></li>
@@ -126,6 +148,185 @@ struct TreeNode
 <p>类似双链表的声明。</p>
 <h3 id="22-expression-tree">2.2 表达式树（expression tree）</h3>
 <p>树叶为操作数，其他节点为操作符。</p>
+<h3 id="23">2.3 二叉树的遍历</h3>
+<h4 id="231">2.3.1 前序遍历</h4>
+<p>前序遍历：根结点 <span class="math">\(\longrightarrow\)</span> 左子树 <span class="math">\(\longrightarrow\)</span> 右子树。</p>
+<h5 id="_1">递归实现</h5>
+<div class="highlight"><pre><span></span>void PreOrder(TreeNode *root)
+{
+    if (root == NULL) return;
+
+    cout &lt;&lt; root-&gt;val;
+    PreOrder(root-&gt;left);
+    PreOrder(root-&gt;right);
+}
+</pre></div>
+<h5 id="_2">非递归实现</h5>
+<p>对于任一结点 <span class="math">\(P\)</span>：</p>
+<p>1) 访问结点 <span class="math">\(P\)</span>，并将结点 <span class="math">\(P\)</span> 入栈
+2) 判断结点 <span class="math">\(P\)</span> 的左孩子是否为空，若为空，则取栈顶结点并进行出栈操作，并将栈顶结点的右孩子置为当前的结点 <span class="math">\(P\)</span>，循环至 1)；若不为空，则将 <span class="math">\(P\)</span> 的左孩子置为当前的结点 <span class="math">\(P\)</span>
+3) 直到 <span class="math">\(P\)</span> 为 <code>NULL</code> 并且栈为空，则遍历结束</p>
+<div class="highlight"><pre><span></span>void PreOrderDev(TreeNode *root)
+{
+    if (root == NULL) return;
+    // 保存节点
+    stack&lt;TreeNode *&gt; nstack;
+    // 备份根节点
+    TreeNode *node = root;
+    // 开始遍历整个二叉树
+    while (node != NULL || nstack.empty() != true) {
+        // 输出当前子树的根节点，然后递归直至最左
+        while (node != NULL) {
+            cout &lt;&lt; node-&gt;val;
+            nstack.push(node);
+            node = node-&gt;left;
+        }
+        // 此时循环结束时，当前栈顶节点已经是最左节点
+        // 此时递归开始返回，开始出栈，并输出节点的右节点
+        if (nstack.empty() != true) {
+            node = nstack.top();
+            nstack.pop();
+            node = node-&gt;right;
+        }
+    }
+}
+</pre></div>
+<h4 id="232">2.3.2 中序遍历</h4>
+<p>中序遍历：左子树 <span class="math">\(\longrightarrow\)</span> 根结点 <span class="math">\(\longrightarrow\)</span> 右子树</p>
+<h5 id="_3">递归实现</h5>
+<div class="highlight"><pre><span></span>void InOrder(TreeNode *root)
+{
+    if (root == NULL) return;
+
+    InOrder(root-&gt;left);
+    cout &lt;&lt;root-&gt;val;
+    InOrder(root-&gt;right);
+}
+</pre></div>
+<h4 id="_4">非递归实现</h4>
+<p>对于任一结点 <span class="math">\(P\)</span>：</p>
+<p>1) 若其左孩子不为空，则将 <span class="math">\(P\)</span> 入栈并将 <span class="math">\(P\)</span> 的左孩子置为当前的 <span class="math">\(P\)</span>，然后对当前结点 <span class="math">\(P\)</span> 再进行相同的处理
+2) 若其左孩子为空，则取栈顶元素并进行出栈操作，访问该栈顶结点，然后将当前的 <span class="math">\(P\)</span> 置为栈顶结点的右孩子
+3) 直到 <span class="math">\(P\)</span> 为 <code>NULL</code> 并且栈为空则遍历结束</p>
+<div class="highlight"><pre><span></span>void InOrderDev(TreeNode *root)
+{
+    if (root == NULL) return;
+    // 保存节点
+    stack&lt;TreeNode *&gt; nstack;
+    // 备份根节点
+    TreeNode *node = root;
+    // 开始遍历整个二叉树
+    while (node != NULL || nstack.empty() != true) {
+        // 不输出当前根节点，但是递归直至当前根节点 node 的最左端
+        while (node != NULL) {
+            nstack.push(node);
+            node = node-&gt;left;
+        }
+        // 此时栈顶的元素是当前最左元素
+        // 它应该被输出
+        if (nstack.empty() != true) {
+            node = nstack.top();
+            cout &lt;&lt; node-&gt;val;
+            nstack.pop();
+            node = node-&gt;right;
+        }
+    }
+}
+</pre></div>
+<h4 id="233">2.3.3 后序遍历</h4>
+<p>后序遍历：左子树 <span class="math">\(\longrightarrow\)</span> 右子树 <span class="math">\(\longrightarrow\)</span> 根结点</p>
+<h5 id="_5">递归实现</h5>
+<div class="highlight"><pre><span></span>void PostOrder(TreeNode *root)
+{
+    if (root == NULL) return;
+
+    PostOrder(root-&gt;left);
+    PostOrder(root-&gt;right);
+    cout &lt;&lt; root-&gt;val;
+
+}
+</pre></div>
+<h5 id="_6">非递归实现</h5>
+<p>后序遍历的非递归实现是三种遍历方式中最难的一种。因为在后序遍历中，要保证左孩子和右孩子都已被访问并且左孩子在右孩子前访问才能访问根结点，这就为流程的控制带来了难题。</p>
+<p>要保证根结点在左孩子和右孩子访问之后才能访问，因此对于任一结点 <span class="math">\(P\)</span>，先将其入栈。如果 <span class="math">\(P\)</span> 不存在左孩子和右孩子，则可以直接访问它；或者 <span class="math">\(P\)</span> 存在左孩子或者右孩子，但是其左孩子和右孩子都已被访问过了，则同样可以直接访问该结点。若非上述两种情况，则将 <span class="math">\(P\)</span> 的右孩子和左孩子依次入栈，这样就保证了每次取栈顶元素的时候，左孩子在右孩子前面被访问，左孩子和右孩子都在根结点前面被访问。</p>
+<div class="highlight"><pre><span></span>void PostOrderDev(TreeNode *root)
+{
+    if (root == NULL) return;
+
+    stack&lt;TreeNode *&gt; nstack;
+
+    TreeNode *cur;           //当前结点
+    TreeNode *pre = NULL;    //前一次访问的结点
+    nstack.push(root);
+
+    while (nstack.empty() != true) {
+        cur = nstack.top();
+
+        if ((cur-&gt;left == NULL &amp;&amp; cur-&gt;right == NULL)
+        //  左右还是均为 NULL, 可以被输出
+        || (pre != NULL &amp;&amp; ((pre == cur-&gt;left || pre == cur-&gt;right)))
+        //  左右还是被输出了, 递归返回
+        //  其实当前节点要是想被输出, 要么
+        //  1--其左右孩子均为 NULL
+        //  2--其左孩子刚被输出，而其右孩子为 NULL
+        //  3--其右孩子刚被输出
+        //
+        //  但是这里有一个优化，入栈时候，先是根入栈，然后是右孩子，然后是左孩子，因此当跟元素位于栈顶的时候，其左右孩子必然已经弹出，即被输出，也就是说, 即后序遍历中当前栈顶元素要是想被输出
+        //  1--其左右孩子均为 NULL
+        //  2--其孩子（不论左右）刚被输出即可
+        {
+            cout &lt;&lt; cur-&gt;val;  //如果当前结点没有孩子结点或者孩子节点都已被访问过
+            nstack.pop();
+            pre = cur;
+        }
+        else
+        {
+            // 由于栈是先进后出，因此先入右孩子, 再左孩子可以保证递归返回时先遍历左孩子
+            if (cur-&gt;right != NULL)
+            {
+               nstack.push(cur-&gt;right);
+            }
+
+            if (cur-&gt;left != NULL)
+            {
+                nstack.push(cur-&gt;left);
+            }
+        }
+    }
+}
+</pre></div>
+<h4 id="234">2.3.4 层次遍历</h4>
+<h5 id="_7">双指针法</h5>
+<div class="highlight"><pre><span></span>void TreeNode::LevelOrderUsePoint(TreeNode *root)
+{
+    vector&lt;TreeNode*&gt; vec;
+    vec.push_back(root);
+
+    int cur = 0;
+    int end = 1;
+
+    while (cur &lt; vec.size())
+    {
+        end = vec.size();       ///  新的一行访问开始，重新定位last于当前行最后一个节点的下一个位置
+
+        while (cur &lt; end)
+        {
+            cout &lt;&lt; vec[cur]-&gt;val;  ///  访问节点
+
+            if (vec[cur]-&gt;left != NULL) ///  压入左节点
+            {
+                vec.push_back(vec[cur]-&gt;left);
+            }
+            if (vec[cur]-&gt;right != NULL)    ///  压入右节点
+            {
+                vec.push_back(vec[cur]-&gt;right);
+            }
+            cur++;
+        }
+        cout &lt;&lt; endl;
+    }
+}
+</pre></div>
 <h2 id="3-adt">3. 查找树 ADT——二叉查找树</h2>
 <p>使二叉树成为二叉查找树的关键性质是：对于树中每个节点 <span class="math">\(X\)</span>，它的左子树中<strong>所有</strong>关键字值小于 <span class="math">\(X\)</span> 的关键字值，而它的右子树中<strong>所有</strong>关键字值大于 <span class="math">\(X\)</span> 的关键字值。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
@@ -202,7 +403,7 @@ struct TreeNode
                         <ul>
                             <li>
                                 <a href="https://xutree.github.io/pages/2019/02/19/jzoffer/">
-                                    剑指offer
+                                    剑指 offer
                                 </a>
                             </li>
                             <li>
@@ -269,7 +470,7 @@ struct TreeNode
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2019-02-20T15:11:51+08:00">2019-02-20 15:11:51</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2019-02-20 15:11:51</div>
+                    <div class="last_updated">2019-02-21 21:08:40</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
