@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="机器学习, 深度学习, 读书笔记, " />
-    <title>深度学习 第五章 机器学习基础  · You Know Nothing
+<meta name="keywords" content="剑指offer, 面试, 算法, 读书笔记, " />
+    <title>剑指 offer (2)  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/12/07/dl-5/"> 深度学习 第五章 机器学习基础  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2019/02/23/jzoffer2/"> 剑指 offer (2)  </a></h1>
         </header>
     </div>
 
@@ -59,11 +59,7 @@
                 <!-- <h4>目录</h4> -->
                 <div class="toc">
 <ul>
-<li><a href="#51">5.1 学习算法</a><ul>
-<li><a href="#511-t">5.1.1 任务 \(T\)</a></li>
-<li><a href="#512-p">5.1.2 性能度量 \(P\)</a></li>
-</ul>
-</li>
+<li><a href="#1-1">1. 整数中 1 出现的次数</a></li>
 </ul>
 </div>
             </nav>
@@ -71,27 +67,30 @@
         <div class="span8 article-content">
 
                 
-<p>大部分机器学习算法都有超参数（必须在学习算法外设定），我们将探讨如何使用额外的数据设置超参数。机器学习本质上属于应用统计学，更多地关注与如何用计算机统计地估计复杂函数，不太关注为这些函数提供置信区间，因此我们会探讨两种统计学的主要方法：频率派估计和贝叶斯推断。大多数深度学习算法都是基于被称为随机梯度下降得算法求解的。</p>
-<h2 id="51">5.1 学习算法</h2>
-<p>Mitchell 对“学习”提供了一个简洁的定义：“对于某类任务 <span class="math">\(T\)</span> 和性能度量 <span class="math">\(P\)</span>，一个计算机程序被认为可以从经验 <span class="math">\(E\)</span> 中学习是指，通过经验 <span class="math">\(E\)</span> 改进后，它在任务 <span class="math">\(T\)</span> 上由性能度量 <span class="math">\(P\)</span> 衡量的性能有所提升。”</p>
-<h3 id="511-t">5.1.1 任务 <span class="math">\(T\)</span></h3>
-<p>通常机器学习任务定义为机器学习系统应该如何处理<strong>样本</strong>（example）。样本是指我们从某些希望机器学习系统处理的对象或事件中收集到的已经量化的<strong>特征</strong>（feature）的集合。</p>
-<p>我们通常会将样本表示成一个向量 <span class="math">\(\boldsymbol x\in\mathbb{R}^n\)</span>，其中向量的每一个元素 <span class="math">\(x_i\)</span> 是一个特征。</p>
-<p>机器学习可以解决很多类型的任务。一些非常常见的机器学习任务列举如下：</p>
-<ul>
-<li>分类</li>
-<li>输入缺失分类</li>
-<li>回归</li>
-<li>转录</li>
-<li>机器翻译</li>
-<li>结构化输出</li>
-<li>异常检测</li>
-<li>合成和采样</li>
-<li>缺失值填补</li>
-<li>去噪</li>
-<li>密度估计或概率质量函数估计</li>
-</ul>
-<h3 id="512-p">5.1.2 性能度量 <span class="math">\(P\)</span></h3>
+<h2 id="1-1">1. 整数中 1 出现的次数</h2>
+<p>求出 1~13 的整数中 1 出现的次数，并算出 100~1300 的整数中 1 出现的次数？为此他特别数了一下 1~13 中包含 1 的数字有 1、10、11、12、13 因此共出现 6 次，但是对于后面问题他就没辙了。ACMer 希望你们帮帮他，并把问题更加普遍化，可以很快的求出任意非负整数区间中 1 出现的次数（从 1 到 <span class="math">\(n\)</span> 中 1 出现的次数）。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">NumberOf1Between1AndN_Solution</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kr">long</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kr">long</span> <span class="nx">before</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">current</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">after</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">n</span> <span class="o">/</span> <span class="nx">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">before</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">/</span> <span class="p">(</span><span class="nx">i</span> <span class="o">*</span> <span class="mi">10</span><span class="p">);</span>
+            <span class="nx">current</span> <span class="o">=</span> <span class="p">(</span><span class="nx">n</span> <span class="o">/</span> <span class="nx">i</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="nx">after</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">-</span> <span class="p">(</span><span class="nx">n</span> <span class="o">/</span> <span class="nx">i</span><span class="p">)</span> <span class="o">*</span> <span class="nx">i</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">current</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="nx">count</span> <span class="o">+=</span> <span class="nx">before</span> <span class="o">*</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">i</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">current</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="nx">count</span> <span class="o">+=</span> <span class="nx">before</span> <span class="o">*</span> <span class="nx">i</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">current</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="nx">count</span> <span class="o">+=</span> <span class="nx">before</span> <span class="o">*</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">after</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="nx">i</span> <span class="o">*=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -155,19 +154,13 @@
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">深度学习 第四章 数值计算</a>
+                                <a href="https://xutree.github.io/pages/2019/02/19/jzoffer1/">剑指 offer (1)</a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">深度学习 第三章 概率与信息论</a>
+                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">最大子数组问题</a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">深度学习 第二章 线性代数</a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">深度学习 第一章 引言</a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/20/sl-12/">统计学习方法 第十二章 统计学习方法总结</a>
+                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">排序算法</a>
                             </li>
                         </ul>
                     </nav>
@@ -177,45 +170,8 @@
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">
-                                    深度学习 第四章 数值计算
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">
-                                    深度学习 第三章 概率与信息论
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">
-                                    深度学习 第二章 线性代数
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">
-                                    深度学习 第一章 引言
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/20/sl-12/">
-                                    统计学习方法 第十二章 统计学习方法总结
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <nav class="newer">
-                        <h1>
-                            <font color="#771515"><em>NEWER</em></font>
-                        </h1>
-                        <ul>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2019/01/22/Torch_libpng/">
-                                    为 Torch 安装特定版本的 libpng
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2019/02/19/jzoffer1/">
-                                    剑指 offer (1)
+                                <a href="https://xutree.github.io/pages/2019/02/20/bianma/">
+                                    原码, 反码, 补码
                                 </a>
                             </li>
                             <li>
@@ -224,55 +180,42 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2019/02/20/bianma/">
-                                    原码, 反码, 补码
+                                <a href="https://xutree.github.io/pages/2019/02/19/jzoffer1/">
+                                    剑指 offer (1)
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2019/02/23/jzoffer2/">
-                                    剑指 offer (2)
+                                <a href="https://xutree.github.io/pages/2019/01/22/Torch_libpng/">
+                                    为 Torch 安装特定版本的 libpng
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/12/07/dl-5/">
+                                    深度学习 第五章 机器学习基础
                                 </a>
                             </li>
                         </ul>
                     </nav>
-                    <!-- Gitalk 评论 start  -->
-
-                    <!-- Link Gitalk 的支持文件  -->
-                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-                    <div id="gitalk-container"></div>
-                    <script type="text/javascript">
-                        var dateTime = Date.now();
-                        var timestamp = Math.floor(dateTime / 1000);
-                        var gitalk = new Gitalk({
-
-                            // gitalk的主要参数
-                            clientID: '93f43349e9fd3154bfad',
-                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
-                            repo: 'xutree.github.io',
-                            owner: 'xutree',
-                            admin: ['xutree'],
-                            id: String(timestamp)
-
-                        });
-                        gitalk.render('gitalk-container');
-                    </script> -->
-                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-12-07T23:11:40.170005+08:00">2018-12-07 23:11:40</time>
+                    <time pubdate="pubdate" datetime="2019-02-23T19:37:12+08:00">2019-02-23 19:37:12</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-02-23 19:37:12</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
-                        <li><a href="/tags.html#机器学习-ref">机器学习
-                                <span>20</span>
+                        <li><a href="/tags.html#剑指offer-ref">剑指offer
+                                <span>2</span>
 </a></li>
-                        <li><a href="/tags.html#深度学习-ref">深度学习
-                                <span>5</span>
+                        <li><a href="/tags.html#面试-ref">面试
+                                <span>2</span>
+</a></li>
+                        <li><a href="/tags.html#算法-ref">算法
+                                <span>4</span>
 </a></li>
                     </ul>
 
