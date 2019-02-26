@@ -90,6 +90,7 @@
 </li>
 <li><a href="#28">28. 对称的二叉树</a></li>
 <li><a href="#29">29. 按照之字形打印二叉树</a></li>
+<li><a href="#30">30. 把二叉树打印出多行</a></li>
 </ul>
 </div>
             </nav>
@@ -1130,6 +1131,98 @@
 </pre></div>
 <h2 id="29">29. 按照之字形打印二叉树</h2>
 <p>请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};</span>
+<span class="cm">*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nx">Print</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;&gt;</span> <span class="nx">ret</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">pRoot</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">curr</span><span class="p">;</span>
+        <span class="nx">deque</span><span class="o">&lt;</span><span class="nx">TreeNode</span><span class="o">*&gt;</span> <span class="nx">deq</span><span class="p">;</span>
+        <span class="nx">deq</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">NULL</span><span class="p">);</span><span class="c1">//层分隔符</span>
+        <span class="nx">deq</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">pRoot</span><span class="p">);</span>
+        <span class="kt">bool</span> <span class="nx">leftToRight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">deq</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">){</span>
+            <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">deq</span><span class="p">.</span><span class="nx">front</span><span class="p">();</span>
+            <span class="nx">deq</span><span class="p">.</span><span class="nx">pop_front</span><span class="p">();</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">node</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span>    <span class="c1">//  到达每层分隔符</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">leftToRight</span> <span class="o">==</span> <span class="kc">true</span><span class="p">)</span>    <span class="c1">//  从前完后遍历</span>
+                <span class="p">{</span>
+                    <span class="nx">deque</span><span class="o">&lt;</span><span class="nx">TreeNode</span><span class="o">*&gt;::</span><span class="nx">iterator</span> <span class="nx">iter</span><span class="p">;</span>
+                    <span class="k">for</span><span class="p">(</span><span class="nx">iter</span> <span class="o">=</span> <span class="nx">deq</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span> <span class="nx">iter</span> <span class="o">!=</span> <span class="nx">deq</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span> <span class="nx">iter</span><span class="o">++</span><span class="p">)</span>
+                        <span class="nx">curr</span><span class="p">.</span><span class="nx">push_back</span><span class="p">((</span><span class="o">*</span><span class="nx">iter</span><span class="p">)</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">);</span>
+                <span class="p">}</span> <span class="k">else</span>                        <span class="c1">//  从后往前遍历</span>
+                <span class="p">{</span>
+                    <span class="nx">deque</span><span class="o">&lt;</span><span class="nx">TreeNode</span><span class="o">*&gt;::</span><span class="nx">reverse_iterator</span> <span class="nx">riter</span><span class="p">;</span>
+                    <span class="k">for</span><span class="p">(</span><span class="nx">riter</span> <span class="o">=</span> <span class="nx">deq</span><span class="p">.</span><span class="nx">rbegin</span><span class="p">();</span> <span class="nx">riter</span> <span class="o">&lt;</span> <span class="nx">deq</span><span class="p">.</span><span class="nx">rend</span><span class="p">();</span> <span class="nx">riter</span><span class="o">++</span><span class="p">)</span>
+                        <span class="nx">curr</span><span class="p">.</span><span class="nx">push_back</span><span class="p">((</span><span class="o">*</span><span class="nx">riter</span><span class="p">)</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="nx">leftToRight</span> <span class="o">=</span> <span class="o">!</span><span class="nx">leftToRight</span><span class="p">;</span>
+                <span class="nx">ret</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">curr</span><span class="p">);</span>
+                <span class="nx">curr</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+                <span class="nx">deq</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">NULL</span><span class="p">);</span><span class="c1">//添加层分隔符</span>
+                <span class="k">continue</span><span class="p">;</span><span class="c1">//一定要continue</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">left</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span>
+                <span class="nx">deq</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">right</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span>
+                <span class="nx">deq</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="30">30. 把二叉树打印出多行</h2>
+<p>从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};</span>
+<span class="cm">*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nx">Print</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;&gt;</span> <span class="nx">res</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+            <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">temp</span><span class="p">;</span>
+            <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">curr</span><span class="p">;</span>
+            <span class="nx">queue</span><span class="o">&lt;</span><span class="nx">TreeNode</span><span class="o">*&gt;</span> <span class="nx">node</span><span class="p">;</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">pRoot</span><span class="p">);</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">NULL</span><span class="p">);</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">empty</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">curr</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">front</span><span class="p">();</span>
+                <span class="nx">node</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">curr</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">temp</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">);</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">left</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="nx">node</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">);</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">right</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="nx">node</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">);</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">empty</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">res</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+                    <span class="nx">temp</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+                    <span class="nx">node</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">NULL</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">temp</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">res</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="p">}</span>
+
+<span class="p">};</span>
+</pre></div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1242,7 +1335,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2019-02-23T19:37:12+08:00">2019-02-23 19:37:12</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2019-02-25 15:53:17</div>
+                    <div class="last_updated">2019-02-26 10:58:29</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
