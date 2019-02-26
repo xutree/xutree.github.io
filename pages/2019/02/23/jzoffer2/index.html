@@ -84,13 +84,17 @@
 <li><a href="#23">23. 表示数值的字符串</a></li>
 <li><a href="#24">24. 字符流中第一个只出现一次的字符</a></li>
 <li><a href="#25">25. 链表中环入口</a></li>
-<li><a href="#26">26. 删除链表中重复的结点</a><ul>
+<li><a href="#26">26. 删除链表中重复的结点</a></li>
 <li><a href="#27">27. 二叉树的下一个结点</a></li>
-</ul>
-</li>
 <li><a href="#28">28. 对称的二叉树</a></li>
 <li><a href="#29">29. 按照之字形打印二叉树</a></li>
 <li><a href="#30">30. 把二叉树打印出多行</a></li>
+<li><a href="#31">31. 序列化二叉树</a></li>
+<li><a href="#32-k">32. 二叉搜索树的第 \(k\) 个结点</a></li>
+<li><a href="#33">33. 数据流中的中位数</a></li>
+<li><a href="#34">34. 滑动窗口的最大值</a></li>
+<li><a href="#35">35. 矩阵中的路径</a></li>
+<li><a href="#37">37. 机器人的运动范围</a></li>
 </ul>
 </div>
             </nav>
@@ -987,7 +991,7 @@
 <p><strong>思路</strong>：</p>
 <p>1) 我们每次都判断当前结点的值与下一个节点的值是否重复
 2) 如果重复就循环寻找下一个不重复的节点，将他们链接新新链表的尾部（其实就是删除重复的节点）</p>
-<h3 id="27">27. 二叉树的下一个结点</h3>
+<h2 id="27">27. 二叉树的下一个结点</h2>
 <p>给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</p>
 <div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">struct TreeLinkNode {</span>
@@ -1223,6 +1227,307 @@
 
 <span class="p">};</span>
 </pre></div>
+<h2 id="31">31. 序列化二叉树</h2>
+<p>请实现两个函数，分别用来序列化和反序列化二叉树。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};</span>
+<span class="cm">*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="cm">/*  序列化二叉树  */</span>
+    <span class="kr">char</span><span class="o">*</span> <span class="nx">Serialize</span><span class="p">(</span><span class="nx">TreeNode</span> <span class="o">*</span><span class="nx">root</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">){</span>
+            <span class="kr">char</span> <span class="o">*</span><span class="nx">serial</span> <span class="o">=</span> <span class="k">new</span> <span class="kr">char</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+            <span class="nx">strcpy</span><span class="p">(</span><span class="nx">serial</span><span class="p">,</span> <span class="s2">"#,"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">serial</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">string</span> <span class="nx">str</span><span class="p">;</span>
+        <span class="nx">Serialize</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">str</span><span class="p">);</span>
+        <span class="kr">const</span> <span class="kr">char</span>  <span class="o">*</span><span class="nx">c_str</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">c_str</span><span class="p">();</span>
+        <span class="kr">char</span> <span class="o">*</span><span class="nx">serial</span> <span class="o">=</span> <span class="k">new</span> <span class="kr">char</span><span class="p">[</span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+        <span class="nx">strcpy</span><span class="p">(</span><span class="nx">serial</span><span class="p">,</span> <span class="nx">c_str</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">serial</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">Deserialize</span><span class="p">(</span><span class="kr">char</span> <span class="o">*</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">str</span> <span class="o">==</span> <span class="nx">NULL</span><span class="o">||</span> <span class="o">*</span><span class="nx">str</span> <span class="o">==</span> <span class="s1">'\0'</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">Deserialize</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="kr">private</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">Serialize</span><span class="p">(</span><span class="nx">TreeNode</span> <span class="o">*</span><span class="nx">root</span><span class="p">,</span> <span class="kt">string</span> <span class="o">&amp;</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">str</span> <span class="o">+=</span> <span class="s2">"#,"</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="cm">/*  先序遍历的方式, 序列化二叉树  */</span>
+        <span class="nx">str</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">toString</span><span class="p">(</span><span class="nx">root</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">)</span> <span class="o">+</span> <span class="s2">","</span><span class="p">);</span>
+        <span class="nx">Serialize</span><span class="p">(</span><span class="nx">root</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">str</span><span class="p">);</span>
+        <span class="nx">Serialize</span><span class="p">(</span><span class="nx">root</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">,</span> <span class="nx">str</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="cm">/*  反序列化二叉树</span>
+<span class="cm">     *  将一个序列化的字符串转换成二叉树  */</span>
+    <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">Deserialize</span><span class="p">(</span><span class="kr">char</span> <span class="o">*</span><span class="nx">str</span><span class="p">,</span> <span class="kr">int</span> <span class="o">&amp;</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'#'</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">index</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="cm">/*  获取到节点的数字权值  */</span>
+        <span class="kr">int</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">','</span> <span class="o">&amp;&amp;</span> <span class="nx">str</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'\0'</span><span class="p">){</span>
+            <span class="nx">num</span> <span class="o">=</span> <span class="nx">num</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">-</span> <span class="s1">'0'</span><span class="p">);</span>
+            <span class="nx">index</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">index</span><span class="o">++</span><span class="p">;</span>
+        <span class="nx">TreeNode</span> <span class="o">*</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TreeNode</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span>
+        <span class="nx">root</span><span class="o">-&gt;</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">Deserialize</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+        <span class="nx">root</span><span class="o">-&gt;</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">Deserialize</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">root</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">string</span> <span class="nx">toString</span><span class="p">(</span><span class="kr">int</span> <span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">stringstream</span> <span class="nx">ss</span><span class="p">;</span>
+        <span class="nx">ss</span> <span class="o">&lt;&lt;</span> <span class="nx">num</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">ss</span><span class="p">.</span><span class="nx">str</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="32-k">32. 二叉搜索树的第 <span class="math">\(k\)</span> 个结点</h2>
+<p>给定一棵二叉搜索树，请找出其中的第 <span class="math">\(k\)</span> 小的结点。例如，（5，3，7，2，4，6，8） 中，按结点数值大小顺序第三小结点的值为 4。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};</span>
+<span class="cm">*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">private</span><span class="o">:</span>
+    <span class="nx">unsigned</span> <span class="kr">int</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">KthNode</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">k</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">pRoot</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="nx">TreeNode</span> <span class="o">*</span><span class="nx">ret</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">((</span><span class="nx">ret</span> <span class="o">=</span> <span class="nx">KthNode</span><span class="p">(</span><span class="nx">pRoot</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">k</span><span class="p">))</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+        <span class="o">++</span><span class="nx">count</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">count</span> <span class="o">==</span> <span class="nx">k</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nx">pRoot</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">((</span><span class="nx">ret</span> <span class="o">=</span> <span class="nx">KthNode</span><span class="p">(</span><span class="nx">pRoot</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">,</span> <span class="nx">k</span><span class="p">))</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+    <span class="p">}</span>  
+<span class="p">};</span>
+</pre></div>
+<h2 id="33">33. 数据流中的中位数</h2>
+<p>如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。我们使用 Insert() 方法读取数据流，使用 GetMedian() 方法获取当前读取数据的中位数。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">private</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">m_min</span><span class="p">;</span> <span class="c1">// 后半部分数据</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">m_max</span><span class="p">;</span> <span class="c1">// 前半部分数据</span>
+<span class="kr">protected</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">MakeHeapify</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">start</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">end</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">flag</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">int</span> <span class="nx">dad</span> <span class="o">=</span> <span class="nx">start</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">son</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">dad</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="c1">// 最大堆</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">flag</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nx">son</span> <span class="o">&lt;=</span> <span class="nx">end</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">son</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="nx">end</span> <span class="o">&amp;&amp;</span> <span class="nx">a</span><span class="p">[</span><span class="nx">son</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">a</span><span class="p">[</span><span class="nx">son</span><span class="p">])</span>
+                    <span class="nx">son</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">dad</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="nx">a</span><span class="p">[</span><span class="nx">son</span><span class="p">])</span> <span class="k">return</span><span class="p">;</span>
+                <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">swap</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">dad</span><span class="p">],</span> <span class="nx">a</span><span class="p">[</span><span class="nx">son</span><span class="p">]);</span>
+                    <span class="nx">dad</span> <span class="o">=</span> <span class="nx">son</span><span class="p">;</span>
+                    <span class="nx">son</span> <span class="o">=</span> <span class="nx">dad</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="c1">// 最小堆</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">flag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nx">son</span> <span class="o">&lt;=</span> <span class="nx">end</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">son</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="nx">end</span> <span class="o">&amp;&amp;</span> <span class="nx">a</span><span class="p">[</span><span class="nx">son</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">[</span><span class="nx">son</span><span class="p">])</span>
+                    <span class="nx">son</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">dad</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">[</span><span class="nx">son</span><span class="p">])</span> <span class="k">return</span><span class="p">;</span>
+                <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">swap</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">dad</span><span class="p">],</span> <span class="nx">a</span><span class="p">[</span><span class="nx">son</span><span class="p">]);</span>
+                    <span class="nx">dad</span> <span class="o">=</span> <span class="nx">son</span><span class="p">;</span>
+                    <span class="nx">son</span> <span class="o">=</span> <span class="nx">dad</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">void</span> <span class="nx">swap</span><span class="p">(</span><span class="kr">int</span> <span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="kr">int</span> <span class="o">&amp;</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">!=</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">a</span> <span class="o">^=</span> <span class="nx">b</span><span class="p">;</span>
+            <span class="nx">b</span> <span class="o">^=</span> <span class="nx">a</span><span class="p">;</span>
+            <span class="nx">a</span> <span class="o">^=</span> <span class="nx">b</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">Insert</span><span class="p">(</span><span class="kr">int</span> <span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">int</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">num</span><span class="p">;</span>
+        <span class="c1">// 偶数时，假设最大堆比最小堆少1 关系 &gt; 逐位运算</span>
+        <span class="k">if</span> <span class="p">(((</span><span class="nx">m_min</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">+</span> <span class="nx">m_max</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">m_max</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">num</span> <span class="o">&lt;</span> <span class="nx">m_max</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">swap</span><span class="p">(</span><span class="nx">m_max</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">temp</span><span class="p">);</span>
+                <span class="nx">MakeHeapify</span><span class="p">(</span><span class="nx">m_max</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">m_max</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">m_min</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+            <span class="nx">MakeHeapify</span><span class="p">(</span><span class="nx">m_min</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">m_min</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">m_min</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">num</span> <span class="o">&gt;</span> <span class="nx">m_min</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">swap</span><span class="p">(</span><span class="nx">m_min</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">temp</span><span class="p">);</span>
+                <span class="nx">MakeHeapify</span><span class="p">(</span><span class="nx">m_min</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">m_min</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">m_max</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+            <span class="nx">MakeHeapify</span><span class="p">(</span><span class="nx">m_max</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">m_max</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kr">double</span> <span class="nx">GetMedian() {</span>
+        <span class="kr">int</span> <span class="nx">size</span> <span class="o">=</span> <span class="nx">m_min</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">+</span> <span class="nx">m_max</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="kr">double</span> <span class="nx">median</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">((</span><span class="nx">size</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="nx">median</span> <span class="o">=</span> <span class="p">(</span><span class="kr">double</span><span class="p">)</span> <span class="nx">m_min</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="k">else</span>
+            <span class="nx">median</span> <span class="o">=</span> <span class="p">(</span><span class="kr">double</span><span class="p">)</span> <span class="p">(</span><span class="nx">m_max</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">m_min</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">median</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="34">34. 滑动窗口的最大值</h2>
+<p>给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">maxInWindows</span><span class="p">(</span><span class="kr">const</span> <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;&amp;</span> <span class="nx">num</span><span class="p">,</span> <span class="nx">unsigned</span> <span class="kr">int</span> <span class="nx">size</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="nx">deque</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">index</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="nx">unsigned</span> <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">num</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="cm">/*  从后面依次弹出队列中比当前num值小的元素，</span>
+<span class="cm">             *  同时也能保证队列首元素为当前窗口最大值下标  */</span>
+            <span class="k">while</span><span class="p">(</span><span class="nx">index</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">num</span><span class="p">[</span><span class="nx">index</span><span class="p">.</span><span class="nx">back</span><span class="p">()]</span> <span class="o">&lt;=</span> <span class="nx">num</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+                <span class="nx">index</span><span class="p">.</span><span class="nx">pop_back</span><span class="p">();</span>
+            <span class="cm">/*  当前窗口移出队首元素所在的位置</span>
+<span class="cm">                即队首元素坐标对应的num不在窗口中，需要弹出  */</span>
+            <span class="k">while</span><span class="p">(</span><span class="nx">index</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="nx">i</span> <span class="o">-</span> <span class="nx">index</span><span class="p">.</span><span class="nx">front</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="nx">size</span><span class="p">)</span>
+                <span class="nx">index</span><span class="p">.</span><span class="nx">pop_front</span><span class="p">(</span> <span class="p">);</span>
+            <span class="cm">/*  把每次滑动的num下标加入队列  */</span>
+            <span class="nx">index</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+            <span class="cm">/*  当滑动窗口首地址i大于等于size时才开始写入窗口最大值  */</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">size</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="nx">size</span><span class="p">)</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">num</span><span class="p">[</span><span class="nx">index</span><span class="p">.</span><span class="nx">front</span><span class="p">()]);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="35">35. 矩阵中的路径</h2>
+<p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串"bcced"的路径，但是矩阵中不包含"abcb"路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="nx">hasPath</span><span class="p">(</span><span class="kr">char</span><span class="o">*</span> <span class="nx">matrix</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">rows</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">cols</span><span class="p">,</span> <span class="kr">char</span><span class="o">*</span> <span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">matrix</span> <span class="o">==</span> <span class="nx">NULL</span> <span class="o">||</span> <span class="nx">rows</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="nx">cols</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="nx">str</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="c1">//定义一个辅助矩阵，用来标记路径是否已经进入了每个格子</span>
+        <span class="kt">bool</span><span class="o">*</span> <span class="nx">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">bool</span><span class="p">[</span><span class="nx">rows</span> <span class="o">*</span> <span class="nx">cols</span><span class="p">];</span>
+        <span class="nx">memset</span><span class="p">(</span><span class="nx">visited</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">rows</span> <span class="o">*</span> <span class="nx">cols</span><span class="p">);</span>
+        <span class="kr">int</span> <span class="nx">pathLength</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">//该循环是为了实现从任何一个位置出发，寻找路径</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">row</span> <span class="o">&lt;</span> <span class="nx">rows</span><span class="p">;</span> <span class="o">++</span><span class="nx">row</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">col</span> <span class="o">&lt;</span> <span class="nx">cols</span><span class="p">;</span> <span class="o">++</span><span class="nx">col</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">hasPathCore</span><span class="p">(</span><span class="nx">matrix</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="nx">row</span><span class="p">,</span>
+                                <span class="nx">col</span><span class="p">,</span> <span class="nx">str</span><span class="p">,</span> <span class="nx">pathLength</span><span class="p">,</span> <span class="nx">visited</span><span class="p">))</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">delete</span><span class="p">[]</span> <span class="nx">visited</span><span class="p">;</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="cm">/*此函数用来判断在当前路径满足条件下，相邻格子中是否存在一个格子满足条件*/</span>
+    <span class="kt">bool</span> <span class="nx">hasPathCore</span><span class="p">(</span><span class="kr">char</span><span class="o">*</span> <span class="nx">matrix</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">rows</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">cols</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">row</span><span class="p">,</span>
+                     <span class="kr">int</span> <span class="nx">col</span><span class="p">,</span> <span class="kr">char</span><span class="o">*</span> <span class="nx">str</span><span class="p">,</span> <span class="kr">int</span><span class="o">&amp;</span> <span class="nx">pathLength</span><span class="p">,</span> <span class="kt">bool</span><span class="o">*</span> <span class="nx">visited</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">pathLength</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'\0'</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="nx">hasPath</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">row</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">row</span> <span class="o">&lt;</span> <span class="nx">rows</span> <span class="o">&amp;&amp;</span> <span class="nx">col</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">col</span> <span class="o">&lt;</span> <span class="nx">cols</span>
+            <span class="o">&amp;&amp;</span> <span class="nx">matrix</span><span class="p">[</span><span class="nx">row</span> <span class="o">*</span> <span class="nx">cols</span> <span class="o">+</span> <span class="nx">col</span><span class="p">]</span> <span class="o">==</span> <span class="nx">str</span><span class="p">[</span><span class="nx">pathLength</span><span class="p">]</span>
+            <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">visited</span><span class="p">[</span><span class="nx">row</span> <span class="o">*</span> <span class="nx">cols</span> <span class="o">+</span> <span class="nx">col</span><span class="p">])</span> <span class="p">{</span>
+            <span class="o">++</span><span class="nx">pathLength</span><span class="p">;</span>
+            <span class="nx">visited</span><span class="p">[</span><span class="nx">row</span> <span class="o">*</span> <span class="nx">cols</span> <span class="o">+</span> <span class="nx">col</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="cm">/*如果矩阵格子(row,col)与路径字符串中下标为pathLength的字符一样时，</span>
+<span class="cm">            从它的4个相邻格子中寻找与路径字符串下标为pathLength+1的字符相等的格子*/</span>
+            <span class="nx">hasPath</span> <span class="o">=</span> <span class="nx">hasPathCore</span><span class="p">(</span><span class="nx">matrix</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="nx">row</span><span class="p">,</span> <span class="nx">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">str</span><span class="p">,</span> <span class="nx">pathLength</span><span class="p">,</span> <span class="nx">visited</span><span class="p">)</span> <span class="o">||</span>
+                <span class="nx">hasPathCore</span><span class="p">(</span><span class="nx">matrix</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="nx">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">str</span><span class="p">,</span> <span class="nx">pathLength</span><span class="p">,</span> <span class="nx">visited</span><span class="p">)</span> <span class="o">||</span>
+                <span class="nx">hasPathCore</span><span class="p">(</span><span class="nx">matrix</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="nx">row</span><span class="p">,</span> <span class="nx">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">str</span><span class="p">,</span> <span class="nx">pathLength</span><span class="p">,</span> <span class="nx">visited</span><span class="p">)</span> <span class="o">||</span>
+                <span class="nx">hasPathCore</span><span class="p">(</span><span class="nx">matrix</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="nx">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">str</span><span class="p">,</span> <span class="nx">pathLength</span><span class="p">,</span> <span class="nx">visited</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">hasPath</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">//如果没找到，则说明当前第pathLength个字符定位不正确，返回上一个位置重新定位</span>
+                <span class="o">--</span><span class="nx">pathLength</span><span class="p">;</span>
+                <span class="nx">visited</span><span class="p">[</span><span class="nx">row</span> <span class="o">*</span> <span class="nx">cols</span> <span class="o">+</span> <span class="nx">col</span><span class="p">]</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">hasPath</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="37">37. 机器人的运动范围</h2>
+<p>地上有一个 <span class="math">\(m\)</span> 行和 <span class="math">\(n\)</span> 列的方格。一个机器人从坐标 (0,0) 的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于 <span class="math">\(k\)</span> 的格子。 例如，当 <span class="math">\(k\)</span> 为 18 时，机器人能够进入方格（35,37），因为 3+5+3+7 = 18。但是，它不能进入方格（35,38），因为 3+5+3+8 = 19。请问该机器人能够达到多少个格子？</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">movingCount</span><span class="p">(</span><span class="kr">int</span> <span class="nx">threshold</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">rows</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">cols</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">bool</span><span class="o">*</span> <span class="nx">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">bool</span><span class="p">[</span><span class="nx">rows</span> <span class="o">*</span> <span class="nx">cols</span><span class="p">];</span>
+        <span class="nx">memset</span><span class="p">(</span><span class="nx">visited</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">rows</span> <span class="o">*</span> <span class="nx">cols</span><span class="p">);</span>
+        <span class="kr">int</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">movingCountCore</span><span class="p">(</span><span class="nx">threshold</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">visited</span><span class="p">);</span>
+        <span class="k">delete</span><span class="p">[]</span> <span class="nx">visited</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kr">int</span> <span class="nx">movingCountCore</span><span class="p">(</span><span class="kr">int</span> <span class="nx">threshold</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">rows</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">cols</span><span class="p">,</span>
+                        <span class="kr">int</span> <span class="nx">row</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">col</span><span class="p">,</span> <span class="kt">bool</span><span class="o">*</span> <span class="nx">visited</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">int</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">check</span><span class="p">(</span><span class="nx">threshold</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="nx">row</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">visited</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">visited</span><span class="p">[</span><span class="nx">row</span> <span class="o">*</span> <span class="nx">cols</span> <span class="o">+</span> <span class="nx">col</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="nx">count</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span>
+                <span class="nx">movingCountCore</span><span class="p">(</span><span class="nx">threshold</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="nx">row</span><span class="p">,</span> <span class="nx">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">visited</span><span class="p">)</span> <span class="o">+</span>
+                <span class="nx">movingCountCore</span><span class="p">(</span><span class="nx">threshold</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="nx">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">visited</span><span class="p">)</span> <span class="o">+</span>
+                <span class="nx">movingCountCore</span><span class="p">(</span><span class="nx">threshold</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="nx">row</span><span class="p">,</span> <span class="nx">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">visited</span><span class="p">)</span> <span class="o">+</span>
+                <span class="nx">movingCountCore</span><span class="p">(</span><span class="nx">threshold</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">cols</span><span class="p">,</span> <span class="nx">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">visited</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="cm">/*该函数检查坐标为(row,col)的方格能够进入*/</span>
+    <span class="kt">bool</span> <span class="nx">check</span><span class="p">(</span><span class="kr">int</span> <span class="nx">threshold</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">rows</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">cols</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">row</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">col</span><span class="p">,</span> <span class="kt">bool</span><span class="o">*</span><span class="nx">visited</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">row</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">row</span> <span class="o">&lt;</span> <span class="nx">rows</span> <span class="o">&amp;&amp;</span> <span class="nx">col</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">col</span> <span class="o">&lt;</span> <span class="nx">cols</span>
+            <span class="o">&amp;&amp;</span> <span class="nx">getDigitSum</span><span class="p">(</span><span class="nx">row</span><span class="p">)</span> <span class="o">+</span> <span class="nx">getDigitSum</span><span class="p">(</span><span class="nx">col</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nx">threshold</span>
+            <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">visited</span><span class="p">[</span><span class="nx">row</span><span class="o">*</span><span class="nx">cols</span> <span class="o">+</span> <span class="nx">col</span><span class="p">])</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="cm">/*计算一个数的所有位数之和*/</span>
+    <span class="kr">int</span> <span class="nx">getDigitSum</span><span class="p">(</span><span class="kr">int</span> <span class="kt">number</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">int</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="kt">number</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nx">sum</span> <span class="o">+=</span> <span class="kt">number</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="kt">number</span> <span class="o">=</span> <span class="kt">number</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">sum</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1335,7 +1640,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2019-02-23T19:37:12+08:00">2019-02-23 19:37:12</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2019-02-26 10:58:29</div>
+                    <div class="last_updated">2019-02-26 22:42:52</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
