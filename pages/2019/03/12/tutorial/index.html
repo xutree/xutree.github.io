@@ -7,7 +7,7 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="xlwings, excel, python, 教程, " />
+<meta name="keywords" content="xlwings, Excel, python, 教程, " />
     <title>xlwings 教程  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
@@ -115,16 +115,26 @@
 <li>索引单个单元格 <code>sht2.range('B3')</code> 或 <code>sht2.range((3,2))</code> 指明是第三行第二列单元格</li>
 <li>索引区域 <code>sht2.range('B3:F6')</code> 或 <code>sht2.range((3,2),(6,6))</code></li>
 </ul>
-<h3 id="42">4.2 获得单元格属性</h3>
-<p>下面的方法将返回 range 索引区域内单元格的属性</p>
+<h3 id="42">4.2 操作单元格</h3>
 <ul>
+<li><code>sht2.range('B3:F6').add_hyperlink(address, text_to_display=None, screen_tip=None)</code> 为区域内单元格添加超链接</li>
+<li><code>sht2.range('B3:F6').autofit()</code> 自动调整区域内单元格的宽度和高度</li>
+<li><code>sht2.range('B3:F6').columns.autofit()</code> 自动调整区域内单元格的宽度</li>
+<li><code>sht2.range('B3:F6').rows.autofit()</code> 自动调整区域内单元格的高度</li>
+<li><code>sht2.range('B3:F6').clear()</code> 清除区域内单元格的内容和格式</li>
+<li><code>sht2.range('B3:F6').clear_contents()</code> 清除区域内单元格的内容，保留格式</li>
 <li><code>sht2.range('B3:F6').address</code> 将返回字符串 <code>$B$3:$F$6'</code></li>
 <li><code>sht2.range('B3:F6').color</code> 将返回区域内单元格的颜色，若区域内单元格颜色不一致，返回 (0,0,0)，若无颜色，返回空</li>
+<li><code>sht2.range('B3:F6').color = (255, 0, 0)</code> 设置区域内单元格的颜色</li>
 <li><code>sht2.range('B3:F6').column</code> 将返回区域内单元格第一列的索引（整数），本例返回 2</li>
 <li><code>sht2.range('B3:F6').column_width</code> 将返回区域内单元格的列宽（浮点数），如果列宽不一致，返回 <code>None</code></li>
+<li><code>sht2.range('B3:F6').column_width = 23</code> 设置区域内单元格的列宽，列宽范围必须为 [0,255]</li>
 <li><code>sht2.range('B3:F6').columns</code> 将返回一个 <code>RangeColumns</code> 对象，代表区域里的列，本例返回 <code>RangeColumns(&lt;Range [test.xlsx]Sheet2!$B$3:$F$6&gt;)</code></li>
 <li><code>sht2.range('B3:F6').count</code> 返回单元格的数量</li>
 <li><code>sht2.range('B3:F6').current_region</code> 返回一个 <code>Range</code> 对象，代表去除区域空白边界的范围，本类返回 <code>&lt;Range [test.xlsx]Sheet2!$A$1:$C$3&gt;</code></li>
+<li><code>sht2.range('B3:F6').end(args)</code> 参数 <code>args</code> 可为 left、right、up、down，该函数返回 <code>Range</code> 对象，表示指定区域近邻的边界单元格，如近邻的单元格无内容，则继续查找下一个近邻</li>
+<li><code>sht2.range('B3:F6').expand(args)</code> <code>args</code> 可为 table、down、right，该函数根据参数扩展当前区域范围，并范围 <code>Range</code> 对象，table 为向右向下扩展，若扩展方向下一个单元格内容为空，则停止扩展；若扩展后的区域仍为空，则返回 <code>None</code>（例如，从空的单元格往右扩展，但是右边一个单元格也是空的情况）</li>
+<li><code>sht2.range('B3:F6').get_address(row_absolute=True, column_absolute=True, include_sheetname=False, external=False)</code> 返回字符串，代表区域单元的地址，根据参数的不同可以用不同返回形式，具体参考<a href="https://docs.xlwings.org/en/stable/api.html">这里</a></li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -227,7 +237,7 @@
                     <a class="category-link" href="/categories.html#教程-ref">教程</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
-                        <li><a href="/tags.html#excel-ref">excel
+                        <li><a href="/tags.html#Excel-ref">Excel
                                 <span>1</span>
 </a></li>
                         <li><a href="/tags.html#python-ref">python
