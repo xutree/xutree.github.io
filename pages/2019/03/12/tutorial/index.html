@@ -83,6 +83,26 @@
 </li>
 </ul>
 </li>
+<li><a href="#5">5. 操作表单中的形状</a><ul>
+<li><a href="#51">5.1 获取形状数量</a></li>
+<li><a href="#52">5.2 索引形状</a></li>
+<li><a href="#53">5.3 操作形状</a></li>
+</ul>
+</li>
+<li><a href="#6">6. 操作表单中的表格</a><ul>
+<li><a href="#61">6.1 获取表格数量</a></li>
+<li><a href="#62">6.2 添加表格</a></li>
+<li><a href="#63">6.3 索引表格</a></li>
+<li><a href="#64">6.4 操作表格</a></li>
+</ul>
+</li>
+<li><a href="#7">7. 操作表单中的图像</a><ul>
+<li><a href="#71">7.1 获取图像数量</a></li>
+<li><a href="#72">7.2 添加图像</a></li>
+<li><a href="#73">7.3 索引图像</a></li>
+<li><a href="#74">7.4 操作图像</a></li>
+</ul>
+</li>
 </ul>
 </div>
             </nav>
@@ -191,7 +211,7 @@
 <p><code>sht2.range('B3:F6').last_cell</code> 返回一个 <code>Range</code> 对象，表示区域内最右下单元格的位置</p>
 </li>
 <li>
-<p><code>sht2.range('B3:F6').row</code> 返回一个浮点数，表示从 行 1 的上边界到此区域上边界的距离，单位是 point</p>
+<p><code>sht2.range('B3:F6').top</code> 返回一个浮点数，表示从 行 1 的上边界到此区域上边界的距离，单位是 point</p>
 </li>
 <li>
 <p><code>sht2.range('B3:F6').left</code> 返回一个浮点数，表示从 A 栏的左边界到此区域左边界的距离，单位是 point</p>
@@ -199,12 +219,11 @@
 <li>
 <p><code>sht2.range('B3:F6').columns</code> 将返回一个 <code>RangeColumns</code> 对象，代表区域里的列，本例返回 <code>RangeColumns(&lt;Range [test.xlsx]Sheet2!$B$3:$F$6&gt;)</code></p>
 </li>
-<li>
-<p><code>sht2.range('B3:F6').rows</code> 将返回一个 <code>RangeRows</code> 对象，代表区域里的行，本例返回 <code>RangeRows(&lt;Range [test.xlsx]Sheet2!$B$3:$F$6&gt;)</code></p>
-</li>
-<li>
-<p><code>sht2.range('B3:F6').current_region</code> 返回一个 <code>Range</code> 对象，代表去除区域空白边界的范围，本类返回 <code>&lt;Range [test.xlsx]Sheet2!$A$1:$C$3&gt;</code></p>
-</li>
+<li><code>sht2.range('B3:F6').rows</code> 将返回一个 <code>RangeRows</code> 对象，代表区域里的行，本例返回 <code>RangeRows(&lt;Range [test.xlsx]Sheet2!$B$3:$F$6&gt;)</code></li>
+</ul>
+<p>上面这两个对象都有一个 <code>count</code> 数据成员，可以很方便的得到总行数和列数。</p>
+<ul>
+<li><code>sht2.range('B3:F6').current_region</code> 返回一个 <code>Range</code> 对象，代表去除区域空白边界的范围，本类返回 <code>&lt;Range [test.xlsx]Sheet2!$A$1:$C$3&gt;</code></li>
 <li><code>sht2.range('B3:F6').end(args)</code> 参数 <code>args</code> 可为 left、right、up、down，该函数返回 <code>Range</code> 对象，表示指定区域近邻的边界单元格，如近邻的单元格无内容，则继续查找下一个近邻</li>
 <li><code>sht2.range('B3:F6').expand(args)</code> <code>args</code> 可为 table、down、right，该函数根据参数扩展当前区域范围，并范围 <code>Range</code> 对象，table 为向右向下扩展，若扩展方向下一个单元格内容为空，则停止扩展；若扩展后的区域仍为空，则返回 <code>None</code>（例如，从空的单元格往右扩展，但是右边一个单元格也是空的情况）</li>
 </ul>
@@ -226,6 +245,111 @@
 <ul>
 <li><code>sht2.range('B3:F6').raw_value</code> 直接加载数据，不经过 xlwings 转换，对速度要求高的应用可以考虑这个选项</li>
 <li><code>sht2.range('B3:F6').sheet</code> 返回区域属于的表单</li>
+</ul>
+<h2 id="5">5. 操作表单中的形状</h2>
+<h3 id="51">5.1 获取形状数量</h3>
+<div class="highlight"><pre><span></span>[In 1]: sht2.shapes
+[Out 1]: Shapes([&lt;Shape 'Isosceles Triangle 1' in &lt;Sheet [test.xlsx]Sheet2&gt;&gt;])
+[In 2]: sht2.shapes.count
+[Out 2]: 1
+</pre></div>
+<h3 id="52">5.2 索引形状</h3>
+<p>有四种索引方法，例如我们需要索引 <em>Isosceles Triangle 1</em>：</p>
+<ul>
+<li><code>shp = sht2.shapes[0]</code>，这种索引方法是 Python 的索引，形状的编号从 0 开始</li>
+<li><code>shp = sht2.shapes(1)</code>，这种索引方法是 Excel 的索引，形状编号从 1 开始</li>
+<li><code>shp = sht2.shapes['Isosceles Triangle 1']</code>，这种索引方法是直接利用形状名字索引的</li>
+<li><code>shp = sht2.shapes['Isosceles Triangle 1')</code>，这种索引方法也是直接利用形状名字索引的</li>
+</ul>
+<h3 id="53">5.3 操作形状</h3>
+<ul>
+<li><code>shp.activate()</code> 激活形状</li>
+<li><code>shp.delete()</code> 删除形状</li>
+<li><code>shp.height</code> 返回或设置形状的高度，单位是 point</li>
+<li><code>shp.width</code> 返回或设置形状的宽度，单位是 point</li>
+<li><code>shp.top</code> 返回或设置形状的水平位置，单位是 point</li>
+<li><code>shp.left</code> 返回或设置形状的竖直位置，单位是 point</li>
+<li><code>shp.name</code> 返回或设置形状的名字</li>
+<li><code>shp.parent</code> 返回形状的前驱</li>
+<li><code>shp.type</code>返回形状的类型</li>
+</ul>
+<h2 id="6">6. 操作表单中的表格</h2>
+<h3 id="61">6.1 获取表格数量</h3>
+<div class="highlight"><pre><span></span>[In 1]: sht2.charts
+[Out 1]: Charts([&lt;Chart 'Chart 2' in &lt;Sheet [test.xlsx]Sheet2&gt;&gt;])
+[In 2]: sht2.charts.count
+[Out 2]: 1
+</pre></div>
+<h3 id="62">6.2 添加表格</h3>
+<p>利用 <code>add(left=0, top=0, width=355, height=211)</code> 函数：</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwings</span> <span class="kn">as</span> <span class="nn">xw</span>
+
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">sht</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">()</span><span class="o">.</span><span class="n">sheets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">sht</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="s1">'A1'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">'Foo1'</span><span class="p">,</span> <span class="s1">'Foo2'</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">4</span><span class="p">]:</span> <span class="n">chart</span> <span class="o">=</span> <span class="n">sht2</span><span class="o">.</span><span class="n">charts</span><span class="o">.</span><span class="n">add</span><span class="p">()</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">5</span><span class="p">]:</span> <span class="n">chart</span><span class="o">.</span><span class="n">set_source_data</span><span class="p">(</span><span class="n">sht</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="s1">'A1'</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">())</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">6</span><span class="p">]:</span> <span class="n">chart</span><span class="o">.</span><span class="n">chart_type</span> <span class="o">=</span> <span class="s1">'line'</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">7</span><span class="p">]:</span> <span class="n">chart</span><span class="o">.</span><span class="n">name</span>
+<span class="p">[</span><span class="n">Out</span> <span class="mi">7</span><span class="p">]:</span> <span class="s1">'Chart1'</span>
+</pre></div>
+<h3 id="63">6.3 索引表格</h3>
+<p>有四种索引方法，例如我们需要索引 <em>Chart 2</em>：</p>
+<ul>
+<li><code>cha = sht2.charts[0]</code>，这种索引方法是 Python 的索引，表格的编号从 0 开始</li>
+<li><code>cha = sht2.charts(1)</code>，这种索引方法是 Excel 的索引，表格编号从 1 开始</li>
+<li><code>cha = sht2.charts['Chart 2']</code>，这种索引方法是直接利用表格名字索引的</li>
+<li><code>cha = sht2.charts['Chart 2')</code>，这种索引方法也是直接利用表格名字索引的</li>
+</ul>
+<h3 id="64">6.4 操作表格</h3>
+<ul>
+<li><code>cha.delete()</code> 删除表格</li>
+<li><code>cha.height</code> 返回或设置表格的高度，单位是 point</li>
+<li><code>cha.width</code> 返回或设置表格的宽度，单位是 point</li>
+<li><code>cha.top</code> 返回或设置表格的水平位置，单位是 point</li>
+<li><code>cha.left</code> 返回或设置表格的竖直位置，单位是 point</li>
+<li><code>cha.name</code> 返回或设置表格的名字</li>
+<li><code>cha.parent</code> 返回表格的前驱</li>
+<li><code>cha.chart_type</code>返回表格的类型</li>
+<li><code>cha.set_source_data(args)</code>  设置表格的数据来源，<code>args</code> 为 <code>Range</code> 对象</li>
+</ul>
+<h2 id="7">7. 操作表单中的图像</h2>
+<h3 id="71">7.1 获取图像数量</h3>
+<div class="highlight"><pre><span></span>[In 1]: sht2.pictures
+[Out 1]: Charts([&lt;Chart 'Chart 2' in &lt;Sheet [test.xlsx]Sheet2&gt;&gt;])
+[In 2]: sht2.pictures.count
+[Out 2]: 1
+</pre></div>
+<h3 id="72">7.2 添加图像</h3>
+<p>利用 <code>add(image, link_to_file=False, save_with_document=True, left=0, top=0, width=None, height=None, name=None, update=False)</code> 函数，第一参数可以是计算机中图像的路径（字符串）或者是 <code>Matplotlib</code> 对象：</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwings</span> <span class="kn">as</span> <span class="nn">xw</span>
+
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">sht</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">()</span><span class="o">.</span><span class="n">sheets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">sht</span><span class="o">.</span><span class="n">pictures</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">'path//to//file'</span><span class="p">)</span>
+</pre></div>
+<p>或者</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">4</span><span class="p">]:</span> <span class="n">sht</span><span class="o">.</span><span class="n">pictures</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'MyPlot'</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+<h3 id="73">7.3 索引图像</h3>
+<p>有四种索引方法，例如我们需要索引 <em>Picture 1</em>：</p>
+<ul>
+<li><code>pic = sht2.pictures[0]</code>，这种索引方法是 Python 的索引，图像的编号从 0 开始</li>
+<li><code>pic = sht2.pictures(1)</code>，这种索引方法是 Excel 的索引，图像编号从 1 开始</li>
+<li><code>pic = sht2.pictures['Picture 1']</code>，这种索引方法是直接利用图像名字索引的</li>
+<li><code>pic = sht2.pictures['Picture 1')</code>，这种索引方法也是直接利用图像名字索引的</li>
+</ul>
+<h3 id="74">7.4 操作图像</h3>
+<ul>
+<li><code>pic.delete()</code> 删除图像</li>
+<li><code>pic.height</code> 返回或设置图像的高度，单位是 point</li>
+<li><code>pic.width</code> 返回或设置图像的宽度，单位是 point</li>
+<li><code>pic.top</code> 返回或设置图像的水平位置，单位是 point</li>
+<li><code>pic.left</code> 返回或设置图像的竖直位置，单位是 point</li>
+<li><code>pic.name</code> 返回或设置图像的名字</li>
+<li><code>pic.parent</code> 返回图像的前驱</li>
+<li><code>pic.update(image)</code> 用新的图像替换当前图像，图像属性不变</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -323,7 +447,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2019-03-12T13:13:45+08:00">2019-03-12 13:13:45</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2019-03-12 13:13:45</div>
+                    <div class="last_updated">2019-03-12 15:43:58</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#教程-ref">教程</a>
                     <h4>标签</h4>
