@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="统计学习, 深度学习, PyTorch, 教程, " />
+    <title>PyTorch 之 torch 包  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="/index.html">主页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="/pages/2019/03/09/torch/"> PyTorch 之 torch 包  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1">1. 张量</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
+
+                
+<p>torch 包里定义了多维数据结构及运算。也提供了很多高效序列化数据的函数。可在 GPU 上进行计算。</p>
+<h2 id="1">1. 张量</h2>
+<div class="highlight"><pre><span></span>// 若 obj 是张量类型，返回 True
+torch.is_tensor(obj)
+// 是否为 storage 类型
+torch.is_storage(obj)
+</pre></div>
+<div class="highlight"><pre><span></span>// 设置浮点数默认类型，初始为 torch.float32
+torch.set_default_dtype(d)
+// 获得浮点数默认类型
+torch.get_default_dtype() → torch.dtype
+</pre></div>
+<div class="highlight"><pre><span></span>// 设置默认张量的类型，初始为 torch.FloatTensor
+torch.set_default_tensor_type(t)
+</pre></div>
+<div class="highlight"><pre><span></span>// 返回张量中元素数量
+torch.numel(input) → int
+</pre></div>
+<div class="highlight"><pre><span></span>// 设置打印格式
+torch.set_printoptions(precision=None, threshold=None,
+     edgeitems=None, linewidth=None, profile=None)
+</pre></div>
+                <aside>
+                    <hr />
+                    <nav class="related">
+                        <h1>
+                            <font color="#771515"><em>RELATED</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="/pages/2018/11/20/sl-12/">统计学习方法 第十二章 统计学习方法总结</a>
+                            </li>
+                            <li>
+                                <a href="/pages/2018/11/19/sl-11/">统计学习方法 第十一章 条件随机场</a>
+                            </li>
+                            <li>
+                                <a href="/pages/2018/11/19/sl-10/">统计学习方法 第十章 隐马尔科夫模型</a>
+                            </li>
+                            <li>
+                                <a href="/pages/2018/11/17/sl-9/">统计学习方法 第九章 EM 算法及其推广</a>
+                            </li>
+                            <li>
+                                <a href="/pages/2018/11/12/sl-8/">统计学习方法 第八章 提升方法</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="/pages/2019/03/05/eps/">
+                                    eps 图像截切四周的空白
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pages/2019/02/23/jzoffer2/">
+                                    剑指 offer (2)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pages/2019/02/20/bianma/">
+                                    原码, 反码, 补码
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pages/2019/02/20/树/">
+                                    数据结构——树
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pages/2019/02/19/jzoffer1/">
+                                    剑指 offer (1)
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2019-03-09T22:31:38+08:00">2019-03-09 22:31:38</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-03-09 22:32:00</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#教程-ref">教程</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#PyTorch-ref">PyTorch
+                                <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#深度学习-ref">深度学习
+                                <span>6</span>
+</a></li>
+                        <li><a href="/tags.html#统计学习-ref">统计学习
+                                <span>16</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>

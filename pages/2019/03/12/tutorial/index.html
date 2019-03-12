@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="xlwings, excel, python, 教程, " />
+    <title>xlwings 教程  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2019/03/12/tutorial/"> xlwings 教程  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <p>xlwings 是一个 python 包用来和 Excel 进行交互，它包含四个层次：App <span class="math">\(\rightarrow\)</span> Book <span class="math">\(\rightarrow\)</span> Sheet <span class="math">\(\rightarrow\)</span> Range。</p>
+<ul>
+<li>App：用来索引打开的 Excel 实例。因为我们可能同时打开很多 Excel 应用程序，类似于我们可以在电脑是同时登陆多个 QQ 应用一样</li>
+<li>Book：用来索引 Excel 实例中的工作簿，因为我们的 Excel 中可能用多个工作簿</li>
+<li>Sheet：用来索引 Excel 工作簿中的表单，因为我们的工作簿中可能有多个表单</li>
+<li>Range：用来所以表单中的单元格</li>
+</ul>
+<h2 id="1-xlsx">1. 新建 xlsx 文件</h2>
+<p>新建 xlsx 文件经历如下几个步骤：</p>
+<ol>
+<li>首先建立一个 App 对象 <code>app = xw.App()</code>，这会打开电脑上的 Excel 应用程序</li>
+<li>然后建立一个 Book 对象 <code>book = xw.Book()</code> 这会在第一步打开的 Excel 中建立一个工作簿</li>
+<li>然后即可以保存 xlsx 文件，<code>book.save('filename.xlsx')</code>，如果没有提供路径，则保存在程序当前目录</li>
+<li>关闭 App 对象，<code>app.quit()</code></li>
+</ol>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwings</span> <span class="kn">as</span> <span class="nn">xw</span>
+
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">app</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">App</span><span class="p">()</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">()</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">4</span><span class="p">]:</span> <span class="n">book</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;filename.xlsx&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">5</span><span class="p">]:</span> <span class="n">app</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+
+
+<h2 id="2-xlsx">2. 打开 xlsx 文件</h2>
+<p>执行 <code>book = xw.Book('path//to//file')</code> 会直接打开指定文件</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwing</span> <span class="kn">as</span> <span class="nn">xw</span>
+
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">(</span><span class="s1">&#39;path//to//file&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="3-xlsx">3. 操作 xlsx 文件中的表单</h2>
+<h3 id="31-xlsx">3.1 获得 xlsx 文件中的表单数目</h3>
+<p>xlsx 文件中可能有多个表单，所以首先我们需要知道到底有多少个表单</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwing</span> <span class="kn">as</span> <span class="nn">xw</span>
+
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">(</span><span class="s1">&#39;path//to//file&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">book</span><span class="o">.</span><span class="n">sheets</span>
+<span class="p">[</span><span class="n">Out</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">Sheets</span><span class="p">([</span><span class="o">&lt;</span><span class="n">Sheet</span> <span class="p">[</span><span class="n">test</span><span class="o">.</span><span class="n">xlsx</span><span class="p">]</span><span class="n">Sheet1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Sheet</span> <span class="p">[</span><span class="n">test</span><span class="o">.</span><span class="n">xlsx</span><span class="p">]</span><span class="n">Sheet2</span><span class="o">&gt;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>利用 <code>book.sheets</code> 我们得到了当前工作簿中所有的表单名称，当前工作簿有两个表单，名字分别为 <em>Sheet1</em>、<em>Sheet2</em>。</p>
+<h3 id="32">3.2 索引需要的表单</h3>
+<p>知道了表单的名称和个数以后，我们就可以索引到我们想要的表单了，有四种索引方法，例如我们需要索引 <em>Sheet2</em>：</p>
+<ul>
+<li><code>sht2 = book.sheets[1]</code>，这种索引方法是 Python 的索引，表单的编号从 0 开始，故 <em>Sheet2</em> 的编号为 1</li>
+<li><code>sht2 = book.sheets(2)</code>，这种索引方法是 Excel 的索引，表单编号从 1 开始，故 <em>Sheet2</em> 的编号为 2</li>
+<li><code>sht2 = book.sheets['Sheet2']</code>，这种索引方法是直接利用表单名字索引的</li>
+<li><code>sht2 = book.sheets('Sheet2')</code>，这种索引方法也是直接利用表单名字索引的</li>
+</ul>
+<h2 id="4">4. 操作表单中的单元格</h2>
+<h3 id="41">4.1 索引单元格</h3>
+<p>所以单元格有如下方法：</p>
+<ul>
+<li>索引单个单元格 <code>sht2.range('B3')</code> 或 <code>sht2.range((3,2))</code> 指明是第三行第二列单元格</li>
+<li>索引区域 <code>sht2.range('B3:F6')</code> 或 <code>sht2.range((3,2),(6,6))</code></li>
+</ul>
+<h3 id="42">4.2 获得单元格属性</h3>
+<p>下面的方法将返回 range 索引区域内单元格的属性</p>
+<ul>
+<li><code>sht2.range('B3:F6').address</code> 将返回字符串 <code>$B$3:$F$6'</code></li>
+<li><code>sht2.range('B3:F6').color</code> 将返回区域内单元格的颜色，若区域内单元格颜色不一致，返回 (0,0,0)，若无颜色，返回空</li>
+<li><code>sht2.range('B3:F6').column</code> 将返回区域内单元格第一列的索引（整数），本例返回 2</li>
+<li><code>sht2.range('B3:F6').column_width</code> 将返回区域内单元格的列宽（浮点数），如果列宽不一致，返回 <code>None</code></li>
+<li><code>sht2.range('B3:F6').columns</code> 将返回一个 <code>RangeColumns</code> 对象，代表区域里的列，本例返回 <code>RangeColumns(&lt;Range [test.xlsx]Sheet2!$B$3:$F$6&gt;)</code></li>
+<li><code>sht2.range('B3:F6').count</code> 返回单元格的数量</li>
+<li><code>sht2.range('B3:F6').current_region</code> 返回一个 <code>Range</code> 对象，代表去除区域空白边界的范围，本类返回 <code>&lt;Range [test.xlsx]Sheet2!$A$1:$C$3&gt;</code></li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/03/10/torch/">
+                                    PyTroch 之 torch 包
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/03/05/eps/">
+                                    eps 图像截切四周的空白
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/02/23/jzoffer2/">
+                                    剑指 offer (2)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/02/20/bianma/">
+                                    原码, 反码, 补码
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/02/20/树/">
+                                    数据结构——树
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2019-03-12T13:13:45+08:00">2019-03-12 13:13:45</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-03-12 13:13:45</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#教程-ref">教程</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#excel-ref">excel
+                                <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#python-ref">python
+                                <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#xlwings-ref">xlwings
+                                <span>1</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
