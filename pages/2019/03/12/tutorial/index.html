@@ -54,9 +54,43 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1-xlsx">1. 新建 xlsx 文件</a></li>
+<li><a href="#2-xlsx">2. 打开 xlsx 文件</a></li>
+<li><a href="#3-xlsx">3. 操作 xlsx 文件中的表单</a><ul>
+<li><a href="#31-xlsx">3.1 获得 xlsx 文件中的表单数目</a></li>
+<li><a href="#32">3.2 索引需要的表单</a></li>
+</ul>
+</li>
+<li><a href="#4">4. 操作表单中的单元格</a><ul>
+<li><a href="#41">4.1 索引单元格</a></li>
+<li><a href="#42">4.2 操作单元格</a><ul>
+<li><a href="#421">4.2.1 超链接</a></li>
+<li><a href="#422">4.2.2 列宽行高</a></li>
+<li><a href="#423">4.2.3 格式和内容</a></li>
+<li><a href="#424">4.2.4 获得区域字符串</a></li>
+<li><a href="#425">4.2.5 单元格颜色</a></li>
+<li><a href="#426">4.2.6 单元格数量</a></li>
+<li><a href="#427">4.2.7 区域单元格特殊位置</a></li>
+<li><a href="#428">4.2.8 区域大小</a></li>
+<li><a href="#429">4.2.9 区域名称和数字格式</a></li>
+<li><a href="#4210">4.2.10 其他</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <p>xlwings 是一个 python 包用来和 Excel 进行交互，它包含四个层次：App <span class="math">\(\rightarrow\)</span> Book <span class="math">\(\rightarrow\)</span> Sheet <span class="math">\(\rightarrow\)</span> Range。</p>
+                
+<p>xlwings 是一个 python 包用来和 Excel 进行交互，它包含四个层次：App <span class="math">\(\rightarrow\)</span> Book <span class="math">\(\rightarrow\)</span> Sheet <span class="math">\(\rightarrow\)</span> Range。</p>
 <ul>
 <li>App：用来索引打开的 Excel 实例。因为我们可能同时打开很多 Excel 应用程序，类似于我们可以在电脑是同时登陆多个 QQ 应用一样</li>
 <li>Book：用来索引 Excel 实例中的工作簿，因为我们的 Excel 中可能用多个工作簿</li>
@@ -75,30 +109,24 @@
 
 <span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">app</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">App</span><span class="p">()</span>
 <span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">()</span>
-<span class="p">[</span><span class="n">In</span> <span class="mi">4</span><span class="p">]:</span> <span class="n">book</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;filename.xlsx&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">4</span><span class="p">]:</span> <span class="n">book</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'filename.xlsx'</span><span class="p">)</span>
 <span class="p">[</span><span class="n">In</span> <span class="mi">5</span><span class="p">]:</span> <span class="n">app</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 </pre></div>
-
-
 <h2 id="2-xlsx">2. 打开 xlsx 文件</h2>
 <p>执行 <code>book = xw.Book('path//to//file')</code> 会直接打开指定文件</p>
 <div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwing</span> <span class="kn">as</span> <span class="nn">xw</span>
 
-<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">(</span><span class="s1">&#39;path//to//file&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">(</span><span class="s1">'path//to//file'</span><span class="p">)</span>
 </pre></div>
-
-
 <h2 id="3-xlsx">3. 操作 xlsx 文件中的表单</h2>
 <h3 id="31-xlsx">3.1 获得 xlsx 文件中的表单数目</h3>
 <p>xlsx 文件中可能有多个表单，所以首先我们需要知道到底有多少个表单</p>
 <div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwing</span> <span class="kn">as</span> <span class="nn">xw</span>
 
-<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">(</span><span class="s1">&#39;path//to//file&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">(</span><span class="s1">'path//to//file'</span><span class="p">)</span>
 <span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">book</span><span class="o">.</span><span class="n">sheets</span>
 <span class="p">[</span><span class="n">Out</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">Sheets</span><span class="p">([</span><span class="o">&lt;</span><span class="n">Sheet</span> <span class="p">[</span><span class="n">test</span><span class="o">.</span><span class="n">xlsx</span><span class="p">]</span><span class="n">Sheet1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Sheet</span> <span class="p">[</span><span class="n">test</span><span class="o">.</span><span class="n">xlsx</span><span class="p">]</span><span class="n">Sheet2</span><span class="o">&gt;</span><span class="p">])</span>
 </pre></div>
-
-
 <p>利用 <code>book.sheets</code> 我们得到了当前工作簿中所有的表单名称，当前工作簿有两个表单，名字分别为 <em>Sheet1</em>、<em>Sheet2</em>。</p>
 <h3 id="32">3.2 索引需要的表单</h3>
 <p>知道了表单的名称和个数以后，我们就可以索引到我们想要的表单了，有四种索引方法，例如我们需要索引 <em>Sheet2</em>：</p>
@@ -116,25 +144,88 @@
 <li>索引区域 <code>sht2.range('B3:F6')</code> 或 <code>sht2.range((3,2),(6,6))</code></li>
 </ul>
 <h3 id="42">4.2 操作单元格</h3>
+<h4 id="421">4.2.1 超链接</h4>
 <ul>
 <li><code>sht2.range('B3:F6').add_hyperlink(address, text_to_display=None, screen_tip=None)</code> 为区域内单元格添加超链接</li>
+<li><code>sht2.range('B3').hyperlink</code> 获取单元格的超链接，<strong>只适用于单元格</strong></li>
+</ul>
+<h4 id="422">4.2.2 列宽行高</h4>
+<ul>
 <li><code>sht2.range('B3:F6').autofit()</code> 自动调整区域内单元格的宽度和高度</li>
 <li><code>sht2.range('B3:F6').columns.autofit()</code> 自动调整区域内单元格的宽度</li>
 <li><code>sht2.range('B3:F6').rows.autofit()</code> 自动调整区域内单元格的高度</li>
+<li><code>sht2.range('B3:F6').column_width</code> 将返回区域内单元格的列宽（浮点数），单位是 point，如果列宽不一致，返回 <code>None</code></li>
+<li><code>sht2.range('B3:F6').row_height</code> 将返回区域内单元格的行高（浮点数），单位是 point，如果列宽不一致，返回 <code>None</code></li>
+<li><code>sht2.range('B3:F6').column_width = 23</code> 设置区域内单元格的列宽，范围必须为 [0, 255]</li>
+<li><code>sht2.range('B3:F6').row_height = 23</code> 设置区域内单元格的行高（浮点数），范围必须是 [0, 409.5]</li>
+<li><code>sht2.range('B3:F6').height</code> 返回区域单元格的总高度（浮点数），单位是 point</li>
+<li><code>sht2.range('B3:F6').width</code> 返回区域单元格的总宽度（浮点数），单位是 point</li>
+</ul>
+<h4 id="423">4.2.3 格式和内容</h4>
+<ul>
+<li><code>sht2.range('B3:F6').value</code> 获得区域内单元格的内容</li>
+<li><code>sht2.range('B3:F6').value = ‘x'’</code> 设置区域内单元格的内容</li>
 <li><code>sht2.range('B3:F6').clear()</code> 清除区域内单元格的内容和格式</li>
 <li><code>sht2.range('B3:F6').clear_contents()</code> 清除区域内单元格的内容，保留格式</li>
+</ul>
+<h4 id="424">4.2.4 获得区域字符串</h4>
+<ul>
 <li><code>sht2.range('B3:F6').address</code> 将返回字符串 <code>$B$3:$F$6'</code></li>
+<li><code>sht2.range('B3:F6').get_address(row_absolute=True,
+    column_absolute=True, include_sheetname=False, external=False)</code> 返回字符串，代表区域单元的地址，根据参数的不同可以用不同返回形式，具体参考<a href="https://docs.xlwings.org/en/stable/api.html#xlwings.Range.get_address">这里</a></li>
+</ul>
+<h4 id="425">4.2.5 单元格颜色</h4>
+<ul>
 <li><code>sht2.range('B3:F6').color</code> 将返回区域内单元格的颜色，若区域内单元格颜色不一致，返回 (0,0,0)，若无颜色，返回空</li>
 <li><code>sht2.range('B3:F6').color = (255, 0, 0)</code> 设置区域内单元格的颜色</li>
+</ul>
+<h4 id="426">4.2.6 单元格数量</h4>
+<ul>
+<li><code>sht2.range('B3:F6').count</code> 返回单元格的数量，也可用 <code>sht2.range('B3:F6').size</code></li>
+</ul>
+<h4 id="427">4.2.7 区域单元格特殊位置</h4>
+<ul>
 <li><code>sht2.range('B3:F6').column</code> 将返回区域内单元格第一列的索引（整数），本例返回 2</li>
-<li><code>sht2.range('B3:F6').column_width</code> 将返回区域内单元格的列宽（浮点数），如果列宽不一致，返回 <code>None</code></li>
-<li><code>sht2.range('B3:F6').column_width = 23</code> 设置区域内单元格的列宽，列宽范围必须为 [0,255]</li>
-<li><code>sht2.range('B3:F6').columns</code> 将返回一个 <code>RangeColumns</code> 对象，代表区域里的列，本例返回 <code>RangeColumns(&lt;Range [test.xlsx]Sheet2!$B$3:$F$6&gt;)</code></li>
-<li><code>sht2.range('B3:F6').count</code> 返回单元格的数量</li>
-<li><code>sht2.range('B3:F6').current_region</code> 返回一个 <code>Range</code> 对象，代表去除区域空白边界的范围，本类返回 <code>&lt;Range [test.xlsx]Sheet2!$A$1:$C$3&gt;</code></li>
+<li><code>sht2.range('B3:F6').row</code> 将返回区域内单元格第一行的索引（整数），本例返回 3</li>
+<li>
+<p><code>sht2.range('B3:F6').last_cell</code> 返回一个 <code>Range</code> 对象，表示区域内最右下单元格的位置</p>
+</li>
+<li>
+<p><code>sht2.range('B3:F6').row</code> 返回一个浮点数，表示从 行 1 的上边界到此区域上边界的距离，单位是 point</p>
+</li>
+<li>
+<p><code>sht2.range('B3:F6').left</code> 返回一个浮点数，表示从 A 栏的左边界到此区域左边界的距离，单位是 point</p>
+</li>
+<li>
+<p><code>sht2.range('B3:F6').columns</code> 将返回一个 <code>RangeColumns</code> 对象，代表区域里的列，本例返回 <code>RangeColumns(&lt;Range [test.xlsx]Sheet2!$B$3:$F$6&gt;)</code></p>
+</li>
+<li>
+<p><code>sht2.range('B3:F6').rows</code> 将返回一个 <code>RangeRows</code> 对象，代表区域里的行，本例返回 <code>RangeRows(&lt;Range [test.xlsx]Sheet2!$B$3:$F$6&gt;)</code></p>
+</li>
+<li>
+<p><code>sht2.range('B3:F6').current_region</code> 返回一个 <code>Range</code> 对象，代表去除区域空白边界的范围，本类返回 <code>&lt;Range [test.xlsx]Sheet2!$A$1:$C$3&gt;</code></p>
+</li>
 <li><code>sht2.range('B3:F6').end(args)</code> 参数 <code>args</code> 可为 left、right、up、down，该函数返回 <code>Range</code> 对象，表示指定区域近邻的边界单元格，如近邻的单元格无内容，则继续查找下一个近邻</li>
 <li><code>sht2.range('B3:F6').expand(args)</code> <code>args</code> 可为 table、down、right，该函数根据参数扩展当前区域范围，并范围 <code>Range</code> 对象，table 为向右向下扩展，若扩展方向下一个单元格内容为空，则停止扩展；若扩展后的区域仍为空，则返回 <code>None</code>（例如，从空的单元格往右扩展，但是右边一个单元格也是空的情况）</li>
-<li><code>sht2.range('B3:F6').get_address(row_absolute=True, column_absolute=True, include_sheetname=False, external=False)</code> 返回字符串，代表区域单元的地址，根据参数的不同可以用不同返回形式，具体参考<a href="https://docs.xlwings.org/en/stable/api.html">这里</a></li>
+</ul>
+<h4 id="428">4.2.8 区域大小</h4>
+<ul>
+<li><code>sht2.range('B3:F6').resize(row_size=None, column_size=None)</code> 重设区域大小</li>
+<li><code>sht2.range('B3:F6').shape</code> 返回元组，表示区域大小</li>
+</ul>
+<h4 id="429">4.2.9 区域名称和数字格式</h4>
+<ul>
+<li><code>sht2.range('B3:F6').name</code> 返回区域的名字</li>
+<li><code>sht2.range('B3:F6').name = 'test'</code> 设置区域的名字为 test</li>
+<li><code>sht2.range('B3:F6').number_format</code> 获得区域内数字的格式</li>
+<li><code>sht2.range('B3:F6').number_format = '0.00%'</code> 设置区域内数字的格式</li>
+<li><code>sht2.range('B3:F6').offset(row_offset=0, column_offset=0)</code> 返回 <code>Range</code> 对象，代表偏移后的范围</li>
+<li><code>sht2.range('B3:F6').options(convert=None, **options)</code> 可设置数值转换规则等，具体见<a href="https://docs.xlwings.org/en/stable/api.html#xlwings.Range.options">这里</a></li>
+</ul>
+<h4 id="4210">4.2.10 其他</h4>
+<ul>
+<li><code>sht2.range('B3:F6').raw_value</code> 直接加载数据，不经过 xlwings 转换，对速度要求高的应用可以考虑这个选项</li>
+<li><code>sht2.range('B3:F6').sheet</code> 返回区域属于的表单</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
