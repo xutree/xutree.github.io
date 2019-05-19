@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="Python, 教程, " />
+    <title>Python 100 days  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2019/05/19/100/"> Python 100 days  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1-python">1. 初识 Python</a><ul>
+<li><a href="#11-python">1.1 Python 简介</a></li>
+<li><a href="#12-python">1.2 Python 的优缺点</a></li>
+</ul>
+</li>
+<li><a href="#2">2. 语言元素</a><ul>
+<li><a href="#21">2.1 变量和类型</a></li>
+<li><a href="#22">2.2 变量命名</a></li>
+<li><a href="#23">2.3 类型转换</a></li>
+<li><a href="#24">2.4 运算符</a></li>
+<li><a href="#25">2.5 程序结构</a></li>
+</ul>
+</li>
+<li><a href="#3">3. 函数和模块的使用</a><ul>
+<li><a href="#31">3.1 定义函数</a></li>
+<li><a href="#32">3.2 用模块管理函数</a></li>
+</ul>
+</li>
+<li><a href="#4">4. 字符串和常用数据结构</a><ul>
+<li><a href="#41">4.1 使用字符串</a></li>
+<li><a href="#42">4.2 使用列表</a></li>
+<li><a href="#43">4.3 使用元组</a></li>
+<li><a href="#44">4.4 使用集合</a></li>
+<li><a href="#45">4.5 使用字典</a></li>
+</ul>
+</li>
+<li><a href="#5-mutableimmutable">5. 可变对象（mutable）与不可变对象（immutable）</a><ul>
+<li><a href="#51">5.1 不可变对象</a></li>
+<li><a href="#52">5.2 可变对象</a></li>
+<li><a href="#53-_add_-_iadd_">5.3 _add_ 和 _iadd_ 的区别</a></li>
+</ul>
+</li>
+<li><a href="#6">6. 面向对象编程基础</a><ul>
+<li><a href="#61">6.1 定义类</a></li>
+<li><a href="#62">6.2 访问可见性问题</a></li>
+</ul>
+</li>
+<li><a href="#7">7. 面向对象进阶</a><ul>
+<li><a href="#71-property">7.1 @property装饰器</a></li>
+<li><a href="#72-95_slots__">7.2 __slots__ 魔法</a></li>
+<li><a href="#73">7.3 静态方法和类方法</a></li>
+<li><a href="#74">7.4 类之间的关系</a></li>
+<li><a href="#75">7.5 继承和多态</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
+
+                
+<p><strong>整理自</strong>(Python-100-Days)[https://github.com/jackfrued/Python-100-Days]</p>
+<h2 id="1-python">1. 初识 Python</h2>
+<h3 id="11-python">1.1 Python 简介</h3>
+<p>Python 的版本号分为三段，形如 A.B.C。其中 A 表示大版本号，一般当整体重写，或出现不向后兼容的改变时，增加 A；B 表示功能更新，出现新功能时增加 B；C 表示小的改动（如修复了某个 Bug），只要有修改就增加 C。</p>
+<h3 id="12-python">1.2 Python 的优缺点</h3>
+<p><strong>Python 的优点很多，简单的可以总结为以下几点：</strong></p>
+<ul>
+<li>简单和明确，做一件事只有一种方法</li>
+<li>学习曲线低，跟其他很多语言相比，Python 更容易上手</li>
+<li>开放源代码，拥有强大的社区和生态圈</li>
+<li><a href="https://blog.csdn.net/zhu_xun/article/details/16921413">解释型语言</a>，天生具有平台可移植性</li>
+<li>支持两种主流的编程范式（面向对象编程和函数式编程）都提供了支持</li>
+<li>可扩展性和可嵌入性，可以调用 C/C++ 代码，也可以在 C/C++ 中调用 Python</li>
+<li>代码规范程度高，可读性强，适合有代码洁癖和强迫症的人群</li>
+</ul>
+<p><strong>Python 的缺点主要集中在以下几点：</strong></p>
+<ul>
+<li>执行效率稍低，因此计算密集型任务可以由 C/C++ 编写</li>
+<li>代码无法加密，但是现在的公司很多都不是卖软件而是卖服务，这个问题会被淡化</li>
+<li>在开发时可以选择的框架太多（如 Web 框架就有 100 多个），有选择的地方就有错误</li>
+</ul>
+<h2 id="2">2. 语言元素</h2>
+<h3 id="21">2.1 变量和类型</h3>
+<ul>
+<li><strong>整型</strong>：Python 中可以处理任意大小的整数，支持二进制（0b），八进制（0o），十进制和十六进制（0x）表示法</li>
+<li><strong>浮点型</strong></li>
+<li><strong>字符串型</strong>：字符串是以单引号或双引号括起来的任意文本</li>
+<li><strong>布尔型</strong>：布尔值只有 <code>True</code>、<code>False</code> 两种值，注意大写</li>
+<li><strong>复数型</strong>：形如 3+5j，虚部用 j 表示</li>
+</ul>
+<h3 id="22">2.2 变量命名</h3>
+<p><strong>硬性规则：</strong></p>
+<ul>
+<li>变量名由字母（广义的 Unicode 字符，不包括特殊字符）、数字和下划线构成，数字不能开头</li>
+<li>大小写敏感</li>
+<li>不要跟关键字（有特殊含义的单词，后面会讲到）和系统保留字（如函数、模块等的名字）冲突</li>
+</ul>
+<p><strong>PEP 8要求：</strong></p>
+<ul>
+<li>用小写字母拼写，多个单词用下划线连接</li>
+<li>受保护的实例属性用单个下划线开头</li>
+<li>私有的实例属性用两个下划线开头</li>
+</ul>
+<h3 id="23">2.3 类型转换</h3>
+<p>在对变量类型进行转换时可以使用 Python 的内置函数（准确的说下面列出的并不是真正意义上的函数，而是后面我们要讲到的创建对象的构造方法）。</p>
+<ul>
+<li><code>int()</code>：将一个数值或字符串转换成整数，可以指定进制</li>
+<li><code>float()</code>：将一个字符串转换成浮点数</li>
+<li><code>str()</code>：将指定的对象转换成字符串形式，可以指定编码</li>
+<li><code>chr()</code>：将整数转换成该编码对应的字符串（一个字符）</li>
+<li><code>ord()</code>：将字符串（一个字符）转换成对应的编码（整数）</li>
+</ul>
+<h3 id="24">2.4 运算符</h3>
+<p>Python 支持多种运算符，下表大致按照优先级从高到低的顺序列出了所有的运算符，我们会陆续使用到它们。</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[]</code> <code>[:]</code></td>
+<td>下标，切片</td>
+</tr>
+<tr>
+<td><code>**</code></td>
+<td>指数</td>
+</tr>
+<tr>
+<td><code>~</code> <code>+</code> <code>-</code></td>
+<td>按位取反, 正负号</td>
+</tr>
+<tr>
+<td><code>*</code> <code>/</code> <code>%</code> <code>//</code></td>
+<td>乘，除，模，整除</td>
+</tr>
+<tr>
+<td><code>+</code> <code>-</code></td>
+<td>加，减</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code> <code>&lt;&lt;</code></td>
+<td>右移，左移</td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td>按位与</td>
+</tr>
+<tr>
+<td><code>^</code> <code>|</code></td>
+<td>按位异或，按位或</td>
+</tr>
+<tr>
+<td><code>&lt;=</code> <code>&lt;</code> <code>&gt;</code> <code>&gt;=</code></td>
+<td>小于等于，小于，大于，大于等于</td>
+</tr>
+<tr>
+<td><code>==</code> <code>!=</code></td>
+<td>等于，不等于</td>
+</tr>
+<tr>
+<td><code>is</code> <code>is not</code></td>
+<td>身份运算符</td>
+</tr>
+<tr>
+<td><code>in</code> <code>not in</code></td>
+<td>成员运算符</td>
+</tr>
+<tr>
+<td><code>not</code> <code>or</code> <code>and</code></td>
+<td>逻辑运算符</td>
+</tr>
+<tr>
+<td><code>=</code> <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code>//=</code> <code>**=</code> <code>&amp;=</code> <code>|=</code> <code>^=</code> <code>&gt;&gt;=</code> <code>&lt;&lt;=</code></td>
+<td>（复合）赋值运算符</td>
+</tr>
+</tbody>
+</table>
+<h3 id="25">2.5 程序结构</h3>
+<ul>
+<li>分支结构：<code>if</code>、<code>elif</code>、<code>else</code></li>
+<li>循环结构：<code>for-in</code>、<code>while</code></li>
+</ul>
+<p><code>range(1, 100, 2)</code> 可以产生一个 1 到 99 的奇数序列，其中的 2 是步长，即数值序列的增量。</p>
+<p>不需要指明循环对象可以用下面的语句：</p>
+<div class="highlight"><pre><span></span>for _ in range(nums):
+</pre></div>
+<h2 id="3">3. 函数和模块的使用</h2>
+<h3 id="31">3.1 定义函数</h3>
+<div class="highlight"><pre><span></span>def funname(paralist):
+    """
+    information about function
+    """
+    ...
+
+    return result
+</pre></div>
+<ul>
+<li>Python 中可以在函数内部再定义函数</li>
+<li>Python 查找一个变量时会按照“局部作用域”、“嵌套作用域”、“全局作用域”和“内置作用域”的顺序进行搜索</li>
+<li>我们可以使用 <code>global</code> 关键字来指示函数中的变量来自于全局作用域</li>
+<li>如果我们希望函数内部的函数能够修改嵌套作用域中的变量，可以使用 <code>nonlocal</code> 关键字来指示变量来自于嵌套作用域</li>
+<li>如果我们希望将一个局部变量的生命周期延长，使其在函数调用结束后依然可以访问，这时候就需要使用<strong>闭包</strong></li>
+</ul>
+<h3 id="32">3.2 用模块管理函数</h3>
+<p>需要说明的是，如果我们导入的模块除了定义函数之外还中有可以执行代码，那么 Python 解释器在导入这个模块时就会执行这些代码，事实上我们可能并不希望如此，因此如果我们在模块中编写了执行代码，最好是将这些执行代码放入如下所示的条件中，这样的话除非直接运行该模块，<code>if</code> 条件下的这些代码是不会执行的，因为只有直接执行的模块的名字才是 <code>__main__</code>。</p>
+<div class="highlight"><pre><span></span>def main():
+    # Todo: Add your code here
+    pass
+
+
+if __name__ == '__main__':
+    main()
+</pre></div>
+<h2 id="4">4. 字符串和常用数据结构</h2>
+<h3 id="41">4.1 使用字符串</h3>
+<div class="highlight"><pre><span></span><span class="s s-Atom">def</span> <span class="nf">main</span><span class="p">()</span><span class="s s-Atom">:</span>
+    <span class="s s-Atom">str1</span> <span class="o">=</span> <span class="s s-Atom">'hello, world!'</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">通过len函数计算字符串的长度</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">))</span>  <span class="s s-Atom">#</span> <span class="mi">13</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">获得字符串首字母大写的拷贝</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">capitalize</span><span class="p">())</span>  <span class="s s-Atom">#</span> <span class="nv">Hello</span><span class="p">,</span> <span class="s s-Atom">world</span><span class="p">!</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">获得字符串变大写后的拷贝</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">upper</span><span class="p">())</span>  <span class="s s-Atom">#</span> <span class="nv">HELLO</span><span class="p">,</span> <span class="nv">WORLD</span><span class="p">!</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">从字符串中查找子串所在位置</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s s-Atom">'or'</span><span class="p">))</span>  <span class="s s-Atom">#</span> <span class="mi">8</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s s-Atom">'shit'</span><span class="p">))</span>  <span class="s s-Atom">#</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">与find类似但找不到子串时会引发异常</span>
+    <span class="s s-Atom">#</span> <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="s s-Atom">'or'</span><span class="p">))</span>
+    <span class="s s-Atom">#</span> <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="s s-Atom">'shit'</span><span class="p">))</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">检查字符串是否以指定的字符串开头</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="s s-Atom">'He'</span><span class="p">))</span>  <span class="s s-Atom">#</span> <span class="nv">False</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="s s-Atom">'hel'</span><span class="p">))</span>  <span class="s s-Atom">#</span> <span class="nv">True</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">检查字符串是否以指定的字符串结尾</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="s s-Atom">'!'</span><span class="p">))</span>  <span class="s s-Atom">#</span> <span class="nv">True</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">将字符串以指定的宽度居中并在两侧填充指定的字符</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">center</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="s s-Atom">'*'</span><span class="p">))</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">将字符串以指定的宽度靠右放置左侧填充指定的字符</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str1</span><span class="p">.</span><span class="nf">rjust</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="s s-Atom">' '</span><span class="p">))</span>
+    <span class="s s-Atom">str2</span> <span class="o">=</span> <span class="s s-Atom">'abc123456'</span>
+    <span class="s s-Atom">#</span> <span class="nf">从字符串中取出指定位置的字符</span><span class="p">(</span><span class="s s-Atom">下标运算</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">c</span>
+    <span class="s s-Atom">#</span> <span class="nf">字符串切片</span><span class="p">(</span><span class="s s-Atom">从指定的开始索引到指定的结束索引</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str2</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">:</span><span class="mi">5</span><span class="p">])</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">c12</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str2</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">:</span><span class="p">])</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">c123456</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str2</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">::</span><span class="mi">2</span><span class="p">])</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">c246</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str2</span><span class="p">[</span><span class="s s-Atom">::</span><span class="mi">2</span><span class="p">])</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">ac246</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str2</span><span class="p">[</span><span class="s s-Atom">::-</span><span class="mi">1</span><span class="p">])</span>  <span class="s s-Atom">#</span> <span class="mi">654321</span><span class="s s-Atom">cba</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str2</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:-</span><span class="mi">1</span><span class="p">])</span>  <span class="s s-Atom">#</span> <span class="mi">45</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">检查字符串是否由数字构成</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str2</span><span class="p">.</span><span class="nf">isdigit</span><span class="p">())</span>  <span class="s s-Atom">#</span> <span class="nv">False</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">检查字符串是否以字母构成</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str2</span><span class="p">.</span><span class="nf">isalpha</span><span class="p">())</span>  <span class="s s-Atom">#</span> <span class="nv">False</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">检查字符串是否以数字和字母构成</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str2</span><span class="p">.</span><span class="nf">isalnum</span><span class="p">())</span>  <span class="s s-Atom">#</span> <span class="nv">True</span>
+    <span class="s s-Atom">str3</span> <span class="o">=</span> <span class="s s-Atom">'  jackfrued@126.com '</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str3</span><span class="p">)</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">获得字符串修剪左右两侧空格的拷贝</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">str3</span><span class="p">.</span><span class="nf">strip</span><span class="p">())</span>
+
+
+<span class="s s-Atom">if</span> <span class="k">__</span><span class="s s-Atom">name__</span> <span class="o">==</span> <span class="s s-Atom">'__main__':</span>
+    <span class="nf">main</span><span class="p">()</span>
+</pre></div>
+<h3 id="42">4.2 使用列表</h3>
+<div class="highlight"><pre><span></span>def main():
+    list1 = [1, 3, 5, 7, 100]
+    print(list1)
+    list2 = ['hello'] * 5
+    print(list2)
+    # 计算列表长度(元素个数)
+    print(len(list1))
+    # 下标(索引)运算
+    print(list1[0])
+    print(list1[4])
+    # print(list1[5])  # IndexError: list index out of range
+    print(list1[-1])
+    print(list1[-3])
+    list1[2] = 300
+    print(list1)
+    # 添加元素
+    list1.append(200)
+    list1.insert(1, 400)
+    list1 += [1000, 2000]
+    print(list1)
+    print(len(list1))
+    # 删除元素
+    list1.remove(3)
+    if 1234 in list1:
+        list1.remove(1234)
+    del list1[0]
+    print(list1)
+    # 清空列表元素
+    list1.clear()
+    print(list1)
+
+
+if __name__ == '__main__':
+    main()
+</pre></div>
+<div class="highlight"><pre><span></span><span class="s s-Atom">def</span> <span class="nf">main</span><span class="p">()</span><span class="s s-Atom">:</span>
+    <span class="s s-Atom">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s s-Atom">'grape'</span><span class="p">,</span> <span class="s s-Atom">'apple'</span><span class="p">,</span> <span class="s s-Atom">'strawberry'</span><span class="p">,</span> <span class="s s-Atom">'waxberry'</span><span class="p">]</span>
+    <span class="s s-Atom">fruits</span> <span class="s s-Atom">+=</span> <span class="p">[</span><span class="s s-Atom">'pitaya'</span><span class="p">,</span> <span class="s s-Atom">'pear'</span><span class="p">,</span> <span class="s s-Atom">'mango'</span><span class="p">]</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">循环遍历列表元素</span>
+    <span class="s s-Atom">for</span> <span class="s s-Atom">fruit</span> <span class="s s-Atom">in</span> <span class="nn">fruits</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">fruit</span><span class="p">.</span><span class="nf">title</span><span class="p">(),</span> <span class="s s-Atom">end=' '</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">()</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">列表切片</span>
+    <span class="s s-Atom">fruits2</span> <span class="o">=</span> <span class="s s-Atom">fruits</span><span class="p">[</span><span class="mi">1</span><span class="s s-Atom">:</span><span class="mi">4</span><span class="p">]</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">fruits2</span><span class="p">)</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">fruit3</span> <span class="o">=</span> <span class="s s-Atom">fruits</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">没有复制列表只创建了新的引用</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">可以通过完整切片操作来复制列表</span>
+    <span class="s s-Atom">fruits3</span> <span class="o">=</span> <span class="s s-Atom">fruits</span><span class="p">[</span><span class="s s-Atom">:</span><span class="p">]</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">fruits3</span><span class="p">)</span>
+    <span class="s s-Atom">fruits4</span> <span class="o">=</span> <span class="s s-Atom">fruits</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">fruits4</span><span class="p">)</span>
+    <span class="s s-Atom">#</span> <span class="s s-Atom">可以通过反向切片操作来获得倒转后的列表的拷贝</span>
+    <span class="s s-Atom">fruits5</span> <span class="o">=</span> <span class="s s-Atom">fruits</span><span class="p">[</span><span class="s s-Atom">::-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">fruits5</span><span class="p">)</span>
+
+
+<span class="s s-Atom">if</span> <span class="k">__</span><span class="s s-Atom">name__</span> <span class="o">==</span> <span class="s s-Atom">'__main__':</span>
+    <span class="nf">main</span><span class="p">()</span>
+</pre></div>
+<div class="highlight"><pre><span></span>def main():
+    list1 = ['orange', 'apple', 'zoo', 'internationalization', 'blueberry']
+    list2 = sorted(list1)
+    # sorted函数返回列表排序后的拷贝不会修改传入的列表
+    # 函数的设计就应该像sorted函数一样尽可能不产生副作用
+    list3 = sorted(list1, reverse=True)
+    # 通过key关键字参数指定根据字符串长度进行排序而不是默认的字母表顺序
+    list4 = sorted(list1, key=len)
+    print(list1)
+    print(list2)
+    print(list3)
+    print(list4)
+    # 给列表对象发出排序消息直接在列表对象上进行排序
+    list1.sort(reverse=True)
+    print(list1)
+
+
+if __name__ == '__main__':
+    main()
+</pre></div>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">'ABCDE'</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="s1">'1234567'</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="c1"># 用列表的生成表达式语法创建列表容器</span>
+    <span class="c1"># 用这种语法创建列表之后元素已经准备就绪所以需要耗费较多的内存空间</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>  <span class="c1"># 查看对象占用内存的字节数</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="c1"># 请注意下面的代码创建的不是一个列表而是一个生成器对象</span>
+    <span class="c1"># 通过生成器可以获取到数据但它不占用额外的空间存储数据</span>
+    <span class="c1"># 每次需要数据的时候就通过内部的运算得到数据(需要花费额外的时间)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>  <span class="c1"># 相比生成式生成器不占用存储数据的空间</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+<p>除了上面提到的生成器语法，Python 中还有另外一种定义生成器的方式，就是通过 <code>yield</code> 关键字将一个普通函数改造成生成器函数：</p>
+<div class="highlight"><pre><span></span>def fib(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+        yield a
+
+
+def main():
+    for val in fib(20):
+        print(val)
+
+
+if __name__ == '__main__':
+    main()
+</pre></div>
+<h3 id="43">4.3 使用元组</h3>
+<div class="highlight"><pre><span></span>def main():
+    # 定义元组
+    t = ('骆昊', 38, True, '四川成都')
+    print(t)
+    # 获取元组中的元素
+    print(t[0])
+    print(t[3])
+    # 遍历元组中的值
+    for member in t:
+        print(member)
+    # 重新给元组赋值
+    # t[0] = '王大锤'  # TypeError
+    # 变量t重新引用了新的元组原来的元组将被垃圾回收
+    t = ('王大锤', 20, True, '云南昆明')
+    print(t)
+    # 将元组转换成列表
+    person = list(t)
+    print(person)
+    # 列表是可以修改它的元素的
+    person[0] = '李小龙'
+    person[1] = 25
+    print(person)
+    # 将列表转换成元组
+    fruits_list = ['apple', 'banana', 'orange']
+    fruits_tuple = tuple(fruits_list)
+    print(fruits_tuple)
+
+
+if __name__ == '__main__':
+    main()
+</pre></div>
+<p>这里有一个非常值得探讨的问题，我们已经有了列表这种数据结构，为什么还需要元组这样的类型呢？</p>
+<ul>
+<li>元组中的元素是无法修改的，事实上我们在项目中尤其是多线程环境（后面会讲到）中可能更喜欢使用的是那些不变对象（一方面因为对象状态不能修改，所以可以避免由此引起的不必要的程序错误，简单的说就是一个不变的对象要比可变的对象更加容易维护；另一方面因为没有任何一个线程能够修改不变对象的内部状态，一个不变对象自动就是线程安全的，这样就可以省掉处理同步化的开销。一个不变对象可以方便的被共享访问）。所以结论就是：如果不需要对元素进行添加、删除、修改的时候，可以考虑使用元组，当然如果一个方法要返回多个值，使用元组也是不错的选择</li>
+<li>元组在创建时间和占用的空间上面都优于列表。我们可以使用 <code>sys</code> 模块的 <code>getsizeof</code> 函数来检查存储同样的元素的元组和列表各自占用了多少内存空间，这个很容易做到。我们也可以在 <code>ipython</code> 中使用魔法指令 <code>%timeit</code> 来分析创建同样内容的元组和列表所花费的时间</li>
+</ul>
+<h3 id="44">4.4 使用集合</h3>
+<div class="highlight"><pre><span></span>def main():
+    set1 = {1, 2, 3, 3, 3, 2}
+    print(set1)
+    print('Length =', len(set1))
+    set2 = set(range(1, 10))
+    print(set2)
+    set1.add(4)
+    set1.add(5)
+    set2.update([11, 12])
+    print(set1)
+    print(set2)
+    set2.discard(5)
+    # remove的元素如果不存在会引发KeyError
+    if 4 in set2:
+        set2.remove(4)
+    print(set2)
+    # 遍历集合容器
+    for elem in set2:
+        print(elem ** 2, end=' ')
+    print()
+    # 将元组转换成集合
+    set3 = set((1, 2, 3, 3, 2, 1))
+    print(set3.pop())
+    print(set3)
+    # 集合的交集、并集、差集、对称差运算
+    print(set1 &amp; set2)
+    # print(set1.intersection(set2))
+    print(set1 | set2)
+    # print(set1.union(set2))
+    print(set1 - set2)
+    # print(set1.difference(set2))
+    print(set1 ^ set2)
+    # print(set1.symmetric_difference(set2))
+    # 判断子集和超集
+    print(set2 &lt;= set1)
+    # print(set2.issubset(set1))
+    print(set3 &lt;= set1)
+    # print(set3.issubset(set1))
+    print(set1 &gt;= set2)
+    # print(set1.issuperset(set2))
+    print(set1 &gt;= set3)
+    # print(set1.issuperset(set3))
+
+
+if __name__ == '__main__':
+    main()
+</pre></div>
+<h3 id="45">4.5 使用字典</h3>
+<div class="highlight"><pre><span></span>def main():
+    scores = {'骆昊': 95, '白元芳': 78, '狄仁杰': 82}
+    # 通过键可以获取字典中对应的值
+    print(scores['骆昊'])
+    print(scores['狄仁杰'])
+    # 对字典进行遍历(遍历的其实是键再通过键取对应的值)
+    for elem in scores:
+        print('%s\t---&gt;\t%d' % (elem, scores[elem]))
+    # 更新字典中的元素
+    scores['白元芳'] = 65
+    scores['诸葛王朗'] = 71
+    scores.update(冷面=67, 方启鹤=85)
+    print(scores)
+    if '武则天' in scores:
+        print(scores['武则天'])
+    print(scores.get('武则天'))
+    # get方法也是通过键获取对应的值但是可以设置默认值
+    print(scores.get('武则天', 60))
+    # 删除字典中的元素
+    print(scores.popitem())
+    print(scores.popitem())
+    print(scores.pop('骆昊', 100))
+    # 清空字典
+    scores.clear()
+    print(scores)
+
+
+if __name__ == '__main__':
+    main()
+</pre></div>
+<h2 id="5-mutableimmutable">5. 可变对象（mutable）与不可变对象（immutable）</h2>
+<p>在 Python 中任何对象都有的三个通用属性：唯一标识、类型、值。</p>
+<ul>
+<li><strong>唯一标识</strong>：用于标识对象的在内存中唯一性，它在对象创建之后就不会再改变，函数  <code>id()</code> 可以查看对象的唯一标识</li>
+<li><strong>类型</strong>：决定了该对象支持哪些操作，不同类型的对象支持的操作就不一样，比如列表可以有 <code>length</code> 属性，而整数没有。同样地对象的类型一旦确定了就不会再变，函数 <code>type()</code> 可以返回对象的类型信息。</li>
+<li>对象的<strong>值</strong>与唯一标识不一样，并不是所有的对象的值都是一成不变的，有些对象的值可以通过某些操作发生改变，值可以变化的对象称之为可变对象（mutable），值不能改变的对象称之为不可变对象（immutable）</li>
+</ul>
+<h3 id="51">5.1 不可变对象</h3>
+<p>对于不可变对象，值永远是刚开始创建时候的值，对该对象做的任何操作都会导致一个新的对象的创建。</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; a = 1
+&gt;&gt;&gt; id(a)
+32574568
+&gt;&gt;&gt; a += 1
+&gt;&gt;&gt; id(a)
+32574544
+</pre></div>
+<p>整数 “1” 是一个不可变对象，最初赋值的时候，a 指向的是整数对象 1 ，但对变量 a 执行 <code>+=</code> 操作后， a 指向另外一个整数对象 2 ，但对象 1 还是在那里没有发生任何变化，而变量 a 已经指向了一个新的对象 2，常见的不可变对象有：<code>int</code>、<code>tuple</code>、<code>set</code>、<code>str</code>。</p>
+<h3 id="52">5.2 可变对象</h3>
+<p>可变对象的值可以通过某些操作动态的改变，比如列表对象，可以通过 <code>append</code> 方法不断地往列表中添加元素，该列表的值就在不断的处于变化中，一个可变对象赋值给两个变量时，他们共享同一个实例对象，指向相同的内存地址，对其中任何一个变量操作时，同时也会影响另外一个变量。</p>
+<h3 id="53-_add_-_iadd_">5.3 <code>_add_</code> 和 <code>_iadd_</code> 的区别</h3>
+<p><code>+=</code> 操作首先会尝试调用对象的 <code>__iadd__</code> 方法，如果没有该方法，那么尝试调用 <code>__add__</code> 方法，先来看看这两个方法有什么区别：</p>
+<ul>
+<li><code>_add_</code> 方法接收两个参数，返回它们的和，两个参数的值均不会改变</li>
+<li><code>_iadd_</code> 方法同样接收两个参数，但它是属于 in-place 操作，就是说它会改变第一个参数的值，因为这需要对象是可变的，所以对于不可变对象没有 <code>__iadd__</code> 方法</li>
+</ul>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; l1 = range(3)
+&gt;&gt;&gt; l2 = l1
+&gt;&gt;&gt; l2 = l2 + [3]
+&gt;&gt;&gt; l1
+[0, 1, 2]
+&gt;&gt;&gt; l2
+[0, 1, 2, 3]
+</pre></div>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; l1 = range(3)
+&gt;&gt;&gt; l2 = l1
+&gt;&gt;&gt; l2 += [3]
+&gt;&gt;&gt; l1
+[0, 1, 2, 3]
+&gt;&gt;&gt; l2
+[0, 1, 2, 3]
+</pre></div>
+<h2 id="6">6. 面向对象编程基础</h2>
+<p>把一组数据结构和处理它们的方法组成<strong>对象</strong>（object），把相同行为的对象归纳为<strong>类</strong>（class），通过类的<strong>封装</strong>（encapsulation）隐藏内部细节，通过<strong>继承</strong>（inheritance）实现类的特化（specialization）和泛化（generalization），通过<strong>多态</strong>（polymorphism）实现基于对象类型的动态分派。</p>
+<h3 id="61">6.1 定义类</h3>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Student</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span><span class="o">:</span>
+
+    <span class="err">#</span> <span class="nx">__init__是一个特殊方法用于在创建对象时进行初始化操作</span>
+    <span class="err">#</span> <span class="err">通过这个方法我们可以为学生对象绑定</span><span class="nx">name和age两个属性</span>
+    <span class="nx">def</span> <span class="nx">__init__</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
+
+    <span class="nx">def</span> <span class="nx">study</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">course_name</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">print</span><span class="p">(</span><span class="s1">'%s正在学习%s.'</span> <span class="o">%</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">course_name</span><span class="p">))</span>
+
+    <span class="err">#</span> <span class="nx">PEP</span> <span class="mi">8</span><span class="err">要求标识符的名字用全小写多个单词用下划线连接</span>
+    <span class="err">#</span> <span class="err">但是很多程序员和公司更倾向于使用驼峰命名法</span><span class="p">(</span><span class="err">驼峰标识</span><span class="p">)</span>
+    <span class="nx">def</span> <span class="nx">watch_av</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">if</span> <span class="nx">self</span><span class="p">.</span><span class="nx">age</span> <span class="o">&lt;</span> <span class="nx">18</span>:
+            <span class="kt">print</span><span class="p">(</span><span class="s1">'%s只能观看《熊出没》.'</span> <span class="o">%</span> <span class="nx">self</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="o">:</span>
+            <span class="nx">print</span><span class="p">(</span><span class="s1">'%s正在观看岛国爱情动作片.'</span> <span class="o">%</span> <span class="nx">self</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+</pre></div>
+<h3 id="62">6.2 访问可见性问题</h3>
+<p>在 Python 中，属性和方法的访问权限只有两种，也就是<strong>公开的</strong>和<strong>私有的</strong>，如果希望属性是私有的，在给属性命名时可以<strong>用两个下划线作为开头</strong>。</p>
+<p>但是，Python 并没有从语法上严格保证私有属性或方法的私密性，它只是给私有的属性和方法换了一个名字来“妨碍”对它们的访问，事实上如果你知道更换名字的规则仍然可以访问到它们。新名字的格式为 <code>_类名__函数名或变量名</code>。</p>
+<p>在实际开发中，我们并不建议将属性设置为私有的，因为这会导致子类无法访问（后面会讲到）。所以大多数 Python 程序员会遵循一种命名惯例就是让<strong>属性名以单下划线开头</strong>来表示属性是受保护的，本类之外的代码在访问这样的属性时应该要保持慎重。这种做法并不是语法上的规则，单下划线开头的属性和方法外界仍然是可以访问的，所以更多的时候它是一种暗示或隐喻。</p>
+<h2 id="7">7. 面向对象进阶</h2>
+<h3 id="71-property">7.1 @property装饰器</h3>
+<p>使用 <code>@property</code> 包装器来包装 <code>getter</code> 和 <code>setter</code> 方法，使得对属性的访问既安全又方便。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span><span class="o">:</span>
+
+    <span class="nx">def</span> <span class="nx">__init__</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">name</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_age</span> <span class="o">=</span> <span class="nx">age</span>
+
+    <span class="err">#</span> <span class="err">访问器</span> <span class="o">-</span> <span class="nx">getter方法</span>
+    <span class="kd">@property</span>
+    <span class="nx">def</span> <span class="nx">name</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_name</span>
+
+    <span class="err">#</span> <span class="err">访问器</span> <span class="o">-</span> <span class="nx">getter方法</span>
+    <span class="kd">@property</span>
+    <span class="nx">def</span> <span class="nx">age</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_age</span>
+
+    <span class="err">#</span> <span class="err">修改器</span> <span class="o">-</span> <span class="nx">setter方法</span>
+    <span class="kd">@age</span><span class="p">.</span><span class="nx">setter</span> <span class="err">#</span> <span class="err">用对应的</span> <span class="nx">age</span> <span class="err">声明</span>
+    <span class="nx">def</span> <span class="nx">age</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_age</span> <span class="o">=</span> <span class="nx">age</span>
+
+    <span class="nx">def</span> <span class="nx">play</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">if</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_age</span> <span class="o">&lt;=</span> <span class="nx">16</span>:
+            <span class="kt">print</span><span class="p">(</span><span class="s1">'%s正在玩飞行棋.'</span> <span class="o">%</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="o">:</span>
+            <span class="nx">print</span><span class="p">(</span><span class="s1">'%s正在玩斗地主.'</span> <span class="o">%</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_name</span><span class="p">)</span>
+
+
+<span class="nx">def</span> <span class="nx">main</span><span class="p">()</span><span class="o">:</span>
+    <span class="nx">person</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'王大锤'</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">play</span><span class="p">()</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">22</span> <span class="err">#</span> <span class="err">自动转换为</span> <span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">play</span><span class="p">()</span>
+    <span class="err">#</span> <span class="nx">person</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'白元芳'</span>  <span class="err">#</span> <span class="nx">AttributeError</span>: <span class="kt">can</span><span class="s1">'t set attribute</span>
+
+
+<span class="s1">if __name__ == '</span><span class="nx">__main__</span><span class="err">'</span><span class="o">:</span>
+    <span class="nx">main</span><span class="p">()</span>
+</pre></div>
+<h3 id="72-95_slots__">7.2 __slots__ 魔法</h3>
+<p>Python 是一门动态语言。通常，动态语言允许我们在程序运行时给对象绑定新的属性或方法，当然也可以对已经绑定的属性和方法进行解绑定。但是如果我们需要限定自定义类型的对象只能绑定某些属性，可以通过在类中定义 <code>__slots__</code> 变量来进行限定。需要注意的是 <code>__slots__</code> 的限定只对当前类的对象生效，对子类并不起任何作用。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span><span class="o">:</span>
+
+    <span class="err">#</span> <span class="err">限定</span><span class="nx">Person对象只能绑定_name</span><span class="p">,</span> <span class="nx">_age和_gender属性</span>
+    <span class="nx">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'_name'</span><span class="p">,</span> <span class="s1">'_age'</span><span class="p">,</span> <span class="s1">'_gender'</span><span class="p">)</span>
+
+    <span class="nx">def</span> <span class="nx">__init__</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">name</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_age</span> <span class="o">=</span> <span class="nx">age</span>
+
+    <span class="kd">@property</span>
+    <span class="nx">def</span> <span class="nx">name</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_name</span>
+
+    <span class="kd">@property</span>
+    <span class="nx">def</span> <span class="nx">age</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_age</span>
+
+    <span class="kd">@age</span><span class="p">.</span><span class="nx">setter</span>
+    <span class="nx">def</span> <span class="nx">age</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_age</span> <span class="o">=</span> <span class="nx">age</span>
+
+    <span class="nx">def</span> <span class="nx">play</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">if</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_age</span> <span class="o">&lt;=</span> <span class="nx">16</span>:
+            <span class="kt">print</span><span class="p">(</span><span class="s1">'%s正在玩飞行棋.'</span> <span class="o">%</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="o">:</span>
+            <span class="nx">print</span><span class="p">(</span><span class="s1">'%s正在玩斗地主.'</span> <span class="o">%</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_name</span><span class="p">)</span>
+
+
+<span class="nx">def</span> <span class="nx">main</span><span class="p">()</span><span class="o">:</span>
+    <span class="nx">person</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'王大锤'</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">play</span><span class="p">()</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">_gender</span> <span class="o">=</span> <span class="s1">'男'</span>
+    <span class="err">#</span> <span class="nx">AttributeError</span><span class="o">:</span> <span class="s1">'Person'</span> <span class="nx">object</span> <span class="nx">has</span> <span class="nx">no</span> <span class="nx">attribute</span> <span class="s1">'_is_gay'</span>
+    <span class="err">#</span> <span class="nx">person</span><span class="p">.</span><span class="nx">_is_gay</span> <span class="o">=</span> <span class="nx">True</span>
+</pre></div>
+<h3 id="73">7.3 静态方法和类方法</h3>
+<p><strong>@staticmethod</strong></p>
+<p>在类中定义的方法都是对象方法，也就是说这些方法都是发送给对象的消息。实际上，我们写在类中的方法并不需要都是对象方法，例如我们定义一个“三角形”类，通过传入三条边长来构造三角形，并提供计算周长和面积的方法，但是传入的三条边长未必能构造出三角形对象，因此我们可以先写一个方法来验证三条边长是否可以构成三角形，这个方法很显然就不是对象方法，因为在调用这个方法时三角形对象尚未创建出来（因为都不知道三条边能不能构成三角形），所以这个方法是属于三角形类而并不属于三角形对象的。我们可以使用静态方法来解决这类问题，代码如下所示：</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+
+
+<span class="k">class</span> <span class="nc">Triangle</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_b</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_c</span> <span class="o">=</span> <span class="n">c</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">is_valid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="n">c</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">a</span> <span class="ow">and</span> <span class="n">a</span> <span class="o">+</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">b</span>
+
+    <span class="k">def</span> <span class="nf">perimeter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_a</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_c</span>
+
+    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">half</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">perimeter</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">half</span> <span class="o">*</span> <span class="p">(</span><span class="n">half</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_a</span><span class="p">)</span> <span class="o">*</span>
+                    <span class="p">(</span><span class="n">half</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">half</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_c</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span>
+    <span class="c1"># 静态方法和类方法都是通过给类发消息来调用的</span>
+    <span class="k">if</span> <span class="n">Triangle</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">perimeter</span><span class="p">())</span>
+        <span class="c1"># 也可以通过给类发消息来调用对象方法但是要传入接收消息的对象作为参数</span>
+        <span class="c1"># print(Triangle.perimeter(t))</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">area</span><span class="p">())</span>
+        <span class="c1"># print(Triangle.area(t))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">'无法构成三角形.'</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+<p><strong>@classmethod</strong></p>
+<p>和静态方法比较类似，Python 还可以在类中定义类方法，类方法的第一个参数约定名为 <code>cls</code>，它代表的是当前类相关的信息的对象（类本身也是一个对象，有的地方也称之为类的元数据对象），通过这个参数我们可以获取和类相关的信息并且可以创建出类的对象，代码如下所示：</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span><span class="p">,</span> <span class="n">localtime</span><span class="p">,</span> <span class="n">sleep</span>
+
+
+<span class="k">class</span> <span class="nc">Clock</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">"""数字时钟"""</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hour</span> <span class="o">=</span> <span class="n">hour</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_minute</span> <span class="o">=</span> <span class="n">minute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_second</span> <span class="o">=</span> <span class="n">second</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">now</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="n">ctime</span> <span class="o">=</span> <span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="p">())</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">ctime</span><span class="o">.</span><span class="n">tm_hour</span><span class="p">,</span> <span class="n">ctime</span><span class="o">.</span><span class="n">tm_min</span><span class="p">,</span> <span class="n">ctime</span><span class="o">.</span><span class="n">tm_sec</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""走字"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_second</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_second</span> <span class="o">==</span> <span class="mi">60</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_second</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_minute</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minute</span> <span class="o">==</span> <span class="mi">60</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_minute</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_hour</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hour</span> <span class="o">==</span> <span class="mi">24</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_hour</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""显示时间"""</span>
+        <span class="k">return</span> <span class="s1">'</span><span class="si">%02d</span><span class="s1">:</span><span class="si">%02d</span><span class="s1">:</span><span class="si">%02d</span><span class="s1">'</span> <span class="o">%</span> \
+               <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hour</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minute</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_second</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># 通过类方法创建对象并获取系统时间</span>
+    <span class="n">clock</span> <span class="o">=</span> <span class="n">Clock</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">clock</span><span class="o">.</span><span class="n">show</span><span class="p">())</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">clock</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+<h3 id="74">7.4 类之间的关系</h3>
+<p>简单的说，类和类之间的关系有三种：<strong>is-a</strong>、<strong>has-a</strong> 和 <strong>use-a</strong> 关系。</p>
+<ul>
+<li>is-a 关系也叫继承或泛化，比如学生和人的关系、手机和电子产品的关系都属于继承关系</li>
+<li>has-a 关系通常称之为关联，比如部门和员工的关系，汽车和引擎的关系都属于关联关系；关联关系如果是整体和部分的关联，那么我们称之为聚合关系；如果整体进一步负责了部分的生命周期（整体和部分是不可分割的，同时同在也同时消亡），那么这种就是最强的关联关系，我们称之为合成关系</li>
+<li>use-a 关系通常称之为依赖，比如司机有一个驾驶的行为（方法），其中（的参数）使用到了汽车，那么司机和汽车的关系就是依赖关系</li>
+</ul>
+<h3 id="75">7.5 继承和多态</h3>
+<p>子类在继承了父类的方法后，可以对父类已有的方法给出新的实现版本，这个动作称之为方法重写（override）。通过方法重写我们可以让父类的同一个行为在子类中拥有不同的实现版本，当我们调用这个经过子类重写的方法时，不同的子类对象会表现出不同的行为，这个就是多态（poly-morphism）。</p>
+<p>Python 从语法层面并没有像 Java 或 C# 那样提供对抽象类的支持，但是我们可以通过 <code>abc</code> 模块的 <code>ABCMeta</code> 元类和 <code>abstractmethod</code> 包装器来达到抽象类的效果，如果一个类中存在抽象方法那么这个类就不能够实例化（创建对象）。</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+
+<span class="k">class</span> <span class="nc">Pet</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="sd">"""宠物"""</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nickname</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nickname</span> <span class="o">=</span> <span class="n">nickname</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">make_voice</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""发出声音"""</span>
+        <span class="k">pass</span>
+</pre></div>
+                <aside>
+                    <hr />
+                    <nav class="related">
+                        <h1>
+                            <font color="#771515"><em>RELATED</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/04/01/py/">Python 教程</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/03/18/args/">Python argparse 模块</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/03/12/tutorial/">xlwings 教程</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/04/01/py/">
+                                    Python 教程
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/03/18/args/">
+                                    Python argparse 模块
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/03/12/tutorial/">
+                                    xlwings 教程
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/03/10/torch/">
+                                    PyTroch 之 torch 包
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/03/05/eps/">
+                                    eps 图像截切四周的空白
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2019-05-19T16:05:33+08:00">2019-05-19 16:05:33</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-05-19 20:18:06</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#教程-ref">教程</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#Python-ref">Python
+                                <span>4</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
