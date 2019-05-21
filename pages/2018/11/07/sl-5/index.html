@@ -254,13 +254,13 @@
 </p>
 <div class="math">$$\sum_{x_i\in R_m}\left(y_i-f(x_i)\right)^2$$</div>
 <p>
-来表示回归树对于训练数据集的预测误差，用平方误差最下的准则求解每个单元上的最优输出值。</p>
+来表示回归树对于训练数据集的预测误差，用平方误差最小的准则求解每个单元上的最优输出值。</p>
 <p>易知，单元 <span class="math">\(R_m\)</span> 上的 <span class="math">\(c_m\)</span> 的最优值 <span class="math">\(\hat{c}_m\)</span> 是 <span class="math">\(R_m\)</span> 上所有输入实例 <span class="math">\(x_i\)</span> 对于的输出 <span class="math">\(y_i\)</span> 的均值，即
 </p>
 <div class="math">$$\hat{c}_m=\text{ave}(y_i|x_i\in R_m)$$</div>
 <p>
 问题是怎么对输入空间进行划分。</p>
-<p>这里采用启发式的方法，选择第 <span class="math">\(j\)</span> 个特征 <span class="math">\(x^{(i)}\)</span> 和它的取值 <span class="math">\(s\)</span>，作为切分变量（splitting variable）和切分点（splitting point），并定义两个区域
+<p>这里采用启发式的方法，选择第 <span class="math">\(j\)</span> 个特征 <span class="math">\(x^{(j)}\)</span> 和它的取值 <span class="math">\(s\)</span>，作为切分变量（splitting variable）和切分点（splitting point），并定义两个区域
 </p>
 <div class="math">$$\begin{eqnarray}
 R_1(j,s) &amp;=&amp; \{x|x^{(j)}\leq s\} \\
@@ -311,8 +311,8 @@ R_2(j,s) &amp;=&amp; \{x|x^{(j)}&gt;s\}
 </p>
 <div class="math">$$\text{Gini}(D,A)=\frac{|D_1|}{|D|}\text{Gini}(D_1)+\frac{|D_2|}{|D|}\text{Gini}(D_2)$$</div>
 <p>
-基尼指数 <span class="math">\(\text{Gini}(D)\)</span> 表示集合 <span class="math">\(D\)</span> 的不确定性，基尼指数 <span class="math">\(\text{Gini}(D,A)\)</span> 表示经 <span class="math">\(A=a\)</span> 分割后集合 <span class="math">\(D\)</span> 的不确定性。基尼指数数值越大，样本集合的不确定性也就越大，这一点与熵类似。
-
+基尼指数 <span class="math">\(\text{Gini}(D)\)</span> 表示集合 <span class="math">\(D\)</span> 的不确定性，基尼指数 <span class="math">\(\text{Gini}(D,A)\)</span> 表示经 <span class="math">\(A=a\)</span> 分割后集合 <span class="math">\(D\)</span> 的不确定性。基尼指数数值越大，样本集合的不确定性也就越大，这一点与熵类似。</p>
+<p>
 <strong>
 算法 5.6 （CART 生成算法）<br/>
 输入：训练数据集 <span class="math">\(D\)</span>，停止计算的条件<br/>
