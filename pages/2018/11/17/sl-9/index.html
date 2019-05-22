@@ -100,7 +100,7 @@ Q\left(\theta,\theta^{(i)}\right) &amp;=&amp; \text{E}_Z\left[\log P(Y,Z|\theta)
 </strong></p>
 <p><span class="math">\(Q\)</span> 函数是 EM 算法的核心。</p>
 <p><strong>
-定义 9.1（<span class="math">\(Q\)</span> 函数）玩去数据的对数似然函数 <span class="math">\(\log P(Y,Z|\theta)\)</span> 关于在给定观测数据 <span class="math">\(Y\)</span> 的当前参数 <span class="math">\(\theta^{(i)}\)</span> 下对未观测数据 <span class="math">\(Z\)</span> 的条件概率分布 <span class="math">\(P\left(Z|Y,\theta^{(i)}\right)\)</span> 的期望称为 <span class="math">\(Q\)</span> 函数，即
+定义 9.1（<span class="math">\(Q\)</span> 函数）完全数据的对数似然函数 <span class="math">\(\log P(Y,Z|\theta)\)</span> 关于在给定观测数据 <span class="math">\(Y\)</span> 的当前参数 <span class="math">\(\theta^{(i)}\)</span> 下对未观测数据 <span class="math">\(Z\)</span> 的条件概率分布 <span class="math">\(P\left(Z|Y,\theta^{(i)}\right)\)</span> 的期望称为 <span class="math">\(Q\)</span> 函数，即
 <div class="math">$$Q\left(\theta,\theta^{(i)}\right)=\text{E}_Z\left[\log P(Y,Z|\theta)|Y,\theta^{(i)}\right]$$</div>
 </strong></p>
 <p>关于 EM 算法需要注意：参数的初值可以任意选择，但需注意 EM 算法对初值是敏感的；给出停止迭代的条件，一般是对较小的正数 <span class="math">\(\epsilon_1\)</span>，<span class="math">\(\epsilon_2\)</span>，若满足
