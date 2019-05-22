@@ -282,6 +282,10 @@ b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$</div>
 分类决策函数
 <div class="math">$$f(x)=\text{sign}\left(\sum_{i=1}^N\alpha_i^\star y_i(x\cdot x_i)+b^\star\right)$$</div>
 </strong></p>
+<p>其中 <span class="math">\(b^\ast\)</span> 的计算是根据如下事实：</p>
+<p>在最优解 <span class="math">\(\alpha^\star=\left(\alpha_1^\star,\alpha_2^\star,\cdots,\alpha_N^\star\right)^\text{T}\)</span> 中，<span class="math">\(\alpha_i^\star&gt;0\)</span> 的样本点才是支持向量，而对于支持向量 <span class="math">\((x_j,y_j)\)</span> 来说，其一定位于方程 <span class="math">\(y_j(w^\ast\cdot x_j + b)=1\)</span> 上，又因为 <span class="math">\(|y_j|=1\)</span>，故 <span class="math">\(y_j=w^\ast\cdot x_j + b\)</span>，得出
+</p>
+<div class="math">$$b^\ast=y_j-w^\ast\cdot x_j=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$</div>
 <p>由公式知 <span class="math">\(w^\star\)</span>，<span class="math">\(b^\star\)</span> 只依赖于训练数据中对于与 <span class="math">\(\alpha_i^\star&gt;0\)</span> 的样本点 <span class="math">\((x_i,y_i)\)</span>，我们将这些实例点称为支持向量。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -456,7 +460,7 @@ b^\star=y_j-\sum_{i=1}^N\alpha_i^\star y_i(x_i\cdot x_j)$$</div>
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-11T13:47:48+08:00">2018-11-11 13:47:48</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-11 17:55:33</div>
+                    <div class="last_updated">2019-05-22 12:40:36</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
