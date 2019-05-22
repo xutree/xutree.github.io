@@ -81,7 +81,7 @@
 <h2 id="91-em">9.1 EM 算法的引入</h2>
 <p>概率模型有时既含有观测变量（observable variable），又含有隐变量或潜在变量（latent variable）。如果概率模型的变量都是观测变量，那么给定数据，可以直接用极大似然估计法，或贝叶斯估计法估计模型参数。但是，当模型含有隐变量时，就不能简单的使用这些估计方法。EM 算法就是含有隐变量的概率模型参数的极大似然估计法，或极大后验概率估计法。</p>
 <h3 id="911-em">9.1.1 EM 算法</h3>
-<p>一般的，用 <span class="math">\(Y\)</span> 表示观测随机变量的数据，<span class="math">\(Z\)</span> 表示隐随机变量的数据。<span class="math">\(Y\)</span> 和 <span class="math">\(Z\)</span> 连在一起称为完全数据（complete-data），观测数据 <span class="math">\(Y\)</span> 又称为不完全数据（incomplete-data）。假设给定观测数据 <span class="math">\(Y\)</span>，其概率分布是 <span class="math">\(P(Y|\theta)\)</span>，其中 <span class="math">\(\Theta\)</span> 是需要估计的模型参数，那么不完全数据了 <span class="math">\(Y\)</span> 的似然函数是 <span class="math">\(P(Y|\theta)\)</span>，对数似然函数是 <span class="math">\(L(\theta)=\log P(Y|\theta)\)</span>；假设 <span class="math">\(Y\)</span> 和 <span class="math">\(Z\)</span> 的联合概率分布是 <span class="math">\(P(Y,Z|\theta)\)</span>，那么完全数据的对数似然函数是 <span class="math">\(\log P(Y,Z|\theta)\)</span>。</p>
+<p>一般的，用 <span class="math">\(Y\)</span> 表示观测随机变量的数据，<span class="math">\(Z\)</span> 表示隐随机变量的数据。<span class="math">\(Y\)</span> 和 <span class="math">\(Z\)</span> 连在一起称为完全数据（complete-data），观测数据 <span class="math">\(Y\)</span> 又称为不完全数据（incomplete-data）。假设给定观测数据 <span class="math">\(Y\)</span>，其概率分布是 <span class="math">\(P(Y|\theta)\)</span>，其中 <span class="math">\(\theta\)</span> 是需要估计的模型参数，那么不完全数据了 <span class="math">\(Y\)</span> 的似然函数是 <span class="math">\(P(Y|\theta)\)</span>，对数似然函数是 <span class="math">\(L(\theta)=\log P(Y|\theta)\)</span>；假设 <span class="math">\(Y\)</span> 和 <span class="math">\(Z\)</span> 的联合概率分布是 <span class="math">\(P(Y,Z|\theta)\)</span>，那么完全数据的对数似然函数是 <span class="math">\(\log P(Y,Z|\theta)\)</span>。</p>
 <p>EM 算法通过迭代求 <span class="math">\(L(\theta)=\log P(Y|\theta)\)</span> 的极大似然估计。</p>
 <p><strong>
 算法 9.1（EM 算法）<br/>
@@ -414,7 +414,7 @@ k=1,2,\cdots,K$$</div>
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2018-11-17T19:32:10+08:00">2018-11-17 19:32:10</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2018-11-17 19:32:59</div>
+                    <div class="last_updated">2019-05-22 16:02:34</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
