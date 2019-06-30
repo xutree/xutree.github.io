@@ -7,8 +7,8 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="机器学习, 深度学习, 读书笔记, " />
-    <title>深度学习 第五章 机器学习基础  · You Know Nothing
+<meta name="keywords" content="量子信息, 读书笔记, " />
+    <title>量子信息笔记  · You Know Nothing
 </title>
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
     <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/12/07/dl-5/"> 深度学习 第五章 机器学习基础  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2019/05/30/量子计算笔记/"> 量子信息笔记  </a></h1>
         </header>
     </div>
 
@@ -59,11 +59,17 @@
                 <!-- <h4>目录</h4> -->
                 <div class="toc">
 <ul>
-<li><a href="#51">5.1 学习算法</a><ul>
-<li><a href="#511-t">5.1.1 任务 \(T\)</a></li>
-<li><a href="#512-p">5.1.2 性能度量 \(P\)</a></li>
+<li><a href="#1">1. 量子门符号</a></li>
+<li><a href="#2">2. 量子比特</a><ul>
+<li><a href="#21">2.1 量子不可克隆原理</a></li>
+<li><a href="#22-bell">2.2 Bell 态</a></li>
+<li><a href="#23">2.3 隐形传态</a></li>
+<li><a href="#24">2.4 与非门和扇出</a></li>
+<li><a href="#25">2.5 并行计算</a></li>
+<li><a href="#26-deutsch-jozsa">2.6 Deutsch-Jozsa 算法</a></li>
 </ul>
 </li>
+<li><a href="#3">3. 通用量子门</a></li>
 </ul>
 </div>
             </nav>
@@ -71,27 +77,54 @@
         <div class="span8 article-content">
 
                 
-<p>大部分机器学习算法都有超参数（必须在学习算法外设定），我们将探讨如何使用额外的数据设置超参数。机器学习本质上属于应用统计学，更多地关注与如何用计算机统计地估计复杂函数，不太关注为这些函数提供置信区间，因此我们会探讨两种统计学的主要方法：频率派估计和贝叶斯推断。大多数深度学习算法都是基于被称为随机梯度下降得算法求解的。</p>
-<h2 id="51">5.1 学习算法</h2>
-<p>Mitchell 对“学习”提供了一个简洁的定义：“对于某类任务 <span class="math">\(T\)</span> 和性能度量 <span class="math">\(P\)</span>，一个计算机程序被认为可以从经验 <span class="math">\(E\)</span> 中学习是指，通过经验 <span class="math">\(E\)</span> 改进后，它在任务 <span class="math">\(T\)</span> 上由性能度量 <span class="math">\(P\)</span> 衡量的性能有所提升。”</p>
-<h3 id="511-t">5.1.1 任务 <span class="math">\(T\)</span></h3>
-<p>通常机器学习任务定义为机器学习系统应该如何处理<strong>样本</strong>（example）。样本是指我们从某些希望机器学习系统处理的对象或事件中收集到的已经量化的<strong>特征</strong>（feature）的集合。</p>
-<p>我们通常会将样本表示成一个向量 <span class="math">\(\boldsymbol x\in\mathbb{R}^n\)</span>，其中向量的每一个元素 <span class="math">\(x_i\)</span> 是一个特征。</p>
-<p>机器学习可以解决很多类型的任务。一些非常常见的机器学习任务列举如下：</p>
+<h2 id="1">1. 量子门符号</h2>
 <ul>
-<li>分类</li>
-<li>输入缺失分类</li>
-<li>回归</li>
-<li>转录</li>
-<li>机器翻译</li>
-<li>结构化输出</li>
-<li>异常检测</li>
-<li>合成和采样</li>
-<li>缺失值填补</li>
-<li>去噪</li>
-<li>密度估计或概率质量函数估计</li>
+<li>Hadamard（<span class="math">\(H\)</span>）：
+<div class="math">$$\frac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; 1\\1 &amp; -1\end{bmatrix}$$</div>
+</li>
+<li>Pauli-<span class="math">\(X\)</span>（<span class="math">\(X\)</span>）：<div class="math">$$\begin{bmatrix}0 &amp; 1 \\1 &amp; 0\end{bmatrix}$$</div>
+</li>
+<li>Pauli-<span class="math">\(Y\)</span>（<span class="math">\(Y\)</span>）：<div class="math">$$\begin{bmatrix}0 &amp; -i \\i &amp; 0\end{bmatrix}$$</div>
+</li>
+<li>Pauli-<span class="math">\(Z\)</span>（<span class="math">\(Z\)</span>）：<div class="math">$$\begin{bmatrix}1 &amp; 0 \\0 &amp; -1\end{bmatrix}$$</div>
+</li>
+<li>相位门（<span class="math">\(S\)</span>）：<span class="math">\($<div class="math">\begin{bmatrix}1 &amp; 0 \\0 &amp; i\end{bmatrix}</div>\)</span></li>
+<li><span class="math">\(\frac{\pi}{8}\)</span> 门（<span class="math">\(T\)</span>）：<span class="math">\(<div class="math">\begin{bmatrix}1 &amp; 0 \\0 &amp; \text{e}^{\text{i}\pi/4}\end{bmatrix}</div>\)</span>$</li>
+<li>受控非门：<div class="math">$$\begin{bmatrix}1 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1\\ 0 &amp; 0 &amp; 1 &amp; 0\end{bmatrix}$$</div>
+</li>
+<li>交换门：<div class="math">$$\begin{bmatrix}1 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1\end{bmatrix}$$</div>
+</li>
+<li>受控 <span class="math">\(Z\)</span> 门：<div class="math">$$\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 0 &amp; -1\end{bmatrix}$$</div>
+</li>
+<li>受控相位门：<div class="math">$$\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 0 &amp; \text{i}\end{bmatrix}$$</div>
+</li>
+<li>Toffoli 门：<div class="math">$$\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\end{bmatrix}$$</div>
+</li>
+<li>Fredkin 门（受控交换门）：<div class="math">$$\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\end{bmatrix}$$</div>
+</li>
 </ul>
-<h3 id="512-p">5.1.2 性能度量 <span class="math">\(P\)</span></h3>
+<h2 id="2">2. 量子比特</h2>
+<p><img alt="Bloch 球" src="https://xutree.github.io/images/bloch.png"/></p>
+<p><span class="math">\(|\psi\rangle=\cos\frac{\theta}{2}|0\rangle+\text{e}^{\text{i}\varphi}\sin\frac{\theta}{2}|1\rangle, \theta\in[0,\pi), \varphi\in[0,2\pi)\)</span></p>
+<h3 id="21">2.1 量子不可克隆原理</h3>
+<p>经典：<span class="math">\(0\oplus x=x\)</span>；</p>
+<p>量子：<span class="math">\(0\oplus(\alpha|0\rangle+\beta|1\rangle)=\alpha|00\rangle+\beta|11\rangle\)</span></p>
+<p>除非 <span class="math">\(\alpha\beta=0\)</span> 否则无法克隆。</p>
+<h3 id="22-bell">2.2 Bell 态</h3>
+<p><img alt="Bell 态" src="https://xutree.github.io/images/bell.png"/></p>
+<h3 id="23">2.3 隐形传态</h3>
+<p><img alt="隐形传态" src="https://xutree.github.io/images/trans.png"/></p>
+<h3 id="24">2.4 与非门和扇出</h3>
+<p><img alt="与非门和扇出" src="https://xutree.github.io/images/toffli.png"/></p>
+<h3 id="25">2.5 并行计算</h3>
+<p><img alt="并行计算" src="https://xutree.github.io/images/parell.png"/></p>
+<h3 id="26-deutsch-jozsa">2.6 Deutsch-Jozsa 算法</h3>
+<p><img alt="Deutsch-Jozsa 算法" src="https://xutree.github.io/images/deutsch.png"/></p>
+<h2 id="3">3. 通用量子门</h2>
+<p>通用性：<span class="math">\(n\)</span> 量子比特上任意的酉运算，可以用单量子比特门和受控非门精确实现。</p>
+<p><strong>Hadamard 门、相位门、受控非门和 <span class="math">\(\pi/8\)</span> 门</strong> 或 <strong>Hadamard 门、相位门、受控非门和 Toffoli 门</strong>。</p>
+<p>但是精确近似可能需要很多门。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -149,130 +182,52 @@
 </script>
                 <aside>
                     <hr />
-                    <nav class="related">
-                        <h1>
-                            <font color="#771515"><em>RELATED</em></font>
-                        </h1>
-                        <ul>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2019/03/10/torch/">PyTroch 之 torch 包</a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">深度学习 第四章 数值计算</a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">深度学习 第三章 概率与信息论</a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">深度学习 第二章 线性代数</a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">深度学习 第一章 引言</a>
-                            </li>
-                        </ul>
-                    </nav>
                     <nav class="older">
                         <h1>
                             <font color="#771515"><em>OLDER</em></font>
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">
-                                    深度学习 第四章 数值计算
+                                <a href="https://xutree.github.io/pages/2019/05/23/ms/">
+                                    机器学习面试题目
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">
-                                    深度学习 第三章 概率与信息论
+                                <a href="https://xutree.github.io/pages/2019/05/19/100/">
+                                    Python 100 days
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">
-                                    深度学习 第二章 线性代数
+                                <a href="https://xutree.github.io/pages/2019/04/01/py/">
+                                    Python 教程
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">
-                                    深度学习 第一章 引言
+                                <a href="https://xutree.github.io/pages/2019/03/18/args/">
+                                    Python argparse 模块
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/11/20/sl-12/">
-                                    统计学习方法 第十二章 统计学习方法总结
+                                <a href="https://xutree.github.io/pages/2019/03/12/tutorial/">
+                                    xlwings 教程
                                 </a>
                             </li>
                         </ul>
                     </nav>
-                    <nav class="newer">
-                        <h1>
-                            <font color="#771515"><em>NEWER</em></font>
-                        </h1>
-                        <ul>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2019/01/22/Torch_libpng/">
-                                    为 Torch 安装特定版本的 libpng
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2019/02/19/jzoffer1/">
-                                    剑指 offer (1)
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2019/02/20/树/">
-                                    数据结构——树
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2019/02/20/bianma/">
-                                    原码, 反码, 补码
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://xutree.github.io/pages/2019/02/23/jzoffer2/">
-                                    剑指 offer (2)
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- Gitalk 评论 start  -->
-
-                    <!-- Link Gitalk 的支持文件  -->
-                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-                    <div id="gitalk-container"></div>
-                    <script type="text/javascript">
-                        var dateTime = Date.now();
-                        var timestamp = Math.floor(dateTime / 1000);
-                        var gitalk = new Gitalk({
-
-                            // gitalk的主要参数
-                            clientID: '93f43349e9fd3154bfad',
-                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
-                            repo: 'xutree.github.io',
-                            owner: 'xutree',
-                            admin: ['xutree'],
-                            id: String(timestamp)
-
-                        });
-                        gitalk.render('gitalk-container');
-                    </script> -->
-                    <!-- Gitalk end -->
                 </aside>
             </div>
             <section>
                 <div class="span2" style="float:right;font-size:0.9em;">
                     <h4>发布日期</h4>
-                    <time pubdate="pubdate" datetime="2018-12-07T23:11:40.170005+08:00">2018-12-07 23:11:40</time>
+                    <time pubdate="pubdate" datetime="2019-05-30T14:15:40+08:00">2019-05-30 14:15:40</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-05-30 14:15:40</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
-                        <li><a href="/tags.html#机器学习-ref">机器学习
-                                <span>22</span>
-</a></li>
-                        <li><a href="/tags.html#深度学习-ref">深度学习
-                                <span>6</span>
+                        <li><a href="/tags.html#量子信息-ref">量子信息
+                                <span>1</span>
 </a></li>
                     </ul>
 
