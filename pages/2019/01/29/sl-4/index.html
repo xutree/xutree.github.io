@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="统计学习, 机器学习, 读书笔记, " />
+    <title>统计学习方法 第四章 朴素贝叶斯法  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2019/01/29/sl-4/"> 统计学习方法 第四章 朴素贝叶斯法  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#41">4.1 朴素贝叶斯法的学习与分类</a><ul>
+<li><a href="#411">4.1.1 基本方法</a></li>
+<li><a href="#412">4.1.2 后验概率最大化的含义</a></li>
+</ul>
+</li>
+<li><a href="#42">4.2 朴素贝叶斯法的参数估计</a><ul>
+<li><a href="#421">4.2.1 极大似然估计</a></li>
+<li><a href="#422">4.2.2 学习与分类算法</a></li>
+<li><a href="#423">4.2.3 贝叶斯估计</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
+
+                
+<p>朴素贝叶斯（naive Bayes）法是基于贝叶斯定理与特征条件独立假设的分类方法。朴素贝叶斯法实现简单，学习和预测效率都很高，是一种常用的方法。</p>
+<h2 id="41">4.1 朴素贝叶斯法的学习与分类</h2>
+<h3 id="411">4.1.1 基本方法</h3>
+<p>设输入特征向量
+</p>
+<div class="math">$$x\in{\cal X}\subseteq\mathbb{R}^n$$</div>
+<p>
+输出类标记
+</p>
+<div class="math">$$y\in{\cal Y}=\{c_1,c_2,\cdots,c_K\}$$</div>
+<p>
+<span class="math">\(X\)</span> 是定义在输入空间 <span class="math">\({\cal X}\)</span> 上的随机变量，<span class="math">\(Y\)</span> 是定义在输出空间 <span class="math">\({\cal Y}\)</span> 上的随机变量，<span class="math">\(P(X,Y)\)</span> 是 <span class="math">\(X\)</span> 和 <span class="math">\(Y\)</span> 的联合概率分布。训练数据集
+</p>
+<div class="math">$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
+<p>
+由 <span class="math">\(P(X,Y)\)</span> 独立同分布产生。</p>
+<p>朴素贝叶斯法通过训练数据集学习联合概率分布 <span class="math">\(P(X,Y)\)</span>。具体地，学习以下先验概率分布及条件概率分布。先验概率分布
+</p>
+<div class="math">$$P(Y=c_k),k=1,2,\cdots,K$$</div>
+<p>
+条件概率分布
+</p>
+<div class="math">$$P(X=x|Y=c_k)=P(X^{(1)}=x^{(1)},\cdots,X^{(n)}=x^{(n)}|Y=c_k),k=1,2,\cdots,K$$</div>
+<p>
+于是学习到联合概率分布
+</p>
+<div class="math">$$P(X,Y)=P(X=x|Y=c_k)P(Y=c_k)$$</div>
+<p>条件概率分布 <span class="math">\(P(X=x|Y=c_k)\)</span> 由指数级数量的参数，其估计实际是不可行的。事实上，假设 <span class="math">\(x^{(i)}\)</span> 可取值有 <span class="math">\(S_j\)</span> 个，<span class="math">\(Y\)</span> 可取值有 <span class="math">\(K\)</span> 个，那么参数个数为 <span class="math">\(K\prod_{j=1}^nS_j\)</span>。</p>
+<p>朴素贝叶斯法对条件概率分布作了条件独立性的假设。这是一个较强的假设，朴素贝叶斯法也由此得名。具体的，条件独立性假设是
+</p>
+<div class="math">$$\begin{eqnarray}
+P(X=x|Y=c_k) &amp;=&amp; P(X^{(1)}=x^{(1)},\cdots,X^{(n)}=x^{(n)})|Y=c_k)\\
+&amp;=&amp; \prod_{j=1}^nP(X^{(j)}=x^{(j)}|Y=c_k)
+\end{eqnarray}$$</div>
+<p>朴素贝叶斯法实际上学习到生成数据的机制，所以属于生成模型。条件独立假设等于是说分类的特征在类确定的条件下都是条件独立的。这一假设使朴素贝叶斯法变得简单，但有时会牺牲一定的分类准确率。</p>
+<p>利用朴素贝叶斯法对给定输入 <span class="math">\(x\)</span>分类是，将后验概率最大的类作为 <span class="math">\(x\)</span> 的类输出，后验概率根据贝叶斯定理计算
+</p>
+<div class="math">$$P(Y=c_k|X=x)=\frac{P(X=x|Y=c_k)P(Y=c_k)}{\sum_kP(X=x|Y=c_k)P(Y=c_k)}$$</div>
+<p>
+利用条件独立假设
+</p>
+<div class="math">$$P(Y=c_k|X=x)=\frac{P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}{\sum_kP(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}$$</div>
+<p>
+这是朴素贝叶斯法的基本公式，于是朴素贝叶斯分类器可表示为
+</p>
+<div class="math">$$y=f(x)=\arg\max_{c_k}\frac{P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}{\sum_kP(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)}$$</div>
+<p>
+注意到上式中分母对所有 <span class="math">\(c_k\)</span> 都为 <span class="math">\(P(X=x)\)</span>，所以
+</p>
+<div class="math">$$y=f(x)=\arg\max_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$$</div>
+<h3 id="412">4.1.2 后验概率最大化的含义</h3>
+<p>朴素贝叶斯法将实例分类到后验概率最大的类中，这等价于期望风险最小化。假设 0-1 损失函数
+</p>
+<div class="math">$$L(Y,f(X))=\begin{cases}1,&amp;Y\neq f(X)\\0,&amp; Y=f(X)\end{cases}$$</div>
+<p>
+式中 <span class="math">\(f(X)\)</span> 是分类决策函数。这时期望风险函数为
+</p>
+<div class="math">$$\begin{eqnarray}
+R_\text{exp}(f) &amp;=&amp; \text{E}[L(Y,f(X))]=\int_{{\cal X}\times{\cal Y}}L(y,f(x))P(x,y)dxdy\\
+&amp;=&amp; \int_{\cal X}\int_{\cal Y}L(y,f(x))P(y|x)P(x)dxdy\\
+&amp;=&amp; \int_{\cal X} \left[\int_{\cal Y}L(y,f(x))P(y|x)dy\right] P(x)dx
+\end{eqnarray}$$</div>
+<p>
+期望是对联合概率分布 <span class="math">\(P(X,Y)\)</span> 取的。由此取条件期望
+</p>
+<div class="math">$$R_\text{exp}(f)=\text{E}_X\sum_{k=1}^K[L(c_k,f(X))]P(c_k|X)$$</div>
+<p>
+为了使期望风险最小化，只需对 <span class="math">\(X=x\)</span> 逐个极小化，得
+</p>
+<div class="math">$$\begin{eqnarray}f(x) &amp;=&amp; \arg\min_{y\in{\cal Y}}\sum_{k=1}^KL(c_k,y)P(c_k|X=x)\\&amp;=&amp;\arg\min_{y\in\cal Y}\sum_{k=1}^KP(y\neq c_k|X=x)\\&amp;=&amp;\arg\min_{y\in{\cal Y}}(1-P(y=c_k|X=x))\\&amp;=&amp;\arg\max_{y\in\cal Y}P(y=c_k|X=x)\end{eqnarray}$$</div>
+<p>
+这样一来，根据期望风险最小化准则就得到了后验概率最大化准则
+</p>
+<div class="math">$$f(x)=\arg\max_{c_k}P(c_k|X=x)$$</div>
+<p>
+即朴素贝叶斯法采用的原理。</p>
+<h2 id="42">4.2 朴素贝叶斯法的参数估计</h2>
+<h3 id="421">4.2.1 极大似然估计</h3>
+<p>对于
+</p>
+<div class="math">$$y=f(x)=\arg\max_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$$</div>
+<p>
+朴素贝叶斯学习意味着估计 <span class="math">\(P(Y=c_k)\)</span> 和 <span class="math">\(P(X^{(j)}=x^{(j)}|Y=c_k)\)</span>。可以应用极大似然估计法估计相应的概率。</p>
+<p>先验概率 <span class="math">\(P(Y=c_k)\)</span> 的极大似然估计是
+</p>
+<div class="math">$$P(Y=c_k)=\frac{\sum_{i=1}^N\mathbb{I}(y_i=c_k)}{N},k=1,2,\cdots,K$$</div>
+<p>
+设第 <span class="math">\(j\)</span> 个特征 <span class="math">\(x^{(j)}\)</span> 可能的取值集合为 <span class="math">\(\{a_{j1},a_{j2},\cdots,a_{jS_j}\}\)</span>，条件概率的极大似然估计是
+</p>
+<div class="math">$$P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^N\mathbb{I}(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^N\mathbb{I}(y_i=c_k)}\\
+j=1,2,\cdots,n; l=1,2,\cdots,S_j; k=1,2,\cdots,K$$</div>
+<h3 id="422">4.2.2 学习与分类算法</h3>
+<p><strong>
+算法 4.1 朴素贝叶斯法（naive Bayes algorithm）<br/>
+输入：<br/>
+(a) 训练数据集
+<div class="math">$$T=\{(x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$$</div>
+其中
+<div class="math">$$x_i=\left(x_i^{(1)},x_i^{(2)},\cdots,x_i^{(n)}\right)^\text{T}$$</div>
+<span class="math">\(x_i^{(j)}\)</span> 是第 <span class="math">\(i\)</span> 个样本的第 <span class="math">\(j\)</span> 个特征，且
+<div class="math">$$x_i^{(j)}\in\{a_{j1},a_{j2},\cdots,a_{jS_j}\}$$</div>
+<div class="math">$$y_i\in\{c_1,c_2,\cdots,c_K\}$$</div>
+(b) 实例 <span class="math">\(x\)</span><br/>
+输出：实例 <span class="math">\(x\)</span> 的分类<br/>
+(1) 计算先验概率及条件概率
+<div class="math">$$\begin{eqnarray}
+P(Y=c_k) &amp;=&amp; \frac{\sum_{i=1}^N\mathbb{I}(y_i=c_k)}{N} \\
+P(X^{(j)}=a_{jl}|Y=c_k) &amp;=&amp; \frac{\sum_{i=1}^N\mathbb{I}(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^N\mathbb{I}(y_i=c_k)}
+\end{eqnarray}\\
+j=1,2,\cdots,n; l=1,2,\cdots,S_j; k=1,2,\cdots,K$$</div>
+(2) 对于给定的实例 <span class="math">\(x=\left(x^{(1)},x^{(2)},\cdots,x^{(n)}\right)^\text{T}\)</span>，计算
+<div class="math">$$P(Y=c_k)\prod_{j=1}P(X^{(j)}=x^{(j)}|Y=c_k),k=1,2,\cdots,K$$</div>
+(3) 确定实例 <span class="math">\(x\)</span> 的类
+<div class="math">$$y=f(x)=\arg\max_{c_k}P(Y=c_k)\prod_jP(X^{(j)}=x^{(j)}|Y=c_k)$$</div>
+</strong></p>
+<h3 id="423">4.2.3 贝叶斯估计</h3>
+<p>用极大似然估计可能会出现所要估计的概率值为 0 的情况。这时会影响到后验概率的计算结果，使分类产生偏差。解决这一问题的方法是采用贝叶斯估计。</p>
+<p>先验概率的贝叶斯估计是
+</p>
+<div class="math">$$P_\lambda(Y=c_k)=\frac{\sum_{i=1}^N\mathbb{I}(y_i=c_k)+\lambda}{N+K\lambda},k=1,2,\cdots,K$$</div>
+<p>条件概率的贝叶斯估计是
+</p>
+<div class="math">$$P_\lambda(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^N\mathbb{I}(x_i^{(j)}=a_{jl},y_i=c_k)+\lambda}{\sum_{i=1}^N\mathbb{I}(y_i=c_k)+S_j\lambda}\\
+j=1,2,\cdots,n; l=1,2,\cdots,S_j; k=1,2,\cdots,K$$</div>
+<p>
+式中 <span class="math">\(\lambda\geq0\)</span>，等价于在随机变量各个取值的频数上赋予一个非负数。当 <span class="math">\(\lambda=0\)</span> 时，就是极大似然估计。常取 <span class="math">\(\lambda=1\)</span>，这是称为拉普拉斯平滑（Laplace smoothing）。</p>
+<p>显然
+</p>
+<div class="math">$$\begin{eqnarray}
+P_\lambda(X^{(j)}=a_{jl}|Y=c_k) &amp;\geq&amp; 0 \\
+\sum_{l=1}^{S_j}P_\lambda(X^{(j)}=a_{jl}|Y=c_k) &amp;=&amp; 1
+\end{eqnarray}$$</div>
+<p>
+表明这的确是一种概率分布。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <aside>
+                    <hr />
+                    <nav class="related">
+                        <h1>
+                            <font color="#771515"><em>RELATED</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/06/01/sl-12/">统计学习方法 第十二章 统计学习方法总结</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/05/17/sl-11/">统计学习方法 第十一章 条件随机场</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/04/19/sl-10/">统计学习方法 第十章 隐马尔科夫模型</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/04/04/sl-9/">统计学习方法 第九章 EM 算法及其推广</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/03/23/sl-8/">统计学习方法 第八章 提升方法</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/01/22/Torch_libpng/">
+                                    为 Torch 安装特定版本的 libpng
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/01/20/sl-3/">
+                                    统计学习方法 第三章 k 近邻法
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/01/06/sl-2/">
+                                    统计学习方法 第二章 感知机
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/01/04/sl-1/">
+                                    统计学习方法 第一章 统计学习方法概论
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/12/07/dl-5/">
+                                    深度学习 第五章 机器学习基础
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="newer">
+                        <h1>
+                            <font color="#771515"><em>NEWER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/02/07/sl-5/">
+                                    统计学习方法 第五章 决策树
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/02/09/sl-6/">
+                                    统计学习方法 第六章 逻辑回归与最大熵模型
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/02/11/sl-7_3/">
+                                    统计学习方法 第七章 支持向量机（3）——非线性支持向量机
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/02/11/sl-7_1/">
+                                    统计学习方法 第七章 支持向量机（1）——线性可分支持向量机
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/02/11/sl-7_2/">
+                                    统计学习方法 第七章 支持向量机（2）——线性支持向量机
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Gitalk 评论 start  -->
+
+                    <!-- Link Gitalk 的支持文件  -->
+                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                    <div id="gitalk-container"></div>
+                    <script type="text/javascript">
+                        var dateTime = Date.now();
+                        var timestamp = Math.floor(dateTime / 1000);
+                        var gitalk = new Gitalk({
+
+                            // gitalk的主要参数
+                            clientID: '93f43349e9fd3154bfad',
+                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
+                            repo: 'xutree.github.io',
+                            owner: 'xutree',
+                            admin: ['xutree'],
+                            id: String(timestamp)
+
+                        });
+                        gitalk.render('gitalk-container');
+                    </script> -->
+                    <!-- Gitalk end -->
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2019-01-29T16:42:01+08:00">2019-01-29 16:42:01</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-01-29 16:42:01</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#机器学习-ref">机器学习
+                                <span>21</span>
+</a></li>
+                        <li><a href="/tags.html#统计学习-ref">统计学习
+                                <span>15</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
