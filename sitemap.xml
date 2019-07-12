@@ -5,58 +5,44 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/</loc>
-<lastmod>2019-06-30T15:44:54-00:00</lastmod>
+<lastmod>2019-07-12T14:20:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/archives.html</loc>
-<lastmod>2019-06-30T15:44:54-00:00</lastmod>
+<lastmod>2019-07-12T14:20:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/tags.html</loc>
-<lastmod>2019-06-30T15:44:54-00:00</lastmod>
+<lastmod>2019-07-12T14:20:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/categories.html</loc>
-<lastmod>2019-06-30T15:44:54-00:00</lastmod>
+<lastmod>2019-07-12T14:20:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/search.html</loc>
-<lastmod>2019-06-30T15:44:54-00:00</lastmod>
+<lastmod>2019-07-12T14:20:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/404.html</loc>
-<lastmod>2019-06-30T15:44:54-00:00</lastmod>
+<lastmod>2019-07-12T14:20:50-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://xutree.github.io/pages/2019/05/19/100/</loc>
-<lastmod>2019-05-19T20:18:06+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-
-<url>
-<loc>https://xutree.github.io/pages/2019/04/01/py/</loc>
-<lastmod>2019-04-01T19:27:05+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
 </url>
 
 <url>
@@ -494,6 +480,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://xutree.github.io/pages/2018/10/05/py/</loc>
+<lastmod>2018-10-05T23:15:21+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
 <loc>https://xutree.github.io/pages/2018/10/05/html-overview/</loc>
 <lastmod>2018-10-15T21:17:20+08:00</lastmod>
 <changefreq>monthly</changefreq>
@@ -503,6 +496,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/</loc>
 <lastmod>2018-10-06T21:02:53+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>https://xutree.github.io/pages/2018/10/05/100/</loc>
+<lastmod>2018-10-05T20:18:06+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
@@ -551,7 +551,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/category/jiao-cheng.html</loc>
-<lastmod>2019-05-19T20:18:06+08:06</lastmod>
+<lastmod>2019-03-18T12:11:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -572,7 +572,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/tag/python.html</loc>
-<lastmod>2019-05-19T20:18:06+08:06</lastmod>
+<lastmod>2019-03-18T12:11:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
