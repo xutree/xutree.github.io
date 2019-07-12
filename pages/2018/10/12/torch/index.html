@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="PyTroch, 机器学习, 深度学习, 教程, " />
+    <title>PyTroch 之 torch 包  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/10/12/torch/"> PyTroch 之 torch 包  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1">1. 张量</a><ul>
+<li><a href="#11">1.1 创建</a></li>
+<li><a href="#12">1.2 切片、索引、连接和转换操作</a></li>
+</ul>
+</li>
+<li><a href="#13">1.3 随机采样</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
+
+                
+<h2 id="1">1. 张量</h2>
+<div class="highlight"><pre><span></span>torch.is_tensor(obj)
+torch.is_storage(obj)
+</pre></div>
+<div class="highlight"><pre><span></span>torch.set_default_dtype(d) // default: torch.float32
+torch.get_default_dtype() → torch.dtype
+torch.set_default_tensor_type(t) // default: torch.FloatTensor
+</pre></div>
+<div class="highlight"><pre><span></span>torch.numel(input) → int
+torch.set_printoptions(precision=None, threshold=None,
+    edgeitems=None, linewidth=None, profile=None)
+torch.set_flush_denormal(mode) → bool
+</pre></div>
+<h3 id="11">1.1 创建</h3>
+<div class="highlight"><pre><span></span>torch.tensor(data, dtype=None, device=None, requires_grad=False)
+ → Tensor
+</pre></div>
+<div class="highlight"><pre><span></span>torch.sparse_coo_tensor(indices, values, size=None, dtype=None,
+    device=None, requires_grad=False) → Tensor
+</pre></div>
+<div class="highlight"><pre><span></span>torch.as_tensor(data, dtype=None, device=None) → Tensor
+torch.from_numpy(ndarray) → Tensor
+torch.zeros(*sizes, out=None, dtype=None, layout=torch.strided,
+    device=None, requires_grad=False) → Tensor
+torch.zeros_like(input, dtype=None, layout=None, device=None,
+    requires_grad=False) → Tensor
+torch.ones(*sizes, out=None, dtype=None, layout=torch.strided,
+    device=None, requires_grad=False) → Tensor
+torch.ones_like(input, dtype=None, layout=None, device=None,
+    requires_grad=False) → Tensor
+torch.arange(start=0, end, step=1, out=None, dtype=None,
+    layout=torch.strided, device=None, requires_grad=False) → Tensor
+torch.range(start=0, end, step=1, out=None, dtype=None,
+    layout=torch.strided, device=None, requires_grad=False) → Tensor
+torch.linspace(start, end, steps=100, out=None, dtype=None,
+    layout=torch.strided, device=None, requires_grad=False) → Tensor
+torch.logspace(start, end, steps=100, out=None, dtype=None,
+    layout=torch.strided, device=None, requires_grad=False) → Tensor
+torch.eye(n, m=None, out=None, dtype=None, layout=torch.strided,
+    deviceNone, requires_grad=False) → Tensor
+torch.empty(*sizes, out=None, dtype=None, layout=torch.strided,
+    device=None, requires_grad=False) → Tensor
+torch.empty_like(input, dtype=None, layout=None, device=None,
+    requires_grad=False) → Tensor
+torch.full(size, fill_value, out=None, dtype=None,
+    layout=torch.strided, device=None, requires_grad=False) → Tensor
+torch.full_like(input, fill_value, out=None, dtype=None,
+    layout=torch.strided, device=None, requires_grad=False) → Tensor
+</pre></div>
+<h3 id="12">1.2 切片、索引、连接和转换操作</h3>
+<div class="highlight"><pre><span></span>torch.cat(tensors, dim=0, out=None) → Tensor
+torch.chunk(tensor, chunks, dim=0) → List of Tensors
+torch.gather(input, dim, index, out=None) → Tensor
+torch.index_select(input, dim, index, out=None) → Tensor
+torch.masked_select(input, mask, out=None) → Tensor
+torch.narrow(input, dimension, start, length) → Tensor
+torch.nonzero(input, out=None) → LongTensor
+torch.reshape(input, shape) → Tensor
+torch.split(tensor, split_size_or_sections, dim=0)
+torch.squeeze(input, dim=None, out=None) → Tensor
+torch.stack(seq, dim=0, out=None) → Tensor
+torch.t(input) → Tensor
+torch.take(input, indices) → Tensor
+torch.transpose(input, dim0, dim1) → Tensor
+torch.unbind(tensor, dim=0) → seq
+torch.unsqueeze(input, dim, out=None) → Tensor
+torch.where(condition, x, y) → Tensor
+</pre></div>
+<h2 id="13">1.3 随机采样</h2>
+<div class="highlight"><pre><span></span>torch.manual_seed(seed) → torch._C.Generator
+torch.initial_seed()
+torch.get_rng_state()
+</pre></div>
+                <aside>
+                    <hr />
+                    <nav class="related">
+                        <h1>
+                            <font color="#771515"><em>RELATED</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/12/07/dl-5/">深度学习 第五章 机器学习基础</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">深度学习 第四章 数值计算</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">深度学习 第三章 概率与信息论</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">深度学习 第二章 线性代数</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">深度学习 第一章 引言</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/10/数据结构向量/">
+                                    数据结构——向量
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/10/树/">
+                                    数据结构——树
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/">
+                                    C++ Primer 第八章 IO 库
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/">
+                                    C++ Primer 第七章 类
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/">
+                                    C++ Primer 第六章 函数
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="newer">
+                        <h1>
+                            <font color="#771515"><em>NEWER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/13/eps/">
+                                    eps 图像截切四周的空白
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/14/bianma/">
+                                    原码, 反码, 补码
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
+                                    Perl 入门
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
+                                    Atom 快捷键
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
+                                    C++ Primer 第九章 顺序容器
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Gitalk 评论 start  -->
+
+                    <!-- Link Gitalk 的支持文件  -->
+                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                    <div id="gitalk-container"></div>
+                    <script type="text/javascript">
+                        var dateTime = Date.now();
+                        var timestamp = Math.floor(dateTime / 1000);
+                        var gitalk = new Gitalk({
+
+                            // gitalk的主要参数
+                            clientID: '93f43349e9fd3154bfad',
+                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
+                            repo: 'xutree.github.io',
+                            owner: 'xutree',
+                            admin: ['xutree'],
+                            id: String(timestamp)
+
+                        });
+                        gitalk.render('gitalk-container');
+                    </script> -->
+                    <!-- Gitalk end -->
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-10-12T11:27:17+08:00">2018-10-12 11:27:17</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-10-12 12:36:32</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#教程-ref">教程</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#机器学习-ref">机器学习
+                                <span>21</span>
+</a></li>
+                        <li><a href="/tags.html#PyTroch-ref">PyTroch
+                                <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#深度学习-ref">深度学习
+                                <span>6</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>

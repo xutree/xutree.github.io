@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="剑指offer, 面试, 算法, 读书笔记, " />
+    <title>剑指 offer (1)  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/10/07/jzoffer1/"> 剑指 offer (1)  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1">1. 二维数组中的查找</a></li>
+<li><a href="#2">2. 替换空格</a></li>
+<li><a href="#3">3. 从尾到头打印链表</a></li>
+<li><a href="#4">4. 重建二叉树</a></li>
+<li><a href="#5">5. 用两个栈实现队列</a></li>
+<li><a href="#6">6. 旋转数组的最小数字</a></li>
+<li><a href="#7">7. 斐波那契数列</a></li>
+<li><a href="#8">8. 跳台阶</a></li>
+<li><a href="#9">9. 变态跳台阶</a></li>
+<li><a href="#10">10. 矩形覆盖</a></li>
+<li><a href="#11-1">11. 二进制中 1 的个数</a></li>
+<li><a href="#12">12. 数值的正数次方</a></li>
+<li><a href="#13">13. 调整数组顺序使奇数位于偶数前面</a></li>
+<li><a href="#14-k">14. 链表中倒数第 \(k\) 个结点</a></li>
+<li><a href="#15">15. 反转链表</a></li>
+<li><a href="#16">16. 合并两个排序的链表</a></li>
+<li><a href="#17">17. 树的子结构</a></li>
+<li><a href="#18">18. 二叉树的镜像</a></li>
+<li><a href="#19">19. 顺序打印矩阵</a></li>
+<li><a href="#20-min">20. 包含 min 函数的栈</a></li>
+<li><a href="#21">21. 栈的压入、弹出序列</a></li>
+<li><a href="#22">22. 从上往下打印二叉树</a></li>
+<li><a href="#23">23. 二叉搜索树的后序遍历序列</a></li>
+<li><a href="#24">24. 二叉树中和为某一值的路径</a></li>
+<li><a href="#25">25. 复杂链表的复制</a></li>
+<li><a href="#26">26. 二叉搜索树与双向链表</a></li>
+<li><a href="#27">27. 字符串的排列</a></li>
+<li><a href="#28">28. 数组中出现次数超过一半的数字</a></li>
+<li><a href="#29-k">29. 最小的 \(K\) 个数</a></li>
+<li><a href="#30">30. 最大连续子序列的和</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
+
+                
+<h2 id="1">1. 二维数组中的查找</h2>
+<p>在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="nx">Find</span><span class="p">(</span><span class="kr">int</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 注意 size 是成员函数，要加括号</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// 为空，返回</span>
+        <span class="kr">int</span> <span class="nx">row</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+        <span class="kr">int</span> <span class="nx">col</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">size</span><span class="p">();</span>
+        <span class="c1">// 从右上角开始查找</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">m</span> <span class="o">&amp;&amp;</span> <span class="nx">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">==</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">j</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：如我们从右上角的数据开始出发，比他小的数必定在它的左侧，就往左找；比他大的数必定在它的下侧，就往下找。</p>
+<h2 id="2">2. 替换空格</h2>
+<p>请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">replaceSpace</span><span class="p">(</span><span class="kr">char</span> <span class="o">*</span><span class="nx">str</span><span class="p">,</span><span class="kr">int</span> <span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 先统计总共有多少空格</span>
+        <span class="kr">int</span> <span class="nx">count_space</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">' '</span><span class="p">)</span> <span class="nx">count_space</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kr">int</span> <span class="nx">new_length</span> <span class="o">=</span> <span class="nx">length</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">count_space</span><span class="p">;</span>
+        <span class="c1">// 从后开始移位</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">new_length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">j</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">' '</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">str</span><span class="p">[</span><span class="nx">j</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'0'</span><span class="p">;</span>
+                <span class="nx">str</span><span class="p">[</span><span class="nx">j</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'2'</span><span class="p">;</span>
+                <span class="nx">str</span><span class="p">[</span><span class="nx">j</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'%'</span><span class="p">;</span>
+                <span class="nx">i</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">str</span><span class="p">[</span><span class="nx">j</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="o">--</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// 字符串结束标志</span>
+        <span class="nx">str</span><span class="p">[</span><span class="nx">new_length</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'\0'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：从后往前移位可避免重复移位。</p>
+<h2 id="3">3. 从尾到头打印链表</h2>
+<p>输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">*  struct ListNode {</span>
+<span class="cm">*        int val;</span>
+<span class="cm">*        struct ListNode *next;</span>
+<span class="cm">*        ListNode(int x) :</span>
+<span class="cm">*              val(x), next(NULL) {</span>
+<span class="cm">*        }</span>
+<span class="cm">*  };</span>
+<span class="cm">*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">printListFromTailToHead</span><span class="p">(</span><span class="nx">ListNode</span><span class="o">*</span> <span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">head</span><span class="p">;</span>
+        <span class="nx">stack</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">st</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">node</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 用 -&gt;</span>
+            <span class="nx">st</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">);</span>
+            <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+            <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// 为了效率我们静态 vector 开辟空间</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">res</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">count</span> <span class="o">&amp;&amp;</span> <span class="nx">st</span><span class="p">.</span><span class="nx">empty</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">true</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 如果静态开辟 vector 不能使用push_back</span>
+            <span class="c1">// 否则会在原来数据的基础上增加</span>
+            <span class="c1">// res.push_back(st.top());</span>
+            <span class="c1">// 注意栈的三个主要函数</span>
+            <span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">st</span><span class="p">.</span><span class="nx">top</span><span class="p">();</span>
+            <span class="nx">st</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：首先我们想到的就是反转链表了,如果把链表反转了，然后再返回头，这样再次遍历的时候就相当于从尾到头打印了。但是在面试时候，如果我们打算修改输入的数据，最好先问问面试官是不是允许修改。通常打印只是一个只读操作，我们肯定不希望输入时候修改链表的内容。</p>
+<p><strong>利用栈的后进先出特性</strong>：单链表的遍历只能从前往后，但是需要从尾往头输出，这不是典型的“先进后出”么，那么我们可以用栈模拟输出。每经过一个结点的时候，把该结点放到一个栈中。当遍历完整个链表后，再从栈顶开始逐个输出结点的值，此时输出的结点的顺序已经反转过来了。注意包含 <strong>stack</strong> 头文件。</p>
+<p><strong>递归实现</strong></p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">*  struct ListNode {</span>
+<span class="cm">*        int val;</span>
+<span class="cm">*        struct ListNode *next;</span>
+<span class="cm">*        ListNode(int x) :</span>
+<span class="cm">*              val(x), next(NULL) {</span>
+<span class="cm">*        }</span>
+<span class="cm">*  };</span>
+<span class="cm">*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">res</span><span class="p">;</span> <span class="c1">// 保存结果</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">printListFromTailToHead</span><span class="p">(</span><span class="nx">ListNode</span><span class="o">*</span> <span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">head</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">printListFromTailToHead</span><span class="p">(</span><span class="nx">head</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">);</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">head</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="4">4. 重建二叉树</h2>
+<p>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Definition for binary tree</span>
+<span class="cm"> * struct TreeNode {</span>
+<span class="cm"> *     int val;</span>
+<span class="cm"> *     TreeNode *left;</span>
+<span class="cm"> *     TreeNode *right;</span>
+<span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
+<span class="cm"> * };</span>
+<span class="cm"> */</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">reConstructBinaryTree</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">pre</span><span class="p">,</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">vin</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 遍历长度应该相同</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pre</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">!=</span> <span class="nx">vin</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="c1">// 非空</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pre</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">pre</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+        <span class="c1">// 前序遍历的第一个节点是根节点</span>
+        <span class="kr">int</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">pre</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TreeNode</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+        <span class="c1">// 在中序遍历中查找根的位置</span>
+        <span class="kr">int</span> <span class="nx">rootIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">rootIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">rootIndex</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">rootIndex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">vin</span><span class="p">[</span><span class="nx">rootIndex</span><span class="p">]</span> <span class="o">==</span> <span class="nx">value</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">rootIndex</span> <span class="o">&gt;=</span> <span class="nx">length</span><span class="p">)</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="c1">// 区分左子树和右子树</span>
+        <span class="c1">// 中序遍历中，根左边的就是左子数，右边的就是右子树</span>
+        <span class="c1">// 前序遍历中，根后面是先遍历左子树，然后是右子树</span>
+        <span class="c1">// 首先确定左右子树的长度，从中序遍历 vin 中确定</span>
+        <span class="kr">int</span> <span class="nx">leftLength</span> <span class="o">=</span> <span class="nx">rootIndex</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">rightLength</span> <span class="o">=</span> <span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="nx">rootIndex</span><span class="p">;</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">preLeft</span><span class="p">(</span><span class="nx">leftLength</span><span class="p">),</span> <span class="nx">vinLeft</span><span class="p">(</span><span class="nx">leftLength</span><span class="p">);</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">preRight</span><span class="p">(</span><span class="nx">rightLength</span><span class="p">),</span> <span class="nx">vinRight</span><span class="p">(</span><span class="nx">rightLength</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">rootIndex</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">preLeft</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">pre</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+                <span class="nx">vinLeft</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">vin</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&gt;</span> <span class="nx">rootIndex</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">preRight</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="nx">rootIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">pre</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+                <span class="nx">vinRight</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="nx">rootIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">vin</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nx">root</span><span class="o">-&gt;</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">reConstructBinaryTree</span><span class="p">(</span><span class="nx">preLeft</span><span class="p">,</span> <span class="nx">vinLeft</span><span class="p">);</span>
+        <span class="nx">root</span><span class="o">-&gt;</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">reConstructBinaryTree</span><span class="p">(</span><span class="nx">preRight</span><span class="p">,</span> <span class="nx">vinRight</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">root</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="5">5. 用两个栈实现队列</h2>
+<p>用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 队列中的元素为 int 类型。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span>
+<span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">push</span><span class="p">(</span><span class="kr">int</span> <span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">stack1</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kr">int</span> <span class="nx">pop() {</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">stack2</span><span class="p">.</span><span class="nx">empty</span><span class="p">())</span> <span class="p">{</span>
+            <span class="c1">// 空队列，返回 -1</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">stack1</span><span class="p">.</span><span class="nx">empty</span><span class="p">())</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nx">stack1</span><span class="p">.</span><span class="nx">empty</span><span class="p">())</span> <span class="p">{</span>
+                <span class="kr">int</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">stack1</span><span class="p">.</span><span class="nx">top</span><span class="p">();</span>
+                <span class="nx">stack2</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+                <span class="nx">stack1</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="kr">int</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">stack2</span><span class="p">.</span><span class="nx">top</span><span class="p">();</span>
+        <span class="nx">stack2</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="kr">private</span><span class="o">:</span>
+    <span class="nx">stack</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">stack1</span><span class="p">;</span>
+    <span class="nx">stack</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">stack2</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：始终维护 s1 作为输入栈，以 s2 作为输出栈：</p>
+<ul>
+<li>入队时，将元素压入 s1</li>
+<li>出队时，判断 s2 是否为空，如不为空，则直接弹出顶元素；如为空，则将 s1 的元素逐个“倒入” s2，把最后一个元素弹出并出队。这个思路，避免了反复“倒”栈，仅在需要时才“倒”一次。</li>
+</ul>
+<h2 id="6">6. 旋转数组的最小数字</h2>
+<p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组 {3,4,5,1,2} 为 {1,2,3,4,5} 的一个旋转，该数组的最小值为 1。 NOTE：给出的所有元素都大于 0，若数组大小为 0，请返回 0。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">minNumberInRotateArray</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">rotateArray</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">rotateArray</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">//  如果把排序数组前面 0 个元素搬到后面，也就是说其实没有旋转，</span>
+        <span class="c1">//  那么第 0 个元素就是最小的元素</span>
+        <span class="c1">//  因此我们将 mid 初始化为 0</span>
+        <span class="kr">int</span> <span class="nx">mid</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">high</span> <span class="o">=</span> <span class="nx">rotateArray</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">rotateArray</span><span class="p">[</span><span class="nx">low</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="nx">rotateArray</span><span class="p">[</span><span class="nx">high</span><span class="p">])</span> <span class="p">{</span>
+            <span class="c1">//  如果前一个元素与后一个元素差一位</span>
+            <span class="c1">//  说明找到了最大最小的元素</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">high</span> <span class="o">-</span> <span class="nx">low</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">mid</span> <span class="o">=</span> <span class="nx">high</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nx">mid</span> <span class="o">=</span> <span class="p">(</span><span class="nx">low</span> <span class="o">+</span> <span class="nx">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="c1">// rotateArray[low] rotateArray[mid] rotateArray[high]三者相等</span>
+            <span class="c1">// 无法确定中间元素是属于前面还是后面的递增子数组</span>
+            <span class="c1">// 只能顺序查找</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">rotateArray</span><span class="p">[</span><span class="nx">low</span><span class="p">]</span> <span class="o">==</span> <span class="nx">rotateArray</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">rotateArray</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">==</span> <span class="nx">rotateArray</span><span class="p">[</span><span class="nx">high</span><span class="p">])</span> <span class="p">{</span>
+               <span class="k">return</span> <span class="nx">MinOrder</span><span class="p">(</span><span class="nx">rotateArray</span><span class="p">,</span> <span class="nx">low</span><span class="p">,</span> <span class="nx">high</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="c1">//  如果该中间元素位于前面的递增子数组，那么它应该大于或者等于第一个指针指向的元素</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">rotateArray</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="nx">rotateArray</span><span class="p">[</span><span class="nx">low</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">low</span> <span class="o">=</span> <span class="nx">mid</span><span class="p">;</span>          <span class="c1">//  此时最小的元素位于中间元素的后面</span>
+            <span class="p">}</span>
+            <span class="c1">// 如果中间元素位于后面的递增子数组，那么它应该小于或者等于第二个指针指 向的元素</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">rotateArray</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nx">rotateArray</span><span class="p">[</span><span class="nx">high</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">high</span> <span class="o">=</span> <span class="nx">mid</span><span class="p">;</span>         <span class="c1">//  此时最小的元素位于中间元素的前面</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">rotateArray</span><span class="p">[</span><span class="nx">mid</span><span class="p">];</span>
+    <span class="p">}</span>
+
+<span class="kr">private</span><span class="o">:</span>
+    <span class="c1">// 顺序寻找最小值</span>
+    <span class="kr">int</span> <span class="nx">MinOrder</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">num</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">low</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">high</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kr">int</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">num</span><span class="p">[</span><span class="nx">low</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">low</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">high</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">num</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">result</span><span class="p">)</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">num</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：和二分查找法一样，用两个指针分别指向数组的第一个元素和最后一个元素。我们注意到旋转之后的数组实际上可以划分为两个排序的子数组，而且前面的子数组的元素都大于或者等于后面子数组的元素。我们还可以注意到最小的元素刚好是这两个子数组的分界线。</p>
+<p>我们试着用二元查找法的思路在寻找这个最小的元素。</p>
+<p>首先我们用两个指针，分别指向数组的第一个元素和最后一个元素。按照题目旋转的规则，第一个元素应该是大于或者等于最后一个元素的（这其实不完全对，还有特例。后面再讨论特例）。</p>
+<p>接着我们得到处在数组中间的元素。</p>
+<p>如果该中间元素位于前面的递增子数组，那么它应该大于或者等于第一个指针指向的元素。
+此时数组中最小的元素应该位于该中间 元素的后面。我们可以把第一指针指向该中间元素，这样可以缩小寻找的范围。</p>
+<p>同样，如果中间元素位于后面的递增子数组，那么它应该小于或者等于第二个指针指 向的元素。此时该数组中最小的元素应该位于该中间元素的前面。我们可以把第二个指针指向该中间元素，这样同样可以缩小寻找的范围。我们接着再用更新之后的 两个指针，去得到和比较新的中间元素，循环下去。</p>
+<p>按照上述的思路，我们的第一个指针总是指向前面递增数组的元素，而第二个指针总是指向后面递增数组的元素。最后第一个指针将指向前面子数组的最后一个元素， 而第二个指针会指向后面子数组的第一个元素。也就是它们最终会指向两个相邻的元素，而第二个指针指向的刚好是最小的元素。这就是循环结束的条件。</p>
+<p>我们考虑下特殊情况，我们的循环判断是以 <code>rotateArray[low] &gt;= rotateArray[high]</code> 为条件的，不满足这个的特殊情况有那些呢？</p>
+<p>由于是把递增排序数组前面的若干个数据搬到后面去，因此第一个数字总是大于或者等于最后一个数字，但按照定义还有一个</p>
+<p>特例：开始时就 <code>rotateArray[low] &lt; rotateArray[high]</code>，那么循环不会执行.如果数组旋转后仍然有序，即 <code>rotateArray[low] &lt; rotateArray[high]</code> 如果把排序数组前面 0 个元素搬到后面，也就是说其实没有旋转。那么第 0 个元素就是最小的元素，因此我们将 mid 初始化为 0。</p>
+<p>如果 <code>rotateArray[low] = rotateArray[high]</code></p>
+<p>测试用例: [2, 3, 4, 2, 2, 2, 2]，此时 <code>rotateArray[low] rotateArray[mid] rotateArray[high]</code> 三者相等，无法确定中间元素是属于前面还是后面的递增子数组，只能顺序查找。</p>
+<h2 id="7">7. 斐波那契数列</h2>
+<p>大家都知道斐波那契数列，现在要求输入一个整数 <span class="math">\(n\)</span>，请你输出斐波那契数列的第 <span class="math">\(n\)</span> 项（从 0 开始，第 0 项为 0），<span class="math">\(n \leq 39\)</span>。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">Fibonacci</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">n</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kr">int</span> <span class="nx">f1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">f2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span> <span class="o">=</span> <span class="nx">f1</span> <span class="o">+</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f1</span> <span class="o">=</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f2</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：不可递归，会超时，需展开。</p>
+<h2 id="8">8. 跳台阶</h2>
+<p>一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级。求该青蛙跳上一个 <span class="math">\(n\)</span> 级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">jumpFloor</span><span class="p">(</span><span class="kr">int</span> <span class="kt">number</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="kt">number</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="kt">number</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">f1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">f2</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="kt">number</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span> <span class="o">=</span> <span class="nx">f1</span> <span class="o">+</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f1</span> <span class="o">=</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f2</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：<span class="math">\(f(n)=f(n-1)+f(n-2)\)</span></p>
+<h2 id="9">9. 变态跳台阶</h2>
+<p>一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级...它也可以跳上 <span class="math">\(n\)</span> 级。求该青蛙跳上一个 <span class="math">\(n\)</span> 级的台阶总共有多少种跳法。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">jumpFloorII</span><span class="p">(</span><span class="kr">int</span> <span class="kt">number</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="kt">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：<span class="math">\(f(n)=f(n-1)+f(n-2)+\cdots+f(1)=2f(n-1)\)</span>
+</p>
+<div class="math">$$f(n)=\begin{cases}
+1, &amp; n=0 \\
+1, &amp; n=1 \\
+2f(n-1), &amp; n\geq 2
+\end{cases}$$</div>
+<h2 id="10">10. 矩形覆盖</h2>
+<p>我们可以用 <span class="math">\(2\times1\)</span> 的小矩形横着或者竖着去覆盖更大的矩形。请问用 <span class="math">\(n\)</span> 个 <span class="math">\(2\times1\)</span> 的小矩形无重叠地覆盖一个 <span class="math">\(2\times n\)</span> 的大矩形，总共有多少种方法？</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">rectCover</span><span class="p">(</span><span class="kr">int</span> <span class="kt">number</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="kt">number</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="kt">number</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">f1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">f2</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="kt">number</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span> <span class="o">=</span> <span class="nx">f1</span> <span class="o">+</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f1</span> <span class="o">=</span> <span class="nx">f2</span><span class="p">;</span>
+            <span class="nx">f2</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：<span class="math">\(f(n)=f(n-1)+f(n-2)\)</span></p>
+<h2 id="11-1">11. 二进制中 1 的个数</h2>
+<p>输入一个整数，输出该数二进制表示中 1 的个数。其中负数用补码表示。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+     <span class="kr">int</span>  <span class="nx">NumberOf1</span><span class="p">(</span><span class="kr">int</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kr">int</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+         <span class="k">while</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+             <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+             <span class="nx">n</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+         <span class="p">}</span>
+         <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+     <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>逻辑右移与算术右移</strong>：比如一个有符号位的 8 位二进制数 11001101，逻辑右移就不管符号位，如果移一位就变成 01100110。算术右移要管符号位，右移一位变成 10100110。</p>
+<ul>
+<li>逻辑左移=算数左移，右边统一添 0</li>
+<li>逻辑右移，左边统一添 0</li>
+<li>算数右移，左边添加的数和符号有关</li>
+</ul>
+<p>因此如果输入负数，那么我们的算法简单的判断是不是 0 来终结，岂不是要死循环。</p>
+<p><strong>避免负数移位的死循环</strong>：为了负数时候避免死循环，我们可以不右移数字 <span class="math">\(n\)</span>，转而去移动测试位。</p>
+<p>那么思考我们的循环结束条件，flag 一直左移（乘以 2），当超出表示标识范围的时候，我们就可以终止了，但是这样子的话，最高位的符号位没有测试，因此要单独测试，同时由于会溢出，我们的 flag 需要用 long 来标识。</p>
+<p><strong>整数中有几个 1 就循环几次 --- lowbit 优化</strong>：把一个整数 <span class="math">\(n\)</span> 减去 1，再和原来的整数做与运算，会把该整数最右边一个 1 变成 0，那么该整数有多少个 1，就会进行多少次与运算。</p>
+<h2 id="12">12. 数值的正数次方</h2>
+<p>给定一个 <code>double</code> 类型的浮点数 <code>base</code> 和 <code>int</code> 类型的整数 <code>exponent</code>。求 <code>base</code> 的 <code>exponent</code> 次方。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">double</span> <span class="nx">Power</span><span class="p">(</span><span class="kr">double</span> <span class="nx">base</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">exponent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 注意不可声明为int</span>
+        <span class="kr">double</span> <span class="nx">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">curr</span> <span class="o">=</span> <span class="nx">base</span><span class="p">;</span>
+        <span class="c1">// 只有正数支持位运算</span>
+        <span class="kr">int</span> <span class="nx">n</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">exponent</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">n</span> <span class="o">=</span> <span class="nx">exponent</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">exponent</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 由于精度原因，double 类型的变量不能用等号判断两个数是否相等</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">base</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mf">0.000001</span> <span class="o">&amp;&amp;</span> <span class="nx">base</span> <span class="o">&lt;</span> <span class="mf">0.000001</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 抛出异常</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nx">runtime_error</span><span class="p">(</span><span class="s2">"分母不能为0"</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">n</span> <span class="o">=</span> <span class="o">-</span> <span class="nx">exponent</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">n</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 不确定的地方加括号</span>
+            <span class="k">if</span> <span class="p">((</span><span class="nx">n</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="nx">res</span> <span class="o">*=</span> <span class="nx">curr</span><span class="p">;</span>
+            <span class="nx">curr</span> <span class="o">*=</span> <span class="nx">curr</span><span class="p">;</span>
+            <span class="nx">n</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">exponent</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">res</span> <span class="o">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="nx">res</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="13">13. 调整数组顺序使奇数位于偶数前面</h2>
+<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">reOrderArray</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">temp</span><span class="p">;</span>
+        <span class="nx">auto</span> <span class="nx">ib1</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+        <span class="c1">//  删除元素，尾后迭代器失效</span>
+        <span class="k">for</span> <span class="p">(;</span> <span class="nx">ib1</span> <span class="o">!=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="nx">ib1</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">temp</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="o">*</span><span class="nx">ib1</span><span class="p">);</span>
+                <span class="nx">array</span><span class="p">.</span><span class="nx">erase</span><span class="p">(</span><span class="nx">ib1</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">ib1</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="cm">/*</span>
+<span class="cm">        Summary:</span>
+<span class="cm">           1. For observing the elements, use the following syntax:</span>
+<span class="cm">                 for (const auto&amp; elem : container)    // capture by const reference</span>
+<span class="cm">           2. If the objects are cheap to copy (like ints, doubles, etc.),</span>
+<span class="cm">           it's possible to use a slightly simplified form:</span>
+<span class="cm">                 for (auto elem : container)    // capture by value</span>
+<span class="cm">           3. For modifying the elements in place, use:</span>
+<span class="cm">                 for (auto&amp; elem : container)    // capture by (non-const) reference</span>
+<span class="cm">           4. If the container uses "proxy iterators" (like std::vector&lt;bool&gt;), use:</span>
+<span class="cm">                 for (auto&amp;&amp; elem : container)    // capture by &amp;&amp;</span>
+<span class="cm">           5. Of course, if there is a need to make a local copy of the element inside the loop body,</span>
+<span class="cm">           capturing by value (for (auto elem : container)) is a good choice.</span>
+<span class="cm">        */</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">auto</span> <span class="nx">elem</span> : <span class="kt">temp</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">array</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">elem</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="14-k">14. 链表中倒数第 <span class="math">\(k\)</span> 个结点</h2>
+<p>输入一个链表，输出该链表中倒数第 <span class="math">\(k\)</span> 个结点。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct ListNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct ListNode *next;</span>
+<span class="cm">    ListNode(int x) :</span>
+<span class="cm">            val(x), next(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">FindKthToTail</span><span class="p">(</span><span class="nx">ListNode</span><span class="o">*</span> <span class="nx">pListHead</span><span class="p">,</span> <span class="nx">unsigned</span> <span class="kr">int</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pListHead</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">left</span> <span class="o">=</span> <span class="nx">pListHead</span><span class="p">,</span> <span class="o">*</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
+        <span class="nx">unsigned</span> <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">k</span> <span class="o">&amp;&amp;</span> <span class="nx">right</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">right</span> <span class="o">=</span> <span class="nx">right</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// 注意条件</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">k</span> <span class="o">&amp;&amp;</span> <span class="nx">right</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="c1">// 注意条件</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">right</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">right</span> <span class="o">=</span> <span class="nx">right</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="nx">left</span> <span class="o">=</span> <span class="nx">left</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">left</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：双指针法</p>
+<h2 id="15">15. 反转链表</h2>
+<p>输入一个链表，反转链表后，输出新链表的表头。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct ListNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct ListNode *next;</span>
+<span class="cm">    ListNode(int x) :</span>
+<span class="cm">            val(x), next(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">ReverseList</span><span class="p">(</span><span class="nx">ListNode</span><span class="o">*</span> <span class="nx">pHead</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pHead</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="nx">ListNode</span> <span class="o">*</span><span class="nx">pPrev</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">,</span> <span class="o">*</span><span class="nx">pNext</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">,</span> <span class="o">*</span><span class="nx">pNode</span> <span class="o">=</span> <span class="nx">pHead</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">pNode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">pNext</span> <span class="o">=</span> <span class="nx">pNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="nx">pNode</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">pPrev</span><span class="p">;</span>
+            <span class="nx">pPrev</span> <span class="o">=</span> <span class="nx">pNode</span><span class="p">;</span>
+            <span class="nx">pNode</span> <span class="o">=</span> <span class="nx">pNext</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">pPrev</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="16">16. 合并两个排序的链表</h2>
+<p>输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct ListNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct ListNode *next;</span>
+<span class="cm">    ListNode(int x) :</span>
+<span class="cm">            val(x), next(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">Merge</span><span class="p">(</span><span class="nx">ListNode</span><span class="o">*</span> <span class="nx">pHead1</span><span class="p">,</span> <span class="nx">ListNode</span><span class="o">*</span> <span class="nx">pHead2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pHead1</span> <span class="o">==</span> <span class="nx">NULL</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">pHead2</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">pHead2</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">pHead1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">ListNode</span> <span class="o">*</span><span class="nx">phead1</span> <span class="o">=</span> <span class="nx">pHead1</span><span class="p">;</span>
+        <span class="nx">ListNode</span> <span class="o">*</span><span class="nx">phead2</span> <span class="o">=</span> <span class="nx">pHead2</span><span class="p">;</span>
+        <span class="c1">//  先生成头结点</span>
+        <span class="nx">ListNode</span> <span class="o">*</span><span class="nx">head</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">phead1</span><span class="o">-&gt;</span><span class="nx">val</span> <span class="o">&lt;</span> <span class="nx">phead2</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">head</span> <span class="o">=</span> <span class="nx">phead1</span><span class="p">;</span>
+            <span class="nx">phead1</span> <span class="o">=</span> <span class="nx">phead1</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">head</span> <span class="o">=</span> <span class="nx">phead2</span><span class="p">;</span>
+            <span class="nx">phead2</span> <span class="o">=</span> <span class="nx">phead2</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">//  遍历两个链表，另用一个指针以保存头指针</span>
+        <span class="nx">ListNode</span> <span class="o">*</span><span class="nx">curr</span> <span class="o">=</span> <span class="nx">head</span><span class="p">;</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="nx">phead1</span> <span class="o">&amp;&amp;</span> <span class="nx">phead2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">phead1</span><span class="o">-&gt;</span><span class="nx">val</span> <span class="o">&gt;</span> <span class="nx">phead2</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">phead2</span><span class="p">;</span>
+                <span class="nx">curr</span> <span class="o">=</span> <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+                <span class="nx">phead2</span> <span class="o">=</span> <span class="nx">phead2</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">phead1</span><span class="p">;</span>
+                <span class="nx">curr</span> <span class="o">=</span> <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+                <span class="nx">phead1</span> <span class="o">=</span> <span class="nx">phead1</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// 直接附加上去</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">phead1</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">phead2</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">phead1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">head</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="17">17. 树的子结构</h2>
+<p>输入两棵二叉树 <span class="math">\(A\)</span>，<span class="math">\(B\)</span>，判断 <span class="math">\(B\)</span> 是不是 <span class="math">\(A\)</span> 的子结构。（ps：我们约定空树不是任意一个树的子结构）。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="nx">HasSubtree</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot1</span><span class="p">,</span> <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">bool</span> <span class="nx">res</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="c1">// 判断非空</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot1</span> <span class="o">!=</span> <span class="nx">NULL</span> <span class="o">&amp;&amp;</span> <span class="nx">pRoot2</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">val</span> <span class="o">==</span> <span class="nx">pRoot2</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span> <span class="o">=</span> <span class="nx">DoesTree1HaveTree2</span><span class="p">(</span><span class="nx">pRoot1</span><span class="p">,</span> <span class="nx">pRoot2</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span> <span class="o">=</span> <span class="nx">HasSubtree</span><span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">pRoot2</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span> <span class="o">=</span> <span class="nx">HasSubtree</span><span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">,</span> <span class="nx">pRoot2</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">bool</span> <span class="nx">DoesTree1HaveTree2</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot1</span><span class="p">,</span> <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRoot2</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot2</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot1</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">val</span> <span class="o">!=</span> <span class="nx">pRoot2</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">DoesTree1HaveTree2</span><span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">pRoot2</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+            <span class="nx">DoesTree1HaveTree2</span><span class="p">(</span><span class="nx">pRoot1</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">,</span> <span class="nx">pRoot2</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="18">18. 二叉树的镜像</h2>
+<p>操作给定的二叉树，将其变换为源二叉树的镜像。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">Mirror</span><span class="p">(</span><span class="nx">TreeNode</span> <span class="o">*</span><span class="nx">pRoot</span><span class="p">)</span> <span class="p">{</span>
+       <span class="k">if</span><span class="p">(</span><span class="nx">pRoot</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">swap</span><span class="p">(</span><span class="nx">pRoot</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">pRoot</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">);</span>
+        <span class="nx">Mirror</span><span class="p">(</span><span class="nx">pRoot</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">);</span>
+        <span class="nx">Mirror</span><span class="p">(</span><span class="nx">pRoot</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="19">19. 顺序打印矩阵</h2>
+<p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">private</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">row</span><span class="p">,</span> <span class="nx">col</span><span class="p">;</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&gt;</span> <span class="nx">flag</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="nx">judge</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nx">i</span> <span class="o">&amp;&amp;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">row</span> <span class="o">&amp;&amp;</span> <span class="mi">0</span><span class="o">&lt;=</span> <span class="nx">j</span> <span class="o">&amp;&amp;</span> <span class="nx">j</span> <span class="o">&lt;</span><span class="nx">col</span> <span class="o">&amp;&amp;</span> <span class="nx">flag</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">==</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">printMatrix</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nx">matrix</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="nx">row</span> <span class="o">=</span> <span class="nx">matrix</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+        <span class="nx">col</span> <span class="o">=</span> <span class="nx">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">size</span><span class="p">();</span>
+        <span class="nx">flag</span> <span class="o">=</span> <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&gt;</span> <span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="p">(</span><span class="nx">col</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
+        <span class="kr">const</span> <span class="kr">int</span> <span class="nx">D</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">}};</span>
+        <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">row</span> <span class="o">*</span> <span class="nx">col</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">count</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">matrix</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]);</span>
+            <span class="nx">flag</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">judge</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="nx">D</span><span class="p">[</span><span class="nx">d</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="nx">j</span> <span class="o">+</span> <span class="nx">D</span><span class="p">[</span><span class="nx">d</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+                <span class="p">(</span><span class="o">++</span><span class="nx">d</span><span class="p">)</span> <span class="o">%=</span> <span class="mi">4</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nx">i</span> <span class="o">+=</span> <span class="nx">D</span><span class="p">[</span><span class="nx">d</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+            <span class="nx">j</span> <span class="o">+=</span> <span class="nx">D</span><span class="p">[</span><span class="nx">d</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="20-min">20. 包含 <code>min</code> 函数的栈</h2>
+<p>定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的 <code>min</code> 函数（时间复杂度应为 <span class="math">\(O(1)\)</span>）。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="k">void</span> <span class="nx">push</span><span class="p">(</span><span class="kr">int</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">m_data</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">m_min</span><span class="p">.</span><span class="nx">empty</span><span class="p">())</span> <span class="p">{</span>
+            <span class="nx">m_min</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="kr">int</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">&lt;</span> <span class="nx">m_min</span><span class="p">.</span><span class="nx">top</span><span class="p">()</span> <span class="o">?</span> <span class="nx">value</span> : <span class="kt">m_min.top</span><span class="p">();</span>
+            <span class="nx">m_min</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">void</span> <span class="nx">pop() {</span>
+        <span class="nx">m_data</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+        <span class="nx">m_min</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kr">int</span> <span class="nx">top() {</span>
+        <span class="k">return</span> <span class="nx">m_data</span><span class="p">.</span><span class="nx">top</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kr">int</span> <span class="nx">min() {</span>
+        <span class="c1">// 注意空</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">m_min</span><span class="p">.</span><span class="nx">empty</span><span class="p">())</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">m_min</span><span class="p">.</span><span class="nx">top</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// 自己添加成员变量</span>
+<span class="kr">protected</span><span class="o">:</span>
+    <span class="nx">stack</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">m_data</span><span class="p">;</span>
+    <span class="nx">stack</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">m_min</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：我们维持两个栈</p>
+<ul>
+<li>数据栈 m_data，存储栈的数据用于常规的栈操作</li>
+<li>最小栈 m_min，保存每次 <code>push</code> 和 <code>pop</code> 时候的最小值，</li>
+</ul>
+<p>在 push-data 栈的时候，将当前最小数据压入，在 pop-data 栈的时候，将 min 栈栈顶的最小数据弹出，这样保证 min 栈中存储着当前现场的最小值，并随着数据栈的更新而更新。</p>
+<h2 id="21">21. 栈的压入、弹出序列</h2>
+<p>输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="nx">IsPopOrder</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">pushV</span><span class="p">,</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">popV</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pushV</span><span class="p">.</span><span class="nx">empty</span><span class="p">())</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">stack</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">pushV</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">stack</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">pushV</span><span class="p">[</span><span class="nx">i</span><span class="o">++</span><span class="p">]);</span>
+            <span class="c1">// 注意为 while</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">popV</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="nx">stack</span><span class="p">.</span><span class="nx">back</span><span class="p">()</span> <span class="o">==</span> <span class="nx">popV</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">stack</span><span class="p">.</span><span class="nx">pop_back</span><span class="p">();</span>
+                <span class="nx">j</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">stack</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="22">22. 从上往下打印二叉树</h2>
+<p>从上往下打印出二叉树的每个节点，同层节点从左至右打印。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">PrintFromTopToBottom</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">TreeNode</span><span class="o">*&gt;</span> <span class="nx">vec</span><span class="p">;</span>
+        <span class="nx">vec</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">root</span><span class="p">);</span>
+
+        <span class="kr">int</span> <span class="nx">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kr">int</span> <span class="nx">end</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="nx">cur</span> <span class="o">&lt;</span> <span class="nx">vec</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="p">{</span>
+            <span class="c1">// 新的一行访问开始，重新定位 end 于当前行最后一个节点的下一个位置</span>
+            <span class="nx">end</span> <span class="o">=</span> <span class="nx">vec</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+
+            <span class="k">while</span> <span class="p">(</span><span class="nx">cur</span> <span class="o">&lt;</span> <span class="nx">end</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">vec</span><span class="p">[</span><span class="nx">cur</span><span class="p">]</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">vec</span><span class="p">[</span><span class="nx">cur</span><span class="p">]</span><span class="o">-&gt;</span><span class="nx">left</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="c1">///  压入左节点</span>
+                <span class="p">{</span>
+                    <span class="nx">vec</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">vec</span><span class="p">[</span><span class="nx">cur</span><span class="p">]</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">vec</span><span class="p">[</span><span class="nx">cur</span><span class="p">]</span><span class="o">-&gt;</span><span class="nx">right</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span>    <span class="c1">///  压入右节点</span>
+                <span class="p">{</span>
+                    <span class="nx">vec</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">vec</span><span class="p">[</span><span class="nx">cur</span><span class="p">]</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="nx">cur</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">PrintFromTopToBottom</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="nx">queue</span><span class="o">&lt;</span><span class="nx">TreeNode</span><span class="o">*&gt;</span> <span class="nx">node</span><span class="p">;</span>
+        <span class="nx">node</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">root</span><span class="p">);</span>
+        <span class="nx">node</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">NULL</span><span class="p">);</span>
+        <span class="nx">TreeNode</span> <span class="o">*</span><span class="nx">curr</span> <span class="o">=</span> <span class="nx">root</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// front 函数记住</span>
+            <span class="nx">curr</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">front</span><span class="p">();</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">curr</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">)</span> <span class="nx">node</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">)</span> <span class="nx">node</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">curr</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">node</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">NULL</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="23">23. 二叉搜索树的后序遍历序列</h2>
+<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="nx">VerifySquenceOfBST</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">sequence</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">sequence</span><span class="p">.</span><span class="nx">empty</span><span class="p">())</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">judge</span><span class="p">(</span><span class="nx">sequence</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">sequence</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">bool</span> <span class="nx">judge</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">sequence</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">left</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">left</span> <span class="o">&gt;=</span> <span class="nx">right</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="c1">/// 后一半的元素都比根元素大</span>
+        <span class="kr">int</span> <span class="nx">mid</span> <span class="o">=</span> <span class="nx">right</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="c1">// mid &gt;= left</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">mid</span> <span class="o">&gt;=</span> <span class="nx">left</span> <span class="o">&amp;&amp;</span> <span class="nx">sequence</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">sequence</span><span class="p">[</span><span class="nx">right</span><span class="p">])</span> <span class="nx">mid</span><span class="o">--</span><span class="p">;</span>
+        <span class="c1">/// 那么前面的元素都应该比根小</span>
+        <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">mid</span> <span class="o">&amp;&amp;</span> <span class="nx">sequence</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">sequence</span><span class="p">[</span><span class="nx">right</span><span class="p">])</span> <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">mid</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">judge</span><span class="p">(</span><span class="nx">sequence</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">mid</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">judge</span><span class="p">(</span><span class="nx">sequence</span><span class="p">,</span> <span class="nx">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">right</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：如果按照后序遍历，先左后右最后自己的顺序来遍历树，数组的最后一个元素肯定是自己（父节点），然后剩余的部分分成两个部分，第一部分都比自己小（左子树部分），第二部分都比自己大（右子树部分），因此套用这个关系就可以循环检验出是否是二叉搜索树的后序遍历了。</p>
+<h2 id="24">24. 二叉树中和为某一值的路径</h2>
+<p>输入一颗二叉树的跟节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的 list 中，数组长度大的数组靠前)。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+    <span class="c1">// 自己添加</span>
+<span class="kr">private</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="nx">allRes</span><span class="p">;</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">tmp</span><span class="p">;</span>
+    <span class="k">void</span> <span class="nx">dfsFind</span><span class="p">(</span><span class="nx">TreeNode</span> <span class="o">*</span> <span class="nx">node</span> <span class="p">,</span> <span class="kr">int</span> <span class="nx">expectNumber</span><span class="p">){</span>
+        <span class="nx">tmp</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">expectNumber</span> <span class="o">==</span> <span class="nx">node</span><span class="o">-&gt;</span><span class="nx">val</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="o">-&gt;</span><span class="nx">left</span> <span class="o">==</span> <span class="nx">NULL</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="o">-&gt;</span><span class="nx">right</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span>
+            <span class="nx">allRes</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">tmp</span><span class="p">);</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">)</span> <span class="nx">dfsFind</span><span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">expectNumber</span> <span class="o">-</span> <span class="nx">node</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">)</span> <span class="nx">dfsFind</span><span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">,</span> <span class="nx">expectNumber</span> <span class="o">-</span> <span class="nx">node</span><span class="o">-&gt;</span><span class="nx">val</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">tmp</span><span class="p">.</span><span class="nx">pop_back</span><span class="p">();</span> 
+    <span class="p">}</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nx">FindPath</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">root</span><span class="p">,</span><span class="kr">int</span> <span class="nx">expectNumber</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="nx">dfsFind</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">expectNumber</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">allRes</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="25">25. 复杂链表的复制</h2>
+<p>输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct RandomListNode {</span>
+<span class="cm">    int label;</span>
+<span class="cm">    struct RandomListNode *next, *random;</span>
+<span class="cm">    RandomListNode(int x) :</span>
+<span class="cm">            label(x), next(NULL), random(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};</span>
+<span class="cm">*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">RandomListNode</span><span class="o">*</span> <span class="nx">Clone</span><span class="p">(</span><span class="nx">RandomListNode</span><span class="o">*</span> <span class="nx">pHead</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pHead</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="nx">RandomListNode</span> <span class="o">*</span><span class="nx">currNode</span> <span class="o">=</span> <span class="nx">pHead</span><span class="p">;</span>
+        <span class="nx">RandomListNode</span> <span class="o">*</span><span class="nx">newHead</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">,</span> <span class="o">*</span><span class="nx">newNode</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="c1">// 复制常规节点</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">currNode</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">((</span><span class="nx">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RandomListNode</span><span class="p">(</span><span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">label</span><span class="p">))</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// cstdio 用来将上一个函数发生错误的原因输出到标准设备(stderr)</span>
+                <span class="nx">perror</span><span class="p">(</span><span class="s2">"new error: "</span><span class="p">);</span>
+                <span class="c1">// cstdlib 退出当前运行的程序，并将参数返回给主调进程</span>
+                <span class="nx">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">newNode</span><span class="p">;</span>
+            <span class="nx">currNode</span> <span class="o">=</span> <span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// 随机指针</span>
+        <span class="nx">currNode</span> <span class="o">=</span> <span class="nx">pHead</span><span class="p">;</span>
+        <span class="nx">newNode</span> <span class="o">=</span> <span class="nx">pHead</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="nx">currNode</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">RandomListNode</span> <span class="o">*</span><span class="nx">randNode</span> <span class="o">=</span> <span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">random</span><span class="p">;</span>
+            <span class="nx">RandomListNode</span> <span class="o">*</span><span class="nx">newNode</span> <span class="o">=</span> <span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">randNode</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">random</span> <span class="o">=</span> <span class="nx">randNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+                <span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">random</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nx">currNode</span> <span class="o">=</span> <span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// 断开</span>
+        <span class="nx">currNode</span> <span class="o">=</span> <span class="nx">pHead</span><span class="p">;</span>
+        <span class="nx">newNode</span> <span class="o">=</span> <span class="nx">newHead</span> <span class="o">=</span> <span class="nx">pHead</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">currNode</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nx">currNode</span> <span class="o">=</span> <span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+            <span class="nx">newNode</span> <span class="o">=</span> <span class="nx">newNode</span><span class="o">-&gt;</span><span class="nx">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">newHead</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：用 next 指针域关联新旧结点。将新节点直接插入到原结点的后面。</p>
+<h2 id="26">26. 二叉搜索树与双向链表</h2>
+<p>输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">struct TreeNode {</span>
+<span class="cm">    int val;</span>
+<span class="cm">    struct TreeNode *left;</span>
+<span class="cm">    struct TreeNode *right;</span>
+<span class="cm">    TreeNode(int x) :</span>
+<span class="cm">            val(x), left(NULL), right(NULL) {</span>
+<span class="cm">    }</span>
+<span class="cm">};*/</span>
+<span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">Convert</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">pRootOfTree</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">pRootOfTree</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="nx">TreeNode</span> <span class="o">*</span><span class="nx">pLastNode</span> <span class="o">=</span> <span class="nx">NULL</span><span class="p">;</span>
+        <span class="nx">ConvertRecursion</span><span class="p">(</span><span class="nx">pRootOfTree</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">pLastNode</span><span class="p">);</span>
+
+        <span class="c1">// 当递归结束后,*pLastNode 指向了双向链表的尾结点</span>
+        <span class="nx">TreeNode</span> <span class="o">*</span><span class="nx">node</span> <span class="o">=</span> <span class="nx">pLastNode</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="nx">node</span> <span class="o">!=</span> <span class="nx">NULL</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="o">-&gt;</span><span class="nx">left</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">void</span> <span class="nx">ConvertRecursion</span><span class="p">(</span><span class="nx">TreeNode</span><span class="o">*</span> <span class="nx">root</span><span class="p">,</span> <span class="nx">TreeNode</span><span class="o">**</span> <span class="nx">pLastNode</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="nx">TreeNode</span> <span class="o">*</span><span class="nx">currNode</span> <span class="o">=</span> <span class="nx">root</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">left</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">ConvertRecursion</span><span class="p">(</span><span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">pLastNode</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">left</span> <span class="o">=</span> <span class="o">*</span><span class="nx">pLastNode</span><span class="p">;</span>
+        <span class="c1">// 注意两层指针解引用</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="nx">pLastNode</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">pLastNode</span><span class="p">)</span><span class="o">-&gt;</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">currNode</span><span class="p">;</span>
+        <span class="o">*</span><span class="nx">pLastNode</span> <span class="o">=</span> <span class="nx">currNode</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">right</span> <span class="o">!=</span> <span class="nx">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">ConvertRecursion</span><span class="p">(</span><span class="nx">currNode</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">,</span> <span class="nx">pLastNode</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="27">27. 字符串的排列</h2>
+<p>输入一个字符串，按字典序打印出该字符串中字符的所有排列。例如输入字符串 abc，则打印出由字符 a、b、c 所能排列出来的所有字符串 abc、acb、bac、bca、cab 和 cba。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="c1">// 自己添加</span>
+<span class="kr">protected</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span> <span class="nx">m_res</span><span class="p">;</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span> <span class="nx">Permutation</span><span class="p">(</span><span class="kt">string</span> <span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">m_res</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">empty</span><span class="p">()</span> <span class="o">==</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">m_res</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">PermutationRecursion</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+        <span class="nx">sort</span><span class="p">(</span><span class="nx">m_res</span><span class="p">.</span><span class="nx">begin</span><span class="p">(),</span> <span class="nx">m_res</span><span class="p">.</span><span class="nx">end</span><span class="p">());</span>
+        <span class="k">return</span> <span class="nx">m_res</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">void</span> <span class="nx">PermutationRecursion</span><span class="p">(</span><span class="kt">string</span> <span class="nx">str</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">begin</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">begin</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'\0'</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nx">m_res</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">begin</span><span class="p">;</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'\0'</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">HasDuplicate</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">begin</span><span class="p">,</span> <span class="nx">i</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="nx">swap</span><span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">str</span><span class="p">[</span><span class="nx">begin</span><span class="p">]);</span>
+                    <span class="nx">PermutationRecursion</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">begin</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                    <span class="nx">swap</span><span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">str</span><span class="p">[</span><span class="nx">begin</span><span class="p">]);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="kr">private</span><span class="o">:</span>
+    <span class="c1">//find duplicate of str[i] in str[k,i)</span>
+    <span class="kt">bool</span> <span class="nx">HasDuplicate</span><span class="p">(</span><span class="kt">string</span><span class="o">&amp;</span> <span class="nx">str</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">k</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">i</span><span class="p">)</span> <span class="kr">const</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">k</span><span class="p">;</span> <span class="nx">p</span> <span class="o">&lt;</span> <span class="nx">i</span><span class="p">;</span> <span class="nx">p</span><span class="o">++</span><span class="p">)</span><span class="err"></span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">str</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="o">==</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<p><strong>思路</strong>：全排列中去掉重复的规则： 去重的全排列就是从第一个数字起，每个数分别与它后面非重复出现的数字交换。</p>
+<h2 id="28">28. 数组中出现次数超过一半的数字</h2>
+<p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为 9 的数组 {1，2，3，2，2，2，5，4，2}。由于数字 2 在数组中出现了 5 次，超过数组长度的一半，因此输出 2。如果不存在则输出 0。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">MoreThanHalfNum_Solution</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">numbers</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">int</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">len</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">len</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="kr">int</span> <span class="nx">k_val</span> <span class="o">=</span> <span class="nx">FindKth</span><span class="p">(</span><span class="nx">numbers</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">len</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="kr">int</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">auto</span> <span class="o">&amp;</span><span class="nx">ele</span> : <span class="kt">numbers</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">ele</span> <span class="o">==</span> <span class="nx">k_val</span><span class="p">)</span> <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">count</span> <span class="o">&gt;</span> <span class="nx">len</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">?</span> <span class="nx">k_val</span> : <span class="kt">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kr">int</span> <span class="nx">Partition</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">numbers</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">low</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">high</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">low</span> <span class="o">&lt;</span> <span class="nx">high</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">low</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">high</span><span class="p">,</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">j</span> <span class="o">&amp;&amp;</span> <span class="nx">numbers</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="nx">x</span><span class="p">)</span> <span class="nx">j</span><span class="o">--</span><span class="p">;</span>
+                <span class="nx">numbers</span><span class="p">[</span><span class="nx">i</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+                <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">j</span> <span class="o">&amp;&amp;</span> <span class="nx">numbers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">x</span><span class="p">)</span> <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+                <span class="nx">numbers</span><span class="p">[</span><span class="nx">j</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="nx">numbers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nx">i</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">low</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kr">int</span> <span class="nx">FindKth</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">numbers</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">low</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">high</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">low</span> <span class="o">==</span> <span class="nx">high</span><span class="p">)</span> <span class="k">return</span> <span class="nx">numbers</span><span class="p">[</span><span class="nx">low</span><span class="p">];</span>
+        <span class="kr">int</span> <span class="nx">index</span><span class="p">;</span>
+        <span class="nx">index</span> <span class="o">=</span> <span class="nx">Partition</span><span class="p">(</span><span class="nx">numbers</span><span class="p">,</span> <span class="nx">low</span><span class="p">,</span> <span class="nx">high</span><span class="p">);</span>
+        <span class="c1">// 递归 FindKth</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">k</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nx">FindKth</span><span class="p">(</span><span class="nx">numbers</span><span class="p">,</span> <span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">high</span><span class="p">,</span> <span class="nx">k</span><span class="p">);</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="nx">k</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nx">FindKth</span><span class="p">(</span><span class="nx">numbers</span><span class="p">,</span> <span class="nx">low</span><span class="p">,</span> <span class="nx">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">k</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="nx">numbers</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="29-k">29. 最小的 <span class="math">\(K\)</span> 个数</h2>
+<p>输入 <span class="math">\(n\)</span> 个整数，找出其中最小的 <span class="math">\(K\)</span> 个数。例如输入 4，5，6，2，7，3，8 这 8 个数字，则最小的 4 个数字是 1，2，3，4。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">GetLeastNumbers_Solution</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">input</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">input</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nx">k</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+        <span class="c1">// 快排</span>
+        <span class="c1">// quick_sort(input, 0, input.size() - 1);</span>
+
+        <span class="c1">// 最大堆</span>
+        <span class="c1">// make_maxheap(input, k);</span>
+        <span class="c1">//for (int i = k; i &lt; input.size(); i++) {</span>
+        <span class="c1">//    if (input[0] &gt; input[i]) {</span>
+        <span class="c1">//        swap(input[0], input[i]);</span>
+        <span class="c1">//        make_maxheap(input, k);</span>
+        <span class="c1">//    }</span>
+        <span class="c1">//}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">k</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">push_back</span><span class="p">(</span><span class="nx">input</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 快排</span>
+    <span class="k">void</span> <span class="nx">quick_sort</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">input</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">low</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">high</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">low</span> <span class="o">&lt;</span> <span class="nx">high</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">low</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">high</span><span class="p">,</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">input</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">j</span> <span class="o">&amp;&amp;</span> <span class="nx">input</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="nx">x</span><span class="p">)</span> <span class="nx">j</span><span class="o">--</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">j</span><span class="p">)</span> <span class="nx">input</span><span class="p">[</span><span class="nx">i</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="nx">input</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+                <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">j</span> <span class="o">&amp;&amp;</span> <span class="nx">input</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">x</span><span class="p">)</span> <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">j</span><span class="p">)</span> <span class="nx">input</span><span class="p">[</span><span class="nx">j</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="nx">input</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="nx">input</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+            <span class="nx">quick_sort</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">low</span><span class="p">,</span> <span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="nx">quick_sort</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">high</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// 最大堆</span>
+    <span class="k">void</span> <span class="nx">make_maxheap</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">input</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">int</span> <span class="nx">dad</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">son</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">dad</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">son</span> <span class="o">&lt;</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">son</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nx">k</span> <span class="o">&amp;&amp;</span> <span class="nx">input</span><span class="p">[</span><span class="nx">son</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">input</span><span class="p">[</span><span class="nx">son</span><span class="p">])</span>
+                <span class="nx">son</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">input</span><span class="p">[</span><span class="nx">son</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nx">input</span><span class="p">[</span><span class="nx">dad</span><span class="p">])</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">swap</span><span class="p">(</span><span class="nx">input</span><span class="p">[</span><span class="nx">son</span><span class="p">],</span> <span class="nx">input</span><span class="p">[</span><span class="nx">dad</span><span class="p">]);</span>
+                <span class="nx">dad</span> <span class="o">=</span> <span class="nx">son</span><span class="p">;</span>
+                <span class="nx">son</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">dad</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">void</span> <span class="nx">swap</span><span class="p">(</span><span class="kr">int</span> <span class="o">&amp;</span><span class="nx">a</span><span class="p">,</span> <span class="kr">int</span> <span class="o">&amp;</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">!=</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">a</span> <span class="o">^=</span> <span class="nx">b</span><span class="p">;</span>
+            <span class="nx">b</span> <span class="o">^=</span> <span class="nx">a</span><span class="p">;</span>
+            <span class="nx">a</span> <span class="o">^=</span> <span class="nx">b</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<h2 id="30">30. 最大连续子序列的和</h2>
+<p>HZ 偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后，他又发话了：在古老的一维模式识别中，常常需要计算连续子向量的最大和，当向量全为正数的时候，问题很好解决。但是，如果向量中包含负数，是否应该包含某个负数，并期望旁边的正数会弥补它呢？例如：{6，-3，-2，7，-15，1，2，2}，连续子向量的最大和为 8（从第 0 个开始，到第 3 个为止)。给一个数组，返回它的最大连续子序列的和，你会不会被他忽悠住？(子向量的长度至少是 1)。</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Solution</span> <span class="p">{</span>
+<span class="kr">public</span><span class="o">:</span>
+    <span class="kr">int</span> <span class="nx">FindGreatestSumOfSubArray</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="kr">int</span><span class="o">&gt;</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">// #include &lt;climits&gt;</span>
+        <span class="kr">int</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">max_sum</span> <span class="o">=</span> <span class="nx">INT_MIN</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kr">int</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">sum</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">sum</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">sum</span> <span class="o">&gt;</span> <span class="nx">max_sum</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">max_sum</span> <span class="o">=</span> <span class="nx">sum</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">max_sum</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <aside>
+                    <hr />
+                    <nav class="related">
+                        <h1>
+                            <font color="#771515"><em>RELATED</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/08/jzoffer2/">剑指 offer (2)</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">最大子数组问题</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">排序算法</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/07/css_overview/">
+                                    CSS 入门
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/">
+                                    C++ Primer 第四章 表达式
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/">
+                                    C++ Primer 第三章 字符串、向量和数组
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/">
+                                    C++ Primer 第二章 变量和基本类型
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/06/mac-stat/">
+                                    利用 Mac stat 添加文件创建时间、最后修改时间
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="newer">
+                        <h1>
+                            <font color="#771515"><em>NEWER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/">
+                                    Linux 中的扩展和引用
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/08/jzoffer2/">
+                                    剑指 offer (2)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/">
+                                    几个奇葩的 Linux 命令
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/">
+                                    C++ Primer 第五章 语句
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/09/回车与换行的区别/">
+                                    回车与换行的区别
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Gitalk 评论 start  -->
+
+                    <!-- Link Gitalk 的支持文件  -->
+                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                    <div id="gitalk-container"></div>
+                    <script type="text/javascript">
+                        var dateTime = Date.now();
+                        var timestamp = Math.floor(dateTime / 1000);
+                        var gitalk = new Gitalk({
+
+                            // gitalk的主要参数
+                            clientID: '93f43349e9fd3154bfad',
+                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
+                            repo: 'xutree.github.io',
+                            owner: 'xutree',
+                            admin: ['xutree'],
+                            id: String(timestamp)
+
+                        });
+                        gitalk.render('gitalk-container');
+                    </script> -->
+                    <!-- Gitalk end -->
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-10-07T15:32:21+08:00">2018-10-07 15:32:21</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-11-26 19:56:59</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#剑指offer-ref">剑指offer
+                                <span>2</span>
+</a></li>
+                        <li><a href="/tags.html#面试-ref">面试
+                                <span>2</span>
+</a></li>
+                        <li><a href="/tags.html#算法-ref">算法
+                                <span>4</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="Python, argparse, 教程, " />
+    <title>Python argparse 模块  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/11/10/args/"> Python argparse 模块  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <p>argparse 是 Python 标准库中推荐的命令行解析模块。</p>
+<div class="highlight"><pre><span></span><span class="c1"># 导入</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="c1"># 添加帮助信息的整体描述</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;calculate X to the power of Y&quot;</span><span class="p">)</span>
+<span class="c1"># 冲突选项</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_mutually_exclusive_group</span><span class="p">()</span>
+<span class="c1"># 以下两个参数是冲突的，只能存在一个</span>
+<span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">)</span>
+<span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="s2">&quot;--quiet&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">)</span>
+<span class="c1"># 一个 - 是简写，-- 是全写，action 表示默认参数为 true</span>
+
+<span class="c1"># 添加位置参数</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the base&quot;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the exponent&quot;</span><span class="p">)</span>
+<span class="c1"># 获得参数</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="c1"># 使用参数</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="o">**</span><span class="n">args</span><span class="o">.</span><span class="n">y</span>
+
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">quiet</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{} to the power {} equals {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{}^{} == {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">answer</span><span class="p">))</span>
+</pre></div>
+
+
+<p>输出</p>
+<div class="highlight"><pre><span></span><span class="n">usage</span><span class="o">:</span> <span class="n">prog</span><span class="o">.</span><span class="na">py</span> <span class="o">[-</span><span class="n">h</span><span class="o">]</span> <span class="o">[-</span><span class="n">v</span> <span class="o">|</span> <span class="o">-</span><span class="n">q</span><span class="o">]</span> <span class="n">x</span> <span class="n">y</span>
+
+<span class="n">calculate</span> <span class="n">X</span> <span class="n">to</span> <span class="n">the</span> <span class="n">power</span> <span class="n">of</span> <span class="n">Y</span>
+
+<span class="n">positional</span> <span class="k">arguments</span><span class="o">:</span>
+  <span class="n">x</span>              <span class="n">the</span> <span class="n">base</span>
+  <span class="n">y</span>              <span class="n">the</span> <span class="n">exponent</span>
+
+<span class="n">optional</span> <span class="k">arguments</span><span class="o">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="o">,</span> <span class="o">--</span><span class="n">help</span>     <span class="n">show</span> <span class="k">this</span> <span class="n">help</span> <span class="n">message</span> <span class="n">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">v</span><span class="o">,</span> <span class="o">--</span><span class="n">verbose</span>
+  <span class="o">-</span><span class="n">q</span><span class="o">,</span> <span class="o">--</span><span class="n">quiet</span>
+</pre></div>
+
+
+<p>另外还有一个 <code>parse_known_args()</code> 函数，在接受多于程序需要的参数时保证不出错，返回一个 <code>tuple</code> 类型的命名空间和一个保存着余下的命令行字符的 <code>list</code>。</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s1">&#39;--flag_int&#39;</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;flag_int.&#39;</span>
+<span class="p">)</span>
+<span class="n">FLAGS</span><span class="p">,</span> <span class="n">unparsed</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_known_args</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">FLAGS</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">unparsed</span><span class="p">)</span>
+</pre></div>
+
+
+<p>输出</p>
+<div class="highlight"><pre><span></span>[In 1]: python prog.py --flag_int 0.02 --double 0.03 a 1
+[Out 1]: Namespace(flag_int=0.02) [&#39;--double&#39;, &#39;0.03&#39;, &#39;a&#39;, &#39;1&#39;]
+</pre></div>
+                <aside>
+                    <hr />
+                    <nav class="related">
+                        <h1>
+                            <font color="#771515"><em>RELATED</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/12/tutorial/">xlwings 教程</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/05/py/">Python 教程</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/05/100/">Python 100 days</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/05/bayes/">
+                                    贝叶斯定理
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/28/指示器随机变量/">
+                                    指示器随机变量
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">
+                                    最大子数组问题
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">
+                                    排序算法
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/23/矩阵求导/">
+                                    矩阵微积分
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="newer">
+                        <h1>
+                            <font color="#771515"><em>NEWER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/">
+                                    拉格朗日对偶性
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/10/directional_derivative-gradient/">
+                                    方向导数和梯度
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/12/tutorial/">
+                                    xlwings 教程
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/16/likelihood-function/">
+                                    似然函数
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">
+                                    深度学习 第一章 引言
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Gitalk 评论 start  -->
+
+                    <!-- Link Gitalk 的支持文件  -->
+                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                    <div id="gitalk-container"></div>
+                    <script type="text/javascript">
+                        var dateTime = Date.now();
+                        var timestamp = Math.floor(dateTime / 1000);
+                        var gitalk = new Gitalk({
+
+                            // gitalk的主要参数
+                            clientID: '93f43349e9fd3154bfad',
+                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
+                            repo: 'xutree.github.io',
+                            owner: 'xutree',
+                            admin: ['xutree'],
+                            id: String(timestamp)
+
+                        });
+                        gitalk.render('gitalk-container');
+                    </script> -->
+                    <!-- Gitalk end -->
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-11-10T12:11:25+08:00">2018-11-10 12:11:25</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-11-10 12:11:25</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#教程-ref">教程</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#argparse-ref">argparse
+                                <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#Python-ref">Python
+                                <span>4</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="xlwings, Excel, python, 教程, " />
+    <title>xlwings 教程  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2018/11/12/tutorial/"> xlwings 教程  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1-xlsx">1. 新建 xlsx 文件</a></li>
+<li><a href="#2-xlsx">2. 打开 xlsx 文件</a></li>
+<li><a href="#3-xlsx">3. 操作 xlsx 文件中的表单</a><ul>
+<li><a href="#31-xlsx">3.1 获得 xlsx 文件中的表单数目</a></li>
+<li><a href="#32">3.2 索引需要的表单</a></li>
+</ul>
+</li>
+<li><a href="#4">4. 操作表单中的单元格</a><ul>
+<li><a href="#41">4.1 索引单元格</a></li>
+<li><a href="#42">4.2 操作单元格</a><ul>
+<li><a href="#421">4.2.1 超链接</a></li>
+<li><a href="#422">4.2.2 列宽行高</a></li>
+<li><a href="#423">4.2.3 格式和内容</a></li>
+<li><a href="#424">4.2.4 获得区域字符串</a></li>
+<li><a href="#425">4.2.5 单元格颜色</a></li>
+<li><a href="#426">4.2.6 单元格数量</a></li>
+<li><a href="#427">4.2.7 区域单元格特殊位置</a></li>
+<li><a href="#428">4.2.8 区域大小</a></li>
+<li><a href="#429">4.2.9 区域名称和数字格式</a></li>
+<li><a href="#4210">4.2.10 其他</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5">5. 操作表单中的形状</a><ul>
+<li><a href="#51">5.1 获取形状数量</a></li>
+<li><a href="#52">5.2 索引形状</a></li>
+<li><a href="#53">5.3 操作形状</a></li>
+</ul>
+</li>
+<li><a href="#6">6. 操作表单中的表格</a><ul>
+<li><a href="#61">6.1 获取表格数量</a></li>
+<li><a href="#62">6.2 添加表格</a></li>
+<li><a href="#63">6.3 索引表格</a></li>
+<li><a href="#64">6.4 操作表格</a></li>
+</ul>
+</li>
+<li><a href="#7">7. 操作表单中的图像</a><ul>
+<li><a href="#71">7.1 获取图像数量</a></li>
+<li><a href="#72">7.2 添加图像</a></li>
+<li><a href="#73">7.3 索引图像</a></li>
+<li><a href="#74">7.4 操作图像</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
+
+                
+<p>xlwings 是一个 python 包用来和 Excel 进行交互，它包含四个层次：App <span class="math">\(\rightarrow\)</span> Book <span class="math">\(\rightarrow\)</span> Sheet <span class="math">\(\rightarrow\)</span> Range。</p>
+<ul>
+<li>App：用来索引打开的 Excel 实例。因为我们可能同时打开很多 Excel 应用程序，类似于我们可以在电脑是同时登陆多个 QQ 应用一样</li>
+<li>Book：用来索引 Excel 实例中的工作簿，因为我们的 Excel 中可能用多个工作簿</li>
+<li>Sheet：用来索引 Excel 工作簿中的表单，因为我们的工作簿中可能有多个表单</li>
+<li>Range：用来所以表单中的单元格</li>
+</ul>
+<h2 id="1-xlsx">1. 新建 xlsx 文件</h2>
+<p>新建 xlsx 文件经历如下几个步骤：</p>
+<ol>
+<li>首先建立一个 App 对象 <code>app = xw.App()</code>，这会打开电脑上的 Excel 应用程序</li>
+<li>然后建立一个 Book 对象 <code>book = xw.Book()</code> 这会在第一步打开的 Excel 中建立一个工作簿</li>
+<li>然后即可以保存 xlsx 文件，<code>book.save('filename.xlsx')</code>，如果没有提供路径，则保存在程序当前目录</li>
+<li>关闭 App 对象，<code>app.quit()</code></li>
+</ol>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwings</span> <span class="kn">as</span> <span class="nn">xw</span>
+
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">app</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">App</span><span class="p">()</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">()</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">4</span><span class="p">]:</span> <span class="n">book</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'filename.xlsx'</span><span class="p">)</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">5</span><span class="p">]:</span> <span class="n">app</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+<h2 id="2-xlsx">2. 打开 xlsx 文件</h2>
+<p>执行 <code>book = xw.Book('path//to//file')</code> 会直接打开指定文件</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwing</span> <span class="kn">as</span> <span class="nn">xw</span>
+
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">(</span><span class="s1">'path//to//file'</span><span class="p">)</span>
+</pre></div>
+<h2 id="3-xlsx">3. 操作 xlsx 文件中的表单</h2>
+<h3 id="31-xlsx">3.1 获得 xlsx 文件中的表单数目</h3>
+<p>xlsx 文件中可能有多个表单，所以首先我们需要知道到底有多少个表单</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwing</span> <span class="kn">as</span> <span class="nn">xw</span>
+
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">book</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">(</span><span class="s1">'path//to//file'</span><span class="p">)</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">book</span><span class="o">.</span><span class="n">sheets</span>
+<span class="p">[</span><span class="n">Out</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">Sheets</span><span class="p">([</span><span class="o">&lt;</span><span class="n">Sheet</span> <span class="p">[</span><span class="n">test</span><span class="o">.</span><span class="n">xlsx</span><span class="p">]</span><span class="n">Sheet1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Sheet</span> <span class="p">[</span><span class="n">test</span><span class="o">.</span><span class="n">xlsx</span><span class="p">]</span><span class="n">Sheet2</span><span class="o">&gt;</span><span class="p">])</span>
+</pre></div>
+<p>利用 <code>book.sheets</code> 我们得到了当前工作簿中所有的表单名称，当前工作簿有两个表单，名字分别为 <em>Sheet1</em>、<em>Sheet2</em>。</p>
+<h3 id="32">3.2 索引需要的表单</h3>
+<p>知道了表单的名称和个数以后，我们就可以索引到我们想要的表单了，有四种索引方法，例如我们需要索引 <em>Sheet2</em>：</p>
+<ul>
+<li><code>sht2 = book.sheets[1]</code>，这种索引方法是 Python 的索引，表单的编号从 0 开始，故 <em>Sheet2</em> 的编号为 1</li>
+<li><code>sht2 = book.sheets(2)</code>，这种索引方法是 Excel 的索引，表单编号从 1 开始，故 <em>Sheet2</em> 的编号为 2</li>
+<li><code>sht2 = book.sheets['Sheet2']</code>，这种索引方法是直接利用表单名字索引的</li>
+<li><code>sht2 = book.sheets('Sheet2')</code>，这种索引方法也是直接利用表单名字索引的</li>
+</ul>
+<h2 id="4">4. 操作表单中的单元格</h2>
+<h3 id="41">4.1 索引单元格</h3>
+<p>所以单元格有如下方法：</p>
+<ul>
+<li>索引单个单元格 <code>sht2.range('B3')</code> 或 <code>sht2.range((3,2))</code> 指明是第三行第二列单元格</li>
+<li>索引区域 <code>sht2.range('B3:F6')</code> 或 <code>sht2.range((3,2),(6,6))</code></li>
+</ul>
+<h3 id="42">4.2 操作单元格</h3>
+<h4 id="421">4.2.1 超链接</h4>
+<ul>
+<li><code>sht2.range('B3:F6').add_hyperlink(address, text_to_display=None, screen_tip=None)</code> 为区域内单元格添加超链接</li>
+<li><code>sht2.range('B3').hyperlink</code> 获取单元格的超链接，<strong>只适用于单元格</strong></li>
+</ul>
+<h4 id="422">4.2.2 列宽行高</h4>
+<ul>
+<li><code>sht2.range('B3:F6').autofit()</code> 自动调整区域内单元格的宽度和高度</li>
+<li><code>sht2.range('B3:F6').columns.autofit()</code> 自动调整区域内单元格的宽度</li>
+<li><code>sht2.range('B3:F6').rows.autofit()</code> 自动调整区域内单元格的高度</li>
+<li><code>sht2.range('B3:F6').column_width</code> 将返回区域内单元格的列宽（浮点数），单位是 point，如果列宽不一致，返回 <code>None</code></li>
+<li><code>sht2.range('B3:F6').row_height</code> 将返回区域内单元格的行高（浮点数），单位是 point，如果列宽不一致，返回 <code>None</code></li>
+<li><code>sht2.range('B3:F6').column_width = 23</code> 设置区域内单元格的列宽，范围必须为 [0, 255]</li>
+<li><code>sht2.range('B3:F6').row_height = 23</code> 设置区域内单元格的行高（浮点数），范围必须是 [0, 409.5]</li>
+<li><code>sht2.range('B3:F6').height</code> 返回区域单元格的总高度（浮点数），单位是 point</li>
+<li><code>sht2.range('B3:F6').width</code> 返回区域单元格的总宽度（浮点数），单位是 point</li>
+</ul>
+<h4 id="423">4.2.3 格式和内容</h4>
+<ul>
+<li><code>sht2.range('B3:F6').value</code> 获得区域内单元格的内容</li>
+<li><code>sht2.range('B3:F6').value = ‘x'’</code> 设置区域内单元格的内容</li>
+<li><code>sht2.range('B3:F6').clear()</code> 清除区域内单元格的内容和格式</li>
+<li><code>sht2.range('B3:F6').clear_contents()</code> 清除区域内单元格的内容，保留格式</li>
+</ul>
+<h4 id="424">4.2.4 获得区域字符串</h4>
+<ul>
+<li><code>sht2.range('B3:F6').address</code> 将返回字符串 <code>$B$3:$F$6'</code></li>
+<li><code>sht2.range('B3:F6').get_address(row_absolute=True,
+    column_absolute=True, include_sheetname=False, external=False)</code> 返回字符串，代表区域单元的地址，根据参数的不同可以用不同返回形式，具体参考<a href="https://docs.xlwings.org/en/stable/api.html#xlwings.Range.get_address">这里</a></li>
+</ul>
+<h4 id="425">4.2.5 单元格颜色</h4>
+<ul>
+<li><code>sht2.range('B3:F6').color</code> 将返回区域内单元格的颜色，若区域内单元格颜色不一致，返回 (0,0,0)，若无颜色，返回空</li>
+<li><code>sht2.range('B3:F6').color = (255, 0, 0)</code> 设置区域内单元格的颜色</li>
+</ul>
+<h4 id="426">4.2.6 单元格数量</h4>
+<ul>
+<li><code>sht2.range('B3:F6').count</code> 返回单元格的数量，也可用 <code>sht2.range('B3:F6').size</code></li>
+</ul>
+<h4 id="427">4.2.7 区域单元格特殊位置</h4>
+<ul>
+<li><code>sht2.range('B3:F6').column</code> 将返回区域内单元格第一列的索引（整数），本例返回 2</li>
+<li><code>sht2.range('B3:F6').row</code> 将返回区域内单元格第一行的索引（整数），本例返回 3</li>
+<li>
+<p><code>sht2.range('B3:F6').last_cell</code> 返回一个 <code>Range</code> 对象，表示区域内最右下单元格的位置</p>
+</li>
+<li>
+<p><code>sht2.range('B3:F6').top</code> 返回一个浮点数，表示从 行 1 的上边界到此区域上边界的距离，单位是 point</p>
+</li>
+<li>
+<p><code>sht2.range('B3:F6').left</code> 返回一个浮点数，表示从 A 栏的左边界到此区域左边界的距离，单位是 point</p>
+</li>
+<li>
+<p><code>sht2.range('B3:F6').columns</code> 将返回一个 <code>RangeColumns</code> 对象，代表区域里的列，本例返回 <code>RangeColumns(&lt;Range [test.xlsx]Sheet2!$B$3:$F$6&gt;)</code></p>
+</li>
+<li><code>sht2.range('B3:F6').rows</code> 将返回一个 <code>RangeRows</code> 对象，代表区域里的行，本例返回 <code>RangeRows(&lt;Range [test.xlsx]Sheet2!$B$3:$F$6&gt;)</code></li>
+</ul>
+<p>上面这两个对象都有一个 <code>count</code> 数据成员，可以很方便的得到总行数和列数。</p>
+<ul>
+<li><code>sht2.range('B3:F6').current_region</code> 返回一个 <code>Range</code> 对象，代表去除区域空白边界的范围，本类返回 <code>&lt;Range [test.xlsx]Sheet2!$A$1:$C$3&gt;</code></li>
+<li><code>sht2.range('B3:F6').end(args)</code> 参数 <code>args</code> 可为 left、right、up、down，该函数返回 <code>Range</code> 对象，表示指定区域近邻的边界单元格，如近邻的单元格无内容，则继续查找下一个近邻</li>
+<li><code>sht2.range('B3:F6').expand(args)</code> <code>args</code> 可为 table、down、right，该函数根据参数扩展当前区域范围，并范围 <code>Range</code> 对象，table 为向右向下扩展，若扩展方向下一个单元格内容为空，则停止扩展；若扩展后的区域仍为空，则返回 <code>None</code>（例如，从空的单元格往右扩展，但是右边一个单元格也是空的情况）</li>
+</ul>
+<h4 id="428">4.2.8 区域大小</h4>
+<ul>
+<li><code>sht2.range('B3:F6').resize(row_size=None, column_size=None)</code> 重设区域大小</li>
+<li><code>sht2.range('B3:F6').shape</code> 返回元组，表示区域大小</li>
+</ul>
+<h4 id="429">4.2.9 区域名称和数字格式</h4>
+<ul>
+<li><code>sht2.range('B3:F6').name</code> 返回区域的名字</li>
+<li><code>sht2.range('B3:F6').name = 'test'</code> 设置区域的名字为 test</li>
+<li><code>sht2.range('B3:F6').number_format</code> 获得区域内数字的格式</li>
+<li><code>sht2.range('B3:F6').number_format = '0.00%'</code> 设置区域内数字的格式</li>
+<li><code>sht2.range('B3:F6').offset(row_offset=0, column_offset=0)</code> 返回 <code>Range</code> 对象，代表偏移后的范围</li>
+<li><code>sht2.range('B3:F6').options(convert=None, **options)</code> 可设置数值转换规则等，具体见<a href="https://docs.xlwings.org/en/stable/api.html#xlwings.Range.options">这里</a></li>
+</ul>
+<h4 id="4210">4.2.10 其他</h4>
+<ul>
+<li><code>sht2.range('B3:F6').raw_value</code> 直接加载数据，不经过 xlwings 转换，对速度要求高的应用可以考虑这个选项</li>
+<li><code>sht2.range('B3:F6').sheet</code> 返回区域属于的表单</li>
+</ul>
+<h2 id="5">5. 操作表单中的形状</h2>
+<h3 id="51">5.1 获取形状数量</h3>
+<div class="highlight"><pre><span></span>[In 1]: sht2.shapes
+[Out 1]: Shapes([&lt;Shape 'Isosceles Triangle 1' in &lt;Sheet [test.xlsx]Sheet2&gt;&gt;])
+[In 2]: sht2.shapes.count
+[Out 2]: 1
+</pre></div>
+<h3 id="52">5.2 索引形状</h3>
+<p>有四种索引方法，例如我们需要索引 <em>Isosceles Triangle 1</em>：</p>
+<ul>
+<li><code>shp = sht2.shapes[0]</code>，这种索引方法是 Python 的索引，形状的编号从 0 开始</li>
+<li><code>shp = sht2.shapes(1)</code>，这种索引方法是 Excel 的索引，形状编号从 1 开始</li>
+<li><code>shp = sht2.shapes['Isosceles Triangle 1']</code>，这种索引方法是直接利用形状名字索引的</li>
+<li><code>shp = sht2.shapes['Isosceles Triangle 1')</code>，这种索引方法也是直接利用形状名字索引的</li>
+</ul>
+<h3 id="53">5.3 操作形状</h3>
+<ul>
+<li><code>shp.activate()</code> 激活形状</li>
+<li><code>shp.delete()</code> 删除形状</li>
+<li><code>shp.height</code> 返回或设置形状的高度，单位是 point</li>
+<li><code>shp.width</code> 返回或设置形状的宽度，单位是 point</li>
+<li><code>shp.top</code> 返回或设置形状的水平位置，单位是 point</li>
+<li><code>shp.left</code> 返回或设置形状的竖直位置，单位是 point</li>
+<li><code>shp.name</code> 返回或设置形状的名字</li>
+<li><code>shp.parent</code> 返回形状的前驱</li>
+<li><code>shp.type</code>返回形状的类型</li>
+</ul>
+<h2 id="6">6. 操作表单中的表格</h2>
+<h3 id="61">6.1 获取表格数量</h3>
+<div class="highlight"><pre><span></span>[In 1]: sht2.charts
+[Out 1]: Charts([&lt;Chart 'Chart 2' in &lt;Sheet [test.xlsx]Sheet2&gt;&gt;])
+[In 2]: sht2.charts.count
+[Out 2]: 1
+</pre></div>
+<h3 id="62">6.2 添加表格</h3>
+<p>利用 <code>add(left=0, top=0, width=355, height=211)</code> 函数：</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwings</span> <span class="kn">as</span> <span class="nn">xw</span>
+
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">sht</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">()</span><span class="o">.</span><span class="n">sheets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">sht</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="s1">'A1'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">'Foo1'</span><span class="p">,</span> <span class="s1">'Foo2'</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">4</span><span class="p">]:</span> <span class="n">chart</span> <span class="o">=</span> <span class="n">sht2</span><span class="o">.</span><span class="n">charts</span><span class="o">.</span><span class="n">add</span><span class="p">()</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">5</span><span class="p">]:</span> <span class="n">chart</span><span class="o">.</span><span class="n">set_source_data</span><span class="p">(</span><span class="n">sht</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="s1">'A1'</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">())</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">6</span><span class="p">]:</span> <span class="n">chart</span><span class="o">.</span><span class="n">chart_type</span> <span class="o">=</span> <span class="s1">'line'</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">7</span><span class="p">]:</span> <span class="n">chart</span><span class="o">.</span><span class="n">name</span>
+<span class="p">[</span><span class="n">Out</span> <span class="mi">7</span><span class="p">]:</span> <span class="s1">'Chart1'</span>
+</pre></div>
+<h3 id="63">6.3 索引表格</h3>
+<p>有四种索引方法，例如我们需要索引 <em>Chart 2</em>：</p>
+<ul>
+<li><code>cha = sht2.charts[0]</code>，这种索引方法是 Python 的索引，表格的编号从 0 开始</li>
+<li><code>cha = sht2.charts(1)</code>，这种索引方法是 Excel 的索引，表格编号从 1 开始</li>
+<li><code>cha = sht2.charts['Chart 2']</code>，这种索引方法是直接利用表格名字索引的</li>
+<li><code>cha = sht2.charts['Chart 2')</code>，这种索引方法也是直接利用表格名字索引的</li>
+</ul>
+<h3 id="64">6.4 操作表格</h3>
+<ul>
+<li><code>cha.delete()</code> 删除表格</li>
+<li><code>cha.height</code> 返回或设置表格的高度，单位是 point</li>
+<li><code>cha.width</code> 返回或设置表格的宽度，单位是 point</li>
+<li><code>cha.top</code> 返回或设置表格的水平位置，单位是 point</li>
+<li><code>cha.left</code> 返回或设置表格的竖直位置，单位是 point</li>
+<li><code>cha.name</code> 返回或设置表格的名字</li>
+<li><code>cha.parent</code> 返回表格的前驱</li>
+<li><code>cha.chart_type</code>返回表格的类型</li>
+<li><code>cha.set_source_data(args)</code>  设置表格的数据来源，<code>args</code> 为 <code>Range</code> 对象</li>
+</ul>
+<h2 id="7">7. 操作表单中的图像</h2>
+<h3 id="71">7.1 获取图像数量</h3>
+<div class="highlight"><pre><span></span>[In 1]: sht2.pictures
+[Out 1]: Charts([&lt;Chart 'Chart 2' in &lt;Sheet [test.xlsx]Sheet2&gt;&gt;])
+[In 2]: sht2.pictures.count
+[Out 2]: 1
+</pre></div>
+<h3 id="72">7.2 添加图像</h3>
+<p>利用 <code>add(image, link_to_file=False, save_with_document=True, left=0, top=0, width=None, height=None, name=None, update=False)</code> 函数，第一参数可以是计算机中图像的路径（字符串）或者是 <code>Matplotlib</code> 对象：</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">xlwings</span> <span class="kn">as</span> <span class="nn">xw</span>
+
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">sht</span> <span class="o">=</span> <span class="n">xw</span><span class="o">.</span><span class="n">Book</span><span class="p">()</span><span class="o">.</span><span class="n">sheets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">sht</span><span class="o">.</span><span class="n">pictures</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">'path//to//file'</span><span class="p">)</span>
+</pre></div>
+<p>或者</p>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">In</span> <span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">2</span><span class="p">]:</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">3</span><span class="p">]:</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="p">[</span><span class="n">In</span> <span class="mi">4</span><span class="p">]:</span> <span class="n">sht</span><span class="o">.</span><span class="n">pictures</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'MyPlot'</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+<h3 id="73">7.3 索引图像</h3>
+<p>有四种索引方法，例如我们需要索引 <em>Picture 1</em>：</p>
+<ul>
+<li><code>pic = sht2.pictures[0]</code>，这种索引方法是 Python 的索引，图像的编号从 0 开始</li>
+<li><code>pic = sht2.pictures(1)</code>，这种索引方法是 Excel 的索引，图像编号从 1 开始</li>
+<li><code>pic = sht2.pictures['Picture 1']</code>，这种索引方法是直接利用图像名字索引的</li>
+<li><code>pic = sht2.pictures['Picture 1')</code>，这种索引方法也是直接利用图像名字索引的</li>
+</ul>
+<h3 id="74">7.4 操作图像</h3>
+<ul>
+<li><code>pic.delete()</code> 删除图像</li>
+<li><code>pic.height</code> 返回或设置图像的高度，单位是 point</li>
+<li><code>pic.width</code> 返回或设置图像的宽度，单位是 point</li>
+<li><code>pic.top</code> 返回或设置图像的水平位置，单位是 point</li>
+<li><code>pic.left</code> 返回或设置图像的竖直位置，单位是 point</li>
+<li><code>pic.name</code> 返回或设置图像的名字</li>
+<li><code>pic.parent</code> 返回图像的前驱</li>
+<li><code>pic.update(image)</code> 用新的图像替换当前图像，图像属性不变</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <aside>
+                    <hr />
+                    <nav class="related">
+                        <h1>
+                            <font color="#771515"><em>RELATED</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/10/args/">Python argparse 模块</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/05/py/">Python 教程</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/05/100/">Python 100 days</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/10/directional_derivative-gradient/">
+                                    方向导数和梯度
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/10/lagrange_duality/">
+                                    拉格朗日对偶性
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/10/args/">
+                                    Python argparse 模块
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/05/bayes/">
+                                    贝叶斯定理
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/28/指示器随机变量/">
+                                    指示器随机变量
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="newer">
+                        <h1>
+                            <font color="#771515"><em>NEWER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/16/likelihood-function/">
+                                    似然函数
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-1/">
+                                    深度学习 第一章 引言
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-2/">
+                                    深度学习 第二章 线性代数
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/21/dl-3/">
+                                    深度学习 第三章 概率与信息论
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/11/24/dl-4/">
+                                    深度学习 第四章 数值计算
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- Gitalk 评论 start  -->
+
+                    <!-- Link Gitalk 的支持文件  -->
+                    <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                    <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                    <div id="gitalk-container"></div>
+                    <script type="text/javascript">
+                        var dateTime = Date.now();
+                        var timestamp = Math.floor(dateTime / 1000);
+                        var gitalk = new Gitalk({
+
+                            // gitalk的主要参数
+                            clientID: '93f43349e9fd3154bfad',
+                            clientSecret: 'd6d09d1d7261f6b62f46b39e5fcace85b81c3cd7',
+                            repo: 'xutree.github.io',
+                            owner: 'xutree',
+                            admin: ['xutree'],
+                            id: String(timestamp)
+
+                        });
+                        gitalk.render('gitalk-container');
+                    </script> -->
+                    <!-- Gitalk end -->
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2018-11-12T13:13:45+08:00">2018-11-12 13:13:45</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2018-11-12 15:43:58</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#教程-ref">教程</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#Excel-ref">Excel
+                                <span>1</span>
+</a></li>
+                        <li><a href="/tags.html#python-ref">python
+                                <span>4</span>
+</a></li>
+                        <li><a href="/tags.html#xlwings-ref">xlwings
+                                <span>1</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
