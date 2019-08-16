@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="SQL, 读书笔记, " />
+    <title>深入浅出 SQL  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2019/08/16/深入浅出SQL/"> 深入浅出 SQL  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+            <div class="span8 offset2 article-content">
+
+                <h2 id="1">1. 数据和表</h2>
+<ul>
+<li><strong>数据库</strong>是保存表和其他相关SQL的容器，数据库中的所有表应该以某种方式相互关联</li>
+<li><strong>表</strong>由行（或记录 record）和列（或字段 field）组成。<strong>行</strong>包含某个对象的所有信息，<strong>列</strong>表示各个分类</li>
+<li>创建数据库 <code>CREATE DATABASE database_name;</code></li>
+<li>使用数据库 <code>USE database_name;</code></li>
+<li>
+<p>创建表格</p>
+<p><code>CREATE TABLE table_name
+(
+    field1 TYPE1(length1),
+    field2 TYPE2(length2)
+);</code>
+- 数据类型
+- char(character) 事先设定好的长度
+- int(integer) 整数
+- dec(decimal) 实数
+- date 日期
+- time、timestamp、datetime 时间
+- varchar 可变长度文本，最长255
+- blob 大量文本数据
+- 检查创建的表 <code>DESC table_name;</code> （describe）
+- 删除表 <code>DROP table_name;</code>
+- 插入行
+- <code>INSERT INFO table_name (fiel1,..., fieldN) VALUE (value1,...,valueN);</code>
+- 可以改变field的顺序，但是相应的value也要改变
+- 可以省略所有field，但是此时value要填入所有数据，并且顺序要正确
+- 可以省略部分field
+- 控制数据格式，比如创建表时 <code>field_name TYPE(length) NOT NULL DEFAULT default_value,</code></p>
+</li>
+</ul>
+<h2 id="2-select">2. SELECT 语句</h2>
+<ul>
+<li><code>SELECT * FROM table_name WHERE conditions;</code></li>
+<li><code>SELECT field1,...,fieldN FROM table_name WHERE conditions;</code></li>
+<li>条件<ul>
+<li>逻辑 <code>AND</code>、<code>OR</code></li>
+<li>比较 <code>&lt;</code>、<code>&gt;</code>、<code>&lt;=</code>、<code>&gt;=</code>、<code>&lt;&gt;</code>、<code>=</code></li>
+<li>判空 <code>IS NULL</code></li>
+<li>通配符 <code>LIKE</code><ul>
+<li><code>%</code> 任何数量未知字符 <code>WHERE fiel1 LIKE '%im';</code></li>
+<li><code>_</code> 一个未知字符 <code>WHERE fiel1 LIKE '_im';</code></li>
+</ul>
+</li>
+<li>连续范围 <code>WHERE fiel1 BETWEEN a AND b;</code></li>
+<li>离散范围 <code>WHERE fiel1 IN (value1,...,valueN);</code></li>
+<li><code>NOT</code> 可以和 <code>NULL</code>、<code>BETWEEN</code>、<code>LIKE</code> 和 <code>IN</code> 一起使用，注意 <strong><code>NOT</code> 要紧接在 <code>WHERE</code> 或 <code>AND</code> 或 <code>OR</code> 后面</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="3-delete">3. DELETE 语句</h2>
+<ul>
+<li><code>DELETE FROM table_name WHERE conditions;</code></li>
+<li>只能删除一行或者多行</li>
+<li><code>DELETE</code> 之前先 <code>SELECT</code> 确认一下</li>
+</ul>
+<h2 id="4-update">4. UPDATE 语句</h2>
+<ul>
+<li><code>UPDATE table_name SET fiel1=value1,...,fieldN=valueN WHERE conditions;</code></li>
+<li>可以使用基础数学运算和函数，如 <code>UPDATE table_name SET fiel1=f(fiel1),...,fieldN=valueN WHERE conditions;</code></li>
+</ul>
+<h2 id="5">5. 规范化</h2>
+<h3 id="51">5.1 原子性</h3>
+<ul>
+<li>同一列中不会有多个类型相同的值（比如爱好列里许多爱好）</li>
+<li>不会有多个存储同类数据的列（比如三个学生类）</li>
+</ul>
+<h3 id="52">5.2 规范化优点</h3>
+<ul>
+<li>规范化表中没有重复的数据，可以减少数据库的大小</li>
+<li>因为查询的数据较少，你的查询会更快</li>
+</ul>
+<h3 id="53-first-normal-form1nf">5.3 第一范式（First Normal Form）1NF</h3>
+<ul>
+<li>每个数据行必须包含具有原子性的值</li>
+<li>每个数据行必须有主键（Primary Key）</li>
+<li>主键必须不为 <code>NULL</code>，不能被修改，插入新数据必须指定</li>
+<li>创建表格是指定主键 <code>PRIMARY KEY(field_name)</code></li>
+</ul>
+<div class="highlight"><pre><span></span>    CREATE TABLE table_name
+    (
+        id INT NOT NULL AUTO_INCREMENT,
+        field2 TYPE2(length2),
+        PRIMARY KEY(id)
+    );
+</pre></div>
+
+
+<ul>
+<li><code>SHOW</code> 命令<ul>
+<li><code>SHOW CREATE TABLE table_name;</code></li>
+<li><code>SHOW CREATE DATABASE database_name;</code></li>
+<li><code>SHOW COLUMNS FROM table_name;</code></li>
+<li><code>SHOW INDEX FROM table_name;</code></li>
+<li><code>SHOW WARNINGS;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="6-alter">6. ALTER 命令</h2>
+<ul>
+<li>添加新列</li>
+</ul>
+<div class="highlight"><pre><span></span>    ALTER TABLE table_name
+    ADD COLUMN id INT NOT NULL AUTO_INCREMENT FIRST,
+    ADD PRIMARY KEY(id);
+</pre></div>
+
+
+<ul>
+<li><code>ADD</code> 添加列</li>
+<li><code>MODIFY</code> 修改列的数据类型或位置</li>
+<li><code>CHANGE</code> 修改列的名称和数据类型</li>
+<li><code>DROP</code> 删除列</li>
+<li>修改表名 <code>ALTER TABLE table_name RENAME TO new_name;</code></li>
+<li>修改列名并设为主键</li>
+</ul>
+<div class="highlight"><pre><span></span>    ALTER TABLE table_name
+    CHANGE COLUMN field1 newfield1 INT NOT NULL AUTO_INCREMENT,
+    ADD PRIMARY KEY(newfield1);
+</pre></div>
+
+
+<ul>
+<li>修改多个列，逗号隔开</li>
+</ul>
+<div class="highlight"><pre><span></span>    ALTER TABLE table_name
+    CHANGE COLUMN field1 newfield1 TYPE(length),
+    CHANGE COLUMN field2 newfield2 TYPE(length);
+</pre></div>
+
+
+<ul>
+<li>删除某一列 <code>ALTER TABLE table_name DROP COLUMN fiel1;</code></li>
+<li>修改位置 <code>ALTER TABLE table_name MODIFY COLUMN fieli AFTER fieldj;</code></li>
+<li><code>FIRST</code>, <code>SECOND</code>, <code>THIRD</code>, <code>FOURTH</code>, <code>BEFORE</code>, <code>AFTER</code>, <code>LAST</code></li>
+<li>一些字符函数<ul>
+<li><code>RIGHT(field_name, count)</code></li>
+<li><code>LEFT(field_name, count)</code></li>
+<li><code>SUBSTRING_INDEX(field_name, letter, pos)</code></li>
+</ul>
+</li>
+<li>联合使用 <code>UPDATE table_name SET file1=RIGHT(field2, 2);</code></li>
+</ul>
+<h2 id="7-select">7. SELECT 进阶</h2>
+<h3 id="71-case">7.1 CASE</h3>
+<ul>
+<li>语法如下，缩进不影响，只是为了看起来方便</li>
+</ul>
+<div class="highlight"><pre><span></span>    UPDATE table_name
+    SET category =
+    CASE
+        WHEN drama=&#39;T&#39; THEN &#39;drama&#39;
+        WHEN ...
+        ...
+        ELSE &#39;misc&#39;
+    END;
+</pre></div>
+
+
+<h3 id="72-order-by">7.2 ORDER BY</h3>
+<ul>
+<li>多列排序 <code>SELECT * FROM table_name ORDER BY fiel1,...,fieldN;</code></li>
+<li>降序关键字 <code>DESC</code> 必须位于需要降序的field名字后面</li>
+</ul>
+<div class="highlight"><pre><span></span>    SELECT * FROM table_name
+    ORDER BY field1 ASC, field2 DESC;
+</pre></div>
+
+
+<h3 id="73-group-by">7.3 GROUP BY</h3>
+<ul>
+<li><code>GROUP BY</code>必须得配合聚合函数来用</li>
+<li>常用聚合函数：<code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>, <code>COUNT</code></li>
+</ul>
+<h3 id="74">7.4 其他</h3>
+<ul>
+<li><code>DISTINCT</code> 非重复 <code>SELECT DISTINCT field1 FROM table_name;</code></li>
+<li><code>LIMIT a, b;</code> 从a开始显示b个，SQL从零开始计数</li>
+</ul>
+<h2 id="8">8. 多张表的数据库设计</h2>
+<ul>
+<li><strong>schema</strong> 对数据库内的数据描述（列和表），以及任何相关对象和各种连接方式的描述称为模式</li>
+<li><strong>外键</strong>（foreign key）是表中的某一列，它引用到另一个表的主键<ul>
+<li>外键可能与它引用的主键名称不同</li>
+<li>外键使用的主键被称为父键，主键所在的表又被称为父表</li>
+<li>外键的值可以是 NULL，即使主键值不可为 NULL（通过外键约束解决）</li>
+<li>外键值不需要唯一</li>
+</ul>
+</li>
+</ul>
+<h3 id="81">8.1 外键约束</h3>
+<ul>
+<li>SQL 的主键和外键的作用：<ul>
+<li>外键取值规则：空值或参照的主键值</li>
+<li>插入非空值时，如果主键表中没有这个值，则不能插入</li>
+<li>更新时，不能改为主键表中没有的值</li>
+<li>删除主键表记录时，你可以在建外键时选定外键记录一起级联删除还是拒绝删除</li>
+<li>更新主键记录时，同样有级联更新和拒绝执行的选择</li>
+</ul>
+</li>
+<li>创建带有外键的表</li>
+</ul>
+<div class="highlight"><pre><span></span>    CREATE TABLE table_name2
+    (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    field1 TYPE(length),
+    ...,
+    fk_field INT NOT NULL,
+    CONSTRAINT parenttable_parentkey_fk
+    FOREIGN KEY (fk_field)
+    REFERENCES parenttable (parentkey)
+    );
+</pre></div>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/06/01/sl-12/">
+                                    统计学习方法 第十二章 统计学习方法总结
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/05/17/sl-11/">
+                                    统计学习方法 第十一章 条件随机场
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/04/19/sl-10/">
+                                    统计学习方法 第十章 隐马尔科夫模型
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/04/04/sl-9/">
+                                    统计学习方法 第九章 EM 算法及其推广
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/03/23/sl-8/">
+                                    统计学习方法 第八章 提升方法
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2019-08-16T18:37:44+08:00">2019-08-16 18:37:44</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-08-16 18:37:44</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#SQL-ref">SQL
+                                <span>1</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
