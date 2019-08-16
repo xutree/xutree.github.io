@@ -54,9 +54,41 @@
 
     <div class="row-fluid">
         <!--  -->
-            <div class="span8 offset2 article-content">
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1">1. 数据和表</a></li>
+<li><a href="#2-select">2. SELECT 语句</a></li>
+<li><a href="#3-delete">3. DELETE 语句</a></li>
+<li><a href="#4-update">4. UPDATE 语句</a></li>
+<li><a href="#5">5. 规范化</a><ul>
+<li><a href="#51">5.1 原子性</a></li>
+<li><a href="#52">5.2 规范化优点</a></li>
+<li><a href="#53-first-normal-form1nf">5.3 第一范式（First Normal Form）1NF</a></li>
+</ul>
+</li>
+<li><a href="#6-alter">6. ALTER 命令</a></li>
+<li><a href="#7-select">7. SELECT 进阶</a><ul>
+<li><a href="#71-case">7.1 CASE</a></li>
+<li><a href="#72-order-by">7.2 ORDER BY</a></li>
+<li><a href="#73-group-by">7.3 GROUP BY</a></li>
+<li><a href="#74">7.4 其他</a></li>
+</ul>
+</li>
+<li><a href="#8">8. 多张表的数据库设计</a><ul>
+<li><a href="#81">8.1 外键约束</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
 
-                <h2 id="1">1. 数据和表</h2>
+                
+<h2 id="1">1. 数据和表</h2>
 <ul>
 <li><strong>数据库</strong>是保存表和其他相关SQL的容器，数据库中的所有表应该以某种方式相互关联</li>
 <li><strong>表</strong>由行（或记录 record）和列（或字段 field）组成。<strong>行</strong>包含某个对象的所有信息，<strong>列</strong>表示各个分类</li>
@@ -142,8 +174,6 @@
         PRIMARY KEY(id)
     );
 </pre></div>
-
-
 <ul>
 <li><code>SHOW</code> 命令<ul>
 <li><code>SHOW CREATE TABLE table_name;</code></li>
@@ -162,8 +192,6 @@
     ADD COLUMN id INT NOT NULL AUTO_INCREMENT FIRST,
     ADD PRIMARY KEY(id);
 </pre></div>
-
-
 <ul>
 <li><code>ADD</code> 添加列</li>
 <li><code>MODIFY</code> 修改列的数据类型或位置</li>
@@ -176,8 +204,6 @@
     CHANGE COLUMN field1 newfield1 INT NOT NULL AUTO_INCREMENT,
     ADD PRIMARY KEY(newfield1);
 </pre></div>
-
-
 <ul>
 <li>修改多个列，逗号隔开</li>
 </ul>
@@ -185,8 +211,6 @@
     CHANGE COLUMN field1 newfield1 TYPE(length),
     CHANGE COLUMN field2 newfield2 TYPE(length);
 </pre></div>
-
-
 <ul>
 <li>删除某一列 <code>ALTER TABLE table_name DROP COLUMN fiel1;</code></li>
 <li>修改位置 <code>ALTER TABLE table_name MODIFY COLUMN fieli AFTER fieldj;</code></li>
@@ -207,14 +231,12 @@
 <div class="highlight"><pre><span></span>    UPDATE table_name
     SET category =
     CASE
-        WHEN drama=&#39;T&#39; THEN &#39;drama&#39;
+        WHEN drama='T' THEN 'drama'
         WHEN ...
         ...
-        ELSE &#39;misc&#39;
+        ELSE 'misc'
     END;
 </pre></div>
-
-
 <h3 id="72-order-by">7.2 ORDER BY</h3>
 <ul>
 <li>多列排序 <code>SELECT * FROM table_name ORDER BY fiel1,...,fieldN;</code></li>
@@ -223,8 +245,6 @@
 <div class="highlight"><pre><span></span>    SELECT * FROM table_name
     ORDER BY field1 ASC, field2 DESC;
 </pre></div>
-
-
 <h3 id="73-group-by">7.3 GROUP BY</h3>
 <ul>
 <li><code>GROUP BY</code>必须得配合聚合函数来用</li>
