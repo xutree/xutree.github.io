@@ -113,6 +113,7 @@
 </ul>
 </li>
 <li><a href="#13">13. 安全性</a></li>
+<li><a href="#14">14. 其他</a></li>
 </ul>
 </div>
             </nav>
@@ -136,12 +137,18 @@
 );</code>
 - 数据类型
 - char(character) 事先设定好的长度
-- int(integer) 整数
+- tinyint 有/无符号
+- smallint 有/无符号
+- mediumint 有/无符号
+- int(integer) 无符号整数 0~4294967295
+- int(signed) 有符号整数 -2147483648~2147483647
+- bigint 有/无符号
 - dec(decimal) 实数
-- date 日期
-- time、timestamp、datetime 时间
+- date 日期 YYYY-MM-DD
+- time（HH:MM:SS）、timestamp（YYYYMMDDHHMMSS）、datetime （YYYY-MM-DD HH:MM:SS）时间
 - varchar 可变长度文本，最长255
 - blob 大量文本数据
+- boolean 0 和 1
 - 检查创建的表 <code>DESC table_name;</code> （describe）
 - 删除表 <code>DROP table_name;</code>
 - 插入行
@@ -554,6 +561,32 @@ ON c1.boss_id = c2.id;
 </ul>
 <div class="highlight"><pre><span></span>    GRANT SELECT ON tabel TO user IDENTIFIED BY 'password';
 </pre></div>
+<h2 id="14">14. 其他</h2>
+<ul>
+<li><a href="http://localhost/phpMyAdmin">http://localhost/phpMyAdmin</a></li>
+<li><code>&gt; ALL</code>, <code>&lt; ANY</code></li>
+<li><code>SELECT DATE_FORMAT(a_data, '%M %Y') FROM some_dates;</code></li>
+<li>临时表（MySQL）：<ul>
+<li><code>CREATE TEMPORARY TABLE table_name AS ...;</code></li>
+<li><code>CREATE TEMPORARY TABLE table_name();</code></li>
+</ul>
+</li>
+<li>类型转换 <code>CAST(your_column, TYPE)</code></li>
+<li>显示日期时间用户：<code>SELECT CURRENT_USER(DATE, TIME);</code></li>
+<li>数字函数：<ul>
+<li><code>abs, ceil, floor, round, sign</code></li>
+<li><code>sin, cos, tan, cot, asin, acos, atan</code></li>
+<li><code>exp, ln, log, mod, power, sqrt</code></li>
+<li><code>format, radians, pi, rand, truncate</code></li>
+</ul>
+</li>
+<li>索引能加快速度，为列添加索引：<code>ALTER TABLE table_name ADD INDEX (field);</code></li>
+</ul>
+<p><img alt="常用操作" src="https://xutree.github.io/images/深入浅出sql1.jpg"/>
+<img alt="常用操作" src="https://xutree.github.io/images/深入浅出sql2.jpg"/>
+<img alt="常用操作" src="https://xutree.github.io/images/深入浅出sql3.jpg"/>
+<img alt="常用操作" src="https://xutree.github.io/images/深入浅出sql4.jpg"/>
+<img alt="常用操作" src="https://xutree.github.io/images/深入浅出sql5.jpg"/></p>
                 <aside>
                     <hr />
                     <nav class="older">
