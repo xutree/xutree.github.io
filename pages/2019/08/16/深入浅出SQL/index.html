@@ -134,30 +134,38 @@
 (
     field1 TYPE1(length1),
     field2 TYPE2(length2)
-);</code>
-- 数据类型
-- char(character) 事先设定好的长度
-- tinyint 有/无符号
-- smallint 有/无符号
-- mediumint 有/无符号
-- int(integer) 无符号整数 0~4294967295
-- int(signed) 有符号整数 -2147483648~2147483647
-- bigint 有/无符号
-- dec(decimal) 实数
-- date 日期 YYYY-MM-DD
-- time（HH:MM:SS）、timestamp（YYYYMMDDHHMMSS）、datetime （YYYY-MM-DD HH:MM:SS）时间
-- varchar 可变长度文本，最长255
-- blob 大量文本数据
-- boolean 0 和 1
-- 检查创建的表 <code>DESC table_name;</code> （describe）
-- 删除表 <code>DROP table_name;</code>
-- 插入行
-- <code>INSERT INTO table_name (fiel1,..., fieldN) VALUES (value1,...,valueN);</code>
-- 可以改变field的顺序，但是相应的value也要改变
-- 可以省略所有field，但是此时value要填入所有数据，并且顺序要正确
-- 可以省略部分field
-- 控制数据格式，比如创建表时 <code>field_name TYPE(length) NOT NULL DEFAULT default_value,</code></p>
+);</code></p>
 </li>
+<li>
+<p>数据类型</p>
+<ul>
+<li>char(character) 事先设定好的长度</li>
+<li>tinyint 有/无符号</li>
+<li>smallint 有/无符号</li>
+<li>mediumint 有/无符号</li>
+<li>int(integer) 无符号整数 0~4294967295</li>
+<li>int(signed) 有符号整数 -2147483648~2147483647</li>
+<li>bigint 有/无符号</li>
+<li>dec(decimal) 实数</li>
+<li>date 日期 YYYY-MM-DD</li>
+<li>time（HH:MM:SS）</li>
+<li>timestamp（YYYYMMDDHHMMSS）</li>
+<li>datetime （YYYY-MM-DD HH:MM:SS）时间</li>
+<li>varchar 可变长度文本，最长255</li>
+<li>blob 大量文本数据</li>
+<li>boolean 0 和 1</li>
+</ul>
+</li>
+<li>检查创建的表 <code>DESC table_name;</code> （describe）</li>
+<li>删除表 <code>DROP table_name;</code></li>
+<li>插入行<ul>
+<li><code>INSERT INTO table_name (fiel1,..., fieldN) VALUES (value1,...,valueN);</code></li>
+<li>可以改变field的顺序，但是相应的value也要改变</li>
+<li>可以省略所有field，但是此时value要填入所有数据，并且顺序要正确</li>
+<li>可以省略部分field</li>
+</ul>
+</li>
+<li>控制数据格式，比如创建表时 <code>field_name TYPE(length) NOT NULL DEFAULT default_value,</code></li>
 </ul>
 <h2 id="2-select">2. SELECT 语句</h2>
 <ul>
@@ -187,8 +195,11 @@
 <h2 id="4-update">4. UPDATE 语句</h2>
 <ul>
 <li><code>UPDATE table_name SET fiel1=value1,...,fieldN=valueN WHERE conditions;</code></li>
-<li>可以使用基础数学运算和函数，如 <code>UPDATE table_name SET fiel1=f(fiel1),...,fieldN=valueN WHERE conditions;</code></li>
+<li>可以使用基础数学运算和函数，如</li>
 </ul>
+<div class="highlight"><pre><span></span>    UPDATE table_name SET fiel1=f(fiel1)
+    WHERE conditions;
+</pre></div>
 <h2 id="5">5. 规范化</h2>
 <h3 id="51">5.1 原子性</h3>
 <ul>
@@ -628,7 +639,7 @@ ON c1.boss_id = c2.id;
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2019-08-16T18:37:44+08:00">2019-08-16 18:37:44</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2019-08-16 18:37:44</div>
+                    <div class="last_updated">2019-08-17 14:27:46</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
