@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="C++, 读书笔记, " />
+    <title>C++ 中的类型转换  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2019/09/07/cast/"> C++ 中的类型转换  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1">1. 引言</a></li>
+<li><a href="#2">2. 类型提升和算术类型转换</a></li>
+<li><a href="#3">3. 转换构造函数</a></li>
+<li><a href="#4">4. 类型转换运算符</a></li>
+<li><a href="#5">5. 继承类到基类的类型转换</a><ul>
+<li><a href="#51">5.1 静态类型和动态类型</a></li>
+<li><a href="#52">5.2 阻止向上类型转换</a></li>
+<li><a href="#53">5.3 多重继承与向上类型转换</a></li>
+</ul>
+</li>
+<li><a href="#6">6. 其它隐式类型转换</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
+
+                
+<h3 id="1">1. 引言</h3>
+<p>不同的数据在计算机内存中的<strong>存储方式不同</strong>，导致了“类型”这一抽象概念的产生。</p>
+<p>对于一个变量，需要回答三个问题：</p>
+<ul>
+<li>变量的起点（内存地址）</li>
+<li>变量的内存长度（类型决定）</li>
+<li>变量的解析方式（类型决定）</li>
+</ul>
+<p>一般情况下不同类型的两个变量无法直接进行运算。这样就需要类型转换。存在两个概念：<strong>隐式类型转换</strong>和<strong>显式类型转换</strong>。</p>
+<ul>
+<li>隐式类型转换：不通过专门的类型转换操作，而是通过其他规定或代码上下文隐式发生的类型转换</li>
+<li>显式类型转换：通过专门的类型转换操作进行，具有强制性，不会受任何类型转换以外的因素影响，又被称为<strong>强制类型转换</strong></li>
+</ul>
+<h3 id="2">2. 类型提升和算术类型转换</h3>
+<ul>
+<li>对于同类算术类型，如 <code>short</code> 与 <code>int</code>、<code>float</code> 与 <code>double</code>，占用内存小的类型转换为另一类型。这称为类型提升</li>
+<li>整型转换为浮点型</li>
+<li>仅当无符号类型占用的内存小于有符号类型时，无符号类型才提升为有符号类型，否则，有符号类型转换为无符号类型</li>
+</ul>
+<div class="highlight"><pre><span></span>int main() {
+    unsigned short a = 1;
+    unsigned b = 1;
+    cout &lt;&lt; ( a &gt; -1) &lt;&lt; " " &lt;&lt; (b &gt; -1) &lt;&lt; endl;
+}
+//将输出 1 0
+</pre></div>
+<h3 id="3">3. 转换构造函数</h3>
+<ul>
+<li>构造函数只有一个形参</li>
+<li>构造函数不止一个形参，但只有第一个形参无默认值</li>
+<li>构造函数不止一个形参，但都有默认值</li>
+<li>第一形参的类型不是类本身（此时为拷贝构造函数）或其附加类型（此时为移动构造函数）</li>
+</ul>
+<p>若要避免隐式类型转换，可以利用 <code>explicit</code> 关键字。</p>
+<h3 id="4">4. 类型转换运算符</h3>
+<p>定义了与转换构造函数相反的操作，从类类型转换为其他类型。在 <code>operator</code> 之后跟着转换的目标类型。</p>
+<div class="highlight"><pre><span></span>struct A {
+    operator int() const {
+        return 0;
+    }
+};
+
+void test(int) {}
+
+int main() {
+    test(A());
+}
+</pre></div>
+<p>若要避免隐式类型转换，可以利用 <code>explicit</code> 关键字。</p>
+<p>对于类型转换运算符与 <code>explicit</code> 有一个例外：<code>operator bool()</code> 在条件表达式或逻辑表达式中发生的隐式类型转换不受 <code>explicit</code> 的影响。</p>
+<h3 id="5">5. 继承类到基类的类型转换</h3>
+<p>继承类到基类的类型转换，称为<strong>向上类型转换</strong>。</p>
+<div class="highlight"><pre><span></span><span class="nt">struct</span> <span class="nt">A</span> <span class="p">{}</span><span class="o">;</span>
+<span class="nt">struct</span> <span class="nt">B</span><span class="o">:</span> <span class="nt">A</span> <span class="p">{}</span><span class="o">;</span>
+
+<span class="nt">int</span> <span class="nt">main</span><span class="o">()</span> <span class="p">{</span>
+    <span class="err">A</span> <span class="err">a1</span> <span class="err">=</span>  <span class="err">B()</span><span class="p">;</span> <span class="err">//值向上转换，切除继承类部分，实际调用拷贝复制构造函数</span>
+    <span class="err">A</span> <span class="err">*a1</span> <span class="err">=</span> <span class="err">new</span> <span class="err">B</span><span class="p">;</span> <span class="err">//指针向上转换</span>
+    <span class="err">A</span> <span class="err">&amp;a3</span> <span class="err">=</span> <span class="err">a1</span><span class="p">;</span> <span class="err">//左值引用向上转换</span>
+    <span class="err">A</span> <span class="err">&amp;&amp;a4</span> <span class="err">=</span> <span class="err">B()</span><span class="p">;</span> <span class="err">//右值引用向上转换</span>
+<span class="p">}</span>
+</pre></div>
+<h4 id="51">5.1 静态类型和动态类型</h4>
+<ul>
+<li>静态类型：变量声明的类型</li>
+<li>动态类型：变量实际存储的数据的类型</li>
+</ul>
+<p>绝大多数情况下，静态类型与动态类型都是必须一致的，否则将发生隐式类型转换或引发编译错误。<strong>当且仅当使用基类的指针或引用存储继承类对象时，变量的静态类型与动态类型将不一致</strong>。此时，虽然看上去发生了向上类型转换，实际上并未发生，称为<strong>动态绑定</strong>。</p>
+<p>一个变量的静态类型，决定了由此变量能够访问到的成员名称。当静态类型时基类指针或引用时，即使变量存放的是继承类对象，也只能访问到基类中声明的数据成员。</p>
+<p>即：如果发生向上类型转换的类型是类的指针或引用，将以丢失继承类部分的成员名称为代价进行向上类型转换。</p>
+<p>但是由于<strong>虚函数</strong>的存在，访问成员名称所得到的实际成员函数将不一定与静态类型保持一致，此性质是 C++ <strong>多态</strong> 的核心。</p>
+<h4 id="52">5.2 阻止向上类型转换</h4>
+<p>为什么继承类可以访问基类的成员？</p>
+<p>不难发现，“继承类可以访问基类成员”这一性质并不是天经地义的，因为继承类中并没有“复制粘贴”一个基类，而只有继承类本身的部分，故原则上继承类虽然继承了基类，但其本身仍然是没有能力访问基类的成员的。</p>
+<p>继承类对象之所以能够访问基类成员，是因为在进行这样的访问时，<strong>继承类的 <code>this</code> 指针通过向上类型转换操作转换成了一个基类类型的指针</strong>，然后以基类指针的身份访问到了基类的成员。</p>
+<p>如果希望阻止这种隐式的向上类型转换呢？</p>
+<p>让我们认真考察 <code>public</code>、<code>protected</code> 与 <code>private</code> 这三个关键字。</p>
+<ul>
+<li><code>public</code>：当用于访问说明符时，表示对类的一切用户可见；用于继承时，表示继承时不修改基类的一切访问说明符</li>
+<li><code>protected</code>：当用于访问说明符时，表示仅对类的继承用户可见，对类的实例用户不可见；用于继承时，表示将基类的一切 <code>public</code> 访问说明符在继承类中修改为 <code>protected</code></li>
+<li><code>private</code>：当用于访问说明符时，表示对一切类的用户均不可见；用于继承时，表示将基类的一切 <code>public</code> 和 <code>protected</code> 访问说明符在继承类中修改为 <code>private</code></li>
+</ul>
+<p>如果我们从向上类型转换这一角度思考，就能得出答案：</p>
+<ul>
+<li><code>public</code>：不阻止任何用户进行向上类型转换</li>
+<li><code>protected</code>：阻止类的实例用户进行向上类型转换</li>
+<li><code>private</code>：阻止一切用户进行向上类型转换</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="nt">struct</span> <span class="nt">A</span> <span class="p">{}</span><span class="o">;</span>
+
+<span class="nt">struct</span> <span class="nt">B</span><span class="o">:</span> <span class="nt">A</span> <span class="p">{}</span><span class="o">;</span>            <span class="o">//</span> <span class="nt">不阻止任何B类的用户向A进行类型转换</span>
+<span class="nt">struct</span> <span class="nt">C</span><span class="o">:</span> <span class="nt">protected</span> <span class="nt">A</span> <span class="p">{}</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">阻止C类的实例用户向A进行类型转换</span>
+<span class="nt">struct</span> <span class="nt">D</span><span class="o">:</span> <span class="nt">private</span> <span class="nt">A</span> <span class="p">{}</span><span class="o">;</span>    <span class="o">//</span> <span class="nt">阻止D类的一切用户向A进行类型转换</span>
+
+<span class="nt">struct</span> <span class="nt">E</span><span class="o">:</span> <span class="nt">B</span> <span class="p">{</span> <span class="err">void</span> <span class="err">test()</span> <span class="err">{</span> <span class="err">static_cast&lt;A</span> <span class="err">*&gt;(this)</span><span class="p">;</span> <span class="p">}</span> <span class="err">}</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">B类的继承类用户可以向A进行类型转换</span>
+<span class="nt">struct</span> <span class="nt">F</span><span class="o">:</span> <span class="nt">C</span> <span class="p">{</span> <span class="err">void</span> <span class="err">test()</span> <span class="err">{</span> <span class="err">static_cast&lt;A</span> <span class="err">*&gt;(this)</span><span class="p">;</span> <span class="p">}</span> <span class="err">}</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">C类的继承类用户可以向A进行类型转换</span>
+<span class="nt">struct</span> <span class="nt">E</span><span class="o">:</span> <span class="nt">D</span> <span class="p">{</span> <span class="err">void</span> <span class="err">test()</span> <span class="err">{</span> <span class="err">static_cast&lt;A</span> <span class="err">*&gt;(this)</span><span class="p">;</span> <span class="p">}</span> <span class="err">}</span><span class="o">;</span>  <span class="o">//</span> <span class="nt">Error</span><span class="err">！</span><span class="nt">D类的继承类用户不可以向A进行类型转换</span>
+
+<span class="nt">int</span> <span class="nt">main</span><span class="o">()</span>
+<span class="p">{</span>
+    <span class="err">static_cast&lt;A</span> <span class="err">*&gt;(new</span> <span class="err">B)</span><span class="p">;</span>  <span class="err">//</span> <span class="err">B类的实例用户可以向A进行类型转换</span>
+    <span class="err">static_cast&lt;A</span> <span class="err">*&gt;(new</span> <span class="err">C)</span><span class="p">;</span>  <span class="err">//</span> <span class="err">Error！C类的实例用户不可以向A进行类型转换</span>
+    <span class="err">static_cast&lt;A</span> <span class="err">*&gt;(new</span> <span class="err">D)</span><span class="p">;</span>  <span class="err">//</span> <span class="err">Error！D类的实例用户不可以向A进行类型转换</span>
+<span class="p">}</span>
+</pre></div>
+<p>由此可见，<code>public</code> 继承将不阻止类的任何用户进行向上类型转换，而 <code>private</code> 继承将阻止类的一切用户进行向上类型转换，<code>protected</code> 继承只阻止类的实例用户进行向上类型转换，但不阻止类的继承类用户进行向上类型转换。</p>
+<h4 id="53">5.3 多重继承与向上类型转换</h4>
+<p>对于多重继承，其向上类型转换对于同一继承层的多个基类是全面进行的。</p>
+<p>参考以下代码：</p>
+<div class="highlight"><pre><span></span><span class="nt">struct</span> <span class="nt">A</span> <span class="p">{</span> <span class="err">int</span> <span class="err">i</span><span class="p">;</span> <span class="p">}</span><span class="o">;</span>
+<span class="nt">struct</span> <span class="nt">B</span> <span class="p">{</span> <span class="err">int</span> <span class="err">i</span><span class="p">;</span> <span class="p">}</span><span class="o">;</span>
+<span class="nt">struct</span> <span class="nt">C</span><span class="o">:</span> <span class="nt">A</span><span class="o">,</span> <span class="nt">B</span> <span class="p">{</span> <span class="err">int</span> <span class="err">i</span><span class="p">;</span> <span class="p">}</span><span class="o">;</span>
+<span class="nt">struct</span> <span class="nt">D</span><span class="o">:</span> <span class="nt">A</span><span class="o">,</span> <span class="nt">B</span> <span class="p">{}</span><span class="o">;</span>
+
+<span class="nt">int</span> <span class="nt">main</span><span class="o">()</span>
+<span class="p">{</span>
+    <span class="err">C().i</span><span class="p">;</span>  <span class="err">//</span> <span class="err">访问</span><span class="n">C</span><span class="p">:</span><span class="o">:</span><span class="n">i</span>
+    <span class="n">D</span><span class="p">()</span><span class="o">.</span><span class="n">i</span><span class="p">;</span>  <span class="err">//</span> <span class="err">Error！存在二义性！</span>
+<span class="p">}</span>
+</pre></div>
+<h3 id="6">6. 其它隐式类型转换</h3>
+<ul>
+<li>0 转换为空指针</li>
+<li>数组名退化为指针</li>
+<li>空指针或数字 0 转为 <code>false</code>，其它指针或数字转为 <code>true</code></li>
+<li>T 转换为 <code>void</code></li>
+<li>非 <code>const</code> 转换为 <code>const</code></li>
+</ul>
+                <aside>
+                    <hr />
+                    <nav class="related">
+                        <h1>
+                            <font color="#771515"><em>RELATED</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">C++ Primer 第十七章 标准库特殊设施</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">C++ Primer 第十六章 模板与泛型编程</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">C++ Primer 第十五章 面向对象程序设计</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">C++ Primer 第十四章 重载运算与类型转换</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">C++ Primer 第十三章 拷贝控制</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/08/21/note/">
+                                    算法笔记
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/08/16/深入浅出SQL/">
+                                    深入浅出 SQL
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/06/01/sl-12/">
+                                    统计学习方法 第十二章 统计学习方法总结
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/05/17/sl-11/">
+                                    统计学习方法 第十一章 条件随机场
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/04/19/sl-10/">
+                                    统计学习方法 第十章 隐马尔科夫模型
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2019-09-07T10:55:16+08:00">2019-09-07 10:55:16</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-09-07 10:55:16</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#C++-ref">C++
+                                <span>18</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
