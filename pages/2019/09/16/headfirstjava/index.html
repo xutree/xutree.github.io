@@ -71,6 +71,7 @@
 <li><a href="#10">10. 数字与静态</a></li>
 <li><a href="#11">11. 异常处理</a></li>
 <li><a href="#12">12. 图形用户接口</a></li>
+<li><a href="#13-swing">13. swing</a></li>
 </ul>
 </div>
             </nav>
@@ -273,16 +274,19 @@
 <li>事件注册 add<eventtype>Listener <code>button.addActionListener(this);</code></eventtype></li>
 <li>内部类可以使用外部所有的方法与变量</li>
 <li>内部类的实例一定会绑定外部类的实例上</li>
-<li>
-<p>你也可以从外部类以外的程序代码来初始化内部实例</p>
-<p><code>class Foo {
-    public static void main (String[] args) {
-        MyOuter outerObj = new MyOuter();
-        MyOuter.MyInner innerObj = outerObj.new MyInner();
-    }
-}</code></p>
-</li>
+<li>你也可以从外部类以外的程序代码来初始化内部实例</li>
 </ul>
+<div class="highlight"><pre><span></span>    <span class="k">class</span> <span class="n">Foo</span> {
+        <span class="n">public</span> <span class="n">static</span> <span class="nb">void</span> <span class="n">main</span> (<span class="n">String</span>[] <span class="n">args</span>) {
+            <span class="n">MyOuter</span> <span class="n">outerObj</span> = <span class="nb">new</span> <span class="n">MyOuter</span>();
+            <span class="n">MyOuter</span>.<span class="n">MyInner</span> <span class="n">innerObj</span> = <span class="n">outerObj</span>.<span class="nb">new</span> <span class="n">MyInner</span>();
+        }
+    }
+</pre></div>
+<ul>
+<li>内部类提供了在一个类中实现同一接口的多次机会</li>
+</ul>
+<h3 id="13-swing">13. swing</h3>
                 <aside>
                     <hr />
                     <nav class="older">
