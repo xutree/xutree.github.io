@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="Java, 读书笔记, " />
+    <title>Head first Java 笔记  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2019/09/16/headfirstjava/"> Head first Java 笔记  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1">1. 基本概念</a></li>
+<li><a href="#2">2. 类与对象</a></li>
+<li><a href="#3-primitive">3. primitive 主数据类型和引用</a></li>
+<li><a href="#4">4. 方法操作实例变量</a></li>
+<li><a href="#5">5. 超强力方法</a></li>
+<li><a href="#6-java-api">6. 认识 Java 的 API</a></li>
+<li><a href="#7">7. 继承与多态</a></li>
+<li><a href="#8">8. 接口和抽象类</a></li>
+<li><a href="#9">9. 构造器与垃圾收集器</a></li>
+<li><a href="#10">10. 数字与静态</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
+
+                
+<h3 id="1">1. 基本概念</h3>
+<ul>
+<li><code>Java</code> 源代码编译成字节码，在不同平台上通过 <code>JVM</code> 执行字节码</li>
+<li><code>System.out.print</code> 输出在同一行，<code>System.out.println</code> 输出会换行</li>
+</ul>
+<h3 id="2">2. 类与对象</h3>
+<ul>
+<li>任何变量只要加上 <code>public</code>、<code>static</code> 和 <code>final</code>，基本上都会变成全局取用的常数</li>
+<li>可以把文件打包成 <strong>.jar</strong>，在其中加入 <strong>manifest</strong> 文件告知哪个文件中带有 <code>main()</code> 函数</li>
+<li>所有的 <code>Java</code> 程序都定义在类中</li>
+<li>面向对象设计不需要改动之前已经测试好的程序代码</li>
+<li>类是蓝图描述对象如何创建</li>
+<li>对象本身已知道的事务称为<strong>实例变量</strong>，他代表对象的<strong>状态</strong></li>
+<li>对象可执行的动作称为方法，他代表类的<strong>行为</strong></li>
+<li><code>Java</code> 的程序在执行期是一组会相互交谈的对象</li>
+</ul>
+<h3 id="3-primitive">3. <code>primitive</code> 主数据类型和引用</h3>
+<ul>
+<li>对于任意一个 <code>Java</code> 虚拟机来说，所有的引用大小都一样，但不同的虚拟机之间可能会以不同的方式表示引用</li>
+<li>数组是对象</li>
+<li><code>primitive</code> 主数据类型的值是该值的字节表示</li>
+<li>引用变量的额值代表位于堆之对象的存取方法</li>
+</ul>
+<h3 id="4">4. 方法操作实例变量</h3>
+<ul>
+<li>类所描述的是对象知道什么与执行什么</li>
+<li><code>Java</code> 是值传递，应用对象的值类似于对象的地址</li>
+<li>将实例变量标记为私有的，并提供公有的 <code>getter</code> 和 <code>setter</code> 来控制存取动作</li>
+<li>实例变量永远有默认值，局部变量没有默认值</li>
+<li>实例变量声明在类内而不是方法中</li>
+<li>局部变量声明在方法中</li>
+<li>使用 <strong>==</strong> 来比较两个 <code>primitive</code> 主数据类型，或者判断两个引用是否引用同一个对象</li>
+<li>使用 <code>equals()</code> 来判断两个对象是否在意义上相等</li>
+</ul>
+<h3 id="5">5. 超强力方法</h3>
+<ul>
+<li><code>Java</code> 程序应该从高层的设计开始</li>
+<li>伪码、测试码、真实码</li>
+<li>伪码描述要做什么事情而不是如何做</li>
+<li>实现之前应该先编写测试码</li>
+<li>使用 <code>Interger.parseInt()</code> 来取得 <code>String</code> 的整数值</li>
+</ul>
+<h3 id="6-java-api">6. 认识 <code>Java</code> 的 <code>API</code></h3>
+<ul>
+<li><code>ArrayList</code> 方法<ul>
+<li><code>add(Object elem)</code></li>
+<li><code>remove(int index)</code></li>
+<li><code>remove(Object elem)</code></li>
+<li><code>contains(Object elem)</code></li>
+<li><code>isEmpty()</code></li>
+<li><code>indexOf(Object elem)</code></li>
+<li><code>size()</code></li>
+<li><code>get(int index)</code></li>
+</ul>
+</li>
+<li><code>ArrayList</code> 自动调整大小</li>
+<li>一般数组在创建时就必须确定大小</li>
+<li>存放对象给一般数组时必须指定位置，<code>ArrayList</code> 直接 <code>add</code></li>
+<li>一般数组使用特殊的语法 <code>[]</code></li>
+<li><code>ArrayList</code> 类似于 <code>C++</code> 中的模板类</li>
+<li>在 <code>Java</code> 中，类被包装在包中</li>
+<li>数组用 <code>length</code> 这个变量取得大小</li>
+<li>类有完整的名称，都是由包的名称与类的名称所组成的。<code>ArrayList</code> 实际上叫做 <code>java.util.ArrayList</code></li>
+</ul>
+<h3 id="7">7. 继承与多态</h3>
+<ul>
+<li>is-a：是一个对象</li>
+<li>has-a：是一个实例变量</li>
+<li>继承概念下的 is-a 是个单向的关系</li>
+<li>在子类可以不用完全覆盖掉父类的功能，只是再加上额外的行为，可以用 <code>super</code> 关键字取用父类，且必须是第一条语句</li>
+<li><code>public</code> 类型的成员（实例变量和方法）会被继承</li>
+<li><code>private</code> 类型的成员（实例变量和方法）不会被继承</li>
+<li>子类是父类 <code>extends</code> 来的</li>
+<li>继承下来的方法可以被覆盖掉，但实例变量不能被覆盖掉</li>
+<li>继承避免了重复的程序代码，定义出共同的协议</li>
+<li>运用多态时，引用类型可以是实际对象类型的父类</li>
+<li>参数和返回类型也可以多态</li>
+<li>非公有的类只能被同一个包的类继承</li>
+<li>使用 <code>final</code> 修饰的类不能被继承</li>
+<li>拥有 <code>private</code> 构造函数的类不能被继承</li>
+<li>覆盖的规则：参数必须要一样，返回类型必须要兼容；不能减低方法的存取权限</li>
+</ul>
+<h3 id="8">8. 接口和抽象类</h3>
+<ul>
+<li><code>abstract class Myclass extends Object {}</code></li>
+<li><code>public abstract void eat();</code></li>
+<li>含有抽象方法的类一定是抽象类</li>
+<li>抽象的类可以带有抽象的和非抽象的方法</li>
+<li>抽象方法没有内容，他的声明以分号结束，只是为了标记多态而存在，在继承树结构下的第一个具体类必须要实现所有的抽象方法</li>
+<li><code>Java</code> 所有类都是从 <code>Object</code> 类继承而来<ul>
+<li><code>equals(Object c)</code></li>
+<li><code>getClass()</code></li>
+<li><code>hashCode()</code></li>
+<li><code>toString()</code></li>
+</ul>
+</li>
+<li>任何从 <code>ArrayList&lt;Object&gt;</code> 取出的东西都会被当做 <code>Object</code> 类型的引用而不管他原来是什么</li>
+<li>不管实际上所引用的对象是什么类型，只有在引用变量的类型就是带有某方法的类型时才能调用该方法</li>
+<li><code>Father father = new Son()</code> 是<strong>父类引用指向子类对象</strong>而不是父类对象指向子类引用</li>
+<li><strong>子类的引用不能指向父类的对象</strong></li>
+<li><strong>当使用多态方式调用方法时，首先检查父类中是否有该方法，如果没有，则编译错误；如果有，再去调用子类的同名方法</strong></li>
+<li>多态：继承、重写、父类引用指向子类对象</li>
+<li><code>a instanceOf b</code> 判断 a 是不是 b 的对象</li>
+<li>多重继承，致命方块 ---&gt; 接口</li>
+<li>接口的定义 <code>public interface Pet {...}</code></li>
+<li>接口的实现 <code>public class Dog extends Canine implements Pet {...}</code></li>
+<li>接口的方法默认是 <code>public</code> 和 <code>abstract</code> 的</li>
+<li>不同继承树的类也可以实现相同的接口</li>
+<li><strong>如果想要定义出类扮演的角色，使用接口</strong></li>
+<li><code>Java</code> 不允许多重继承</li>
+<li>接口就好像 100\% 纯天然抽象类</li>
+<li><code>class</code> 可以实现多个接口</li>
+<li>实现接口的类必须实现他的所有方法</li>
+</ul>
+<h3 id="9">9. 构造器与垃圾收集器</h3>
+<ul>
+<li>对象的生存空间是堆（heap），方法调用及变量的生存空间是栈（stack）</li>
+<li>非 <code>primitive</code> 的变量只是保存了对象的引用而已，如果局部变量是对象的引用，只有变量本身会放在栈上，对象在堆上</li>
+<li>实例变量存在于对象所属的堆空间上</li>
+<li>如果实例变量全是主数据类型，<code>Java</code> 会依据主数据类型的大小为该实例变量留下空间</li>
+<li>如果实例变量是个对象，<code>Java</code> 会给变量的值留下空间，至于所指的对象是否在堆上，要看此实例变量有没有被赋值</li>
+<li>唯一能够调用构造函数的方法就是新建一个类</li>
+<li>构造函数没有返回值</li>
+<li><code>Java</code> 可以有与类同名的函数而不会变成构造函数，只要其有返回值即可</li>
+<li>最好要有不带参数的构造函数，让人可以选择使用默认值</li>
+<li>编译器只会在你完全没有设定构造函数时才会调用</li>
+<li>可以使用 <code>this</code> 从某个构造函数调用同一个类的另一个构造函数，<code>this()</code> 只能用在构造函数中，且必须是第一条语句，<code>super()</code> 和 <code>this</code> 不可兼得</li>
+</ul>
+<h3 id="10">10. 数字与静态</h3>
+                <aside>
+                    <hr />
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/09/07/cast/">
+                                    C++ 中的类型转换
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/08/21/note/">
+                                    算法笔记
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/08/16/深入浅出SQL/">
+                                    深入浅出 SQL
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/06/01/sl-12/">
+                                    统计学习方法 第十二章 统计学习方法总结
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/05/17/sl-11/">
+                                    统计学习方法 第十一章 条件随机场
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2019-09-16T22:30:04+08:00">2019-09-16 22:30:04</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-09-16 22:30:04</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#Java-ref">Java
+                                <span>1</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
