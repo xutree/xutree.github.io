@@ -69,6 +69,8 @@
 <li><a href="#8">8. 接口和抽象类</a></li>
 <li><a href="#9">9. 构造器与垃圾收集器</a></li>
 <li><a href="#10">10. 数字与静态</a></li>
+<li><a href="#11">11. 异常处理</a></li>
+<li><a href="#12">12. 图形用户接口</a></li>
 </ul>
 </div>
             </nav>
@@ -219,27 +221,66 @@
 <li>静态的 <code>final</code> 变量是常数</li>
 <li>常数变量的名称应该都大写</li>
 <li>静态初始化程序是一段在加载类时会执行的程序代码，它会在其他程序可以使用该类之前就执行，所以很适合放静态 <code>final</code> 变量的初始程序</li>
-<li>静态 <code>final</code> 变量的初始化<ul>
-<li>声明的时候
-<code>public class Foo { public static final int FOO_X = 25;}</code></li>
-<li>
-<p>在静态初始化程序中
-```
-public class Bar {
-    public static final double BAR_SIGN;</p>
-<p>static {
-    BAR_SIGN = (double) Math.random();
-}
-    }
-    <code>``
--</code>Math<code>的方法
-    -</code>Math.random()<code>：0.0~1.0 之间的双精度浮点数
-    -</code>Math.abs()<code>：有重载的版本，传入整数会返回整数，双精度会返回双精度
-    -</code>Math.round()<code>：有重载的版本，根据传入是浮点还是双精度，四舍五入返回整型或长整型
-    -</code>Math.min()<code>：有</code>int<code>、</code>long<code>、</code>float<code>和</code>double<code>重载的版本
-    -</code>Math.max()<code>：有</code>int<code>、</code>long<code>、</code>float<code>和</code>double` 重载的版本</p>
-</li>
+<li>静态 <code>final</code> 变量的初始化：声明的时候、在静态初始化程序中</li>
+<li><code>Math</code> 的方法<ul>
+<li><code>Math.random()</code>：0.0~1.0 之间的双精度浮点数</li>
+<li><code>Math.abs()</code>：有重载的版本，传入整数会返回整数，双精度会返回双精度</li>
+<li><code>Math.round()</code>：有重载的版本，根据传入是浮点还是双精度，四舍五入返回整型或长整型</li>
+<li><code>Math.min()</code>：有 <code>int</code>、<code>long</code>、<code>float</code> 和 <code>double</code> 重载的版本</li>
+<li><code>Math.max()</code>：有 <code>int</code>、<code>long</code>、<code>float</code> 和 <code>double</code> 重载的版本</li>
 </ul>
+</li>
+<li>包装类<ul>
+<li><code>Boolean</code></li>
+<li><code>Character</code></li>
+<li><code>Byte</code></li>
+<li><code>Short</code></li>
+<li><code>Integer</code></li>
+<li><code>Long</code></li>
+<li><code>Float</code></li>
+<li><code>Double</code></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>是 <code>Java</code> 唯一重载过得运算符，<code>String str = "" + 12;</code></li>
+</ul>
+</li>
+<li>数字格式化 <code>String.format()</code></li>
+<li><code>%[参数][标记][宽度][.精度]type</code>，标记比如数字逗号分隔或正负号，参数是指哪一个</li>
+<li>完整的日期和时间 <code>String.format("%tc", new Date());</code></li>
+<li>只有时间 <code>String.format("%tr", new Date());</code></li>
+<li>周，月，日 <code>String.format("%tA, %&lt;tB, %&lt;td", new Date());</code></li>
+<li>用 <code>java.util.Calendar</code> 操作日期，是抽象类</li>
+<li><code>Calendar cal = Calendar.getInstance();</code> 一般会返回一个 <code>java.util.GregorianCalendar</code> 实例</li>
+<li>可以静态导入，类似于 C++ 的命名空间</li>
+</ul>
+<h3 id="11">11. 异常处理</h3>
+<ul>
+<li>异常是一种 <code>Exception</code> 类型的对象</li>
+<li>除了 <code>RuntimeExceptions</code> 之外，编译器保证：如果你有抛出异常，一定要使用 <code>throw</code> 来声明这件事；如果你调用会抛出异常的方法，你必须的确认你知道异常的可能性（try catch 或者继续抛出）</li>
+<li><code>finally</code> 块是用来存放不管有没有异常都得执行的程序，即使前面有 <code>return</code> 也要执行</li>
+<li>有多个 <code>catch</code> 块时要从小到大排列</li>
+</ul>
+<h3 id="12">12. 图形用户接口</h3>
+<ul>
+<li>GUI 从创建窗口开始 <code>JFrame frame = new JFrame();</code></li>
+<li>加入组件 <code>frame.getContenPane().add(button);</code></li>
+<li><code>JFrame</code> 与其他组件不同，不能直接加上组件，要用他的 content pane</li>
+<li>显示窗口 <code>frame.setSize(300, 300); frame.setVisible(true);</code></li>
+<li>监听 GUI 事件才知道用户对接口做了什么事情</li>
+<li>你必须要对事件源注册所要监听的时间。事件源是一种会根据用户操作而触发的机制</li>
+<li>事件注册 add<eventtype>Listener <code>button.addActionListener(this);</code></eventtype></li>
+<li>内部类可以使用外部所有的方法与变量</li>
+<li>内部类的实例一定会绑定外部类的实例上</li>
+<li>
+<p>你也可以从外部类以外的程序代码来初始化内部实例</p>
+<p><code>class Foo {
+    public static void main (String[] args) {
+        MyOuter outerObj = new MyOuter();
+        MyOuter.MyInner innerObj = outerObj.new MyInner();
+    }
+}</code></p>
 </li>
 </ul>
                 <aside>
