@@ -73,6 +73,9 @@
 <li><a href="#12">12. 图形用户接口</a></li>
 <li><a href="#13-swing">13. swing</a></li>
 <li><a href="#14">14. 序列化和文件的输入输出</a></li>
+<li><a href="#15">15. 网络联机</a></li>
+<li><a href="#16">16. 集合与泛型</a></li>
+<li><a href="#17-jar">17. 包、jar 存档文件和部署</a></li>
 </ul>
 </div>
             </nav>
@@ -372,6 +375,146 @@
 </ul>
 <div class="highlight"><pre><span></span>    static final long serialVersionUID = -7526832723882L;
 </pre></div>
+<h3 id="15">15. 网络联机</h3>
+<ul>
+<li>读取数据</li>
+</ul>
+<div class="highlight"><pre><span></span>    Socket chatSocket = new Socket("196.164.1.103", 5000)`;
+    InputStreamReader stream = new InputStreamReader(chatSocket.getInputStream());
+    BufferedReader reader = new BufferedReader(stream);
+    String message = reader.readLine();
+</pre></div>
+<ul>
+<li>写数据</li>
+</ul>
+<div class="highlight"><pre><span></span>    Socket chatSocket = new Socket("196.164.1.103", 5000)`;
+    PrintWriter writer = new PrintWriter(chatSocket.getOutputStream());
+    writer.println("message to send");
+    writer.print("another message");
+</pre></div>
+<ul>
+<li>TCP 端口是一个 16 位宽，用来识别服务器上特定程序的数字</li>
+<li>HTTP：80、Telnet：23、POP3：110、SMTP：25、FTP：20、HTTPS：443、Time：37</li>
+<li>0~1023 的 TCP 端口号是留给已知的特定服务的</li>
+<li>我们可以使用 1024~65535 之间的端口</li>
+<li>通信</li>
+</ul>
+<div class="highlight"><pre><span></span>    ServerSocket serverSock = new ServerSocket(4242);
+    Socket chatSocket = new Socket("196.164.1.103", 4242)`;
+    Socket sock = serverSock.accept();
+</pre></div>
+<ul>
+<li>服务器可以使用 <code>ServerSocket</code> 来等待用户对特定端口的请求，当接受到请求后，他会做一个 <code>Socket</code> 连接来接受客户端的请求</li>
+<li>启动新的线程</li>
+</ul>
+<div class="highlight"><pre><span></span>    Runnable threadJob = new MyRunnable();
+    Thread myThread = new Thread(threadJob);
+    myThread.start();
+</pre></div>
+<ul>
+<li><code>Runnable</code> 这个接口只有一个 <code>run()</code> 方法</li>
+<li>线程的 <code>sleep()</code> 这个方法能够保证一件事，在指定的沉睡时间之前，昏睡的线程一定不会被唤醒</li>
+<li><code>Java</code> 中每个线程都有独立的执行空间</li>
+<li>要把 <code>Runnable</code> 传给 <code>Thread</code> 的构造函数才能启动新的线程</li>
+<li><code>start()</code> 之前，线程处于新建立的状态</li>
+<li>使用 <code>synchronized</code> 关键字来修饰方法使他每次只能被单一的线程存取</li>
+<li><code>synchronized</code> 关键字代表线程需要一把钥匙来存取被同步化过的线程</li>
+<li>要保护数据，就把作用在数据上的方法给同步化</li>
+<li>锁是配在对象上的，锁住的是存取数据的方法</li>
+<li>同步化一部分</li>
+</ul>
+<div class="highlight"><pre><span></span>    public void go() {
+        doStuff();
+
+        synchronized(this) {
+            criticalStuff();
+            moreCriticalStuff();
+        }
+    }
+</pre></div>
+<ul>
+<li><code>Java</code> 没有处理死锁的机制，他甚至不会知道死锁的发生</li>
+<li><code>sleep()</code> 方法可能抛出 <code>InterruptedRxception</code> 异常，所以要包在 <code>try/cathc</code> 里或者把他声明出来</li>
+<li>可以用 <code>setName()</code> 方法给线程命名</li>
+<li>类本身也有锁，保护静态变量</li>
+</ul>
+<h3 id="16">16. 集合与泛型</h3>
+<ul>
+<li><code>TreeSet</code>、<code>LinkedHashList</code>、<code>HashSet</code></li>
+<li><code>ArrayList</code>、<code>LinkedList</code>、<code>Vector</code></li>
+<li><code>TreeMap</code>、<code>HashMap</code>、<code>LinkedHashMap</code>、<code>Hashtable</code></li>
+<li><code>Collections.sort(List list);</code></li>
+<li><code>TreeSet</code> 自动排序</li>
+<li>在泛型中，<code>extend</code> 代表 <code>extend</code> 或 <code>implement</code></li>
+<li><code>sort()</code> 可以提供第二个比较器参数</li>
+<li><code>List</code> 存储对象的引用，可重复引用相同对象</li>
+<li><code>SET</code> 不允许重复</li>
+<li><code>MAP</code> 键不可重复，值可重复</li>
+<li><code>HashSet</code> 用 <code>hashCode()</code> 和 <code>equals()</code> 检查重复</li>
+<li>数组的类型是在运行期检查的，集合的类型是在编译期检查的</li>
+<li>万用字符</li>
+</ul>
+<div class="highlight"><pre><span></span>    <span class="kr">public</span> <span class="k">void</span> <span class="nx">takeAnimals</span><span class="p">(</span><span class="nb">Array</span><span class="cp">&lt;?</span> <span class="nx">entends</span> <span class="nx">Animal</span><span class="o">&gt;</span> <span class="nx">animals</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">Animal</span> <span class="nx">a</span> <span class="o">:</span> <span class="nx">animals</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">a</span><span class="o">.</span><span class="nx">eat</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+<ul>
+<li>在方法参数中使用万用字符时，编译器会阻止任何可能破坏引用参数所指集合的行为</li>
+<li>下面的声明都对</li>
+</ul>
+<div class="highlight"><pre><span></span>    <span class="kr">public</span> <span class="o">&lt;</span><span class="nx">T</span> <span class="kr">extends</span> <span class="nx">Animal</span><span class="o">&gt;</span> <span class="k">void</span> <span class="nx">takeThing</span><span class="p">(</span><span class="nx">ArrayList</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="nx">list</span><span class="p">)</span>
+    <span class="kr">public</span> <span class="k">void</span> <span class="nx">takeThing</span><span class="p">(</span><span class="nx">ArrayList</span><span class="cp">&lt;?</span> <span class="k">extends</span> <span class="nx">Animal</span><span class="o">&gt;</span> <span class="k">list</span><span class="p">)</span>
+</pre></div>
+<h3 id="17-jar">17. 包、jar 存档文件和部署</h3>
+<ul>
+<li>将源代码与类文件分离，一般建立 <strong>source</strong> 和 <strong>classes</strong> 目录，将源代码存储在 source 下，编译时加 <strong>-d</strong> 编译选项把类文件输出到 classes 目录</li>
+<li>把程序包进 jar（Java Archive），这种文件是个 <strong>pkzip</strong> 格式文件，可执行的 JAR 代表用户不需要吧文件抽出来就能运行，方法是建立 <strong>manifest</strong> 文件，它会带有 JAR 的信息，告诉 JVM 哪个类含有 <code>main()</code> 方法</li>
+<li>manifest.txt 文件包括：<code>Main-Class: MyApp</code> 在此行要有换行，此文件放在 <strong>classes</strong> 目录下</li>
+</ul>
+<div class="highlight"><pre><span></span>    <span class="c">% cd MiniProject/classes</span>
+    <span class="c">% jar -cvmf manifest.txt app1.jar *.class</span>
+    <span class="o">//</span> 或
+    <span class="c">% jar -cvmf manifest.txt app1.jar MyApp.class</span>
+</pre></div>
+<ul>
+<li>执行，直接双击 jar 文件或者 <code>% jave -jar app1.jar</code></li>
+<li>用包防止类名称冲突</li>
+<li>反向域名.工程名.类名</li>
+<li>你必须把类放在与包层级结构相同的目录下</li>
+<li>把类加入到包中 <code>package 反向域名.工程名;</code>，一般让类位于完整名称的目录下</li>
+<li>编译和执行包</li>
+</ul>
+<div class="highlight"><pre><span></span>    <span class="c">% javac -d ../classes com/headfirstjava/PackageExercise.java</span>
+    <span class="o">//</span> 或编译包里的所有文件
+    <span class="c">% javac -d ../classes com/headfirstjava/*.java</span>
+    <span class="o">//</span> 执行
+    <span class="c">% java ../classes/com.headfirstjava.PackageExercise</span>
+</pre></div>
+<ul>
+<li>-d 选项会要求编译器将结果根据包的结构来建立目录并输出，如果目录还没有建好，编译器会自动处理这些工作</li>
+<li>从包创建可执行的 JAR<ul>
+<li>包的第一层目录必须是 JAR 的第一层目录</li>
+<li>在 manifest 文件中加入完整的类名称 Main-Class: com.headfirstjava.PackageExercise</li>
+<li>执行 jar 工具，只要从 com 开始就行
+<code>% cd MyProject/classes
+    % jar -cvmf manifest.txt packEx,jar com</code></li>
+</ul>
+</li>
+<li>解压</li>
+</ul>
+<div class="highlight"><pre><span></span>    <span class="c">% jar -tf packEx.jar</span>
+    <span class="o">//</span> 或
+    <span class="c">% jar -xf packEx.jar</span>
+</pre></div>
+<ul>
+<li><strong>Java Web Start</strong> 工作方式<ul>
+<li>客户点击某个网页上 JWS 应用程序的链接（.jnlp 文件）
+<code>&lt;a href="MyApp.jnlp"&gt;Click&lt;/a&gt;</code></li>
+</ul>
+</li>
+</ul>
                 <aside>
                     <hr />
                     <nav class="older">
@@ -413,7 +556,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2019-09-16T22:30:04+08:00">2019-09-16 22:30:04</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2019-09-17 00:06:37</div>
+                    <div class="last_updated">2019-09-18 11:10:13</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
