@@ -76,6 +76,8 @@
 <li><a href="#15">15. 网络联机</a></li>
 <li><a href="#16">16. 集合与泛型</a></li>
 <li><a href="#17-jar">17. 包、jar 存档文件和部署</a></li>
+<li><a href="#18-rmi">18. 远程部署的 RMI</a></li>
+<li><a href="#19">19. 其他</a></li>
 </ul>
 </div>
             </nav>
@@ -317,7 +319,7 @@
     os.close();
 </pre></div>
 <ul>
-<li>当对象呗序列化时，该对象的实例变量也会被序列化，且所有被引用的对象也被序列化</li>
+<li>当对象被序列化时，该对象的实例变量也会被序列化，且所有被引用的对象也被序列化</li>
 <li>如果想让类能够被序列化，就实现 <code>Serializable</code>，这是一个 tag 标记接口，没有任何方法需要实现，唯一的目的就是声明他的类是可以被序列化的</li>
 <li>如果某实例变量是不能或不应该被序列化的，就把他标为 <code>transient</code></li>
 <li>解序列化时，新的对象会被放在堆上，但构造函数不会执行</li>
@@ -494,15 +496,13 @@
 </pre></div>
 <ul>
 <li>-d 选项会要求编译器将结果根据包的结构来建立目录并输出，如果目录还没有建好，编译器会自动处理这些工作</li>
-<li>从包创建可执行的 JAR<ul>
+<li>从包创建可执行的 JAR</li>
 <li>包的第一层目录必须是 JAR 的第一层目录</li>
 <li>在 manifest 文件中加入完整的类名称 Main-Class: com.headfirstjava.PackageExercise</li>
 <li>执行 jar 工具，只要从 com 开始就行</li>
 </ul>
-</li>
-</ul>
-<div class="highlight"><pre><span></span>        <span class="c">% cd MyProject/classes</span>
-        <span class="c">% jar -cvmf manifest.txt packEx,jar com</span>
+<div class="highlight"><pre><span></span>    <span class="c">% cd MyProject/classes</span>
+    <span class="c">% jar -cvmf manifest.txt packEx,jar com</span>
 </pre></div>
 <ul>
 <li>解压</li>
@@ -512,12 +512,118 @@
     <span class="c">% jar -xf packEx.jar</span>
 </pre></div>
 <ul>
-<li><strong>Java Web Start</strong> 工作方式<ul>
+<li><strong>Java Web Start</strong> 工作方式</li>
 <li>客户点击某个网页上 JWS 应用程序的链接（.jnlp 文件）</li>
 </ul>
-</li>
+<div class="highlight"><pre><span></span>    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"MyApp.jnlp"</span><span class="nt">&gt;</span>Click<span class="nt">&lt;/a&gt;</span>
+</pre></div>
+<ul>
+<li>Web 服务器收到请求发出 .jnlp 文件给客户端的浏览器</li>
+<li>浏览器启动 JWS，JWS 的 helper app 读取 .jnlp 文件，然后想服务器请求 MyApp.jar</li>
+<li>Web 服务器发送 .jar 文件</li>
+<li>JWS 取得 JAR 并调用指定的 main() 来启动应用程序</li>
+<li>.jnlp：Java Network Lanuch Protocol 是一个 XML 文件，里面包含许多设置</li>
+<li>创建和部署 JWS 的步骤</li>
+<li>将程序制作成可执行 JAR</li>
+<li>编写 .jnlp 文件</li>
+<li>把 .jnlp 和 JAR 文件放到 Web 服务器</li>
+<li>对 Web 服务器设定新的 mime 类型 <code>application/x-java-jnlp-file</code> 确保浏览器知道所接受的文件是什么</li>
+<li>设定网页链接到 .jnlp 文件</li>
 </ul>
-<div class="highlight"><pre><span></span>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"MyApp.jnlp"</span><span class="nt">&gt;</span>Click<span class="nt">&lt;/a&gt;</span>
+<h3 id="18-rmi">18. 远程部署的 RMI</h3>
+<ul>
+<li>远程程序调用 Remote Method Invocation</li>
+<li>使用 RMI 时，你必须要决定协议，JRMP 是 RMI 原生的协议，它是为 <code>Java</code> 对 <code>Java</code> 之间的远程调用设计的；另外，IIOP 是为了 CORBA （Common Object Request Broker Architecture）而产生的，它让你可以调用 <code>Java</code> 对象或者其他类型的远程方法，比较复杂，因为若两端不全是 <code>Java</code> 的话，就会发生一系列的转译和交谈操作</li>
+<li>在 RMI 中，客户端的辅助设施称为 <strong>stub</strong>，而服务端的辅助设施称为 <strong>skeleton</strong></li>
+<li>创建远程服务<ul>
+<li><strong>创建 Remote 接口</strong>。远程的接口定义了客户端可以远程调用的方法。它是个作为服务的多态化类，stub 和服务都会实现此接口</li>
+<li><strong>实现 Remote</strong>。这是真正执行的类，他实现出定义在该接口上的方法，它是客户端会调用的对象</li>
+<li><strong>用 rmic 产生 stub 和 skeleton</strong>（可以省略）</li>
+<li><strong>启动 RMI registry</strong>。rimiregistry 就像是电话簿。用户会从此处取得代理（客户端的 stub/helper 对象）</li>
+<li>启动远程服务并注册</li>
+</ul>
+</li>
+<li>创建远程接口。继承 <code>Remote</code> 接口（标记接口），抛出 <code>RemoteException</code> 异常，返回 <code>primitive</code> 或 <code>Serializable</code> 类型</li>
+</ul>
+<div class="highlight"><pre><span></span>    public interface MyRemote extends Remote {
+        public String sayHello() throws RemoteException;
+    }
+</pre></div>
+<ul>
+<li>实现远程接口</li>
+</ul>
+<div class="highlight"><pre><span></span>    public class MyRemoteImpl extends UnicastRemoteObject implements MyRemote {
+        public String sayHello() {
+            return "Server says, 'Hey'";
+        }
+    }
+    // 处理 UnicastRemoteObject 抛出的异常
+    public MyRemoteImpl() throws RemoteException {}
+    // 注册
+    try {
+        MyRemote service = new MyRemoteImpl();
+        Name.rebind("Remote Hello", service);
+    } catch (Exception ex) { ... }
+</pre></div>
+<ul>
+<li>产生 stub 和 skeleton。对实现处的类（不是 remote 类）执行 rmic</li>
+<li>执行 rimiregistry。注意要从可以存取到该类的目录来启动</li>
+<li>启动服务。调用另一个命令行来启动服务</li>
+<li>客户端取得 stub 对象</li>
+</ul>
+<div class="highlight"><pre><span></span>    <span class="nt">MyRemote</span> <span class="nt">service</span> <span class="o">=</span> <span class="o">(</span><span class="nt">MyRemote</span><span class="o">)</span> <span class="nt">Naming</span><span class="p">.</span><span class="nc">lookup</span><span class="o">(</span><span class="s2">"rmi://127.0.0.1/Remote Hello"</span><span class="o">);</span>
+</pre></div>
+<ul>
+<li>注意：在启动远程服务之前先要 rimiregistry；参数和返回类型必须是可序列化的；将 stub 类交给客户端</li>
+<li>servlet<ul>
+<li>servlet 是完全在 HTTP 服务器上运行的 Java 程序</li>
+<li>用来处理与用户交互的网页程序</li>
+<li>需要相关包才能编译，不是标准库里的</li>
+<li>要有支持 servlet 的服务器</li>
+<li>servlet 要放在特定位置</li>
+<li>servlet 一般继承自 HttpServlet 并覆盖 doGet() 和 doPost()</li>
+<li>servlet 要输出带有完整标识的 HTML 网页</li>
+</ul>
+</li>
+<li>EJB：Enterprise JavaBeans</li>
+<li>EJB 服务具有一组光靠 RMI 不会有的服务，比如交易管理、安全性、并发性、数据库和网络功能等，EJB 服务器作用于 RMI 调用和服务层之间</li>
+<li>jini</li>
+</ul>
+<h3 id="19">19. 其他</h3>
+<ul>
+<li>右移 &gt;&gt;，左边补 1，正负号不变</li>
+</ul>
+<div class="highlight"><pre><span></span>int x = -11; // 11110101
+int y = x &gt;&gt; 2; // 11111101
+</pre></div>
+<ul>
+<li>无符号右移，&gt;&gt;&gt;，左边补 0，正负号可能会改变</li>
+</ul>
+<div class="highlight"><pre><span></span>int x = -11; // 11110101
+int y = x &gt;&gt;&gt; 2; // 00111101
+</pre></div>
+<ul>
+<li>左移，&lt;&lt;，右边补 0，正负号可能改变</li>
+</ul>
+<div class="highlight"><pre><span></span>int x = -11; // 11110101
+int y = x &lt;&lt; 2; // 11010100
+</pre></div>
+<ul>
+<li>为了安全性和节省空间，<code>String</code> 是不变的，创建新的 <code>String</code> 时，JVM 会把它放到 <code>String Pool</code> 的特殊存储区域，不受 GC 管理</li>
+<li>断言 <code>assert</code>，带有断言的编译和执行</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c">% javac TestDriveGame.java</span>
+<span class="c">% java -ea TestDriveGame</span>
+</pre></div>
+<ul>
+<li>枚举</li>
+</ul>
+<div class="highlight"><pre><span></span>public enum Members {JERRY, BOBBY, PHIL};
+public Members selectBandMember;
+
+if (selectBandMember == Members.JERRY) {
+    //
+}
 </pre></div>
                 <aside>
                     <hr />
@@ -560,7 +666,7 @@
                     <h4>发布日期</h4>
                     <time pubdate="pubdate" datetime="2019-09-16T22:30:04+08:00">2019-09-16 22:30:04</time>
                     <h4>最后更新</h4>
-                    <div class="last_updated">2019-09-18 11:10:13</div>
+                    <div class="last_updated">2019-09-18 13:42:09</div>
                     <h4>分类</h4>
                     <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
                     <h4>标签</h4>
