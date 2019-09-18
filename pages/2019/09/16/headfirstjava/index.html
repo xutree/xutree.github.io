@@ -497,11 +497,14 @@
 <li>从包创建可执行的 JAR<ul>
 <li>包的第一层目录必须是 JAR 的第一层目录</li>
 <li>在 manifest 文件中加入完整的类名称 Main-Class: com.headfirstjava.PackageExercise</li>
-<li>执行 jar 工具，只要从 com 开始就行
-<code>% cd MyProject/classes
-% jar -cvmf manifest.txt packEx,jar com</code></li>
+<li>执行 jar 工具，只要从 com 开始就行</li>
 </ul>
 </li>
+</ul>
+<div class="highlight"><pre><span></span>        <span class="c">% cd MyProject/classes</span>
+        <span class="c">% jar -cvmf manifest.txt packEx,jar com</span>
+</pre></div>
+<ul>
 <li>解压</li>
 </ul>
 <div class="highlight"><pre><span></span>    <span class="c">% jar -tf packEx.jar</span>
@@ -510,11 +513,12 @@
 </pre></div>
 <ul>
 <li><strong>Java Web Start</strong> 工作方式<ul>
-<li>客户点击某个网页上 JWS 应用程序的链接（.jnlp 文件）
-<code>&lt;a href="MyApp.jnlp"&gt;Click&lt;/a&gt;</code></li>
+<li>客户点击某个网页上 JWS 应用程序的链接（.jnlp 文件）</li>
 </ul>
 </li>
 </ul>
+<div class="highlight"><pre><span></span>        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"MyApp.jnlp"</span><span class="nt">&gt;</span>Click<span class="nt">&lt;/a&gt;</span>
+</pre></div>
                 <aside>
                     <hr />
                     <nav class="older">
