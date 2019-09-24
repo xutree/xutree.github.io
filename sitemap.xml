@@ -5,44 +5,51 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/</loc>
-<lastmod>2019-09-18T20:08:27-00:00</lastmod>
+<lastmod>2019-09-24T20:15:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/archives.html</loc>
-<lastmod>2019-09-18T20:08:27-00:00</lastmod>
+<lastmod>2019-09-24T20:15:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/tags.html</loc>
-<lastmod>2019-09-18T20:08:27-00:00</lastmod>
+<lastmod>2019-09-24T20:15:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/categories.html</loc>
-<lastmod>2019-09-18T20:08:27-00:00</lastmod>
+<lastmod>2019-09-24T20:15:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/search.html</loc>
-<lastmod>2019-09-18T20:08:27-00:00</lastmod>
+<lastmod>2019-09-24T20:15:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://xutree.github.io/404.html</loc>
-<lastmod>2019-09-18T20:08:27-00:00</lastmod>
+<lastmod>2019-09-24T20:15:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://xutree.github.io/pages/2019/09/24/alg_4th/</loc>
+<lastmod>2019-09-24T20:15:14+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -565,7 +572,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/category/du-shu-bi-ji.html</loc>
-<lastmod>2019-09-18T20:07:48+08:06</lastmod>
+<lastmod>2019-09-24T20:15:14+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -599,6 +606,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://xutree.github.io/tag/suan-fa.html</loc>
+<lastmod>2019-09-24T20:15:14+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://xutree.github.io/tag/java.html</loc>
 <lastmod>2019-09-18T20:07:48+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -608,13 +622,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://xutree.github.io/tag/c.html</loc>
 <lastmod>2019-09-07T10:55:16+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://xutree.github.io/tag/suan-fa.html</loc>
-<lastmod>2019-08-21T21:59:53+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -803,7 +810,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://xutree.github.io/author/shu.html</loc>
-<lastmod>2019-09-18T20:07:48+08:06</lastmod>
+<lastmod>2019-09-24T20:15:14+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

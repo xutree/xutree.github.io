@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Shu" />
+    <meta name="copyright" content="Shu" />
+
+<meta name="keywords" content="算法, 读书笔记, " />
+    <title>算法（第四版）  · You Know Nothing
+</title>
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+</head>
+
+<body>
+    <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+    <div class="row-fluid">
+        <header class="page_header span10 offset2">
+            <h1><a href="https://xutree.github.io/pages/2019/09/24/alg_4th/"> 算法（第四版）  </a></h1>
+        </header>
+    </div>
+
+    <div class="row-fluid">
+        <!--  -->
+        <div class="span2" style="float:left;font-size:1em;">
+            <nav>
+                <!-- <h4>目录</h4> -->
+                <div class="toc">
+<ul>
+<li><a href="#1">1. 基础</a><ul>
+<li><a href="#11">1.1 二分查找</a></li>
+<li><a href="#12-dijkstra">1.2 Dijkstra 双栈算术表达式求值算法</a></li>
+<li><a href="#13">1.3 下压栈（链表实现）</a></li>
+<li><a href="#14">1.4 队列（链表实现）</a></li>
+<li><a href="#15">1.5 内存</a><ul>
+<li><a href="#151">1.5.1 对象</a></li>
+<li><a href="#152">1.5.2 链表</a></li>
+<li><a href="#153">1.5.3 数组</a></li>
+<li><a href="#154">1.5.4 字符串对象</a></li>
+</ul>
+</li>
+<li><a href="#1x">1.x 答疑</a></li>
+</ul>
+</li>
+<li><a href="#2">2. 排序</a><ul>
+<li><a href="#21">2.1 选择排序</a></li>
+<li><a href="#22">2.2 插入排序</a></li>
+<li><a href="#23">2.3 希尔排序</a></li>
+<li><a href="#24">2.4 归并排序</a><ul>
+<li><a href="#241">2.4.1 自顶向下</a></li>
+<li><a href="#242">2.4.2 自底向上</a></li>
+</ul>
+</li>
+<li><a href="#25">2.5 快速排序</a></li>
+<li><a href="#26">2.6 堆排序（针对大顶堆）</a></li>
+<li><a href="#2x">2.x  答疑</a></li>
+</ul>
+</li>
+<li><a href="#3">3. 查找</a></li>
+</ul>
+</div>
+            </nav>
+        </div>
+        <div class="span8 article-content">
+
+                
+<p><a href="https://book.douban.com/subject/19952400/">https://book.douban.com/subject/19952400/</a></p>
+<h2 id="1">1. 基础</h2>
+<h3 id="11">1.1 二分查找</h3>
+<p>适用于有序数组。</p>
+<div class="highlight"><pre><span></span>public static int rank(int key, int[] a) {
+    int lo = 0;
+    int hi = a.length - 1;
+    while (lo &lt;= hi) {
+        int mid = (lo + hi) / 2;
+        if (key &lt; a[mid])
+            hi = mid - 1;
+        else if (key &gt; a[mid])
+            lo = mid + 1;
+        else
+            return mid;
+    }
+    return -1;
+}
+</pre></div>
+<h3 id="12-dijkstra">1.2 Dijkstra 双栈算术表达式求值算法</h3>
+<p>表达式又括号、运算符和操作数组成，从左往右开始处理：
+- 将操作数压入操作数栈
+- 将运算符压入运算符栈
+- 忽略左括号
+- 在遇到右括号时，弹出一个运算符，弹出所需数量的操作数，并将运算符和操作数的运算结果压入操作数</p>
+<h3 id="13">1.3 下压栈（链表实现）</h3>
+<div class="highlight"><pre><span></span>public class Stack&lt;Item&gt; implements Iterable&lt;Item&gt; {
+    private Node&lt;Item&gt; first;     // 栈顶
+    private int n;                // 元素数量
+
+    // 定义节点的嵌套类
+    private static class Node&lt;Item&gt; {
+        private Item item;
+        private Node&lt;Item&gt; next;
+    }
+
+    // 构造函数初始化
+    public Stack() {
+        first = null;
+        n = 0;
+    }
+
+    public boolean isEmpty() {
+        return first == null;
+    }
+
+    public int size() {
+        return n;
+    }
+
+    public void push(Item item) {
+        Node&lt;Item&gt; oldfirst = first;
+        first = new Node&lt;Item&gt;();
+        first.item = item;
+        first.next = oldfirst;
+        n++;
+    }
+
+    public Item pop() {
+        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        Item item = first.item;
+        first = first.next;
+        n--;
+        return item;
+    }
+
+    public Item peek() {
+        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        return first.item;
+    }
+
+    // 重写
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Item item : this) {
+            s.append(item);
+            s.append(' ');
+        }
+        return s.toString();
+    }
+
+    // 重写迭代
+    public Iterator&lt;Item&gt; iterator() {
+       return new ListIterator(first);
+   }
+
+   private class ListIterator implements Iterator&lt;Item&gt; {
+       private Node&lt;Item&gt; current;
+
+       public ListIterator(Node&lt;Item&gt; first) {
+           current = first;
+       }
+
+       public boolean hasNext() {
+           return current != null;
+       }
+
+       public void remove() {
+           throw new UnsupportedOperationException();
+       }
+
+       public Item next() {
+           if (!hasNext()) throw new NoSuchElementException();
+           Item item = current.item;
+           current = current.next;
+           return item;
+       }
+   }
+}
+</pre></div>
+<h3 id="14">1.4 队列（链表实现）</h3>
+<div class="highlight"><pre><span></span>public class Queue&lt;Item&gt; implements Iterable&lt;Item&gt; {
+    private Node&lt;Item&gt; first;
+    private Node&lt;Item&gt; last;
+    private int n;
+
+    private static class Node&lt;Item&gt; {
+        private Item item;
+        private Node&lt;Item&gt; next;
+    }
+
+    public Queue() {
+        first = null;
+        last  = null;
+        n = 0;
+    }
+
+    public boolean isEmpty() {
+        return first == null;
+    }
+
+    public int size() {
+        return n;
+    }
+
+    public Item peek() {
+        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        return first.item;
+    }
+
+    public void enqueue(Item item) {
+        Node&lt;Item&gt; oldlast = last;
+        last = new Node&lt;Item&gt;();
+        last.item = item;
+        last.next = null;
+        if (isEmpty()) first = last;
+        else           oldlast.next = last;
+        n++;
+    }
+
+    public Item dequeue() {
+        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        Item item = first.item;
+        first = first.next;
+        n--;
+        if (isEmpty()) last = null;
+        return item;
+    }
+
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Item item : this) {
+            s.append(item);
+            s.append(' ');
+        }
+        return s.toString();
+    }
+
+    public Iterator&lt;Item&gt; iterator()  {
+        return new ListIterator(first);  
+    }
+
+    private class ListIterator implements Iterator&lt;Item&gt; {
+        private Node&lt;Item&gt; current;
+
+        public ListIterator(Node&lt;Item&gt; first) {
+            current = first;
+        }
+
+        public boolean hasNext()  { return current != null;                     }
+        public void remove()      { throw new UnsupportedOperationException();  }
+
+        public Item next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            Item item = current.item;
+            current = current.next;
+            return item;
+        }
+    }
+}
+</pre></div>
+<h3 id="15">1.5 内存</h3>
+<p>以下讨论针对 64 位机器，机器地址需要 8 字节。</p>
+<h4 id="151">1.5.1 对象</h4>
+<p>内存 =  所有实例变量 + 对象本身的开销（一般是 16 个字节）</p>
+<p>开销包括：一个指向对象的类的引用、垃圾收集信息和同步信息</p>
+<p>一般的内存会被填充成 8 字节的倍数。</p>
+<p><code>Integer</code>：24 字节 = 16（开销） + 4（int） + 4（填充）</p>
+<p><code>Date</code>：32 字节 = 16 + 3 * 4 + 4</p>
+<h4 id="152">1.5.2 链表</h4>
+<p>如果嵌套的类是非静态的，还需要额外 8 个字节（指向外部类的引用），因此一个 Node 对象需要 40 字节。</p>
+<p><code>Node</code>：40 字节 = 16（开销） + 2 * 8（指向 Item 和 Node 对象）+ 8（额外）
+<code>Stack</code>：32 + 64<span class="math">\(N\)</span> = 16 + 8（Node 引用）+ 4（int）+ 4（填充）+ （40 + 24） * <span class="math">\(N\)</span></p>
+<h4 id="153">1.5.3 数组</h4>
+<p>一个原始数据类型的数组一般需要 24 字节的头信息。</p>
+<p>24 = 16（开销）+ 4（长度）+ 4（填充）</p>
+<p>数组的字节数等于头信息加上内部存储类型的字节数。</p>
+<p>例如，<span class="math">\(N\)</span> 个字符的字符数组需要：24 + 2<span class="math">\(N\)</span> 字节</p>
+<h4 id="154">1.5.4 字符串对象</h4>
+<p><code>String</code> 的实现有 4 个实例变量：一个指向字符数组的引用（8 字节）和三个 <code>int</code> 值（各 4 字节）。</p>
+<p>第一个 <code>int</code>：字符数组中的偏移量
+第二个 <code>int</code>：字符串的长度
+第三个 <code>int</code>：是一个散列值</p>
+<p>每个 <code>String</code> 对象需要 40 字节。</p>
+<p>40 = 16 + 8 + 3 * 4 + 4（填充）</p>
+<p><code>String</code> 数组需要：40 + 24 + 2<span class="math">\(N\)</span> 字节。</p>
+<p><code>String</code> 的 <code>char</code> 数组通常在多个字符串之间共享，因为 <code>String</code> 对象是不可变的，这种设计使它能够在多个对象都含有相同的 <code>value[]</code> 数组时节省内存。</p>
+<p>当你调用 <code>substring()</code> 方法是，就创建了一个新的 <code>String</code> 对象（40 字节），但它仍然重用了相同的 <code>value[]</code> 数组，因此该字符串的子字符串只会使用 40 字节的内存。</p>
+<p>一个子字符串所需的额外内存是一个常数，构造一个子字符串所需的时间也是常数。</p>
+<h3 id="1x">1.x 答疑</h3>
+<ul>
+<li><code>Java</code> 字节码是程序的一种低级表示，可以运行于 <code>Java</code> 的虚拟机，将程序抽象为字节码可以保证代码可以运行在各种设备之上</li>
+<li>原始数据类型“原始”是因为缺少溢出检查</li>
+<li><code>Math.abs(-2147483648)</code> 返回 <code>-2147483648</code></li>
+<li><code>Double.POSITIVE_INFINITY</code>、<code>Double.NEGATIVE_INFINITY</code></li>
+<li><code>1/0</code>：除零异常，<code>1.0/0.0</code>：<code>Infinity</code></li>
+<li>不能对 <code>String</code> 对象使用比较运算符，只有原始数据类型定义了这些操作</li>
+<li>商向 0 取整，余数保证 <code>(a / b) * b + a % b</code> 恒等于 <code>a</code></li>
+<li><code>while</code> 循环结束后递增变量仍然可用，这是和 <code>for</code> 的主要区别</li>
+<li>在 <code>Java</code> 中，一个静态方法不能将另一个静态方法作为参数</li>
+<li><code>Java</code> 编程的基础主要是使用 <code>class</code> 关键字构造被称为<strong>引用类型</strong>的数据类型</li>
+<li>每次调用 <code>new()</code>：为新的对象分配内存空间；调用构造函数；返回该函数的一个引用</li>
+<li>原始数据类型更接近计算机硬件所支持的数据类型，使用它们的程序比使用引用类型的程序快，这是其存在的意义</li>
+<li>创建一个含有 <span class="math">\(N\)</span> 个对象的数据，需要使用 <span class="math">\(N+1\)</span> 次 <code>new</code> 关键字，数组创建一次，每个对象各需要一个</li>
+<li><strong>背包</strong>：是一种不支持从中删除元素的集合数据类型，它的目的就是帮助用例收集元素并迭代遍历所有收集到的元素</li>
+<li>私有嵌套类只有包含它的类能够直接访问他的实例变量，因此无需将它的实例变量声明为私有的或共有的</li>
+<li><code>Java</code> 的命名规则会使用 <code>$</code> 分割外部类和内部类，比如 <em>Stack$Node.class</em></li>
+<li>我们可以用 <code>foreach</code> 循环访问数组，尽管数组没有实现 <code>Iterable</code> 接口</li>
+<li>我们不可以用 <code>foreach</code> 循环访问 <code>String</code>，因为其没有实现 <code>Iterable</code> 接口</li>
+<li>尽量避免宽接口，<code>Java</code> 中的 <code>java.util.ArrayList</code>、<code>java.util.LinkedList</code>、<code>java.util.Stack</code> 都是宽接口</li>
+</ul>
+<h2 id="2">2. 排序</h2>
+<h3 id="21">2.1 选择排序</h3>
+<p>对于长度为 <span class="math">\(N\)</span> 的数组，选择排序需要大约 <span class="math">\(N^2/2\)</span> 次比较和 <span class="math">\(N\)</span> 次交换。</p>
+<ul>
+<li>数据移动是最少的</li>
+<li>运行时间和输入无关</li>
+<li>不稳定排序</li>
+<li>时间复杂度：<span class="math">\(\Theta (n^2)\)</span></li>
+<li>空间复杂度：<span class="math">\(O(1)\)</span></li>
+</ul>
+<div class="highlight"><pre><span></span>public static void sort(int[] a) {
+    int N = a.length;
+    for (int i = 0; i &lt; N; i++) {
+        int min = i;
+        for (int j = i + 1; j &lt; N; j++) {
+            if (a[j] &lt; a[min]) min = j;
+        }
+        swap(a, i, min);
+    }
+}
+</pre></div>
+<h3 id="22">2.2 插入排序</h3>
+<p>对于长度为 <span class="math">\(N\)</span> 且无重复元素的数组，平均情况下插入排序需要大约 <span class="math">\(N^2/4\)</span> 次比较和 <span class="math">\(N^2/4\)</span> 次交换，最坏情况下需要大约 <span class="math">\(N^2/2\)</span> 次比较和 <span class="math">\(N^2/2\)</span> 次交换，最好情况下需要 <span class="math">\(N-1\)</span> 次比较和 0 次交换。</p>
+<p>常用于部分有序的数组和少量元素数组的排序。</p>
+<ul>
+<li>最坏时间复杂度：<span class="math">\(O(n^2)\)</span></li>
+<li>最优时间复杂度：<span class="math">\(O(n)\)</span></li>
+<li>平均时间复杂度：<span class="math">\(\Theta (n^2)\)</span></li>
+<li>最坏空间复杂度：<span class="math">\(O(1)\)</span></li>
+<li>稳定排序</li>
+</ul>
+<div class="highlight"><pre><span></span>public static void sort(int[] a) {
+    int N = a.length;
+    for (int i = 1; i &lt; N; i++) {
+        for (int j = i; j &gt; 0 &amp;&amp; a[j] &lt; a[j - 1]; j--) {
+            swap(a, j, j - 1);
+        }
+    }
+}
+</pre></div>
+<h3 id="23">2.3 希尔排序</h3>
+<ul>
+<li>最坏时间复杂度：<span class="math">\(O(n^2)\)</span></li>
+<li>最优时间复杂度：<span class="math">\(O(n)\)</span></li>
+<li>平均时间复杂度：<span class="math">\(O(n^{1.3})\)</span></li>
+<li>最坏空间复杂度：<span class="math">\(O(1)\)</span></li>
+<li>不稳定排序</li>
+</ul>
+<div class="highlight"><pre><span></span>public static void sort(int[] a) {
+    int N = a.length;
+    int h = N / 2;
+    while (h &gt;= 1) {
+        for (int i = h; i &lt; N; i++) {
+            for (int j = i; j &gt;= h &amp;&amp; a[j] &lt; a[j - h]; j-= h) {
+                swap(a, j, j - h);
+            }
+        }
+        h = h / 2;
+    }
+}
+</pre></div>
+<h3 id="24">2.4 归并排序</h3>
+<ul>
+<li>时间复杂度：<span class="math">\(\Theta (n \log n)\)</span></li>
+<li>空间复杂度：<span class="math">\(O(n)\)</span></li>
+<li>稳定排序</li>
+</ul>
+<div class="highlight"><pre><span></span>public static void merge(int[] a, int lo, int mid, int hi) {
+    int i = lo, j = mid + 1;
+    for (int k = lo; k &lt;= hi; k++) {
+        aux[k] = a[k];
+    }
+    for (int k = lo; k &lt;= hi; k++) {
+        if (i &gt; mid) {
+            a[k] = aux[j++];
+        } else if (j &gt; hi) {
+            a[k] = aux[i++];
+        } else if (aux[j] &lt; aux[i]) {
+            a[k] = aux[j++];
+        } else {
+            a[k] = aux[i++];
+        }
+    }
+}
+</pre></div>
+<h4 id="241">2.4.1 自顶向下</h4>
+<div class="highlight"><pre><span></span>public static void sort(int[] a, int lo, int hi) {
+    if (hi &lt;= lo) return;
+    int mid = (lo + hi) / 2;
+    sort(a, lo, mid);
+    sort(a, mid + 1, hi);
+    merge(a, lo, mid, hi);
+}
+</pre></div>
+<h4 id="242">2.4.2 自底向上</h4>
+<div class="highlight"><pre><span></span>public static void sort(int[] a) {
+    int N = a.length;
+    for (int sz = 1; sz &lt; N; sz = sz + sz) {
+        for (int lo = 0; lo &lt; N - sz; lo += sz + sz) {
+            merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1))
+        }
+    }
+}
+</pre></div>
+<p>比较适合链表组织的结构，不需要任何新的链表节点，只需要重新组织链表就可以原地排序。</p>
+<h3 id="25">2.5 快速排序</h3>
+<p>包含大量相同元素会影响性能，可随机打乱或者利用三向切分。</p>
+<ul>
+<li>最坏时间复杂度：<span class="math">\(O(n^2)\)</span></li>
+<li>最优时间复杂度：<span class="math">\(O(n\log n)\)</span></li>
+<li>平均时间复杂度：<span class="math">\(O(n\log n)\)</span></li>
+<li>空间复杂度：<span class="math">\(O(\log n) ~ O(n)\)</span></li>
+<li>不稳定排序</li>
+</ul>
+<div class="highlight"><pre><span></span>private static int partition(int[] a, int lo, int hi) {
+    int i = lo, j = hi + 1;
+    int v = a[lo];
+    while (true) {
+        while (a[++i] &lt; v) if (i == hi) break;
+        while (v &lt; a[--j]) if (j == lo) break;
+        if (i &gt;= j) break;
+        swap(a, i, j)
+    }
+    swap(a, lo, j);
+    return j;
+}
+
+public static void sort(int[] a, int lo, int hi) {
+    if (hi &lt;= lo) return;
+    int j = partition(a, lo, hi);
+    sort(a, lo, j - 1);
+    sort(a, j + 1, hi);
+}
+</pre></div>
+<div class="highlight"><pre><span></span>public static void sort(int[] a, int lo, int hi) {
+    if (hi &lt;= lo) return;
+    int lt = lo, i = lo + 1, gt = hi;
+    int v = a[lo];
+    while (i &lt;= gt) {
+        if (a[i] &lt; v) swap(a, lt++, i++);
+        else if (a[i] &gt; v) swap(a, i, gt--);
+        else i++;
+    }
+    sort(a, lo, lt - 1);
+    sort(a, gt + 1, hi);
+}
+</pre></div>
+<p>一个应用，查找第 <span class="math">\(k\)</span> 个元素：</p>
+<div class="highlight"><pre><span></span>public static int select(int[] a, int k) {
+    int lo = 0, hi = a.length - 1;
+    while (hi &gt; lo) {
+        int j = partition(a, lo, hi);
+        if (j == k) return a[k];
+        else if (j &gt; k) hi = j - 1;
+        else if (j &lt; k) lo = j + 1;
+    }
+    return a[k];
+}
+</pre></div>
+<h3 id="26">2.6 堆排序（针对大顶堆）</h3>
+<ul>
+<li>时间复杂度：<span class="math">\(O(n\log n)\)</span></li>
+<li>空间复杂度：<span class="math">\(O(1)\)</span></li>
+<li>不稳定排序</li>
+</ul>
+<p>堆排序是已知的唯一能够同时最优利用时间和空间的方法，在最坏的情况下也能保证使用 <span class="math">\(2n\log n\)</span> 次比较和恒定的额外空间。</p>
+<p>在现代系统的许多应用中很少使用它，因为它无法利用缓存，堆排序时数组元素很少和相邻的其他元素比较，缓存命中很低。</p>
+<p>用堆实现的优先队列在现代应用程序中越来越重要，因为它能在插入操作和删除最大元素操作混合的动态场景中保证对数级别的运行时间。</p>
+<p>下沉操作</p>
+<div class="highlight"><pre><span></span>public static void sink(int[] a, int k, int N) {
+    while (2 * k + 1 &lt; N) {
+        int j = 2 * k + 1;
+        if (j + 1 &lt; N &amp;&amp; a[j] &lt; a[j + 1]) j++;
+        if (a[j] &lt; a[k]) break;
+        swap(a, k, j);
+        k = j;
+    }
+}
+</pre></div>
+<p>上浮操作</p>
+<div class="highlight"><pre><span></span>public static void swim(int[] a, int k, int N) {
+    while (k &gt; 0 &amp;&amp; a[(k - 1) / 2] &lt; a[k]) {
+        swap(a, (k - 1) / 2, k);
+        k = (k - 1) / 2;
+    }
+}
+</pre></div>
+<div class="highlight"><pre><span></span>public static void sort(int[] a) {
+    int N = a.length;
+    for (int k = N / 2 - 1; k &gt;= 0; k--) {
+        sink(a, k, N);
+    }
+    while (N &gt; 0) {
+        swap(a, 0, --N);
+        sink(a, 0, N);
+    }
+}
+</pre></div>
+<h3 id="2x">2.x  答疑</h3>
+<ul>
+<li>在研究排序算法时，我们需要计算比较和交换的数量，对于不交换元素的算法，我们会计算访问数组的次数</li>
+<li><strong>优先队列</strong>：在某些数据处理的例子中，比如 TopM 和 Multiway，总数据量太大，无法排序（甚至无法全部装进内存）。例如 10 亿里面找 10 个，有了优先队列，只需要一个能存储十个元素的队列即可</li>
+<li><code>Java</code> 中的优先队列：<code>java.util.PriorityQueue</code></li>
+</ul>
+<h2 id="3">3. 查找</h2>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+                <aside>
+                    <hr />
+                    <nav class="related">
+                        <h1>
+                            <font color="#771515"><em>RELATED</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/08/21/note/">算法笔记</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/">最大子数组问题</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/26/sort/">排序算法</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/08/jzoffer2/">剑指 offer (2)</a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2018/10/07/jzoffer1/">剑指 offer (1)</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="older">
+                        <h1>
+                            <font color="#771515"><em>OLDER</em></font>
+                        </h1>
+                        <ul>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/09/16/headfirstjava/">
+                                    Head first Java 笔记
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/09/07/cast/">
+                                    C++ 中的类型转换
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/08/21/note/">
+                                    算法笔记
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/08/16/深入浅出SQL/">
+                                    深入浅出 SQL
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://xutree.github.io/pages/2019/06/01/sl-12/">
+                                    统计学习方法 第十二章 统计学习方法总结
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+            <section>
+                <div class="span2" style="float:right;font-size:0.9em;">
+                    <h4>发布日期</h4>
+                    <time pubdate="pubdate" datetime="2019-09-24T20:15:14+08:00">2019-09-24 20:15:14</time>
+                    <h4>最后更新</h4>
+                    <div class="last_updated">2019-09-24 20:15:14</div>
+                    <h4>分类</h4>
+                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <h4>标签</h4>
+                    <ul class="list-of-tags tags-in-article">
+                        <li><a href="/tags.html#算法-ref">算法
+                                <span>6</span>
+</a></li>
+                    </ul>
+
+                </div>
+            </section>
+        </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(query) {
+            return (query.length > 0);
+        }
+    </script>
+</body>
+
+</html>
