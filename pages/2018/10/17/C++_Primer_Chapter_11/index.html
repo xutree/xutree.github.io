@@ -7,13 +7,13 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="C++, 读书笔记, " />
+<meta name="keywords" content="C++, C++, " />
     <title>C++ Primer 第十一章 关联容器  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
 </head>
 
 <body>
@@ -26,15 +26,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="/index.html">主页</a></li>
-                            <li ><a href="/categories.html">分类</a></li>
-                            <li ><a href="/tags.html">标签</a></li>
-                            <li ><a href="/archives.html">归档</a></li>
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="/pages/2018/10/17/C++_Primer_Chapter_11/"> C++ Primer 第十一章 关联容器  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/"> C++ Primer 第十一章 关联容器  </a></h1>
         </header>
     </div>
 
@@ -117,7 +117,7 @@
 </ul>
 <h2 id="111">11.1 关联容器概述</h2>
 <p>关联容器（有序和无序的）都支持如下的普通容器操作：</p>
-<p><img alt="普通容器操作" src="/images/c++11-1.jpg"/></p>
+<p><img alt="普通容器操作" src="https://xutree.github.io/images/c++11-1.jpg"/></p>
 <p>关联容器不支持顺序容器位置相关的操作，例如<code>push_front</code>或<code>push_back</code>，关联容器也不支持构造函数或插入操作这些接受一个元素值和一个数量值的操作。</p>
 <p>关联容器的迭代器都是双向的。</p>
 <h3 id="1111">11.1.1 定义关联容器</h3>
@@ -239,14 +239,14 @@ map&lt;string, int&gt;::mapped_type v5;   //v5 是一个 int
 <p>当使用一个迭代器遍历一个<code>map</code>、<code>multimap</code>、<code>set</code>、<code>multiset</code>时，迭代器按关键字升序遍历元素。</p>
 <p>我们通常不对关联容器使用泛型算法。在实际编程中，如果我们真的要对一个关联容器使用算法，要么将它作为一个源序列，要么将它作为一个目的位置。</p>
 <h3 id="1122">11.2.2 添加元素</h3>
-<p><img alt="添加元素" src="/images/c++11-2.jpg"/></p>
+<p><img alt="添加元素" src="https://xutree.github.io/images/c++11-2.jpg"/></p>
 <p>返回值：</p>
 <ul>
 <li>不包含重复关键字的容器：返回一个<code>pair</code>，first 成员是一个迭代器，指向具有给定关键字的元素，second 成员是一个<code>bool</code>值，关键字不存在，为<code>true</code>，否则为<code>false</code></li>
 <li>包含重复关键字的容器：返回一个指向新元素的迭代器</li>
 </ul>
 <h3 id="1123">11.2.3 删除元素</h3>
-<p><img alt="删除元素" src="/images/c++11-3.jpg"/></p>
+<p><img alt="删除元素" src="https://xutree.github.io/images/c++11-3.jpg"/></p>
 <h3 id="1124-map">11.2.4 map 下标操作</h3>
 <table>
 <thead>
@@ -270,7 +270,7 @@ map&lt;string, int&gt;::mapped_type v5;   //v5 是一个 int
 <p><code>map</code>下标操作与其他下标操作不同的地方：对<code>map</code>进行下标操作时，会得到一个 mapped_type 对象；但当解引用一个<code>map</code>迭代器时，得到一个 value_type 对象。</p>
 <p><code>map</code>下标操作与其他下标操作相同的地方：返回一个左值，可读也可写。</p>
 <h3 id="1125">11.2.5 访问元素</h3>
-<p><img alt="访问元素" src="/images/c++11-4.jpg"/></p>
+<p><img alt="访问元素" src="https://xutree.github.io/images/c++11-4.jpg"/></p>
 <p>lower_bound 和 upper_bound 不适用于无序容器。</p>
 <p>下标和 at 操作只适用于非<code>const</code>的<code>map</code>和<code>unordered_map</code>。</p>
 <p>对<code>map</code>使用 find 代替下标操作，以防添加不存在元素。</p>
@@ -288,9 +288,9 @@ map&lt;string, int&gt;::mapped_type v5;   //v5 是一个 int
 <p>理想情况下，哈希函数还能将每个特定的值映射到唯一的桶。但是将不同关键字的元素映射到相同的桶也是允许的。</p>
 <p>当一个桶保存多个元素时，需要顺序搜索这些元素来查找我们想要的那个。计算一个元素的哈希值和在桶中搜索通常都是很快的操作。但是如果一个桶保存了很多元素，那么查找一个特定元素就需要大量比较操作。</p>
 <p>无序容器提供了一组管理桶的函数：</p>
-<p><img alt="桶管理操作" src="/images/c++11-5.jpg"/></p>
+<p><img alt="桶管理操作" src="https://xutree.github.io/images/c++11-5.jpg"/></p>
 <h3 id="1132">11.3.2 无序容器对关键字类型的要求</h3>
-<p><img alt="无序容器" src="/images/c++11-6.jpg"/></p>
+<p><img alt="无序容器" src="https://xutree.github.io/images/c++11-6.jpg"/></p>
                 <aside>
                     <hr />
                     <nav class="related">
@@ -299,19 +299,19 @@ map&lt;string, int&gt;::mapped_type v5;   //v5 是一个 int
                         </h1>
                         <ul>
                             <li>
-                                <a href="/pages/2019/09/07/cast/">C++ 中的类型转换</a>
+                                <a href="https://xutree.github.io/pages/2019/09/07/cast/">C++ 中的类型转换</a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/21/C++_Primer_Chapter_17/">C++ Primer 第十七章 标准库特殊设施</a>
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">C++ Primer 第十七章 标准库特殊设施</a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/21/C++_Primer_Chapter_16/">C++ Primer 第十六章 模板与泛型编程</a>
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">C++ Primer 第十六章 模板与泛型编程</a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/20/C++_Primer_Chapter_15/">C++ Primer 第十五章 面向对象程序设计</a>
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">C++ Primer 第十五章 面向对象程序设计</a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/20/C++_Primer_Chapter_14/">C++ Primer 第十四章 重载运算与类型转换</a>
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">C++ Primer 第十四章 重载运算与类型转换</a>
                             </li>
                         </ul>
                     </nav>
@@ -321,27 +321,27 @@ map&lt;string, int&gt;::mapped_type v5;   //v5 是一个 int
                         </h1>
                         <ul>
                             <li>
-                                <a href="/pages/2018/10/17/C++_Primer_Chapter_10/">
+                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/">
                                     C++ Primer 第十章 泛型算法
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/16/C++_Primer_Chapter_9/">
+                                <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
                                     C++ Primer 第九章 顺序容器
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/16/atom快捷键/">
+                                <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
                                     Atom 快捷键
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/15/perl入门/">
+                                <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
                                     Perl 入门
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/14/bianma/">
+                                <a href="https://xutree.github.io/pages/2018/10/14/bianma/">
                                     原码, 反码, 补码
                                 </a>
                             </li>
@@ -353,27 +353,27 @@ map&lt;string, int&gt;::mapped_type v5;   //v5 是一个 int
                         </h1>
                         <ul>
                             <li>
-                                <a href="/pages/2018/10/17/C++_Primer_Chapter_12/">
+                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
                                     C++ Primer 第十二章 动态内存
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/20/C++_Primer_Chapter_13/">
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">
                                     C++ Primer 第十三章 拷贝控制
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/20/C++_Primer_Chapter_14/">
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
                                     C++ Primer 第十四章 重载运算与类型转换
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/20/C++_Primer_Chapter_15/">
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">
                                     C++ Primer 第十五章 面向对象程序设计
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/21/C++_Primer_Chapter_16/">
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">
                                     C++ Primer 第十六章 模板与泛型编程
                                 </a>
                             </li>
@@ -411,7 +411,7 @@ map&lt;string, int&gt;::mapped_type v5;   //v5 是一个 int
                     <h4>最后更新</h4>
                     <div class="last_updated">2018-10-17 21:12:37</div>
                     <h4>分类</h4>
-                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <a class="category-link" href="/categories.html#C++-ref">C++</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
                         <li><a href="/tags.html#C++-ref">C++

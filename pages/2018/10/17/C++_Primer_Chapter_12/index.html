@@ -7,13 +7,13 @@
     <meta name="author" content="Shu" />
     <meta name="copyright" content="Shu" />
 
-<meta name="keywords" content="C++, 读书笔记, " />
+<meta name="keywords" content="C++, C++, " />
     <title>C++ Primer 第十二章 动态内存  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
 </head>
 
 <body>
@@ -26,15 +26,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="/index.html">主页</a></li>
-                            <li ><a href="/categories.html">分类</a></li>
-                            <li ><a href="/tags.html">标签</a></li>
-                            <li ><a href="/archives.html">归档</a></li>
+                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
+                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
+                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
+                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="/pages/2018/10/17/C++_Primer_Chapter_12/"> C++ Primer 第十二章 动态内存  </a></h1>
+            <h1><a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/"> C++ Primer 第十二章 动态内存  </a></h1>
         </header>
     </div>
 
@@ -123,7 +123,7 @@ shared_ptr&lt;list&lt;int&gt;&gt; p2;   //shared_ptr,可以指向 int 的 list
 </pre></div>
 <p>当我们创建<code>shared_ptr</code>时，可以传递一个（可选的）指向删除器函数的参数。</p>
 <p>智能指针操作：</p>
-<p><img alt="智能指针操作" src="/images/c++12-1.jpg"/></p>
+<p><img alt="智能指针操作" src="https://xutree.github.io/images/c++12-1.jpg"/></p>
 <h4 id="12111-make_shared">12.1.1.1 make_shared 函数</h4>
 <p>最安全的分配和使用动态内存的方法是调用一个名为<code>make_shared</code>的标准库函数。此函数在动态内存中分配一个对象并初始化它，返回指向此对象的<code>shared_ptr</code>。与智能指针一样，<code>make_shared</code>也定义在<code>memory</code>头文件中。</p>
 <div class="highlight"><pre><span></span>//指向一个值为42的 int 的 shared_ptr
@@ -196,8 +196,8 @@ int *p2 = new (nothrow) int;    //如果分配失败，new 返回一个空指针
 <p>同一块内存释放两次。当两个指针指向相同的动态分配对象时，可能发生这种错误。</p>
 <h3 id="1213-shared_ptr-new">12.1.3 shared_ptr 和 new 结合使用</h3>
 <p>如前所述，如果我们不初始化一个智能指针，他就会被初始化为一个空指针。如下表所示，我们还可以用<code>new</code>返回的指针来初始化智能指针：</p>
-<p><img alt="智能指针其他操作" src="/images/c++12-2.jpg"/></p>
-<p><img alt="智能指针其他操作" src="/images/c++12-3.jpg"/></p>
+<p><img alt="智能指针其他操作" src="https://xutree.github.io/images/c++12-2.jpg"/></p>
+<p><img alt="智能指针其他操作" src="https://xutree.github.io/images/c++12-3.jpg"/></p>
 <div class="highlight"><pre><span></span>shared_ptr&lt;double&gt; p1;  //shared_ptr 可以指向一个 double
 shared_ptr&lt;int&gt; p2(new int (42));   //p2 指向一个值为42的 int
 </pre></div>
@@ -217,9 +217,9 @@ shared_ptr&lt;int&gt; clone(int p){
 </pre></div>
 <p>默认情况下，一个用来初始化智能指针的普通指针必须指向动态内存，因为智能指针默认使用<code>delete</code>释放它所关联的对象。</p>
 <p>不要混合使用普通指针和智能指针：</p>
-<p><img alt="不要混合使用普通指针和智能指针" src="/images/c++12-4.jpg"/></p>
+<p><img alt="不要混合使用普通指针和智能指针" src="https://xutree.github.io/images/c++12-4.jpg"/></p>
 <p>也不要使用get初始化另一个智能指针或为智能指针赋值：</p>
-<p><img alt="不要使用get初始化另一个智能指针或为智能指针赋值" src="/images/c++12-5.jpg"/></p>
+<p><img alt="不要使用get初始化另一个智能指针或为智能指针赋值" src="https://xutree.github.io/images/c++12-5.jpg"/></p>
 <h3 id="1214-unique_ptr">12.1.4 unique_ptr 指针</h3>
 <p>一个<code>unique_ptr</code>“拥有”它所指向的对象。与<code>shared_ptr</code>不同，某个时刻只能有一个<code>unique_ptr</code>指向一个给定对象。</p>
 <p>与<code>shared_ptr</code>不同，没有类似<code>make_shared</code>的标准库函数返回一个<code>unique_ptr</code>。当我们定义一个<code>unique_ptr</code>时，需要将其绑定到一个<code>new</code>返回的指针上。类似<code>shared_ptr</code>，初始化<code>unique_ptr</code>必须采用直接初始化形式：</p>
@@ -233,7 +233,7 @@ unique_ptr&lt;string&gt; p3;
 p3 = p2;    //错误：unique_ptr 不支持赋值
 </pre></div>
 <p><code>unique_ptr</code>特有的操作：</p>
-<p><img alt="unique_ptr特有的操作" src="/images/c++12-6.jpg"/></p>
+<p><img alt="unique_ptr特有的操作" src="https://xutree.github.io/images/c++12-6.jpg"/></p>
 <p>虽然我不能拷贝或赋值<code>unique_ptr</code>，但可以通过调用<code>release</code>或<code>reset</code>将指针的所有权从一个（非<code>const</code>）<code>unique_ptr</code>转移给另一个<code>unique</code>：</p>
 <div class="highlight"><pre><span></span>//将所有权从 p1（指向 string Stegosaurus）转移给 p2
 unique_ptr&lt;string&gt; p2(p1.release());    //release 将 p1 置为空
@@ -277,7 +277,7 @@ void f(destination &amp;d /*其他需要的参数*/)
 <p><code>weak_ptr</code>是一种不控制所指向对象生存期的智能指针，它指向由一个<code>shared_ptr</code>管理的对象。将一个<code>weak_ptr</code>绑定到一个<code>shared_ptr</code>不会改变<code>shared_ptr</code>的引用计数。</p>
 <p>一旦最后一个指向对象的<code>shared_ptr</code>被销毁，对象就会被释放，即使有<code>weak_ptr</code>指向对象。</p>
 <p><code>weak_ptr</code>操作：</p>
-<p><img alt="weak_ptr操作" src="/images/c++12-7.jpg"/></p>
+<p><img alt="weak_ptr操作" src="https://xutree.github.io/images/c++12-7.jpg"/></p>
 <p>当创建一个<code>weak_ptr</code>时，要用一个<code>shared_ptr</code>来初始化它：</p>
 <div class="highlight"><pre><span></span>auto p = make_shared&lt;int&gt;(42);
 weak_ptr&lt;int&gt; wp(p);    //wp 弱共享 p；p 的引用计数未改变
@@ -441,19 +441,19 @@ uninitialize_fill_n(q, vec.size(), 42);
                         </h1>
                         <ul>
                             <li>
-                                <a href="/pages/2019/09/07/cast/">C++ 中的类型转换</a>
+                                <a href="https://xutree.github.io/pages/2019/09/07/cast/">C++ 中的类型转换</a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/21/C++_Primer_Chapter_17/">C++ Primer 第十七章 标准库特殊设施</a>
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">C++ Primer 第十七章 标准库特殊设施</a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/21/C++_Primer_Chapter_16/">C++ Primer 第十六章 模板与泛型编程</a>
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">C++ Primer 第十六章 模板与泛型编程</a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/20/C++_Primer_Chapter_15/">C++ Primer 第十五章 面向对象程序设计</a>
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">C++ Primer 第十五章 面向对象程序设计</a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/20/C++_Primer_Chapter_14/">C++ Primer 第十四章 重载运算与类型转换</a>
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">C++ Primer 第十四章 重载运算与类型转换</a>
                             </li>
                         </ul>
                     </nav>
@@ -463,27 +463,27 @@ uninitialize_fill_n(q, vec.size(), 42);
                         </h1>
                         <ul>
                             <li>
-                                <a href="/pages/2018/10/17/C++_Primer_Chapter_11/">
+                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
                                     C++ Primer 第十一章 关联容器
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/17/C++_Primer_Chapter_10/">
+                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/">
                                     C++ Primer 第十章 泛型算法
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/16/C++_Primer_Chapter_9/">
+                                <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
                                     C++ Primer 第九章 顺序容器
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/16/atom快捷键/">
+                                <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
                                     Atom 快捷键
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/15/perl入门/">
+                                <a href="https://xutree.github.io/pages/2018/10/15/perl入门/">
                                     Perl 入门
                                 </a>
                             </li>
@@ -495,27 +495,27 @@ uninitialize_fill_n(q, vec.size(), 42);
                         </h1>
                         <ul>
                             <li>
-                                <a href="/pages/2018/10/20/C++_Primer_Chapter_13/">
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/">
                                     C++ Primer 第十三章 拷贝控制
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/20/C++_Primer_Chapter_14/">
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
                                     C++ Primer 第十四章 重载运算与类型转换
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/20/C++_Primer_Chapter_15/">
+                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">
                                     C++ Primer 第十五章 面向对象程序设计
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/21/C++_Primer_Chapter_16/">
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">
                                     C++ Primer 第十六章 模板与泛型编程
                                 </a>
                             </li>
                             <li>
-                                <a href="/pages/2018/10/21/C++_Primer_Chapter_17/">
+                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">
                                     C++ Primer 第十七章 标准库特殊设施
                                 </a>
                             </li>
@@ -553,7 +553,7 @@ uninitialize_fill_n(q, vec.size(), 42);
                     <h4>最后更新</h4>
                     <div class="last_updated">2018-10-20 14:50:55</div>
                     <h4>分类</h4>
-                    <a class="category-link" href="/categories.html#读书笔记-ref">读书笔记</a>
+                    <a class="category-link" href="/categories.html#C++-ref">C++</a>
                     <h4>标签</h4>
                     <ul class="list-of-tags tags-in-article">
                         <li><a href="/tags.html#C++-ref">C++
