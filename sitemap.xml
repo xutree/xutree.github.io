@@ -4,813 +4,827 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>https://xutree.github.io/</loc>
-<lastmod>2019-09-24T20:15:53-00:00</lastmod>
+<loc>/</loc>
+<lastmod>2019-09-25T13:00:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/archives.html</loc>
-<lastmod>2019-09-24T20:15:53-00:00</lastmod>
+<loc>/archives.html</loc>
+<lastmod>2019-09-25T13:00:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tags.html</loc>
-<lastmod>2019-09-24T20:15:53-00:00</lastmod>
+<loc>/tags.html</loc>
+<lastmod>2019-09-25T13:00:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/categories.html</loc>
-<lastmod>2019-09-24T20:15:53-00:00</lastmod>
+<loc>/categories.html</loc>
+<lastmod>2019-09-25T13:00:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/search.html</loc>
-<lastmod>2019-09-24T20:15:53-00:00</lastmod>
+<loc>/search.html</loc>
+<lastmod>2019-09-25T13:00:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/404.html</loc>
-<lastmod>2019-09-24T20:15:53-00:00</lastmod>
+<loc>/404.html</loc>
+<lastmod>2019-09-25T13:00:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/09/24/alg_4th/</loc>
+<loc>/pages/2019/09/25/nielsen/</loc>
+<lastmod>2019-09-25T12:43:19+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>/pages/2019/09/24/alg_4th/</loc>
 <lastmod>2019-09-24T20:15:14+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/09/16/headfirstjava/</loc>
+<loc>/pages/2019/09/16/headfirstjava/</loc>
 <lastmod>2019-09-18T20:07:48+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/09/07/cast/</loc>
+<loc>/pages/2019/09/07/cast/</loc>
 <lastmod>2019-09-07T10:55:16+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/08/21/note/</loc>
+<loc>/pages/2019/08/21/note/</loc>
 <lastmod>2019-08-21T21:59:53+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/08/16/深入浅出SQL/</loc>
+<loc>/pages/2019/08/16/深入浅出SQL/</loc>
 <lastmod>2019-08-17T14:27:46+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/06/01/sl-12/</loc>
+<loc>/pages/2019/06/01/sl-12/</loc>
 <lastmod>2019-06-01T16:33:03+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/05/17/sl-11/</loc>
+<loc>/pages/2019/05/17/sl-11/</loc>
 <lastmod>2019-05-20T15:18:01+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/04/19/sl-10/</loc>
+<loc>/pages/2019/04/19/sl-10/</loc>
 <lastmod>2019-04-19T17:11:25+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/04/04/sl-9/</loc>
+<loc>/pages/2019/04/04/sl-9/</loc>
 <lastmod>2019-05-22T16:02:34+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/03/23/sl-8/</loc>
+<loc>/pages/2019/03/23/sl-8/</loc>
 <lastmod>2019-03-25T10:34:40+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/03/12/sl-7_4/</loc>
+<loc>/pages/2019/03/12/sl-7_4/</loc>
 <lastmod>2019-03-12T18:32:53+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/02/11/sl-7_2/</loc>
+<loc>/pages/2019/02/11/sl-7_2/</loc>
 <lastmod>2019-05-22T13:54:45+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/02/11/sl-7_1/</loc>
+<loc>/pages/2019/02/11/sl-7_1/</loc>
 <lastmod>2019-05-22T12:40:36+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/02/11/sl-7_3/</loc>
+<loc>/pages/2019/02/11/sl-7_3/</loc>
 <lastmod>2019-03-12T12:41:58+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/02/09/sl-6/</loc>
+<loc>/pages/2019/02/09/sl-6/</loc>
 <lastmod>2019-05-21T20:11:13+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/02/07/sl-5/</loc>
+<loc>/pages/2019/02/07/sl-5/</loc>
 <lastmod>2019-05-21T17:14:25+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/01/29/sl-4/</loc>
+<loc>/pages/2019/01/29/sl-4/</loc>
 <lastmod>2019-01-29T16:42:01+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/01/22/Torch_libpng/</loc>
+<loc>/pages/2019/01/22/Torch_libpng/</loc>
 <lastmod>2019-01-22T14:37:18+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/01/20/sl-3/</loc>
+<loc>/pages/2019/01/20/sl-3/</loc>
 <lastmod>2019-02-05T18:32:21+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/01/06/sl-2/</loc>
+<loc>/pages/2019/01/06/sl-2/</loc>
 <lastmod>2019-01-12T15:34:59+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2019/01/04/sl-1/</loc>
+<loc>/pages/2019/01/04/sl-1/</loc>
 <lastmod>2019-01-09T11:16:50+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/12/07/dl-5/</loc>
+<loc>/pages/2018/12/07/dl-5/</loc>
 <lastmod>2018-12-07T23:11:40+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/11/24/dl-4/</loc>
+<loc>/pages/2018/11/24/dl-4/</loc>
 <lastmod>2018-11-25T16:08:25+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/11/21/dl-3/</loc>
+<loc>/pages/2018/11/21/dl-3/</loc>
 <lastmod>2018-11-22T11:36:17+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/11/21/dl-2/</loc>
+<loc>/pages/2018/11/21/dl-2/</loc>
 <lastmod>2018-11-21T16:22:11+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/11/21/dl-1/</loc>
+<loc>/pages/2018/11/21/dl-1/</loc>
 <lastmod>2018-11-21T08:25:14+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/11/16/likelihood-function/</loc>
+<loc>/pages/2018/11/16/likelihood-function/</loc>
 <lastmod>2018-11-16T18:52:37+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/11/12/tutorial/</loc>
+<loc>/pages/2018/11/12/tutorial/</loc>
 <lastmod>2018-11-12T15:43:58+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/11/10/directional_derivative-gradient/</loc>
+<loc>/pages/2018/11/10/directional_derivative-gradient/</loc>
 <lastmod>2018-11-10T15:44:43+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/11/10/lagrange_duality/</loc>
+<loc>/pages/2018/11/10/lagrange_duality/</loc>
 <lastmod>2018-11-10T14:16:04+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/11/10/args/</loc>
+<loc>/pages/2018/11/10/args/</loc>
 <lastmod>2018-11-10T12:11:25+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/11/05/bayes/</loc>
+<loc>/pages/2018/11/05/bayes/</loc>
 <lastmod>2018-11-07T12:47:06+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/28/指示器随机变量/</loc>
+<loc>/pages/2018/10/28/指示器随机变量/</loc>
 <lastmod>2018-10-29T18:53:28+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/27/find_maximum_subarray/</loc>
+<loc>/pages/2018/10/27/find_maximum_subarray/</loc>
 <lastmod>2018-10-28T13:02:31+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/26/sort/</loc>
+<loc>/pages/2018/10/26/sort/</loc>
 <lastmod>2019-02-22T22:22:37+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/23/矩阵求导/</loc>
+<loc>/pages/2018/10/23/矩阵求导/</loc>
 <lastmod>2018-10-24T11:57:17+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/</loc>
+<loc>/pages/2018/10/21/C++_Primer_Chapter_17/</loc>
 <lastmod>2018-10-21T17:04:34+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/</loc>
+<loc>/pages/2018/10/21/C++_Primer_Chapter_16/</loc>
 <lastmod>2018-10-21T13:39:16+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/</loc>
+<loc>/pages/2018/10/20/C++_Primer_Chapter_15/</loc>
 <lastmod>2018-10-20T23:05:36+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/</loc>
+<loc>/pages/2018/10/20/C++_Primer_Chapter_14/</loc>
 <lastmod>2018-10-20T20:59:28+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/</loc>
+<loc>/pages/2018/10/20/C++_Primer_Chapter_13/</loc>
 <lastmod>2018-10-20T19:14:52+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/</loc>
+<loc>/pages/2018/10/17/C++_Primer_Chapter_12/</loc>
 <lastmod>2018-10-20T14:50:55+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/</loc>
+<loc>/pages/2018/10/17/C++_Primer_Chapter_11/</loc>
 <lastmod>2018-10-17T21:12:37+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/</loc>
+<loc>/pages/2018/10/17/C++_Primer_Chapter_10/</loc>
 <lastmod>2018-10-17T17:10:03+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/</loc>
+<loc>/pages/2018/10/16/C++_Primer_Chapter_9/</loc>
 <lastmod>2018-10-17T11:12:28+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/16/atom快捷键/</loc>
+<loc>/pages/2018/10/16/atom快捷键/</loc>
 <lastmod>2018-10-16T15:55:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/15/perl入门/</loc>
+<loc>/pages/2018/10/15/perl入门/</loc>
 <lastmod>2018-10-15T23:12:03+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/14/bianma/</loc>
+<loc>/pages/2018/10/14/bianma/</loc>
 <lastmod>2018-10-14T19:55:47+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/13/eps/</loc>
+<loc>/pages/2018/10/13/eps/</loc>
 <lastmod>2018-10-13T05:18:15+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/12/torch/</loc>
+<loc>/pages/2018/10/12/torch/</loc>
 <lastmod>2018-10-12T12:36:32+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/10/数据结构向量/</loc>
+<loc>/pages/2018/10/10/数据结构向量/</loc>
 <lastmod>2018-10-12T23:39:31+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/10/树/</loc>
+<loc>/pages/2018/10/10/树/</loc>
 <lastmod>2019-02-21T21:08:40+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_8/</loc>
+<loc>/pages/2018/10/09/C++_Primer_Chapter_8/</loc>
 <lastmod>2018-10-09T22:19:51+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_7/</loc>
+<loc>/pages/2018/10/09/C++_Primer_Chapter_7/</loc>
 <lastmod>2018-10-09T20:38:15+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_6/</loc>
+<loc>/pages/2018/10/09/C++_Primer_Chapter_6/</loc>
 <lastmod>2018-10-09T15:55:08+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/09/回车与换行的区别/</loc>
+<loc>/pages/2018/10/09/回车与换行的区别/</loc>
 <lastmod>2018-10-09T13:42:30+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/09/C++_Primer_Chapter_5/</loc>
+<loc>/pages/2018/10/09/C++_Primer_Chapter_5/</loc>
 <lastmod>2018-10-09T12:06:33+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/08/几个奇葩的Linux命令/</loc>
+<loc>/pages/2018/10/08/几个奇葩的Linux命令/</loc>
 <lastmod>2018-10-09T11:39:49+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/08/jzoffer2/</loc>
+<loc>/pages/2018/10/08/jzoffer2/</loc>
 <lastmod>2018-11-26T22:42:52+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/08/linux中的扩展和引用/</loc>
+<loc>/pages/2018/10/08/linux中的扩展和引用/</loc>
 <lastmod>2018-10-09T13:22:26+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/07/jzoffer1/</loc>
+<loc>/pages/2018/10/07/jzoffer1/</loc>
 <lastmod>2018-11-26T19:56:59+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/07/css_overview/</loc>
+<loc>/pages/2018/10/07/css_overview/</loc>
 <lastmod>2018-10-07T12:29:23+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/07/C++_Primer_Chapter_4/</loc>
+<loc>/pages/2018/10/07/C++_Primer_Chapter_4/</loc>
 <lastmod>2018-10-07T11:08:56+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_3/</loc>
+<loc>/pages/2018/10/06/C++_Primer_Chapter_3/</loc>
 <lastmod>2018-10-07T10:48:54+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/06/C++_Primer_Chapter_2/</loc>
+<loc>/pages/2018/10/06/C++_Primer_Chapter_2/</loc>
 <lastmod>2018-10-07T10:48:38+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/06/mac-stat/</loc>
+<loc>/pages/2018/10/06/mac-stat/</loc>
 <lastmod>2018-10-07T10:38:50+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/05/C++_Primer_Chapter_1/</loc>
+<loc>/pages/2018/10/05/C++_Primer_Chapter_1/</loc>
 <lastmod>2018-10-07T10:48:26+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/05/py/</loc>
+<loc>/pages/2018/10/05/py/</loc>
 <lastmod>2018-10-05T23:15:21+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/05/html-overview/</loc>
+<loc>/pages/2018/10/05/html-overview/</loc>
 <lastmod>2018-10-15T21:17:20+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/05/X3DOM图像和视频纹理/</loc>
+<loc>/pages/2018/10/05/X3DOM图像和视频纹理/</loc>
 <lastmod>2018-10-06T21:02:53+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/05/100/</loc>
+<loc>/pages/2018/10/05/100/</loc>
 <lastmod>2018-10-05T20:18:06+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/</loc>
+<loc>/pages/2018/10/05/X3DOMHTMLCSS和JavaScript/</loc>
 <lastmod>2018-10-06T21:02:31+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/04/X3DOM-hello/</loc>
+<loc>/pages/2018/10/04/X3DOM-hello/</loc>
 <lastmod>2018-10-06T20:59:55+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/04/X3DOM第一课/</loc>
+<loc>/pages/2018/10/04/X3DOM第一课/</loc>
 <lastmod>2018-10-06T21:13:34+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/pages/2018/10/04/在mac上安装Pelican/</loc>
+<loc>/pages/2018/10/04/在mac上安装Pelican/</loc>
 <lastmod>2018-10-06T21:15:21+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/category/du-shu-bi-ji.html</loc>
-<lastmod>2019-09-24T20:15:14+08:06</lastmod>
+<loc>/category/du-shu-bi-ji.html</loc>
+<lastmod>2019-09-25T12:43:19+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/category/ji-chu-zhi-shi.html</loc>
+<loc>/category/ji-chu-zhi-shi.html</loc>
 <lastmod>2019-08-21T21:59:53+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/category/jiao-cheng.html</loc>
+<loc>/category/jiao-cheng.html</loc>
 <lastmod>2019-01-22T14:37:18+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/category/qi-ta.html</loc>
+<loc>/category/qi-ta.html</loc>
 <lastmod>2018-10-29T18:53:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/category/qu-wen.html</loc>
+<loc>/category/qu-wen.html</loc>
 <lastmod>2018-10-09T13:42:30+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/suan-fa.html</loc>
+<loc>/tag/liang-zi.html</loc>
+<lastmod>2019-09-25T12:43:19+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/suan-fa.html</loc>
 <lastmod>2019-09-24T20:15:14+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/java.html</loc>
+<loc>/tag/java.html</loc>
 <lastmod>2019-09-18T20:07:48+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/c.html</loc>
+<loc>/tag/c.html</loc>
 <lastmod>2019-09-07T10:55:16+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/sql.html</loc>
+<loc>/tag/sql.html</loc>
 <lastmod>2019-08-17T14:27:46+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/tong-ji-xue-xi.html</loc>
+<loc>/tag/tong-ji-xue-xi.html</loc>
 <lastmod>2019-06-01T16:33:03+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/ji-qi-xue-xi.html</loc>
+<loc>/tag/ji-qi-xue-xi.html</loc>
 <lastmod>2019-06-01T16:33:03+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/shen-du-xue-xi.html</loc>
+<loc>/tag/shen-du-xue-xi.html</loc>
 <lastmod>2018-12-07T23:11:40+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/gai-lu.html</loc>
+<loc>/tag/gai-lu.html</loc>
 <lastmod>2018-11-16T18:52:37+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/shu-xue.html</loc>
+<loc>/tag/shu-xue.html</loc>
 <lastmod>2018-11-16T18:52:37+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/xlwings.html</loc>
+<loc>/tag/xlwings.html</loc>
 <lastmod>2018-11-12T15:43:58+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/excel.html</loc>
+<loc>/tag/excel.html</loc>
 <lastmod>2018-11-12T15:43:58+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/python.html</loc>
+<loc>/tag/python.html</loc>
 <lastmod>2018-11-12T15:43:58+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/argparse.html</loc>
+<loc>/tag/argparse.html</loc>
 <lastmod>2018-11-10T12:11:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/ju-zhen.html</loc>
+<loc>/tag/ju-zhen.html</loc>
 <lastmod>2018-10-24T11:57:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/atom.html</loc>
+<loc>/tag/atom.html</loc>
 <lastmod>2018-10-16T15:55:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/mac.html</loc>
+<loc>/tag/mac.html</loc>
 <lastmod>2018-10-16T15:55:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/perl.html</loc>
+<loc>/tag/perl.html</loc>
 <lastmod>2018-10-15T23:12:03+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/ji-suan-ji-ji-chu.html</loc>
+<loc>/tag/ji-suan-ji-ji-chu.html</loc>
 <lastmod>2018-10-14T19:55:47+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/eps.html</loc>
+<loc>/tag/eps.html</loc>
 <lastmod>2018-10-13T05:18:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/tu-xiang-chu-li.html</loc>
+<loc>/tag/tu-xiang-chu-li.html</loc>
 <lastmod>2018-10-13T05:18:15+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/pytroch.html</loc>
+<loc>/tag/pytroch.html</loc>
 <lastmod>2018-10-12T12:36:32+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/shu-ju-jie-gou.html</loc>
+<loc>/tag/shu-ju-jie-gou.html</loc>
 <lastmod>2019-02-21T21:08:40+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/linux.html</loc>
+<loc>/tag/linux.html</loc>
 <lastmod>2018-10-09T13:22:26+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/jian-zhi-offer.html</loc>
+<loc>/tag/jian-zhi-offer.html</loc>
 <lastmod>2018-11-26T22:42:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/mian-shi.html</loc>
+<loc>/tag/mian-shi.html</loc>
 <lastmod>2018-11-26T22:42:52+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/css.html</loc>
+<loc>/tag/css.html</loc>
 <lastmod>2018-10-07T12:29:23+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/html.html</loc>
+<loc>/tag/html.html</loc>
 <lastmod>2018-10-15T21:17:20+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/x3dom.html</loc>
+<loc>/tag/x3dom.html</loc>
 <lastmod>2018-10-06T21:13:34+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/tag/pelican.html</loc>
+<loc>/tag/pelican.html</loc>
 <lastmod>2018-10-06T21:15:21+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://xutree.github.io/author/shu.html</loc>
-<lastmod>2019-09-24T20:15:14+08:06</lastmod>
+<loc>/author/shu.html</loc>
+<lastmod>2019-09-25T12:43:19+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

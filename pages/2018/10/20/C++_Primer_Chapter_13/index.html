@@ -10,10 +10,10 @@
 <meta name="keywords" content="C++, 读书笔记, " />
     <title>C++ Primer 第十三章 拷贝控制  · You Know Nothing
 </title>
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/slim-081711.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/bootstrap-combined.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/style.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://xutree.github.io/theme/css/solarizedlight.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/slim-081711.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/bootstrap-combined.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/theme/css/solarizedlight.css" media="screen">
 </head>
 
 <body>
@@ -26,15 +26,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://xutree.github.io/"><span class=site-name>You Know Nothing</span></a>
+                    <a class="brand" href="/"><span class=site-name>You Know Nothing</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="https://xutree.github.io/index.html">主页</a></li>
-                            <li ><a href="https://xutree.github.io/categories.html">分类</a></li>
-                            <li ><a href="https://xutree.github.io/tags.html">标签</a></li>
-                            <li ><a href="https://xutree.github.io/archives.html">归档</a></li>
+                            <li ><a href="/index.html">主页</a></li>
+                            <li ><a href="/categories.html">分类</a></li>
+                            <li ><a href="/tags.html">标签</a></li>
+                            <li ><a href="/archives.html">归档</a></li>
                             <li>
-                                <form class="navbar-search" action="https://xutree.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
+                                <form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="关键字搜索" name="q" id="tipue_search_input"></form>
                             </li>
                         </ul>
                     </div>
@@ -48,7 +48,7 @@
 <article>
     <div class="row-fluid">
         <header class="page_header span10 offset2">
-            <h1><a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_13/"> C++ Primer 第十三章 拷贝控制  </a></h1>
+            <h1><a href="/pages/2018/10/20/C++_Primer_Chapter_13/"> C++ Primer 第十三章 拷贝控制  </a></h1>
         </header>
     </div>
 
@@ -544,7 +544,7 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 <h4 id="13421">13.4.2.1 移动操作、标准库容器和异常</h4>
 <p>由于移动操作“窃取”资源，它通常不分配任何资源。因此，移动操作通常不会抛出任何异常。一种通知标准库的方法是在我们的构造函数中指明<code>noexcept</code>。<code>noexcept</code>是新标准引入的。在一个构造函数中，<code>noexcept</code>出现在参数列表被初始化列表开始的冒号之间。我们必须在类头文件声明和定义中（如果定义在类外的话）都指定<code>noexcept</code>。</p>
 <p><strong>不抛出异常的移动构造函数和移动赋值运算符必须标记为<code>noexcept</code>。</strong></p>
-<p><img alt="为什么指定noexcept" src="https://xutree.github.io/images/c++13-1.jpg"/></p>
+<p><img alt="为什么指定noexcept" src="/images/c++13-1.jpg"/></p>
 <h4 id="13422">13.4.2.2 移动赋值运算符</h4>
 <p>移动赋值运算符执行与析构函数和移动构造函数相同的工作。</p>
 <div class="highlight"><pre><span></span>StrVec &amp;StrVec::operator=(StrVec &amp;&amp;rhs) noexcept
@@ -573,7 +573,7 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 <h4 id="13426">13.4.2.6 但如果没有移动构造函数，右值也被拷贝</h4>
 <p>使用拷贝构造函数代替移动构造函数几乎肯定是安全的。</p>
 <h4 id="13427">13.4.2.7 拷贝并交换赋值运算符和移动操作</h4>
-<p><img alt="拷贝并交换赋值运算符和移动操作" src="https://xutree.github.io/images/c++13-2.jpg"/></p>
+<p><img alt="拷贝并交换赋值运算符和移动操作" src="/images/c++13-2.jpg"/></p>
 <h4 id="13428">13.4.2.8 更新的三/五法则</h4>
 <p>一般来说，如果一个类定义了任何一个拷贝操作，它就应该定义所有五个操作。</p>
 <h4 id="13429">13.4.2.9 移动迭代器</h4>
@@ -619,7 +619,7 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
 </pre></div>
 <p><code>constructor</code>函数使用第二个和随后的实参类型来确定使用哪个构造函数。由于<code>move</code>返回一个右值引用，因此，会使用<code>string</code>的移动构造函数来构造新元素。</p>
 <h4 id="13431">13.4.3.1 左值和右值引用成员函数</h4>
-<p><img alt="左值和右值引用成员函数" src="https://xutree.github.io/images/c++13-3.jpg"/></p>
+<p><img alt="左值和右值引用成员函数" src="/images/c++13-3.jpg"/></p>
 <h4 id="13432">13.4.3.2 重载和引用函数</h4>
 <p>就像一个成员函数可以根据是否有<code>const</code>来区分其重载版本一样，引用限定符也可以区分重载版本。而且，我们可以综合引用限定符和<code>const</code>来区分一个成员函数的重载版本。</p>
 <p>当我们定义<code>const</code>成员函数时，可以定义两个版本，唯一的差别是一个版本有<code>const</code>限定而另一个没有。引用限定的函数则不一样。如果我们定义两个或两个以上具有相同名字和相同参数列表的成员函数，就必须对所有函数都加上引用限定符，或者所有都不加。</p>
@@ -631,19 +631,19 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2019/09/07/cast/">C++ 中的类型转换</a>
+                                <a href="/pages/2019/09/07/cast/">C++ 中的类型转换</a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">C++ Primer 第十七章 标准库特殊设施</a>
+                                <a href="/pages/2018/10/21/C++_Primer_Chapter_17/">C++ Primer 第十七章 标准库特殊设施</a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">C++ Primer 第十六章 模板与泛型编程</a>
+                                <a href="/pages/2018/10/21/C++_Primer_Chapter_16/">C++ Primer 第十六章 模板与泛型编程</a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">C++ Primer 第十五章 面向对象程序设计</a>
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_15/">C++ Primer 第十五章 面向对象程序设计</a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">C++ Primer 第十四章 重载运算与类型转换</a>
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_14/">C++ Primer 第十四章 重载运算与类型转换</a>
                             </li>
                         </ul>
                     </nav>
@@ -653,27 +653,27 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_12/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_12/">
                                     C++ Primer 第十二章 动态内存
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_11/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_11/">
                                     C++ Primer 第十一章 关联容器
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/17/C++_Primer_Chapter_10/">
+                                <a href="/pages/2018/10/17/C++_Primer_Chapter_10/">
                                     C++ Primer 第十章 泛型算法
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/16/C++_Primer_Chapter_9/">
+                                <a href="/pages/2018/10/16/C++_Primer_Chapter_9/">
                                     C++ Primer 第九章 顺序容器
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/16/atom快捷键/">
+                                <a href="/pages/2018/10/16/atom快捷键/">
                                     Atom 快捷键
                                 </a>
                             </li>
@@ -685,27 +685,27 @@ it &amp;&amp;rr2 = rr1;   //错误：表达式 rr1 是左值！
                         </h1>
                         <ul>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_14/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_14/">
                                     C++ Primer 第十四章 重载运算与类型转换
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/20/C++_Primer_Chapter_15/">
+                                <a href="/pages/2018/10/20/C++_Primer_Chapter_15/">
                                     C++ Primer 第十五章 面向对象程序设计
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_16/">
+                                <a href="/pages/2018/10/21/C++_Primer_Chapter_16/">
                                     C++ Primer 第十六章 模板与泛型编程
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/21/C++_Primer_Chapter_17/">
+                                <a href="/pages/2018/10/21/C++_Primer_Chapter_17/">
                                     C++ Primer 第十七章 标准库特殊设施
                                 </a>
                             </li>
                             <li>
-                                <a href="https://xutree.github.io/pages/2018/10/23/矩阵求导/">
+                                <a href="/pages/2018/10/23/矩阵求导/">
                                     矩阵微积分
                                 </a>
                             </li>
